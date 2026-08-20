@@ -1,0 +1,26 @@
+<header class="mb-4 mb-lg-5">
+    <div class="pt-2 pb-4">
+        <h1 class="display-5 fw-bold lh-sm text-body-emphasis mb-0">
+            {{ $.title }}
+        </h1>
+    </div>
+
+    <nav class="overflow-x-auto border-bottom" ng-attr-aria-label="{{ $.title }} sections">
+        <ul
+            class="nav-underline flex-nowrap gap-4 mb-0"
+            ngb-nav
+            active-id="$.titleService.currentTab">
+            <li
+                ng-repeat="tab in $.tabs track by tab.to"
+                ngb-nav-item="{{ tab.to }}">
+                <button
+                    type="button"
+                    class="text-nowrap px-1 py-3 fw-semibold"
+                    ngb-nav-link
+                    ui-sref="{{ tab.to }}">
+                    {{ tab.name }}
+                </button>
+            </li>
+        </ul>
+    </nav>
+</header>
