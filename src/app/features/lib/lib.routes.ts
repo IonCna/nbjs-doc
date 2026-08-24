@@ -72,8 +72,8 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-alert", name: "NgbAlert" },
+                { id: "ngb-alert-config", name: "NgbAlertConfig" },
             ],
         },
         views: {
@@ -118,8 +118,13 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-accordion", name: "NgbAccordion" },
+                { id: "ngb-accordion-item", name: "NgbAccordionItem" },
+                { id: "ngb-accordion-header", name: "NgbAccordionHeader" },
+                { id: "ngb-accordion-button", name: "NgbAccordionButton" },
+                { id: "ngb-accordion-toggle", name: "NgbAccordionToggle" },
+                { id: "ngb-accordion-body", name: "NgbAccordionBody" },
+                { id: "ngb-accordion-config", name: "NgbAccordionConfig" },
             ],
         },
         views: {
@@ -164,8 +169,9 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-carousel", name: "NgbCarousel" },
+                { id: "ngb-slide", name: "NgbSlide" },
+                { id: "ngb-carousel-config", name: "NgbCarouselConfig" },
             ],
         },
         views: {
@@ -210,8 +216,8 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-collapse", name: "NgbCollapse" },
+                { id: "ngb-collapse-config", name: "NgbCollapseConfig" },
             ],
         },
         views: {
@@ -255,8 +261,11 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-datepicker", name: "NgbDatepicker" },
+                { id: "ngb-input-datepicker", name: "NgbInputDatepicker" },
+                { id: "ngb-datepicker-config", name: "NgbDatepickerConfig" },
+                { id: "ngb-input-datepicker-config", name: "NgbInputDatepickerConfig" },
+                { id: "ngb-datepicker-extension-contracts", name: "Extension contracts" },
             ],
         },
         views: {
@@ -301,8 +310,12 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-dropdown", name: "NgbDropdown" },
+                { id: "ngb-dropdown-anchor", name: "NgbDropdownAnchor" },
+                { id: "ngb-dropdown-toggle", name: "NgbDropdownToggle" },
+                { id: "ngb-dropdown-menu", name: "NgbDropdownMenu" },
+                { id: "ngb-dropdown-item", name: "NgbDropdownItem" },
+                { id: "ngb-dropdown-config", name: "NgbDropdownConfig" },
             ],
         },
         views: {
@@ -347,8 +360,10 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-modal", name: "NgbModal" },
+                { id: "ngb-modal-ref", name: "NgbModalRef" },
+                { id: "ngb-active-modal", name: "NgbActiveModal" },
+                { id: "ngb-modal-config", name: "NgbModalConfig" },
             ],
         },
         views: {
@@ -393,8 +408,12 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-nav", name: "NgbNav" },
+                { id: "ngb-nav-item", name: "NgbNavItem" },
+                { id: "ngb-nav-link", name: "NgbNavLink" },
+                { id: "ngb-nav-content", name: "NgbNavContent" },
+                { id: "ngb-nav-outlet", name: "NgbNavOutlet" },
+                { id: "ngb-nav-config", name: "NgbNavConfig" },
             ],
         },
         views: {
@@ -439,8 +458,10 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-offcanvas", name: "NgbOffcanvas" },
+                { id: "ngb-offcanvas-ref", name: "NgbOffcanvasRef" },
+                { id: "ngb-active-offcanvas", name: "NgbActiveOffcanvas" },
+                { id: "ngb-offcanvas-config", name: "NgbOffcanvasConfig" },
             ],
         },
         views: {
@@ -485,8 +506,8 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-pagination", name: "NgbPagination" },
+                { id: "ngb-pagination-config", name: "NgbPaginationConfig" },
             ],
         },
         views: {
@@ -531,8 +552,8 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-popover", name: "NgbPopover" },
+                { id: "ngb-popover-config", name: "NgbPopoverConfig" },
             ],
         },
         views: {
@@ -577,8 +598,9 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-progressbar", name: "NgbProgressbar" },
+                { id: "ngb-progressbar-stacked", name: "NgbProgressbarStacked" },
+                { id: "ngb-progressbar-config", name: "NgbProgressbarConfig" },
             ],
         },
         views: {
@@ -622,8 +644,8 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-rating", name: "NgbRating" },
+                { id: "ngb-rating-config", name: "NgbRatingConfig" },
             ],
         },
         views: {
@@ -668,8 +690,12 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-scrollspy", name: "NgbScrollSpy" },
+                { id: "ngb-scrollspy-fragment", name: "NgbScrollSpyFragment" },
+                { id: "ngb-scrollspy-menu", name: "NgbScrollSpyMenu" },
+                { id: "ngb-scrollspy-item", name: "NgbScrollSpyItem" },
+                { id: "ngb-scrollspy-service", name: "NgbScrollSpyService" },
+                { id: "ngb-scrollspy-config", name: "NgbScrollSpyConfig" },
             ],
         },
         views: {
@@ -713,8 +739,10 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-timepicker", name: "NgbTimepicker" },
+                { id: "ngb-timepicker-config", name: "NgbTimepickerConfig" },
+                { id: "ngb-time-adapter", name: "NgbTimeAdapter" },
+                { id: "ngb-timepicker-i18n", name: "NgbTimepickerI18n" },
             ],
         },
         views: {
@@ -759,8 +787,9 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-toast", name: "NgbToast" },
+                { id: "ngb-toast-header", name: "NgbToastHeader" },
+                { id: "ngb-toast-config", name: "NgbToastConfig" },
             ],
         },
         views: {
@@ -805,8 +834,8 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-tooltip", name: "NgbTooltip" },
+                { id: "ngb-tooltip-config", name: "NgbTooltipConfig" },
             ],
         },
         views: {
@@ -850,8 +879,9 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/api",
         data: {
             sections: [
-                { id: "directives", name: "Directives" },
-                { id: "services", name: "Services" },
+                { id: "ngb-typeahead", name: "NgbTypeahead" },
+                { id: "ngb-highlight", name: "NgbHighlight" },
+                { id: "ngb-typeahead-config", name: "NgbTypeaheadConfig" },
             ],
         },
         views: {

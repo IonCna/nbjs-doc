@@ -1,9 +1,41 @@
-<section class="pb-5 mb-5" ngb-scroll-spy-fragment="directives">
-    <h2 class="h3 mb-3">Directives</h2>
-    <p class="text-body-secondary">Progress bar directive API for NgbJS.</p>
+<div class="d-flex flex-wrap gap-2 mb-5" aria-label="Binding legend">
+    <span class="badge bg-body-tertiary border text-body fw-normal px-3 py-2"><code>&lt;?</code> input</span>
+    <span class="badge bg-body-tertiary border text-body fw-normal px-3 py-2"><code>&amp;?</code> callback</span>
+</div>
+
+<section class="pb-4 mb-4 border-bottom" ngb-scroll-spy-fragment="ngb-progressbar">
+    <header class="mb-3"><p class="small fw-semibold text-primary mb-1">Component</p><h2 class="h3 mb-2"><code class="text-body">NgbProgressbar</code></h2><p class="text-body-secondary mb-0">Renders an accessible Bootstrap progress indicator for a numeric value.</p></header>
+    <dl class="row gy-2 mb-0"><dt class="col-sm-3 fw-semibold">Markup</dt><dd class="col-sm-9 mb-0"><code>&lt;ngb-progressbar value="progress"&gt;</code></dd></dl>
+    <h3 class="h5 mt-4 mb-3">Inputs</h3>
+    <div class="table-responsive"><table class="table table-sm align-middle mb-0">
+        <thead><tr><th>Input</th><th>Binding</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>value</code></td><td><code>&lt;</code></td><td><code>number</code></td><td>Required</td><td>Current progress value.</td></tr>
+            <tr><td><code>max</code></td><td><code>&lt;?</code></td><td><code>number</code></td><td><code>100</code></td><td>Maximum value.</td></tr>
+            <tr><td><code>animated</code></td><td><code>&lt;?</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Animates striped progress.</td></tr>
+            <tr><td><code>striped</code></td><td><code>&lt;?</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Uses a striped background.</td></tr>
+            <tr><td><code>show-value</code></td><td><code>&lt;?</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Displays the calculated percentage.</td></tr>
+            <tr><td><code>type</code></td><td><code>@?</code></td><td><code>string</code></td><td><code>$config.type</code></td><td>Sets the bar contextual type.</td></tr>
+            <tr><td><code>text-type</code></td><td><code>@?</code></td><td><code>string</code></td><td><code>$config.textType</code></td><td>Sets the label text color.</td></tr>
+            <tr><td><code>height</code></td><td><code>@?</code></td><td><code>string</code></td><td><code>$config.height</code></td><td>Sets the progress container height.</td></tr>
+            <tr><td><code>aria-label</code></td><td><code>@?</code></td><td><code>string</code></td><td><code>"progress bar"</code></td><td>Accessible label for the bar.</td></tr>
+        </tbody>
+    </table></div>
 </section>
 
-<section class="pb-5 mb-5" ngb-scroll-spy-fragment="services">
-    <h2 class="h3 mb-3">Services</h2>
-    <p class="text-body-secondary">Progress bar configuration services for NgbJS.</p>
+<section class="pb-4 mb-4 border-bottom" ngb-scroll-spy-fragment="ngb-progressbar-stacked">
+    <header class="mb-3"><p class="small fw-semibold text-primary mb-1">Component</p><h2 class="h3 mb-2"><code class="text-body">NgbProgressbarStacked</code></h2><p class="text-body-secondary mb-0">Groups multiple progress bars into a Bootstrap stacked progress container.</p></header>
+    <dl class="row gy-2 mb-0"><dt class="col-sm-3 fw-semibold">Markup</dt><dd class="col-sm-9 mb-0"><code>&lt;ngb-progressbar-stacked&gt;</code></dd></dl>
+    <p class="small text-body-secondary mt-3 mb-0">No public inputs or outputs.</p>
+</section>
+
+<section class="pb-4 mb-4 border-bottom" ngb-scroll-spy-fragment="ngb-progressbar-config">
+    <header class="mb-3"><p class="small fw-semibold text-primary mb-1">Service</p><h2 class="h3 mb-2"><code class="text-body">NgbProgressbarConfig</code></h2><p class="text-body-secondary mb-0">Provides application-wide progress bar defaults.</p></header>
+    <h3 class="h5 mt-4 mb-3">Properties</h3>
+    <div class="table-responsive"><table class="table table-sm align-middle mb-0"><thead><tr><th>Property</th><th>Type</th><th>Default</th></tr></thead><tbody>
+        <tr><td><code>ariaLabel</code></td><td><code>string</code></td><td><code>"progress bar"</code></td></tr>
+        <tr><td><code>animated</code>, <code>showValue</code>, <code>striped</code></td><td><code>boolean</code></td><td><code>false</code></td></tr>
+        <tr><td><code>max</code></td><td><code>number</code></td><td><code>100</code></td></tr>
+        <tr><td><code>height</code>, <code>textType</code>, <code>type</code></td><td><code>string | undefined</code></td><td><code>undefined</code></td></tr>
+    </tbody></table></div>
 </section>

@@ -1,9 +1,49 @@
-<section class="pb-5 mb-5" ngb-scroll-spy-fragment="directives">
-    <h2 class="h3 mb-3">Directives</h2>
-    <p class="text-body-secondary">Popover directive API for NgbJS.</p>
+<div class="d-flex flex-wrap gap-2 mb-5" aria-label="Binding legend">
+    <span class="badge bg-body-tertiary border text-body fw-normal px-3 py-2"><code>&lt;?</code> input</span>
+    <span class="badge bg-body-tertiary border text-body fw-normal px-3 py-2"><code>&amp;?</code> callback</span>
+</div>
+
+<section class="pb-4 mb-4 border-bottom" ngb-scroll-spy-fragment="ngb-popover">
+    <header class="mb-3"><p class="small fw-semibold text-primary mb-1">Directive</p><h2 class="h3 mb-2"><code class="text-body">NgbPopover</code></h2><p class="text-body-secondary mb-0">Attaches a positioned Bootstrap popover to any host element.</p></header>
+    <dl class="row gy-2 mb-0"><dt class="col-sm-3 fw-semibold">Markup</dt><dd class="col-sm-9 mb-0"><code>&lt;button ngb-popover="'Content'"&gt;</code></dd></dl>
+    <h3 class="h5 mt-4 mb-3">Inputs</h3>
+    <div class="table-responsive"><table class="table table-sm align-middle">
+        <thead><tr><th>Input</th><th>Binding</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>ngb-popover</code></td><td><code>&lt;?</code></td><td><code>string | TemplateRef</code></td><td>—</td><td>Popover body content.</td></tr>
+            <tr><td><code>popover-title</code></td><td><code>&lt;?</code></td><td><code>string | TemplateRef</code></td><td>—</td><td>Optional title content.</td></tr>
+            <tr><td><code>popover-context</code></td><td><code>&lt;?</code></td><td><code>object</code></td><td>—</td><td>Context supplied to template content.</td></tr>
+            <tr><td><code>animation</code></td><td><code>&lt;?</code></td><td><code>boolean</code></td><td><code>$config.animation</code></td><td>Enables open and close transitions.</td></tr>
+            <tr><td><code>auto-close</code></td><td><code>&lt;?</code></td><td><code>boolean | "inside" | "outside"</code></td><td><code>true</code></td><td>Controls automatic closing.</td></tr>
+            <tr><td><code>placement</code></td><td><code>&lt;?</code></td><td><code>PlacementArray</code></td><td><code>"auto"</code></td><td>Preferred Popper placement.</td></tr>
+            <tr><td><code>triggers</code></td><td><code>&lt;?</code></td><td><code>string</code></td><td><code>"click"</code></td><td>Space-separated open and close triggers.</td></tr>
+            <tr><td><code>container</code></td><td><code>&lt;?</code></td><td><code>string</code></td><td><code>$config.container</code></td><td>Container selector for the popover window.</td></tr>
+            <tr><td><code>position-target</code></td><td><code>&lt;?</code></td><td><code>HTMLElement | string</code></td><td>Host element</td><td>Overrides the positioning target.</td></tr>
+            <tr><td><code>popover-class</code></td><td><code>@?</code></td><td><code>string</code></td><td>—</td><td>Adds a class to the popover window.</td></tr>
+            <tr><td><code>disable-popover</code></td><td><code>&lt;?</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Prevents the popover from opening.</td></tr>
+            <tr><td><code>open-delay</code></td><td><code>&lt;?</code></td><td><code>number</code></td><td><code>0</code></td><td>Delay before opening in milliseconds.</td></tr>
+            <tr><td><code>close-delay</code></td><td><code>&lt;?</code></td><td><code>number</code></td><td><code>0</code></td><td>Delay before closing in milliseconds.</td></tr>
+            <tr><td><code>popper-options</code></td><td><code>&lt;?</code></td><td><code>function</code></td><td><code>$config.popperOptions</code></td><td>Transforms Popper options.</td></tr>
+        </tbody>
+    </table></div>
+    <h3 class="h5 mt-4 mb-3">Outputs</h3>
+    <div class="table-responsive"><table class="table table-sm align-middle mb-0"><thead><tr><th>Output</th><th>Binding</th><th>Payload</th><th>Emitted when</th></tr></thead><tbody>
+        <tr><td><code>shown</code></td><td><code>&amp;?</code></td><td>None</td><td>The popover opens.</td></tr>
+        <tr><td><code>hidden</code></td><td><code>&amp;?</code></td><td>None</td><td>The popover closes.</td></tr>
+    </tbody></table></div>
 </section>
 
-<section class="pb-5 mb-5" ngb-scroll-spy-fragment="services">
-    <h2 class="h3 mb-3">Services</h2>
-    <p class="text-body-secondary">Popover configuration services for NgbJS.</p>
+<section class="pb-4 mb-4 border-bottom" ngb-scroll-spy-fragment="ngb-popover-config">
+    <header class="mb-3"><p class="small fw-semibold text-primary mb-1">Service</p><h2 class="h3 mb-2"><code class="text-body">NgbPopoverConfig</code></h2><p class="text-body-secondary mb-0">Provides application-wide popover defaults.</p></header>
+    <h3 class="h5 mt-4 mb-3">Properties</h3>
+    <div class="table-responsive"><table class="table table-sm align-middle mb-0"><thead><tr><th>Property</th><th>Default</th></tr></thead><tbody>
+        <tr><td><code>animation</code></td><td><code>$config.animation</code></td></tr>
+        <tr><td><code>autoClose</code></td><td><code>true</code></td></tr>
+        <tr><td><code>placement</code></td><td><code>"auto"</code></td></tr>
+        <tr><td><code>triggers</code></td><td><code>"click"</code></td></tr>
+        <tr><td><code>disablePopover</code></td><td><code>false</code></td></tr>
+        <tr><td><code>openDelay</code>, <code>closeDelay</code></td><td><code>0</code></td></tr>
+        <tr><td><code>container</code>, <code>popoverClass</code></td><td><code>undefined</code></td></tr>
+        <tr><td><code>popperOptions</code></td><td>Identity transform</td></tr>
+    </tbody></table></div>
 </section>
