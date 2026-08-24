@@ -7,16 +7,25 @@ export const routing = ($stateProvider: StateProvider) => {
     $stateProvider.state("docs.dashboard.introduction", {
         url: "/guide/introduction",
         component: IntroductionPageComponent.$name,
+        data: {
+            header: false
+        }
     })
 
     $stateProvider.state("docs.dashboard.philosophy", {
         url: "/guide/philosophy",
         component: PhilosophyPageComponent.$name,
+        data: {
+            header: false
+        }
     })
 
     $stateProvider.state("docs.dashboard.whyNgbJs", {
         url: "/guide/why-ngbjs",
         component: WhyNgbJsPageComponent.$name,
+        data: {
+            header: false
+        }
     })
 }
 

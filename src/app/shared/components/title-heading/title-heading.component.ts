@@ -7,6 +7,8 @@ export class TitleHeadingComponent implements IComponentController {
     public title?: string
     public tabs?: unknown[]
 
+    public visible: boolean = false
+
     public constructor(
         private titleService: TitleService,
     ) {}
@@ -17,6 +19,7 @@ export class TitleHeadingComponent implements IComponentController {
         ).subscribe(data => {
             this.title = data.title;
             this.tabs = data.tabs;
+            this.visible = data.header
         })
     }
 

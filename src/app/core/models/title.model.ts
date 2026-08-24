@@ -1,5 +1,6 @@
 export type HeadingData = {
     title: string
+    header: boolean
     tabs: HeadingTab[]
     sections?: HeadingSection[]
     externalLinks?: HeadingExternalLinks

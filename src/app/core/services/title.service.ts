@@ -29,6 +29,7 @@ export class TitleService {
                 tabs: toState.data?.tabs,
                 sections: toState.data?.sections,
                 externalLinks: toState.data?.externalLinks,
+                header: toState.data?.header ?? true,
             }
 
             this._currentTab = toState.name
