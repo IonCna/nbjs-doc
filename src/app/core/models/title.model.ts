@@ -16,6 +16,6 @@ export type HeadingSection = {
 }
 
 export type HeadingExternalLinks = {
-    bootstrap: string
+    bootstrap?: string
     ngBootstrap: string
 }
