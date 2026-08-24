@@ -1,0 +1,37 @@
+<div class="alert alert-light border d-flex gap-3 align-items-start" role="note">
+    <i class="bi bi-gear text-primary mt-1" aria-hidden="true"></i>
+    <div>
+        <p class="fw-semibold mb-1">Global defaults used by this example</p>
+        <p class="small text-body-secondary mb-0">
+            Animation is disabled, only one panel stays open and collapsed content remains in the DOM.
+        </p>
+    </div>
+</div>
+
+<div ngb-accordion>
+    <div ngb-accordion-item="'global-first'" collapsed="false">
+        <h2 ngb-accordion-header>
+            <button ngb-accordion-button>First panel</button>
+        </h2>
+        <div ngb-accordion-collapse>
+            <div ngb-accordion-body>
+                <ng-template>
+                    <p class="mb-0">This accordion receives its behavior from <code>NgbAccordionConfig</code>.</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+    <div ngb-accordion-item="'global-second'">
+        <h2 ngb-accordion-header>
+            <button ngb-accordion-button>Second panel</button>
+        </h2>
+        <div ngb-accordion-collapse>
+            <div ngb-accordion-body>
+                <ng-template>
+                    <p class="mb-0">Opening this item collapses the first without local accordion inputs.</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

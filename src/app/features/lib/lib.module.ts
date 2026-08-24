@@ -1,5 +1,11 @@
 import angular from "angular";
 
+import { AccordionContentComponent } from "@/features/lib/components/accordion-content/accordion-content.component"
+import { AccordionCustomHeaderComponent } from "@/features/lib/components/accordion-custom-header/accordion-custom-header.component"
+import { AccordionGlobalComponent } from "@/features/lib/components/accordion-global/accordion-global.component"
+import { AccordionSimpleComponent } from "@/features/lib/components/accordion-simple/accordion-simple.component"
+import { AccordionTogglePanelsComponent } from "@/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component"
+import { OnePanelAccordionComponent } from "@/features/lib/components/one-panel-accordion/one-panel-accordion.component"
 import { AlertApiPageComponent } from "@/features/lib/pages/alert-api-page/alert-api-page.component"
 import { AlertExamplesPageComponent } from "@/features/lib/pages/alert-examples-page/alert-examples-page.component"
 import { AccordionApiPageComponent } from "@/features/lib/pages/accordion-api-page/accordion-api-page.component"
@@ -40,6 +46,12 @@ import { routing } from "@/features/lib/lib.routes"
 
 export const LibModule = angular.module("docs.lib", []);
 
+LibModule.component(AccordionContentComponent.$name, AccordionContentComponent.$factory)
+LibModule.component(AccordionCustomHeaderComponent.$name, AccordionCustomHeaderComponent.$factory)
+LibModule.component(AccordionGlobalComponent.$name, AccordionGlobalComponent.$factory)
+LibModule.component(AccordionSimpleComponent.$name, AccordionSimpleComponent.$factory)
+LibModule.component(AccordionTogglePanelsComponent.$name, AccordionTogglePanelsComponent.$factory)
+LibModule.component(OnePanelAccordionComponent.$name, OnePanelAccordionComponent.$factory)
 LibModule.component(AlertApiPageComponent.$name, AlertApiPageComponent.$factory)
 LibModule.component(AlertExamplesPageComponent.$name, AlertExamplesPageComponent.$factory)
 LibModule.component(AccordionApiPageComponent.$name, AccordionApiPageComponent.$factory)

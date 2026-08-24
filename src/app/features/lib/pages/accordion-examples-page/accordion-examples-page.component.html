@@ -1,9 +1,47 @@
-<section class="pb-5 mb-5" ngb-scroll-spy-fragment="basic-example">
-    <h2 class="h3 mb-3">Basic example</h2>
-    <p class="text-body-secondary">Accordion examples for NgbJS.</p>
+<section class="pb-5 mb-5 border-bottom" ngb-scroll-spy-fragment="accordion-simple">
+    <h2 class="h3 mb-2">Basic accordion</h2>
+    <p class="text-body-secondary mb-4">
+        Three items with a regular header, a header rendered from an <code>ng-template</code> and a disabled item.
+    </p>
+    <docs-accordion-simple></docs-accordion-simple>
 </section>
 
-<section class="pb-5 mb-5" ngb-scroll-spy-fragment="configuration">
-    <h2 class="h3 mb-3">Configuration</h2>
-    <p class="text-body-secondary">Configure the accordion behavior for your application.</p>
+<section class="pb-5 mb-5 border-bottom" ngb-scroll-spy-fragment="one-panel-accordion">
+    <h2 class="h3 mb-2">One panel at a time</h2>
+    <p class="text-body-secondary mb-4">
+        Opening an item automatically closes the previously expanded panel.
+    </p>
+    <docs-one-panel-accordion></docs-one-panel-accordion>
+</section>
+
+<section class="pb-5 mb-5 border-bottom" ngb-scroll-spy-fragment="accordion-toggle-panels">
+    <h2 class="h3 mb-2">Programmatic controls</h2>
+    <p class="text-body-secondary mb-4">
+        Use the accordion controller to expand, collapse or toggle panels by id.
+    </p>
+    <docs-accordion-toggle-panels></docs-accordion-toggle-panels>
+</section>
+
+<section class="pb-5 mb-5 border-bottom" ngb-scroll-spy-fragment="accordion-custom-header">
+    <h2 class="h3 mb-2">Custom headers</h2>
+    <p class="text-body-secondary mb-4">
+        Build richer triggers with Bootstrap utilities while keeping the accordion behavior and accessibility state.
+    </p>
+    <docs-accordion-custom-header></docs-accordion-custom-header>
+</section>
+
+<section class="pb-5 mb-5 border-bottom" ngb-scroll-spy-fragment="accordion-content">
+    <h2 class="h3 mb-2">Preserve panel content</h2>
+    <p class="text-body-secondary mb-4">
+        Keep collapsed content mounted when its local state must survive closing and reopening the panel.
+    </p>
+    <docs-accordion-content></docs-accordion-content>
+</section>
+
+<section class="pb-5 mb-5" ngb-scroll-spy-fragment="accordion-global">
+    <h2 class="h3 mb-2">Global configuration</h2>
+    <p class="text-body-secondary mb-4">
+        Change <code>NgbAccordionConfig</code> once to define defaults for accordions that do not provide local values.
+    </p>
+    <docs-accordion-global></docs-accordion-global>
 </section>

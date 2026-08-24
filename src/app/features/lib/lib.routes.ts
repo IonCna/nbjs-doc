@@ -103,8 +103,12 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "accordion-simple", name: "Basic accordion" },
+                { id: "one-panel-accordion", name: "One panel at a time" },
+                { id: "accordion-toggle-panels", name: "Programmatic controls" },
+                { id: "accordion-custom-header", name: "Custom headers" },
+                { id: "accordion-content", name: "Preserve content" },
+                { id: "accordion-global", name: "Global configuration" },
             ],
         },
         views: {
