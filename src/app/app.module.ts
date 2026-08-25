@@ -9,6 +9,9 @@ import { CoreModule } from "@/core/core.module"
 import { SharedModule } from "@/shared/shared.module"
 import { FeaturesModule } from "@/features/features.module"
 
+//@ts-expect-error
+import 'docs-templates'
+
 export const AppModule = angular.module('docs', [
     router,
     CoreModule.name,
@@ -16,6 +19,7 @@ export const AppModule = angular.module('docs', [
     NgbModule.name,
     SharedModule.name,
     FeaturesModule.name,
+    'docs-templates'
 ])
 
 AppModule.component(AppComponent.$name, AppComponent.$factory)
