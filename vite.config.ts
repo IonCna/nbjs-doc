@@ -2,6 +2,7 @@ import { defineConfig, searchForWorkspaceRoot } from 'vite'
 import templatesCache from '@rollup-extras/plugin-angularjs-template-cache'
 
 export default defineConfig({
+    base: '/ngb-js-docs/',
     plugins: [
         templatesCache({
             templates: './src/app/features/components/pages/alert-page/*.html',
