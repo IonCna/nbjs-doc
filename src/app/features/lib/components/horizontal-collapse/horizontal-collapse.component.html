@@ -1,0 +1,19 @@
+<button
+    type="button"
+    class="btn btn-primary mb-3"
+    ng-click="example.toggle()"
+    ng-attr-aria-expanded="{{ !example.collapsed }}"
+    aria-controls="horizontal-collapse-panel">
+    Toggle width
+</button>
+
+<div class="d-flex">
+    <div
+        id="horizontal-collapse-panel"
+        ngb-collapse="example.collapsed"
+        horizontal="true">
+        <div class="card card-body text-nowrap">
+            This content collapses horizontally.
+        </div>
+    </div>
+</div>

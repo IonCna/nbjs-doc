@@ -1,15 +1,7 @@
-import type {IComponentController, IComponentOptions, ITimeoutService, IWindowService} from "angular";
+import type {IComponentController, IComponentOptions} from "angular";
 
 export class HomePageComponent implements IComponentController {
-    static $inject = ["$window", "$timeout"]
-
     readonly installCommand = "npm install ngb-js"
-    installCommandCopied = false
-
-    constructor(
-        private readonly $window: IWindowService,
-        private readonly $timeout: ITimeoutService,
-    ) {}
 
     static get $name() {
         return "docsHomePage"
@@ -23,15 +15,4 @@ export class HomePageComponent implements IComponentController {
         }
     }
 
-    copyInstallCommand() {
-        void this.$window.navigator.clipboard.writeText(this.installCommand).then(() => {
-            this.$timeout(() => {
-                this.installCommandCopied = true
-            })
-
-            this.$timeout(() => {
-                this.installCommandCopied = false
-            }, 2000)
-        })
-    }
 }

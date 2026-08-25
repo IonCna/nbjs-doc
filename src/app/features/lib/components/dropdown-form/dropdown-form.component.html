@@ -1,0 +1,27 @@
+<div ngb-dropdown auto-close="'outside'">
+    <button type="button" class="btn btn-primary" ngb-dropdown-toggle>Sign in</button>
+    <div ngb-dropdown-menu class="p-3">
+        <form ng-submit="example.submit()">
+            <div class="mb-3">
+                <label class="form-label" for="dropdown-form-email">Email address</label>
+                <input
+                    id="dropdown-form-email"
+                    type="email"
+                    class="form-control"
+                    placeholder="name@example.com"
+                    ng-model="example.email"
+                    required>
+            </div>
+            <div class="form-check mb-3">
+                <input
+                    id="dropdown-form-remember"
+                    type="checkbox"
+                    class="form-check-input"
+                    ng-model="example.remember">
+                <label class="form-check-label" for="dropdown-form-remember">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Continue</button>
+            <p class="small text-success mt-2 mb-0" ng-if="example.submitted">Form submitted.</p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-primary mb-3" ngb-popover="'This target is controlled by the buttons below'" popover-title="'External controls'" triggers="'manual'" auto-close="false" ng-ref="example.popover" ng-ref-read="ngbPopover">
+    Popover target
+</button>
+<div class="d-flex flex-wrap gap-2">
+    <button type="button" class="btn btn-sm btn-outline-primary" ng-click="example.popover.open()">Open</button>
+    <button type="button" class="btn btn-sm btn-outline-primary" ng-click="example.popover.close()">Close</button>
+    <button type="button" class="btn btn-sm btn-outline-primary" ng-click="example.popover.toggle()">Toggle</button>
+</div>

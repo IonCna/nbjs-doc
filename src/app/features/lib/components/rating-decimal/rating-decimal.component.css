@@ -1,0 +1,15 @@
+.rating-demo-heart {
+    color: var(--bs-secondary-bg);
+    display: inline-block;
+    font-size: 2.25rem;
+    margin-right: 0.15rem;
+    position: relative;
+}
+
+.rating-demo-heart-fill {
+    color: var(--bs-danger);
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+}

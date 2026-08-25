@@ -1,11 +1,106 @@
 import angular from "angular";
 
+import { AlertCloseableComponent } from "@/features/lib/components/alert-closeable/alert-closeable.component"
+import { AlertCustomComponent } from "@/features/lib/components/alert-custom/alert-custom.component"
+import { AlertGlobalComponent } from "@/features/lib/components/alert-global/alert-global.component"
 import { AccordionContentComponent } from "@/features/lib/components/accordion-content/accordion-content.component"
 import { AccordionCustomHeaderComponent } from "@/features/lib/components/accordion-custom-header/accordion-custom-header.component"
 import { AccordionGlobalComponent } from "@/features/lib/components/accordion-global/accordion-global.component"
 import { AccordionSimpleComponent } from "@/features/lib/components/accordion-simple/accordion-simple.component"
 import { AccordionTogglePanelsComponent } from "@/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component"
 import { OnePanelAccordionComponent } from "@/features/lib/components/one-panel-accordion/one-panel-accordion.component"
+import { SelfClosingAlertComponent } from "@/features/lib/components/self-closing-alert/self-closing-alert.component"
+import { SimpleAlertComponent } from "@/features/lib/components/simple-alert/simple-alert.component"
+import { CarouselControlsComponent } from "@/features/lib/components/carousel-controls/carousel-controls.component"
+import { CarouselGlobalComponent } from "@/features/lib/components/carousel-global/carousel-global.component"
+import { CarouselKeyboardComponent } from "@/features/lib/components/carousel-keyboard/carousel-keyboard.component"
+import { CarouselSimpleComponent } from "@/features/lib/components/carousel-simple/carousel-simple.component"
+import { HorizontalCollapseComponent } from "@/features/lib/components/horizontal-collapse/horizontal-collapse.component"
+import { NavbarCollapseComponent } from "@/features/lib/components/navbar-collapse/navbar-collapse.component"
+import { SimpleCollapseComponent } from "@/features/lib/components/simple-collapse/simple-collapse.component"
+import { DropdownBodyComponent } from "@/features/lib/components/dropdown-body/dropdown-body.component"
+import { DropdownButtonGroupsComponent } from "@/features/lib/components/dropdown-button-groups/dropdown-button-groups.component"
+import { DropdownDisabledItemsComponent } from "@/features/lib/components/dropdown-disabled-items/dropdown-disabled-items.component"
+import { DropdownFormComponent } from "@/features/lib/components/dropdown-form/dropdown-form.component"
+import { DropdownGlobalComponent } from "@/features/lib/components/dropdown-global/dropdown-global.component"
+import { DropdownNavbarComponent } from "@/features/lib/components/dropdown-navbar/dropdown-navbar.component"
+import { ManualDropdownComponent } from "@/features/lib/components/manual-dropdown/manual-dropdown.component"
+import { SimpleDropdownComponent } from "@/features/lib/components/simple-dropdown/simple-dropdown.component"
+import { ModalComponentContentComponent } from "@/features/lib/components/modal-component-content/modal-component-content.component"
+import { ModalDefaultComponent } from "@/features/lib/components/modal-default/modal-default.component"
+import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"
+import { ModalFocusComponent } from "@/features/lib/components/modal-focus/modal-focus.component"
+import { ModalFocusContentComponent } from "@/features/lib/components/modal-focus-content/modal-focus-content.component"
+import { ModalGlobalComponent } from "@/features/lib/components/modal-global/modal-global.component"
+import { ModalOptionsComponent } from "@/features/lib/components/modal-options/modal-options.component"
+import { ModalStackedComponent } from "@/features/lib/components/modal-stacked/modal-stacked.component"
+import { ModalStackedContentComponent } from "@/features/lib/components/modal-stacked-content/modal-stacked-content.component"
+import { ModalUpdatableComponent } from "@/features/lib/components/modal-updatable/modal-updatable.component"
+import { ModalUpdatableContentComponent } from "@/features/lib/components/modal-updatable-content/modal-updatable-content.component"
+import { AlternativeNavComponent } from "@/features/lib/components/alternative-nav/alternative-nav.component"
+import { CustomNavComponent } from "@/features/lib/components/custom-nav/custom-nav.component"
+import { DynamicNavComponent } from "@/features/lib/components/dynamic-nav/dynamic-nav.component"
+import { KeepContentNavComponent } from "@/features/lib/components/keep-content-nav/keep-content-nav.component"
+import { NavGlobalComponent } from "@/features/lib/components/nav-global/nav-global.component"
+import { SelectingNavComponent } from "@/features/lib/components/selecting-nav/selecting-nav.component"
+import { SimpleNavComponent } from "@/features/lib/components/simple-nav/simple-nav.component"
+import { VerticalNavComponent } from "@/features/lib/components/vertical-nav/vertical-nav.component"
+import { OffcanvasComponentContentComponent } from "@/features/lib/components/offcanvas-component-content/offcanvas-component-content.component"
+import { OffcanvasDefaultComponent } from "@/features/lib/components/offcanvas-default/offcanvas-default.component"
+import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"
+import { OffcanvasFocusComponent } from "@/features/lib/components/offcanvas-focus/offcanvas-focus.component"
+import { OffcanvasFocusContentComponent } from "@/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component"
+import { OffcanvasGlobalComponent } from "@/features/lib/components/offcanvas-global/offcanvas-global.component"
+import { OffcanvasOptionsComponent } from "@/features/lib/components/offcanvas-options/offcanvas-options.component"
+import { AdvancedPaginationComponent } from "@/features/lib/components/advanced-pagination/advanced-pagination.component"
+import { BasicPaginationComponent } from "@/features/lib/components/basic-pagination/basic-pagination.component"
+import { CustomPaginationComponent } from "@/features/lib/components/custom-pagination/custom-pagination.component"
+import { DisabledPaginationComponent } from "@/features/lib/components/disabled-pagination/disabled-pagination.component"
+import { PaginationAlignmentComponent } from "@/features/lib/components/pagination-alignment/pagination-alignment.component"
+import { PaginationGlobalComponent } from "@/features/lib/components/pagination-global/pagination-global.component"
+import { PaginationSizeComponent } from "@/features/lib/components/pagination-size/pagination-size.component"
+import { DatepickerShowcaseComponent } from "@/features/lib/components/datepicker-showcase/datepicker-showcase.component"
+import { PopoverAutocloseComponent } from "@/features/lib/components/popover-autoclose/popover-autoclose.component"
+import { PopoverBodyComponent } from "@/features/lib/components/popover-body/popover-body.component"
+import { PopoverContextComponent } from "@/features/lib/components/popover-context/popover-context.component"
+import { PopoverCustomClassComponent } from "@/features/lib/components/popover-custom-class/popover-custom-class.component"
+import { PopoverCustomTargetComponent } from "@/features/lib/components/popover-custom-target/popover-custom-target.component"
+import { PopoverDelaysComponent } from "@/features/lib/components/popover-delays/popover-delays.component"
+import { PopoverEventsComponent } from "@/features/lib/components/popover-events/popover-events.component"
+import { PopoverGlobalComponent } from "@/features/lib/components/popover-global/popover-global.component"
+import { PopoverManualControlComponent } from "@/features/lib/components/popover-manual-control/popover-manual-control.component"
+import { PopoverPlacementsComponent } from "@/features/lib/components/popover-placements/popover-placements.component"
+import { PopoverTemplateComponent } from "@/features/lib/components/popover-template/popover-template.component"
+import { PopoverTriggersComponent } from "@/features/lib/components/popover-triggers/popover-triggers.component"
+import { ContextualTextProgressbarComponent } from "@/features/lib/components/contextual-text-progressbar/contextual-text-progressbar.component"
+import { CustomLabelsProgressbarComponent } from "@/features/lib/components/custom-labels-progressbar/custom-labels-progressbar.component"
+import { ProgressBarsStackedComponent } from "@/features/lib/components/progress-bars-stacked/progress-bars-stacked.component"
+import { ProgressHeightComponent } from "@/features/lib/components/progress-height/progress-height.component"
+import { ProgressbarGlobalComponent } from "@/features/lib/components/progressbar-global/progressbar-global.component"
+import { SimpleProgressbarComponent } from "@/features/lib/components/simple-progressbar/simple-progressbar.component"
+import { StripedProgressBarComponent } from "@/features/lib/components/striped-progress-bar/striped-progress-bar.component"
+import { BasicRatingComponent } from "@/features/lib/components/basic-rating/basic-rating.component"
+import { RatingCustomTemplateComponent } from "@/features/lib/components/rating-custom-template/rating-custom-template.component"
+import { RatingDecimalComponent } from "@/features/lib/components/rating-decimal/rating-decimal.component"
+import { RatingEventsComponent } from "@/features/lib/components/rating-events/rating-events.component"
+import { RatingFormComponent } from "@/features/lib/components/rating-form/rating-form.component"
+import { RatingGlobalComponent } from "@/features/lib/components/rating-global/rating-global.component"
+import { BasicScrollspyComponent } from "@/features/lib/components/basic-scrollspy/basic-scrollspy.component"
+import { NavbarScrollspyComponent } from "@/features/lib/components/navbar-scrollspy/navbar-scrollspy.component"
+import { NestedScrollspyComponent } from "@/features/lib/components/nested-scrollspy/nested-scrollspy.component"
+import { ScrollspyMenuItemsComponent } from "@/features/lib/components/scrollspy-menu-items/scrollspy-menu-items.component"
+import { ScrollspyServiceDemoComponent } from "@/features/lib/components/scrollspy-service-demo/scrollspy-service-demo.component"
+import { BasicTimepickerComponent } from "@/features/lib/components/basic-timepicker/basic-timepicker.component"
+import { MeridianTimepickerComponent } from "@/features/lib/components/meridian-timepicker/meridian-timepicker.component"
+import { SecondsTimepickerComponent } from "@/features/lib/components/seconds-timepicker/seconds-timepicker.component"
+import { SpinnersTimepickerComponent } from "@/features/lib/components/spinners-timepicker/spinners-timepicker.component"
+import { TimepickerCustomAdapterComponent } from "@/features/lib/components/timepicker-custom-adapter/timepicker-custom-adapter.component"
+import { TimepickerCustomStepsComponent } from "@/features/lib/components/timepicker-custom-steps/timepicker-custom-steps.component"
+import { GreekTimepickerI18n, TimepickerI18nComponent } from "@/features/lib/components/timepicker-i18n/timepicker-i18n.component"
+import { TimepickerValidationComponent, timepickerLunchValidator } from "@/features/lib/components/timepicker-validation/timepicker-validation.component"
+import { ToastShowcaseComponent } from "@/features/lib/components/toast-showcase/toast-showcase.component"
+import { TooltipShowcaseComponent } from "@/features/lib/components/tooltip-showcase/tooltip-showcase.component"
+import { TypeaheadShowcaseComponent } from "@/features/lib/components/typeahead-showcase/typeahead-showcase.component"
 import { AlertApiPageComponent } from "@/features/lib/pages/alert-api-page/alert-api-page.component"
 import { AlertExamplesPageComponent } from "@/features/lib/pages/alert-examples-page/alert-examples-page.component"
 import { AccordionApiPageComponent } from "@/features/lib/pages/accordion-api-page/accordion-api-page.component"
@@ -46,12 +141,109 @@ import { routing } from "@/features/lib/lib.routes"
 
 export const LibModule = angular.module("docs.lib", []);
 
+LibModule.component(AlertCloseableComponent.$name, AlertCloseableComponent.$factory)
+LibModule.component(AlertCustomComponent.$name, AlertCustomComponent.$factory)
+LibModule.component(AlertGlobalComponent.$name, AlertGlobalComponent.$factory)
 LibModule.component(AccordionContentComponent.$name, AccordionContentComponent.$factory)
 LibModule.component(AccordionCustomHeaderComponent.$name, AccordionCustomHeaderComponent.$factory)
 LibModule.component(AccordionGlobalComponent.$name, AccordionGlobalComponent.$factory)
 LibModule.component(AccordionSimpleComponent.$name, AccordionSimpleComponent.$factory)
 LibModule.component(AccordionTogglePanelsComponent.$name, AccordionTogglePanelsComponent.$factory)
 LibModule.component(OnePanelAccordionComponent.$name, OnePanelAccordionComponent.$factory)
+LibModule.component(SelfClosingAlertComponent.$name, SelfClosingAlertComponent.$factory)
+LibModule.component(SimpleAlertComponent.$name, SimpleAlertComponent.$factory)
+LibModule.component(CarouselControlsComponent.$name, CarouselControlsComponent.$factory)
+LibModule.component(CarouselGlobalComponent.$name, CarouselGlobalComponent.$factory)
+LibModule.component(CarouselKeyboardComponent.$name, CarouselKeyboardComponent.$factory)
+LibModule.component(CarouselSimpleComponent.$name, CarouselSimpleComponent.$factory)
+LibModule.component(HorizontalCollapseComponent.$name, HorizontalCollapseComponent.$factory)
+LibModule.component(NavbarCollapseComponent.$name, NavbarCollapseComponent.$factory)
+LibModule.component(SimpleCollapseComponent.$name, SimpleCollapseComponent.$factory)
+LibModule.component(DropdownBodyComponent.$name, DropdownBodyComponent.$factory)
+LibModule.component(DropdownButtonGroupsComponent.$name, DropdownButtonGroupsComponent.$factory)
+LibModule.component(DropdownDisabledItemsComponent.$name, DropdownDisabledItemsComponent.$factory)
+LibModule.component(DropdownFormComponent.$name, DropdownFormComponent.$factory)
+LibModule.component(DropdownGlobalComponent.$name, DropdownGlobalComponent.$factory)
+LibModule.component(DropdownNavbarComponent.$name, DropdownNavbarComponent.$factory)
+LibModule.component(ManualDropdownComponent.$name, ManualDropdownComponent.$factory)
+LibModule.component(SimpleDropdownComponent.$name, SimpleDropdownComponent.$factory)
+LibModule.component(ModalComponentContentComponent.$name, ModalComponentContentComponent.$factory)
+LibModule.component(ModalDefaultComponent.$name, ModalDefaultComponent.$factory)
+LibModule.component(ModalDemoContentComponent.$name, ModalDemoContentComponent.$factory)
+LibModule.component(ModalFocusComponent.$name, ModalFocusComponent.$factory)
+LibModule.component(ModalFocusContentComponent.$name, ModalFocusContentComponent.$factory)
+LibModule.component(ModalGlobalComponent.$name, ModalGlobalComponent.$factory)
+LibModule.component(ModalOptionsComponent.$name, ModalOptionsComponent.$factory)
+LibModule.component(ModalStackedComponent.$name, ModalStackedComponent.$factory)
+LibModule.component(ModalStackedContentComponent.$name, ModalStackedContentComponent.$factory)
+LibModule.component(ModalUpdatableComponent.$name, ModalUpdatableComponent.$factory)
+LibModule.component(ModalUpdatableContentComponent.$name, ModalUpdatableContentComponent.$factory)
+LibModule.component(AlternativeNavComponent.$name, AlternativeNavComponent.$factory)
+LibModule.component(CustomNavComponent.$name, CustomNavComponent.$factory)
+LibModule.component(DynamicNavComponent.$name, DynamicNavComponent.$factory)
+LibModule.component(KeepContentNavComponent.$name, KeepContentNavComponent.$factory)
+LibModule.component(NavGlobalComponent.$name, NavGlobalComponent.$factory)
+LibModule.component(SelectingNavComponent.$name, SelectingNavComponent.$factory)
+LibModule.component(SimpleNavComponent.$name, SimpleNavComponent.$factory)
+LibModule.component(VerticalNavComponent.$name, VerticalNavComponent.$factory)
+LibModule.component(OffcanvasComponentContentComponent.$name, OffcanvasComponentContentComponent.$factory)
+LibModule.component(OffcanvasDefaultComponent.$name, OffcanvasDefaultComponent.$factory)
+LibModule.component(OffcanvasDemoContentComponent.$name, OffcanvasDemoContentComponent.$factory)
+LibModule.component(OffcanvasFocusComponent.$name, OffcanvasFocusComponent.$factory)
+LibModule.component(OffcanvasFocusContentComponent.$name, OffcanvasFocusContentComponent.$factory)
+LibModule.component(OffcanvasGlobalComponent.$name, OffcanvasGlobalComponent.$factory)
+LibModule.component(OffcanvasOptionsComponent.$name, OffcanvasOptionsComponent.$factory)
+LibModule.component(AdvancedPaginationComponent.$name, AdvancedPaginationComponent.$factory)
+LibModule.component(BasicPaginationComponent.$name, BasicPaginationComponent.$factory)
+LibModule.component(CustomPaginationComponent.$name, CustomPaginationComponent.$factory)
+LibModule.component(DisabledPaginationComponent.$name, DisabledPaginationComponent.$factory)
+LibModule.component(PaginationAlignmentComponent.$name, PaginationAlignmentComponent.$factory)
+LibModule.component(PaginationGlobalComponent.$name, PaginationGlobalComponent.$factory)
+LibModule.component(PaginationSizeComponent.$name, PaginationSizeComponent.$factory)
+LibModule.component(DatepickerShowcaseComponent.$name, DatepickerShowcaseComponent.$factory)
+LibModule.component(PopoverAutocloseComponent.$name, PopoverAutocloseComponent.$factory)
+LibModule.component(PopoverBodyComponent.$name, PopoverBodyComponent.$factory)
+LibModule.component(PopoverContextComponent.$name, PopoverContextComponent.$factory)
+LibModule.component(PopoverCustomClassComponent.$name, PopoverCustomClassComponent.$factory)
+LibModule.component(PopoverCustomTargetComponent.$name, PopoverCustomTargetComponent.$factory)
+LibModule.component(PopoverDelaysComponent.$name, PopoverDelaysComponent.$factory)
+LibModule.component(PopoverEventsComponent.$name, PopoverEventsComponent.$factory)
+LibModule.component(PopoverGlobalComponent.$name, PopoverGlobalComponent.$factory)
+LibModule.component(PopoverManualControlComponent.$name, PopoverManualControlComponent.$factory)
+LibModule.component(PopoverPlacementsComponent.$name, PopoverPlacementsComponent.$factory)
+LibModule.component(PopoverTemplateComponent.$name, PopoverTemplateComponent.$factory)
+LibModule.component(PopoverTriggersComponent.$name, PopoverTriggersComponent.$factory)
+LibModule.component(ContextualTextProgressbarComponent.$name, ContextualTextProgressbarComponent.$factory)
+LibModule.component(CustomLabelsProgressbarComponent.$name, CustomLabelsProgressbarComponent.$factory)
+LibModule.component(ProgressBarsStackedComponent.$name, ProgressBarsStackedComponent.$factory)
+LibModule.component(ProgressHeightComponent.$name, ProgressHeightComponent.$factory)
+LibModule.component(ProgressbarGlobalComponent.$name, ProgressbarGlobalComponent.$factory)
+LibModule.component(SimpleProgressbarComponent.$name, SimpleProgressbarComponent.$factory)
+LibModule.component(StripedProgressBarComponent.$name, StripedProgressBarComponent.$factory)
+LibModule.component(BasicRatingComponent.$name, BasicRatingComponent.$factory)
+LibModule.component(RatingCustomTemplateComponent.$name, RatingCustomTemplateComponent.$factory)
+LibModule.component(RatingDecimalComponent.$name, RatingDecimalComponent.$factory)
+LibModule.component(RatingEventsComponent.$name, RatingEventsComponent.$factory)
+LibModule.component(RatingFormComponent.$name, RatingFormComponent.$factory)
+LibModule.component(RatingGlobalComponent.$name, RatingGlobalComponent.$factory)
+LibModule.component(BasicScrollspyComponent.$name, BasicScrollspyComponent.$factory)
+LibModule.component(NavbarScrollspyComponent.$name, NavbarScrollspyComponent.$factory)
+LibModule.component(NestedScrollspyComponent.$name, NestedScrollspyComponent.$factory)
+LibModule.component(ScrollspyMenuItemsComponent.$name, ScrollspyMenuItemsComponent.$factory)
+LibModule.component(ScrollspyServiceDemoComponent.$name, ScrollspyServiceDemoComponent.$factory)
+LibModule.component(BasicTimepickerComponent.$name, BasicTimepickerComponent.$factory)
+LibModule.component(MeridianTimepickerComponent.$name, MeridianTimepickerComponent.$factory)
+LibModule.component(SecondsTimepickerComponent.$name, SecondsTimepickerComponent.$factory)
+LibModule.component(SpinnersTimepickerComponent.$name, SpinnersTimepickerComponent.$factory)
+LibModule.component(TimepickerCustomAdapterComponent.$name, TimepickerCustomAdapterComponent.$factory)
+LibModule.component(TimepickerCustomStepsComponent.$name, TimepickerCustomStepsComponent.$factory)
+LibModule.service(GreekTimepickerI18n.$name, GreekTimepickerI18n)
+LibModule.component(TimepickerI18nComponent.$name, TimepickerI18nComponent.$factory)
+LibModule.component(TimepickerValidationComponent.$name, TimepickerValidationComponent.$factory)
+LibModule.directive("docsTimepickerLunchValidator", timepickerLunchValidator)
+LibModule.component(ToastShowcaseComponent.$name, ToastShowcaseComponent.$factory)
+LibModule.component(TooltipShowcaseComponent.$name, TooltipShowcaseComponent.$factory)
+LibModule.component(TypeaheadShowcaseComponent.$name, TypeaheadShowcaseComponent.$factory)
 LibModule.component(AlertApiPageComponent.$name, AlertApiPageComponent.$factory)
 LibModule.component(AlertExamplesPageComponent.$name, AlertExamplesPageComponent.$factory)
 LibModule.component(AccordionApiPageComponent.$name, AccordionApiPageComponent.$factory)

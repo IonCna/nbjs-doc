@@ -1,0 +1,34 @@
+import type { IComponentController, IComponentOptions } from "angular";
+import { NgbDropdown } from "ngb-js";
+import { ViewChild } from "ngjs-core";
+
+export class ManualDropdownComponent implements IComponentController {
+    @ViewChild("dropdown", { read: NgbDropdown, static: true })
+    private dropdown!: NgbDropdown;
+
+    public opened = false;
+
+    public open() {
+        this.dropdown.open();
+    }
+
+    public close() {
+        this.dropdown.close();
+    }
+
+    public toggle() {
+        this.dropdown.toggle();
+    }
+
+    static get $name() {
+        return "docsManualDropdown"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ManualDropdownComponent,
+            controllerAs: "example",
+            templateUrl: "/src/app/features/lib/components/manual-dropdown/manual-dropdown.component.html",
+        }
+    }
+}

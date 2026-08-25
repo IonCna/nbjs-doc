@@ -9,26 +9,14 @@
                 Install with npm
             </p>
 
-            <ng-template ng-ref="copyTooltip">
-                <span>{{ $.installCommandCopied ? "Copied" : "Copy to clipboard" }}</span>
-            </ng-template>
-
             <div class="d-flex align-items-center gap-3 rounded-3 border border-secondary bg-black px-3 py-3 text-start shadow-sm">
                 <code class="flex-grow-1 fs-5 text-light">{{ $.installCommand }}</code>
 
-                <button
-                    class="btn btn-link d-inline-flex align-items-center justify-content-center p-2 text-light lh-1"
-                    type="button"
-                    ng-click="$.copyInstallCommand()"
-                    ngb-tooltip="copyTooltip"
-                    placement="'top'"
-                    ng-attr-aria-label="{{ $.installCommandCopied ? 'Copied' : 'Copy install command' }}">
-                    <i
-                        class="bi fs-5"
-                        ng-class="$.installCommandCopied ? 'bi-check-lg text-success' : 'bi-clipboard'"
-                        aria-hidden="true">
-                    </i>
-                </button>
+                <docs-copy-button
+                    value="$.installCommand"
+                    button-class="text-light"
+                    aria-label="Copy install command">
+                </docs-copy-button>
             </div>
         </div>
     </div>

@@ -11,6 +11,7 @@ import { LanguageConstant } from "@/core/constants/language.constant"
 import {LanguageService} from "@/core/services/language.service";
 import { MenuService } from "@/core/services/menu.service"
 import { TitleService, provideTitleObserver } from "@/core/services/title.service"
+import { ScrollService, provideScrollObserver } from "@/core/services/scroll.service"
 
 import { LayoutModule } from "@/core/layouts/layout.module"
 
@@ -34,6 +35,7 @@ CoreModule.service(LanguageService.$name, LanguageService)
 
 CoreModule.service(MenuService.$name, MenuService)
 CoreModule.service(TitleService.$name, TitleService)
+CoreModule.service(ScrollService.$name, ScrollService)
 
 CoreModule.config(provideBootstrapUrl({
     url: "https://getbootstrap.com",
@@ -47,4 +49,5 @@ CoreModule.config(provideNgBootstrapUrl({
     url: "https://ng-bootstrap.github.io"
 }))
 
+CoreModule.run(provideScrollObserver())
 CoreModule.run(provideTitleObserver())

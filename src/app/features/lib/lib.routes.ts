@@ -57,8 +57,11 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "simple-alert", name: "Simple alert" },
+                { id: "alert-closeable", name: "Closeable alerts" },
+                { id: "self-closing-alert", name: "Self-closing alert" },
+                { id: "alert-custom", name: "Custom alert" },
+                { id: "alert-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -158,8 +161,10 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "carousel-simple", name: "Simple carousel" },
+                { id: "carousel-keyboard", name: "Keyboard navigation" },
+                { id: "carousel-controls", name: "Pause controls" },
+                { id: "carousel-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -205,8 +210,9 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "simple-collapse", name: "Simple collapse" },
+                { id: "horizontal-collapse", name: "Horizontal collapse" },
+                { id: "navbar-collapse", name: "Responsive navbar" },
             ],
         },
         views: {
@@ -250,8 +256,7 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "datepicker-showcase", name: "Inline and popup" },
             ],
         },
         views: {
@@ -299,8 +304,14 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "simple-dropdown", name: "Simple dropdown" },
+                { id: "manual-dropdown", name: "Manual triggers" },
+                { id: "dropdown-button-groups", name: "Button groups" },
+                { id: "dropdown-disabled-items", name: "Disabled items" },
+                { id: "dropdown-form", name: "Dropdown form" },
+                { id: "dropdown-body", name: "Body container" },
+                { id: "dropdown-navbar", name: "Navbar positioning" },
+                { id: "dropdown-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -349,8 +360,13 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "modal-default", name: "Default options" },
+                { id: "modal-component-content", name: "Component content" },
+                { id: "modal-focus", name: "Focus management" },
+                { id: "modal-options", name: "Modal options" },
+                { id: "modal-updatable", name: "Updatable options" },
+                { id: "modal-stacked", name: "Stacked modals" },
+                { id: "modal-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -397,8 +413,14 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "simple-nav", name: "Simple nav" },
+                { id: "alternative-nav", name: "Alternative markup" },
+                { id: "vertical-nav", name: "Vertical pills" },
+                { id: "selecting-nav", name: "Selecting navs" },
+                { id: "keep-content-nav", name: "Keep content" },
+                { id: "dynamic-nav", name: "Dynamic navs" },
+                { id: "custom-nav", name: "Custom style" },
+                { id: "nav-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -447,8 +469,11 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "offcanvas-default", name: "Default options" },
+                { id: "offcanvas-component-content", name: "Component content" },
+                { id: "offcanvas-focus", name: "Focus management" },
+                { id: "offcanvas-options", name: "Offcanvas options" },
+                { id: "offcanvas-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -495,8 +520,13 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "basic-pagination", name: "Basic pagination" },
+                { id: "advanced-pagination", name: "Advanced pagination" },
+                { id: "custom-pagination", name: "Custom links and pages" },
+                { id: "pagination-size", name: "Pagination size" },
+                { id: "pagination-alignment", name: "Pagination alignment" },
+                { id: "disabled-pagination", name: "Disabled pagination" },
+                { id: "pagination-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -541,8 +571,18 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "popover-placements", name: "Quick popovers" },
+                { id: "popover-template", name: "HTML and bindings" },
+                { id: "popover-triggers", name: "Custom triggers" },
+                { id: "popover-manual-control", name: "External controls" },
+                { id: "popover-autoclose", name: "Automatic closing" },
+                { id: "popover-context", name: "Template context" },
+                { id: "popover-custom-target", name: "Custom target" },
+                { id: "popover-delays", name: "Open and close delays" },
+                { id: "popover-events", name: "Visibility events" },
+                { id: "popover-body", name: "Body container" },
+                { id: "popover-custom-class", name: "Custom class" },
+                { id: "popover-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -587,8 +627,13 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "simple-progressbar", name: "Simple progress bars" },
+                { id: "contextual-text-progressbar", name: "Contextual text" },
+                { id: "striped-progress-bar", name: "Striped bars" },
+                { id: "custom-labels-progressbar", name: "Custom labels" },
+                { id: "progress-height", name: "Custom height" },
+                { id: "progress-bars-stacked", name: "Stacked bars" },
+                { id: "progressbar-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -633,8 +678,12 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "basic-rating", name: "Basic demo" },
+                { id: "rating-events", name: "Events and readonly" },
+                { id: "rating-custom-template", name: "Custom star template" },
+                { id: "rating-decimal", name: "Decimal rating" },
+                { id: "rating-form", name: "Form integration" },
+                { id: "rating-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -679,8 +728,11 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "basic-scrollspy", name: "Basic" },
+                { id: "scrollspy-menu-items", name: "Menu items" },
+                { id: "nested-scrollspy", name: "Nested items" },
+                { id: "navbar-scrollspy", name: "Navbar" },
+                { id: "scrollspy-service", name: "Using the service" },
             ],
         },
         views: {
@@ -728,8 +780,14 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "basic-timepicker", name: "Basic timepicker" },
+                { id: "meridian-timepicker", name: "Meridian" },
+                { id: "seconds-timepicker", name: "Seconds" },
+                { id: "spinners-timepicker", name: "Spinners" },
+                { id: "timepicker-custom-steps", name: "Custom steps" },
+                { id: "timepicker-validation", name: "Custom validation" },
+                { id: "timepicker-custom-adapter", name: "Custom time adapter" },
+                { id: "timepicker-i18n", name: "Internationalization" },
             ],
         },
         views: {
@@ -776,8 +834,7 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "toast-showcase", name: "Autohide and header" },
             ],
         },
         views: {
@@ -823,8 +880,7 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "tooltip-showcase", name: "Triggers and container" },
             ],
         },
         views: {
@@ -868,8 +924,7 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "basic-example", name: "Basic example" },
-                { id: "configuration", name: "Configuration" },
+                { id: "typeahead-showcase", name: "Local search" },
             ],
         },
         views: {

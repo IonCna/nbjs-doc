@@ -1,0 +1,23 @@
+import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbActiveOffcanvas } from "ngb-js";
+
+export class OffcanvasFocusContentComponent implements IComponentController {
+    public ngbActiveOffcanvas!: NgbActiveOffcanvas;
+    public autofocus = false;
+
+    static get $name() {
+        return "docsOffcanvasFocusContent"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            bindings: {
+                ngbActiveOffcanvas: "<",
+                autofocus: "<?",
+            },
+            controller: OffcanvasFocusContentComponent,
+            controllerAs: "$",
+            templateUrl: "/src/app/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.html",
+        }
+    }
+}

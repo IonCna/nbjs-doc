@@ -1,0 +1,13 @@
+.rating-demo-star {
+    color: var(--bs-secondary-color);
+    font-size: 2rem;
+    padding-right: 0.15rem;
+}
+
+.rating-demo-star.filled {
+    color: var(--bs-warning);
+}
+
+.rating-demo-star.filled.low {
+    color: var(--bs-danger);
+}

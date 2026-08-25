@@ -1,0 +1,22 @@
+<div class="offcanvas-header">
+    <h2 class="offcanvas-title fs-5" id="offcanvas-focus-title">Focus management</h2>
+</div>
+
+<div class="offcanvas-body">
+    <div class="mb-3">
+        <label class="form-label" for="offcanvas-first-focusable">First focusable element</label>
+        <input id="offcanvas-first-focusable" type="text" class="form-control" placeholder="Focused by default">
+    </div>
+
+    <div class="mb-3" ng-if="$.autofocus">
+        <label class="form-label" for="offcanvas-custom-autofocus">Custom autofocus target</label>
+        <input
+            id="offcanvas-custom-autofocus"
+            type="text"
+            class="form-control"
+            placeholder="Focused through ngbAutofocus"
+            ngbAutofocus>
+    </div>
+
+    <button type="button" class="btn btn-primary" ng-click="$.ngbActiveOffcanvas.close()">Done</button>
+</div>

@@ -1,0 +1,19 @@
+.modal-window-custom .modal-content {
+    border-top: 0.3rem solid var(--bs-primary);
+}
+
+.modal-static-backdrop,
+.modal-updated-backdrop {
+    --bs-backdrop-bg: var(--bs-danger);
+    --bs-backdrop-opacity: 0.35;
+}
+
+.modal-dialog-custom .modal-content,
+.modal-updated-dialog .modal-content {
+    border-radius: 1.5rem;
+    box-shadow: var(--bs-box-shadow-lg);
+}
+
+.modal-updated-window .modal-content {
+    border-color: var(--bs-success);
+}

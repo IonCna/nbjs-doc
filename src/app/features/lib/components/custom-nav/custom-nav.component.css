@@ -1,0 +1,18 @@
+.nav-custom {
+    gap: 0.5rem;
+    padding: 0.35rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-pill);
+    background: var(--bs-tertiary-bg);
+}
+
+.nav-custom .nav-link {
+    border-radius: var(--bs-border-radius-pill);
+    color: var(--bs-secondary-color);
+}
+
+.nav-custom .nav-link.active {
+    color: var(--bs-primary-text-emphasis);
+    background: var(--bs-primary-bg-subtle);
+    box-shadow: var(--bs-box-shadow-sm);
+}

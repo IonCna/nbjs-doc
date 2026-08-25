@@ -1,0 +1,7 @@
+.docs-popover-custom {
+    --bs-popover-border-color: var(--bs-primary-border-subtle);
+    --bs-popover-header-bg: var(--bs-primary-bg-subtle);
+    --bs-popover-header-color: var(--bs-primary-text-emphasis);
+
+    box-shadow: var(--bs-box-shadow-sm);
+}

@@ -1,0 +1,15 @@
+<div class="row g-4 align-items-start">
+    <div class="col-lg-7">
+        <p class="small fw-semibold mb-2">Inline datepicker</p>
+        <ngb-datepicker ng-model="example.inlineDate" display-months="2" show-week-numbers="true" mark-disabled="example.markWeekend"></ngb-datepicker>
+        <p class="small text-body-secondary mt-2 mb-0">Weekends are disabled · {{ example.inlineDate | json }}</p>
+    </div>
+    <div class="col-lg-5">
+        <label class="form-label" for="datepicker-showcase-popup">Popup datepicker</label>
+        <div class="input-group">
+            <input id="datepicker-showcase-popup" class="form-control" ng-model="example.popupDate" ngb-datepicker ng-focus="$datepicker.open()">
+            <button class="btn btn-outline-secondary" type="button" ng-click="$datepicker.toggle()"><i class="bi bi-calendar3" aria-hidden="true"></i></button>
+        </div>
+        <p class="small text-body-secondary mt-2 mb-0">{{ example.popupDate | json }}</p>
+    </div>
+</div>
