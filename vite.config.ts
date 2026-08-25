@@ -13,7 +13,7 @@ export default defineConfig({
             angularModule: 'docs.templates',
             module: 'docs-templates',
             standalone: true,
-            autoImport: true,
+            autoImport: false,
             watch: false,
         })
     ],
