@@ -3,6 +3,9 @@ import templatesCache from '@rollup-extras/plugin-angularjs-template-cache'
 
 export default defineConfig({
     base: '/ngb-js-docs/',
+    build: {
+        outDir: './docs',
+    },
     plugins: [
         templatesCache({
             templates: './src/app/features/components/pages/alert-page/*.html',
