@@ -17,7 +17,7 @@ export class OffcanvasFocusContentComponent implements IComponentController {
             },
             controller: OffcanvasFocusContentComponent,
             controllerAs: "$",
-            templateUrl: "/src/app/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.html",
         }
     }
 }

@@ -9,7 +9,7 @@ export class DropdownButtonGroupsComponent implements IComponentController {
         return {
             controller: DropdownButtonGroupsComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/dropdown-button-groups/dropdown-button-groups.component.html",
+            templateUrl: "src/app/features/lib/components/dropdown-button-groups/dropdown-button-groups.component.html",
         }
     }
 }

@@ -6,6 +6,6 @@ export class SpinnersTimepickerComponent implements IComponentController {
     public spinners = true;
     static get $name() { return "docsSpinnersTimepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: SpinnersTimepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/spinners-timepicker/spinners-timepicker.component.html" }
+        return { controller: SpinnersTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/spinners-timepicker/spinners-timepicker.component.html" }
     }
 }

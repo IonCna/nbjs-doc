@@ -5,7 +5,7 @@ export class TimepickerValidationComponent implements IComponentController {
     public time: NgbTimeStruct | null = null;
     static get $name() { return "docsTimepickerValidation" }
     static get $factory(): IComponentOptions {
-        return { controller: TimepickerValidationComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/timepicker-validation/timepicker-validation.component.html" }
+        return { controller: TimepickerValidationComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-validation/timepicker-validation.component.html" }
     }
 }
 

@@ -64,7 +64,7 @@ export class ModalExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: ModalExamplesPageComponent,
-            templateUrl: "/src/app/features/lib/pages/modal-examples-page/modal-examples-page.component.html",
+            templateUrl: "src/app/features/lib/pages/modal-examples-page/modal-examples-page.component.html",
             controllerAs: "$",
         }
     }

@@ -9,7 +9,7 @@ export class DropdownBodyComponent implements IComponentController {
         return {
             controller: DropdownBodyComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/dropdown-body/dropdown-body.component.html",
+            templateUrl: "src/app/features/lib/components/dropdown-body/dropdown-body.component.html",
         }
     }
 }

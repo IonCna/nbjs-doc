@@ -9,7 +9,7 @@ export class CarouselSimpleComponent implements IComponentController {
         return {
             controller: CarouselSimpleComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/carousel-simple/carousel-simple.component.html",
+            templateUrl: "src/app/features/lib/components/carousel-simple/carousel-simple.component.html",
         }
     }
 }

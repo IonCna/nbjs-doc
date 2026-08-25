@@ -15,5 +15,5 @@ export class DatepickerKeyboardComponent implements IComponentController {
         event.stopPropagation();
     }
     static get $name() { return "docsDatepickerKeyboard" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerKeyboardComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/datepicker-keyboard/datepicker-keyboard.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerKeyboardComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-keyboard/datepicker-keyboard.component.html" } }
 }

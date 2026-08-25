@@ -11,7 +11,7 @@ export class VerticalNavComponent implements IComponentController {
         return {
             controller: VerticalNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/vertical-nav/vertical-nav.component.html",
+            templateUrl: "src/app/features/lib/components/vertical-nav/vertical-nav.component.html",
         }
     }
 }

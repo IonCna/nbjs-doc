@@ -20,6 +20,6 @@ export class PreventAutohideToastComponent implements IComponentController {
     static get $name() { return "docsPreventAutohideToast" }
     static get $inject() { return ["$timeout"] }
     static get $factory(): IComponentOptions {
-        return { controller: PreventAutohideToastComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/prevent-autohide-toast/prevent-autohide-toast.component.html" }
+        return { controller: PreventAutohideToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/prevent-autohide-toast/prevent-autohide-toast.component.html" }
     }
 }

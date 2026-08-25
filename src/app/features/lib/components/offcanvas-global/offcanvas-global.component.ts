@@ -60,7 +60,7 @@ export class OffcanvasGlobalComponent implements IComponentController {
         return {
             controller: OffcanvasGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/offcanvas-global/offcanvas-global.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-global/offcanvas-global.component.html",
         }
     }
 }

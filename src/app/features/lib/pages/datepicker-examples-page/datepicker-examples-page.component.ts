@@ -43,5 +43,5 @@ export class DatepickerExamplesPageComponent implements IComponentController {
         keyboard: { html: keyboardHtml, typescript: keyboardTs }, global: { html: globalHtml, typescript: globalTs },
     };
     static get $name() { return "docsDatepickerExamplesPage" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerExamplesPageComponent, controllerAs: "$", templateUrl: "/src/app/features/lib/pages/datepicker-examples-page/datepicker-examples-page.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerExamplesPageComponent, controllerAs: "$", templateUrl: "src/app/features/lib/pages/datepicker-examples-page/datepicker-examples-page.component.html" } }
 }

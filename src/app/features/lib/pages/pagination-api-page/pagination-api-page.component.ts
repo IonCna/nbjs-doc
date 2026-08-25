@@ -8,7 +8,7 @@ export class PaginationApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: PaginationApiPageComponent,
-            templateUrl: "/src/app/features/lib/pages/pagination-api-page/pagination-api-page.component.html",
+            templateUrl: "src/app/features/lib/pages/pagination-api-page/pagination-api-page.component.html",
             controllerAs: "$",
         }
     }

@@ -34,7 +34,7 @@ export class AlertGlobalComponent implements IComponentController {
         return {
             controller: AlertGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/alert-global/alert-global.component.html",
+            templateUrl: "src/app/features/lib/components/alert-global/alert-global.component.html",
         }
     }
 }

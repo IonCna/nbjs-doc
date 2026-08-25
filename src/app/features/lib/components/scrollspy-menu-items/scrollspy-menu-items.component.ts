@@ -6,7 +6,7 @@ export class ScrollspyMenuItemsComponent implements IComponentController {
         return {
             controller: ScrollspyMenuItemsComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/scrollspy-menu-items/scrollspy-menu-items.component.html",
+            templateUrl: "src/app/features/lib/components/scrollspy-menu-items/scrollspy-menu-items.component.html",
         }
     }
 }

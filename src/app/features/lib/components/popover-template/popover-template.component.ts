@@ -7,6 +7,6 @@ export class PopoverTemplateComponent implements IComponentController {
     public titleTemplate?: TemplateRef<unknown>;
     static get $name() { return "docsPopoverTemplate" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverTemplateComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-template/popover-template.component.html" }
+        return { controller: PopoverTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-template/popover-template.component.html" }
     }
 }

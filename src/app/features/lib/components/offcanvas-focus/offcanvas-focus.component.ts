@@ -31,7 +31,7 @@ export class OffcanvasFocusComponent implements IComponentController {
         return {
             controller: OffcanvasFocusComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/offcanvas-focus/offcanvas-focus.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-focus/offcanvas-focus.component.html",
         }
     }
 }

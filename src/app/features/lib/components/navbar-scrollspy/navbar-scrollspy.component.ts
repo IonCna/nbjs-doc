@@ -6,7 +6,7 @@ export class NavbarScrollspyComponent implements IComponentController {
         return {
             controller: NavbarScrollspyComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/navbar-scrollspy/navbar-scrollspy.component.html",
+            templateUrl: "src/app/features/lib/components/navbar-scrollspy/navbar-scrollspy.component.html",
         }
     }
 }

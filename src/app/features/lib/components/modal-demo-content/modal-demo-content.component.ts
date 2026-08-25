@@ -22,7 +22,7 @@ export class ModalDemoContentComponent implements IComponentController {
             },
             controller: ModalDemoContentComponent,
             controllerAs: "$",
-            templateUrl: "/src/app/features/lib/components/modal-demo-content/modal-demo-content.component.html",
+            templateUrl: "src/app/features/lib/components/modal-demo-content/modal-demo-content.component.html",
         }
     }
 }

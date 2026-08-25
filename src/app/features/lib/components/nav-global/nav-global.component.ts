@@ -53,7 +53,7 @@ export class NavGlobalComponent implements IComponentController {
         return {
             controller: NavGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/nav-global/nav-global.component.html",
+            templateUrl: "src/app/features/lib/components/nav-global/nav-global.component.html",
         }
     }
 }

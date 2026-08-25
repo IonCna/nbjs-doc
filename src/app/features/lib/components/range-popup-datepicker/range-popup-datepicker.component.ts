@@ -18,5 +18,5 @@ export class RangePopupDatepickerComponent implements IComponentController {
     public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }
     public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }
     static get $name() { return "docsRangePopupDatepicker" }
-    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.html" } }
 }

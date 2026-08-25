@@ -20,6 +20,6 @@ export class CloseableToastComponent implements IComponentController {
     static get $name() { return "docsCloseableToast" }
     static get $inject() { return ["$timeout"] }
     static get $factory(): IComponentOptions {
-        return { controller: CloseableToastComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/closeable-toast/closeable-toast.component.html" }
+        return { controller: CloseableToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/closeable-toast/closeable-toast.component.html" }
     }
 }

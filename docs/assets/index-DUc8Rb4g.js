@@ -728,7 +728,7 @@ export class AlertCloseableComponent implements IComponentController {
         return {
             controller: AlertCloseableComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/alert-closeable/alert-closeable.component.html",
+            templateUrl: "src/app/features/lib/components/alert-closeable/alert-closeable.component.html",
         }
     }
 }
@@ -798,7 +798,7 @@ export class AlertGlobalComponent implements IComponentController {
         return {
             controller: AlertGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/alert-global/alert-global.component.html",
+            templateUrl: "src/app/features/lib/components/alert-global/alert-global.component.html",
         }
     }
 }
@@ -895,7 +895,7 @@ export class SelfClosingAlertComponent implements IComponentController {
         return {
             controller: SelfClosingAlertComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/self-closing-alert/self-closing-alert.component.html",
+            templateUrl: "src/app/features/lib/components/self-closing-alert/self-closing-alert.component.html",
         }
     }
 }
@@ -937,7 +937,7 @@ export class AccordionContentComponent implements IComponentController {
         return {
             controller: AccordionContentComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/accordion-content/accordion-content.component.html",
+            templateUrl: "src/app/features/lib/components/accordion-content/accordion-content.component.html",
         }
     }
 }
@@ -1078,7 +1078,7 @@ export class AccordionGlobalComponent implements IComponentController {
         return {
             controller: AccordionGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/accordion-global/accordion-global.component.html",
+            templateUrl: "src/app/features/lib/components/accordion-global/accordion-global.component.html",
         }
     }
 }
@@ -1204,7 +1204,7 @@ export class AccordionTogglePanelsComponent implements IComponentController {
         return {
             controller: AccordionTogglePanelsComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component.html",
+            templateUrl: "src/app/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component.html",
         }
     }
 }
@@ -1415,7 +1415,7 @@ export class CarouselControlsComponent implements IComponentController {
         return {
             controller: CarouselControlsComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/carousel-controls/carousel-controls.component.html",
+            templateUrl: "src/app/features/lib/components/carousel-controls/carousel-controls.component.html",
         }
     }
 
@@ -1510,7 +1510,7 @@ export class CarouselGlobalComponent implements IComponentController {
         return {
             controller: CarouselGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/carousel-global/carousel-global.component.html",
+            templateUrl: "src/app/features/lib/components/carousel-global/carousel-global.component.html",
         }
     }
 }
@@ -1631,7 +1631,7 @@ export class HorizontalCollapseComponent implements IComponentController {
         return {
             controller: HorizontalCollapseComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/horizontal-collapse/horizontal-collapse.component.html",
+            templateUrl: "src/app/features/lib/components/horizontal-collapse/horizontal-collapse.component.html",
         }
     }
 }
@@ -1692,7 +1692,7 @@ export class NavbarCollapseComponent implements IComponentController {
         return {
             controller: NavbarCollapseComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/navbar-collapse/navbar-collapse.component.html",
+            templateUrl: "src/app/features/lib/components/navbar-collapse/navbar-collapse.component.html",
         }
     }
 }
@@ -1754,7 +1754,7 @@ export class SimpleCollapseComponent implements IComponentController {
         return {
             controller: SimpleCollapseComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/simple-collapse/simple-collapse.component.html",
+            templateUrl: "src/app/features/lib/components/simple-collapse/simple-collapse.component.html",
         }
     }
 }
@@ -1789,7 +1789,7 @@ export class DatepickerCustomAdapterComponent implements IComponentController {
     public readonly formatter = new DotDateParserFormatter();
     public date = "2026/8/24";
     static get $name() { return "docsDatepickerCustomAdapter" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/datepicker-custom-adapter/datepicker-custom-adapter.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-adapter/datepicker-custom-adapter.component.html" } }
 }
 `,Wx=`<ngb-datepicker ng-model="example.date"></ngb-datepicker>
 <p class="small text-body-secondary mt-3 mb-0">Selected date: <code>{{ example.date | json }}</code></p>
@@ -1800,7 +1800,7 @@ export class BasicDatepickerComponent implements IComponentController {
     public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
     static get $name() { return "docsBasicDatepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: BasicDatepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/basic-datepicker/basic-datepicker.component.html" }
+        return { controller: BasicDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-datepicker/basic-datepicker.component.html" }
     }
 }
 `,Kx=`.docs-custom-day { position: relative; display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
@@ -1827,7 +1827,7 @@ export class DatepickerCustomDayComponent implements IComponentController {
         return { weekend: weekday === 0 || weekday === 6 };
     }
     static get $name() { return "docsDatepickerCustomDay" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomDayComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomDayComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.html" } }
 }
 `,Yx=`.docs-month-layout { display: grid; grid-template-columns: repeat(2, max-content); gap: 1rem; }
 @media (max-width: 575.98px) { .docs-month-layout { grid-template-columns: max-content; } }
@@ -1856,7 +1856,7 @@ export class DatepickerCustomMonthComponent implements IComponentController {
     public next(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getNext(datepicker.state.firstDate, "m", 1)); }
     public today(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getToday()); }
     static get $name() { return "docsDatepickerCustomMonth" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomMonthComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/datepicker-custom-month/datepicker-custom-month.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomMonthComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-month/datepicker-custom-month.component.html" } }
 }
 `,Qx=`<div class="form-check form-switch mb-3">
     <input id="disabled-datepicker-switch" class="form-check-input" type="checkbox" ng-model="example.disabled">
@@ -1870,7 +1870,7 @@ export class DisabledDatepickerComponent implements IComponentController {
     public disabled = true;
     public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
     static get $name() { return "docsDisabledDatepicker" }
-    static get $factory(): IComponentOptions { return { controller: DisabledDatepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/disabled-datepicker/disabled-datepicker.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DisabledDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/disabled-datepicker/disabled-datepicker.component.html" } }
 }
 `,eS=`<ng-template ng-ref="example.footer">
     <div class="d-flex gap-2 p-2 border-top bg-body-tertiary">
@@ -1889,7 +1889,7 @@ export class DatepickerFooterComponent implements IComponentController {
     public today() { if (this.datepicker) this.date = this.datepicker.calendar.getToday(); }
     public clear() { this.date = null; }
     static get $name() { return "docsDatepickerFooter" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerFooterComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/datepicker-footer/datepicker-footer.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerFooterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-footer/datepicker-footer.component.html" } }
 }
 `,nS=`<div class="alert alert-light border d-flex gap-3 align-items-start" role="note">
     <i class="bi bi-gear text-primary mt-1" aria-hidden="true"></i>
@@ -1923,7 +1923,7 @@ export class DatepickerGlobalComponent implements IComponentController {
     private restore() { Object.assign(this.config, this.inlineDefaults); Object.assign(this.inputConfig, this.inputDefaults); }
     static get $name() { return "docsDatepickerGlobal" }
     static get $inject() { return [NgbDatepickerConfig.$name, NgbInputDatepickerConfig.$name] }
-    static get $factory(): IComponentOptions { return { controller: DatepickerGlobalComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/datepicker-global/datepicker-global.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-global/datepicker-global.component.html" } }
 }
 `,iS=`<ngb-datepicker ng-model="example.date" i18n="example.i18n" weekdays="'short'"></ngb-datepicker>
 `,aS=`import type { IComponentController, IComponentOptions } from "angular";
@@ -1942,7 +1942,7 @@ export class DatepickerI18nComponent implements IComponentController {
     public readonly i18n = new SpanishDatepickerI18n();
     public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
     static get $name() { return "docsDatepickerI18n" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerI18nComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/datepicker-i18n/datepicker-i18n.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerI18nComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-i18n/datepicker-i18n.component.html" } }
 }
 `,oS=`<p class="small text-body-secondary">Focus the calendar and press <kbd>[</kbd> or <kbd>]</kbd> to navigate by month. The built-in arrow, Home, End and Page keys continue to work.</p>
 <div ng-keydown="example.onKeydown($event)">
@@ -1965,7 +1965,7 @@ export class DatepickerKeyboardComponent implements IComponentController {
         event.stopPropagation();
     }
     static get $name() { return "docsDatepickerKeyboard" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerKeyboardComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/datepicker-keyboard/datepicker-keyboard.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerKeyboardComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-keyboard/datepicker-keyboard.component.html" } }
 }
 `,cS=`<div class="overflow-auto pb-2">
     <ngb-datepicker ng-model="example.date" display-months="2" outside-days="hidden"></ngb-datepicker>
@@ -1977,7 +1977,7 @@ export class MultipleMonthsDatepickerComponent implements IComponentController {
     public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
     static get $name() { return "docsMultipleMonthsDatepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: MultipleMonthsDatepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/multiple-months-datepicker/multiple-months-datepicker.component.html" }
+        return { controller: MultipleMonthsDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/multiple-months-datepicker/multiple-months-datepicker.component.html" }
     }
 }
 `,uS=`<label class="form-label" for="popup-datepicker-input">Choose a date</label>
@@ -1995,7 +1995,7 @@ export class PopupDatepickerComponent implements IComponentController {
     public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
     static get $name() { return "docsPopupDatepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: PopupDatepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popup-datepicker/popup-datepicker.component.html" }
+        return { controller: PopupDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popup-datepicker/popup-datepicker.component.html" }
     }
 }
 `,fS=`<div class="row g-3 align-items-end">
@@ -2019,7 +2019,7 @@ export class DatepickerPositionTargetComponent implements IComponentController {
     public date: NgbDateStruct | null = null;
     public readonly target = "#datepicker-custom-position-target";
     static get $name() { return "docsDatepickerPositionTarget" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerPositionTargetComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/datepicker-position-target/datepicker-position-target.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerPositionTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-position-target/datepicker-position-target.component.html" } }
 }
 `,mS=`.docs-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
 .docs-range-day.range { background: var(--bs-primary); color: var(--bs-white); }
@@ -2058,7 +2058,7 @@ export class RangeDatepickerComponent implements IComponentController {
 
     static get $name() { return "docsRangeDatepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/range-datepicker/range-datepicker.component.html" }
+        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-datepicker/range-datepicker.component.html" }
     }
 }
 `,_S=`.docs-popup-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
@@ -2093,7 +2093,7 @@ export class RangePopupDatepickerComponent implements IComponentController {
     public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }
     public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }
     static get $name() { return "docsRangePopupDatepicker" }
-    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.html" } }
 }
 `,bS=class e{examples={basic:{html:Wx,typescript:Gx},popup:{html:uS,typescript:dS},multiple:{html:cS,typescript:lS},range:{html:hS,typescript:gS,css:mS},rangePopup:{html:vS,typescript:yS,css:_S},disabled:{html:Qx,typescript:$x},adapter:{html:Hx,typescript:Ux},i18n:{html:iS,typescript:aS},customDay:{html:qx,typescript:Jx,css:Kx},customMonth:{html:Xx,typescript:Zx,css:Yx},footer:{html:eS,typescript:tS},position:{html:fS,typescript:pS},keyboard:{html:oS,typescript:sS},global:{html:nS,typescript:rS}};static get $name(){return`docsDatepickerExamplesPage`}static get $factory(){return{controller:e,controllerAs:`$`,templateUrl:`/src/app/features/lib/pages/datepicker-examples-page/datepicker-examples-page.component.html`}}},xS=class e{static get $name(){return`docsDropdownApiPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/dropdown-api-page/dropdown-api-page.component.html`,controllerAs:`$`}}},SS=`<div class="border rounded p-3 overflow-hidden">
     <p class="small text-body-secondary mb-3">
@@ -2168,7 +2168,7 @@ export class DropdownDisabledItemsComponent implements IComponentController {
         return {
             controller: DropdownDisabledItemsComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/dropdown-disabled-items/dropdown-disabled-items.component.html",
+            templateUrl: "src/app/features/lib/components/dropdown-disabled-items/dropdown-disabled-items.component.html",
         }
     }
 }
@@ -2218,7 +2218,7 @@ export class DropdownFormComponent implements IComponentController {
         return {
             controller: DropdownFormComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/dropdown-form/dropdown-form.component.html",
+            templateUrl: "src/app/features/lib/components/dropdown-form/dropdown-form.component.html",
         }
     }
 }
@@ -2275,7 +2275,7 @@ export class DropdownGlobalComponent implements IComponentController {
         return {
             controller: DropdownGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/dropdown-global/dropdown-global.component.html",
+            templateUrl: "src/app/features/lib/components/dropdown-global/dropdown-global.component.html",
         }
     }
 }
@@ -2345,7 +2345,7 @@ export class ManualDropdownComponent implements IComponentController {
         return {
             controller: ManualDropdownComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/manual-dropdown/manual-dropdown.component.html",
+            templateUrl: "src/app/features/lib/components/manual-dropdown/manual-dropdown.component.html",
         }
     }
 }
@@ -2409,7 +2409,7 @@ export class ModalComponentContentComponent implements IComponentController {
         return {
             controller: ModalComponentContentComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/modal-component-content/modal-component-content.component.html",
+            templateUrl: "src/app/features/lib/components/modal-component-content/modal-component-content.component.html",
         }
     }
 }
@@ -2454,7 +2454,7 @@ export class ModalDefaultComponent implements IComponentController {
         return {
             controller: ModalDefaultComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/modal-default/modal-default.component.html",
+            templateUrl: "src/app/features/lib/components/modal-default/modal-default.component.html",
         }
     }
 }
@@ -2508,7 +2508,7 @@ export class ModalDemoContentComponent implements IComponentController {
             },
             controller: ModalDemoContentComponent,
             controllerAs: "$",
-            templateUrl: "/src/app/features/lib/components/modal-demo-content/modal-demo-content.component.html",
+            templateUrl: "src/app/features/lib/components/modal-demo-content/modal-demo-content.component.html",
         }
     }
 }
@@ -2557,7 +2557,7 @@ export class ModalFocusComponent implements IComponentController {
         return {
             controller: ModalFocusComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/modal-focus/modal-focus.component.html",
+            templateUrl: "src/app/features/lib/components/modal-focus/modal-focus.component.html",
         }
     }
 }
@@ -2604,7 +2604,7 @@ export class ModalFocusContentComponent implements IComponentController {
             },
             controller: ModalFocusContentComponent,
             controllerAs: "$",
-            templateUrl: "/src/app/features/lib/components/modal-focus-content/modal-focus-content.component.html",
+            templateUrl: "src/app/features/lib/components/modal-focus-content/modal-focus-content.component.html",
         }
     }
 }
@@ -2685,7 +2685,7 @@ export class ModalGlobalComponent implements IComponentController {
         return {
             controller: ModalGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/modal-global/modal-global.component.html",
+            templateUrl: "src/app/features/lib/components/modal-global/modal-global.component.html",
         }
     }
 }
@@ -2790,7 +2790,7 @@ export class ModalOptionsComponent implements IComponentController {
         return {
             controller: ModalOptionsComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/modal-options/modal-options.component.html",
+            templateUrl: "src/app/features/lib/components/modal-options/modal-options.component.html",
         }
     }
 }
@@ -2824,7 +2824,7 @@ export class ModalStackedComponent implements IComponentController {
         return {
             controller: ModalStackedComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/modal-stacked/modal-stacked.component.html",
+            templateUrl: "src/app/features/lib/components/modal-stacked/modal-stacked.component.html",
         }
     }
 }
@@ -2870,7 +2870,7 @@ export class ModalStackedContentComponent implements IComponentController {
             },
             controller: ModalStackedContentComponent,
             controllerAs: "$",
-            templateUrl: "/src/app/features/lib/components/modal-stacked-content/modal-stacked-content.component.html",
+            templateUrl: "src/app/features/lib/components/modal-stacked-content/modal-stacked-content.component.html",
         }
     }
 }
@@ -2902,7 +2902,7 @@ export class ModalUpdatableComponent implements IComponentController {
         return {
             controller: ModalUpdatableComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/modal-updatable/modal-updatable.component.html",
+            templateUrl: "src/app/features/lib/components/modal-updatable/modal-updatable.component.html",
         }
     }
 }
@@ -3007,7 +3007,7 @@ export class ModalUpdatableContentComponent implements IComponentController {
             },
             controller: ModalUpdatableContentComponent,
             controllerAs: "$",
-            templateUrl: "/src/app/features/lib/components/modal-updatable-content/modal-updatable-content.component.html",
+            templateUrl: "src/app/features/lib/components/modal-updatable-content/modal-updatable-content.component.html",
         }
     }
 }
@@ -3051,7 +3051,7 @@ export class AlternativeNavComponent implements IComponentController {
         return {
             controller: AlternativeNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/alternative-nav/alternative-nav.component.html",
+            templateUrl: "src/app/features/lib/components/alternative-nav/alternative-nav.component.html",
         }
     }
 }
@@ -3109,7 +3109,7 @@ export class CustomNavComponent implements IComponentController {
         return {
             controller: CustomNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/custom-nav/custom-nav.component.html",
+            templateUrl: "src/app/features/lib/components/custom-nav/custom-nav.component.html",
         }
     }
 }
@@ -3184,7 +3184,7 @@ export class DynamicNavComponent implements IComponentController {
         return {
             controller: DynamicNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/dynamic-nav/dynamic-nav.component.html",
+            templateUrl: "src/app/features/lib/components/dynamic-nav/dynamic-nav.component.html",
         }
     }
 }
@@ -3230,7 +3230,7 @@ export class KeepContentNavComponent implements IComponentController {
         return {
             controller: KeepContentNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/keep-content-nav/keep-content-nav.component.html",
+            templateUrl: "src/app/features/lib/components/keep-content-nav/keep-content-nav.component.html",
         }
     }
 }
@@ -3322,7 +3322,7 @@ export class NavGlobalComponent implements IComponentController {
         return {
             controller: NavGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/nav-global/nav-global.component.html",
+            templateUrl: "src/app/features/lib/components/nav-global/nav-global.component.html",
         }
     }
 }
@@ -3377,7 +3377,7 @@ export class SelectingNavComponent implements IComponentController {
         return {
             controller: SelectingNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/selecting-nav/selecting-nav.component.html",
+            templateUrl: "src/app/features/lib/components/selecting-nav/selecting-nav.component.html",
         }
     }
 }
@@ -3421,7 +3421,7 @@ export class SimpleNavComponent implements IComponentController {
         return {
             controller: SimpleNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/simple-nav/simple-nav.component.html",
+            templateUrl: "src/app/features/lib/components/simple-nav/simple-nav.component.html",
         }
     }
 }
@@ -3471,7 +3471,7 @@ export class VerticalNavComponent implements IComponentController {
         return {
             controller: VerticalNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/vertical-nav/vertical-nav.component.html",
+            templateUrl: "src/app/features/lib/components/vertical-nav/vertical-nav.component.html",
         }
     }
 }
@@ -3510,7 +3510,7 @@ export class OffcanvasComponentContentComponent implements IComponentController 
         return {
             controller: OffcanvasComponentContentComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/offcanvas-component-content/offcanvas-component-content.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-component-content/offcanvas-component-content.component.html",
         }
     }
 }
@@ -3555,7 +3555,7 @@ export class OffcanvasDefaultComponent implements IComponentController {
         return {
             controller: OffcanvasDefaultComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/offcanvas-default/offcanvas-default.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-default/offcanvas-default.component.html",
         }
     }
 }
@@ -3597,7 +3597,7 @@ export class OffcanvasDemoContentComponent implements IComponentController {
             },
             controller: OffcanvasDemoContentComponent,
             controllerAs: "$",
-            templateUrl: "/src/app/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component.html",
         }
     }
 }
@@ -3642,7 +3642,7 @@ export class OffcanvasFocusComponent implements IComponentController {
         return {
             controller: OffcanvasFocusComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/offcanvas-focus/offcanvas-focus.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-focus/offcanvas-focus.component.html",
         }
     }
 }
@@ -3687,7 +3687,7 @@ export class OffcanvasFocusContentComponent implements IComponentController {
             },
             controller: OffcanvasFocusContentComponent,
             controllerAs: "$",
-            templateUrl: "/src/app/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.html",
         }
     }
 }
@@ -3765,7 +3765,7 @@ export class OffcanvasGlobalComponent implements IComponentController {
         return {
             controller: OffcanvasGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/offcanvas-global/offcanvas-global.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-global/offcanvas-global.component.html",
         }
     }
 }
@@ -3843,7 +3843,7 @@ export class OffcanvasOptionsComponent implements IComponentController {
         return {
             controller: OffcanvasOptionsComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/offcanvas-options/offcanvas-options.component.html",
+            templateUrl: "src/app/features/lib/components/offcanvas-options/offcanvas-options.component.html",
         }
     }
 }
@@ -3902,7 +3902,7 @@ export class AdvancedPaginationComponent implements IComponentController {
         return {
             controller: AdvancedPaginationComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/advanced-pagination/advanced-pagination.component.html",
+            templateUrl: "src/app/features/lib/components/advanced-pagination/advanced-pagination.component.html",
         }
     }
 }
@@ -3930,7 +3930,7 @@ export class BasicPaginationComponent implements IComponentController {
         return {
             controller: BasicPaginationComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/basic-pagination/basic-pagination.component.html",
+            templateUrl: "src/app/features/lib/components/basic-pagination/basic-pagination.component.html",
         }
     }
 }
@@ -3965,7 +3965,7 @@ export class CustomPaginationComponent implements IComponentController {
         return {
             controller: CustomPaginationComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/custom-pagination/custom-pagination.component.html",
+            templateUrl: "src/app/features/lib/components/custom-pagination/custom-pagination.component.html",
         }
     }
 }
@@ -3998,7 +3998,7 @@ export class DisabledPaginationComponent implements IComponentController {
         return {
             controller: DisabledPaginationComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/disabled-pagination/disabled-pagination.component.html",
+            templateUrl: "src/app/features/lib/components/disabled-pagination/disabled-pagination.component.html",
         }
     }
 }
@@ -4035,7 +4035,7 @@ export class PaginationAlignmentComponent implements IComponentController {
         return {
             controller: PaginationAlignmentComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/pagination-alignment/pagination-alignment.component.html",
+            templateUrl: "src/app/features/lib/components/pagination-alignment/pagination-alignment.component.html",
         }
     }
 }
@@ -4113,7 +4113,7 @@ export class PaginationGlobalComponent implements IComponentController {
         return {
             controller: PaginationGlobalComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/pagination-global/pagination-global.component.html",
+            templateUrl: "src/app/features/lib/components/pagination-global/pagination-global.component.html",
         }
     }
 }
@@ -4150,7 +4150,7 @@ export class PaginationSizeComponent implements IComponentController {
         return {
             controller: PaginationSizeComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/pagination-size/pagination-size.component.html",
+            templateUrl: "src/app/features/lib/components/pagination-size/pagination-size.component.html",
         }
     }
 }
@@ -4170,7 +4170,7 @@ export class PopoverAutocloseComponent implements IComponentController {
     public popover?: NgbPopover;
     static get $name() { return "docsPopoverAutoclose" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverAutocloseComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-autoclose/popover-autoclose.component.html" }
+        return { controller: PopoverAutocloseComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-autoclose/popover-autoclose.component.html" }
     }
 }
 `,sw=`<div class="overflow-hidden border rounded p-4" style="max-width: 24rem">
@@ -4185,7 +4185,7 @@ export class PopoverAutocloseComponent implements IComponentController {
 export class PopoverBodyComponent implements IComponentController {
     static get $name() { return "docsPopoverBody" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverBodyComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-body/popover-body.component.html" }
+        return { controller: PopoverBodyComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-body/popover-body.component.html" }
     }
 }
 `,lw=`<ng-template ng-ref="example.contentTemplate" let-greeting="greeting">{{ greeting }}, <strong>{{ example.name }}</strong>!</ng-template>
@@ -4218,7 +4218,7 @@ export class PopoverContextComponent implements IComponentController {
 
     static get $name() { return "docsPopoverContext" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverContextComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-context/popover-context.component.html" }
+        return { controller: PopoverContextComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-context/popover-context.component.html" }
     }
 }
 `,dw=`.docs-popover-custom {
@@ -4237,7 +4237,7 @@ import type { IComponentController, IComponentOptions } from "angular";
 export class PopoverCustomClassComponent implements IComponentController {
     static get $name() { return "docsPopoverCustomClass" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverCustomClassComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-custom-class/popover-custom-class.component.html" }
+        return { controller: PopoverCustomClassComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-custom-class/popover-custom-class.component.html" }
     }
 }
 `,mw=`<div class="d-flex flex-wrap align-items-baseline gap-2">
@@ -4250,7 +4250,7 @@ export class PopoverCustomClassComponent implements IComponentController {
 export class PopoverCustomTargetComponent implements IComponentController {
     static get $name() { return "docsPopoverCustomTarget" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverCustomTargetComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-custom-target/popover-custom-target.component.html" }
+        return { controller: PopoverCustomTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-custom-target/popover-custom-target.component.html" }
     }
 }
 `,gw=`<p>Move the pointer into the popover before its close delay expires to keep it open.</p>
@@ -4263,7 +4263,7 @@ export class PopoverCustomTargetComponent implements IComponentController {
 export class PopoverDelaysComponent implements IComponentController {
     static get $name() { return "docsPopoverDelays" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverDelaysComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-delays/popover-delays.component.html" }
+        return { controller: PopoverDelaysComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-delays/popover-delays.component.html" }
     }
 }
 `,vw=`<button type="button" class="btn btn-outline-primary" placement="'top'" ngb-popover="'Watch the event log below.'" popover-title="'Visibility events'" shown="example.record('shown')" hidden="example.record('hidden')" ng-ref="example.popover" ng-ref-read="ngbPopover">
@@ -4286,7 +4286,7 @@ export class PopoverEventsComponent implements IComponentController {
     public record(name: string) { this.events.unshift({ name, time: new Date() }); }
     static get $name() { return "docsPopoverEvents" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverEventsComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-events/popover-events.component.html" }
+        return { controller: PopoverEventsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-events/popover-events.component.html" }
     }
 }
 `,bw=`<div class="alert alert-light border d-flex gap-3 align-items-start" role="note">
@@ -4325,7 +4325,7 @@ export class PopoverGlobalComponent implements IComponentController {
     static get $name() { return "docsPopoverGlobal" }
     static get $inject() { return [NgbPopoverConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverGlobalComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-global/popover-global.component.html" }
+        return { controller: PopoverGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-global/popover-global.component.html" }
     }
 }
 `,Sw=`<button type="button" class="btn btn-primary mb-3" ngb-popover="'This target is controlled by the buttons below'" popover-title="'External controls'" triggers="'manual'" auto-close="false" ng-ref="example.popover" ng-ref-read="ngbPopover">
@@ -4343,7 +4343,7 @@ export class PopoverManualControlComponent implements IComponentController {
     public popover?: NgbPopover;
     static get $name() { return "docsPopoverManualControl" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverManualControlComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-manual-control/popover-manual-control.component.html" }
+        return { controller: PopoverManualControlComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-manual-control/popover-manual-control.component.html" }
     }
 }
 `,ww=`<div class="d-flex flex-wrap gap-2">
@@ -4357,7 +4357,7 @@ export class PopoverManualControlComponent implements IComponentController {
 export class PopoverPlacementsComponent implements IComponentController {
     static get $name() { return "docsPopoverPlacements" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverPlacementsComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-placements/popover-placements.component.html" }
+        return { controller: PopoverPlacementsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-placements/popover-placements.component.html" }
     }
 }
 `,Ew=`<ng-template ng-ref="example.titleTemplate">
@@ -4380,7 +4380,7 @@ export class PopoverTemplateComponent implements IComponentController {
     public titleTemplate?: TemplateRef<unknown>;
     static get $name() { return "docsPopoverTemplate" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverTemplateComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-template/popover-template.component.html" }
+        return { controller: PopoverTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-template/popover-template.component.html" }
     }
 }
 `,Ow=`<p class="mb-3">Custom events can be paired as <code>mouseenter:mouseleave</code>.</p>
@@ -4402,7 +4402,7 @@ export class PopoverTriggersComponent implements IComponentController {
     public manual?: NgbPopover;
     static get $name() { return "docsPopoverTriggers" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverTriggersComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/popover-triggers/popover-triggers.component.html" }
+        return { controller: PopoverTriggersComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-triggers/popover-triggers.component.html" }
     }
 }
 `,Aw=class e{examples={placements:{html:ww,typescript:Tw},template:{html:Ew,typescript:Dw},triggers:{html:Ow,typescript:kw},manual:{html:Sw,typescript:Cw},autoclose:{html:aw,typescript:ow},context:{html:lw,typescript:uw},customTarget:{html:mw,typescript:hw},delays:{html:gw,typescript:_w},events:{html:vw,typescript:yw},body:{html:sw,typescript:cw},customClass:{html:fw,typescript:pw,css:dw},global:{html:bw,typescript:xw}};static get $name(){return`docsPopoverExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/popover-examples-page/popover-examples-page.component.html`,controllerAs:`$`}}},jw=class e{static get $name(){return`docsProgressbarApiPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/progressbar-api-page/progressbar-api-page.component.html`,controllerAs:`$`}}},Mw=`<div class="vstack gap-3">
@@ -4416,7 +4416,7 @@ export class PopoverTriggersComponent implements IComponentController {
 export class ContextualTextProgressbarComponent implements IComponentController {
     static get $name() { return "docsContextualTextProgressbar" }
     static get $factory(): IComponentOptions {
-        return { controller: ContextualTextProgressbarComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/contextual-text-progressbar/contextual-text-progressbar.component.html" }
+        return { controller: ContextualTextProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/contextual-text-progressbar/contextual-text-progressbar.component.html" }
     }
 }
 `,Pw=`<div class="alert alert-light border d-flex gap-3 align-items-start" role="note">
@@ -4457,7 +4457,7 @@ export class ProgressbarGlobalComponent implements IComponentController {
     static get $name() { return "docsProgressbarGlobal" }
     static get $inject() { return [NgbProgressbarConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: ProgressbarGlobalComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/progressbar-global/progressbar-global.component.html" }
+        return { controller: ProgressbarGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progressbar-global/progressbar-global.component.html" }
     }
 }
 `,Iw=`<div class="vstack gap-3">
@@ -4471,7 +4471,7 @@ export class ProgressbarGlobalComponent implements IComponentController {
 export class ProgressHeightComponent implements IComponentController {
     static get $name() { return "docsProgressHeight" }
     static get $factory(): IComponentOptions {
-        return { controller: ProgressHeightComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/progress-height/progress-height.component.html" }
+        return { controller: ProgressHeightComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progress-height/progress-height.component.html" }
     }
 }
 `,Rw=`<div class="vstack gap-3">
@@ -4485,7 +4485,7 @@ export class ProgressHeightComponent implements IComponentController {
 export class CustomLabelsProgressbarComponent implements IComponentController {
     static get $name() { return "docsCustomLabelsProgressbar" }
     static get $factory(): IComponentOptions {
-        return { controller: CustomLabelsProgressbarComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/custom-labels-progressbar/custom-labels-progressbar.component.html" }
+        return { controller: CustomLabelsProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/custom-labels-progressbar/custom-labels-progressbar.component.html" }
     }
 }
 `,Bw=`<div class="vstack gap-3">
@@ -4502,7 +4502,7 @@ export class CustomLabelsProgressbarComponent implements IComponentController {
 export class SimpleProgressbarComponent implements IComponentController {
     static get $name() { return "docsSimpleProgressbar" }
     static get $factory(): IComponentOptions {
-        return { controller: SimpleProgressbarComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/simple-progressbar/simple-progressbar.component.html" }
+        return { controller: SimpleProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/simple-progressbar/simple-progressbar.component.html" }
     }
 }
 `,Hw=`<ngb-progressbar-stacked>
@@ -4517,7 +4517,7 @@ export class SimpleProgressbarComponent implements IComponentController {
 export class ProgressBarsStackedComponent implements IComponentController {
     static get $name() { return "docsProgressBarsStacked" }
     static get $factory(): IComponentOptions {
-        return { controller: ProgressBarsStackedComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/progress-bars-stacked/progress-bars-stacked.component.html" }
+        return { controller: ProgressBarsStackedComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progress-bars-stacked/progress-bars-stacked.component.html" }
     }
 }
 `,Ww=`<div class="vstack gap-3">
@@ -4532,7 +4532,7 @@ export class ProgressBarsStackedComponent implements IComponentController {
 export class StripedProgressBarComponent implements IComponentController {
     static get $name() { return "docsStripedProgressBar" }
     static get $factory(): IComponentOptions {
-        return { controller: StripedProgressBarComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/striped-progress-bar/striped-progress-bar.component.html" }
+        return { controller: StripedProgressBarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/striped-progress-bar/striped-progress-bar.component.html" }
     }
 }
 `,Kw=class e{examples={simple:{html:Bw,typescript:Vw},contextual:{html:Mw,typescript:Nw},striped:{html:Ww,typescript:Gw},labels:{html:Rw,typescript:zw},height:{html:Iw,typescript:Lw},stacked:{html:Hw,typescript:Uw},global:{html:Pw,typescript:Fw}};static get $name(){return`docsProgressbarExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/progressbar-examples-page/progressbar-examples-page.component.html`,controllerAs:`$`}}},qw=class e{static get $name(){return`docsRatingApiPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/rating-api-page/rating-api-page.component.html`,controllerAs:`$`}}},Jw=`<ngb-rating rate="example.rating" rate-change="example.setRating($event)"></ngb-rating>
@@ -4545,7 +4545,7 @@ export class BasicRatingComponent implements IComponentController {
     public setRating(rating: number) { this.rating = rating; }
     static get $name() { return "docsBasicRating" }
     static get $factory(): IComponentOptions {
-        return { controller: BasicRatingComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/basic-rating/basic-rating.component.html" }
+        return { controller: BasicRatingComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-rating/basic-rating.component.html" }
     }
 }
 `,Xw=`.rating-demo-star {
@@ -4577,7 +4577,7 @@ export class RatingCustomTemplateComponent implements IComponentController {
     public setRating(rating: number) { this.rating = rating; }
     static get $name() { return "docsRatingCustomTemplate" }
     static get $factory(): IComponentOptions {
-        return { controller: RatingCustomTemplateComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/rating-custom-template/rating-custom-template.component.html" }
+        return { controller: RatingCustomTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-custom-template/rating-custom-template.component.html" }
     }
 }
 `,$w=`.rating-demo-heart {
@@ -4619,7 +4619,7 @@ export class RatingDecimalComponent implements IComponentController {
     public readonly ariaValueText = (current: number, max: number) => \`\${current} out of \${max} hearts\`;
     static get $name() { return "docsRatingDecimal" }
     static get $factory(): IComponentOptions {
-        return { controller: RatingDecimalComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/rating-decimal/rating-decimal.component.html" }
+        return { controller: RatingDecimalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-decimal/rating-decimal.component.html" }
     }
 }
 `,nT=`<ngb-rating rate="example.selected" rate-change="example.setSelected($event)" hover="example.setHovered($event)" leave="example.setHovered(0)" readonly="example.readonly"></ngb-rating>
@@ -4641,7 +4641,7 @@ export class RatingEventsComponent implements IComponentController {
     public setHovered(value: number) { this.hovered = value; }
     static get $name() { return "docsRatingEvents" }
     static get $factory(): IComponentOptions {
-        return { controller: RatingEventsComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/rating-events/rating-events.component.html" }
+        return { controller: RatingEventsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-events/rating-events.component.html" }
     }
 }
 `,iT=`<form name="example.form" novalidate>
@@ -4672,7 +4672,7 @@ export class RatingFormComponent implements IComponentController {
 
     static get $name() { return "docsRatingForm" }
     static get $factory(): IComponentOptions {
-        return { controller: RatingFormComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/rating-form/rating-form.component.html" }
+        return { controller: RatingFormComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-form/rating-form.component.html" }
     }
 }
 `,oT=`<div class="alert alert-light border d-flex gap-3 align-items-start" role="note">
@@ -4707,7 +4707,7 @@ export class RatingGlobalComponent implements IComponentController {
     static get $name() { return "docsRatingGlobal" }
     static get $inject() { return [NgbRatingConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: RatingGlobalComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/rating-global/rating-global.component.html" }
+        return { controller: RatingGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-global/rating-global.component.html" }
     }
 }
 `,cT=class e{examples={basic:{html:Jw,typescript:Yw},events:{html:nT,typescript:rT},customTemplate:{html:Zw,typescript:Qw,css:Xw},decimal:{html:eT,typescript:tT,css:$w},form:{html:iT,typescript:aT},global:{html:oT,typescript:sT}};static get $name(){return`docsRatingExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/rating-examples-page/rating-examples-page.component.html`,controllerAs:`$`}}},lT=class e{static get $name(){return`docsScrollspyApiPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/scrollspy-api-page/scrollspy-api-page.component.html`,controllerAs:`$`}}},uT=`<div
@@ -4927,7 +4927,7 @@ export class ScrollspyServiceDemoComponent implements IComponentController {
         return {
             controller: ScrollspyServiceDemoComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/scrollspy-service-demo/scrollspy-service-demo.component.html",
+            templateUrl: "src/app/features/lib/components/scrollspy-service-demo/scrollspy-service-demo.component.html",
         }
     }
 }
@@ -4968,7 +4968,7 @@ export class TimepickerCustomAdapterComponent implements IComponentController {
 
     static get $name() { return "docsTimepickerCustomAdapter" }
     static get $factory(): IComponentOptions {
-        return { controller: TimepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/timepicker-custom-adapter/timepicker-custom-adapter.component.html" }
+        return { controller: TimepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-custom-adapter/timepicker-custom-adapter.component.html" }
     }
 }
 `,bT=`<div class="d-flex flex-column align-items-start gap-3">
@@ -4983,7 +4983,7 @@ export class BasicTimepickerComponent implements IComponentController {
     public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
     static get $name() { return "docsBasicTimepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: BasicTimepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/basic-timepicker/basic-timepicker.component.html" }
+        return { controller: BasicTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-timepicker/basic-timepicker.component.html" }
     }
 }
 `,ST=`<div class="alert alert-light border" role="note">
@@ -5011,7 +5011,7 @@ export class TimepickerI18nComponent implements IComponentController {
     static get $name() { return "docsTimepickerI18n" }
     static get $inject() { return [NgbTimepickerI18n.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: TimepickerI18nComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/timepicker-i18n/timepicker-i18n.component.html" }
+        return { controller: TimepickerI18nComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-i18n/timepicker-i18n.component.html" }
     }
 }
 `,wT=`<div class="d-flex flex-column align-items-start gap-3">
@@ -5030,7 +5030,7 @@ export class MeridianTimepickerComponent implements IComponentController {
     public meridian = true;
     static get $name() { return "docsMeridianTimepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: MeridianTimepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/meridian-timepicker/meridian-timepicker.component.html" }
+        return { controller: MeridianTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/meridian-timepicker/meridian-timepicker.component.html" }
     }
 }
 `,ET=`<div class="d-flex flex-column align-items-start gap-3">
@@ -5049,7 +5049,7 @@ export class SecondsTimepickerComponent implements IComponentController {
     public seconds = true;
     static get $name() { return "docsSecondsTimepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: SecondsTimepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/seconds-timepicker/seconds-timepicker.component.html" }
+        return { controller: SecondsTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/seconds-timepicker/seconds-timepicker.component.html" }
     }
 }
 `,OT=`<div class="d-flex flex-column align-items-start gap-3">
@@ -5066,7 +5066,7 @@ export class SpinnersTimepickerComponent implements IComponentController {
     public spinners = true;
     static get $name() { return "docsSpinnersTimepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: SpinnersTimepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/spinners-timepicker/spinners-timepicker.component.html" }
+        return { controller: SpinnersTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/spinners-timepicker/spinners-timepicker.component.html" }
     }
 }
 `,AT=`<div class="d-flex flex-column align-items-start gap-3">
@@ -5100,7 +5100,7 @@ export class TimepickerCustomStepsComponent implements IComponentController {
     public secondStep = 30;
     static get $name() { return "docsTimepickerCustomSteps" }
     static get $factory(): IComponentOptions {
-        return { controller: TimepickerCustomStepsComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/timepicker-custom-steps/timepicker-custom-steps.component.html" }
+        return { controller: TimepickerCustomStepsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-custom-steps/timepicker-custom-steps.component.html" }
     }
 }
 `,MT=`<p>Select a time between 12:00 and 13:59.</p>
@@ -5124,7 +5124,7 @@ export class TimepickerValidationComponent implements IComponentController {
     public time: NgbTimeStruct | null = null;
     static get $name() { return "docsTimepickerValidation" }
     static get $factory(): IComponentOptions {
-        return { controller: TimepickerValidationComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/timepicker-validation/timepicker-validation.component.html" }
+        return { controller: TimepickerValidationComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-validation/timepicker-validation.component.html" }
     }
 }
 
@@ -5168,7 +5168,7 @@ export class CloseableToastComponent implements IComponentController {
     static get $name() { return "docsCloseableToast" }
     static get $inject() { return ["$timeout"] }
     static get $factory(): IComponentOptions {
-        return { controller: CloseableToastComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/closeable-toast/closeable-toast.component.html" }
+        return { controller: CloseableToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/closeable-toast/closeable-toast.component.html" }
     }
 }
 `,RT=`<div class="toast-container position-static d-flex flex-column gap-3">
@@ -5193,7 +5193,7 @@ export class InlineToastComponent implements IComponentController {
     public showHeaderToast = true;
     static get $name() { return "docsInlineToast" }
     static get $factory(): IComponentOptions {
-        return { controller: InlineToastComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/inline-toast/inline-toast.component.html" }
+        return { controller: InlineToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/inline-toast/inline-toast.component.html" }
     }
 }
 `,BT=`<div class="d-flex flex-wrap gap-2 mb-3">
@@ -5266,7 +5266,7 @@ export class ToastManagementComponent implements IComponentController {
     static get $name() { return "docsToastManagement" }
     static get $inject() { return [DocsToastService.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: ToastManagementComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/toast-management/toast-management.component.html" }
+        return { controller: ToastManagementComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/toast-management/toast-management.component.html" }
     }
 }
 `,HT=`<p>Show the toast and keep the pointer over it to pause autohide.</p>
@@ -5308,7 +5308,7 @@ export class PreventAutohideToastComponent implements IComponentController {
     static get $name() { return "docsPreventAutohideToast" }
     static get $inject() { return ["$timeout"] }
     static get $factory(): IComponentOptions {
-        return { controller: PreventAutohideToastComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/prevent-autohide-toast/prevent-autohide-toast.component.html" }
+        return { controller: PreventAutohideToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/prevent-autohide-toast/prevent-autohide-toast.component.html" }
     }
 }
 `,WT=`<div class="toast-container position-static">
@@ -5333,7 +5333,7 @@ export class TemplateHeaderToastComponent implements IComponentController {
     public visible = true;
     static get $name() { return "docsTemplateHeaderToast" }
     static get $factory(): IComponentOptions {
-        return { controller: TemplateHeaderToastComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/template-header-toast/template-header-toast.component.html" }
+        return { controller: TemplateHeaderToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/template-header-toast/template-header-toast.component.html" }
     }
 }
 `,KT=class e{examples={inline:{html:RT,typescript:zT},templateHeader:{html:WT,typescript:GT},closeable:{html:IT,typescript:LT},preventAutohide:{html:HT,typescript:UT},management:{html:BT,typescript:VT}};static get $name(){return`docsToastExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/toast-examples-page/toast-examples-page.component.html`,controllerAs:`$`}}},qT=class e{static get $name(){return`docsTooltipApiPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/tooltip-api-page/tooltip-api-page.component.html`,controllerAs:`$`}}},JT=`<ng-template ng-ref="example.contentTemplate">
@@ -5353,7 +5353,7 @@ export class TooltipAutocloseComponent implements IComponentController {
     public contentTemplate?: TemplateRef<unknown>;
     static get $name() { return "docsTooltipAutoclose" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipAutocloseComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-autoclose/tooltip-autoclose.component.html" }
+        return { controller: TooltipAutocloseComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-autoclose/tooltip-autoclose.component.html" }
     }
 }
 `,XT=`<div class="overflow-hidden border rounded p-4" style="max-width: 24rem">
@@ -5368,7 +5368,7 @@ export class TooltipAutocloseComponent implements IComponentController {
 export class TooltipBodyComponent implements IComponentController {
     static get $name() { return "docsTooltipBody" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipBodyComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-body/tooltip-body.component.html" }
+        return { controller: TooltipBodyComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-body/tooltip-body.component.html" }
     }
 }
 `,QT=`<ng-template ng-ref="example.contentTemplate" let-greeting="greeting">{{ greeting }}, <strong>{{ example.name }}</strong>!</ng-template>
@@ -5399,7 +5399,7 @@ export class TooltipContextComponent implements IComponentController {
 
     static get $name() { return "docsTooltipContext" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipContextComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-context/tooltip-context.component.html" }
+        return { controller: TooltipContextComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-context/tooltip-context.component.html" }
     }
 }
 `,eE=`.docs-tooltip-custom {
@@ -5418,7 +5418,7 @@ import type { IComponentController, IComponentOptions } from "angular";
 export class TooltipCustomClassComponent implements IComponentController {
     static get $name() { return "docsTooltipCustomClass" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipCustomClassComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-custom-class/tooltip-custom-class.component.html" }
+        return { controller: TooltipCustomClassComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-custom-class/tooltip-custom-class.component.html" }
     }
 }
 `,rE=`<div class="d-flex flex-wrap align-items-baseline gap-2">
@@ -5431,7 +5431,7 @@ export class TooltipCustomClassComponent implements IComponentController {
 export class TooltipCustomTargetComponent implements IComponentController {
     static get $name() { return "docsTooltipCustomTarget" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipCustomTargetComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-custom-target/tooltip-custom-target.component.html" }
+        return { controller: TooltipCustomTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-custom-target/tooltip-custom-target.component.html" }
     }
 }
 `,aE=`<p>Move the pointer into the tooltip before its close delay expires to keep it open.</p>
@@ -5444,7 +5444,7 @@ export class TooltipCustomTargetComponent implements IComponentController {
 export class TooltipDelaysComponent implements IComponentController {
     static get $name() { return "docsTooltipDelays" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipDelaysComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-delays/tooltip-delays.component.html" }
+        return { controller: TooltipDelaysComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-delays/tooltip-delays.component.html" }
     }
 }
 `,sE=`<div class="alert alert-light border d-flex gap-3 align-items-start" role="note">
@@ -5488,7 +5488,7 @@ export class TooltipGlobalComponent implements IComponentController {
     static get $name() { return "docsTooltipGlobal" }
     static get $inject() { return [NgbTooltipConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipGlobalComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-global/tooltip-global.component.html" }
+        return { controller: TooltipGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-global/tooltip-global.component.html" }
     }
 }
 `,lE=`<div class="d-flex flex-wrap gap-2">
@@ -5502,7 +5502,7 @@ export class TooltipGlobalComponent implements IComponentController {
 export class TooltipPlacementsComponent implements IComponentController {
     static get $name() { return "docsTooltipPlacements" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipPlacementsComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-placements/tooltip-placements.component.html" }
+        return { controller: TooltipPlacementsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-placements/tooltip-placements.component.html" }
     }
 }
 `,dE=`<ng-template ng-ref="example.contentTemplate">
@@ -5521,7 +5521,7 @@ export class TooltipTemplateComponent implements IComponentController {
     public contentTemplate?: TemplateRef<unknown>;
     static get $name() { return "docsTooltipTemplate" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipTemplateComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-template/tooltip-template.component.html" }
+        return { controller: TooltipTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-template/tooltip-template.component.html" }
     }
 }
 `,pE=`<p class="mb-3">Custom events can be paired as <code>mouseenter:mouseleave</code>.</p>
@@ -5540,7 +5540,7 @@ export class TooltipTriggersComponent implements IComponentController {
     public manual?: NgbTooltip;
     static get $name() { return "docsTooltipTriggers" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipTriggersComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/tooltip-triggers/tooltip-triggers.component.html" }
+        return { controller: TooltipTriggersComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-triggers/tooltip-triggers.component.html" }
     }
 }
 `,hE=class e{examples={placements:{html:lE,typescript:uE},template:{html:dE,typescript:fE},triggers:{html:pE,typescript:mE},autoclose:{html:JT,typescript:YT},context:{html:QT,typescript:$T},customTarget:{html:rE,typescript:iE},delays:{html:aE,typescript:oE},body:{html:XT,typescript:ZT},customClass:{html:tE,typescript:nE,css:eE},global:{html:sE,typescript:cE}};static get $name(){return`docsTooltipExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/tooltip-examples-page/tooltip-examples-page.component.html`,controllerAs:`$`}}},gE=class e{static get $name(){return`docsTypeaheadApiPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/typeahead-api-page/typeahead-api-page.component.html`,controllerAs:`$`}}},_E=`<label class="form-label" for="exact-typeahead">Search for a state</label>
@@ -5561,7 +5561,7 @@ export class ExactTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsExactTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: ExactTypeaheadComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/exact-typeahead/exact-typeahead.component.html" }
+        return { controller: ExactTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/exact-typeahead/exact-typeahead.component.html" }
     }
 }
 `,yE=`<label class="form-label" for="focus-typeahead">Search for a state</label>
@@ -5584,7 +5584,7 @@ export class FocusTypeaheadComponent implements IComponentController {
     public $onDestroy(): void { this.focus$.complete(); }
     static get $name() { return "docsFocusTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: FocusTypeaheadComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/focus-typeahead/focus-typeahead.component.html" }
+        return { controller: FocusTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/focus-typeahead/focus-typeahead.component.html" }
     }
 }
 `,xE=`<label class="form-label" for="formatted-typeahead">Search for a state</label>
@@ -5605,7 +5605,7 @@ export class FormattedTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsFormattedTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: FormattedTypeaheadComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/formatted-typeahead/formatted-typeahead.component.html" }
+        return { controller: FormattedTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/formatted-typeahead/formatted-typeahead.component.html" }
     }
 }
 `,CE=`<div class="alert alert-light border d-flex gap-3 align-items-start" role="note">
@@ -5656,7 +5656,7 @@ export class TypeaheadGlobalComponent implements IComponentController {
     static get $name() { return "docsTypeaheadGlobal" }
     static get $inject() { return [NgbTypeaheadConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: TypeaheadGlobalComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/typeahead-global/typeahead-global.component.html" }
+        return { controller: TypeaheadGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/typeahead-global/typeahead-global.component.html" }
     }
 }
 `,TE=`<p>Manual text is not accepted; the model changes only after selecting a suggestion.</p>
@@ -5679,7 +5679,7 @@ export class NonEditableTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsNonEditableTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: NonEditableTypeaheadComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/non-editable-typeahead/non-editable-typeahead.component.html" }
+        return { controller: NonEditableTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/non-editable-typeahead/non-editable-typeahead.component.html" }
     }
 }
 `,DE=`<label class="form-label" for="simple-typeahead">Search for a state</label>
@@ -5699,7 +5699,7 @@ export class SimpleTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsSimpleTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: SimpleTypeaheadComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/simple-typeahead/simple-typeahead.component.html" }
+        return { controller: SimpleTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/simple-typeahead/simple-typeahead.component.html" }
     }
 }
 `,kE=`<ng-template ng-ref="example.resultTemplate" let-result="result" let-term="term">
@@ -5739,7 +5739,7 @@ export class TemplateResultsTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsTemplateResultsTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: TemplateResultsTypeaheadComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/template-results-typeahead/template-results-typeahead.component.html" }
+        return { controller: TemplateResultsTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/template-results-typeahead/template-results-typeahead.component.html" }
     }
 }
 `,jE=`<label class="form-label" for="wikipedia-typeahead">Search for a Wikipedia page</label>
@@ -5791,7 +5791,7 @@ export class WikipediaTypeaheadComponent implements IComponentController {
     static get $name() { return "docsWikipediaTypeahead" }
     static get $inject() { return [WikipediaSearchService.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: WikipediaTypeaheadComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/wikipedia-typeahead/wikipedia-typeahead.component.html" }
+        return { controller: WikipediaTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/wikipedia-typeahead/wikipedia-typeahead.component.html" }
     }
 }
 `,NE=class e{examples={simple:{html:DE,typescript:OE},focus:{html:yE,typescript:bE},formatted:{html:xE,typescript:SE},exact:{html:_E,typescript:vE},wikipedia:{html:jE,typescript:ME},templateResults:{html:kE,typescript:AE},nonEditable:{html:TE,typescript:EE},global:{html:CE,typescript:wE}};static get $name(){return`docsTypeaheadExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/src/app/features/lib/pages/typeahead-examples-page/typeahead-examples-page.component.html`,controllerAs:`$`}}},PE=e=>{e.state(`docs.dashboard.alert`,{url:`/components/alert`,redirectTo:`docs.dashboard.alert.examples`,data:{title:`Alert`,tabs:[{name:`Examples`,to:`docs.dashboard.alert.examples`},{name:`Api`,to:`docs.dashboard.alert.api`}],externalLinks:{bootstrap:`components/alerts/`,ngBootstrap:`components/alert/overview`}}}),e.state(`docs.dashboard.alert.examples`,{url:`/examples`,data:{sections:[{id:`simple-alert`,name:`Simple alert`},{id:`alert-closeable`,name:`Closeable alerts`},{id:`self-closing-alert`,name:`Self-closing alert`},{id:`alert-custom`,name:`Custom alert`},{id:`alert-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:rx.$name}}}),e.state(`docs.dashboard.alert.api`,{url:`/api`,data:{sections:[{id:`ngb-alert`,name:`NgbAlert`},{id:`ngb-alert-config`,name:`NgbAlertConfig`}]},views:{"$default@docs.dashboard":{component:qb.$name}}}),e.state(`docs.dashboard.accordion`,{url:`/components/accordion`,redirectTo:`docs.dashboard.accordion.examples`,data:{title:`Accordion`,tabs:[{name:`Examples`,to:`docs.dashboard.accordion.examples`},{name:`Api`,to:`docs.dashboard.accordion.api`}],externalLinks:{bootstrap:`components/accordion/`,ngBootstrap:`components/accordion/overview`}}}),e.state(`docs.dashboard.accordion.examples`,{url:`/examples`,data:{sections:[{id:`accordion-simple`,name:`Basic accordion`},{id:`one-panel-accordion`,name:`One panel at a time`},{id:`accordion-toggle-panels`,name:`Programmatic controls`},{id:`accordion-custom-header`,name:`Custom headers`},{id:`accordion-content`,name:`Preserve content`},{id:`accordion-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:mx.$name}}}),e.state(`docs.dashboard.accordion.api`,{url:`/api`,data:{sections:[{id:`ngb-accordion`,name:`NgbAccordion`},{id:`ngb-accordion-item`,name:`NgbAccordionItem`},{id:`ngb-accordion-header`,name:`NgbAccordionHeader`},{id:`ngb-accordion-button`,name:`NgbAccordionButton`},{id:`ngb-accordion-toggle`,name:`NgbAccordionToggle`},{id:`ngb-accordion-body`,name:`NgbAccordionBody`},{id:`ngb-accordion-config`,name:`NgbAccordionConfig`}]},views:{"$default@docs.dashboard":{component:ix.$name}}}),e.state(`docs.dashboard.carousel`,{url:`/components/carousel`,redirectTo:`docs.dashboard.carousel.examples`,data:{title:`Carousel`,tabs:[{name:`Examples`,to:`docs.dashboard.carousel.examples`},{name:`Api`,to:`docs.dashboard.carousel.api`}],externalLinks:{bootstrap:`components/carousel/`,ngBootstrap:`components/carousel/overview`}}}),e.state(`docs.dashboard.carousel.examples`,{url:`/examples`,data:{sections:[{id:`carousel-simple`,name:`Simple carousel`},{id:`carousel-keyboard`,name:`Keyboard navigation`},{id:`carousel-controls`,name:`Pause controls`},{id:`carousel-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Sx.$name}}}),e.state(`docs.dashboard.carousel.api`,{url:`/api`,data:{sections:[{id:`ngb-carousel`,name:`NgbCarousel`},{id:`ngb-slide`,name:`NgbSlide`},{id:`ngb-carousel-config`,name:`NgbCarouselConfig`}]},views:{"$default@docs.dashboard":{component:hx.$name}}}),e.state(`docs.dashboard.collapse`,{url:`/components/collapse`,redirectTo:`docs.dashboard.collapse.examples`,data:{title:`Collapse`,tabs:[{name:`Examples`,to:`docs.dashboard.collapse.examples`},{name:`Api`,to:`docs.dashboard.collapse.api`}],externalLinks:{bootstrap:`components/collapse/`,ngBootstrap:`components/collapse/overview`}}}),e.state(`docs.dashboard.collapse.examples`,{url:`/examples`,data:{sections:[{id:`simple-collapse`,name:`Simple collapse`},{id:`horizontal-collapse`,name:`Horizontal collapse`},{id:`navbar-collapse`,name:`Responsive navbar`}]},views:{"$default@docs.dashboard":{component:Ax.$name}}}),e.state(`docs.dashboard.collapse.api`,{url:`/api`,data:{sections:[{id:`ngb-collapse`,name:`NgbCollapse`},{id:`ngb-collapse-config`,name:`NgbCollapseConfig`}]},views:{"$default@docs.dashboard":{component:Cx.$name}}}),e.state(`docs.dashboard.datepicker`,{url:`/components/datepicker`,redirectTo:`docs.dashboard.datepicker.examples`,data:{title:`Datepicker`,tabs:[{name:`Examples`,to:`docs.dashboard.datepicker.examples`},{name:`Api`,to:`docs.dashboard.datepicker.api`},{name:`Calendars`,to:`docs.dashboard.datepicker.calendars`}],externalLinks:{ngBootstrap:`components/datepicker/overview`}}}),e.state(`docs.dashboard.datepicker.examples`,{url:`/examples`,data:{sections:[{id:`basic-datepicker`,name:`Basic`},{id:`popup-datepicker`,name:`Popup`},{id:`multiple-months-datepicker`,name:`Multiple months`},{id:`range-datepicker`,name:`Range selection`},{id:`range-popup-datepicker`,name:`Range in a popup`},{id:`disabled-datepicker`,name:`Disabled`},{id:`datepicker-custom-adapter`,name:`Adapter and formatter`},{id:`datepicker-i18n`,name:`Internationalization`},{id:`datepicker-custom-day`,name:`Custom day`},{id:`datepicker-custom-month`,name:`Custom month layout`},{id:`datepicker-footer`,name:`Footer template`},{id:`datepicker-position-target`,name:`Position target`},{id:`datepicker-keyboard`,name:`Keyboard navigation`},{id:`datepicker-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:bS.$name}}}),e.state(`docs.dashboard.datepicker.api`,{url:`/api`,data:{sections:[{id:`ngb-datepicker`,name:`NgbDatepicker`},{id:`ngb-input-datepicker`,name:`NgbInputDatepicker`},{id:`ngb-datepicker-config`,name:`NgbDatepickerConfig`},{id:`ngb-input-datepicker-config`,name:`NgbInputDatepickerConfig`},{id:`ngb-datepicker-extension-contracts`,name:`Extension contracts`}]},views:{"$default@docs.dashboard":{component:jx.$name}}}),e.state(`docs.dashboard.datepicker.calendars`,{url:`/calendars`,data:{sections:[{id:`calendar-hebrew`,name:`Hebrew`},{id:`calendar-jalali`,name:`Jalali`},{id:`calendar-islamic-civil`,name:`Islamic Civil`},{id:`calendar-islamic-umalqura`,name:`Islamic Umm al-Qura`},{id:`calendar-buddhist`,name:`Buddhist`},{id:`calendar-ethiopian`,name:`Ethiopian`},{id:`calendar-intergalactic`,name:`Intergalactic Standard`}]},views:{"$default@docs.dashboard":{component:Vx.$name}}}),e.state(`docs.dashboard.dropdown`,{url:`/components/dropdown`,redirectTo:`docs.dashboard.dropdown.examples`,data:{title:`Dropdown`,tabs:[{name:`Examples`,to:`docs.dashboard.dropdown.examples`},{name:`Api`,to:`docs.dashboard.dropdown.api`}],externalLinks:{bootstrap:`components/dropdowns/`,ngBootstrap:`components/dropdown/overview`}}}),e.state(`docs.dashboard.dropdown.examples`,{url:`/examples`,data:{sections:[{id:`simple-dropdown`,name:`Simple dropdown`},{id:`manual-dropdown`,name:`Manual triggers`},{id:`dropdown-button-groups`,name:`Button groups`},{id:`dropdown-disabled-items`,name:`Disabled items`},{id:`dropdown-form`,name:`Dropdown form`},{id:`dropdown-body`,name:`Body container`},{id:`dropdown-navbar`,name:`Navbar positioning`},{id:`dropdown-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:PS.$name}}}),e.state(`docs.dashboard.dropdown.api`,{url:`/api`,data:{sections:[{id:`ngb-dropdown`,name:`NgbDropdown`},{id:`ngb-dropdown-anchor`,name:`NgbDropdownAnchor`},{id:`ngb-dropdown-toggle`,name:`NgbDropdownToggle`},{id:`ngb-dropdown-menu`,name:`NgbDropdownMenu`},{id:`ngb-dropdown-item`,name:`NgbDropdownItem`},{id:`ngb-dropdown-config`,name:`NgbDropdownConfig`}]},views:{"$default@docs.dashboard":{component:xS.$name}}}),e.state(`docs.dashboard.modal`,{url:`/components/modal`,redirectTo:`docs.dashboard.modal.examples`,data:{title:`Modal`,tabs:[{name:`Examples`,to:`docs.dashboard.modal.examples`},{name:`Api`,to:`docs.dashboard.modal.api`}],externalLinks:{bootstrap:`components/modal/`,ngBootstrap:`components/modal/overview`}}}),e.state(`docs.dashboard.modal.examples`,{url:`/examples`,data:{sections:[{id:`modal-default`,name:`Default options`},{id:`modal-component-content`,name:`Component content`},{id:`modal-focus`,name:`Focus management`},{id:`modal-options`,name:`Modal options`},{id:`modal-updatable`,name:`Updatable options`},{id:`modal-stacked`,name:`Stacked modals`},{id:`modal-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:aC.$name}}}),e.state(`docs.dashboard.modal.api`,{url:`/api`,data:{sections:[{id:`ngb-modal`,name:`NgbModal`},{id:`ngb-modal-ref`,name:`NgbModalRef`},{id:`ngb-active-modal`,name:`NgbActiveModal`},{id:`ngb-modal-config`,name:`NgbModalConfig`}]},views:{"$default@docs.dashboard":{component:FS.$name}}}),e.state(`docs.dashboard.nav`,{url:`/components/nav`,redirectTo:`docs.dashboard.nav.examples`,data:{title:`Nav`,tabs:[{name:`Examples`,to:`docs.dashboard.nav.examples`},{name:`Api`,to:`docs.dashboard.nav.api`}],externalLinks:{bootstrap:`components/navs-tabs/`,ngBootstrap:`components/nav/overview`}}}),e.state(`docs.dashboard.nav.examples`,{url:`/examples`,data:{sections:[{id:`simple-nav`,name:`Simple nav`},{id:`alternative-nav`,name:`Alternative markup`},{id:`vertical-nav`,name:`Vertical pills`},{id:`selecting-nav`,name:`Selecting navs`},{id:`keep-content-nav`,name:`Keep content`},{id:`dynamic-nav`,name:`Dynamic navs`},{id:`custom-nav`,name:`Custom style`},{id:`nav-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:wC.$name}}}),e.state(`docs.dashboard.nav.api`,{url:`/api`,data:{sections:[{id:`ngb-nav`,name:`NgbNav`},{id:`ngb-nav-item`,name:`NgbNavItem`},{id:`ngb-nav-link`,name:`NgbNavLink`},{id:`ngb-nav-content`,name:`NgbNavContent`},{id:`ngb-nav-outlet`,name:`NgbNavOutlet`},{id:`ngb-nav-config`,name:`NgbNavConfig`}]},views:{"$default@docs.dashboard":{component:oC.$name}}}),e.state(`docs.dashboard.offcanvas`,{url:`/components/offcanvas`,redirectTo:`docs.dashboard.offcanvas.examples`,data:{title:`Offcanvas`,tabs:[{name:`Examples`,to:`docs.dashboard.offcanvas.examples`},{name:`Api`,to:`docs.dashboard.offcanvas.api`}],externalLinks:{bootstrap:`components/offcanvas/`,ngBootstrap:`components/offcanvas/overview`}}}),e.state(`docs.dashboard.offcanvas.examples`,{url:`/examples`,data:{sections:[{id:`offcanvas-default`,name:`Default options`},{id:`offcanvas-component-content`,name:`Component content`},{id:`offcanvas-focus`,name:`Focus management`},{id:`offcanvas-options`,name:`Offcanvas options`},{id:`offcanvas-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:VC.$name}}}),e.state(`docs.dashboard.offcanvas.api`,{url:`/api`,data:{sections:[{id:`ngb-offcanvas`,name:`NgbOffcanvas`},{id:`ngb-offcanvas-ref`,name:`NgbOffcanvasRef`},{id:`ngb-active-offcanvas`,name:`NgbActiveOffcanvas`},{id:`ngb-offcanvas-config`,name:`NgbOffcanvasConfig`}]},views:{"$default@docs.dashboard":{component:TC.$name}}}),e.state(`docs.dashboard.pagination`,{url:`/components/pagination`,redirectTo:`docs.dashboard.pagination.examples`,data:{title:`Pagination`,tabs:[{name:`Examples`,to:`docs.dashboard.pagination.examples`},{name:`Api`,to:`docs.dashboard.pagination.api`}],externalLinks:{bootstrap:`components/pagination/`,ngBootstrap:`components/pagination/overview`}}}),e.state(`docs.dashboard.pagination.examples`,{url:`/examples`,data:{sections:[{id:`basic-pagination`,name:`Basic pagination`},{id:`advanced-pagination`,name:`Advanced pagination`},{id:`custom-pagination`,name:`Custom links and pages`},{id:`pagination-size`,name:`Pagination size`},{id:`pagination-alignment`,name:`Pagination alignment`},{id:`disabled-pagination`,name:`Disabled pagination`},{id:`pagination-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:rw.$name}}}),e.state(`docs.dashboard.pagination.api`,{url:`/api`,data:{sections:[{id:`ngb-pagination`,name:`NgbPagination`},{id:`ngb-pagination-config`,name:`NgbPaginationConfig`}]},views:{"$default@docs.dashboard":{component:HC.$name}}}),e.state(`docs.dashboard.popover`,{url:`/components/popover`,redirectTo:`docs.dashboard.popover.examples`,data:{title:`Popover`,tabs:[{name:`Examples`,to:`docs.dashboard.popover.examples`},{name:`Api`,to:`docs.dashboard.popover.api`}],externalLinks:{bootstrap:`components/popovers/`,ngBootstrap:`components/popover/overview`}}}),e.state(`docs.dashboard.popover.examples`,{url:`/examples`,data:{sections:[{id:`popover-placements`,name:`Quick popovers`},{id:`popover-template`,name:`HTML and bindings`},{id:`popover-triggers`,name:`Custom triggers`},{id:`popover-manual-control`,name:`External controls`},{id:`popover-autoclose`,name:`Automatic closing`},{id:`popover-context`,name:`Template context`},{id:`popover-custom-target`,name:`Custom target`},{id:`popover-delays`,name:`Open and close delays`},{id:`popover-events`,name:`Visibility events`},{id:`popover-body`,name:`Body container`},{id:`popover-custom-class`,name:`Custom class`},{id:`popover-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Aw.$name}}}),e.state(`docs.dashboard.popover.api`,{url:`/api`,data:{sections:[{id:`ngb-popover`,name:`NgbPopover`},{id:`ngb-popover-config`,name:`NgbPopoverConfig`}]},views:{"$default@docs.dashboard":{component:iw.$name}}}),e.state(`docs.dashboard.progressbar`,{url:`/components/progressbar`,redirectTo:`docs.dashboard.progressbar.examples`,data:{title:`Progress bar`,tabs:[{name:`Examples`,to:`docs.dashboard.progressbar.examples`},{name:`Api`,to:`docs.dashboard.progressbar.api`}],externalLinks:{bootstrap:`components/progress/`,ngBootstrap:`components/progressbar/overview`}}}),e.state(`docs.dashboard.progressbar.examples`,{url:`/examples`,data:{sections:[{id:`simple-progressbar`,name:`Simple progress bars`},{id:`contextual-text-progressbar`,name:`Contextual text`},{id:`striped-progress-bar`,name:`Striped bars`},{id:`custom-labels-progressbar`,name:`Custom labels`},{id:`progress-height`,name:`Custom height`},{id:`progress-bars-stacked`,name:`Stacked bars`},{id:`progressbar-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Kw.$name}}}),e.state(`docs.dashboard.progressbar.api`,{url:`/api`,data:{sections:[{id:`ngb-progressbar`,name:`NgbProgressbar`},{id:`ngb-progressbar-stacked`,name:`NgbProgressbarStacked`},{id:`ngb-progressbar-config`,name:`NgbProgressbarConfig`}]},views:{"$default@docs.dashboard":{component:jw.$name}}}),e.state(`docs.dashboard.rating`,{url:`/components/rating`,redirectTo:`docs.dashboard.rating.examples`,data:{title:`Rating`,tabs:[{name:`Examples`,to:`docs.dashboard.rating.examples`},{name:`Api`,to:`docs.dashboard.rating.api`}],externalLinks:{ngBootstrap:`components/rating/overview`}}}),e.state(`docs.dashboard.rating.examples`,{url:`/examples`,data:{sections:[{id:`basic-rating`,name:`Basic demo`},{id:`rating-events`,name:`Events and readonly`},{id:`rating-custom-template`,name:`Custom star template`},{id:`rating-decimal`,name:`Decimal rating`},{id:`rating-form`,name:`Form integration`},{id:`rating-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:cT.$name}}}),e.state(`docs.dashboard.rating.api`,{url:`/api`,data:{sections:[{id:`ngb-rating`,name:`NgbRating`},{id:`ngb-rating-config`,name:`NgbRatingConfig`}]},views:{"$default@docs.dashboard":{component:qw.$name}}}),e.state(`docs.dashboard.scrollspy`,{url:`/components/scrollspy`,redirectTo:`docs.dashboard.scrollspy.examples`,data:{title:`Scrollspy`,tabs:[{name:`Examples`,to:`docs.dashboard.scrollspy.examples`},{name:`Api`,to:`docs.dashboard.scrollspy.api`}],externalLinks:{bootstrap:`components/scrollspy/`,ngBootstrap:`components/scrollspy/overview`}}}),e.state(`docs.dashboard.scrollspy.examples`,{url:`/examples`,data:{sections:[{id:`basic-scrollspy`,name:`Basic`},{id:`scrollspy-menu-items`,name:`Menu items`},{id:`nested-scrollspy`,name:`Nested items`},{id:`navbar-scrollspy`,name:`Navbar`},{id:`scrollspy-service`,name:`Using the service`}]},views:{"$default@docs.dashboard":{component:gT.$name}}}),e.state(`docs.dashboard.scrollspy.api`,{url:`/api`,data:{sections:[{id:`ngb-scrollspy`,name:`NgbScrollSpy`},{id:`ngb-scrollspy-fragment`,name:`NgbScrollSpyFragment`},{id:`ngb-scrollspy-menu`,name:`NgbScrollSpyMenu`},{id:`ngb-scrollspy-item`,name:`NgbScrollSpyItem`},{id:`ngb-scrollspy-service`,name:`NgbScrollSpyService`},{id:`ngb-scrollspy-config`,name:`NgbScrollSpyConfig`}]},views:{"$default@docs.dashboard":{component:lT.$name}}}),e.state(`docs.dashboard.timepicker`,{url:`/components/timepicker`,redirectTo:`docs.dashboard.timepicker.examples`,data:{title:`Timepicker`,tabs:[{name:`Examples`,to:`docs.dashboard.timepicker.examples`},{name:`Api`,to:`docs.dashboard.timepicker.api`}],externalLinks:{ngBootstrap:`components/timepicker/overview`}}}),e.state(`docs.dashboard.timepicker.examples`,{url:`/examples`,data:{sections:[{id:`basic-timepicker`,name:`Basic timepicker`},{id:`meridian-timepicker`,name:`Meridian`},{id:`seconds-timepicker`,name:`Seconds`},{id:`spinners-timepicker`,name:`Spinners`},{id:`timepicker-custom-steps`,name:`Custom steps`},{id:`timepicker-validation`,name:`Custom validation`},{id:`timepicker-custom-adapter`,name:`Custom time adapter`},{id:`timepicker-i18n`,name:`Internationalization`}]},views:{"$default@docs.dashboard":{component:PT.$name}}}),e.state(`docs.dashboard.timepicker.api`,{url:`/api`,data:{sections:[{id:`ngb-timepicker`,name:`NgbTimepicker`},{id:`ngb-timepicker-config`,name:`NgbTimepickerConfig`},{id:`ngb-time-adapter`,name:`NgbTimeAdapter`},{id:`ngb-timepicker-i18n`,name:`NgbTimepickerI18n`}]},views:{"$default@docs.dashboard":{component:_T.$name}}}),e.state(`docs.dashboard.toast`,{url:`/components/toast`,redirectTo:`docs.dashboard.toast.examples`,data:{title:`Toast`,tabs:[{name:`Examples`,to:`docs.dashboard.toast.examples`},{name:`Api`,to:`docs.dashboard.toast.api`}],externalLinks:{bootstrap:`components/toasts/`,ngBootstrap:`components/toast/overview`}}}),e.state(`docs.dashboard.toast.examples`,{url:`/examples`,data:{sections:[{id:`inline-toast`,name:`Declarative inline usage`},{id:`template-header-toast`,name:`Template header`},{id:`closeable-toast`,name:`Closeable toast`},{id:`prevent-autohide-toast`,name:`Prevent autohide`},{id:`toast-management`,name:`Management service`}]},views:{"$default@docs.dashboard":{component:KT.$name}}}),e.state(`docs.dashboard.toast.api`,{url:`/api`,data:{sections:[{id:`ngb-toast`,name:`NgbToast`},{id:`ngb-toast-header`,name:`NgbToastHeader`},{id:`ngb-toast-config`,name:`NgbToastConfig`}]},views:{"$default@docs.dashboard":{component:FT.$name}}}),e.state(`docs.dashboard.tooltip`,{url:`/components/tooltip`,redirectTo:`docs.dashboard.tooltip.examples`,data:{title:`Tooltip`,tabs:[{name:`Examples`,to:`docs.dashboard.tooltip.examples`},{name:`Api`,to:`docs.dashboard.tooltip.api`}],externalLinks:{bootstrap:`components/tooltips/`,ngBootstrap:`components/tooltip/overview`}}}),e.state(`docs.dashboard.tooltip.examples`,{url:`/examples`,data:{sections:[{id:`tooltip-placements`,name:`Quick and easy tooltips`},{id:`tooltip-template`,name:`HTML and bindings`},{id:`tooltip-triggers`,name:`Custom and manual triggers`},{id:`tooltip-autoclose`,name:`Automatic closing`},{id:`tooltip-context`,name:`Context and manual triggers`},{id:`tooltip-custom-target`,name:`Custom target`},{id:`tooltip-delays`,name:`Open and close delays`},{id:`tooltip-body`,name:`Append to body`},{id:`tooltip-custom-class`,name:`Custom class`},{id:`tooltip-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:hE.$name}}}),e.state(`docs.dashboard.tooltip.api`,{url:`/api`,data:{sections:[{id:`ngb-tooltip`,name:`NgbTooltip`},{id:`ngb-tooltip-config`,name:`NgbTooltipConfig`}]},views:{"$default@docs.dashboard":{component:qT.$name}}}),e.state(`docs.dashboard.typeahead`,{url:`/components/typeahead`,redirectTo:`docs.dashboard.typeahead.examples`,data:{title:`Typeahead`,tabs:[{name:`Examples`,to:`docs.dashboard.typeahead.examples`},{name:`Api`,to:`docs.dashboard.typeahead.api`}],externalLinks:{ngBootstrap:`components/typeahead/overview`}}}),e.state(`docs.dashboard.typeahead.examples`,{url:`/examples`,data:{sections:[{id:`simple-typeahead`,name:`Simple Typeahead`},{id:`focus-typeahead`,name:`Open on focus`},{id:`formatted-typeahead`,name:`Formatted results`},{id:`exact-typeahead`,name:`Select on exact`},{id:`wikipedia-typeahead`,name:`Wikipedia search`},{id:`template-results-typeahead`,name:`Template for results`},{id:`non-editable-typeahead`,name:`Prevent manual entry`},{id:`typeahead-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:NE.$name}}}),e.state(`docs.dashboard.typeahead.api`,{url:`/api`,data:{sections:[{id:`ngb-typeahead`,name:`NgbTypeahead`},{id:`ngb-highlight`,name:`NgbHighlight`},{id:`ngb-typeahead-config`,name:`NgbTypeaheadConfig`}]},views:{"$default@docs.dashboard":{component:gE.$name}}})};PE.$inject=[`$stateProvider`];var $=u.default.module(`docs.lib`,[]);$.component(iv.$name,iv.$factory),$.component(av.$name,av.$factory),$.component(ov.$name,ov.$factory),$.component(sv.$name,sv.$factory),$.component(cv.$name,cv.$factory),$.component(lv.$name,lv.$factory),$.component(uv.$name,uv.$factory),$.component(dv.$name,dv.$factory),$.component(fv.$name,fv.$factory),$.component(pv.$name,pv.$factory),$.component(mv.$name,mv.$factory),$.component(hv.$name,hv.$factory),$.component(gv.$name,gv.$factory),$.component(_v.$name,_v.$factory),$.component(vv.$name,vv.$factory),$.component(yv.$name,yv.$factory),$.component(bv.$name,bv.$factory),$.component(xv.$name,xv.$factory),$.component(Sv.$name,Sv.$factory),$.component(Cv.$name,Cv.$factory),$.component(wv.$name,wv.$factory),$.component(Tv.$name,Tv.$factory),$.component(Ev.$name,Ev.$factory),$.component(Dv.$name,Dv.$factory),$.component(Ov.$name,Ov.$factory),$.component(kv.$name,kv.$factory),$.component(jv.$name,jv.$factory),$.component(Mv.$name,Mv.$factory),$.component(Av.$name,Av.$factory),$.component(Pv.$name,Pv.$factory),$.component(Nv.$name,Nv.$factory),$.component(Fv.$name,Fv.$factory),$.component(Iv.$name,Iv.$factory),$.component(Rv.$name,Rv.$factory),$.component(Lv.$name,Lv.$factory),$.component(Bv.$name,Bv.$factory),$.component(zv.$name,zv.$factory),$.component(Vv.$name,Vv.$factory),$.component(Hv.$name,Hv.$factory),$.component(Uv.$name,Uv.$factory),$.component(Wv.$name,Wv.$factory),$.component(Gv.$name,Gv.$factory),$.component(Kv.$name,Kv.$factory),$.component(qv.$name,qv.$factory),$.component(Jv.$name,Jv.$factory),$.component(Xv.$name,Xv.$factory),$.component(Zv.$name,Zv.$factory),$.component(Yv.$name,Yv.$factory),$.component($v.$name,$v.$factory),$.component(Qv.$name,Qv.$factory),$.component(ey.$name,ey.$factory),$.component(ty.$name,ty.$factory),$.component(ny.$name,ny.$factory),$.component(ry.$name,ry.$factory),$.component(iy.$name,iy.$factory),$.component(ay.$name,ay.$factory),$.component(oy.$name,oy.$factory),$.component(sy.$name,sy.$factory),$.component(cy.$name,cy.$factory),$.component(ly.$name,ly.$factory),$.component(fy.$name,fy.$factory),$.component(py.$name,py.$factory),$.component(my.$name,my.$factory),$.component(hy.$name,hy.$factory),$.component(gy.$name,gy.$factory),$.component(vy.$name,vy.$factory),$.component(yy.$name,yy.$factory),$.component(by.$name,by.$factory),$.component(xy.$name,xy.$factory),$.component(Sy.$name,Sy.$factory),$.component(Cy.$name,Cy.$factory),$.component(wy.$name,wy.$factory),$.component(Ty.$name,Ty.$factory),$.component(Ey.$name,Ey.$factory),$.component(Dy.$name,Dy.$factory),$.component(Oy.$name,Oy.$factory),$.component(ky.$name,ky.$factory),$.component(Ay.$name,Ay.$factory),$.component(jy.$name,jy.$factory),$.component(My.$name,My.$factory),$.component(Ny.$name,Ny.$factory),$.component(Py.$name,Py.$factory),$.component(Fy.$name,Fy.$factory),$.component(Iy.$name,Iy.$factory),$.component(Ly.$name,Ly.$factory),$.component(Ry.$name,Ry.$factory),$.component(zy.$name,zy.$factory),$.component(By.$name,By.$factory),$.component(Vy.$name,Vy.$factory),$.component(Hy.$name,Hy.$factory),$.component(Uy.$name,Uy.$factory),$.component(Wy.$name,Wy.$factory),$.component(Gy.$name,Gy.$factory),$.component(Ky.$name,Ky.$factory),$.component(qy.$name,qy.$factory),$.component(Jy.$name,Jy.$factory),$.component(Yy.$name,Yy.$factory),$.component(Xy.$name,Xy.$factory),$.component(Zy.$name,Zy.$factory),$.component(Qy.$name,Qy.$factory),$.component($y.$name,$y.$factory),$.component(eb.$name,eb.$factory),$.component(tb.$name,tb.$factory),$.component(nb.$name,nb.$factory),$.component(rb.$name,rb.$factory),$.component(ib.$name,ib.$factory),$.component(ab.$name,ab.$factory),$.component(cb.$name,cb.$factory),$.component(lb.$name,lb.$factory),$.service(ub.$name,ub),$.component(db.$name,db.$factory),$.component(fb.$name,fb.$factory),$.directive(`docsTimepickerLunchValidator`,pb),$.component(mb.$name,mb.$factory),$.component(hb.$name,hb.$factory),$.component(gb.$name,gb.$factory),$.component(_b.$name,_b.$factory),$.service(vb.$name,vb),$.component(yb.$name,yb.$factory),$.component(bb.$name,bb.$factory),$.component(xb.$name,xb.$factory),$.component(Sb.$name,Sb.$factory),$.component(Cb.$name,Cb.$factory),$.component(wb.$name,wb.$factory),$.component(Tb.$name,Tb.$factory),$.component(Eb.$name,Eb.$factory),$.component(Db.$name,Db.$factory),$.component(Ob.$name,Ob.$factory),$.component(kb.$name,kb.$factory),$.component(jb.$name,jb.$factory),$.component(Nb.$name,Nb.$factory),$.component(Fb.$name,Fb.$factory),$.component(Lb.$name,Lb.$factory),$.component(zb.$name,zb.$factory),$.component(Vb.$name,Vb.$factory),$.component(Ub.$name,Ub.$factory),$.service(Gb.$name,Gb),$.component(Kb.$name,Kb.$factory),$.component(qb.$name,qb.$factory),$.component(rx.$name,rx.$factory),$.component(ix.$name,ix.$factory),$.component(mx.$name,mx.$factory),$.component(hx.$name,hx.$factory),$.component(Sx.$name,Sx.$factory),$.component(Cx.$name,Cx.$factory),$.component(Ax.$name,Ax.$factory),$.component(jx.$name,jx.$factory),$.component(Vx.$name,Vx.$factory),$.component(bS.$name,bS.$factory),$.component(xS.$name,xS.$factory),$.component(PS.$name,PS.$factory),$.component(FS.$name,FS.$factory),$.component(aC.$name,aC.$factory),$.component(oC.$name,oC.$factory),$.component(wC.$name,wC.$factory),$.component(TC.$name,TC.$factory),$.component(VC.$name,VC.$factory),$.component(HC.$name,HC.$factory),$.component(rw.$name,rw.$factory),$.component(iw.$name,iw.$factory),$.component(Aw.$name,Aw.$factory),$.component(jw.$name,jw.$factory),$.component(Kw.$name,Kw.$factory),$.component(qw.$name,qw.$factory),$.component(cT.$name,cT.$factory),$.component(lT.$name,lT.$factory),$.component(gT.$name,gT.$factory),$.component(_T.$name,_T.$factory),$.component(PT.$name,PT.$factory),$.component(FT.$name,FT.$factory),$.component(KT.$name,KT.$factory),$.component(qT.$name,qT.$factory),$.component(hE.$name,hE.$factory),$.component(gE.$name,gE.$factory),$.component(NE.$name,NE.$factory),$.config(PE);var FE=u.default.module(`docs.features`,[Q_.name,nv.name,$.name]),IE=u.default.module(`docs`,[Fi,H_.name,zc.name,Hh.name,q_.name,FE.name]);IE.component(d_.$name,d_.$factory),IE.config(f_);

@@ -12,7 +12,7 @@ export class KeepContentNavComponent implements IComponentController {
         return {
             controller: KeepContentNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/keep-content-nav/keep-content-nav.component.html",
+            templateUrl: "src/app/features/lib/components/keep-content-nav/keep-content-nav.component.html",
         }
     }
 }

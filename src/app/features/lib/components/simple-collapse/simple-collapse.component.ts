@@ -24,7 +24,7 @@ export class SimpleCollapseComponent implements IComponentController {
         return {
             controller: SimpleCollapseComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/simple-collapse/simple-collapse.component.html",
+            templateUrl: "src/app/features/lib/components/simple-collapse/simple-collapse.component.html",
         }
     }
 }

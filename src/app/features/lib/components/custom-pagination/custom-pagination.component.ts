@@ -15,7 +15,7 @@ export class CustomPaginationComponent implements IComponentController {
         return {
             controller: CustomPaginationComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/custom-pagination/custom-pagination.component.html",
+            templateUrl: "src/app/features/lib/components/custom-pagination/custom-pagination.component.html",
         }
     }
 }

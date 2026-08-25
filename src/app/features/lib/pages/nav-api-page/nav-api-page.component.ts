@@ -8,7 +8,7 @@ export class NavApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: NavApiPageComponent,
-            templateUrl: "/src/app/features/lib/pages/nav-api-page/nav-api-page.component.html",
+            templateUrl: "src/app/features/lib/pages/nav-api-page/nav-api-page.component.html",
             controllerAs: "$",
         }
     }

@@ -8,7 +8,7 @@ export class PhilosophyPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: PhilosophyPageComponent,
-            templateUrl: "/src/app/features/guide/pages/philosophy-page/philosophy-page.component.html",
+            templateUrl: "src/app/features/guide/pages/philosophy-page/philosophy-page.component.html",
             controllerAs: "$",
         }
     }

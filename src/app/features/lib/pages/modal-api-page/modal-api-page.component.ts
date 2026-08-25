@@ -8,7 +8,7 @@ export class ModalApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: ModalApiPageComponent,
-            templateUrl: "/src/app/features/lib/pages/modal-api-page/modal-api-page.component.html",
+            templateUrl: "src/app/features/lib/pages/modal-api-page/modal-api-page.component.html",
             controllerAs: "$",
         }
     }

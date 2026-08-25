@@ -9,7 +9,7 @@ export class SimpleAlertComponent implements IComponentController {
         return {
             controller: SimpleAlertComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/simple-alert/simple-alert.component.html",
+            templateUrl: "src/app/features/lib/components/simple-alert/simple-alert.component.html",
         }
     }
 }

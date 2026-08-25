@@ -39,7 +39,7 @@ export class AlertExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: AlertExamplesPageComponent,
-            templateUrl: "/src/app/features/lib/pages/alert-examples-page/alert-examples-page.component.html",
+            templateUrl: "src/app/features/lib/pages/alert-examples-page/alert-examples-page.component.html",
             controllerAs: "$",
         }
     }

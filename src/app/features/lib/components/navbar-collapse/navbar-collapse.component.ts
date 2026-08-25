@@ -19,7 +19,7 @@ export class NavbarCollapseComponent implements IComponentController {
         return {
             controller: NavbarCollapseComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/navbar-collapse/navbar-collapse.component.html",
+            templateUrl: "src/app/features/lib/components/navbar-collapse/navbar-collapse.component.html",
         }
     }
 }

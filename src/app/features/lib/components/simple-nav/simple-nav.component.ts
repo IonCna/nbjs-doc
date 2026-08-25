@@ -11,7 +11,7 @@ export class SimpleNavComponent implements IComponentController {
         return {
             controller: SimpleNavComponent,
             controllerAs: "example",
-            templateUrl: "/src/app/features/lib/components/simple-nav/simple-nav.component.html",
+            templateUrl: "src/app/features/lib/components/simple-nav/simple-nav.component.html",
         }
     }
 }
