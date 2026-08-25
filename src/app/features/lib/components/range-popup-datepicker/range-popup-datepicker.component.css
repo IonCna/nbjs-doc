@@ -1,0 +1,4 @@
+.docs-popup-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
+.docs-popup-range-day.range { background: var(--bs-primary); color: var(--bs-white); }
+.docs-popup-range-day.faded { background: rgba(var(--bs-primary-rgb), .2); color: var(--bs-body-color); }
+.docs-popup-range-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 1px; }

@@ -13,11 +13,13 @@
                 ngb-scroll-spy
                 root-margin="0px 0px -60%">
                 <div class="row g-0 min-vh-100">
-                    <div class="col-12 col-xl-9">
-                        <div class="container-xl px-3 px-md-4 px-xl-5 py-4 py-lg-5">
+                    <div class="col-12 col-xl-9 d-flex flex-column min-vh-100">
+                        <div class="container-xl flex-grow-1 px-3 px-md-4 px-xl-5 py-4 py-lg-5">
                             <docs-title-heading></docs-title-heading>
                             <ui-view></ui-view>
                         </div>
+
+                        <docs-footer></docs-footer>
                     </div>
 
                     <docs-page-outline class="col-xl-3 d-none d-xl-block border-start"></docs-page-outline>

@@ -13,13 +13,13 @@
             <li
                 ng-repeat="tab in $.tabs track by tab.to"
                 ngb-nav-item="{{ tab.to }}">
-                <button
+                <a
                     type="button"
                     class="text-nowrap px-1 py-3 fw-semibold"
                     ngb-nav-link
                     ui-sref="{{ tab.to }}">
                     {{ tab.name }}
-                </button>
+                </a>
             </li>
         </ul>
     </nav>

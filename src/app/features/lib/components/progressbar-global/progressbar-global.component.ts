@@ -19,7 +19,7 @@ export class ProgressbarGlobalComponent implements IComponentController {
         config.max = 200;
         config.showValue = true;
         config.striped = true;
-        config.textType = "white";
+        config.textType = "light";
         config.type = "primary";
     }
 

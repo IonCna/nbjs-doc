@@ -1,0 +1,10 @@
+import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDateStruct } from "ngb-js";
+
+export class MultipleMonthsDatepickerComponent implements IComponentController {
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+    static get $name() { return "docsMultipleMonthsDatepicker" }
+    static get $factory(): IComponentOptions {
+        return { controller: MultipleMonthsDatepickerComponent, controllerAs: "example", templateUrl: "/src/app/features/lib/components/multiple-months-datepicker/multiple-months-datepicker.component.html" }
+    }
+}

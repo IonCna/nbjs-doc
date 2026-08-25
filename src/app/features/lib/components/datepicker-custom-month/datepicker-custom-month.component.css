@@ -1,0 +1,2 @@
+.docs-month-layout { display: grid; grid-template-columns: repeat(2, max-content); gap: 1rem; }
+@media (max-width: 575.98px) { .docs-month-layout { grid-template-columns: max-content; } }

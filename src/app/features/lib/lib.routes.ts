@@ -8,6 +8,7 @@ import { CarouselExamplesPageComponent } from "@/features/lib/pages/carousel-exa
 import { CollapseApiPageComponent } from "@/features/lib/pages/collapse-api-page/collapse-api-page.component"
 import { CollapseExamplesPageComponent } from "@/features/lib/pages/collapse-examples-page/collapse-examples-page.component"
 import { DatepickerApiPageComponent } from "@/features/lib/pages/datepicker-api-page/datepicker-api-page.component"
+import { DatepickerCalendarsPageComponent } from "@/features/lib/pages/datepicker-calendars-page/datepicker-calendars-page.component"
 import { DatepickerExamplesPageComponent } from "@/features/lib/pages/datepicker-examples-page/datepicker-examples-page.component"
 import { DropdownApiPageComponent } from "@/features/lib/pages/dropdown-api-page/dropdown-api-page.component"
 import { DropdownExamplesPageComponent } from "@/features/lib/pages/dropdown-examples-page/dropdown-examples-page.component"
@@ -245,6 +246,7 @@ export const routing = ($stateProvider: StateProvider) => {
             tabs: [
                 { name: "Examples", to: "docs.dashboard.datepicker.examples" },
                 { name: "Api", to: "docs.dashboard.datepicker.api" },
+                { name: "Calendars", to: "docs.dashboard.datepicker.calendars" },
             ],
             externalLinks: {
                 ngBootstrap: "components/datepicker/overview",
@@ -256,7 +258,20 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "datepicker-showcase", name: "Inline and popup" },
+                { id: "basic-datepicker", name: "Basic" },
+                { id: "popup-datepicker", name: "Popup" },
+                { id: "multiple-months-datepicker", name: "Multiple months" },
+                { id: "range-datepicker", name: "Range selection" },
+                { id: "range-popup-datepicker", name: "Range in a popup" },
+                { id: "disabled-datepicker", name: "Disabled" },
+                { id: "datepicker-custom-adapter", name: "Adapter and formatter" },
+                { id: "datepicker-i18n", name: "Internationalization" },
+                { id: "datepicker-custom-day", name: "Custom day" },
+                { id: "datepicker-custom-month", name: "Custom month layout" },
+                { id: "datepicker-footer", name: "Footer template" },
+                { id: "datepicker-position-target", name: "Position target" },
+                { id: "datepicker-keyboard", name: "Keyboard navigation" },
+                { id: "datepicker-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -280,6 +295,26 @@ export const routing = ($stateProvider: StateProvider) => {
         views: {
             "$default@docs.dashboard": {
                 component: DatepickerApiPageComponent.$name,
+            },
+        },
+    })
+
+    $stateProvider.state("docs.dashboard.datepicker.calendars", {
+        url: "/calendars",
+        data: {
+            sections: [
+                { id: "calendar-hebrew", name: "Hebrew" },
+                { id: "calendar-jalali", name: "Jalali" },
+                { id: "calendar-islamic-civil", name: "Islamic Civil" },
+                { id: "calendar-islamic-umalqura", name: "Islamic Umm al-Qura" },
+                { id: "calendar-buddhist", name: "Buddhist" },
+                { id: "calendar-ethiopian", name: "Ethiopian" },
+                { id: "calendar-intergalactic", name: "Intergalactic Standard" },
+            ],
+        },
+        views: {
+            "$default@docs.dashboard": {
+                component: DatepickerCalendarsPageComponent.$name,
             },
         },
     })
@@ -834,7 +869,11 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "toast-showcase", name: "Autohide and header" },
+                { id: "inline-toast", name: "Declarative inline usage" },
+                { id: "template-header-toast", name: "Template header" },
+                { id: "closeable-toast", name: "Closeable toast" },
+                { id: "prevent-autohide-toast", name: "Prevent autohide" },
+                { id: "toast-management", name: "Management service" },
             ],
         },
         views: {
@@ -880,7 +919,16 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "tooltip-showcase", name: "Triggers and container" },
+                { id: "tooltip-placements", name: "Quick and easy tooltips" },
+                { id: "tooltip-template", name: "HTML and bindings" },
+                { id: "tooltip-triggers", name: "Custom and manual triggers" },
+                { id: "tooltip-autoclose", name: "Automatic closing" },
+                { id: "tooltip-context", name: "Context and manual triggers" },
+                { id: "tooltip-custom-target", name: "Custom target" },
+                { id: "tooltip-delays", name: "Open and close delays" },
+                { id: "tooltip-body", name: "Append to body" },
+                { id: "tooltip-custom-class", name: "Custom class" },
+                { id: "tooltip-global", name: "Global configuration" },
             ],
         },
         views: {
@@ -924,7 +972,14 @@ export const routing = ($stateProvider: StateProvider) => {
         url: "/examples",
         data: {
             sections: [
-                { id: "typeahead-showcase", name: "Local search" },
+                { id: "simple-typeahead", name: "Simple Typeahead" },
+                { id: "focus-typeahead", name: "Open on focus" },
+                { id: "formatted-typeahead", name: "Formatted results" },
+                { id: "exact-typeahead", name: "Select on exact" },
+                { id: "wikipedia-typeahead", name: "Wikipedia search" },
+                { id: "template-results-typeahead", name: "Template for results" },
+                { id: "non-editable-typeahead", name: "Prevent manual entry" },
+                { id: "typeahead-global", name: "Global configuration" },
             ],
         },
         views: {

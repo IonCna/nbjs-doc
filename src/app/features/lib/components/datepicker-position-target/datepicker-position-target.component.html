@@ -1,0 +1,14 @@
+<div class="row g-3 align-items-end">
+    <div class="col-sm-7">
+        <label class="form-label" for="positioned-datepicker-input">The input controls the popup</label>
+        <div class="input-group">
+            <input id="positioned-datepicker-input" class="form-control" ng-model="example.date" ngb-datepicker position-target="example.target">
+            <button type="button" class="btn btn-outline-secondary" ng-click="$datepicker.toggle()">Open</button>
+        </div>
+    </div>
+    <div class="col-sm-5 text-sm-end">
+        <span id="datepicker-custom-position-target" class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded border bg-body-tertiary">
+            <i class="bi bi-crosshair" aria-hidden="true"></i> Popup target
+        </span>
+    </div>
+</div>

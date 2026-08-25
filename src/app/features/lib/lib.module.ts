@@ -59,7 +59,20 @@ import { DisabledPaginationComponent } from "@/features/lib/components/disabled-
 import { PaginationAlignmentComponent } from "@/features/lib/components/pagination-alignment/pagination-alignment.component"
 import { PaginationGlobalComponent } from "@/features/lib/components/pagination-global/pagination-global.component"
 import { PaginationSizeComponent } from "@/features/lib/components/pagination-size/pagination-size.component"
-import { DatepickerShowcaseComponent } from "@/features/lib/components/datepicker-showcase/datepicker-showcase.component"
+import { BasicDatepickerComponent } from "@/features/lib/components/basic-datepicker/basic-datepicker.component"
+import { DatepickerCustomAdapterComponent } from "@/features/lib/components/datepicker-custom-adapter/datepicker-custom-adapter.component"
+import { DatepickerCustomDayComponent } from "@/features/lib/components/datepicker-custom-day/datepicker-custom-day.component"
+import { DatepickerCustomMonthComponent } from "@/features/lib/components/datepicker-custom-month/datepicker-custom-month.component"
+import { DatepickerFooterComponent } from "@/features/lib/components/datepicker-footer/datepicker-footer.component"
+import { DatepickerGlobalComponent } from "@/features/lib/components/datepicker-global/datepicker-global.component"
+import { DatepickerI18nComponent } from "@/features/lib/components/datepicker-i18n/datepicker-i18n.component"
+import { DatepickerKeyboardComponent } from "@/features/lib/components/datepicker-keyboard/datepicker-keyboard.component"
+import { DatepickerPositionTargetComponent } from "@/features/lib/components/datepicker-position-target/datepicker-position-target.component"
+import { DisabledDatepickerComponent } from "@/features/lib/components/disabled-datepicker/disabled-datepicker.component"
+import { MultipleMonthsDatepickerComponent } from "@/features/lib/components/multiple-months-datepicker/multiple-months-datepicker.component"
+import { PopupDatepickerComponent } from "@/features/lib/components/popup-datepicker/popup-datepicker.component"
+import { RangeDatepickerComponent } from "@/features/lib/components/range-datepicker/range-datepicker.component"
+import { RangePopupDatepickerComponent } from "@/features/lib/components/range-popup-datepicker/range-popup-datepicker.component"
 import { PopoverAutocloseComponent } from "@/features/lib/components/popover-autoclose/popover-autoclose.component"
 import { PopoverBodyComponent } from "@/features/lib/components/popover-body/popover-body.component"
 import { PopoverContextComponent } from "@/features/lib/components/popover-context/popover-context.component"
@@ -98,9 +111,29 @@ import { TimepickerCustomAdapterComponent } from "@/features/lib/components/time
 import { TimepickerCustomStepsComponent } from "@/features/lib/components/timepicker-custom-steps/timepicker-custom-steps.component"
 import { GreekTimepickerI18n, TimepickerI18nComponent } from "@/features/lib/components/timepicker-i18n/timepicker-i18n.component"
 import { TimepickerValidationComponent, timepickerLunchValidator } from "@/features/lib/components/timepicker-validation/timepicker-validation.component"
-import { ToastShowcaseComponent } from "@/features/lib/components/toast-showcase/toast-showcase.component"
-import { TooltipShowcaseComponent } from "@/features/lib/components/tooltip-showcase/tooltip-showcase.component"
-import { TypeaheadShowcaseComponent } from "@/features/lib/components/typeahead-showcase/typeahead-showcase.component"
+import { CloseableToastComponent } from "@/features/lib/components/closeable-toast/closeable-toast.component"
+import { InlineToastComponent } from "@/features/lib/components/inline-toast/inline-toast.component"
+import { PreventAutohideToastComponent } from "@/features/lib/components/prevent-autohide-toast/prevent-autohide-toast.component"
+import { TemplateHeaderToastComponent } from "@/features/lib/components/template-header-toast/template-header-toast.component"
+import { DocsToastService, ToastManagementComponent } from "@/features/lib/components/toast-management/toast-management.component"
+import { TooltipAutocloseComponent } from "@/features/lib/components/tooltip-autoclose/tooltip-autoclose.component"
+import { TooltipBodyComponent } from "@/features/lib/components/tooltip-body/tooltip-body.component"
+import { TooltipContextComponent } from "@/features/lib/components/tooltip-context/tooltip-context.component"
+import { TooltipCustomClassComponent } from "@/features/lib/components/tooltip-custom-class/tooltip-custom-class.component"
+import { TooltipCustomTargetComponent } from "@/features/lib/components/tooltip-custom-target/tooltip-custom-target.component"
+import { TooltipDelaysComponent } from "@/features/lib/components/tooltip-delays/tooltip-delays.component"
+import { TooltipGlobalComponent } from "@/features/lib/components/tooltip-global/tooltip-global.component"
+import { TooltipPlacementsComponent } from "@/features/lib/components/tooltip-placements/tooltip-placements.component"
+import { TooltipTemplateComponent } from "@/features/lib/components/tooltip-template/tooltip-template.component"
+import { TooltipTriggersComponent } from "@/features/lib/components/tooltip-triggers/tooltip-triggers.component"
+import { ExactTypeaheadComponent } from "@/features/lib/components/exact-typeahead/exact-typeahead.component"
+import { FocusTypeaheadComponent } from "@/features/lib/components/focus-typeahead/focus-typeahead.component"
+import { FormattedTypeaheadComponent } from "@/features/lib/components/formatted-typeahead/formatted-typeahead.component"
+import { NonEditableTypeaheadComponent } from "@/features/lib/components/non-editable-typeahead/non-editable-typeahead.component"
+import { SimpleTypeaheadComponent } from "@/features/lib/components/simple-typeahead/simple-typeahead.component"
+import { TemplateResultsTypeaheadComponent } from "@/features/lib/components/template-results-typeahead/template-results-typeahead.component"
+import { TypeaheadGlobalComponent } from "@/features/lib/components/typeahead-global/typeahead-global.component"
+import { WikipediaSearchService, WikipediaTypeaheadComponent } from "@/features/lib/components/wikipedia-typeahead/wikipedia-typeahead.component"
 import { AlertApiPageComponent } from "@/features/lib/pages/alert-api-page/alert-api-page.component"
 import { AlertExamplesPageComponent } from "@/features/lib/pages/alert-examples-page/alert-examples-page.component"
 import { AccordionApiPageComponent } from "@/features/lib/pages/accordion-api-page/accordion-api-page.component"
@@ -110,6 +143,7 @@ import { CarouselExamplesPageComponent } from "@/features/lib/pages/carousel-exa
 import { CollapseApiPageComponent } from "@/features/lib/pages/collapse-api-page/collapse-api-page.component"
 import { CollapseExamplesPageComponent } from "@/features/lib/pages/collapse-examples-page/collapse-examples-page.component"
 import { DatepickerApiPageComponent } from "@/features/lib/pages/datepicker-api-page/datepicker-api-page.component"
+import { DatepickerCalendarsPageComponent } from "@/features/lib/pages/datepicker-calendars-page/datepicker-calendars-page.component"
 import { DatepickerExamplesPageComponent } from "@/features/lib/pages/datepicker-examples-page/datepicker-examples-page.component"
 import { DropdownApiPageComponent } from "@/features/lib/pages/dropdown-api-page/dropdown-api-page.component"
 import { DropdownExamplesPageComponent } from "@/features/lib/pages/dropdown-examples-page/dropdown-examples-page.component"
@@ -200,7 +234,20 @@ LibModule.component(DisabledPaginationComponent.$name, DisabledPaginationCompone
 LibModule.component(PaginationAlignmentComponent.$name, PaginationAlignmentComponent.$factory)
 LibModule.component(PaginationGlobalComponent.$name, PaginationGlobalComponent.$factory)
 LibModule.component(PaginationSizeComponent.$name, PaginationSizeComponent.$factory)
-LibModule.component(DatepickerShowcaseComponent.$name, DatepickerShowcaseComponent.$factory)
+LibModule.component(BasicDatepickerComponent.$name, BasicDatepickerComponent.$factory)
+LibModule.component(DatepickerCustomAdapterComponent.$name, DatepickerCustomAdapterComponent.$factory)
+LibModule.component(DatepickerCustomDayComponent.$name, DatepickerCustomDayComponent.$factory)
+LibModule.component(DatepickerCustomMonthComponent.$name, DatepickerCustomMonthComponent.$factory)
+LibModule.component(DatepickerFooterComponent.$name, DatepickerFooterComponent.$factory)
+LibModule.component(DatepickerGlobalComponent.$name, DatepickerGlobalComponent.$factory)
+LibModule.component(DatepickerI18nComponent.$name, DatepickerI18nComponent.$factory)
+LibModule.component(DatepickerKeyboardComponent.$name, DatepickerKeyboardComponent.$factory)
+LibModule.component(DatepickerPositionTargetComponent.$name, DatepickerPositionTargetComponent.$factory)
+LibModule.component(DisabledDatepickerComponent.$name, DisabledDatepickerComponent.$factory)
+LibModule.component(MultipleMonthsDatepickerComponent.$name, MultipleMonthsDatepickerComponent.$factory)
+LibModule.component(PopupDatepickerComponent.$name, PopupDatepickerComponent.$factory)
+LibModule.component(RangeDatepickerComponent.$name, RangeDatepickerComponent.$factory)
+LibModule.component(RangePopupDatepickerComponent.$name, RangePopupDatepickerComponent.$factory)
 LibModule.component(PopoverAutocloseComponent.$name, PopoverAutocloseComponent.$factory)
 LibModule.component(PopoverBodyComponent.$name, PopoverBodyComponent.$factory)
 LibModule.component(PopoverContextComponent.$name, PopoverContextComponent.$factory)
@@ -241,9 +288,31 @@ LibModule.service(GreekTimepickerI18n.$name, GreekTimepickerI18n)
 LibModule.component(TimepickerI18nComponent.$name, TimepickerI18nComponent.$factory)
 LibModule.component(TimepickerValidationComponent.$name, TimepickerValidationComponent.$factory)
 LibModule.directive("docsTimepickerLunchValidator", timepickerLunchValidator)
-LibModule.component(ToastShowcaseComponent.$name, ToastShowcaseComponent.$factory)
-LibModule.component(TooltipShowcaseComponent.$name, TooltipShowcaseComponent.$factory)
-LibModule.component(TypeaheadShowcaseComponent.$name, TypeaheadShowcaseComponent.$factory)
+LibModule.component(CloseableToastComponent.$name, CloseableToastComponent.$factory)
+LibModule.component(InlineToastComponent.$name, InlineToastComponent.$factory)
+LibModule.component(PreventAutohideToastComponent.$name, PreventAutohideToastComponent.$factory)
+LibModule.component(TemplateHeaderToastComponent.$name, TemplateHeaderToastComponent.$factory)
+LibModule.service(DocsToastService.$name, DocsToastService)
+LibModule.component(ToastManagementComponent.$name, ToastManagementComponent.$factory)
+LibModule.component(TooltipAutocloseComponent.$name, TooltipAutocloseComponent.$factory)
+LibModule.component(TooltipBodyComponent.$name, TooltipBodyComponent.$factory)
+LibModule.component(TooltipContextComponent.$name, TooltipContextComponent.$factory)
+LibModule.component(TooltipCustomClassComponent.$name, TooltipCustomClassComponent.$factory)
+LibModule.component(TooltipCustomTargetComponent.$name, TooltipCustomTargetComponent.$factory)
+LibModule.component(TooltipDelaysComponent.$name, TooltipDelaysComponent.$factory)
+LibModule.component(TooltipGlobalComponent.$name, TooltipGlobalComponent.$factory)
+LibModule.component(TooltipPlacementsComponent.$name, TooltipPlacementsComponent.$factory)
+LibModule.component(TooltipTemplateComponent.$name, TooltipTemplateComponent.$factory)
+LibModule.component(TooltipTriggersComponent.$name, TooltipTriggersComponent.$factory)
+LibModule.component(ExactTypeaheadComponent.$name, ExactTypeaheadComponent.$factory)
+LibModule.component(FocusTypeaheadComponent.$name, FocusTypeaheadComponent.$factory)
+LibModule.component(FormattedTypeaheadComponent.$name, FormattedTypeaheadComponent.$factory)
+LibModule.component(NonEditableTypeaheadComponent.$name, NonEditableTypeaheadComponent.$factory)
+LibModule.component(SimpleTypeaheadComponent.$name, SimpleTypeaheadComponent.$factory)
+LibModule.component(TemplateResultsTypeaheadComponent.$name, TemplateResultsTypeaheadComponent.$factory)
+LibModule.component(TypeaheadGlobalComponent.$name, TypeaheadGlobalComponent.$factory)
+LibModule.service(WikipediaSearchService.$name, WikipediaSearchService)
+LibModule.component(WikipediaTypeaheadComponent.$name, WikipediaTypeaheadComponent.$factory)
 LibModule.component(AlertApiPageComponent.$name, AlertApiPageComponent.$factory)
 LibModule.component(AlertExamplesPageComponent.$name, AlertExamplesPageComponent.$factory)
 LibModule.component(AccordionApiPageComponent.$name, AccordionApiPageComponent.$factory)
@@ -253,6 +322,7 @@ LibModule.component(CarouselExamplesPageComponent.$name, CarouselExamplesPageCom
 LibModule.component(CollapseApiPageComponent.$name, CollapseApiPageComponent.$factory)
 LibModule.component(CollapseExamplesPageComponent.$name, CollapseExamplesPageComponent.$factory)
 LibModule.component(DatepickerApiPageComponent.$name, DatepickerApiPageComponent.$factory)
+LibModule.component(DatepickerCalendarsPageComponent.$name, DatepickerCalendarsPageComponent.$factory)
 LibModule.component(DatepickerExamplesPageComponent.$name, DatepickerExamplesPageComponent.$factory)
 LibModule.component(DropdownApiPageComponent.$name, DropdownApiPageComponent.$factory)
 LibModule.component(DropdownExamplesPageComponent.$name, DropdownExamplesPageComponent.$factory)

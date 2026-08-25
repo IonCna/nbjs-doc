@@ -1,0 +1,16 @@
+<ng-template ng-ref="example.content" let-datepicker>
+    <div class="d-flex align-items-center justify-content-between gap-2 p-2 border-bottom bg-body-tertiary">
+        <button type="button" class="btn btn-sm btn-outline-secondary" ng-click="example.previous(datepicker)" aria-label="Previous month"><i class="bi bi-chevron-left"></i></button>
+        <button type="button" class="btn btn-sm btn-link text-decoration-none" ng-click="example.today(datepicker)">Today</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" ng-click="example.next(datepicker)" aria-label="Next month"><i class="bi bi-chevron-right"></i></button>
+    </div>
+    <div class="docs-month-layout p-2">
+        <div ng-repeat="month in datepicker.model.months track by $index">
+            <p class="small fw-semibold text-center mb-1">{{ datepicker.i18n.getMonthLabel(month.firstDate) }}</p>
+            <ngb-datepicker-month month="month.firstDate" datepicker="datepicker"></ngb-datepicker-month>
+        </div>
+    </div>
+</ng-template>
+<div class="overflow-auto pb-2">
+    <ngb-datepicker display-months="2" navigation="none" outside-days="hidden" content-template="example.content"></ngb-datepicker>
+</div>
