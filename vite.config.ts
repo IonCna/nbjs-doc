@@ -13,8 +13,9 @@ export default defineConfig({
             angularModule: 'docs.templates',
             module: 'docs-templates',
             standalone: true,
+            autoImport: true,
             watch: false,
-        }),
+        })
     ],
     resolve: {
         tsconfigPaths: true,
