@@ -8,13 +8,11 @@ export default defineConfig({
     },
     plugins: [
         templatesCache({
-            templates: './src/app/features/components/pages/alert-page/*.html',
-            rootDir: './src/app',
-            angularModule: 'docs.alert.templates',
-            module: 'docs-alert-templates',
+            templates: './src/app/**/*.html',
+            rootDir: '.',
+            angularModule: 'docs.templates',
+            module: 'docs-templates',
             standalone: true,
-            // The plugin passes Windows paths to addWatchFile using backslashes,
-            // which Vite 8 treats as imports while serving virtual modules.
             watch: false,
         }),
     ],
