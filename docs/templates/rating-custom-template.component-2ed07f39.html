@@ -1,0 +1,8 @@
+<p>Bootstrap Icons are rendered through a child <code>ng-template</code>.</p>
+<ngb-rating rate="example.rating" rate-change="example.setRating($event)">
+    <ng-template let-fill="fill" let-index="index">
+        <i class="bi rating-demo-star" ng-class="[fill === 100 ? 'bi-star-fill filled' : 'bi-star', { low: index < 3 }]" aria-hidden="true"></i>
+    </ng-template>
+</ngb-rating>
+<hr>
+<p class="mb-0">Rate: <strong>{{ example.rating }}</strong></p>

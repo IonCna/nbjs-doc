@@ -16,7 +16,6 @@ export const AppModule = angular.module('docs', [
     NgbModule.name,
     SharedModule.name,
     FeaturesModule.name,
-    'docs.templates'
 ])
 
 AppModule.component(AppComponent.$name, AppComponent.$factory)

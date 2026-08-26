@@ -1,0 +1,14 @@
+<div class="border rounded p-3 overflow-hidden">
+    <p class="small text-body-secondary mb-3">
+        The wrapper clips overflowing content, but the menu is appended to the document body.
+    </p>
+
+    <div ngb-dropdown container="body">
+        <button type="button" class="btn btn-primary" ngb-dropdown-toggle>Open body container</button>
+        <div ngb-dropdown-menu>
+            <button type="button" ngb-dropdown-item>Account</button>
+            <button type="button" ngb-dropdown-item>Notifications</button>
+            <button type="button" ngb-dropdown-item>Privacy</button>
+        </div>
+    </div>
+</div>

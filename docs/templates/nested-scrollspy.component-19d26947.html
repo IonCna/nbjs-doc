@@ -1,0 +1,39 @@
+<div class="row g-3">
+    <div class="col-md-8 order-2">
+        <div
+            class="bg-body-tertiary border rounded p-3"
+            style="height: 18rem"
+            ngb-scroll-spy
+            root-margin="0px 0px -45%"
+            ng-ref="example.spy"
+            ng-ref-read="ngbScrollSpy">
+            <section class="pb-4" ngb-scroll-spy-fragment="nested-guide">
+                <h3 class="h4">Guide</h3>
+                <p>A parent item can represent a complete group of related sections.</p>
+            </section>
+            <section class="pb-5" ngb-scroll-spy-fragment="nested-install">
+                <h4 class="h5">Install</h4>
+                <p>Child items use <code>parent</code> to activate both their own entry and the group entry.</p>
+            </section>
+            <section class="pb-5" ngb-scroll-spy-fragment="nested-configure">
+                <h4 class="h5">Configure</h4>
+                <p>The menu directive coordinates the active state across every descendant item.</p>
+            </section>
+            <section class="pb-5 mb-5" ngb-scroll-spy-fragment="nested-reference">
+                <h3 class="h4">Reference</h3>
+                <p class="mb-5">Top-level entries continue to work alongside nested groups.</p>
+            </section>
+        </div>
+    </div>
+
+    <div class="col-md-4 order-1">
+        <nav class="nav nav-pills flex-column" ngb-scroll-spy-menu="example.spy" aria-label="Nested example navigation">
+            <button type="button" class="nav-link text-start" ngb-scroll-spy-item="nested-guide">Guide</button>
+            <nav class="nav nav-pills flex-column ms-3">
+                <button type="button" class="nav-link text-start my-1" ngb-scroll-spy-item="nested-install" parent="nested-guide">Install</button>
+                <button type="button" class="nav-link text-start my-1" ngb-scroll-spy-item="nested-configure" parent="nested-guide">Configure</button>
+            </nav>
+            <button type="button" class="nav-link text-start" ngb-scroll-spy-item="nested-reference">Reference</button>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="toast-container position-static">
+    <ngb-toast ng-if="example.visible" autohide="false" hidden="example.visible = false">
+        <ng-template ngb-toast-header>
+            <div class="d-flex align-items-center gap-2 me-auto">
+                <i class="bi bi-stars text-primary" aria-hidden="true"></i>
+                <strong>Custom header</strong>
+                <small class="text-body-secondary">just now</small>
+            </div>
+        </ng-template>
+        The complete header is rendered from an <code>ng-template</code>.
+    </ngb-toast>
+
+    <button ng-if="!example.visible" type="button" class="btn btn-sm btn-outline-primary" ng-click="example.visible = true">
+        Show toast again
+    </button>
+</div>

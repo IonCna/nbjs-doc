@@ -16,7 +16,8 @@
     "noEmit": true,
     "paths": {
       "@/*": ["./src/app/*", "./src/*"],
-      "ngb-js": ["./node_modules/ngb-js/dist/index.js"]
+      "ngb-js": ["./node_modules/ngb-js/dist/index.js"],
+      "ng-js-vite": ["./node_modules/ng-js-vite"]
     },
     /* Linting */
     "noUnusedLocals": true,

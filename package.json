@@ -12,7 +12,8 @@
     "@rollup-extras/plugin-angularjs-template-cache": "^2.0.0",
     "@types/angular": "^1.8.9",
     "typescript": "~6.0.2",
-    "vite": "^8.2.0"
+    "vite": "^8.2.0",
+    "ng-js-vite": "link:ng-js-vite"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.1.2",

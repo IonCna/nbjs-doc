@@ -1,5 +1,5 @@
 import { defineConfig, searchForWorkspaceRoot } from 'vite'
-import templatesCache from '@rollup-extras/plugin-angularjs-template-cache'
+import { ngJsTemplateParser } from "ng-js-vite"
 
 export default defineConfig({
     base: '/ngb-js-docs/',
@@ -7,15 +7,7 @@ export default defineConfig({
         outDir: './docs',
     },
     plugins: [
-        templatesCache({
-            templates: './src/app/**/*.html',
-            rootDir: '.',
-            angularModule: 'docs.templates',
-            module: 'docs-templates',
-            standalone: true,
-            autoImport: true,
-            watch: false,
-        })
+        ngJsTemplateParser()
     ],
     resolve: {
         tsconfigPaths: true,

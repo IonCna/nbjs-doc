@@ -1,0 +1,62 @@
+<div class="d-flex flex-wrap gap-2 mb-5" aria-label="Binding legend">
+    <span class="badge bg-body-tertiary border text-body fw-normal px-3 py-2"><code>&lt;?</code> input</span>
+    <span class="badge bg-body-tertiary border text-body fw-normal px-3 py-2"><code>&amp;?</code> callback</span>
+</div>
+
+<section class="pb-4 mb-4 border-bottom" ngb-scroll-spy-fragment="ngb-collapse">
+    <header class="mb-3">
+        <p class="small fw-semibold text-primary mb-1">Directive</p>
+        <h2 class="h3 mb-2"><code class="text-body">NgbCollapse</code></h2>
+        <p class="text-body-secondary mb-0">
+            Controls the visible state of an element and runs vertical or horizontal Bootstrap collapse transitions.
+        </p>
+    </header>
+
+    <dl class="row gy-2 mb-0">
+        <dt class="col-sm-3 fw-semibold">Markup</dt>
+        <dd class="col-sm-9 mb-0"><code>&lt;div ngb-collapse="isCollapsed"&gt;</code></dd>
+    </dl>
+
+    <h3 class="h5 mt-4 mb-3">Inputs</h3>
+    <div class="table-responsive">
+        <table class="table table-sm align-middle">
+            <thead><tr><th>Input</th><th>Binding</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>ngb-collapse</code></td><td><code>&lt;</code></td><td><code>boolean</code></td><td>Required</td><td>Sets whether the host is collapsed.</td></tr>
+                <tr><td><code>animation</code></td><td><code>&lt;?</code></td><td><code>boolean</code></td><td><code>$config.animation</code></td><td>Enables transition animation.</td></tr>
+                <tr><td><code>horizontal</code></td><td><code>&lt;?</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Uses width instead of height for the transition.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="h5 mt-4 mb-3">Outputs</h3>
+    <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0">
+            <thead><tr><th>Output</th><th>Binding</th><th>Payload</th><th>Emitted when</th></tr></thead>
+            <tbody>
+                <tr><td><code>ngb-collapse-change</code></td><td><code>&amp;?</code></td><td><code>$event: boolean</code></td><td><code>toggle()</code> changes the collapsed state.</td></tr>
+                <tr><td><code>shown</code></td><td><code>&amp;?</code></td><td>None</td><td>The expand transition finishes.</td></tr>
+                <tr><td><code>ngb-hidden</code></td><td><code>&amp;?</code></td><td>None</td><td>The collapse transition finishes.</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="pb-4 mb-4 border-bottom" ngb-scroll-spy-fragment="ngb-collapse-config">
+    <header class="mb-3">
+        <p class="small fw-semibold text-primary mb-1">Service</p>
+        <h2 class="h3 mb-2"><code class="text-body">NgbCollapseConfig</code></h2>
+        <p class="text-body-secondary mb-0">Provides application-wide defaults for collapse directives.</p>
+    </header>
+
+    <h3 class="h5 mt-4 mb-3">Properties</h3>
+    <div class="table-responsive">
+        <table class="table table-sm align-middle mb-0">
+            <thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>animation</code></td><td><code>boolean</code></td><td><code>$config.animation</code></td><td>Default transition animation state.</td></tr>
+                <tr><td><code>horizontal</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Default transition orientation.</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>

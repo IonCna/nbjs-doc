@@ -1,0 +1,8 @@
+<label class="form-label" for="popup-datepicker-input">Choose a date</label>
+<div class="input-group" style="max-width: 22rem">
+    <input id="popup-datepicker-input" class="form-control" ng-model="example.date" ngb-datepicker ng-focus="$datepicker.open()">
+    <button type="button" class="btn btn-outline-secondary" ng-click="$datepicker.toggle()" aria-label="Toggle calendar">
+        <i class="bi bi-calendar3" aria-hidden="true"></i>
+    </button>
+</div>
+<p class="small text-body-secondary mt-3 mb-0">Selected date: <code>{{ example.date | json }}</code></p>

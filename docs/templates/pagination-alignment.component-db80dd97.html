@@ -1,0 +1,14 @@
+<div class="vstack gap-4">
+    <div>
+        <p class="small text-body-secondary mb-2">Start</p>
+        <ngb-pagination class="d-flex justify-content-start" collection-size="50" page="example.startPage" page-change="example.selectStartPage($event)"></ngb-pagination>
+    </div>
+    <div>
+        <p class="small text-body-secondary text-center mb-2">Center</p>
+        <ngb-pagination class="d-flex justify-content-center" collection-size="50" page="example.centerPage" page-change="example.selectCenterPage($event)"></ngb-pagination>
+    </div>
+    <div>
+        <p class="small text-body-secondary text-end mb-2">End</p>
+        <ngb-pagination class="d-flex justify-content-end" collection-size="50" page="example.endPage" page-change="example.selectEndPage($event)"></ngb-pagination>
+    </div>
+</div>
