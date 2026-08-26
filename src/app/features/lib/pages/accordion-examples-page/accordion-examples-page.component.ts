@@ -1,35 +1,35 @@
 import type {IComponentController, IComponentOptions} from "angular";
-import accordionContentHtml from "@/features/lib/components/accordion-content/accordion-content.component.html?raw"
 import accordionContentTs from "@/features/lib/components/accordion-content/accordion-content.component.ts?raw"
-import accordionCustomHeaderHtml from "@/features/lib/components/accordion-custom-header/accordion-custom-header.component.html?raw"
-import accordionGlobalHtml from "@/features/lib/components/accordion-global/accordion-global.component.html?raw"
 import accordionGlobalTs from "@/features/lib/components/accordion-global/accordion-global.component.ts?raw"
-import accordionSimpleHtml from "@/features/lib/components/accordion-simple/accordion-simple.component.html?raw"
-import accordionTogglePanelsHtml from "@/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component.html?raw"
 import accordionTogglePanelsTs from "@/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component.ts?raw"
-import onePanelAccordionHtml from "@/features/lib/components/one-panel-accordion/one-panel-accordion.component.html?raw"
+import { AccordionContentComponent } from "@/features/lib/components/accordion-content/accordion-content.component"
+import { AccordionCustomHeaderComponent } from "@/features/lib/components/accordion-custom-header/accordion-custom-header.component"
+import { AccordionGlobalComponent } from "@/features/lib/components/accordion-global/accordion-global.component"
+import { AccordionSimpleComponent } from "@/features/lib/components/accordion-simple/accordion-simple.component"
+import { AccordionTogglePanelsComponent } from "@/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component"
+import { OnePanelAccordionComponent } from "@/features/lib/components/one-panel-accordion/one-panel-accordion.component"
 
 export class AccordionExamplesPageComponent implements IComponentController {
     public readonly examples = {
         simple: {
-            html: accordionSimpleHtml,
+            html: AccordionSimpleComponent.$factory.templateUrl,
         },
         onePanel: {
-            html: onePanelAccordionHtml,
+            html: OnePanelAccordionComponent.$factory.templateUrl,
         },
         togglePanels: {
-            html: accordionTogglePanelsHtml,
+            html: AccordionTogglePanelsComponent.$factory.templateUrl,
             typescript: accordionTogglePanelsTs,
         },
         customHeader: {
-            html: accordionCustomHeaderHtml,
+            html: AccordionCustomHeaderComponent.$factory.templateUrl,
         },
         content: {
-            html: accordionContentHtml,
+            html: AccordionContentComponent.$factory.templateUrl,
             typescript: accordionContentTs,
         },
         global: {
-            html: accordionGlobalHtml,
+            html: AccordionGlobalComponent.$factory.templateUrl,
             typescript: accordionGlobalTs,
         },
     }

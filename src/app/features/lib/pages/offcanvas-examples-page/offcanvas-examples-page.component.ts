@@ -1,41 +1,47 @@
 import type {IComponentController, IComponentOptions} from "angular";
-import offcanvasComponentContentHtml from "@/features/lib/components/offcanvas-component-content/offcanvas-component-content.component.html?raw"
 import offcanvasComponentContentTs from "@/features/lib/components/offcanvas-component-content/offcanvas-component-content.component.ts?raw"
-import offcanvasDefaultHtml from "@/features/lib/components/offcanvas-default/offcanvas-default.component.html?raw"
 import offcanvasDefaultTs from "@/features/lib/components/offcanvas-default/offcanvas-default.component.ts?raw"
-import offcanvasDemoContentHtml from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component.html?raw"
 import offcanvasDemoContentTs from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component.ts?raw"
-import offcanvasFocusHtml from "@/features/lib/components/offcanvas-focus/offcanvas-focus.component.html?raw"
 import offcanvasFocusTs from "@/features/lib/components/offcanvas-focus/offcanvas-focus.component.ts?raw"
-import offcanvasFocusContentHtml from "@/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.html?raw"
 import offcanvasFocusContentTs from "@/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.ts?raw"
-import offcanvasGlobalHtml from "@/features/lib/components/offcanvas-global/offcanvas-global.component.html?raw"
 import offcanvasGlobalTs from "@/features/lib/components/offcanvas-global/offcanvas-global.component.ts?raw"
 import offcanvasOptionsCss from "@/features/lib/components/offcanvas-options/offcanvas-options.component.css?raw"
-import offcanvasOptionsHtml from "@/features/lib/components/offcanvas-options/offcanvas-options.component.html?raw"
 import offcanvasOptionsTs from "@/features/lib/components/offcanvas-options/offcanvas-options.component.ts?raw"
+import { OffcanvasComponentContentComponent } from "@/features/lib/components/offcanvas-component-content/offcanvas-component-content.component"
+import { OffcanvasDefaultComponent } from "@/features/lib/components/offcanvas-default/offcanvas-default.component"
+import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"
+import { OffcanvasFocusComponent } from "@/features/lib/components/offcanvas-focus/offcanvas-focus.component"
+import { OffcanvasFocusContentComponent } from "@/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component"
+import { OffcanvasGlobalComponent } from "@/features/lib/components/offcanvas-global/offcanvas-global.component"
+import { OffcanvasOptionsComponent } from "@/features/lib/components/offcanvas-options/offcanvas-options.component"
 
 export class OffcanvasExamplesPageComponent implements IComponentController {
     public readonly examples = {
         defaults: {
-            html: offcanvasDefaultHtml,
+            html: OffcanvasDefaultComponent.$factory.templateUrl,
             typescript: offcanvasDefaultTs,
         },
         componentContent: {
-            html: `${offcanvasComponentContentHtml}\n\n<!-- offcanvas-demo-content.component.html -->\n${offcanvasDemoContentHtml}`,
+            html: [
+                { label: "offcanvas-component-content.component.html", url: OffcanvasComponentContentComponent.$factory.templateUrl },
+                { label: "offcanvas-demo-content.component.html", url: OffcanvasDemoContentComponent.$factory.templateUrl },
+            ],
             typescript: `${offcanvasComponentContentTs}\n\n// offcanvas-demo-content.component.ts\n${offcanvasDemoContentTs}`,
         },
         focus: {
-            html: `${offcanvasFocusHtml}\n\n<!-- offcanvas-focus-content.component.html -->\n${offcanvasFocusContentHtml}`,
+            html: [
+                { label: "offcanvas-focus.component.html", url: OffcanvasFocusComponent.$factory.templateUrl },
+                { label: "offcanvas-focus-content.component.html", url: OffcanvasFocusContentComponent.$factory.templateUrl },
+            ],
             typescript: `${offcanvasFocusTs}\n\n// offcanvas-focus-content.component.ts\n${offcanvasFocusContentTs}`,
         },
         options: {
-            html: offcanvasOptionsHtml,
+            html: OffcanvasOptionsComponent.$factory.templateUrl,
             typescript: offcanvasOptionsTs,
             css: offcanvasOptionsCss,
         },
         global: {
-            html: offcanvasGlobalHtml,
+            html: OffcanvasGlobalComponent.$factory.templateUrl,
             typescript: offcanvasGlobalTs,
         },
     }

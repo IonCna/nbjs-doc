@@ -1,25 +1,25 @@
 import type {IComponentController, IComponentOptions} from "angular";
-import carouselControlsHtml from "@/features/lib/components/carousel-controls/carousel-controls.component.html?raw"
 import carouselControlsTs from "@/features/lib/components/carousel-controls/carousel-controls.component.ts?raw"
-import carouselGlobalHtml from "@/features/lib/components/carousel-global/carousel-global.component.html?raw"
 import carouselGlobalTs from "@/features/lib/components/carousel-global/carousel-global.component.ts?raw"
-import carouselKeyboardHtml from "@/features/lib/components/carousel-keyboard/carousel-keyboard.component.html?raw"
-import carouselSimpleHtml from "@/features/lib/components/carousel-simple/carousel-simple.component.html?raw"
+import { CarouselControlsComponent } from "@/features/lib/components/carousel-controls/carousel-controls.component"
+import { CarouselGlobalComponent } from "@/features/lib/components/carousel-global/carousel-global.component"
+import { CarouselKeyboardComponent } from "@/features/lib/components/carousel-keyboard/carousel-keyboard.component"
+import { CarouselSimpleComponent } from "@/features/lib/components/carousel-simple/carousel-simple.component"
 
 export class CarouselExamplesPageComponent implements IComponentController {
     public readonly examples = {
         simple: {
-            html: carouselSimpleHtml,
+            html: CarouselSimpleComponent.$factory.templateUrl,
         },
         keyboard: {
-            html: carouselKeyboardHtml,
+            html: CarouselKeyboardComponent.$factory.templateUrl,
         },
         controls: {
-            html: carouselControlsHtml,
+            html: CarouselControlsComponent.$factory.templateUrl,
             typescript: carouselControlsTs,
         },
         global: {
-            html: carouselGlobalHtml,
+            html: CarouselGlobalComponent.$factory.templateUrl,
             typescript: carouselGlobalTs,
         },
     }

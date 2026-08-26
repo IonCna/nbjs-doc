@@ -1,23 +1,23 @@
 import type {IComponentController, IComponentOptions} from "angular";
-import horizontalCollapseHtml from "@/features/lib/components/horizontal-collapse/horizontal-collapse.component.html?raw"
 import horizontalCollapseTs from "@/features/lib/components/horizontal-collapse/horizontal-collapse.component.ts?raw"
-import navbarCollapseHtml from "@/features/lib/components/navbar-collapse/navbar-collapse.component.html?raw"
 import navbarCollapseTs from "@/features/lib/components/navbar-collapse/navbar-collapse.component.ts?raw"
-import simpleCollapseHtml from "@/features/lib/components/simple-collapse/simple-collapse.component.html?raw"
 import simpleCollapseTs from "@/features/lib/components/simple-collapse/simple-collapse.component.ts?raw"
+import { HorizontalCollapseComponent } from "@/features/lib/components/horizontal-collapse/horizontal-collapse.component"
+import { NavbarCollapseComponent } from "@/features/lib/components/navbar-collapse/navbar-collapse.component"
+import { SimpleCollapseComponent } from "@/features/lib/components/simple-collapse/simple-collapse.component"
 
 export class CollapseExamplesPageComponent implements IComponentController {
     public readonly examples = {
         simple: {
-            html: simpleCollapseHtml,
+            html: SimpleCollapseComponent.$factory.templateUrl,
             typescript: simpleCollapseTs,
         },
         horizontal: {
-            html: horizontalCollapseHtml,
+            html: HorizontalCollapseComponent.$factory.templateUrl,
             typescript: horizontalCollapseTs,
         },
         navbar: {
-            html: navbarCollapseHtml,
+            html: NavbarCollapseComponent.$factory.templateUrl,
             typescript: navbarCollapseTs,
         },
     }

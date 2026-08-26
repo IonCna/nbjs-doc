@@ -1,15 +1,38 @@
-import type { IComponentController, IComponentOptions } from "angular";
+import type { IComponentController, IComponentOptions, ITemplateRequestService } from "angular";
 
 export class ExampleSectionComponent implements IComponentController {
     public fragment!: string;
     public title!: string;
     public description!: string;
-    public htmlCode!: string;
+    public htmlCode = "";
+    public htmlCodeUrl?: string | Array<string | { label?: string; url: string }>;
     public tsCode?: string;
     public cssCode?: string;
 
     public codeCollapsed = true;
     public activeTab = "html";
+
+    static $inject = ["$templateRequest"];
+
+    constructor(private readonly templateRequest: ITemplateRequestService) {}
+
+    public $onInit() {
+        if (!this.htmlCodeUrl) return;
+
+        const urls = Array.isArray(this.htmlCodeUrl) ? this.htmlCodeUrl : [this.htmlCodeUrl];
+
+        Promise.all(urls.map((entry) => {
+            const url = typeof entry === "string" ? entry : entry.url;
+
+            return this.templateRequest(url).then((html) => {
+                if (typeof entry === "string" || !entry.label) return html;
+
+                return `<!-- ${entry.label} -->\n${html}`;
+            });
+        })).then((templates) => {
+            this.htmlCode = templates.join("\n\n");
+        });
+    }
 
     public toggleCode() {
         this.codeCollapsed = !this.codeCollapsed;
@@ -36,6 +59,7 @@ export class ExampleSectionComponent implements IComponentController {
                 title: "@",
                 description: "@",
                 htmlCode: "<",
+                htmlCodeUrl: "<?",
                 tsCode: "<?",
                 cssCode: "<?",
             },

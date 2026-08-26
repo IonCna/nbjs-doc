@@ -1,55 +1,55 @@
 import type {IComponentController, IComponentOptions} from "angular";
-import alternativeNavHtml from "@/features/lib/components/alternative-nav/alternative-nav.component.html?raw"
 import alternativeNavTs from "@/features/lib/components/alternative-nav/alternative-nav.component.ts?raw"
 import customNavCss from "@/features/lib/components/custom-nav/custom-nav.component.css?raw"
-import customNavHtml from "@/features/lib/components/custom-nav/custom-nav.component.html?raw"
 import customNavTs from "@/features/lib/components/custom-nav/custom-nav.component.ts?raw"
-import dynamicNavHtml from "@/features/lib/components/dynamic-nav/dynamic-nav.component.html?raw"
 import dynamicNavTs from "@/features/lib/components/dynamic-nav/dynamic-nav.component.ts?raw"
-import keepContentNavHtml from "@/features/lib/components/keep-content-nav/keep-content-nav.component.html?raw"
 import keepContentNavTs from "@/features/lib/components/keep-content-nav/keep-content-nav.component.ts?raw"
-import navGlobalHtml from "@/features/lib/components/nav-global/nav-global.component.html?raw"
 import navGlobalTs from "@/features/lib/components/nav-global/nav-global.component.ts?raw"
-import selectingNavHtml from "@/features/lib/components/selecting-nav/selecting-nav.component.html?raw"
 import selectingNavTs from "@/features/lib/components/selecting-nav/selecting-nav.component.ts?raw"
-import simpleNavHtml from "@/features/lib/components/simple-nav/simple-nav.component.html?raw"
 import simpleNavTs from "@/features/lib/components/simple-nav/simple-nav.component.ts?raw"
-import verticalNavHtml from "@/features/lib/components/vertical-nav/vertical-nav.component.html?raw"
 import verticalNavTs from "@/features/lib/components/vertical-nav/vertical-nav.component.ts?raw"
+import { AlternativeNavComponent } from "@/features/lib/components/alternative-nav/alternative-nav.component"
+import { CustomNavComponent } from "@/features/lib/components/custom-nav/custom-nav.component"
+import { DynamicNavComponent } from "@/features/lib/components/dynamic-nav/dynamic-nav.component"
+import { KeepContentNavComponent } from "@/features/lib/components/keep-content-nav/keep-content-nav.component"
+import { NavGlobalComponent } from "@/features/lib/components/nav-global/nav-global.component"
+import { SelectingNavComponent } from "@/features/lib/components/selecting-nav/selecting-nav.component"
+import { SimpleNavComponent } from "@/features/lib/components/simple-nav/simple-nav.component"
+import { VerticalNavComponent } from "@/features/lib/components/vertical-nav/vertical-nav.component"
 
 export class NavExamplesPageComponent implements IComponentController {
     public readonly examples = {
         simple: {
-            html: simpleNavHtml,
+            html: SimpleNavComponent.$factory.templateUrl,
             typescript: simpleNavTs,
         },
         alternative: {
-            html: alternativeNavHtml,
+            html: AlternativeNavComponent.$factory.templateUrl,
             typescript: alternativeNavTs,
         },
         vertical: {
-            html: verticalNavHtml,
+            html: VerticalNavComponent.$factory.templateUrl,
             typescript: verticalNavTs,
         },
         selecting: {
-            html: selectingNavHtml,
+            html: SelectingNavComponent.$factory.templateUrl,
             typescript: selectingNavTs,
         },
         keepContent: {
-            html: keepContentNavHtml,
+            html: KeepContentNavComponent.$factory.templateUrl,
             typescript: keepContentNavTs,
         },
         dynamic: {
-            html: dynamicNavHtml,
+            html: DynamicNavComponent.$factory.templateUrl,
             typescript: dynamicNavTs,
         },
         custom: {
-            html: customNavHtml,
+            html: CustomNavComponent.$factory.templateUrl,
             typescript: customNavTs,
             css: customNavCss,
         },
         global: {
-            html: navGlobalHtml,
+            html: NavGlobalComponent.$factory.templateUrl,
             typescript: navGlobalTs,
         },
     }

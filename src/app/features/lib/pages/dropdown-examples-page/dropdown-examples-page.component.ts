@@ -1,45 +1,45 @@
 import type {IComponentController, IComponentOptions} from "angular";
-import dropdownBodyHtml from "@/features/lib/components/dropdown-body/dropdown-body.component.html?raw"
-import dropdownButtonGroupsHtml from "@/features/lib/components/dropdown-button-groups/dropdown-button-groups.component.html?raw"
-import dropdownDisabledItemsHtml from "@/features/lib/components/dropdown-disabled-items/dropdown-disabled-items.component.html?raw"
 import dropdownDisabledItemsTs from "@/features/lib/components/dropdown-disabled-items/dropdown-disabled-items.component.ts?raw"
-import dropdownFormHtml from "@/features/lib/components/dropdown-form/dropdown-form.component.html?raw"
 import dropdownFormTs from "@/features/lib/components/dropdown-form/dropdown-form.component.ts?raw"
-import dropdownGlobalHtml from "@/features/lib/components/dropdown-global/dropdown-global.component.html?raw"
 import dropdownGlobalTs from "@/features/lib/components/dropdown-global/dropdown-global.component.ts?raw"
-import dropdownNavbarHtml from "@/features/lib/components/dropdown-navbar/dropdown-navbar.component.html?raw"
-import manualDropdownHtml from "@/features/lib/components/manual-dropdown/manual-dropdown.component.html?raw"
 import manualDropdownTs from "@/features/lib/components/manual-dropdown/manual-dropdown.component.ts?raw"
-import simpleDropdownHtml from "@/features/lib/components/simple-dropdown/simple-dropdown.component.html?raw"
+import { DropdownBodyComponent } from "@/features/lib/components/dropdown-body/dropdown-body.component"
+import { DropdownButtonGroupsComponent } from "@/features/lib/components/dropdown-button-groups/dropdown-button-groups.component"
+import { DropdownDisabledItemsComponent } from "@/features/lib/components/dropdown-disabled-items/dropdown-disabled-items.component"
+import { DropdownFormComponent } from "@/features/lib/components/dropdown-form/dropdown-form.component"
+import { DropdownGlobalComponent } from "@/features/lib/components/dropdown-global/dropdown-global.component"
+import { DropdownNavbarComponent } from "@/features/lib/components/dropdown-navbar/dropdown-navbar.component"
+import { ManualDropdownComponent } from "@/features/lib/components/manual-dropdown/manual-dropdown.component"
+import { SimpleDropdownComponent } from "@/features/lib/components/simple-dropdown/simple-dropdown.component"
 
 export class DropdownExamplesPageComponent implements IComponentController {
     public readonly examples = {
         simple: {
-            html: simpleDropdownHtml,
+            html: SimpleDropdownComponent.$factory.templateUrl,
         },
         manual: {
-            html: manualDropdownHtml,
+            html: ManualDropdownComponent.$factory.templateUrl,
             typescript: manualDropdownTs,
         },
         buttonGroups: {
-            html: dropdownButtonGroupsHtml,
+            html: DropdownButtonGroupsComponent.$factory.templateUrl,
         },
         disabledItems: {
-            html: dropdownDisabledItemsHtml,
+            html: DropdownDisabledItemsComponent.$factory.templateUrl,
             typescript: dropdownDisabledItemsTs,
         },
         form: {
-            html: dropdownFormHtml,
+            html: DropdownFormComponent.$factory.templateUrl,
             typescript: dropdownFormTs,
         },
         body: {
-            html: dropdownBodyHtml,
+            html: DropdownBodyComponent.$factory.templateUrl,
         },
         navbar: {
-            html: dropdownNavbarHtml,
+            html: DropdownNavbarComponent.$factory.templateUrl,
         },
         global: {
-            html: dropdownGlobalHtml,
+            html: DropdownGlobalComponent.$factory.templateUrl,
             typescript: dropdownGlobalTs,
         },
     }
