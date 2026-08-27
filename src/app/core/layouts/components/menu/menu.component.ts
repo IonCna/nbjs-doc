@@ -15,7 +15,7 @@ export class MenuComponent implements IComponentController {
             },
             controllerAs: "$",
             controller: MenuComponent,
-            templateUrl: "src//app/core/layouts/components/menu/menu.component.html",
+            templateUrl: "src/app/core/layouts/components/menu/menu.component.html",
         }
     }
 
