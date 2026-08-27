@@ -4,7 +4,7 @@ This file tracks library behavior discovered while building the documentation ap
 
 ## NAV-001: `ngb-nav-link` cancels UI-Router transitions on anchors
 
-- Status: Open
+- Status: Done
 - Area: Nav
 - Type: Integration edge case
 - Affects: `<a ngb-nav-link ui-sref="...">`

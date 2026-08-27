@@ -16,38 +16,38 @@ Watchers fired in the last 5 iterations: {1}`,e,C)}while(f||m.length);for(y();_<
   `):``,this.name=`UnsubscriptionError`,this.errors=t}});function qi(e,t){if(e){var n=e.indexOf(t);0<=n&&e.splice(n,1)}}var Ji=function(){function e(e){this.initialTeardown=e,this.closed=!1,this._parentage=null,this._finalizers=null}return e.prototype.unsubscribe=function(){var e,t,n,r,i;if(!this.closed){this.closed=!0;var a=this._parentage;if(a){if(this._parentage=null,Array.isArray(a))try{for(var o=zi(a),s=o.next();!s.done;s=o.next())s.value.remove(this)}catch(t){e={error:t}}finally{try{s&&!s.done&&(t=o.return)&&t.call(o)}finally{if(e)throw e.error}}else a.remove(this)}var c=this.initialTeardown;if(J(c))try{c()}catch(e){i=e instanceof Ki?e.errors:[e]}var l=this._finalizers;if(l){this._finalizers=null;try{for(var u=zi(l),d=u.next();!d.done;d=u.next()){var f=d.value;try{Zi(f)}catch(e){i??=[],e instanceof Ki?i=Vi(Vi([],Bi(i)),Bi(e.errors)):i.push(e)}}}catch(e){n={error:e}}finally{try{d&&!d.done&&(r=u.return)&&r.call(u)}finally{if(n)throw n.error}}}if(i)throw new Ki(i)}},e.prototype.add=function(t){if(t&&t!==this){if(this.closed)Zi(t);else{if(t instanceof e){if(t.closed||t._hasParent(this))return;t._addParent(this)}(this._finalizers=this._finalizers??[]).push(t)}}},e.prototype._hasParent=function(e){var t=this._parentage;return t===e||Array.isArray(t)&&t.includes(e)},e.prototype._addParent=function(e){var t=this._parentage;this._parentage=Array.isArray(t)?(t.push(e),t):t?[t,e]:e},e.prototype._removeParent=function(e){var t=this._parentage;t===e?this._parentage=null:Array.isArray(t)&&qi(t,e)},e.prototype.remove=function(t){var n=this._finalizers;n&&qi(n,t),t instanceof e&&t._removeParent(this)},e.EMPTY=(function(){var t=new e;return t.closed=!0,t})(),e}(),Yi=Ji.EMPTY;function Xi(e){return e instanceof Ji||e&&`closed`in e&&J(e.remove)&&J(e.add)&&J(e.unsubscribe)}function Zi(e){J(e)?e():e.unsubscribe()}var Qi={onUnhandledError:null,onStoppedNotification:null,Promise:void 0,useDeprecatedSynchronousErrorHandling:!1,useDeprecatedNextContext:!1},$i={setTimeout:function(e,t){var n=[...arguments].slice(2),r=$i.delegate;return r?.setTimeout?r.setTimeout.apply(r,Vi([e,t],Bi(n))):setTimeout.apply(void 0,Vi([e,t],Bi(n)))},clearTimeout:function(e){return($i.delegate?.clearTimeout||clearTimeout)(e)},delegate:void 0};function ea(e){$i.setTimeout(function(){var t=Qi.onUnhandledError;if(t)t(e);else throw e})}function ta(){}var na=(function(){return aa(`C`,void 0,void 0)})();function ra(e){return aa(`E`,void 0,e)}function ia(e){return aa(`N`,e,void 0)}function aa(e,t,n){return{kind:e,value:t,error:n}}var oa=null;function sa(e){if(Qi.useDeprecatedSynchronousErrorHandling){var t=!oa;if(t&&(oa={errorThrown:!1,error:null}),e(),t){var n=oa,r=n.errorThrown,i=n.error;if(oa=null,r)throw i}}else e()}function ca(e){Qi.useDeprecatedSynchronousErrorHandling&&oa&&(oa.errorThrown=!0,oa.error=e)}var la=function(e){Ii(t,e);function t(t){var n=e.call(this)||this;return n.isStopped=!1,t?(n.destination=t,Xi(t)&&t.add(n)):n.destination=_a,n}return t.create=function(e,t,n){return new pa(e,t,n)},t.prototype.next=function(e){this.isStopped?ga(ia(e),this):this._next(e)},t.prototype.error=function(e){this.isStopped?ga(ra(e),this):(this.isStopped=!0,this._error(e))},t.prototype.complete=function(){this.isStopped?ga(na,this):(this.isStopped=!0,this._complete())},t.prototype.unsubscribe=function(){this.closed||(this.isStopped=!0,e.prototype.unsubscribe.call(this),this.destination=null)},t.prototype._next=function(e){this.destination.next(e)},t.prototype._error=function(e){try{this.destination.error(e)}finally{this.unsubscribe()}},t.prototype._complete=function(){try{this.destination.complete()}finally{this.unsubscribe()}},t}(Ji),ua=Function.prototype.bind;function da(e,t){return ua.call(e,t)}var fa=function(){function e(e){this.partialObserver=e}return e.prototype.next=function(e){var t=this.partialObserver;if(t.next)try{t.next(e)}catch(e){ma(e)}},e.prototype.error=function(e){var t=this.partialObserver;if(t.error)try{t.error(e)}catch(e){ma(e)}else ma(e)},e.prototype.complete=function(){var e=this.partialObserver;if(e.complete)try{e.complete()}catch(e){ma(e)}},e}(),pa=function(e){Ii(t,e);function t(t,n,r){var i=e.call(this)||this,a;if(J(t)||!t)a={next:t??void 0,error:n??void 0,complete:r??void 0};else{var o;i&&Qi.useDeprecatedNextContext?(o=Object.create(t),o.unsubscribe=function(){return i.unsubscribe()},a={next:t.next&&da(t.next,o),error:t.error&&da(t.error,o),complete:t.complete&&da(t.complete,o)}):a=t}return i.destination=new fa(a),i}return t}(la);function ma(e){Qi.useDeprecatedSynchronousErrorHandling?ca(e):ea(e)}function ha(e){throw e}function ga(e,t){var n=Qi.onStoppedNotification;n&&$i.setTimeout(function(){return n(e,t)})}var _a={closed:!0,next:ta,error:ha,complete:ta},va=(function(){return typeof Symbol==`function`&&Symbol.observable||`@@observable`})();function ya(e){return e}function ba(e){return e.length===0?ya:e.length===1?e[0]:function(t){return e.reduce(function(e,t){return t(e)},t)}}var xa=function(){function e(e){e&&(this._subscribe=e)}return e.prototype.lift=function(t){var n=new e;return n.source=this,n.operator=t,n},e.prototype.subscribe=function(e,t,n){var r=this,i=wa(e)?e:new pa(e,t,n);return sa(function(){var e=r,t=e.operator,n=e.source;i.add(t?t.call(i,n):n?r._subscribe(i):r._trySubscribe(i))}),i},e.prototype._trySubscribe=function(e){try{return this._subscribe(e)}catch(t){e.error(t)}},e.prototype.forEach=function(e,t){var n=this;return t=Sa(t),new t(function(t,r){var i=new pa({next:function(t){try{e(t)}catch(e){r(e),i.unsubscribe()}},error:r,complete:t});n.subscribe(i)})},e.prototype._subscribe=function(e){return this.source?.subscribe(e)},e.prototype[va]=function(){return this},e.prototype.pipe=function(){return ba([...arguments])(this)},e.prototype.toPromise=function(e){var t=this;return e=Sa(e),new e(function(e,n){var r;t.subscribe(function(e){return r=e},function(e){return n(e)},function(){return e(r)})})},e.create=function(t){return new e(t)},e}();function Sa(e){return e??Qi.Promise??Promise}function Ca(e){return e&&J(e.next)&&J(e.error)&&J(e.complete)}function wa(e){return e&&e instanceof la||Ca(e)&&Xi(e)}function Ta(e){return J(e?.lift)}function Ea(e){return function(t){if(Ta(t))return t.lift(function(t){try{return e(t,this)}catch(e){this.error(e)}});throw TypeError(`Unable to lift unknown Observable type`)}}function Da(e,t,n,r,i){return new Oa(e,t,n,r,i)}var Oa=function(e){Ii(t,e);function t(t,n,r,i,a,o){var s=e.call(this,t)||this;return s.onFinalize=a,s.shouldUnsubscribe=o,s._next=n?function(e){try{n(e)}catch(e){t.error(e)}}:e.prototype._next,s._error=i?function(e){try{i(e)}catch(e){t.error(e)}finally{this.unsubscribe()}}:e.prototype._error,s._complete=r?function(){try{r()}catch(e){t.error(e)}finally{this.unsubscribe()}}:e.prototype._complete,s}return t.prototype.unsubscribe=function(){var t;if(!this.shouldUnsubscribe||this.shouldUnsubscribe()){var n=this.closed;e.prototype.unsubscribe.call(this),!n&&((t=this.onFinalize)==null||t.call(this))}},t}(la),ka=Gi(function(e){return function(){e(this),this.name=`ObjectUnsubscribedError`,this.message=`object unsubscribed`}}),Y=function(e){Ii(t,e);function t(){var t=e.call(this)||this;return t.closed=!1,t.currentObservers=null,t.observers=[],t.isStopped=!1,t.hasError=!1,t.thrownError=null,t}return t.prototype.lift=function(e){var t=new Aa(this,this);return t.operator=e,t},t.prototype._throwIfClosed=function(){if(this.closed)throw new ka},t.prototype.next=function(e){var t=this;sa(function(){var n,r;if(t._throwIfClosed(),!t.isStopped){t.currentObservers||=Array.from(t.observers);try{for(var i=zi(t.currentObservers),a=i.next();!a.done;a=i.next())a.value.next(e)}catch(e){n={error:e}}finally{try{a&&!a.done&&(r=i.return)&&r.call(i)}finally{if(n)throw n.error}}}})},t.prototype.error=function(e){var t=this;sa(function(){if(t._throwIfClosed(),!t.isStopped){t.hasError=t.isStopped=!0,t.thrownError=e;for(var n=t.observers;n.length;)n.shift().error(e)}})},t.prototype.complete=function(){var e=this;sa(function(){if(e._throwIfClosed(),!e.isStopped){e.isStopped=!0;for(var t=e.observers;t.length;)t.shift().complete()}})},t.prototype.unsubscribe=function(){this.isStopped=this.closed=!0,this.observers=this.currentObservers=null},Object.defineProperty(t.prototype,"observed",{get:function(){return this.observers?.length>0},enumerable:!1,configurable:!0}),t.prototype._trySubscribe=function(t){return this._throwIfClosed(),e.prototype._trySubscribe.call(this,t)},t.prototype._subscribe=function(e){return this._throwIfClosed(),this._checkFinalizedStatuses(e),this._innerSubscribe(e)},t.prototype._innerSubscribe=function(e){var t=this,n=this,r=n.hasError,i=n.isStopped,a=n.observers;return r||i?Yi:(this.currentObservers=null,a.push(e),new Ji(function(){t.currentObservers=null,qi(a,e)}))},t.prototype._checkFinalizedStatuses=function(e){var t=this,n=t.hasError,r=t.thrownError,i=t.isStopped;n?e.error(r):i&&e.complete()},t.prototype.asObservable=function(){var e=new xa;return e.source=this,e},t.create=function(e,t){return new Aa(e,t)},t}(xa),Aa=function(e){Ii(t,e);function t(t,n){var r=e.call(this)||this;return r.destination=t,r.source=n,r}return t.prototype.next=function(e){var t,n;(n=(t=this.destination)?.next)==null||n.call(t,e)},t.prototype.error=function(e){var t,n;(n=(t=this.destination)?.error)==null||n.call(t,e)},t.prototype.complete=function(){var e,t;(t=(e=this.destination)?.complete)==null||t.call(e)},t.prototype._subscribe=function(e){return this.source?.subscribe(e)??Yi},t}(Y),ja=function(e){Ii(t,e);function t(t){var n=e.call(this)||this;return n._value=t,n}return Object.defineProperty(t.prototype,"value",{get:function(){return this.getValue()},enumerable:!1,configurable:!0}),t.prototype._subscribe=function(t){var n=e.prototype._subscribe.call(this,t);return!n.closed&&t.next(this._value),n},t.prototype.getValue=function(){var e=this,t=e.hasError,n=e.thrownError,r=e._value;if(t)throw n;return this._throwIfClosed(),r},t.prototype.next=function(t){e.prototype.next.call(this,this._value=t)},t}(Y),Ma={now:function(){return(Ma.delegate||Date).now()},delegate:void 0},Na=function(e){Ii(t,e);function t(t,n,r){t===void 0&&(t=1/0),n===void 0&&(n=1/0),r===void 0&&(r=Ma);var i=e.call(this)||this;return i._bufferSize=t,i._windowTime=n,i._timestampProvider=r,i._buffer=[],i._infiniteTimeWindow=!0,i._infiniteTimeWindow=n===1/0,i._bufferSize=Math.max(1,t),i._windowTime=Math.max(1,n),i}return t.prototype.next=function(t){var n=this,r=n.isStopped,i=n._buffer,a=n._infiniteTimeWindow,o=n._timestampProvider,s=n._windowTime;r||(i.push(t),!a&&i.push(o.now()+s)),this._trimBuffer(),e.prototype.next.call(this,t)},t.prototype._subscribe=function(e){this._throwIfClosed(),this._trimBuffer();for(var t=this._innerSubscribe(e),n=this,r=n._infiniteTimeWindow,i=n._buffer.slice(),a=0;a<i.length&&!e.closed;a+=r?1:2)e.next(i[a]);return this._checkFinalizedStatuses(e),t},t.prototype._trimBuffer=function(){var e=this,t=e._bufferSize,n=e._timestampProvider,r=e._buffer,i=e._infiniteTimeWindow,a=(i?1:2)*t;if(t<1/0&&a<r.length&&r.splice(0,r.length-a),!i){for(var o=n.now(),s=0,c=1;c<r.length&&r[c]<=o;c+=2)s=c;s&&r.splice(0,s+1)}},t}(Y),Pa=function(e){Ii(t,e);function t(t,n){return e.call(this)||this}return t.prototype.schedule=function(e,t){return t===void 0&&(t=0),this},t}(Ji),Fa={setInterval:function(e,t){var n=[...arguments].slice(2),r=Fa.delegate;return r?.setInterval?r.setInterval.apply(r,Vi([e,t],Bi(n))):setInterval.apply(void 0,Vi([e,t],Bi(n)))},clearInterval:function(e){return(Fa.delegate?.clearInterval||clearInterval)(e)},delegate:void 0},Ia=function(e){Ii(t,e);function t(t,n){var r=e.call(this,t,n)||this;return r.scheduler=t,r.work=n,r.pending=!1,r}return t.prototype.schedule=function(e,t){if(t===void 0&&(t=0),this.closed)return this;this.state=e;var n=this.id,r=this.scheduler;return n!=null&&(this.id=this.recycleAsyncId(r,n,t)),this.pending=!0,this.delay=t,this.id=this.id??this.requestAsyncId(r,this.id,t),this},t.prototype.requestAsyncId=function(e,t,n){return n===void 0&&(n=0),Fa.setInterval(e.flush.bind(e,this),n)},t.prototype.recycleAsyncId=function(e,t,n){if(n===void 0&&(n=0),n!=null&&this.delay===n&&this.pending===!1)return t;t!=null&&Fa.clearInterval(t)},t.prototype.execute=function(e,t){if(this.closed)return Error(`executing a cancelled action`);this.pending=!1;var n=this._execute(e,t);if(n)return n;this.pending===!1&&this.id!=null&&(this.id=this.recycleAsyncId(this.scheduler,this.id,null))},t.prototype._execute=function(e,t){var n=!1,r;try{this.work(e)}catch(e){n=!0,r=e||Error(`Scheduled action threw falsy error`)}if(n)return this.unsubscribe(),r},t.prototype.unsubscribe=function(){if(!this.closed){var t=this,n=t.id,r=t.scheduler,i=r.actions;this.work=this.state=this.scheduler=null,this.pending=!1,qi(i,this),n!=null&&(this.id=this.recycleAsyncId(r,n,null)),this.delay=null,e.prototype.unsubscribe.call(this)}},t}(Pa),La=function(){function e(t,n){n===void 0&&(n=e.now),this.schedulerActionCtor=t,this.now=n}return e.prototype.schedule=function(e,t,n){return t===void 0&&(t=0),new this.schedulerActionCtor(this,e).schedule(n,t)},e.now=Ma.now,e}(),Ra=new(function(e){Ii(t,e);function t(t,n){n===void 0&&(n=La.now);var r=e.call(this,t,n)||this;return r.actions=[],r._active=!1,r}return t.prototype.flush=function(e){var t=this.actions;if(this._active){t.push(e);return}var n;this._active=!0;do if(n=e.execute(e.state,e.delay))break;while(e=t.shift());if(this._active=!1,n){for(;e=t.shift();)e.unsubscribe();throw n}},t}(La))(Ia),za=Ra,Ba=new xa(function(e){return e.complete()});function Va(e){return e&&J(e.schedule)}function Ha(e){return e[e.length-1]}function Ua(e){return J(Ha(e))?e.pop():void 0}function Wa(e){return Va(Ha(e))?e.pop():void 0}function Ga(e,t){return typeof Ha(e)==`number`?e.pop():t}var Ka=(function(e){return e&&typeof e.length==`number`&&typeof e!=`function`});function qa(e){return J(e?.then)}function Ja(e){return J(e[va])}function Ya(e){return Symbol.asyncIterator&&J(e?.[Symbol.asyncIterator])}function Xa(e){return TypeError(`You provided `+(typeof e==`object`&&e?`an invalid object`:`'`+e+`'`)+` where a stream was expected. You can provide an Observable, Promise, ReadableStream, Array, AsyncIterable, or Iterable.`)}function Za(){return typeof Symbol!=`function`||!Symbol.iterator?`@@iterator`:Symbol.iterator}var Qa=Za();function $a(e){return J(e?.[Qa])}function eo(e){return Ui(this,arguments,function(){var t,n,r,i;return Ri(this,function(a){switch(a.label){case 0:t=e.getReader(),a.label=1;case 1:a.trys.push([1,,9,10]),a.label=2;case 2:return[4,Hi(t.read())];case 3:return n=a.sent(),r=n.value,i=n.done,i?[4,Hi(void 0)]:[3,5];case 4:return[2,a.sent()];case 5:return[4,Hi(r)];case 6:return[4,a.sent()];case 7:return a.sent(),[3,2];case 8:return[3,10];case 9:return t.releaseLock(),[7];case 10:return[2]}})})}function to(e){return J(e?.getReader)}function no(e){if(e instanceof xa)return e;if(e!=null){if(Ja(e))return ro(e);if(Ka(e))return io(e);if(qa(e))return ao(e);if(Ya(e))return so(e);if($a(e))return oo(e);if(to(e))return co(e)}throw Xa(e)}function ro(e){return new xa(function(t){var n=e[va]();if(J(n.subscribe))return n.subscribe(t);throw TypeError(`Provided object does not correctly implement Symbol.observable`)})}function io(e){return new xa(function(t){for(var n=0;n<e.length&&!t.closed;n++)t.next(e[n]);t.complete()})}function ao(e){return new xa(function(t){e.then(function(e){t.closed||(t.next(e),t.complete())},function(e){return t.error(e)}).then(null,ea)})}function oo(e){return new xa(function(t){var n,r;try{for(var i=zi(e),a=i.next();!a.done;a=i.next()){var o=a.value;if(t.next(o),t.closed)return}}catch(e){n={error:e}}finally{try{a&&!a.done&&(r=i.return)&&r.call(i)}finally{if(n)throw n.error}}t.complete()})}function so(e){return new xa(function(t){lo(e,t).catch(function(e){return t.error(e)})})}function co(e){return so(eo(e))}function lo(e,t){var n,r,i,a;return Li(this,void 0,void 0,function(){var o,s;return Ri(this,function(c){switch(c.label){case 0:c.trys.push([0,5,6,11]),n=Wi(e),c.label=1;case 1:return[4,n.next()];case 2:if(r=c.sent(),r.done)return[3,4];if(o=r.value,t.next(o),t.closed)return[2];c.label=3;case 3:return[3,1];case 4:return[3,11];case 5:return s=c.sent(),i={error:s},[3,11];case 6:return c.trys.push([6,,9,10]),r&&!r.done&&(a=n.return)?[4,a.call(n)]:[3,8];case 7:c.sent(),c.label=8;case 8:return[3,10];case 9:if(i)throw i.error;return[7];case 10:return[7];case 11:return t.complete(),[2]}})})}function uo(e,t,n,r,i){r===void 0&&(r=0),i===void 0&&(i=!1);var a=t.schedule(function(){n(),i?e.add(this.schedule(null,r)):this.unsubscribe()},r);if(e.add(a),!i)return a}function fo(e,t){return t===void 0&&(t=0),Ea(function(n,r){n.subscribe(Da(r,function(n){return uo(r,e,function(){return r.next(n)},t)},function(){return uo(r,e,function(){return r.complete()},t)},function(n){return uo(r,e,function(){return r.error(n)},t)}))})}function po(e,t){return t===void 0&&(t=0),Ea(function(n,r){r.add(e.schedule(function(){return n.subscribe(r)},t))})}function mo(e,t){return no(e).pipe(po(t),fo(t))}function ho(e,t){return no(e).pipe(po(t),fo(t))}function go(e,t){return new xa(function(n){var r=0;return t.schedule(function(){r===e.length?n.complete():(n.next(e[r++]),n.closed||this.schedule())})})}function _o(e,t){return new xa(function(n){var r;return uo(n,t,function(){r=e[Qa](),uo(n,t,function(){var e,t,i;try{e=r.next(),t=e.value,i=e.done}catch(e){n.error(e);return}i?n.complete():n.next(t)},0,!0)}),function(){return J(r?.return)&&r.return()}})}function vo(e,t){if(!e)throw Error(`Iterable cannot be null`);return new xa(function(n){uo(n,t,function(){var r=e[Symbol.asyncIterator]();uo(n,t,function(){r.next().then(function(e){e.done?n.complete():n.next(e.value)})},0,!0)})})}function yo(e,t){return vo(eo(e),t)}function bo(e,t){if(e!=null){if(Ja(e))return mo(e,t);if(Ka(e))return go(e,t);if(qa(e))return ho(e,t);if(Ya(e))return vo(e,t);if($a(e))return _o(e,t);if(to(e))return yo(e,t)}throw Xa(e)}function xo(e,t){return t?bo(e,t):no(e)}function So(){var e=[...arguments];return xo(e,Wa(e))}function Co(e){return e instanceof Date&&!isNaN(e)}function wo(e,t){return Ea(function(n,r){var i=0;n.subscribe(Da(r,function(n){r.next(e.call(t,n,i++))}))})}var To=Array.isArray;function Eo(e,t){return To(t)?e.apply(void 0,Vi([],Bi(t))):e(t)}function Do(e){return wo(function(t){return Eo(e,t)})}var Oo=Array.isArray,ko=Object.getPrototypeOf,Ao=Object.prototype,jo=Object.keys;function Mo(e){if(e.length===1){var t=e[0];if(Oo(t))return{args:t,keys:null};if(No(t)){var n=jo(t);return{args:n.map(function(e){return t[e]}),keys:n}}}return{args:e,keys:null}}function No(e){return e&&typeof e==`object`&&ko(e)===Ao}function Po(e,t){return e.reduce(function(e,n,r){return e[n]=t[r],e},{})}function Fo(){var e=[...arguments],t=Wa(e),n=Ua(e),r=Mo(e),i=r.args,a=r.keys;if(i.length===0)return xo([],t);var o=new xa(Io(i,t,a?function(e){return Po(a,e)}:ya));return n?o.pipe(Do(n)):o}function Io(e,t,n){return n===void 0&&(n=ya),function(r){Lo(t,function(){for(var i=e.length,a=Array(i),o=i,s=i,c=function(i){Lo(t,function(){var c=xo(e[i],t),l=!1;c.subscribe(Da(r,function(e){a[i]=e,l||(l=!0,s--),s||r.next(n(a.slice()))},function(){--o||r.complete()}))},r)},l=0;l<i;l++)c(l)},r)}}function Lo(e,t,n){e?uo(n,e,t):t()}function Ro(e,t,n,r,i,a,o,s){var c=[],l=0,u=0,d=!1,f=function(){d&&!c.length&&!l&&t.complete()},p=function(e){return l<r?m(e):c.push(e)},m=function(e){a&&t.next(e),l++;var s=!1;no(n(e,u++)).subscribe(Da(t,function(e){i?.(e),a?p(e):t.next(e)},function(){s=!0},void 0,function(){if(s)try{l--;for(var e=function(){var e=c.shift();o?uo(t,o,function(){return m(e)}):m(e)};c.length&&l<r;)e();f()}catch(e){t.error(e)}}))};return e.subscribe(Da(t,p,function(){d=!0,f()})),function(){s?.()}}function zo(e,t,n){return n===void 0&&(n=1/0),J(t)?zo(function(n,r){return wo(function(e,i){return t(n,e,r,i)})(no(e(n,r)))},n):(typeof t==`number`&&(n=t),Ea(function(t,r){return Ro(t,r,e,n)}))}function Bo(e){return e===void 0&&(e=1/0),zo(ya,e)}function Vo(){return Bo(1)}function Ho(){var e=[...arguments];return Vo()(xo(e,Wa(e)))}var Uo=[`addListener`,`removeListener`],Wo=[`addEventListener`,`removeEventListener`],Go=[`on`,`off`];function Ko(e,t,n,r){if(J(n)&&(r=n,n=void 0),r)return Ko(e,t,n).pipe(Do(r));var i=Bi(Xo(e)?Wo.map(function(r){return function(i){return e[r](t,i,n)}}):Jo(e)?Uo.map(qo(e,t)):Yo(e)?Go.map(qo(e,t)):[],2),a=i[0],o=i[1];if(!a&&Ka(e))return zo(function(e){return Ko(e,t,n)})(no(e));if(!a)throw TypeError(`Invalid event target`);return new xa(function(e){var t=function(){var t=[...arguments];return e.next(1<t.length?t:t[0])};return a(t),function(){return o(t)}})}function qo(e,t){return function(n){return function(r){return e[n](t,r)}}}function Jo(e){return J(e.addListener)&&J(e.removeListener)}function Yo(e){return J(e.on)&&J(e.off)}function Xo(e){return J(e.addEventListener)&&J(e.removeEventListener)}function Zo(e,t,n){e===void 0&&(e=0),n===void 0&&(n=za);var r=-1;return t!=null&&(Va(t)?n=t:r=t),new xa(function(t){var i=Co(e)?+e-n.now():e;i<0&&(i=0);var a=0;return n.schedule(function(){t.closed||(t.next(a++),0<=r?this.schedule(void 0,r):t.complete())},i)})}function Qo(){var e=[...arguments],t=Wa(e),n=Ga(e,1/0),r=e;return r.length?r.length===1?no(r[0]):Bo(n)(xo(r,t)):Ba}var $o=new xa(ta),es=Array.isArray;function ts(e){return e.length===1&&es(e[0])?e[0]:e}function ns(e,t){return Ea(function(n,r){var i=0;n.subscribe(Da(r,function(n){return e.call(t,n,i++)&&r.next(n)}))})}function rs(){var e=[...arguments];return e=ts(e),e.length===1?no(e[0]):new xa(is(e))}function is(e){return function(t){for(var n=[],r=function(r){n.push(no(e[r]).subscribe(Da(t,function(e){if(n){for(var i=0;i<n.length;i++)i!==r&&n[i].unsubscribe();n=null}t.next(e)})))},i=0;n&&!t.closed&&i<e.length;i++)r(i)}}function as(){var e=[...arguments],t=Ua(e),n=ts(e);return n.length?new xa(function(e){var r=n.map(function(){return[]}),i=n.map(function(){return!1});e.add(function(){r=i=null});for(var a=function(a){no(n[a]).subscribe(Da(e,function(n){if(r[a].push(n),r.every(function(e){return e.length})){var o=r.map(function(e){return e.shift()});e.next(t?t.apply(void 0,Vi([],Bi(o))):o),r.some(function(e,t){return!e.length&&i[t]})&&e.complete()}},function(){i[a]=!0,!r[a].length&&e.complete()}))},o=0;!e.closed&&o<n.length;o++)a(o);return function(){r=i=null}}):Ba}function os(e){return Ea(function(t,n){var r=null,i=!1,a;r=t.subscribe(Da(n,void 0,void 0,function(o){a=no(e(o,os(e)(t))),r?(r.unsubscribe(),r=null,a.subscribe(n)):i=!0})),i&&(r.unsubscribe(),r=null,a.subscribe(n))})}function ss(e,t){return t===void 0&&(t=Ra),Ea(function(n,r){var i=null,a=null,o=null,s=function(){if(i){i.unsubscribe(),i=null;var e=a;a=null,r.next(e)}};function c(){var n=o+e,a=t.now();if(a<n){i=this.schedule(void 0,n-a),r.add(i);return}s()}n.subscribe(Da(r,function(n){a=n,o=t.now(),i||(i=t.schedule(c,e),r.add(i))},function(){s(),r.complete()},void 0,function(){a=i=null}))})}function cs(e){return Ea(function(t,n){var r=!1;t.subscribe(Da(n,function(e){r=!0,n.next(e)},function(){r||n.next(e),n.complete()}))})}function ls(e){return e<=0?function(){return Ba}:Ea(function(t,n){var r=0;t.subscribe(Da(n,function(t){++r<=e&&(n.next(t),e<=r&&n.complete())}))})}function us(){return Ea(function(e,t){e.subscribe(Da(t,ta))})}function ds(e){return wo(function(){return e})}function fs(e,t){return t?function(n){return Ho(t.pipe(ls(1),us()),n.pipe(fs(e)))}:zo(function(t,n){return no(e(t,n)).pipe(ls(1),ds(t))})}function ps(e,t){t===void 0&&(t=Ra);var n=Zo(e,t);return fs(function(){return n})}function ms(e,t){return t===void 0&&(t=ya),e??=hs,Ea(function(n,r){var i,a=!0;n.subscribe(Da(r,function(n){var o=t(n);(a||!e(i,o))&&(a=!1,i=o,r.next(n))}))})}function hs(e,t){return e===t}function gs(){var e=[...arguments];return function(t){return Ho(t,So.apply(void 0,Vi([],Bi(e))))}}function _s(e){return Ea(function(t,n){try{t.subscribe(n)}finally{n.add(e)}})}function vs(e){return ns(function(t,n){return e<=n})}function ys(e,t){return Ea(function(n,r){var i=null,a=0,o=!1,s=function(){return o&&!i&&r.complete()};n.subscribe(Da(r,function(n){i?.unsubscribe();var o=0,c=a++;no(e(n,c)).subscribe(i=Da(r,function(e){return r.next(t?t(n,e,c,o++):e)},function(){i=null,s()}))},function(){o=!0,s()}))})}function bs(e){return Ea(function(t,n){no(e).subscribe(Da(n,function(){return n.complete()},ta)),!n.closed&&t.subscribe(n)})}function xs(e,t,n){var r=J(e)||t||n?{next:e,error:t,complete:n}:e;return r?Ea(function(e,t){var n;(n=r.subscribe)==null||n.call(r);var i=!0;e.subscribe(Da(t,function(e){var n;(n=r.next)==null||n.call(r,e),t.next(e)},function(){var e;i=!1,(e=r.complete)==null||e.call(r),t.complete()},function(e){var n;i=!1,(n=r.error)==null||n.call(r,e),t.error(e)},function(){var e,t;i&&((e=r.unsubscribe)==null||e.call(r)),(t=r.finalize)==null||t.call(r)}))}):ya}function Ss(){var e=[...arguments],t=Ua(e);return Ea(function(n,r){for(var i=e.length,a=Array(i),o=e.map(function(){return!1}),s=!1,c=function(t){no(e[t]).subscribe(Da(r,function(e){a[t]=e,!s&&!o[t]&&(o[t]=!0,(s=o.every(ya))&&(o=null))},ta))},l=0;l<i;l++)c(l);n.subscribe(Da(r,function(e){if(s){var n=Vi([e],Bi(a));r.next(t?t.apply(void 0,Vi([],Bi(n))):n)}}))})}var Cs=class{},ws=class extends Cs{},Ts=class extends ws{},Es=class{},Ds=class{},Os=class{},ks=class extends Ds{constructor(e){super(),this.scope=e,e.$on(`$destroy`,()=>{this.destroyed=!0,this.attached=!1})}scope;attached=!0;destroyed=!1;markForCheck(){!this.attached||this.destroyed||this.scope.$$phase||this.scope.$applyAsync()}detach(){this.destroyed||(this.attached=!1)}detectChanges(){this.destroyed||this.scope.$$phase||this.scope.$digest()}reattach(){this.destroyed||this.attached||(this.attached=!0)}static get $name(){return`ng.change-detector-ref`}static get $inject(){return[`$rootScope`]}},As=[],js=[],Ms=new WeakMap,Ns=new WeakMap,Ps=new WeakMap;function Fs(e){js.push(e)}function Is(e){let t=js.lastIndexOf(e);t!==-1&&js.splice(t,1)}function Ls(e,t){return Ns.set(e,t),()=>Ns.delete(e)}function Rs(e,t){let n=Ps.get(e);return n?n.push(t):Ps.set(e,[t]),()=>{let n=Ps.get(e);if(!n)return;let r=n.indexOf(t);r!==-1&&n.splice(r,1),n.length===0&&Ps.delete(e)}}function zs(e){return Ps.get(e)??[]}function Bs(e,t){As.push(e);try{return t()}finally{As.pop()}}function Vs(e,t){Ms.set(e,t),e.$on(`$destroy`,()=>{Ms.get(e)===t&&Ms.delete(e)})}function Hs(e){let t=As.at(-1);if(t)return t;let n=e;for(;n;){let e=Ms.get(n);if(e)return e;n=n.$parent}return[]}var Us=class{constructor(e,t,n,r,i,a){this.locator=e,this.required=t,this.descendants=n,this.staticQuery=r,this.read=i,this.debugName=a}locator;required;descendants;staticQuery;read;debugName;frozen=!1;resolvedValue;get value(){if(this.required&&this.resolvedValue===void 0){let e=this.debugName??String(this.locator);throw Error(`La consulta contentChild requerida "${e}" no tiene valor`)}return this.resolvedValue}resolve(e){this.frozen||(this.resolvedValue=e)}reset(){this.frozen||(this.resolvedValue=void 0)}freeze(){this.staticQuery&&(this.frozen=!0)}},Ws=new WeakMap;function Gs(e,t,n,r=!1){let i=t&&`read`in t?t.read:void 0;return new Us(e,n,t?.descendants??!0,r,i,t?.debugName)}function Ks(e,t,n){return Gs(e,t,n)}Object.defineProperty((e,t)=>Ks(e,t,!1),"required",{value:(e,t)=>Ks(e,t,!0)});function qs(e,t){return(n,r)=>{if(typeof r==`object`)return n=>Gs(e,t,!1,t?.static??!1);let i=n,a=Ws.get(i),o={locator:e,options:t};a?a.set(r,o):Ws.set(i,new Map([[r,o]]))}}function Js(e){let t=[],n=new Set,r=Object.getPrototypeOf(e);for(;r;){let e=Ws.get(r);if(e)for(let[r,i]of e)n.has(r)||(n.add(r),t.push({propertyKey:r,query:Gs(i.locator,i.options,!1,i.options?.static??!1)}));r=Object.getPrototypeOf(r)}return t}function Ys(e){return e.flat(1/0)}var Xs=class{constructor(e=!0){this.emitDistinctChangesOnly=e}emitDistinctChangesOnly;changesSubject=new Y;changesDetected=!1;dirtyCallback;lastNotifiedResults=[];results=[];dirty=!0;changes=this.changesSubject.asObservable();get length(){return this.results.length}get first(){return this.results[0]}get last(){return this.results[this.length-1]}get(e){return this.results[e]}map(e){return this.results.map(e)}filter(e){return this.results.filter(e)}find(e){return this.results.find(e)}reduce(e,t){return this.results.reduce(e,t)}forEach(e){this.results.forEach(e)}some(e){return this.results.some(e)}toArray(){return[...this.results]}toString(){return this.results.toString()}reset(e,t){let n=Ys(e),r=t??(e=>e);this.changesDetected=n.length!==this.lastNotifiedResults.length||n.some((e,t)=>r(e)!==r(this.lastNotifiedResults[t])),this.results=n,this.dirty=!1}notifyOnChanges(){(!this.emitDistinctChangesOnly||this.changesDetected)&&this.changesSubject.next(this),this.lastNotifiedResults=[...this.results],this.changesDetected=!1}setDirty(){this.dirty=!0,this.dirtyCallback?.()}onDirty(e){this.dirtyCallback=e}destroy(){this.changesSubject.complete()}[Symbol.iterator](){return this.results[Symbol.iterator]()}},Zs=class{constructor(e,t,n,r,i,a=!1){this.locator=e,this.descendants=t,this.staticQuery=n,this.read=r,this.debugName=i,a&&(this.queryList=new Xs)}locator;descendants;staticQuery;read;debugName;frozen=!1;queryList;resolvedValues=[];get value(){return this.queryList??this.resolvedValues}resolve(e){if(!this.frozen){if(this.queryList){this.queryList.reset(e);return}this.resolvedValues=[...e]}}notifyOnChanges(){this.queryList?.notifyOnChanges()}destroy(){this.queryList?.destroy()}freeze(){this.staticQuery&&(this.frozen=!0)}},Qs=new WeakMap;function $s(e,t,n=!1,r=!1){let i=t&&`read`in t?t.read:void 0;return new Zs(e,t?.descendants??!0,n,i,t?.debugName,r)}function ec(e,t){return(n,r)=>{if(typeof r==`object`)return n=>$s(e,t,t?.static??!1,!0);let i=n,a=Qs.get(i),o={locator:e,options:t};a?a.set(r,o):Qs.set(i,new Map([[r,o]]))}}function tc(e){let t=[],n=new Set,r=Object.getPrototypeOf(e);for(;r;){let e=Qs.get(r);if(e)for(let[r,i]of e)n.has(r)||(n.add(r),t.push({propertyKey:r,query:$s(i.locator,i.options,i.options?.static??!1,!0)}));r=Object.getPrototypeOf(r)}return t}function nc(e,t,n){return(typeof e.locator==`string`?e.locator===t:n.has(e.locator))||e.read!==void 0&&n.has(e.read)}function rc(e,t){return typeof e.locator==`string`?t.locator===e.locator:t.candidates.has(e.locator)}function ic(e,t,n){return n===void 0||e.descendants===!0||t.node!==void 0&&n.has(t.node)}function ac(e){return e.read??(typeof e.locator==`string`?void 0:e.locator)}function oc(e,t,n){let r=t.ordered(),i=r.find(t=>rc(e,t)&&ic(e,t,n));return i?t.read(i,ac(e),r):void 0}function sc(e,t,n){let r=t.ordered(),i=ac(e),a=new Set;return r.flatMap(o=>{if(!rc(e,o)||!ic(e,o,n))return[];if(o.node!==void 0){if(a.has(o.node))return[];a.add(o.node)}let s=t.read(o,i,r);return s===void 0?[]:[s]})}var cc=class{constructor(e,t,n,r,i){this.locator=e,this.required=t,this.staticQuery=n,this.read=r,this.debugName=i}locator;required;staticQuery;read;debugName;frozen=!1;resolvedValue;get value(){if(this.required&&this.resolvedValue===void 0){let e=this.debugName??String(this.locator);throw Error(`La consulta viewChild requerida "${e}" no tiene valor`)}return this.resolvedValue}resolve(e){this.frozen||(this.resolvedValue=e)}reset(){this.frozen||(this.resolvedValue=void 0)}freeze(){this.staticQuery&&(this.frozen=!0)}clear(e){this.resolvedValue===e&&(this.resolvedValue=void 0)}},lc=new WeakMap;function uc(e,t,n,r=!1){return new cc(e,n,r,t&&`read`in t?t.read:void 0,t?.debugName)}function dc(e,t,n){return uc(e,t,n)}Object.defineProperty((e,t)=>dc(e,t,!1),"required",{value:(e,t)=>dc(e,t,!0)});function fc(e,t){return(n,r)=>{if(typeof r==`object`)return n=>uc(e,t,!1,t?.static??!1);let i=n,a=lc.get(i),o={locator:e,options:t};a?a.set(r,o):lc.set(i,new Map([[r,o]]))}}function pc(e){let t=[],n=new Set,r=Object.getPrototypeOf(e);for(;r;){let e=lc.get(r);if(e)for(let[r,i]of e)n.has(r)||(n.add(r),t.push({propertyKey:r,query:uc(i.locator,i.options,!1,i.options?.static??!1)}));r=Object.getPrototypeOf(r)}return t}var mc=class{constructor(e,t,n,r=!1){this.locator=e,this.read=t,this.debugName=n,r&&(this.queryList=new Xs)}locator;read;debugName;queryList;resolvedValues=[];get value(){return this.queryList??this.resolvedValues}resolve(e){this.queryList?this.queryList.reset(e):this.resolvedValues=[...e]}notifyOnChanges(){this.queryList?.notifyOnChanges()}destroy(){this.queryList?.destroy()}},hc=new WeakMap;function gc(e,t,n=!1){return new mc(e,t&&`read`in t?t.read:void 0,t?.debugName,n)}function _c(e,t){return(n,r)=>{if(typeof r==`object`)return n=>gc(e,t,!0);let i=n,a=hc.get(i),o={locator:e,options:t};a?a.set(r,o):hc.set(i,new Map([[r,o]]))}}function vc(e){let t=[],n=new Set,r=Object.getPrototypeOf(e);for(;r;){let e=hc.get(r);if(e)for(let[r,i]of e)n.has(r)||(n.add(r),t.push({propertyKey:r,query:gc(i.locator,i.options,!0)}));r=Object.getPrototypeOf(r)}return t}var yc=class{contentChildrenQueries=[];contentQueries=[];viewChildrenQueries=[];viewQueries=[];get hasContentQueries(){return this.contentQueries.length>0||this.contentChildrenQueries.length>0}get hasCollectionQueries(){return this.viewChildrenQueries.length>0||this.contentChildrenQueries.length>0}attach(e,t){this.captureViewChildQueries(e),this.captureViewChildrenQueries(e),this.captureContentChildQueries(e),this.captureContentChildrenQueries(e),this.wrapPostLink(e,t)}acceptsViewReference(e,t){return[...this.viewQueries,...this.viewChildrenQueries].some(n=>nc(n,e,t))}acceptsContentReference(e,t){return[...this.contentQueries,...this.contentChildrenQueries].some(n=>nc(n,e,t))}refreshViewQueries(e){for(let t of this.viewQueries){let n=oc(t,e);n===void 0?t.reset():t.resolve(n)}for(let t of this.viewChildrenQueries)t.resolve(sc(t,e))}refreshContentQueries(e,t){for(let n of this.contentQueries){let r=oc(n,e,t);r===void 0?n.reset():n.resolve(r)}for(let n of this.contentChildrenQueries)n.resolve(sc(n,e,t))}freezeStaticViewQueries(){for(let e of this.viewQueries)e.freeze()}freezeStaticContentQueries(){for(let e of this.contentQueries)e.freeze();for(let e of this.contentChildrenQueries)e.freeze()}notifyChanges(){for(let e of this.viewChildrenQueries)e.notifyOnChanges();for(let e of this.contentChildrenQueries)e.notifyOnChanges()}destroy(){for(let e of this.viewChildrenQueries)e.destroy();for(let e of this.contentChildrenQueries)e.destroy()}captureViewChildQueries(e){for(let t of Reflect.ownKeys(e)){let n=Object.getOwnPropertyDescriptor(e,t);!n||!(n.value instanceof cc)||this.installQuery(e,t,n.value,this.viewQueries,n.enumerable??!0)}for(let{propertyKey:t,query:n}of pc(e))this.installQuery(e,t,n,this.viewQueries,!0)}captureViewChildrenQueries(e){for(let t of Reflect.ownKeys(e)){let n=Object.getOwnPropertyDescriptor(e,t);!n||!(n.value instanceof mc)||this.installQuery(e,t,n.value,this.viewChildrenQueries,n.enumerable??!0)}for(let{propertyKey:t,query:n}of vc(e))this.installQuery(e,t,n,this.viewChildrenQueries,!0)}captureContentChildQueries(e){for(let t of Reflect.ownKeys(e)){let n=Object.getOwnPropertyDescriptor(e,t);!n||!(n.value instanceof Us)||this.installQuery(e,t,n.value,this.contentQueries,n.enumerable??!0)}for(let{propertyKey:t,query:n}of Js(e))this.installQuery(e,t,n,this.contentQueries,!0)}captureContentChildrenQueries(e){for(let t of Reflect.ownKeys(e)){let n=Object.getOwnPropertyDescriptor(e,t);!n||!(n.value instanceof Zs)||this.installQuery(e,t,n.value,this.contentChildrenQueries,n.enumerable??!0)}for(let{propertyKey:t,query:n}of tc(e))this.installQuery(e,t,n,this.contentChildrenQueries,!0)}installQuery(e,t,n,r,i){r.push(n),Object.defineProperty(e,t,{configurable:!0,enumerable:i,get:()=>n.value})}wrapPostLink(e,t){if(!(this.viewQueries.some(e=>e.staticQuery)||this.contentQueries.some(e=>e.staticQuery)||this.contentChildrenQueries.some(e=>e.staticQuery)||this.hasCollectionQueries))return;let n=e,r=n.$postLink;n.$postLink=(...n)=>(t.finalizeViewQueries(),t.finalizeContentQueries(),t.notifyChanges(),r?.apply(e,n))}};function bc(e){let t=[],n=new Set,r=Object.getPrototypeOf(e);for(;r&&r!==Object.prototype;){let e=r.constructor;e&&!n.has(e)&&(n.add(e),t.push(e)),r=Object.getPrototypeOf(r)}return t}function xc(e){return e.map((e,t)=>({index:t,reference:e})).sort((e,t)=>{let n=e.reference.node,r=t.reference.node;if(!n||!r||n===r)return e.index-t.index;let i=n.compareDocumentPosition(r);return i&1?e.index-t.index:i&4?-1:i&2?1:e.index-t.index}).map(({reference:e})=>e)}var Sc=class{orderedReferences;references=[];connect(e){return this.references.push(e),this.orderedReferences=void 0,()=>{let t=this.references.indexOf(e);t!==-1&&(this.references.splice(t,1),this.orderedReferences=void 0)}}ordered(){return this.orderedReferences??=xc(this.references),this.orderedReferences}read(e,t,n){if(t===void 0)return e.defaultValue;let r=e.candidates.get(t);if(r!==void 0||e.node===void 0)return r;for(let r of n){if(r.node!==e.node)continue;let n=r.candidates.get(t);if(n!==void 0)return n}}},Cc=class{constructor(e,t,n){this.scope=e,this.element=t,this.identifier=n}scope;element;identifier;controller;contentReferences=new Sc;contentRoots=new Set;disconnectFromOwners=[];queryListChangesScheduled=!1;queryState=new yc;viewReferences=new Sc;get metadata(){if(this.controller)return{controller:this.controller,element:this.element,identifier:this.identifier,scope:this.scope}}get hasContentQueries(){return this.queryState.hasContentQueries}attachController(e){this.controller=e;let t=Ls(e,this);if(this.queryState.attach(e,{finalizeContentQueries:()=>this.finalizeStaticContentQueries(),finalizeViewQueries:()=>this.finalizeStaticViewQueries(),notifyChanges:()=>this.notifyQueryListChanges()}),!this.scope)return;let n=this.scope,r=Rs(n,this);this.publishControllerToOwners(e,n),n.$on(`$destroy`,()=>{for(let e of this.disconnectFromOwners)e();this.disconnectFromOwners.length=0,this.queryState.destroy(),t(),r()})}acceptsReference(e,t){return this.queryState.acceptsViewReference(e,t)}acceptsContentReference(e,t){return this.queryState.acceptsContentReference(e,t)}connectReference(e,t,n,r){return this.connectToStore(this.viewReferences,{candidates:n,defaultValue:t,locator:e,node:r},()=>this.refreshViewQueries())}connectContentReference(e,t,n,r){return this.connectToStore(this.contentReferences,{candidates:n,defaultValue:t,locator:e,node:r},()=>this.refreshContentQueries())}setContentRoots(e){for(let t of e)this.contentRoots.add(t);this.refreshContentQueries()}finalizeStaticContentQueries(){this.refreshContentQueries(),this.queryState.freezeStaticContentQueries()}finalizeStaticViewQueries(){this.refreshViewQueries(),this.queryState.freezeStaticViewQueries()}connectToStore(e,t,n){let r=e.connect(t);return n(),()=>{r(),n()}}publishControllerToOwners(e,t){let n=bc(e);if(n.length===0)return;let r=new Map(n.map(t=>[t,e])),[i]=this.element?Array.from(this.element):[],a=t;for(;a;){for(let t of zs(a))t!==this&&t.acceptsReference(``,r)&&this.disconnectFromOwners.push(t.connectReference(``,e,r,i));a=a.$parent}for(let n of Hs(t))n!==this&&n.acceptsContentReference(``,r)&&this.disconnectFromOwners.push(n.connectContentReference(``,e,r,i))}refreshViewQueries(){this.queryState.refreshViewQueries(this.viewReferences),this.scheduleQueryListChanges()}refreshContentQueries(){this.queryState.refreshContentQueries(this.contentReferences,this.contentRoots),this.scheduleQueryListChanges()}scheduleQueryListChanges(){this.queryListChangesScheduled||!this.queryState.hasCollectionQueries||(this.queryListChangesScheduled=!0,this.scope?this.scope.$evalAsync(()=>this.notifyQueryListChanges()):queueMicrotask(()=>this.notifyQueryListChanges()))}notifyQueryListChanges(){this.queryListChangesScheduled=!1,this.queryState.notifyChanges()}};function wc(e){return typeof e==`object`&&!!e||typeof e==`function`}function Tc(e){return!e?.$scope||Object.hasOwn(e,ks.$name)?e:{...e,[ks.$name]:new ks(e.$scope)}}var Ec=e=>{let t=e;return(e,n,r,i)=>{let a=Tc(n);if(r){let n=t(e,a,!0,i),r=new Cc(a?.$scope,a?.$element,n.identifier??i),o=(()=>{Fs(r);try{let e=n();return wc(e)&&r.attachController(e),e}finally{Is(r)}});return Object.defineProperty(o,"instance",{get:()=>n.instance,set:e=>{n.instance=e}}),Object.defineProperty(o,"identifier",{get:()=>n.identifier}),o}let o=new Cc(a?.$scope,a?.$element,i);Fs(o);try{let n=t(e,a,!1,i);return wc(n)&&o.attachController(n),n}finally{Is(o)}}};Ec.$inject=[`$delegate`];var Dc=class extends Ts{constructor(e,t,n){super(),this.context=e,this.$scope=t;let r=n(this.$scope,u.default.noop);this.compiled=r.contents(),this.rootNodes=Array.from(this.compiled);for(let e of this.rootNodes)e.parentNode?.removeChild(e);r.remove()}context;$scope;rootNodes=[];compiled;_destroyed=!1;onDestroyCallbacks=new Set;get destroyed(){return this._destroyed}onDestroy(e){this.onDestroyCallbacks.add(e)}detectChanges(){this._destroyed||this.$scope.$applyAsync()}destroy(){if(!this.destroyed){this._destroyed=!0,this.compiled.remove(),this.$scope.$destroy();for(let e of this.onDestroyCallbacks)e();this.onDestroyCallbacks.clear()}}markForCheck(){this._destroyed||this.$scope.$evalAsync()}},Oc=class e extends Es{constructor(e){super(),this.element=e}element;static owners=new WeakMap;views=[];trackedViews=new WeakSet;get length(){return this.views.length}clear(){for(;this.length;)this.remove(this.length-1)}createEmbeddedView(e,t,n){let r=e.createEmbeddedView(t??{}),i=typeof n==`number`?n:n?.index;try{this.insert(r,i)}catch(e){throw r.destroy(),e}return r}get(e){return this.views[e]??null}indexOf(e){return this.views.indexOf(e)}insert(t,n){if(t.destroyed)throw Error(`No se puede insertar una vista destruida`);let r=e.owners.get(t);if(r){let e=r.indexOf(t);e!==-1&&r.detach(e)}let i=this.normalizeInsertIndex(n),a=this.element.nativeElement.parentNode;if(!a)throw Error(`El ViewContainerRef no tiene un ancla conectada al DOM`);let o=this.getInsertionReference(i),s=this.getRootNodes(t);for(let e of s)a.insertBefore(e,o);return this.views.splice(i,0,t),e.owners.set(t,this),this.trackDestroyedView(t),t}move(e,t){if(this.indexOf(e)===-1)throw Error(`La vista no pertenece a este ViewContainerRef`);return this.insert(e,t)}remove(e){this.detach(e)?.destroy()}detach(t){let n=t??this.length-1;if(n<0||n>=this.length)return null;let[r]=this.views.splice(n,1);for(let e of this.getRootNodes(r))e.parentNode?.removeChild(e);return e.owners.get(r)===this&&e.owners.delete(r),r}normalizeInsertIndex(e){let t=e??this.length;if(!Number.isInteger(t)||t<0||t>this.length)throw RangeError(`\xCDndice de inserci\xF3n fuera de rango: ${t}`);return t}getRootNodes(e){let t=e.rootNodes;if(!t)throw Error(`La vista no expone rootNodes y no puede insertarse`);return t}getInsertionReference(e){for(let t=e;t<this.length;t++){let[e]=this.getRootNodes(this.views[t]);if(e)return e}for(let t=e-1;t>=0;t--){let e=this.getRootNodes(this.views[t]),n=e[e.length-1];if(n)return n.nextSibling}return this.element.nativeElement.nextSibling}trackDestroyedView(t){this.trackedViews.has(t)||(this.trackedViews.add(t),t.onDestroy(()=>{let n=this.views.indexOf(t);n!==-1&&this.views.splice(n,1),e.owners.get(t)===this&&e.owners.delete(t)}))}},kc=class e{constructor(e,t){this.$transclude=e,this.$scope=t}$transclude;$scope;declarations;static DECLARATION_PREFIX=`let`;registerDeclarationMap(e){this.declarations=e}createEmbeddedView(e,t){let n=(t??this.$scope).$new(),r=Object.create(null);u.default.extend(r,e);for(let[e,t]of this.declarations)u.default.extend(n,{[e]:r[t]});return new Dc(e,n,this.$transclude)}static get $name(){return`ngTemplate`}static get $inject(){return[`$transclude`,`$scope`]}static compileFn=(t,n)=>{let r=new Map;for(let[t,i]of Object.entries(n)){if(!t.startsWith(e.DECLARATION_PREFIX))continue;let n=e.DECLARATION_PREFIX.length,a=t.slice(n);if(!a)continue;let[o]=a,[,...s]=a,c=o.toLowerCase()+s.join(``);c.length&&r.set(c,i||`$implicit`)}return{pre:(e,t,n,i)=>{i.registerDeclarationMap(r)}}};static $factory(){return{controller:e,bindToController:!0,restrict:`E`,compile:e.compileFn,transclude:`element`}}};function Ac(e,t,n){let r=e;for(;r;){let e=zs(r).find(e=>e.acceptsReference(t,n));if(e)return e;r=r.$parent}}var jc=class e{static $compileFn(e){return(t,n)=>{let[r]=Array.from(t),i=n.ngRefRead,a=e(n.ngRef),o=a.assign;if(o)return t.removeAttr(`ng-ref`),t.removeAttr(`ng-ref-read`),{pre:(e,t,s,c)=>{let[l=r]=Array.from(t),u=new Bc(l),d=c?.ngTemplate,f=c?.ngContainer?.viewContainerRef,p={ngTemplate:d,viewContainerRef:f,$element:u},m=i?t.data(`$${i}Controller`):void 0,h=d??u,g=i?p[i]??m:h,_=new Map([[Bc,u],[`$element`,u]]);m!==void 0&&_.set(i,m),d&&(_.set(kc,d),_.set(`ngTemplate`,d)),f&&(_.set(Oc,f),_.set(`viewContainerRef`,f));let v=Ac(e,n.ngRef,_)?.connectReference(n.ngRef,h,_,l),y=Hs(e).filter(e=>e.acceptsContentReference(n.ngRef,_)).map(e=>e.connectContentReference(n.ngRef,h,_,l));e.$on(`$destroy`,()=>{v?.();for(let e of y)e();a(e)===g&&o(e,null)}),o(e,g)}}}}static $factory(t,n){return{...t,restrict:`A`,bindToController:!0,require:{ngTemplate:`?ngTemplate`,ngContainer:`?ngContainer`},compile:e.$compileFn(n),priority:1}}},Mc=(e,t)=>{let[n]=e,r=jc.$factory(n,t);return e.unshift(r),e};Mc.$inject=[`$delegate`,`$parse`];var Nc=Symbol(`NgZone.rootScope`),Pc,Fc=class e{constructor(e){this.options=e,this.rootScope=e[Nc]}options;errorSubject=new Y;microtaskEmptySubject=new Y;rootScope;stableSubject=new Y;unstableSubject=new Y;pendingCoalescedDigest=!1;pendingCompletionMicrotask=!1;stable=!0;onUnstable=this.unstableSubject.asObservable();onMicrotaskEmpty=this.microtaskEmptySubject.asObservable();onStable=this.stableSubject.asObservable();onError=this.errorSubject.asObservable();get hasPendingMacrotasks(){return this.pendingCoalescedDigest}get hasPendingMicrotasks(){return this.pendingCompletionMicrotask}get isStable(){return this.stable&&!this.hasPendingMacrotasks&&!this.hasPendingMicrotasks}run(e,t,n){return this.executeInside(e,t,n)}runTask(e,t,n,r){return this.executeInside(e,t,n)}runGuarded(e,t,n){try{return this.executeInside(e,t,n)}catch(e){this.errorSubject.next(e);return}}runOutsideAngular(e){let t=Pc;Pc=void 0;try{return e()}finally{Pc=t}}static isInAngularZone(){return Pc!==void 0}static assertInAngularZone(){if(!e.isInAngularZone())throw Error(`Expected to be in Angular Zone, but it is not`)}static assertNotInAngularZone(){if(e.isInAngularZone())throw Error(`Expected to not be in Angular Zone, but it is`)}static get $name(){return`ng.zone`}executeInside(e,t,n){let r=Pc,i=r!==this&&this.stable;Pc=this,i&&(this.stable=!1,this.unstableSubject.next());try{return e.apply(t,n??[])}finally{Pc=r,i&&this.requestChangeDetection()}}requestChangeDetection(){let e=this.rootScope;if(!e||e.$$phase){this.completeTurn();return}if(this.options.shouldCoalesceRunChangeDetection){if(this.pendingCoalescedDigest)return;this.pendingCoalescedDigest=!0,e.$applyAsync(()=>{this.pendingCoalescedDigest=!1,this.pendingCompletionMicrotask=!0,queueMicrotask(()=>{this.pendingCompletionMicrotask=!1,this.completeTurn()})});return}try{e.$digest()}finally{this.completeTurn()}}completeTurn(){this.microtaskEmptySubject.next(),this.stable=!0,this.stableSubject.next()}};function Ic(e,t={}){return new Fc({...t,[Nc]:e})}var Lc=class e extends Os{constructor(e){super(),this.attrs=e}attrs;currentDisabled=!1;listeners=new Set;$onInit(){this.attrs.$observe(`disabled`,e=>{this._update(e===!0||String(e)===`disabled`)})}get disabled(){return this.currentDisabled}onChange(e){return this.listeners.add(e),()=>{this.listeners.delete(e)}}_update(e){if(e!==this.currentDisabled){this.currentDisabled=e;for(let t of this.listeners)t(e)}}static get $inject(){return[`$attrs`]}static get $name(){return`ngDisabled`}static $factory(){return{controller:e,restrict:`A`,bindToController:!0,scope:!1}}};function Rc(e){for(let t of e)t.controller=Lc;return e}var zc=u.default.module(`ng.core`,[]);zc.decorator(`$controller`,Ec),zc.decorator(`ngRefDirective`,Mc),zc.decorator(`ngDisabledDirective`,Rc),zc.service(ks.$name,ks),zc.factory(Fc.$name,[`$rootScope`,Ic]);var Bc=class{nativeElement;constructor(e){this.nativeElement=e}},Vc=class e{constructor(e,t,n){this.$transclude=t,this.$scope=n;let[r]=Array.from(e),i=new Bc(r);this._viewContainerRef=new Oc(i)}$transclude;$scope;_viewContainerRef;get viewContainerRef(){return this._viewContainerRef}$postLink(){this.$transclude(this.$scope,e=>{e&&e.remove()})}$onDestroy(){this._viewContainerRef.clear()}static $factory(){return{controller:e,restrict:`E`,bindToController:!0,transclude:`element`}}static get $inject(){return[`$element`,`$transclude`,`$scope`]}static get $name(){return`ngContainer`}},Hc=class e{constructor(e,t,n){this.$element=e,this.$transclude=t,this.$scope=n}$element;$transclude;$scope;$postLink(){let e=zs(this.$scope).filter(e=>e.hasContentQueries),t=Hs(this.$scope),n=Array.from(new Set([...e,...t]));Bs(n,()=>{this.$transclude?.((t,r)=>{if(r&&Vs(r,n),!t)return;let i=Array.from(t);for(let t of e)t.setContentRoots(i);this.$element.after(t)})}),this.$element.remove()}static get $inject(){return[`$element`,`$transclude`,`$scope`]}static get $name(){return`ngContent`}static $factory(){return{controller:e,restrict:`E`}}},Uc=class e{constructor(e){this.$element=e}$element;ngTemplateOutletContext=null;ngTemplateOutlet=null;_embedViewRef;$onChanges(){if(this._embedViewRef?.destroy(),this._embedViewRef=void 0,!this.ngTemplateOutlet)return;let e=u.default.extend({},this.ngTemplateOutletContext);this._embedViewRef=this.ngTemplateOutlet.createEmbeddedView(e),this.$element.after(this._embedViewRef.rootNodes)}$onDestroy(){this._embedViewRef?.destroy()}static get $inject(){return[`$element`]}static get $name(){return`ngTemplateOutlet`}static $factory(){return{bindToController:{ngTemplateOutlet:`<`,ngTemplateOutletContext:`<?`},scope:!0,controller:e,restrict:`A`}}},Wc=u.default.module(`ng.common`,[zc.name]);Wc.directive(kc.$name,kc.$factory),Wc.directive(Uc.$name,Uc.$factory),Wc.directive(Hc.$name,Hc.$factory),Wc.directive(Vc.$name,Vc.$factory);var Gc=`bottom`,Kc=`right`,qc=`left`,Jc=`auto`,Yc=[`top`,Gc,Kc,qc],Xc=`start`,Zc=`clippingParents`,Qc=`viewport`,$c=`popper`,el=`reference`,tl=Yc.reduce(function(e,t){return e.concat([t+`-`+Xc,t+`-end`])},[]),nl=[].concat(Yc,[Jc]).reduce(function(e,t){return e.concat([t,t+`-`+Xc,t+`-end`])},[]),rl=[`beforeRead`,`read`,`afterRead`,`beforeMain`,`main`,`afterMain`,`beforeWrite`,`write`,`afterWrite`];function il(e){return e?(e.nodeName||``).toLowerCase():null}function al(e){if(e==null)return window;if(e.toString()!==`[object Window]`){var t=e.ownerDocument;return t&&t.defaultView||window}return e}function ol(e){return e instanceof al(e).Element||e instanceof Element}function sl(e){return e instanceof al(e).HTMLElement||e instanceof HTMLElement}function cl(e){return typeof ShadowRoot>`u`?!1:e instanceof al(e).ShadowRoot||e instanceof ShadowRoot}function ll(e){var t=e.state;Object.keys(t.elements).forEach(function(e){var n=t.styles[e]||{},r=t.attributes[e]||{},i=t.elements[e];!sl(i)||!il(i)||(Object.assign(i.style,n),Object.keys(r).forEach(function(e){var t=r[e];t===!1?i.removeAttribute(e):i.setAttribute(e,t===!0?``:t)}))})}function ul(e){var t=e.state,n={popper:{position:t.options.strategy,left:`0`,top:`0`,margin:`0`},arrow:{position:`absolute`},reference:{}};return Object.assign(t.elements.popper.style,n.popper),t.styles=n,t.elements.arrow&&Object.assign(t.elements.arrow.style,n.arrow),function(){Object.keys(t.elements).forEach(function(e){var r=t.elements[e],i=t.attributes[e]||{},a=Object.keys(t.styles.hasOwnProperty(e)?t.styles[e]:n[e]).reduce(function(e,t){return e[t]=``,e},{});!sl(r)||!il(r)||(Object.assign(r.style,a),Object.keys(i).forEach(function(e){r.removeAttribute(e)}))})}}var dl={name:`applyStyles`,enabled:!0,phase:`write`,fn:ll,effect:ul,requires:[`computeStyles`]};function fl(e){return e.split(`-`)[0]}var pl=Math.max,ml=Math.min,hl=Math.round;function gl(){var e=navigator.userAgentData;return e!=null&&e.brands&&Array.isArray(e.brands)?e.brands.map(function(e){return e.brand+`/`+e.version}).join(` `):navigator.userAgent}function _l(){return!/^((?!chrome|android).)*safari/i.test(gl())}function vl(e,t,n){t===void 0&&(t=!1),n===void 0&&(n=!1);var r=e.getBoundingClientRect(),i=1,a=1;t&&sl(e)&&(i=e.offsetWidth>0&&hl(r.width)/e.offsetWidth||1,a=e.offsetHeight>0&&hl(r.height)/e.offsetHeight||1);var o=(ol(e)?al(e):window).visualViewport,s=!_l()&&n,c=(r.left+(s&&o?o.offsetLeft:0))/i,l=(r.top+(s&&o?o.offsetTop:0))/a,u=r.width/i,d=r.height/a;return{width:u,height:d,top:l,right:c+u,bottom:l+d,left:c,x:c,y:l}}function yl(e){var t=vl(e),n=e.offsetWidth,r=e.offsetHeight;return Math.abs(t.width-n)<=1&&(n=t.width),Math.abs(t.height-r)<=1&&(r=t.height),{x:e.offsetLeft,y:e.offsetTop,width:n,height:r}}function bl(e,t){var n=t.getRootNode&&t.getRootNode();if(e.contains(t))return!0;if(n&&cl(n)){var r=t;do{if(r&&e.isSameNode(r))return!0;r=r.parentNode||r.host}while(r)}return!1}function xl(e){return al(e).getComputedStyle(e)}function Sl(e){return[`table`,`td`,`th`].indexOf(il(e))>=0}function Cl(e){return((ol(e)?e.ownerDocument:e.document)||window.document).documentElement}function wl(e){return il(e)===`html`?e:e.assignedSlot||e.parentNode||(cl(e)?e.host:null)||Cl(e)}function Tl(e){return!sl(e)||xl(e).position===`fixed`?null:e.offsetParent}function El(e){var t=/firefox/i.test(gl());if(/Trident/i.test(gl())&&sl(e)&&xl(e).position===`fixed`)return null;var n=wl(e);for(cl(n)&&(n=n.host);sl(n)&&[`html`,`body`].indexOf(il(n))<0;){var r=xl(n);if(r.transform!==`none`||r.perspective!==`none`||r.contain===`paint`||[`transform`,`perspective`].indexOf(r.willChange)!==-1||t&&r.willChange===`filter`||t&&r.filter&&r.filter!==`none`)return n;n=n.parentNode}return null}function Dl(e){for(var t=al(e),n=Tl(e);n&&Sl(n)&&xl(n).position===`static`;)n=Tl(n);return n&&(il(n)===`html`||il(n)===`body`&&xl(n).position===`static`)?t:n||El(e)||t}function Ol(e){return[`top`,`bottom`].indexOf(e)>=0?`x`:`y`}function kl(e,t,n){return pl(e,ml(t,n))}function Al(e,t,n){var r=kl(e,t,n);return r>n?n:r}function jl(){return{top:0,right:0,bottom:0,left:0}}function Ml(e){return Object.assign({},jl(),e)}function Nl(e,t){return t.reduce(function(t,n){return t[n]=e,t},{})}var Pl=function(e,t){return e=typeof e==`function`?e(Object.assign({},t.rects,{placement:t.placement})):e,Ml(typeof e==`number`?Nl(e,Yc):e)};function Fl(e){var t,n=e.state,r=e.name,i=e.options,a=n.elements.arrow,o=n.modifiersData.popperOffsets,s=fl(n.placement),c=Ol(s),l=[`left`,`right`].indexOf(s)>=0?`height`:`width`;if(!(!a||!o)){var u=Pl(i.padding,n),d=yl(a),f=c===`y`?`top`:qc,p=c===`y`?Gc:Kc,m=n.rects.reference[l]+n.rects.reference[c]-o[c]-n.rects.popper[l],h=o[c]-n.rects.reference[c],g=Dl(a),_=g?c===`y`?g.clientHeight||0:g.clientWidth||0:0,v=m/2-h/2,y=u[f],b=_-d[l]-u[p],x=_/2-d[l]/2+v,S=kl(y,x,b),C=c;n.modifiersData[r]=(t={},t[C]=S,t.centerOffset=S-x,t)}}function Il(e){var t=e.state,n=e.options.element,r=n===void 0?`[data-popper-arrow]`:n;r!=null&&(typeof r==`string`&&(r=t.elements.popper.querySelector(r),!r)||bl(t.elements.popper,r)&&(t.elements.arrow=r))}var Ll={name:`arrow`,enabled:!0,phase:`main`,fn:Fl,effect:Il,requires:[`popperOffsets`],requiresIfExists:[`preventOverflow`]};function Rl(e){return e.split(`-`)[1]}var zl={top:`auto`,right:`auto`,bottom:`auto`,left:`auto`};function Bl(e,t){var n=e.x,r=e.y,i=t.devicePixelRatio||1;return{x:hl(n*i)/i||0,y:hl(r*i)/i||0}}function Vl(e){var t,n=e.popper,r=e.popperRect,i=e.placement,a=e.variation,o=e.offsets,s=e.position,c=e.gpuAcceleration,l=e.adaptive,u=e.roundOffsets,d=e.isFixed,f=o.x,p=f===void 0?0:f,m=o.y,h=m===void 0?0:m,g=typeof u==`function`?u({x:p,y:h}):{x:p,y:h};p=g.x,h=g.y;var _=o.hasOwnProperty(`x`),v=o.hasOwnProperty(`y`),y=qc,b=`top`,x=window;if(l){var S=Dl(n),C=`clientHeight`,w=`clientWidth`;if(S===al(n)&&(S=Cl(n),xl(S).position!==`static`&&s===`absolute`&&(C=`scrollHeight`,w=`scrollWidth`)),S=S,i===`top`||(i===`left`||i===`right`)&&a===`end`){b=Gc;var T=d&&S===x&&x.visualViewport?x.visualViewport.height:S[C];h-=T-r.height,h*=c?1:-1}if(i===`left`||(i===`top`||i===`bottom`)&&a===`end`){y=Kc;var E=d&&S===x&&x.visualViewport?x.visualViewport.width:S[w];p-=E-r.width,p*=c?1:-1}}var D=Object.assign({position:s},l&&zl),O=u===!0?Bl({x:p,y:h},al(n)):{x:p,y:h};if(p=O.x,h=O.y,c){var k;return Object.assign({},D,(k={},k[b]=v?`0`:``,k[y]=_?`0`:``,k.transform=(x.devicePixelRatio||1)<=1?`translate(`+p+`px, `+h+`px)`:`translate3d(`+p+`px, `+h+`px, 0)`,k))}return Object.assign({},D,(t={},t[b]=v?h+`px`:``,t[y]=_?p+`px`:``,t.transform=``,t))}function Hl(e){var t=e.state,n=e.options,r=n.gpuAcceleration,i=r===void 0||r,a=n.adaptive,o=a===void 0||a,s=n.roundOffsets,c=s===void 0||s,l={placement:fl(t.placement),variation:Rl(t.placement),popper:t.elements.popper,popperRect:t.rects.popper,gpuAcceleration:i,isFixed:t.options.strategy===`fixed`};t.modifiersData.popperOffsets!=null&&(t.styles.popper=Object.assign({},t.styles.popper,Vl(Object.assign({},l,{offsets:t.modifiersData.popperOffsets,position:t.options.strategy,adaptive:o,roundOffsets:c})))),t.modifiersData.arrow!=null&&(t.styles.arrow=Object.assign({},t.styles.arrow,Vl(Object.assign({},l,{offsets:t.modifiersData.arrow,position:`absolute`,adaptive:!1,roundOffsets:c})))),t.attributes.popper=Object.assign({},t.attributes.popper,{"data-popper-placement":t.placement})}var Ul={name:`computeStyles`,enabled:!0,phase:`beforeWrite`,fn:Hl,data:{}},Wl={passive:!0};function Gl(e){var t=e.state,n=e.instance,r=e.options,i=r.scroll,a=i===void 0||i,o=r.resize,s=o===void 0||o,c=al(t.elements.popper),l=[].concat(t.scrollParents.reference,t.scrollParents.popper);return a&&l.forEach(function(e){e.addEventListener(`scroll`,n.update,Wl)}),s&&c.addEventListener(`resize`,n.update,Wl),function(){a&&l.forEach(function(e){e.removeEventListener(`scroll`,n.update,Wl)}),s&&c.removeEventListener(`resize`,n.update,Wl)}}var Kl={name:`eventListeners`,enabled:!0,phase:`write`,fn:function(){},effect:Gl,data:{}},ql={left:`right`,right:`left`,bottom:`top`,top:`bottom`};function Jl(e){return e.replace(/left|right|bottom|top/g,function(e){return ql[e]})}var Yl={start:`end`,end:`start`};function Xl(e){return e.replace(/start|end/g,function(e){return Yl[e]})}function Zl(e){var t=al(e);return{scrollLeft:t.pageXOffset,scrollTop:t.pageYOffset}}function Ql(e){return vl(Cl(e)).left+Zl(e).scrollLeft}function $l(e,t){var n=al(e),r=Cl(e),i=n.visualViewport,a=r.clientWidth,o=r.clientHeight,s=0,c=0;if(i){a=i.width,o=i.height;var l=_l();(l||!l&&t===`fixed`)&&(s=i.offsetLeft,c=i.offsetTop)}return{width:a,height:o,x:s+Ql(e),y:c}}function eu(e){var t=Cl(e),n=Zl(e),r=e.ownerDocument?.body,i=pl(t.scrollWidth,t.clientWidth,r?r.scrollWidth:0,r?r.clientWidth:0),a=pl(t.scrollHeight,t.clientHeight,r?r.scrollHeight:0,r?r.clientHeight:0),o=-n.scrollLeft+Ql(e),s=-n.scrollTop;return xl(r||t).direction===`rtl`&&(o+=pl(t.clientWidth,r?r.clientWidth:0)-i),{width:i,height:a,x:o,y:s}}function tu(e){var t=xl(e),n=t.overflow,r=t.overflowX,i=t.overflowY;return/auto|scroll|overlay|hidden/.test(n+i+r)}function nu(e){return[`html`,`body`,`#document`].indexOf(il(e))>=0?e.ownerDocument.body:sl(e)&&tu(e)?e:nu(wl(e))}function ru(e,t){t===void 0&&(t=[]);var n=nu(e),r=n===e.ownerDocument?.body,i=al(n),a=r?[i].concat(i.visualViewport||[],tu(n)?n:[]):n,o=t.concat(a);return r?o:o.concat(ru(wl(a)))}function iu(e){return Object.assign({},e,{left:e.x,top:e.y,right:e.x+e.width,bottom:e.y+e.height})}function au(e,t){var n=vl(e,!1,t===`fixed`);return n.top+=e.clientTop,n.left+=e.clientLeft,n.bottom=n.top+e.clientHeight,n.right=n.left+e.clientWidth,n.width=e.clientWidth,n.height=e.clientHeight,n.x=n.left,n.y=n.top,n}function ou(e,t,n){return t===`viewport`?iu($l(e,n)):ol(t)?au(t,n):iu(eu(Cl(e)))}function su(e){var t=ru(wl(e)),n=[`absolute`,`fixed`].indexOf(xl(e).position)>=0&&sl(e)?Dl(e):e;return ol(n)?t.filter(function(e){return ol(e)&&bl(e,n)&&il(e)!==`body`}):[]}function cu(e,t,n,r){var i=t===`clippingParents`?su(e):[].concat(t),a=[].concat(i,[n]),o=a[0],s=a.reduce(function(t,n){var i=ou(e,n,r);return t.top=pl(i.top,t.top),t.right=ml(i.right,t.right),t.bottom=ml(i.bottom,t.bottom),t.left=pl(i.left,t.left),t},ou(e,o,r));return s.width=s.right-s.left,s.height=s.bottom-s.top,s.x=s.left,s.y=s.top,s}function lu(e){var t=e.reference,n=e.element,r=e.placement,i=r?fl(r):null,a=r?Rl(r):null,o=t.x+t.width/2-n.width/2,s=t.y+t.height/2-n.height/2,c;switch(i){case`top`:c={x:o,y:t.y-n.height};break;case Gc:c={x:o,y:t.y+t.height};break;case Kc:c={x:t.x+t.width,y:s};break;case qc:c={x:t.x-n.width,y:s};break;default:c={x:t.x,y:t.y}}var l=i?Ol(i):null;if(l!=null){var u=l===`y`?`height`:`width`;switch(a){case Xc:c[l]=c[l]-(t[u]/2-n[u]/2);break;case`end`:c[l]=c[l]+(t[u]/2-n[u]/2)}}return c}function uu(e,t){t===void 0&&(t={});var n=t,r=n.placement,i=r===void 0?e.placement:r,a=n.strategy,o=a===void 0?e.strategy:a,s=n.boundary,c=s===void 0?Zc:s,l=n.rootBoundary,u=l===void 0?Qc:l,d=n.elementContext,f=d===void 0?$c:d,p=n.altBoundary,m=p!==void 0&&p,h=n.padding,g=h===void 0?0:h,_=Ml(typeof g==`number`?Nl(g,Yc):g),v=f===`popper`?el:$c,y=e.rects.popper,b=e.elements[m?v:f],x=cu(ol(b)?b:b.contextElement||Cl(e.elements.popper),c,u,o),S=vl(e.elements.reference),C=lu({reference:S,element:y,strategy:`absolute`,placement:i}),w=iu(Object.assign({},y,C)),T=f===`popper`?w:S,E={top:x.top-T.top+_.top,bottom:T.bottom-x.bottom+_.bottom,left:x.left-T.left+_.left,right:T.right-x.right+_.right},D=e.modifiersData.offset;if(f===`popper`&&D){var O=D[i];Object.keys(E).forEach(function(e){var t=[`right`,`bottom`].indexOf(e)>=0?1:-1,n=[`top`,`bottom`].indexOf(e)>=0?`y`:`x`;E[e]+=O[n]*t})}return E}function du(e,t){t===void 0&&(t={});var n=t,r=n.placement,i=n.boundary,a=n.rootBoundary,o=n.padding,s=n.flipVariations,c=n.allowedAutoPlacements,l=c===void 0?nl:c,u=Rl(r),d=u?s?tl:tl.filter(function(e){return Rl(e)===u}):Yc,f=d.filter(function(e){return l.indexOf(e)>=0});f.length===0&&(f=d);var p=f.reduce(function(t,n){return t[n]=uu(e,{placement:n,boundary:i,rootBoundary:a,padding:o})[fl(n)],t},{});return Object.keys(p).sort(function(e,t){return p[e]-p[t]})}function fu(e){if(fl(e)===`auto`)return[];var t=Jl(e);return[Xl(e),t,Xl(t)]}function pu(e){var t=e.state,n=e.options,r=e.name;if(!t.modifiersData[r]._skip){for(var i=n.mainAxis,a=i===void 0||i,o=n.altAxis,s=o===void 0||o,c=n.fallbackPlacements,l=n.padding,u=n.boundary,d=n.rootBoundary,f=n.altBoundary,p=n.flipVariations,m=p===void 0||p,h=n.allowedAutoPlacements,g=t.options.placement,_=fl(g)===g,v=c||(_||!m?[Jl(g)]:fu(g)),y=[g].concat(v).reduce(function(e,n){return e.concat(fl(n)===`auto`?du(t,{placement:n,boundary:u,rootBoundary:d,padding:l,flipVariations:m,allowedAutoPlacements:h}):n)},[]),b=t.rects.reference,x=t.rects.popper,S=new Map,C=!0,w=y[0],T=0;T<y.length;T++){var E=y[T],D=fl(E),O=Rl(E)===Xc,k=[`top`,Gc].indexOf(D)>=0,A=k?`width`:`height`,j=uu(t,{placement:E,boundary:u,rootBoundary:d,altBoundary:f,padding:l}),M=k?O?Kc:qc:O?Gc:`top`;b[A]>x[A]&&(M=Jl(M));var ee=Jl(M),N=[];if(a&&N.push(j[D]<=0),s&&N.push(j[M]<=0,j[ee]<=0),N.every(function(e){return e})){w=E,C=!1;break}S.set(E,N)}if(C)for(var te=m?3:1,P=function(e){var t=y.find(function(t){var n=S.get(t);if(n)return n.slice(0,e).every(function(e){return e})});if(t)return w=t,`break`},F=te;F>0&&P(F)!==`break`;F--);t.placement!==w&&(t.modifiersData[r]._skip=!0,t.placement=w,t.reset=!0)}}var mu={name:`flip`,enabled:!0,phase:`main`,fn:pu,requiresIfExists:[`offset`],data:{_skip:!1}};function hu(e,t,n){var r=fl(e),i=[`left`,`top`].indexOf(r)>=0?-1:1,a=typeof n==`function`?n(Object.assign({},t,{placement:e})):n,o=a[0],s=a[1];return o||=0,s=(s||0)*i,[`left`,`right`].indexOf(r)>=0?{x:s,y:o}:{x:o,y:s}}function gu(e){var t=e.state,n=e.options,r=e.name,i=n.offset,a=i===void 0?[0,0]:i,o=nl.reduce(function(e,n){return e[n]=hu(n,t.rects,a),e},{}),s=o[t.placement],c=s.x,l=s.y;t.modifiersData.popperOffsets!=null&&(t.modifiersData.popperOffsets.x+=c,t.modifiersData.popperOffsets.y+=l),t.modifiersData[r]=o}var _u={name:`offset`,enabled:!0,phase:`main`,requires:[`popperOffsets`],fn:gu};function vu(e){var t=e.state,n=e.name;t.modifiersData[n]=lu({reference:t.rects.reference,element:t.rects.popper,strategy:`absolute`,placement:t.placement})}var yu={name:`popperOffsets`,enabled:!0,phase:`read`,fn:vu,data:{}};function bu(e){return e===`x`?`y`:`x`}function xu(e){var t=e.state,n=e.options,r=e.name,i=n.mainAxis,a=i===void 0||i,o=n.altAxis,s=o!==void 0&&o,c=n.boundary,l=n.rootBoundary,u=n.altBoundary,d=n.padding,f=n.tether,p=f===void 0||f,m=n.tetherOffset,h=m===void 0?0:m,g=uu(t,{boundary:c,rootBoundary:l,padding:d,altBoundary:u}),_=fl(t.placement),v=Rl(t.placement),y=!v,b=Ol(_),x=bu(b),S=t.modifiersData.popperOffsets,C=t.rects.reference,w=t.rects.popper,T=typeof h==`function`?h(Object.assign({},t.rects,{placement:t.placement})):h,E=typeof T==`number`?{mainAxis:T,altAxis:T}:Object.assign({mainAxis:0,altAxis:0},T),D=t.modifiersData.offset?t.modifiersData.offset[t.placement]:null,O={x:0,y:0};if(S){if(a){var k=b===`y`?`top`:qc,A=b===`y`?Gc:Kc,j=b===`y`?`height`:`width`,M=S[b],ee=M+g[k],N=M-g[A],te=p?-w[j]/2:0,P=v===`start`?C[j]:w[j],F=v===`start`?-w[j]:-C[j],I=t.elements.arrow,L=p&&I?yl(I):{width:0,height:0},R=t.modifiersData[`arrow#persistent`]?t.modifiersData[`arrow#persistent`].padding:jl(),ne=R[k],z=R[A],re=kl(0,C[j],L[j]),ie=y?C[j]/2-te-re-ne-E.mainAxis:P-re-ne-E.mainAxis,B=y?-C[j]/2+te+re+z+E.mainAxis:F+re+z+E.mainAxis,ae=t.elements.arrow&&Dl(t.elements.arrow),V=ae?b===`y`?ae.clientTop||0:ae.clientLeft||0:0,oe=D?.[b]??0,se=M+ie-oe-V,ce=M+B-oe,le=kl(p?ml(ee,se):ee,M,p?pl(N,ce):N);S[b]=le,O[b]=le-M}if(s){var H=b===`x`?`top`:qc,ue=b===`x`?Gc:Kc,U=S[x],de=x===`y`?`height`:`width`,fe=U+g[H],pe=U-g[ue],W=[`top`,qc].indexOf(_)!==-1,me=D?.[x]??0,he=W?fe:U-C[de]-w[de]-me+E.altAxis,ge=W?U+C[de]+w[de]-me-E.altAxis:pe,_e=p&&W?Al(he,U,ge):kl(p?he:fe,U,p?ge:pe);S[x]=_e,O[x]=_e-U}t.modifiersData[r]=O}}var Su={name:`preventOverflow`,enabled:!0,phase:`main`,fn:xu,requiresIfExists:[`offset`]};function Cu(e){return{scrollLeft:e.scrollLeft,scrollTop:e.scrollTop}}function wu(e){return e===al(e)||!sl(e)?Zl(e):Cu(e)}function Tu(e){var t=e.getBoundingClientRect(),n=hl(t.width)/e.offsetWidth||1,r=hl(t.height)/e.offsetHeight||1;return n!==1||r!==1}function Eu(e,t,n){n===void 0&&(n=!1);var r=sl(t),i=sl(t)&&Tu(t),a=Cl(t),o=vl(e,i,n),s={scrollLeft:0,scrollTop:0},c={x:0,y:0};return(r||!r&&!n)&&((il(t)!==`body`||tu(a))&&(s=wu(t)),sl(t)?(c=vl(t,!0),c.x+=t.clientLeft,c.y+=t.clientTop):a&&(c.x=Ql(a))),{x:o.left+s.scrollLeft-c.x,y:o.top+s.scrollTop-c.y,width:o.width,height:o.height}}function Du(e){var t=new Map,n=new Set,r=[];e.forEach(function(e){t.set(e.name,e)});function i(e){n.add(e.name),[].concat(e.requires||[],e.requiresIfExists||[]).forEach(function(e){if(!n.has(e)){var r=t.get(e);r&&i(r)}}),r.push(e)}return e.forEach(function(e){n.has(e.name)||i(e)}),r}function Ou(e){var t=Du(e);return rl.reduce(function(e,n){return e.concat(t.filter(function(e){return e.phase===n}))},[])}function ku(e){var t;return function(){return t||=new Promise(function(n){Promise.resolve().then(function(){t=void 0,n(e())})}),t}}function Au(e){var t=e.reduce(function(e,t){var n=e[t.name];return e[t.name]=n?Object.assign({},n,t,{options:Object.assign({},n.options,t.options),data:Object.assign({},n.data,t.data)}):t,e},{});return Object.keys(t).map(function(e){return t[e]})}var ju={placement:`bottom`,modifiers:[],strategy:`absolute`};function Mu(){return![...arguments].some(function(e){return!(e&&typeof e.getBoundingClientRect==`function`)})}function Nu(e){e===void 0&&(e={});var t=e,n=t.defaultModifiers,r=n===void 0?[]:n,i=t.defaultOptions,a=i===void 0?ju:i;return function(e,t,n){n===void 0&&(n=a);var i={placement:`bottom`,orderedModifiers:[],options:Object.assign({},ju,a),modifiersData:{},elements:{reference:e,popper:t},attributes:{},styles:{}},o=[],s=!1,c={state:i,setOptions:function(n){var o=typeof n==`function`?n(i.options):n;u(),i.options=Object.assign({},a,i.options,o),i.scrollParents={reference:ol(e)?ru(e):e.contextElement?ru(e.contextElement):[],popper:ru(t)};var s=Ou(Au([].concat(r,i.options.modifiers)));return i.orderedModifiers=s.filter(function(e){return e.enabled}),l(),c.update()},forceUpdate:function(){if(!s){var e=i.elements,t=e.reference,n=e.popper;if(Mu(t,n)){i.rects={reference:Eu(t,Dl(n),i.options.strategy===`fixed`),popper:yl(n)},i.reset=!1,i.placement=i.options.placement,i.orderedModifiers.forEach(function(e){return i.modifiersData[e.name]=Object.assign({},e.data)});for(var r=0;r<i.orderedModifiers.length;r++){if(i.reset===!0){i.reset=!1,r=-1;continue}var a=i.orderedModifiers[r],o=a.fn,l=a.options,u=l===void 0?{}:l,d=a.name;typeof o==`function`&&(i=o({state:i,options:u,name:d,instance:c})||i)}}}},update:ku(function(){return new Promise(function(e){c.forceUpdate(),e(i)})}),destroy:function(){u(),s=!0}};if(!Mu(e,t))return c;c.setOptions(n).then(function(e){!s&&n.onFirstUpdate&&n.onFirstUpdate(e)});function l(){i.orderedModifiers.forEach(function(e){var t=e.name,n=e.options,r=n===void 0?{}:n,a=e.effect;if(typeof a==`function`){var s=a({state:i,name:t,instance:c,options:r});o.push(s||function(){})}})}function u(){o.forEach(function(e){return e()}),o=[]}return c}}var Pu=Nu({defaultModifiers:[Kl,yu,Ul,dl]}),Fu=Object.defineProperty,Iu=Object.getOwnPropertyDescriptor,X=(e,t,n,r)=>{for(var i=r>1?void 0:r?Iu(t,n):t,a=e.length-1,o;a>=0;a--)(o=e[a])&&(i=(r?o(t,n,i):o(i))||i);return r&&i&&Fu(t,n,i),i},Lu=class{constructor(){this.animation=!0}static get $name(){return`ngb.config.service`}},Ru=class{constructor(e){this.ngbConfig=e,this.closeOthers=!1,this.destroyOnHide=!0}get animation(){return this._animation??this.ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.accordion.config.service`}},zu=class e{constructor(e){this.$element=e,this._viewRef=null}$postLink(){this.$element.addClass(`accordion-body`)}$doCheck(){this.detectChanges()}detectChanges(){if(this._bodyTpl){if(this.item._shouldBeInDOM){this._createViewIfNotExists();return}this._destroyViewIfExists()}}$onDestroy(){this._destroyViewIfExists()}_destroyViewIfExists(){this._viewRef?.destroy(),this._viewRef=null}_createViewIfNotExists(){this._viewRef||(this._viewRef=this._vcr.createEmbeddedView(this._bodyTpl),this._viewRef.detectChanges())}static get $name(){return`ngbAccordionBody`}static get $inject(){return[`$element`]}static get $factory(){return()=>({controller:e,bindToController:!0,controllerAs:`$`,require:{item:`^^ngbAccordionItem`},scope:!0,restrict:`A`,transclude:!0,template:`
         <ng-container ng-ref="container" ng-ref-read="viewContainerRef"></ng-container>
         <ng-content></ng-content>
-      `})}};X([fc(`container`,{read:Oc,static:!0})],zu.prototype,`_vcr`,2),X([qs(kc,{static:!0})],zu.prototype,`_bodyTpl`,2);var Bu=zu,Vu=`<section\r
-    role="region"\r
-    class="accordion-collapse"\r
-    ng-attr-id="{{ $.item.collapseId }}"\r
-    ng-attr-aria-labelledby="{{ $.item.toggleId }}"\r
-    ngb-collapse="$.item.collapsed">\r
-    <ng-content></ng-content>\r
-</section>\r
-`,Hu=class{constructor(e){this.ngbConfig=e,this.horizontal=!1}get animation(){return this._animation??this.ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.collapse.config.service`}},Uu=[`a[href]`,`button:not([disabled])`,`input:not([disabled]):not([type="hidden"])`,`select:not([disabled])`,`textarea:not([disabled])`,`[contenteditable]`,`[tabindex]:not([tabindex="-1"])`].join(`, `);function Wu(e){let t=Array.from(e.querySelectorAll(Uu)).filter(e=>e.tabIndex!==-1);return[t[0],t[t.length-1]]}var Gu=(e,t,n,r=!1)=>{e.runOutsideAngular(()=>{let e=Ko(t,`focusin`).pipe(bs(n),wo(e=>e.target));Ko(t,`keydown`).pipe(bs(n),ns(e=>e.key===`Tab`),Ss(e)).subscribe(([e,n])=>{let[r,i]=Wu(t);(n===r||n===t)&&e.shiftKey&&(i.focus(),e.preventDefault()),n===i&&!e.shiftKey&&(r.focus(),e.preventDefault())}),r&&Ko(t,`click`).pipe(bs(n),Ss(e),wo(e=>e[1])).subscribe(e=>e.focus())})};function Ku(e,t){if(typeof navigator>`u`)return`0px`;let n=e.hasClass(`show`);n||e.addClass(`show`),e.css({[t]:``});let r=`${Z(e).getBoundingClientRect()[t]}px`;return n||e.removeClass(`show`),r}function qu(e,t,n){let r=()=>{if(e.addClass(`collapse`),n.direction===`show`){e.addClass(`show`);return}e.removeClass(`show`)};if(!t){r();return}if(!n.maxSize){let t=Ku(e,n.dimension);u.default.extend(n,{maxSize:t}),e.css({[n.dimension]:n.direction===`show`?`0px`:t}),e.removeClass(`collapse collapsing show`),ed(e),e.addClass(`collapsing`)}if(!n.maxSize)throw Error(`[ngb-transition]: context.maxSize was undefined`);return e.css({[n.dimension]:n.direction===`show`?n.maxSize:`0px`}),()=>{r(),e.removeClass(`collapsing`),e.css({[n.dimension]:``})}}function Ju(e){let{transitionDelay:t,transitionDuration:n}=window.getComputedStyle(e);return(parseFloat(t)+parseFloat(n))*1e3}var Yu=u.default.noop,Xu={getTransitionTimerDelayMs:()=>5},Zu=new Map;function Qu(e,t,n,r){let i=r.context??{},a=Z(t),o=Zu.get(a);if(o){if(r.runningTransition===`continue`)return Ba;e.run(()=>o.transition$.complete()),i=u.default.extend(o.context,i),Zu.delete(a)}let s=n(t,r.animation,i)||Yu;if(!r.animation||window.getComputedStyle(a).transitionProperty===`none`)return e.run(()=>s()),So(void 0).pipe(td(e));let c=new Y,l=new Y,d=c.pipe(gs(!0));Zu.set(a,{transition$:c,complete:()=>{l.next(),l.complete()},context:i});let f=Ju(a);return e.runOutsideAngular(()=>{let t=Ko(a,`transitionend`).pipe(bs(d),ns(({target:e})=>e===a));rs(Zo(f+Xu.getTransitionTimerDelayMs()).pipe(bs(d)),t,l).pipe(bs(d)).subscribe(()=>{Zu.delete(a),e.run(()=>{s(),c.next(),c.complete()})})}),c.asObservable()}function $u(e){Zu.get(Z(e))?.complete()}function ed(e){return(Z(e)||document.body).getBoundingClientRect()}function td(e){return t=>new xa(n=>t.subscribe({next:t=>e.run(()=>n.next(t)),error:t=>e.run(()=>n.error(t)),complete:()=>e.run(()=>n.complete())}))}function nd(e,t,n=0){return Math.max(Math.min(e,t),n)}function Z(e){let[t]=Array.from(e);return t}function Q(e){return typeof e==`number`&&Number.isFinite(e)&&Math.floor(e)===e&&u.default.isNumber(e)}function rd(e){return e==null?``:`${e}`}function id(e){return ld(e)?`0${e}`.slice(-2):``}function ad(e){return e.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,`\\$&`)}function od(e){return e.normalize(`NFD`).replace(/[\u0300-\u036f]/g,``)}function sd(e,t){if(!t)return null;let n=Z(e);return n.closest===void 0?null:n.closest(t)}function cd(e){return parseInt(`${e}`,10)}function ld(e){return!Number.isNaN(cd(e))}function ud(e){return e.replace(/([a-z])([A-Z])/g,`$1-$2`).toLowerCase()}function dd(e=document){let t=e?.activeElement;return t?t.shadowRoot?dd(t.shadowRoot):t:null}function fd(e,t,...n){for(let r of n)if(r){e.attr(t,r);return}e.removeAttr(t)}var pd=class e{constructor(e,t,n,r){this.$element=e,this.ngbCollapseConfig=t,this.$log=n,this._ngZone=r,this.hidden=new Y,this.shown=new Y,this._afterInit=!1,this._isCollapsed=!1}$onInit(){this.animation=this.animation??this.ngbCollapseConfig.animation,this.horizontal=this.horizontal??this.ngbCollapseConfig.horizontal,this.$element.toggleClass(`collapse-horizontal`,this.horizontal),this._runTransition(this._isCollapsed,!1),this._afterInit=!0}$onChanges(){this.$element.toggleClass(`collapse-horizontal`,!!this.horizontal)}$onDestroy(){this.hidden.complete(),this.shown.complete()}set collapsed(e){e!==void 0&&e!==this._isCollapsed&&(this._isCollapsed=e,this._afterInit&&this._runTransitionWithEvents(e,this.animation??this.ngbCollapseConfig.animation))}toggle(e=this._isCollapsed){this.collapsed=!e,this.ngbCollapseChange?.({$event:this._isCollapsed})}_runTransitionWithEvents(e,t){this._runTransition(e,t).subscribe(()=>{if(e){this.hiddenCallback?.(),this.hidden.next(),this.$log.log(`[ngb.collapse]: collapse was hidden`);return}this.shownCallback?.(),this.shown.next(),this.$log.log(`[ngb.collapse]: collapse was shown`)})}_runTransition(e,t){return Qu(this._ngZone,this.$element,qu,{animation:t,runningTransition:`stop`,context:{direction:e?`hide`:`show`,dimension:this.horizontal?`width`:`height`}})}static get $inject(){return[`$element`,Hu.$name,`$log`,Fc.$name]}static get $factory(){return()=>({controller:e,restrict:`A`,scope:{animation:`<?`,horizontal:`<?`,collapsed:`<ngbCollapse`,hiddenCallback:`&?ngbHidden`,ngbCollapseChange:`&?`,shownCallback:`&?shown`},bindToController:!0})}static get $name(){return`ngbCollapse`}},md=class e{static get $name(){return`ngbAccordionCollapse`}static get $inject(){return[]}static get $factory(){return()=>({bindToController:!0,scope:!0,require:{item:`^ngbAccordionItem`},restrict:`A`,transclude:!0,controllerAs:`$`,template:Vu,controller:e})}};X([fc(pd,{static:!0})],md.prototype,`ngbCollapse`,2);var hd=md,gd=0,_d=class e{constructor(e){this.$element=e,this._collapsed=!0,this._collapseAnimationRunning=!1}$postLink(){this._id=this._id??`ngb-accordion-item-${gd++}`,this.$element.attr(`id`,this._id),this.$element.addClass(`accordion-item`);let{ngbCollapse:e}=this._collapse;e.animation=!1,e.collapsed=this.collapsed,e.animation=this._accordion.animation,this._collapseHiddenSubscription=e.hidden.subscribe(()=>this.onCollapseHidden()),this._collapseShownSubscription=e.shown.subscribe(()=>this.onCollapseShown())}$onDestroy(){this._collapseHiddenSubscription?.unsubscribe(),this._collapseShownSubscription?.unsubscribe()}set id(e){!u.default.isString(e)||e===``||(this._id=e)}set destroyOnHide(e){this._destroyOnHide=e}get destroyOnHide(){return u.default.isUndefined(this._destroyOnHide)?!!this._accordion.destroyOnHide:!!this._destroyOnHide}set collapsed(e){if(e!==void 0){if(!this._accordion){this._collapsed=e;return}if(e){this.collapse();return}this.expand()}}get collapsed(){return this._collapsed}get id(){return`${this._id}`}get toggleId(){return`${this.id}-toggle`}get collapseId(){return`${this.id}-collapse`}get _shouldBeInDOM(){return!this.collapsed||this._collapseAnimationRunning||!this.destroyOnHide}isDisabled(){return this.ngDisabled?.disabled??!1}toggle(){this.collapsed=!this.collapsed}onCollapseHidden(){this._collapseAnimationRunning=!1,this.hidden?.(),this._accordion.hidden?.({$event:this.id})}onCollapseShown(){this.shown?.(),this._accordion.shown?.({$event:this.id})}expand(){this.collapsed&&this._accordion._ensureCanExpand(this)&&(this._collapsed=!1,this._body?.detectChanges(),this.show?.(),this._accordion.show?.({$event:this.id}),this._collapse.ngbCollapse.animation=this._accordion.animation,this._collapse.ngbCollapse.collapsed=!1)}collapse(){this.collapsed||(this._collapsed=!0,this._collapseAnimationRunning=!0,this.hide?.(),this._accordion.hide?.({$event:this.id}),this._collapse.ngbCollapse.animation=this._accordion.animation,this._collapse.ngbCollapse.collapsed=!0)}static get $inject(){return[`$element`]}static get $name(){return`ngbAccordionItem`}static get $factory(){return()=>({bindToController:!0,controller:e,require:{_accordion:`^ngbAccordion`,ngDisabled:`?ngDisabled`},restrict:`A`,transclude:!0,template:`<ng-content></ng-content>`,scope:{collapsed:`<?`,destroyOnHide:`<?`,id:`<?ngbAccordionItem`,hidden:`&?`,hide:`&?`,show:`&?`,shown:`&?`}})}};X([qs(hd,{static:!0})],_d.prototype,`_collapse`,2),X([qs(Bu,{static:!0})],_d.prototype,`_body`,2);var vd=_d,yd=class e{constructor(e,t){this.$element=e,this.ngbAccordionConfig=t,this._anItemWasAlreadyExpandedDuringInitialization=!1}$onInit(){this.animation=this.animation??this.ngbAccordionConfig.animation,this.closeOthers=this.closeOthers??this.ngbAccordionConfig.closeOthers,this.destroyOnHide=this.destroyOnHide??this.ngbAccordionConfig.destroyOnHide}$postLink(){this.$element.addClass(`accordion`)}toggle(e){this._getItem(e)?.toggle()}expand(e){this._getItem(e)?.expand()}expandAll(){if(!this.closeOthers){this._items.forEach(e=>{e.expand()});return}this._items.find(e=>!e.collapsed)||this._items.first?.expand()}collapse(e){this._getItem(e)?.collapse()}collapseAll(){this._items.forEach(e=>{e.collapse()})}isExpanded(e){let t=this._getItem(e);return t?!t.collapsed:!1}_ensureCanExpand(e){return this.closeOthers?this._items.length===0?!this._anItemWasAlreadyExpandedDuringInitialization&&(this._anItemWasAlreadyExpandedDuringInitialization=!0,!0):(this._items.find(t=>!t.collapsed&&e!==t)?.collapse(),!0):!0}_getItem(e){return this._items.find(t=>t.id===e)}static get $name(){return`ngbAccordion`}static get $factory(){return()=>({bindToController:!0,controller:e,restrict:`A`,transclude:!0,template:`<ng-content></ng-content>`,scope:{animation:`<?`,closeOthers:`<?`,destroyOnHide:`<?`,hidden:`&?`,hide:`&?`,show:`&?`,shown:`&?`}})}static get $inject(){return[`$element`,Ru.$name]}};X([ec(vd,{descendants:!1})],yd.prototype,`_items`,2);var bd=yd,xd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.$element.attr(`type`,`button`),this.$element.addClass(`accordion-button`),this.disableWatcher=this.$scope.$watch(()=>this.item.isDisabled(),e=>{this.$element.prop(`disabled`,!!e)}),this.stateWatcher=this.$scope.$watchGroup([()=>this.item.collapsed,()=>this.item.collapseId],e=>{let[t,n]=e;this.$element.toggleClass(`collapsed`,!!t),this.$element.attr(`aria-controls`,`${n}`),this.$element.attr(`aria-expanded`,`${!t}`)}),this.clickHandler=()=>this.$scope.$evalAsync(()=>{this.item.isDisabled()||this.accordion.toggle(this.item.id)}),this.$element.on(`click`,this.clickHandler)}$onDestroy(){this.clickHandler&&this.$element.off(`click`,this.clickHandler),this.disableWatcher?.(),this.stateWatcher?.()}static get $name(){return`ngbAccordionButton`}static get $inject(){return[`$element`,`$scope`]}static get $factory(){return()=>({controller:e,bindToController:!0,restrict:`A`,controllerAs:`$`,require:{item:`^^ngbAccordionItem`,accordion:`^^ngbAccordion`},scope:!0})}},Sd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.$element.addClass(`accordion-header`),this.$element.attr(`role`,`heading`),this.collapseWatcher=this.$scope.$watch(()=>this.item.collapsed,e=>{this.$element.toggleClass(`collapsed`,e)})}$onDestroy(){this.collapseWatcher?.()}static get $name(){return`ngbAccordionHeader`}static get $inject(){return[`$element`,`$scope`]}static get $factory(){return()=>({bindToController:!0,require:{item:`^ngbAccordionItem`},controller:e,restrict:`A`})}},Cd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.$element.attr(`id`,this.item.toggleId),this.$element.attr(`aria-controls`,this.item.collapseId);let e=[()=>this.item.collapsed,()=>this.item.collapseId,()=>this.item.isDisabled()];this.stateWatcher=this.$scope.$watchGroup(e,e=>{let[t,n]=e;this.$element.toggleClass(`collapsed`,!!t),this.$element.attr(`aria-controls`,`${n}`),this.$element.attr(`aria-expanded`,`${!t}`)}),this.clickHandler=()=>{this.$scope.$evalAsync(()=>{this.item.isDisabled()||this.accordion.toggle(this.item.id)})},this.$element.on(`click`,this.clickHandler)}$onDestroy(){this.clickHandler&&this.$element.off(`click`,this.clickHandler),this.stateWatcher?.()}static get $name(){return`ngbAccordionToggle`}static get $factory(){return()=>({bindToController:!0,controller:e,controllerAs:`$`,require:{item:`^^ngbAccordionItem`,accordion:`^^ngbAccordion`},scope:!0,restrict:`A`})}static get $inject(){return[`$element`,`$scope`]}},wd=u.default.module(`ngb.collapse`,[zc.name]);wd.directive(pd.$name,pd.$factory),wd.service(Hu.$name,Hu);var Td=u.default.module(`ngb.accordion`,[Wc.name,wd.name]);Td.service(Ru.$name,Ru),Td.directive(Bu.$name,Bu.$factory),Td.directive(xd.$name,xd.$factory),Td.directive(hd.$name,hd.$factory),Td.directive(Sd.$name,Sd.$factory),Td.directive(vd.$name,vd.$factory),Td.directive(Cd.$name,Cd.$factory),Td.directive(bd.$name,bd.$factory);var Ed=`<ng-content></ng-content>\r
+      `})}};X([fc(`container`,{read:Oc,static:!0})],zu.prototype,`_vcr`,2),X([qs(kc,{static:!0})],zu.prototype,`_bodyTpl`,2);var Bu=zu,Vu=`<section
+    role="region"
+    class="accordion-collapse"
+    ng-attr-id="{{ $.item.collapseId }}"
+    ng-attr-aria-labelledby="{{ $.item.toggleId }}"
+    ngb-collapse="$.item.collapsed">
+    <ng-content></ng-content>
+</section>
+`,Hu=class{constructor(e){this.ngbConfig=e,this.horizontal=!1}get animation(){return this._animation??this.ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.collapse.config.service`}},Uu=[`a[href]`,`button:not([disabled])`,`input:not([disabled]):not([type="hidden"])`,`select:not([disabled])`,`textarea:not([disabled])`,`[contenteditable]`,`[tabindex]:not([tabindex="-1"])`].join(`, `);function Wu(e){let t=Array.from(e.querySelectorAll(Uu)).filter(e=>e.tabIndex!==-1);return[t[0],t[t.length-1]]}var Gu=(e,t,n,r=!1)=>{e.runOutsideAngular(()=>{let e=Ko(t,`focusin`).pipe(bs(n),wo(e=>e.target));Ko(t,`keydown`).pipe(bs(n),ns(e=>e.key===`Tab`),Ss(e)).subscribe(([e,n])=>{let[r,i]=Wu(t);(n===r||n===t)&&e.shiftKey&&(i.focus(),e.preventDefault()),n===i&&!e.shiftKey&&(r.focus(),e.preventDefault())}),r&&Ko(t,`click`).pipe(bs(n),Ss(e),wo(e=>e[1])).subscribe(e=>e.focus())})};function Ku(e,t){if(typeof navigator>`u`)return`0px`;let n=e.hasClass(`show`);n||e.addClass(`show`),e.css({[t]:``});let r=`${Z(e).getBoundingClientRect()[t]}px`;return n||e.removeClass(`show`),r}function qu(e,t,n){let r=()=>{if(e.addClass(`collapse`),n.direction===`show`){e.addClass(`show`);return}e.removeClass(`show`)};if(!t){r();return}if(!n.maxSize){let t=Ku(e,n.dimension);u.default.extend(n,{maxSize:t}),e.css({[n.dimension]:n.direction===`show`?`0px`:t}),e.removeClass(`collapse collapsing show`),ed(e),e.addClass(`collapsing`)}if(!n.maxSize)throw Error(`[ngb-transition]: context.maxSize was undefined`);return e.css({[n.dimension]:n.direction===`show`?n.maxSize:`0px`}),()=>{r(),e.removeClass(`collapsing`),e.css({[n.dimension]:``})}}function Ju(e){let{transitionDelay:t,transitionDuration:n}=window.getComputedStyle(e);return(parseFloat(t)+parseFloat(n))*1e3}var Yu=u.default.noop,Xu={getTransitionTimerDelayMs:()=>5},Zu=new Map;function Qu(e,t,n,r){let i=r.context??{},a=Z(t),o=Zu.get(a);if(o){if(r.runningTransition===`continue`)return Ba;e.run(()=>o.transition$.complete()),i=u.default.extend(o.context,i),Zu.delete(a)}let s=n(t,r.animation,i)||Yu;if(!r.animation||window.getComputedStyle(a).transitionProperty===`none`)return e.run(()=>s()),So(void 0).pipe(td(e));let c=new Y,l=new Y,d=c.pipe(gs(!0));Zu.set(a,{transition$:c,complete:()=>{l.next(),l.complete()},context:i});let f=Ju(a);return e.runOutsideAngular(()=>{let t=Ko(a,`transitionend`).pipe(bs(d),ns(({target:e})=>e===a));rs(Zo(f+Xu.getTransitionTimerDelayMs()).pipe(bs(d)),t,l).pipe(bs(d)).subscribe(()=>{Zu.delete(a),e.run(()=>{s(),c.next(),c.complete()})})}),c.asObservable()}function $u(e){Zu.get(Z(e))?.complete()}function ed(e){return(Z(e)||document.body).getBoundingClientRect()}function td(e){return t=>new xa(n=>t.subscribe({next:t=>e.run(()=>n.next(t)),error:t=>e.run(()=>n.error(t)),complete:()=>e.run(()=>n.complete())}))}function nd(e,t,n=0){return Math.max(Math.min(e,t),n)}function Z(e){let[t]=Array.from(e);return t}function Q(e){return typeof e==`number`&&Number.isFinite(e)&&Math.floor(e)===e&&u.default.isNumber(e)}function rd(e){return e==null?``:`${e}`}function id(e){return ld(e)?`0${e}`.slice(-2):``}function ad(e){return e.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,`\\$&`)}function od(e){return e.normalize(`NFD`).replace(/[\u0300-\u036f]/g,``)}function sd(e,t){if(!t)return null;let n=Z(e);return n.closest===void 0?null:n.closest(t)}function cd(e){return parseInt(`${e}`,10)}function ld(e){return!Number.isNaN(cd(e))}function ud(e){return e.replace(/([a-z])([A-Z])/g,`$1-$2`).toLowerCase()}function dd(e=document){let t=e?.activeElement;return t?t.shadowRoot?dd(t.shadowRoot):t:null}function fd(e,t,...n){for(let r of n)if(r){e.attr(t,r);return}e.removeAttr(t)}var pd=class e{constructor(e,t,n,r){this.$element=e,this.ngbCollapseConfig=t,this.$log=n,this._ngZone=r,this.hidden=new Y,this.shown=new Y,this._afterInit=!1,this._isCollapsed=!1}$onInit(){this.animation=this.animation??this.ngbCollapseConfig.animation,this.horizontal=this.horizontal??this.ngbCollapseConfig.horizontal,this.$element.toggleClass(`collapse-horizontal`,this.horizontal),this._runTransition(this._isCollapsed,!1),this._afterInit=!0}$onChanges(){this.$element.toggleClass(`collapse-horizontal`,!!this.horizontal)}$onDestroy(){this.hidden.complete(),this.shown.complete()}set collapsed(e){e!==void 0&&e!==this._isCollapsed&&(this._isCollapsed=e,this._afterInit&&this._runTransitionWithEvents(e,this.animation??this.ngbCollapseConfig.animation))}toggle(e=this._isCollapsed){this.collapsed=!e,this.ngbCollapseChange?.({$event:this._isCollapsed})}_runTransitionWithEvents(e,t){this._runTransition(e,t).subscribe(()=>{if(e){this.hiddenCallback?.(),this.hidden.next(),this.$log.log(`[ngb.collapse]: collapse was hidden`);return}this.shownCallback?.(),this.shown.next(),this.$log.log(`[ngb.collapse]: collapse was shown`)})}_runTransition(e,t){return Qu(this._ngZone,this.$element,qu,{animation:t,runningTransition:`stop`,context:{direction:e?`hide`:`show`,dimension:this.horizontal?`width`:`height`}})}static get $inject(){return[`$element`,Hu.$name,`$log`,Fc.$name]}static get $factory(){return()=>({controller:e,restrict:`A`,scope:{animation:`<?`,horizontal:`<?`,collapsed:`<ngbCollapse`,hiddenCallback:`&?ngbHidden`,ngbCollapseChange:`&?`,shownCallback:`&?shown`},bindToController:!0})}static get $name(){return`ngbCollapse`}},md=class e{static get $name(){return`ngbAccordionCollapse`}static get $inject(){return[]}static get $factory(){return()=>({bindToController:!0,scope:!0,require:{item:`^ngbAccordionItem`},restrict:`A`,transclude:!0,controllerAs:`$`,template:Vu,controller:e})}};X([fc(pd,{static:!0})],md.prototype,`ngbCollapse`,2);var hd=md,gd=0,_d=class e{constructor(e){this.$element=e,this._collapsed=!0,this._collapseAnimationRunning=!1}$postLink(){this._id=this._id??`ngb-accordion-item-${gd++}`,this.$element.attr(`id`,this._id),this.$element.addClass(`accordion-item`);let{ngbCollapse:e}=this._collapse;e.animation=!1,e.collapsed=this.collapsed,e.animation=this._accordion.animation,this._collapseHiddenSubscription=e.hidden.subscribe(()=>this.onCollapseHidden()),this._collapseShownSubscription=e.shown.subscribe(()=>this.onCollapseShown())}$onDestroy(){this._collapseHiddenSubscription?.unsubscribe(),this._collapseShownSubscription?.unsubscribe()}set id(e){!u.default.isString(e)||e===``||(this._id=e)}set destroyOnHide(e){this._destroyOnHide=e}get destroyOnHide(){return u.default.isUndefined(this._destroyOnHide)?!!this._accordion.destroyOnHide:!!this._destroyOnHide}set collapsed(e){if(e!==void 0){if(!this._accordion){this._collapsed=e;return}if(e){this.collapse();return}this.expand()}}get collapsed(){return this._collapsed}get id(){return`${this._id}`}get toggleId(){return`${this.id}-toggle`}get collapseId(){return`${this.id}-collapse`}get _shouldBeInDOM(){return!this.collapsed||this._collapseAnimationRunning||!this.destroyOnHide}isDisabled(){return this.ngDisabled?.disabled??!1}toggle(){this.collapsed=!this.collapsed}onCollapseHidden(){this._collapseAnimationRunning=!1,this.hidden?.(),this._accordion.hidden?.({$event:this.id})}onCollapseShown(){this.shown?.(),this._accordion.shown?.({$event:this.id})}expand(){this.collapsed&&this._accordion._ensureCanExpand(this)&&(this._collapsed=!1,this._body?.detectChanges(),this.show?.(),this._accordion.show?.({$event:this.id}),this._collapse.ngbCollapse.animation=this._accordion.animation,this._collapse.ngbCollapse.collapsed=!1)}collapse(){this.collapsed||(this._collapsed=!0,this._collapseAnimationRunning=!0,this.hide?.(),this._accordion.hide?.({$event:this.id}),this._collapse.ngbCollapse.animation=this._accordion.animation,this._collapse.ngbCollapse.collapsed=!0)}static get $inject(){return[`$element`]}static get $name(){return`ngbAccordionItem`}static get $factory(){return()=>({bindToController:!0,controller:e,require:{_accordion:`^ngbAccordion`,ngDisabled:`?ngDisabled`},restrict:`A`,transclude:!0,template:`<ng-content></ng-content>`,scope:{collapsed:`<?`,destroyOnHide:`<?`,id:`<?ngbAccordionItem`,hidden:`&?`,hide:`&?`,show:`&?`,shown:`&?`}})}};X([qs(hd,{static:!0})],_d.prototype,`_collapse`,2),X([qs(Bu,{static:!0})],_d.prototype,`_body`,2);var vd=_d,yd=class e{constructor(e,t){this.$element=e,this.ngbAccordionConfig=t,this._anItemWasAlreadyExpandedDuringInitialization=!1}$onInit(){this.animation=this.animation??this.ngbAccordionConfig.animation,this.closeOthers=this.closeOthers??this.ngbAccordionConfig.closeOthers,this.destroyOnHide=this.destroyOnHide??this.ngbAccordionConfig.destroyOnHide}$postLink(){this.$element.addClass(`accordion`)}toggle(e){this._getItem(e)?.toggle()}expand(e){this._getItem(e)?.expand()}expandAll(){if(!this.closeOthers){this._items.forEach(e=>{e.expand()});return}this._items.find(e=>!e.collapsed)||this._items.first?.expand()}collapse(e){this._getItem(e)?.collapse()}collapseAll(){this._items.forEach(e=>{e.collapse()})}isExpanded(e){let t=this._getItem(e);return t?!t.collapsed:!1}_ensureCanExpand(e){return this.closeOthers?this._items.length===0?!this._anItemWasAlreadyExpandedDuringInitialization&&(this._anItemWasAlreadyExpandedDuringInitialization=!0,!0):(this._items.find(t=>!t.collapsed&&e!==t)?.collapse(),!0):!0}_getItem(e){return this._items.find(t=>t.id===e)}static get $name(){return`ngbAccordion`}static get $factory(){return()=>({bindToController:!0,controller:e,restrict:`A`,transclude:!0,template:`<ng-content></ng-content>`,scope:{animation:`<?`,closeOthers:`<?`,destroyOnHide:`<?`,hidden:`&?`,hide:`&?`,show:`&?`,shown:`&?`}})}static get $inject(){return[`$element`,Ru.$name]}};X([ec(vd,{descendants:!1})],yd.prototype,`_items`,2);var bd=yd,xd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.$element.attr(`type`,`button`),this.$element.addClass(`accordion-button`),this.disableWatcher=this.$scope.$watch(()=>this.item.isDisabled(),e=>{this.$element.prop(`disabled`,!!e)}),this.stateWatcher=this.$scope.$watchGroup([()=>this.item.collapsed,()=>this.item.collapseId],e=>{let[t,n]=e;this.$element.toggleClass(`collapsed`,!!t),this.$element.attr(`aria-controls`,`${n}`),this.$element.attr(`aria-expanded`,`${!t}`)}),this.clickHandler=()=>this.$scope.$evalAsync(()=>{this.item.isDisabled()||this.accordion.toggle(this.item.id)}),this.$element.on(`click`,this.clickHandler)}$onDestroy(){this.clickHandler&&this.$element.off(`click`,this.clickHandler),this.disableWatcher?.(),this.stateWatcher?.()}static get $name(){return`ngbAccordionButton`}static get $inject(){return[`$element`,`$scope`]}static get $factory(){return()=>({controller:e,bindToController:!0,restrict:`A`,controllerAs:`$`,require:{item:`^^ngbAccordionItem`,accordion:`^^ngbAccordion`},scope:!0})}},Sd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.$element.addClass(`accordion-header`),this.$element.attr(`role`,`heading`),this.collapseWatcher=this.$scope.$watch(()=>this.item.collapsed,e=>{this.$element.toggleClass(`collapsed`,e)})}$onDestroy(){this.collapseWatcher?.()}static get $name(){return`ngbAccordionHeader`}static get $inject(){return[`$element`,`$scope`]}static get $factory(){return()=>({bindToController:!0,require:{item:`^ngbAccordionItem`},controller:e,restrict:`A`})}},Cd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.$element.attr(`id`,this.item.toggleId),this.$element.attr(`aria-controls`,this.item.collapseId);let e=[()=>this.item.collapsed,()=>this.item.collapseId,()=>this.item.isDisabled()];this.stateWatcher=this.$scope.$watchGroup(e,e=>{let[t,n]=e;this.$element.toggleClass(`collapsed`,!!t),this.$element.attr(`aria-controls`,`${n}`),this.$element.attr(`aria-expanded`,`${!t}`)}),this.clickHandler=()=>{this.$scope.$evalAsync(()=>{this.item.isDisabled()||this.accordion.toggle(this.item.id)})},this.$element.on(`click`,this.clickHandler)}$onDestroy(){this.clickHandler&&this.$element.off(`click`,this.clickHandler),this.stateWatcher?.()}static get $name(){return`ngbAccordionToggle`}static get $factory(){return()=>({bindToController:!0,controller:e,controllerAs:`$`,require:{item:`^^ngbAccordionItem`,accordion:`^^ngbAccordion`},scope:!0,restrict:`A`})}static get $inject(){return[`$element`,`$scope`]}},wd=u.default.module(`ngb.collapse`,[zc.name]);wd.directive(pd.$name,pd.$factory),wd.service(Hu.$name,Hu);var Td=u.default.module(`ngb.accordion`,[Wc.name,wd.name]);Td.service(Ru.$name,Ru),Td.directive(Bu.$name,Bu.$factory),Td.directive(xd.$name,xd.$factory),Td.directive(hd.$name,hd.$factory),Td.directive(Sd.$name,Sd.$factory),Td.directive(vd.$name,vd.$factory),Td.directive(Cd.$name,Cd.$factory),Td.directive(bd.$name,bd.$factory);var Ed=`<ng-content></ng-content>
 \r
 <button ng-if="$.dismissible" ng-click="$.close()" type="button" class="btn-close" aria-label="Close">\r
-</button>\r
+</button>
 `,Dd=class{constructor(e){this.ngbConfig=e,this.dismissible=!0,this.type=`warning`}get animation(){return this._animation??this.ngbConfig.animation}set animation(e){this._animation=e}static get $name(){return`ngb.alert.config.service`}static get $inject(){return[Lu.$name]}},Od=e=>{e.removeClass(`show`)},kd=class e{constructor(e,t,n,r){this.$element=e,this.ngbAlertConfig=t,this.$log=n,this._ngZone=r}$onInit(){this.animation=this.animation??this.ngbAlertConfig.animation,this.dismissible=this.dismissible??this.ngbAlertConfig.dismissible,this.type=this.type??this.ngbAlertConfig.type}$postLink(){this.$element.attr(`role`,`alert`),this.$element.addClass(`alert d-block show`);let e=`alert-${this.type}`;this.$element.addClass(e)}$onChanges(){this.$element.toggleClass(`fade`,this.animation),this.$element.toggleClass(`alert-dismissible`,this.dismissible)}close(){let e=Qu(this._ngZone,this.$element,Od,{animation:this.animation??this.ngbAlertConfig.animation,runningTransition:`continue`});return e.subscribe(()=>{this.closed?.(),this.$log.info(`[ngb.alert]: was closed`)}),e}static get $name(){return`ngbAlert`}static get $inject(){return[`$element`,Dd.$name,`$log`,Fc.$name]}static get $factory(){return{bindings:{animation:`<?`,dismissible:`<?`,type:`@?`,closed:`&?`},transclude:!0,controller:e,controllerAs:`$`,template:Ed}}},Ad=u.default.module(`ngb.alert`,[Wc.name]);Ad.component(kd.$name,kd.$factory),Ad.service(Dd.$name,Dd);var jd=`<div class="carousel-indicators" ng-class="{ 'visually-hidden': !$.showNavigationIndicators }" role="tablist">\r
-    <button title="indicator {{ $index }}" ng-repeat="$slide in $.slides.toArray() track by $index" type="button" data-bs-target\r
+    <button title="indicator {{ $index }}" ng-repeat="$slide in $.slides.toArray() track by $index" type="button" data-bs-target
         ng-class="{ 'active': $slide.id === $.activeId }" role="tab" ng-attr-aria-labelledby="slide-{{ $slide.id }}"\r
         ng-attr-aria-controls="slide-{{ $slide.id }}" ng-attr-aria-selected="{{ $slide.id === $.activeId }}"\r
         ng-click="$.focus(); $.select($slide.id, $.NgbSlideEventSource.INDICATOR)"></button>\r
 </div>\r
 \r
 <div class="carousel-inner">\r
-    <div ng-repeat="$slide in $.slides.toArray() track by $index" ng-init="$count = $.slides.length" class="carousel-item"\r
+    <div ng-repeat="$slide in $.slides.toArray() track by $index" ng-init="$count = $.slides.length" class="carousel-item"
         ng-attr-id="slide-{{ $slide.id }}" role="tabpanel">\r
         <span class="visually-hidden">\r
             Slide {{ $index + 1 }} of {{ $count }}\r
         </span>\r
 \r
-        <ng-container ng-template-outlet="$.getSlideTemplate($index)"></ng-container>\r
+        <ng-container ng-template-outlet="$.getSlideTemplate($index)"></ng-container>
     </div>\r
 </div>\r
 \r
-<button ng-if="$.showNavigationArrows" class="carousel-control-prev" type="button"\r
-    ng-attr-aria-labelledby="{{ $.id }}-previous" ng-click="$.arrowLeft()">\r
+<button ng-if="$.showNavigationArrows" class="carousel-control-prev" type="button"
+    ng-attr-aria-labelledby="{{ $.id }}-previous" ng-click="$.arrowLeft()">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>\r
     <span class="visually-hidden" ng-attr-id="{{ $.id }}-previous">Previous</span>\r
 </button>\r
@@ -58,20 +58,20 @@ Watchers fired in the last 5 iterations: {1}`,e,C)}while(f||m.length);for(y();_<
     <span class="visually-hidden" ng-attr-id="{{ $.id }}-next">Next</span>\r
 </button>\r
 \r
-<ng-content></ng-content>\r
-`,Md=class{constructor(e){this.ngbConfig=e,this.interval=5e3,this.wrap=!0,this.keyboard=!0,this.pauseOnFocus=!0,this.pauseOnHover=!0,this.showNavigationArrows=!0,this.showNavigationIndicators=!0}get animation(){return this._animation??this.ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.carousel.config.service`}};function Nd(e){return e.hasClass(`carousel-item-start`)||e.hasClass(`carousel-item-end`)}function Pd(e){e.removeClass(`carousel-item-start carousel-item-end`)}function Fd(e){Pd(e),e.removeClass(`carousel-item-prev carousel-item-next`)}var Id=(e,t,{direction:n})=>{if(!t){Fd(e),e.addClass(`active`);return}return Nd(e)?Pd(e):(e.addClass(`carousel-item-${n===`start`?`next`:`prev`}`),ed(e),e.addClass(`carousel-item-${n}`)),()=>{Fd(e),e.addClass(`active`)}},Ld=(e,t,{direction:n})=>{if(!t){Fd(e),e.removeClass(`active`);return}return Nd(e)?Pd(e):e.addClass(`carousel-item-${n}`),()=>{Fd(e),e.removeClass(`active`)}},Rd=0,zd=class e{$onInit(){this.id=this.id??`ngb-slide-${Rd++}`}static get $factory(){return()=>({controller:e,scope:!0,bindToController:{slid:`&?`,id:`@?`},require:{carousel:`^^ngbCarousel`},restrict:`A`})}static get $name(){return`ngbSlide`}},Bd=0,Vd=class e{constructor(e,t,n,r,i){this.$element=e,this.$scope=t,this.$ngbCarouselConfig=n,this._ngZone=r,this._changeDetector=i,this.NgbSlideEventSource=Ud,this.slides=new Xs,this._transitionIds=null,this._interval$=new ja(0),this._mouseHover$=new ja(!1),this._focused$=new ja(!1),this._pauseOnHover$=new ja(!1),this._pauseOnFocus$=new ja(!1),this._pause$=new ja(!1),this._wrap$=new ja(!1),this._activeId$=new ja(``),this._slides$=new ja([]),this._destroy$=new Y}$onInit(){this.animation=this.animation??this.$ngbCarouselConfig.animation,this.interval=this.interval??this.$ngbCarouselConfig.interval,this.keyboard=this.keyboard??this.$ngbCarouselConfig.keyboard,this.pauseOnFocus=this.pauseOnFocus??this.$ngbCarouselConfig.pauseOnFocus,this.pauseOnHover=this.pauseOnHover??this.$ngbCarouselConfig.pauseOnHover,this.showNavigationArrows=this.showNavigationArrows??this.$ngbCarouselConfig.showNavigationArrows,this.showNavigationIndicators=this.showNavigationIndicators??this.$ngbCarouselConfig.showNavigationIndicators,this.wrap=this.wrap??this.$ngbCarouselConfig.wrap,this._interval$.next(this.interval),this._pauseOnHover$.next(this.pauseOnHover),this._pauseOnFocus$.next(this.pauseOnFocus),this._wrap$.next(this.wrap),this._activeId$.next(this.activeId??``),this.id=`ngb-carousel-${Bd++}`}$onChanges(e){e.interval&&this._interval$.next(this.interval),e.wrap&&this._wrap$.next(this.wrap),e.pauseOnHover&&this._pauseOnHover$.next(this.pauseOnHover),e.pauseOnFocus&&this._pauseOnFocus$.next(this.pauseOnFocus)}$postLink(){this.$element.addClass(`carousel slide`),this.$element.css(`display`,`block`),this.$element.attr(`tabindex`,0),this._container=this.$element,this.$element.on(`keydown`,e=>{if(!this.keyboard)return;let t={ArrowRight:()=>this.arrowRight(),ArrowLeft:()=>this.arrowLeft()}[e.key];t&&(e.preventDefault(),t())}),this.$element.on(`mouseenter`,()=>this._mouseHover$.next(!0)),this.$element.on(`mouseleave`,()=>this._mouseHover$.next(!1)),this.$element.on(`focusin`,()=>this._focused$.next(!0)),this.$element.on(`focusout`,()=>this._focused$.next(!1));let e=Fo([this._activeId$,this._wrap$,this._slides$]).pipe(wo(([e,t,n])=>{let r=n.findIndex(t=>t.id===e);return t?n.length>1:r<n.length-1}),ms());Fo([this._pause$,this._pauseOnHover$,this._mouseHover$,this._pauseOnFocus$,this._focused$,this._interval$,e]).pipe(wo(([e,t,n,r,i,a,o])=>e||t&&n||r&&i||!o?0:a),ms(),ys(e=>e>0?Zo(e,e):$o),bs(this._destroy$)).subscribe(()=>{this._ngZone.run(()=>this.next(`timer`))}),this._slides$.pipe(vs(1),bs(this._destroy$)).subscribe(()=>{this._transitionIds?.forEach(e=>{$u(this._getSlideElement(e))}),this._transitionIds=null,this.$scope.$$postDigest(()=>this._syncActiveSlideClass())}),this._syncSlides(),this.contentSlides.changes.pipe(bs(this._destroy$)).subscribe(()=>this._syncSlides()),this.slides.changes.pipe(bs(this._destroy$)).subscribe(e=>{this._slides$.next(e.toArray())}),this._slides$.next(this.slides.toArray()),this.$scope.$$postDigest(()=>this._syncActiveSlideClass())}$doCheck(){let e=this._getSlideById(this.activeId),t=e?e.id:this.slides.first?.id??``;t!==this.activeId&&(this.activeId=t,this._activeId$.next(t))}$onDestroy(){this.$element.off(`keydown`),this.$element.off(`mouseenter`),this.$element.off(`mouseleave`),this.$element.off(`focusin`),this.$element.off(`focusout`),this._destroy$.next(),this._destroy$.complete(),this.slides.destroy()}focus(){if(!this._container)throw Error(`[ngb-carousel]: container do not exist`);Z(this._container).focus()}arrowLeft(){this.focus(),this.prev(`arrowLeft`)}arrowRight(){this.focus(),this.next(`arrowRight`)}prev(e){this._cycleToSelected(this._getPrevSlide(this.activeId),`end`,e)}next(e){this._cycleToSelected(this._getNextSlide(this.activeId),`start`,e)}select(e,t){this._cycleToSelected(e,this._getSlideEventDirection(this.activeId,e),t)}cycle(){this._pause$.next(!1)}pause(){this._pause$.next(!0)}getSlideTemplate(e){let t=this.slides.get(e),n=t?this.contentSlides.toArray().indexOf(t):-1;return n>=0?this.slideTemplates.get(n):void 0}_syncSlides(){this.slides.reset(this.contentSlides.filter(e=>e.carousel===this)),this.slides.notifyOnChanges()}_syncActiveSlideClass(){if(!(this._transitionIds||!this.activeId))for(let e of this.slides)this._findSlideElement(e.id)?.toggleClass(`active`,e.id===this.activeId)}_cycleToSelected(e,t,n){let r=this._transitionIds;if(r&&(r[0]!==e||r[1]!==this.activeId))return;let i=this._getSlideById(e);if(i&&i.id!==this.activeId){this._transitionIds=[this.activeId??``,e],this.slide?.({$event:{prev:this.activeId??``,current:i.id,direction:t,paused:this._pause$.value,source:n}});let r={animation:this.animation??this.$ngbCarouselConfig.animation,runningTransition:`stop`,context:{direction:t}},a=[],o=this._getSlideById(this.activeId);if(o){let e=Qu(this._ngZone,this._getSlideElement(o.id),Ld,r);e.subscribe(()=>o.slid?.({$event:{direction:t,source:n,isShown:!1}})),a.push(e)}let s=this.activeId;this.activeId=i.id,this._activeId$.next(this.activeId);let c=this._getSlideById(this.activeId),l=Qu(this._ngZone,this._getSlideElement(i.id),Id,r);l.subscribe(()=>c?.slid?.({$event:{isShown:!0,direction:t,source:n}})),a.push(l),as(...a).pipe(ls(1)).subscribe(()=>{this._transitionIds=null,this.slid?.({$event:{prev:s??``,current:i.id,direction:t,paused:this._pause$.value,source:n}})})}this._changeDetector.markForCheck()}_getSlideEventDirection(e,t){return this._getSlideIdxById(e)>this._getSlideIdxById(t)?`end`:`start`}_getNextSlide(e){let t=this.slides.toArray(),n=this._getSlideIdxById(e);return n===t.length-1?this.wrap?t[0].id:t[t.length-1].id:t[n+1].id}_getPrevSlide(e){let t=this.slides.toArray(),n=this._getSlideIdxById(e);return n===0?this.wrap?t[t.length-1].id:t[0].id:t[n-1].id}_getSlideElement(e){let t=this._findSlideElement(e);if(!t)throw Error(`[ngb-carousel]: ngb-slide id not found`);return t}_findSlideElement(e){if(!this._container)return null;let t=Z(this._container).querySelector(`#slide-${e}`);return t?u.default.element(t):null}_getSlideById(e){return this.slides.find(t=>t.id===e)||null}_getSlideIdxById(e){let t=this._getSlideById(e);return t==null?-1:this.slides.toArray().indexOf(t)}static get $name(){return`ngbCarousel`}static get $factory(){return{controllerAs:`$`,controller:e,transclude:!0,bindings:{activeId:`@?`,animation:`<?`,interval:`<?`,keyboard:`<?`,pauseOnFocus:`<?`,pauseOnHover:`<?`,showNavigationArrows:`<?`,showNavigationIndicators:`<?`,wrap:`<?`,slid:`&?`,slide:`&?`},template:jd}}static get $inject(){return[`$element`,`$scope`,Md.$name,Fc.$name,ks.$name]}};X([ec(zd)],Vd.prototype,`contentSlides`,2),X([ec(zd,{read:kc})],Vd.prototype,`slideTemplates`,2);var Hd=Vd,Ud=(e=>(e.TIMER=`timer`,e.ARROW_LEFT=`arrowLeft`,e.ARROW_RIGHT=`arrowRight`,e.INDICATOR=`indicator`,e))(Ud||{}),Wd=u.default.module(`ngb.carousel`,[Wc.name]);Wd.directive(zd.$name,zd.$factory),Wd.component(Hd.$name,Hd.$factory),Wd.service(Md.$name,Md);var Gd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.nativeElement=Z(this.$element),this.$element.addClass(`dropdown-toggle`),this.unwatchOpenState=this.$scope.$watch(()=>this.dropdown.isOpen(),e=>this._applyHostBindings(e))}$onDestroy(){this.unwatchOpenState?.()}_applyHostBindings(e=this.dropdown.isOpen()){this.$element.toggleClass(`show`,e),this.$element.attr(`aria-expanded`,`${e}`)}static get $inject(){return[`$element`,`$scope`]}static get $name(){return`ngbDropdownAnchor`}static get $factory(){return()=>({controller:e,restrict:`A`,require:{dropdown:`^ngbDropdown`},bindToController:!0,scope:!0})}},Kd=class{constructor(){this.autoClose=!0,this.container=null,this.placement=[`bottom-start`,`bottom-end`,`top-start`,`top-end`],this.popperOptions=e=>e}static get $name(){return`ngb.dropdown.config.service`}},qd=class e{constructor(e){this.$element=e,this.tabindex=0}isDisabled(){return this.ngDisabled?.disabled??!1}onDisabledChange(e){return this.ngDisabled?.onChange(e)??(()=>void 0)}$postLink(){this.nativeElement=Z(this.$element),this.$element.addClass(`dropdown-item`),this._applyHostBindings(),this.removeDisabledListener=this.onDisabledChange(()=>this._applyHostBindings())}$onChanges(){this._applyHostBindings()}$onDestroy(){this.removeDisabledListener?.()}_applyHostBindings(){this.$element.toggleClass(`disabled`,this.isDisabled()),this.$element.attr(`tabIndex`,this.isDisabled()?-1:this.tabindex)}static get $name(){return`ngbDropdownItem`}static get $factory(){return()=>({bindToController:{tabindex:`<?`},controller:e,require:{ngDisabled:`?ngDisabled`},scope:!0,restrict:`A`})}static get $inject(){return[`$element`]}},Jd=new Set([`ArrowUp`,`ArrowDown`,`Home`,`End`,`Enter`,` `,`Tab`]),Yd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.$element.addClass(`dropdown-menu`),this.nativeElement=Z(this.$element),this.unwatchOpenState=this.$scope.$watch(()=>this.ngbDropdown.isOpen(),e=>this.$element.toggleClass(`show`,e)),this.keydownListener=e=>{Jd.has(e.key)&&this.ngbDropdown.onKeyDown(e)},this.$element.on(`keydown`,this.keydownListener)}$onDestroy(){this.keydownListener&&this.$element.off(`keydown`,this.keydownListener),this.unwatchOpenState?.()}static get $name(){return`ngbDropdownMenu`}static get $factory(){return()=>({bindToController:!0,controller:e,require:{ngbDropdown:`^ngbDropdown`},scope:!0,restrict:`A`,transclude:!0,template:`<ng-content></ng-content>`})}static get $inject(){return[`$element`,`$scope`]}};X([ec(qd)],Yd.prototype,`menuItems`,2);var Xd=Yd,Zd=(e,t)=>t?t.some(t=>t?.contains(e)??!1):!1,Qd=(e,t)=>!t||sd(u.default.element(e),t)!=null,$d=typeof navigator<`u`&&!!navigator.userAgent&&((()=>{let e=/iPad|iPhone|iPod/.test(navigator.userAgent),t=navigator.maxTouchPoints!=null&&navigator.maxTouchPoints>2,n=/Macintosh/.test(navigator.userAgent);return e||n&&t})()||/Android/.test(navigator.userAgent)),ef=e=>$d?()=>setTimeout(e,100):e;function tf(e,t,n,r,i,a,o){t&&e.runOutsideAngular(ef(()=>{let s=e=>{let n=e.target;return!n||e.button===2||Zd(n,a)?!1:t===`inside`?Zd(n,i)&&Qd(n,o):t===`outside`?!Zd(n,i):Qd(n,o)||!Zd(n,i)},c=Ko(document,`keydown`).pipe(bs(n),ns(e=>e.key===`Escape`),xs(e=>e.preventDefault())),l=Ko(document,`mousedown`).pipe(wo(s),bs(n)),u=Ko(document,`mouseup`).pipe(Ss(l),ns(([,e])=>e),ps(0),bs(n));rs(c.pipe(wo(()=>0)),u.pipe(wo(()=>1))).pipe(bs(n)).subscribe(t=>e.run(()=>r(t)))}))}var nf=/\s+/,rf=/ {2,}/gi,af={auto:[`auto`],top:[`top`],bottom:[`bottom`],start:[`left`,`right`],left:[`left`],end:[`right`,`left`],right:[`right`],"top-start":[`top-start`,`top-end`],"top-left":[`top-start`],"top-end":[`top-end`,`top-start`],"top-right":[`top-end`],"bottom-start":[`bottom-start`,`bottom-end`],"bottom-left":[`bottom-start`],"bottom-end":[`bottom-end`,`bottom-start`],"bottom-right":[`bottom-end`],"start-top":[`left-start`,`right-start`],"left-top":[`left-start`],"start-bottom":[`left-end`,`right-end`],"left-bottom":[`left-end`],"end-top":[`right-start`,`left-start`],"right-top":[`right-start`],"end-bottom":[`right-end`,`left-end`],"right-bottom":[`right-end`]};function of(e,t){let[n,r]=af[e];return t&&r||n}var sf=/^left/,cf=/^right/,lf=/^start/,uf=/^end/;function df(e){return e}function ff(e,t){let[n,r]=t.split(`-`),i=n.replace(sf,`start`).replace(cf,`end`),a=[i];if(r){let e=r;(n===`left`||n===`right`)&&(e=e.replace(lf,`top`).replace(uf,`bottom`)),a.push(`${i}-${e}`)}return e?a.map(t=>`${e}-${t}`).join(` `):a.join(` `)}function pf({placement:e,baseClass:t},n){let r=Array.isArray(e)?e:e.split(nf),i=[`top`,`bottom`,`start`,`end`,`top-start`,`top-end`,`bottom-start`,`bottom-end`,`start-top`,`start-bottom`,`end-top`,`end-bottom`],a=r.indexOf(`auto`);a>=0&&i.forEach(e=>{r.find(t=>t.search(`^${e}`)!==-1)??r.splice(a++,1,e)});let o=r.map(e=>of(e,n.isRTL()));return{placement:o.shift(),modifiers:[{name:`bootstrapClasses`,enabled:!!t,phase:`write`,fn({state:e}){let n=RegExp(`${t}(-[a-z]+)*`,`gi`),r=e.elements.popper,i=e.placement,a=r.className;a=a.replace(n,``),a+=` ${ff(t,i)}`,a=a.trim().replace(rf,` `),r.className=a}},mu,Su,Ll,{enabled:!0,name:`flip`,options:{fallbackPlacements:o}}]}}function mf(e){let t=null;return{createPopper(n){if(!t){let r=(n.updatePopperOptions||df)(pf(n,e));t=Pu(n.hostElement,n.targetElement,r)}},update(){t&&t.update()},setOptions(n){if(t){let r=(n.updatePopperOptions||df)(pf(n,e));t.setOptions(r)}},destroy(){t&&=(t.destroy(),null)}}}function hf(e){return t=>(t.modifiers?.push(_u,{name:`offset`,options:{offset:()=>e}}),t)}var gf=class{constructor(){this._element=document.documentElement}isRTL(){return(this._element.getAttribute(`dir`)||``).toLowerCase()===`rtl`}static get $inject(){return[]}static get $name(){return`ngb.rtl.service`}},_f=class e{constructor(e,t,n,r,i,a){this.$config=e,this.$element=t,this.$ngbRTL=n,this.$scope=r,this._ngZone=i,this._changeDetector=a,this._bodyContainer=null,this._positioning=null,this._destroyCloseHandlers$=new Y,this._open=!1}get menuItems(){return this._menu.menuItems}$onInit(){this._positioning=mf(this.$ngbRTL),this.autoClose=this.autoClose??this.$config.autoClose,this.placement=this.placement??this.$config.placement,this.popperOptions=this.popperOptions??this.$config.popperOptions,this.container=this.container??this.$config.container,this._unwatchOpenState=this.$scope.$watch(()=>this.isOpen(),e=>this.$element.toggleClass(`show`,e))}$postLink(){if(!this.display){let e=Z(this.$element);this.display=e.closest(`.navbar`)?`static`:`dynamic`}this._ngZone.runOutsideAngular(()=>{queueMicrotask(()=>{this._applyPlacementClasses(),this._open&&(this._applyContainer(this.container),this._setCloseHandlers())})})}$onChanges(e){if(e.container&&!e.container.isFirstChange()&&this._validateContainer(this.container),e.container&&this._open&&this._menu&&this._applyContainer(this.container),e.placement&&!e.placement?.isFirstChange()){let e=this._bodyContainer?Z(this._bodyContainer):null;this._positioning?.setOptions({hostElement:this._anchor.nativeElement,targetElement:e||this._menu.nativeElement,placement:this.placement}),this._applyPlacementClasses()}if(e.dropdownClass){let{currentValue:t,previousValue:n}=e.dropdownClass;this._applyCustomDropdownClass(t,n)}e.autoClose&&this._open&&(this.autoClose=e.autoClose.currentValue,this._setCloseHandlers())}$onDestroy(){this.close(),this._unwatchOpenState?.()}isOpen(){return this._open}open(){if(this._open){this._changeDetector.markForCheck();return}if(this._assertMenu(),this._assertAnchor(),this._open=!0,this._applyContainer(this.container),this.openChange?.({$event:!0}),this._setCloseHandlers(),this._anchor.nativeElement.focus(),this.display!==`dynamic`){this._changeDetector.markForCheck();return}let e=this._bodyContainer?Z(this._bodyContainer):null;this._positioning?.createPopper({hostElement:this._anchor.nativeElement,targetElement:e||this._menu.nativeElement,placement:this.placement,updatePopperOptions:e=>this.popperOptions(hf([0,2])(e))}),this._applyPlacementClasses(),this._ngZone.runOutsideAngular(()=>queueMicrotask(()=>this._positionMenu())),this._changeDetector.markForCheck()}_setCloseHandlers(){this._destroyCloseHandlers$.next();let e=this._menu?.nativeElement,t=this._anchor?.nativeElement;tf(this._ngZone,this.autoClose,this._destroyCloseHandlers$,e=>{this.close(),e===0&&this._anchor?.nativeElement.focus()},e?[e]:[],t?[t]:[],`.dropdown-item,.dropdown-divider`)}close(){this._open&&(this._open=!1,this._resetContainer(),this._positioning?.destroy(),this._destroyCloseHandlers$.next(),this.openChange?.({$event:!1}),this._changeDetector.markForCheck())}toggle(){if(this.isOpen()){this.close();return}this.open()}onKeyDown(e){let{key:t}=e,n=this._getMenuElements(),r=-1,i=null,a=this._isEventFromToggle(e);if(!a&&n.length)for(let t=0;t<n.length;t++){let a=n[t],o=Z(a);o.contains(e.target)&&(i=a),o===dd()&&(r=t)}if(t===` `||t===`Enter`){if(i==null)return;(this.autoClose===!0||this.autoClose===`inside`)&&Ko(Z(i),`click`).pipe(ls(1)).subscribe(()=>this.close());return}if(t===`Tab`){if(!e.target||!this.isOpen()||!this.autoClose)return;let t=e.target,n=this._anchor.nativeElement===t,r=this.container===`body`,i=()=>{this._menu.nativeElement.setAttribute(`tabindex`,`0`),this._menu.nativeElement.focus(),this._menu.nativeElement.removeAttribute(`tabindex`)},a=()=>{r&&!e.shiftKey&&i(),e.shiftKey&&this.close()},o=()=>{let n=this._menu.nativeElement.querySelectorAll(Uu);[{shouldRun:e.shiftKey&&t===n[0],run:()=>{this._anchor.nativeElement.focus(),e.preventDefault()}},{shouldRun:!e.shiftKey&&t===n[n.length-1],run:()=>{this._anchor.nativeElement.focus(),this.close()}}].find(({shouldRun:e})=>e)?.run()},s=()=>{Ko(t,`focusout`).pipe(ls(1)).subscribe(({relatedTarget:e})=>{Z(this.$element).contains(e)||this.close()})};if(n){a();return}r&&o(),r||s();return}if(a||i){if(this.open(),n.length){let e={ArrowDown:()=>Math.min(r+1,n.length-1),ArrowUp:()=>this._isDropUp()&&r===-1?n.length-1:Math.max(r-1,0),Home:()=>0,End:()=>n.length-1}[t]?.();e!=null&&(r=e),Z(n[r]).focus()}e.preventDefault()}}_isDropUp(){return this.$element.hasClass(`dropup`)}_isEventFromToggle(e){return this._anchor?this._anchor.nativeElement.contains(e.target):!1}_getMenuElements(){return this._menu?this._menu.menuItems.filter(e=>!e.isDisabled()).map(({$element:e})=>e):[]}_positionMenu(){if(!(!this.isOpen()||!this._menu)){if(this.display!==`dynamic`){this._applyPlacementClasses(this._getFirstPlacement(this.placement));return}this._positioning?.update(),this._applyPlacementClasses()}}_getFirstPlacement(e){if(!Array.isArray(e)){let[t]=e.split(` `);return t}let[t]=e;return t}_resetContainer(){this._menu&&this.$element.append(this._menu.$element),this._bodyContainer&&=(this._bodyContainer.remove(),null)}_applyContainer(e=null){this._assertMenu(),this._resetContainer(),e===`body`&&(this._bodyContainer=this._bodyContainer??u.default.element(`<div></div>`),this._bodyContainer.css({position:`absolute`,zIndex:`1055`}),this._menu.$element.css({position:`static`}),this._bodyContainer.append(this._menu.$element),u.default.element(document.body).append(this._bodyContainer)),this._applyCustomDropdownClass(this.dropdownClass??``)}_applyCustomDropdownClass(e,t){let n=this.container===`body`?this._bodyContainer:this.$element;n&&(t&&n.removeClass(t),e&&n.addClass(e))}_validateContainer(e){if(e!=null&&e!==`body`)throw Error(`[ngb-dropdown]: Unsupported container value "${e}". Use "body" or null.`)}_assertAnchor(){if(!this._anchor)throw Error(`[ngb-dropdown]: NgbDropdown requires an ngbDropdownToggle or ngbDropdownAnchor.`)}_assertMenu(){if(!this._menu)throw Error(`[ngb-dropdown]: NgbDropdown requires an ngbDropdownMenu.`)}_applyPlacementClasses(e){if(!this._menu)return;e||=this._getFirstPlacement(this.placement),this.$element.removeClass(`dropup dropdown`),this.display===`static`?this._menu.$element.attr(`data-bs-popper`,`static`):this._menu.$element.removeAttr(`data-bs-popper`);let t=e?.search(`^top`)===-1?`dropdown`:`dropup`;this.$element.addClass(t),this._bodyContainer&&(this._bodyContainer.removeClass(`dropup dropdown`),this._bodyContainer.addClass(t))}static get $name(){return`ngbDropdown`}static get $factory(){return()=>({restrict:`A`,scope:!0,bindToController:{autoClose:`<?`,animation:`<?`,container:`@?`,display:`<?`,dropdownClass:`<?`,_open:`<?open`,popperOptions:`<?`,openChange:`&?`,placement:`<?`},controller:e,transclude:!0,template:`<ng-content></ng-content>`})}static get $inject(){return[Kd.$name,`$element`,gf.$name,`$scope`,Fc.$name,ks.$name]}};X([qs(Xd)],_f.prototype,`_menu`,2),X([qs(Gd)],_f.prototype,`_anchor`,2);var vf=_f,yf=new Set([`ArrowUp`,`ArrowDown`,`Home`,`End`,`Tab`]),bf=class e extends Gd{$postLink(){super.$postLink(),this.clickListener=()=>{this.$scope.$evalAsync(()=>this.dropdown.toggle())},this.keydownListener=e=>{yf.has(e.key)&&this.dropdown.onKeyDown(e)},this.$element.on(`click`,this.clickListener),this.$element.on(`keydown`,this.keydownListener)}$onDestroy(){this.clickListener&&this.$element.off(`click`,this.clickListener),this.keydownListener&&this.$element.off(`keydown`,this.keydownListener),super.$onDestroy()}static get $name(){return`ngbDropdownToggle`}static get $factory(){return()=>({bindToController:!0,scope:!0,require:{dropdown:`^ngbDropdown`},controller:e,restrict:`A`})}},xf=u.default.module(`ngb.dropdown`,[zc.name]);xf.directive(vf.$name,vf.$factory),xf.directive(bf.$name,bf.$factory),xf.directive(Xd.$name,Xd.$factory),xf.directive(qd.$name,qd.$factory),xf.directive(Gd.$name,Gd.$factory),xf.service(Kd.$name,Kd);var Sf=class{constructor(e){this.$ngbConfig=e,this.backdrop=!0,this.fullscreen=!1,this.keyboard=!0,this.role=`dialog`}get animation(){return this._animation??this.$ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.modal.config.service`}},Cf=class{update(e){}close(e){}dismiss(e){}},wf=class{constructor(e,t,n,r,i){this.$q=e,this.windowRef=t,this.contentRef=n,this.backdropRef=r,this._beforeDismiss=i,this._hidden=new Y,this._dismissed=new Y,this._closed=new Y;let a=this.$q.defer();this.result=a.promise,this._reject=a.reject,this._resolve=a.resolve,a.promise.then(u.default.noop,u.default.noop),t.componentInstance?.onDismiss(e=>{this.dismiss(e)})}update(e){this.windowRef.componentInstance?.updateOptions(e),this.backdropRef?.componentInstance&&this.backdropRef.componentInstance.updateOptions(e)}dismiss(e){if(!this.windowRef)return;if(!this._beforeDismiss){this._dismiss(e);return}let t=this._beforeDismiss();this.$q.when(t).then(t=>{t!==!1&&this._dismiss(e)},u.default.noop)}close(e){this.windowRef&&(this._closed.next(e),this._resolve?.(e),this._removeModalElements())}_dismiss(e){this._dismissed.next(e),this._reject?.(e),this._removeModalElements()}get closed(){return this._closed.asObservable().pipe(bs(this._hidden))}get dismissed(){return this._dismissed.asObservable().pipe(bs(this._hidden))}get hidden(){return this._hidden.asObservable()}get shown(){return this.windowRef.componentInstance?.shown.asObservable()}get componentInstance(){return this.contentRef.componentInstance}_removeModalElements(){let e=this.windowRef.componentInstance?.hide(),t=this.backdropRef?.componentInstance?.hide()??So(void 0);e?.subscribe(()=>{this.windowRef.$element.remove(),this.windowRef.destroy(),this.contentRef.destroy(),this.windowRef=null,this.contentRef=null}),t.subscribe(()=>{this.backdropRef&&=(this.backdropRef.$element.remove(),this.backdropRef.destroy(),null)}),as(e??So(void 0),t).subscribe(()=>{this._hidden.next(),this._hidden.complete()})}},Tf=class{constructor(e){this.$window=e}hide(){let e=Math.abs(this.$window.innerWidth-document.documentElement.clientWidth),t=document.body,n=t.style,{overflow:r,paddingRight:i}=n;return e>0&&(n.paddingRight=`${Number.parseFloat(this.$window.getComputedStyle(t).paddingRight)+e}px`),n.overflow=`hidden`,()=>{e>0&&(n.paddingRight=i),n.overflow=r}}static get $name(){return`ngb.scrollbar.service`}static get $inject(){return[`$window`]}},Ef=class{constructor(e,t,n,r){this.$element=e,this.$scope=t,this.componentInstance=n,this.embeddedViewRef=r}setInput(e,t){if(!this.componentInstance)throw Error(`can not set on componentInstance because is undefined`);let n=this.componentInstance,r=n[e];n[e]=t,n.$onChanges?.({[e]:{currentValue:t,previousValue:r,isFirstChange:()=>r===void 0}}),this.$scope?.$evalAsync()}destroy(){this.embeddedViewRef?.destroy(),this.embeddedViewRef=void 0,this.$scope?.$destroy(),this.$scope=void 0}},Df=e=>{e.removeClass(`show`)},Of=class{constructor(e,t,n,r){this.$compile=e,this._ngZone=t,this.$rootScope=n,this._componentType=r,this._windowRef=null,this._contentRef=null}open(e,t,n=!1){if(!this._windowRef){this._contentRef=this._getContentRef(e,t);let n=ud(this._componentType),r=this.$rootScope.$new(),i=u.default.element(`<${n}></${n}>`),a=this.$compile(i)(r),o=a.controller(this._componentType),s=a[0].querySelector?.(`[ngb-popup-content]`);u.default.element(s??a).append(this._contentRef.$element),this._windowRef=new Ef(a,r,o)}let{$element:r}=this._windowRef,i=new Y;this._ngZone.runOutsideAngular(()=>{queueMicrotask(()=>{i.next(),i.complete()})});let a=i.pipe(zo(()=>Qu(this._ngZone,r,e=>{e.addClass(`show`)},{animation:n,runningTransition:`continue`})));return{windowRef:this._windowRef,transition$:a}}close(e=!1){return this._windowRef?Qu(this._ngZone,this._windowRef.$element,Df,{animation:e,runningTransition:`stop`}).pipe(xs(()=>{this._contentRef?.destroy(),this._contentRef=null,this._windowRef?.$scope?.$destroy(),this._windowRef=null})):So(void 0)}_getContentRef(e,t){if(!e)return new Ef(u.default.element([]));if(e instanceof kc){let n=e.createEmbeddedView(t??{});return new Ef(u.default.element(n.rootNodes),void 0,void 0,n)}let n=document.createTextNode(`${e}`);return new Ef(u.default.element(n))}},kf=class{constructor(e,t,n){this.$compile=e,this._ngZone=t,this.$rootScope=n}$create(e){return new Of(this.$compile,this._ngZone,this.$rootScope,e)}static get $inject(){return[`$compile`,Fc.$name,`$rootScope`]}static get $name(){return`ngb.popup.factory`}},Af=class{constructor(e,t,n,r,i){this.ngbScrollbar=e,this._ngZone=t,this.$compile=n,this.$rootScope=r,this.$q=i,this._scrollBarRestoreFn=null,this._modalRefs=[],this._windowRefs=[],this._ariaHiddenValues=new Map,this._activeWindowCmptHasChanged=new Y,this._activeInstances=this.$q.defer(),this._activeWindowCmptHasChanged.subscribe(()=>{if(!this._windowRefs.length){this._revertAriaHidden();return}let e=this._windowRefs[this._windowRefs.length-1];Gu(this._ngZone,Z(e.$element),this._activeWindowCmptHasChanged),this._revertAriaHidden(),this._setAriaHidden(e.$element)})}async open(e,t){let n=this.$q.defer(),r=this._resolveContainer(t.container);if(!r)throw Error(`The specified modal container "${t.container||`body`}" was not found in the DOM.`);this._hideScrollBar();let i=new Cf,a=this._getContentRef(e,i,t),o=t.backdrop===!1?void 0:this._attachBackdrop(r);return await this.$q.all([o,a]).then(([e,a])=>this._attachWindowComponent(r,a.$element).then(r=>{let o=new wf(this.$q,r,a,e,t.beforeDismiss);i.close=e=>{o.close(e)},i.dismiss=e=>{o.dismiss(e)},i.update=e=>{o.update(e)},o.update(t),this._registerModalRef(o),this._registerWindow(r),this._modalRefs.length===1&&document.body.classList.add(`modal-open`),o.hidden.pipe(ls(1)).subscribe(()=>this.$q.resolve(!0).then(()=>{this._modalRefs.length||(document.body.classList.remove(`modal-open`),this._restoreScrollBar(),this._revertAriaHidden())})),n.resolve(o)})),n.promise}_registerWindow(e){this._windowRefs.push(e),this._activeWindowCmptHasChanged.next(),e.$scope?.$on(`$destroy`,()=>{let t=this._windowRefs.indexOf(e);t>-1&&(this._windowRefs.splice(t,1),this._activeWindowCmptHasChanged.next())})}get activeInstances(){return this._activeInstances?.promise}dismissAll(e){this._modalRefs.forEach(t=>{t.dismiss(e)})}hasOpenModals(){return this._modalRefs.length>0}_registerModalRef(e){let t=()=>{let t=this._modalRefs.indexOf(e);t>-1&&(this._modalRefs.splice(t,1),this._activeInstances?.notify(this._modalRefs))};this._modalRefs.push(e),this._activeInstances?.notify(this._modalRefs),e.result?.then(t,t)}_resolveContainer(e){if(u.default.isString(e)){let t=document.querySelector(String(e));return t?u.default.element(t):void 0}return e??u.default.element(document.body)}_attachBackdrop(e){let t=this.$q.defer(),n=this.$rootScope.$new(!0),r=this.$compile(`<ngb-modal-backdrop></ngb-modal-backdrop>`)(n);e.append(r);let i=this.$rootScope.$watch(()=>r.controller(`ngbModalBackdrop`),e=>{i();let a=new Ef(r,n,e);t.resolve(a)});return t.promise}_attachWindowComponent(e,t){let n=this.$q.defer(),r=this.$rootScope.$new(!0),i=this.$compile(`<ngb-modal-window></ngb-modal-window>`)(r),a=Z(i).querySelector(`.modal-content`);a&&u.default.element(a).append(t),e.append(i);let o=this.$rootScope.$watch(()=>i.controller(`ngbModalWindow`),e=>{o();let t=new Ef(i,r,e);n.resolve(t)});return n.promise}_getContentRef(e,t,n){let r=this.$q.defer();if(e instanceof kc){let n=e.createEmbeddedView({$implicit:t,close:e=>t.close(e),dismiss:e=>t.dismiss(e)}),i=u.default.element(n.rootNodes);return r.resolve(new Ef(i,void 0,void 0,n)),r.promise}let i=this.$rootScope.$new(!0),a=ud(e),o=this._buildBindingsAttrs(n),s=this.$compile(`<${a} ${o} ngb-active-modal="activeModal"></${a}>`);i.activeModal=t,u.default.extend(i,n.bindings);let c=s(i);n.scrollable&&c.addClass(`component-host-scrollable d-flex flex-column overflow-hidden`);let l=this.$rootScope.$watch(()=>c.controller(e),e=>{l();let t=new Ef(c,i,e);r.resolve(t)});return r.promise}_buildBindingsAttrs(e){return Object.keys(e.bindings||{}).map(e=>`${ud(e)}="${e}"`).join(` `)}_setAriaHidden(e){let t=Z(e),n=t.parentElement,r=document.body;n&&t!==r&&(Array.from(n.children).forEach(e=>{e!==t&&e.nodeName!==`SCRIPT`&&(this._ariaHiddenValues.set(e,e.getAttribute(`aria-hidden`)),e.setAttribute(`aria-hidden`,`true`))}),this._setAriaHidden(u.default.element(n)))}_revertAriaHidden(){this._ariaHiddenValues.forEach((e,t)=>{if(e){t.setAttribute(`aria-hidden`,e);return}t.removeAttribute(`aria-hidden`)}),this._ariaHiddenValues.clear()}_restoreScrollBar(){let e=this._scrollBarRestoreFn;e&&(this._scrollBarRestoreFn=null,e())}_hideScrollBar(){this._scrollBarRestoreFn||=this.ngbScrollbar.hide()}static get $name(){return`ngb.modal.stack.service`}static get $inject(){return[Tf.$name,Fc.$name,`$compile`,`$rootScope`,`$q`]}},jf=class{constructor(e,t){this.ngbModalStack=e,this.ngbModalConfig=t}open(e,t={}){let n={...this.ngbModalConfig,animation:this.ngbModalConfig.animation,...t};return this.ngbModalStack.open(e,n)}get activeInstances(){return this.ngbModalStack.activeInstances}dismissAll(e){this.ngbModalStack.dismissAll(e)}hasOpenModals(){return this.ngbModalStack.hasOpenModals()}static get $name(){return`ngb.modal.service`}static get $inject(){return[Af.$name,Sf.$name]}},Mf=e=>{e.removeClass(`show`)},Nf=(e,t)=>{t&&ed(e),e.addClass(`show`)},Pf=[`animation`,`backdropClass`],Ff=class e{constructor(e,t,n,r){this.$element=e,this.$ngbModalConfig=t,this._ngZone=n,this._cdRef=r}$postLink(){let e=this.backdropClass?this.backdropClass:``;this.$element.addClass(`modal-backdrop ${e}`),this.$element.css({"z-index":`1055`}),this._ngZone.runOutsideAngular(()=>queueMicrotask(()=>Qu(this._ngZone,this.$element,Nf,{animation:this.animation??this.$ngbModalConfig.animation,runningTransition:`continue`})))}$onChanges(){this.$element.toggleClass(`show`,!this.animation),this.$element.toggleClass(`fade`,this.animation),this._appliedBackdropClass&&this._appliedBackdropClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.removeClass(e)}),this.backdropClass&&this.backdropClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.addClass(e)}),this._appliedBackdropClass=this.backdropClass}hide(){return Qu(this._ngZone,this.$element,Mf,{animation:this.animation??this.$ngbModalConfig.animation,runningTransition:`stop`})}updateOptions(e){let t=e;Pf.forEach(e=>{u.default.isDefined(t[e])&&Object.assign(this,{[e]:t[e]})}),this.$onChanges(),this._cdRef.markForCheck()}static get $name(){return`ngbModalBackdrop`}static get $inject(){return[`$element`,Sf.$name,Fc.$name,ks.$name]}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{animation:`<?`,backdropClass:`@?`}}}},If=`<div\r
-    ng-ref="dialog"\r
-    role="document"\r
+<ng-content></ng-content>
+`,Md=class{constructor(e){this.ngbConfig=e,this.interval=5e3,this.wrap=!0,this.keyboard=!0,this.pauseOnFocus=!0,this.pauseOnHover=!0,this.showNavigationArrows=!0,this.showNavigationIndicators=!0}get animation(){return this._animation??this.ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.carousel.config.service`}};function Nd(e){return e.hasClass(`carousel-item-start`)||e.hasClass(`carousel-item-end`)}function Pd(e){e.removeClass(`carousel-item-start carousel-item-end`)}function Fd(e){Pd(e),e.removeClass(`carousel-item-prev carousel-item-next`)}var Id=(e,t,{direction:n})=>{if(!t){Fd(e),e.addClass(`active`);return}return Nd(e)?Pd(e):(e.addClass(`carousel-item-${n===`start`?`next`:`prev`}`),ed(e),e.addClass(`carousel-item-${n}`)),()=>{Fd(e),e.addClass(`active`)}},Ld=(e,t,{direction:n})=>{if(!t){Fd(e),e.removeClass(`active`);return}return Nd(e)?Pd(e):e.addClass(`carousel-item-${n}`),()=>{Fd(e),e.removeClass(`active`)}},Rd=0,zd=class e{$onInit(){this.id=this.id??`ngb-slide-${Rd++}`}static get $factory(){return()=>({controller:e,scope:!0,bindToController:{slid:`&?`,id:`@?`},require:{carousel:`^^ngbCarousel`},restrict:`A`})}static get $name(){return`ngbSlide`}},Bd=0,Vd=class e{constructor(e,t,n,r,i){this.$element=e,this.$scope=t,this.$ngbCarouselConfig=n,this._ngZone=r,this._changeDetector=i,this.NgbSlideEventSource=Ud,this.slides=new Xs,this._transitionIds=null,this._interval$=new ja(0),this._mouseHover$=new ja(!1),this._focused$=new ja(!1),this._pauseOnHover$=new ja(!1),this._pauseOnFocus$=new ja(!1),this._pause$=new ja(!1),this._wrap$=new ja(!1),this._activeId$=new ja(``),this._slides$=new ja([]),this._destroy$=new Y}$onInit(){this.animation=this.animation??this.$ngbCarouselConfig.animation,this.interval=this.interval??this.$ngbCarouselConfig.interval,this.keyboard=this.keyboard??this.$ngbCarouselConfig.keyboard,this.pauseOnFocus=this.pauseOnFocus??this.$ngbCarouselConfig.pauseOnFocus,this.pauseOnHover=this.pauseOnHover??this.$ngbCarouselConfig.pauseOnHover,this.showNavigationArrows=this.showNavigationArrows??this.$ngbCarouselConfig.showNavigationArrows,this.showNavigationIndicators=this.showNavigationIndicators??this.$ngbCarouselConfig.showNavigationIndicators,this.wrap=this.wrap??this.$ngbCarouselConfig.wrap,this._interval$.next(this.interval),this._pauseOnHover$.next(this.pauseOnHover),this._pauseOnFocus$.next(this.pauseOnFocus),this._wrap$.next(this.wrap),this._activeId$.next(this.activeId??``),this.id=`ngb-carousel-${Bd++}`}$onChanges(e){e.interval&&this._interval$.next(this.interval),e.wrap&&this._wrap$.next(this.wrap),e.pauseOnHover&&this._pauseOnHover$.next(this.pauseOnHover),e.pauseOnFocus&&this._pauseOnFocus$.next(this.pauseOnFocus)}$postLink(){this.$element.addClass(`carousel slide`),this.$element.css(`display`,`block`),this.$element.attr(`tabindex`,0),this._container=this.$element,this.$element.on(`keydown`,e=>{if(!this.keyboard)return;let t={ArrowRight:()=>this.arrowRight(),ArrowLeft:()=>this.arrowLeft()}[e.key];t&&(e.preventDefault(),t())}),this.$element.on(`mouseenter`,()=>this._mouseHover$.next(!0)),this.$element.on(`mouseleave`,()=>this._mouseHover$.next(!1)),this.$element.on(`focusin`,()=>this._focused$.next(!0)),this.$element.on(`focusout`,()=>this._focused$.next(!1));let e=Fo([this._activeId$,this._wrap$,this._slides$]).pipe(wo(([e,t,n])=>{let r=n.findIndex(t=>t.id===e);return t?n.length>1:r<n.length-1}),ms());Fo([this._pause$,this._pauseOnHover$,this._mouseHover$,this._pauseOnFocus$,this._focused$,this._interval$,e]).pipe(wo(([e,t,n,r,i,a,o])=>e||t&&n||r&&i||!o?0:a),ms(),ys(e=>e>0?Zo(e,e):$o),bs(this._destroy$)).subscribe(()=>{this._ngZone.run(()=>this.next(`timer`))}),this._slides$.pipe(vs(1),bs(this._destroy$)).subscribe(()=>{this._transitionIds?.forEach(e=>{$u(this._getSlideElement(e))}),this._transitionIds=null,this.$scope.$$postDigest(()=>this._syncActiveSlideClass())}),this._syncSlides(),this.contentSlides.changes.pipe(bs(this._destroy$)).subscribe(()=>this._syncSlides()),this.slides.changes.pipe(bs(this._destroy$)).subscribe(e=>{this._slides$.next(e.toArray())}),this._slides$.next(this.slides.toArray()),this.$scope.$$postDigest(()=>this._syncActiveSlideClass())}$doCheck(){let e=this._getSlideById(this.activeId),t=e?e.id:this.slides.first?.id??``;t!==this.activeId&&(this.activeId=t,this._activeId$.next(t))}$onDestroy(){this.$element.off(`keydown`),this.$element.off(`mouseenter`),this.$element.off(`mouseleave`),this.$element.off(`focusin`),this.$element.off(`focusout`),this._destroy$.next(),this._destroy$.complete(),this.slides.destroy()}focus(){if(!this._container)throw Error(`[ngb-carousel]: container do not exist`);Z(this._container).focus()}arrowLeft(){this.focus(),this.prev(`arrowLeft`)}arrowRight(){this.focus(),this.next(`arrowRight`)}prev(e){this._cycleToSelected(this._getPrevSlide(this.activeId),`end`,e)}next(e){this._cycleToSelected(this._getNextSlide(this.activeId),`start`,e)}select(e,t){this._cycleToSelected(e,this._getSlideEventDirection(this.activeId,e),t)}cycle(){this._pause$.next(!1)}pause(){this._pause$.next(!0)}getSlideTemplate(e){let t=this.slides.get(e),n=t?this.contentSlides.toArray().indexOf(t):-1;return n>=0?this.slideTemplates.get(n):void 0}_syncSlides(){this.slides.reset(this.contentSlides.filter(e=>e.carousel===this)),this.slides.notifyOnChanges()}_syncActiveSlideClass(){if(!(this._transitionIds||!this.activeId))for(let e of this.slides)this._findSlideElement(e.id)?.toggleClass(`active`,e.id===this.activeId)}_cycleToSelected(e,t,n){let r=this._transitionIds;if(r&&(r[0]!==e||r[1]!==this.activeId))return;let i=this._getSlideById(e);if(i&&i.id!==this.activeId){this._transitionIds=[this.activeId??``,e],this.slide?.({$event:{prev:this.activeId??``,current:i.id,direction:t,paused:this._pause$.value,source:n}});let r={animation:this.animation??this.$ngbCarouselConfig.animation,runningTransition:`stop`,context:{direction:t}},a=[],o=this._getSlideById(this.activeId);if(o){let e=Qu(this._ngZone,this._getSlideElement(o.id),Ld,r);e.subscribe(()=>o.slid?.({$event:{direction:t,source:n,isShown:!1}})),a.push(e)}let s=this.activeId;this.activeId=i.id,this._activeId$.next(this.activeId);let c=this._getSlideById(this.activeId),l=Qu(this._ngZone,this._getSlideElement(i.id),Id,r);l.subscribe(()=>c?.slid?.({$event:{isShown:!0,direction:t,source:n}})),a.push(l),as(...a).pipe(ls(1)).subscribe(()=>{this._transitionIds=null,this.slid?.({$event:{prev:s??``,current:i.id,direction:t,paused:this._pause$.value,source:n}})})}this._changeDetector.markForCheck()}_getSlideEventDirection(e,t){return this._getSlideIdxById(e)>this._getSlideIdxById(t)?`end`:`start`}_getNextSlide(e){let t=this.slides.toArray(),n=this._getSlideIdxById(e);return n===t.length-1?this.wrap?t[0].id:t[t.length-1].id:t[n+1].id}_getPrevSlide(e){let t=this.slides.toArray(),n=this._getSlideIdxById(e);return n===0?this.wrap?t[t.length-1].id:t[0].id:t[n-1].id}_getSlideElement(e){let t=this._findSlideElement(e);if(!t)throw Error(`[ngb-carousel]: ngb-slide id not found`);return t}_findSlideElement(e){if(!this._container)return null;let t=Z(this._container).querySelector(`#slide-${e}`);return t?u.default.element(t):null}_getSlideById(e){return this.slides.find(t=>t.id===e)||null}_getSlideIdxById(e){let t=this._getSlideById(e);return t==null?-1:this.slides.toArray().indexOf(t)}static get $name(){return`ngbCarousel`}static get $factory(){return{controllerAs:`$`,controller:e,transclude:!0,bindings:{activeId:`@?`,animation:`<?`,interval:`<?`,keyboard:`<?`,pauseOnFocus:`<?`,pauseOnHover:`<?`,showNavigationArrows:`<?`,showNavigationIndicators:`<?`,wrap:`<?`,slid:`&?`,slide:`&?`},template:jd}}static get $inject(){return[`$element`,`$scope`,Md.$name,Fc.$name,ks.$name]}};X([ec(zd)],Vd.prototype,`contentSlides`,2),X([ec(zd,{read:kc})],Vd.prototype,`slideTemplates`,2);var Hd=Vd,Ud=(e=>(e.TIMER=`timer`,e.ARROW_LEFT=`arrowLeft`,e.ARROW_RIGHT=`arrowRight`,e.INDICATOR=`indicator`,e))(Ud||{}),Wd=u.default.module(`ngb.carousel`,[Wc.name]);Wd.directive(zd.$name,zd.$factory),Wd.component(Hd.$name,Hd.$factory),Wd.service(Md.$name,Md);var Gd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.nativeElement=Z(this.$element),this.$element.addClass(`dropdown-toggle`),this.unwatchOpenState=this.$scope.$watch(()=>this.dropdown.isOpen(),e=>this._applyHostBindings(e))}$onDestroy(){this.unwatchOpenState?.()}_applyHostBindings(e=this.dropdown.isOpen()){this.$element.toggleClass(`show`,e),this.$element.attr(`aria-expanded`,`${e}`)}static get $inject(){return[`$element`,`$scope`]}static get $name(){return`ngbDropdownAnchor`}static get $factory(){return()=>({controller:e,restrict:`A`,require:{dropdown:`^ngbDropdown`},bindToController:!0,scope:!0})}},Kd=class{constructor(){this.autoClose=!0,this.container=null,this.placement=[`bottom-start`,`bottom-end`,`top-start`,`top-end`],this.popperOptions=e=>e}static get $name(){return`ngb.dropdown.config.service`}},qd=class e{constructor(e){this.$element=e,this.tabindex=0}isDisabled(){return this.ngDisabled?.disabled??!1}onDisabledChange(e){return this.ngDisabled?.onChange(e)??(()=>void 0)}$postLink(){this.nativeElement=Z(this.$element),this.$element.addClass(`dropdown-item`),this._applyHostBindings(),this.removeDisabledListener=this.onDisabledChange(()=>this._applyHostBindings())}$onChanges(){this._applyHostBindings()}$onDestroy(){this.removeDisabledListener?.()}_applyHostBindings(){this.$element.toggleClass(`disabled`,this.isDisabled()),this.$element.attr(`tabIndex`,this.isDisabled()?-1:this.tabindex)}static get $name(){return`ngbDropdownItem`}static get $factory(){return()=>({bindToController:{tabindex:`<?`},controller:e,require:{ngDisabled:`?ngDisabled`},scope:!0,restrict:`A`})}static get $inject(){return[`$element`]}},Jd=new Set([`ArrowUp`,`ArrowDown`,`Home`,`End`,`Enter`,` `,`Tab`]),Yd=class e{constructor(e,t){this.$element=e,this.$scope=t}$postLink(){this.$element.addClass(`dropdown-menu`),this.nativeElement=Z(this.$element),this.unwatchOpenState=this.$scope.$watch(()=>this.ngbDropdown.isOpen(),e=>this.$element.toggleClass(`show`,e)),this.keydownListener=e=>{Jd.has(e.key)&&this.ngbDropdown.onKeyDown(e)},this.$element.on(`keydown`,this.keydownListener)}$onDestroy(){this.keydownListener&&this.$element.off(`keydown`,this.keydownListener),this.unwatchOpenState?.()}static get $name(){return`ngbDropdownMenu`}static get $factory(){return()=>({bindToController:!0,controller:e,require:{ngbDropdown:`^ngbDropdown`},scope:!0,restrict:`A`,transclude:!0,template:`<ng-content></ng-content>`})}static get $inject(){return[`$element`,`$scope`]}};X([ec(qd)],Yd.prototype,`menuItems`,2);var Xd=Yd,Zd=(e,t)=>t?t.some(t=>t?.contains(e)??!1):!1,Qd=(e,t)=>!t||sd(u.default.element(e),t)!=null,$d=typeof navigator<`u`&&!!navigator.userAgent&&((()=>{let e=/iPad|iPhone|iPod/.test(navigator.userAgent),t=navigator.maxTouchPoints!=null&&navigator.maxTouchPoints>2,n=/Macintosh/.test(navigator.userAgent);return e||n&&t})()||/Android/.test(navigator.userAgent)),ef=e=>$d?()=>setTimeout(e,100):e;function tf(e,t,n,r,i,a,o){t&&e.runOutsideAngular(ef(()=>{let s=e=>{let n=e.target;return!n||e.button===2||Zd(n,a)?!1:t===`inside`?Zd(n,i)&&Qd(n,o):t===`outside`?!Zd(n,i):Qd(n,o)||!Zd(n,i)},c=Ko(document,`keydown`).pipe(bs(n),ns(e=>e.key===`Escape`),xs(e=>e.preventDefault())),l=Ko(document,`mousedown`).pipe(wo(s),bs(n)),u=Ko(document,`mouseup`).pipe(Ss(l),ns(([,e])=>e),ps(0),bs(n));rs(c.pipe(wo(()=>0)),u.pipe(wo(()=>1))).pipe(bs(n)).subscribe(t=>e.run(()=>r(t)))}))}var nf=/\s+/,rf=/ {2,}/gi,af={auto:[`auto`],top:[`top`],bottom:[`bottom`],start:[`left`,`right`],left:[`left`],end:[`right`,`left`],right:[`right`],"top-start":[`top-start`,`top-end`],"top-left":[`top-start`],"top-end":[`top-end`,`top-start`],"top-right":[`top-end`],"bottom-start":[`bottom-start`,`bottom-end`],"bottom-left":[`bottom-start`],"bottom-end":[`bottom-end`,`bottom-start`],"bottom-right":[`bottom-end`],"start-top":[`left-start`,`right-start`],"left-top":[`left-start`],"start-bottom":[`left-end`,`right-end`],"left-bottom":[`left-end`],"end-top":[`right-start`,`left-start`],"right-top":[`right-start`],"end-bottom":[`right-end`,`left-end`],"right-bottom":[`right-end`]};function of(e,t){let[n,r]=af[e];return t&&r||n}var sf=/^left/,cf=/^right/,lf=/^start/,uf=/^end/;function df(e){return e}function ff(e,t){let[n,r]=t.split(`-`),i=n.replace(sf,`start`).replace(cf,`end`),a=[i];if(r){let e=r;(n===`left`||n===`right`)&&(e=e.replace(lf,`top`).replace(uf,`bottom`)),a.push(`${i}-${e}`)}return e?a.map(t=>`${e}-${t}`).join(` `):a.join(` `)}function pf({placement:e,baseClass:t},n){let r=Array.isArray(e)?e:e.split(nf),i=[`top`,`bottom`,`start`,`end`,`top-start`,`top-end`,`bottom-start`,`bottom-end`,`start-top`,`start-bottom`,`end-top`,`end-bottom`],a=r.indexOf(`auto`);a>=0&&i.forEach(e=>{r.find(t=>t.search(`^${e}`)!==-1)??r.splice(a++,1,e)});let o=r.map(e=>of(e,n.isRTL()));return{placement:o.shift(),modifiers:[{name:`bootstrapClasses`,enabled:!!t,phase:`write`,fn({state:e}){let n=RegExp(`${t}(-[a-z]+)*`,`gi`),r=e.elements.popper,i=e.placement,a=r.className;a=a.replace(n,``),a+=` ${ff(t,i)}`,a=a.trim().replace(rf,` `),r.className=a}},mu,Su,Ll,{enabled:!0,name:`flip`,options:{fallbackPlacements:o}}]}}function mf(e){let t=null;return{createPopper(n){if(!t){let r=(n.updatePopperOptions||df)(pf(n,e));t=Pu(n.hostElement,n.targetElement,r)}},update(){t&&t.update()},setOptions(n){if(t){let r=(n.updatePopperOptions||df)(pf(n,e));t.setOptions(r)}},destroy(){t&&=(t.destroy(),null)}}}function hf(e){return t=>(t.modifiers?.push(_u,{name:`offset`,options:{offset:()=>e}}),t)}var gf=class{constructor(){this._element=document.documentElement}isRTL(){return(this._element.getAttribute(`dir`)||``).toLowerCase()===`rtl`}static get $inject(){return[]}static get $name(){return`ngb.rtl.service`}},_f=class e{constructor(e,t,n,r,i,a){this.$config=e,this.$element=t,this.$ngbRTL=n,this.$scope=r,this._ngZone=i,this._changeDetector=a,this._bodyContainer=null,this._positioning=null,this._destroyCloseHandlers$=new Y,this._open=!1}get menuItems(){return this._menu.menuItems}$onInit(){this._positioning=mf(this.$ngbRTL),this.autoClose=this.autoClose??this.$config.autoClose,this.placement=this.placement??this.$config.placement,this.popperOptions=this.popperOptions??this.$config.popperOptions,this.container=this.container??this.$config.container,this._unwatchOpenState=this.$scope.$watch(()=>this.isOpen(),e=>this.$element.toggleClass(`show`,e))}$postLink(){if(!this.display){let e=Z(this.$element);this.display=e.closest(`.navbar`)?`static`:`dynamic`}this._ngZone.runOutsideAngular(()=>{queueMicrotask(()=>{this._applyPlacementClasses(),this._open&&(this._applyContainer(this.container),this._setCloseHandlers())})})}$onChanges(e){if(e.container&&!e.container.isFirstChange()&&this._validateContainer(this.container),e.container&&this._open&&this._menu&&this._applyContainer(this.container),e.placement&&!e.placement?.isFirstChange()){let e=this._bodyContainer?Z(this._bodyContainer):null;this._positioning?.setOptions({hostElement:this._anchor.nativeElement,targetElement:e||this._menu.nativeElement,placement:this.placement}),this._applyPlacementClasses()}if(e.dropdownClass){let{currentValue:t,previousValue:n}=e.dropdownClass;this._applyCustomDropdownClass(t,n)}e.autoClose&&this._open&&(this.autoClose=e.autoClose.currentValue,this._setCloseHandlers())}$onDestroy(){this.close(),this._unwatchOpenState?.()}isOpen(){return this._open}open(){if(this._open){this._changeDetector.markForCheck();return}if(this._assertMenu(),this._assertAnchor(),this._open=!0,this._applyContainer(this.container),this.openChange?.({$event:!0}),this._setCloseHandlers(),this._anchor.nativeElement.focus(),this.display!==`dynamic`){this._changeDetector.markForCheck();return}let e=this._bodyContainer?Z(this._bodyContainer):null;this._positioning?.createPopper({hostElement:this._anchor.nativeElement,targetElement:e||this._menu.nativeElement,placement:this.placement,updatePopperOptions:e=>this.popperOptions(hf([0,2])(e))}),this._applyPlacementClasses(),this._ngZone.runOutsideAngular(()=>queueMicrotask(()=>this._positionMenu())),this._changeDetector.markForCheck()}_setCloseHandlers(){this._destroyCloseHandlers$.next();let e=this._menu?.nativeElement,t=this._anchor?.nativeElement;tf(this._ngZone,this.autoClose,this._destroyCloseHandlers$,e=>{this.close(),e===0&&this._anchor?.nativeElement.focus()},e?[e]:[],t?[t]:[],`.dropdown-item,.dropdown-divider`)}close(){this._open&&(this._open=!1,this._resetContainer(),this._positioning?.destroy(),this._destroyCloseHandlers$.next(),this.openChange?.({$event:!1}),this._changeDetector.markForCheck())}toggle(){if(this.isOpen()){this.close();return}this.open()}onKeyDown(e){let{key:t}=e,n=this._getMenuElements(),r=-1,i=null,a=this._isEventFromToggle(e);if(!a&&n.length)for(let t=0;t<n.length;t++){let a=n[t],o=Z(a);o.contains(e.target)&&(i=a),o===dd()&&(r=t)}if(t===` `||t===`Enter`){if(i==null)return;(this.autoClose===!0||this.autoClose===`inside`)&&Ko(Z(i),`click`).pipe(ls(1)).subscribe(()=>this.close());return}if(t===`Tab`){if(!e.target||!this.isOpen()||!this.autoClose)return;let t=e.target,n=this._anchor.nativeElement===t,r=this.container===`body`,i=()=>{this._menu.nativeElement.setAttribute(`tabindex`,`0`),this._menu.nativeElement.focus(),this._menu.nativeElement.removeAttribute(`tabindex`)},a=()=>{r&&!e.shiftKey&&i(),e.shiftKey&&this.close()},o=()=>{let n=this._menu.nativeElement.querySelectorAll(Uu);[{shouldRun:e.shiftKey&&t===n[0],run:()=>{this._anchor.nativeElement.focus(),e.preventDefault()}},{shouldRun:!e.shiftKey&&t===n[n.length-1],run:()=>{this._anchor.nativeElement.focus(),this.close()}}].find(({shouldRun:e})=>e)?.run()},s=()=>{Ko(t,`focusout`).pipe(ls(1)).subscribe(({relatedTarget:e})=>{Z(this.$element).contains(e)||this.close()})};if(n){a();return}r&&o(),r||s();return}if(a||i){if(this.open(),n.length){let e={ArrowDown:()=>Math.min(r+1,n.length-1),ArrowUp:()=>this._isDropUp()&&r===-1?n.length-1:Math.max(r-1,0),Home:()=>0,End:()=>n.length-1}[t]?.();e!=null&&(r=e),Z(n[r]).focus()}e.preventDefault()}}_isDropUp(){return this.$element.hasClass(`dropup`)}_isEventFromToggle(e){return this._anchor?this._anchor.nativeElement.contains(e.target):!1}_getMenuElements(){return this._menu?this._menu.menuItems.filter(e=>!e.isDisabled()).map(({$element:e})=>e):[]}_positionMenu(){if(!(!this.isOpen()||!this._menu)){if(this.display!==`dynamic`){this._applyPlacementClasses(this._getFirstPlacement(this.placement));return}this._positioning?.update(),this._applyPlacementClasses()}}_getFirstPlacement(e){if(!Array.isArray(e)){let[t]=e.split(` `);return t}let[t]=e;return t}_resetContainer(){this._menu&&this.$element.append(this._menu.$element),this._bodyContainer&&=(this._bodyContainer.remove(),null)}_applyContainer(e=null){this._assertMenu(),this._resetContainer(),e===`body`&&(this._bodyContainer=this._bodyContainer??u.default.element(`<div></div>`),this._bodyContainer.css({position:`absolute`,zIndex:`1055`}),this._menu.$element.css({position:`static`}),this._bodyContainer.append(this._menu.$element),u.default.element(document.body).append(this._bodyContainer)),this._applyCustomDropdownClass(this.dropdownClass??``)}_applyCustomDropdownClass(e,t){let n=this.container===`body`?this._bodyContainer:this.$element;n&&(t&&n.removeClass(t),e&&n.addClass(e))}_validateContainer(e){if(e!=null&&e!==`body`)throw Error(`[ngb-dropdown]: Unsupported container value "${e}". Use "body" or null.`)}_assertAnchor(){if(!this._anchor)throw Error(`[ngb-dropdown]: NgbDropdown requires an ngbDropdownToggle or ngbDropdownAnchor.`)}_assertMenu(){if(!this._menu)throw Error(`[ngb-dropdown]: NgbDropdown requires an ngbDropdownMenu.`)}_applyPlacementClasses(e){if(!this._menu)return;e||=this._getFirstPlacement(this.placement),this.$element.removeClass(`dropup dropdown`),this.display===`static`?this._menu.$element.attr(`data-bs-popper`,`static`):this._menu.$element.removeAttr(`data-bs-popper`);let t=e?.search(`^top`)===-1?`dropdown`:`dropup`;this.$element.addClass(t),this._bodyContainer&&(this._bodyContainer.removeClass(`dropup dropdown`),this._bodyContainer.addClass(t))}static get $name(){return`ngbDropdown`}static get $factory(){return()=>({restrict:`A`,scope:!0,bindToController:{autoClose:`<?`,animation:`<?`,container:`@?`,display:`<?`,dropdownClass:`<?`,_open:`<?open`,popperOptions:`<?`,openChange:`&?`,placement:`<?`},controller:e,transclude:!0,template:`<ng-content></ng-content>`})}static get $inject(){return[Kd.$name,`$element`,gf.$name,`$scope`,Fc.$name,ks.$name]}};X([qs(Xd)],_f.prototype,`_menu`,2),X([qs(Gd)],_f.prototype,`_anchor`,2);var vf=_f,yf=new Set([`ArrowUp`,`ArrowDown`,`Home`,`End`,`Tab`]),bf=class e extends Gd{$postLink(){super.$postLink(),this.clickListener=()=>{this.$scope.$evalAsync(()=>this.dropdown.toggle())},this.keydownListener=e=>{yf.has(e.key)&&this.dropdown.onKeyDown(e)},this.$element.on(`click`,this.clickListener),this.$element.on(`keydown`,this.keydownListener)}$onDestroy(){this.clickListener&&this.$element.off(`click`,this.clickListener),this.keydownListener&&this.$element.off(`keydown`,this.keydownListener),super.$onDestroy()}static get $name(){return`ngbDropdownToggle`}static get $factory(){return()=>({bindToController:!0,scope:!0,require:{dropdown:`^ngbDropdown`},controller:e,restrict:`A`})}},xf=u.default.module(`ngb.dropdown`,[zc.name]);xf.directive(vf.$name,vf.$factory),xf.directive(bf.$name,bf.$factory),xf.directive(Xd.$name,Xd.$factory),xf.directive(qd.$name,qd.$factory),xf.directive(Gd.$name,Gd.$factory),xf.service(Kd.$name,Kd);var Sf=class{constructor(e){this.$ngbConfig=e,this.backdrop=!0,this.fullscreen=!1,this.keyboard=!0,this.role=`dialog`}get animation(){return this._animation??this.$ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.modal.config.service`}},Cf=class{update(e){}close(e){}dismiss(e){}},wf=class{constructor(e,t,n,r,i){this.$q=e,this.windowRef=t,this.contentRef=n,this.backdropRef=r,this._beforeDismiss=i,this._hidden=new Y,this._dismissed=new Y,this._closed=new Y;let a=this.$q.defer();this.result=a.promise,this._reject=a.reject,this._resolve=a.resolve,a.promise.then(u.default.noop,u.default.noop),t.componentInstance?.onDismiss(e=>{this.dismiss(e)})}update(e){this.windowRef.componentInstance?.updateOptions(e),this.backdropRef?.componentInstance&&this.backdropRef.componentInstance.updateOptions(e)}dismiss(e){if(!this.windowRef)return;if(!this._beforeDismiss){this._dismiss(e);return}let t=this._beforeDismiss();this.$q.when(t).then(t=>{t!==!1&&this._dismiss(e)},u.default.noop)}close(e){this.windowRef&&(this._closed.next(e),this._resolve?.(e),this._removeModalElements())}_dismiss(e){this._dismissed.next(e),this._reject?.(e),this._removeModalElements()}get closed(){return this._closed.asObservable().pipe(bs(this._hidden))}get dismissed(){return this._dismissed.asObservable().pipe(bs(this._hidden))}get hidden(){return this._hidden.asObservable()}get shown(){return this.windowRef.componentInstance?.shown.asObservable()}get componentInstance(){return this.contentRef.componentInstance}_removeModalElements(){let e=this.windowRef.componentInstance?.hide(),t=this.backdropRef?.componentInstance?.hide()??So(void 0);e?.subscribe(()=>{this.windowRef.$element.remove(),this.windowRef.destroy(),this.contentRef.destroy(),this.windowRef=null,this.contentRef=null}),t.subscribe(()=>{this.backdropRef&&=(this.backdropRef.$element.remove(),this.backdropRef.destroy(),null)}),as(e??So(void 0),t).subscribe(()=>{this._hidden.next(),this._hidden.complete()})}},Tf=class{constructor(e){this.$window=e}hide(){let e=Math.abs(this.$window.innerWidth-document.documentElement.clientWidth),t=document.body,n=t.style,{overflow:r,paddingRight:i}=n;return e>0&&(n.paddingRight=`${Number.parseFloat(this.$window.getComputedStyle(t).paddingRight)+e}px`),n.overflow=`hidden`,()=>{e>0&&(n.paddingRight=i),n.overflow=r}}static get $name(){return`ngb.scrollbar.service`}static get $inject(){return[`$window`]}},Ef=class{constructor(e,t,n,r){this.$element=e,this.$scope=t,this.componentInstance=n,this.embeddedViewRef=r}setInput(e,t){if(!this.componentInstance)throw Error(`can not set on componentInstance because is undefined`);let n=this.componentInstance,r=n[e];n[e]=t,n.$onChanges?.({[e]:{currentValue:t,previousValue:r,isFirstChange:()=>r===void 0}}),this.$scope?.$evalAsync()}destroy(){this.embeddedViewRef?.destroy(),this.embeddedViewRef=void 0,this.$scope?.$destroy(),this.$scope=void 0}},Df=e=>{e.removeClass(`show`)},Of=class{constructor(e,t,n,r){this.$compile=e,this._ngZone=t,this.$rootScope=n,this._componentType=r,this._windowRef=null,this._contentRef=null}open(e,t,n=!1){if(!this._windowRef){this._contentRef=this._getContentRef(e,t);let n=ud(this._componentType),r=this.$rootScope.$new(),i=u.default.element(`<${n}></${n}>`),a=this.$compile(i)(r),o=a.controller(this._componentType),s=a[0].querySelector?.(`[ngb-popup-content]`);u.default.element(s??a).append(this._contentRef.$element),this._windowRef=new Ef(a,r,o)}let{$element:r}=this._windowRef,i=new Y;this._ngZone.runOutsideAngular(()=>{queueMicrotask(()=>{i.next(),i.complete()})});let a=i.pipe(zo(()=>Qu(this._ngZone,r,e=>{e.addClass(`show`)},{animation:n,runningTransition:`continue`})));return{windowRef:this._windowRef,transition$:a}}close(e=!1){return this._windowRef?Qu(this._ngZone,this._windowRef.$element,Df,{animation:e,runningTransition:`stop`}).pipe(xs(()=>{this._contentRef?.destroy(),this._contentRef=null,this._windowRef?.$scope?.$destroy(),this._windowRef=null})):So(void 0)}_getContentRef(e,t){if(!e)return new Ef(u.default.element([]));if(e instanceof kc){let n=e.createEmbeddedView(t??{});return new Ef(u.default.element(n.rootNodes),void 0,void 0,n)}let n=document.createTextNode(`${e}`);return new Ef(u.default.element(n))}},kf=class{constructor(e,t,n){this.$compile=e,this._ngZone=t,this.$rootScope=n}$create(e){return new Of(this.$compile,this._ngZone,this.$rootScope,e)}static get $inject(){return[`$compile`,Fc.$name,`$rootScope`]}static get $name(){return`ngb.popup.factory`}},Af=class{constructor(e,t,n,r,i){this.ngbScrollbar=e,this._ngZone=t,this.$compile=n,this.$rootScope=r,this.$q=i,this._scrollBarRestoreFn=null,this._modalRefs=[],this._windowRefs=[],this._ariaHiddenValues=new Map,this._activeWindowCmptHasChanged=new Y,this._activeInstances=this.$q.defer(),this._activeWindowCmptHasChanged.subscribe(()=>{if(!this._windowRefs.length){this._revertAriaHidden();return}let e=this._windowRefs[this._windowRefs.length-1];Gu(this._ngZone,Z(e.$element),this._activeWindowCmptHasChanged),this._revertAriaHidden(),this._setAriaHidden(e.$element)})}async open(e,t){let n=this.$q.defer(),r=this._resolveContainer(t.container);if(!r)throw Error(`The specified modal container "${t.container||`body`}" was not found in the DOM.`);this._hideScrollBar();let i=new Cf,a=this._getContentRef(e,i,t),o=t.backdrop===!1?void 0:this._attachBackdrop(r);return await this.$q.all([o,a]).then(([e,a])=>this._attachWindowComponent(r,a.$element).then(r=>{let o=new wf(this.$q,r,a,e,t.beforeDismiss);i.close=e=>{o.close(e)},i.dismiss=e=>{o.dismiss(e)},i.update=e=>{o.update(e)},o.update(t),this._registerModalRef(o),this._registerWindow(r),this._modalRefs.length===1&&document.body.classList.add(`modal-open`),o.hidden.pipe(ls(1)).subscribe(()=>this.$q.resolve(!0).then(()=>{this._modalRefs.length||(document.body.classList.remove(`modal-open`),this._restoreScrollBar(),this._revertAriaHidden())})),n.resolve(o)})),n.promise}_registerWindow(e){this._windowRefs.push(e),this._activeWindowCmptHasChanged.next(),e.$scope?.$on(`$destroy`,()=>{let t=this._windowRefs.indexOf(e);t>-1&&(this._windowRefs.splice(t,1),this._activeWindowCmptHasChanged.next())})}get activeInstances(){return this._activeInstances?.promise}dismissAll(e){this._modalRefs.forEach(t=>{t.dismiss(e)})}hasOpenModals(){return this._modalRefs.length>0}_registerModalRef(e){let t=()=>{let t=this._modalRefs.indexOf(e);t>-1&&(this._modalRefs.splice(t,1),this._activeInstances?.notify(this._modalRefs))};this._modalRefs.push(e),this._activeInstances?.notify(this._modalRefs),e.result?.then(t,t)}_resolveContainer(e){if(u.default.isString(e)){let t=document.querySelector(String(e));return t?u.default.element(t):void 0}return e??u.default.element(document.body)}_attachBackdrop(e){let t=this.$q.defer(),n=this.$rootScope.$new(!0),r=this.$compile(`<ngb-modal-backdrop></ngb-modal-backdrop>`)(n);e.append(r);let i=this.$rootScope.$watch(()=>r.controller(`ngbModalBackdrop`),e=>{i();let a=new Ef(r,n,e);t.resolve(a)});return t.promise}_attachWindowComponent(e,t){let n=this.$q.defer(),r=this.$rootScope.$new(!0),i=this.$compile(`<ngb-modal-window></ngb-modal-window>`)(r),a=Z(i).querySelector(`.modal-content`);a&&u.default.element(a).append(t),e.append(i);let o=this.$rootScope.$watch(()=>i.controller(`ngbModalWindow`),e=>{o();let t=new Ef(i,r,e);n.resolve(t)});return n.promise}_getContentRef(e,t,n){let r=this.$q.defer();if(e instanceof kc){let n=e.createEmbeddedView({$implicit:t,close:e=>t.close(e),dismiss:e=>t.dismiss(e)}),i=u.default.element(n.rootNodes);return r.resolve(new Ef(i,void 0,void 0,n)),r.promise}let i=this.$rootScope.$new(!0),a=ud(e),o=this._buildBindingsAttrs(n),s=this.$compile(`<${a} ${o} ngb-active-modal="activeModal"></${a}>`);i.activeModal=t,u.default.extend(i,n.bindings);let c=s(i);n.scrollable&&c.addClass(`component-host-scrollable d-flex flex-column overflow-hidden`);let l=this.$rootScope.$watch(()=>c.controller(e),e=>{l();let t=new Ef(c,i,e);r.resolve(t)});return r.promise}_buildBindingsAttrs(e){return Object.keys(e.bindings||{}).map(e=>`${ud(e)}="${e}"`).join(` `)}_setAriaHidden(e){let t=Z(e),n=t.parentElement,r=document.body;n&&t!==r&&(Array.from(n.children).forEach(e=>{e!==t&&e.nodeName!==`SCRIPT`&&(this._ariaHiddenValues.set(e,e.getAttribute(`aria-hidden`)),e.setAttribute(`aria-hidden`,`true`))}),this._setAriaHidden(u.default.element(n)))}_revertAriaHidden(){this._ariaHiddenValues.forEach((e,t)=>{if(e){t.setAttribute(`aria-hidden`,e);return}t.removeAttribute(`aria-hidden`)}),this._ariaHiddenValues.clear()}_restoreScrollBar(){let e=this._scrollBarRestoreFn;e&&(this._scrollBarRestoreFn=null,e())}_hideScrollBar(){this._scrollBarRestoreFn||=this.ngbScrollbar.hide()}static get $name(){return`ngb.modal.stack.service`}static get $inject(){return[Tf.$name,Fc.$name,`$compile`,`$rootScope`,`$q`]}},jf=class{constructor(e,t){this.ngbModalStack=e,this.ngbModalConfig=t}open(e,t={}){let n={...this.ngbModalConfig,animation:this.ngbModalConfig.animation,...t};return this.ngbModalStack.open(e,n)}get activeInstances(){return this.ngbModalStack.activeInstances}dismissAll(e){this.ngbModalStack.dismissAll(e)}hasOpenModals(){return this.ngbModalStack.hasOpenModals()}static get $name(){return`ngb.modal.service`}static get $inject(){return[Af.$name,Sf.$name]}},Mf=e=>{e.removeClass(`show`)},Nf=(e,t)=>{t&&ed(e),e.addClass(`show`)},Pf=[`animation`,`backdropClass`],Ff=class e{constructor(e,t,n,r){this.$element=e,this.$ngbModalConfig=t,this._ngZone=n,this._cdRef=r}$postLink(){let e=this.backdropClass?this.backdropClass:``;this.$element.addClass(`modal-backdrop ${e}`),this.$element.css({"z-index":`1055`}),this._ngZone.runOutsideAngular(()=>queueMicrotask(()=>Qu(this._ngZone,this.$element,Nf,{animation:this.animation??this.$ngbModalConfig.animation,runningTransition:`continue`})))}$onChanges(){this.$element.toggleClass(`show`,!this.animation),this.$element.toggleClass(`fade`,this.animation),this._appliedBackdropClass&&this._appliedBackdropClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.removeClass(e)}),this.backdropClass&&this.backdropClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.addClass(e)}),this._appliedBackdropClass=this.backdropClass}hide(){return Qu(this._ngZone,this.$element,Mf,{animation:this.animation??this.$ngbModalConfig.animation,runningTransition:`stop`})}updateOptions(e){let t=e;Pf.forEach(e=>{u.default.isDefined(t[e])&&Object.assign(this,{[e]:t[e]})}),this.$onChanges(),this._cdRef.markForCheck()}static get $name(){return`ngbModalBackdrop`}static get $inject(){return[`$element`,Sf.$name,Fc.$name,ks.$name]}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{animation:`<?`,backdropClass:`@?`}}}},If=`<div
+    ng-ref="dialog"
+    role="document"
     class="modal-dialog"\r
-    ng-class="[\r
-        $.fullscreen === true ? 'modal-fullscreen' : ($.fullscreen ? 'modal-fullscreen-' + $.fullscreen + '-down' : ''),\r
+    ng-class="[
+        $.fullscreen === true ? 'modal-fullscreen' : ($.fullscreen ? 'modal-fullscreen-' + $.fullscreen + '-down' : ''),
         $.size ? 'modal-' + $.size : '',\r
         $.centered ? 'modal-dialog-centered' : '',\r
-        $.scrollable ? 'modal-dialog-scrollable' : '',\r
-        $.modalDialogClass || ''\r
-    ]">\r
-    <div class="modal-content"><ng-content></ng-content></div>\r
-</div>\r
+        $.scrollable ? 'modal-dialog-scrollable' : '',
+        $.modalDialogClass || ''
+    ]">
+    <div class="modal-content"><ng-content></ng-content></div>
+</div>
 `,Lf=(e,t)=>{t&&ed(e),e.addClass(`show`)},Rf=(e,t)=>t?(e.addClass(`modal-static`),()=>{e.removeClass(`modal-static`)}):u.default.noop,zf=e=>{e.removeClass(`show`)},Bf=[`animation`,`ariaLabelledBy`,`ariaDescribedBy`,`backdrop`,`centered`,`fullscreen`,`keyboard`,`role`,`scrollable`,`size`,`windowClass`,`modalDialogClass`],Vf=()=>{},Hf=class e{constructor(e,t,n,r){this.$element=e,this._ngZone=t,this._cdRef=n,this.$log=r,this.backdrop=!0,this.keyboard=!0,this.role=`dialog`,this._elWithFocus=null,this._closed$=new Y,this.shown=new Y,this.hidden=new Y}get _dialogEl(){return u.default.element(this._dialogRef.nativeElement)}$onInit(){this._elWithFocus=document.activeElement}$onDestroy(){this._disableEventHandling()}$postLink(){this.$element.addClass(`modal d-block`),this.$element.attr(`tabindex`,-1),this.$element.attr(`aria-modal`,`true`),this._ngZone.runOutsideAngular(()=>queueMicrotask(()=>this._show()))}$onChanges(){this.$element.toggleClass(`fade`,this.animation),this._appliedWindowClass&&this._appliedWindowClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.removeClass(e)}),this.windowClass&&this.windowClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.addClass(e)}),this._appliedWindowClass=this.windowClass,this.ariaLabelledBy?this.$element.attr(`aria-labelledby`,this.ariaLabelledBy):this.$element.removeAttr(`aria-labelledby`),this.ariaDescribedBy?this.$element.attr(`aria-describedby`,this.ariaDescribedBy):this.$element.removeAttr(`aria-describedby`),this.role?this.$element.attr(`role`,this.role):this.$element.removeAttr(`role`)}dismiss(e){this._dismissListener?.(e)}onDismiss(e){this._dismissListener=e}hide(){let e={animation:!!this.animation,runningTransition:`stop`},t=Qu(this._ngZone,this.$element,zf,e);if(!this._dialogEl)throw Error(`dialog element is undefined`);let n=as(t,Qu(this._ngZone,this._dialogEl,Vf,e));return n.subscribe(()=>{this.hidden.next(),this.hidden.complete()}),this._disableEventHandling(),this._restoreFocus(),n}updateOptions(e){let t=e;this._ngZone.run(()=>{Bf.forEach(e=>{u.default.isDefined(t[e])&&Object.assign(this,{[e]:t[e]})}),this.$onChanges(),this._cdRef.markForCheck()})}_show(){let e={animation:!!this.animation,runningTransition:`continue`},t=Qu(this._ngZone,this.$element,Lf,e);if(!this._dialogEl)throw Error(`dialog element is undefined`);as(t,Qu(this._ngZone,this._dialogEl,Vf,e)).subscribe(()=>{this.shown.next(),this.shown.complete()}),this._enableEventHandling(),this._setFocus()}_setFocus(){let e=Z(this.$element);if(!e.contains(document.activeElement)){let t=e.querySelector(`[ngbAutofocus]`),[n]=Wu(e);(t||n||e).focus()}}_enableEventHandling(){this._disableEventHandling();let e=Z(this.$element);if(!this._dialogEl)throw Error(`dialog element is undefined`);let t=Z(this._dialogEl),n=!1;Ko(e,`keydown`).pipe(bs(this._closed$),ns(e=>e.key===`Escape`)).subscribe(e=>{if(this.$log.info(`ngbModalWindow keydown`,e),this.keyboard){requestAnimationFrame(()=>{e.defaultPrevented||this._ngZone.run(()=>{this.dismiss(1)})});return}this.backdrop===`static`&&this._bumpBackdrop()}),Ko(t,`mousedown`).pipe(bs(this._closed$),xs(e=>{this.$log.info(`ngbModalWindow dialog mousedown`,e),n=!1}),ys(()=>Ko(e,`mouseup`).pipe(bs(this._closed$),ls(1))),ns(({target:t})=>t===e)).subscribe(e=>{this.$log.info(`ngbModalWindow mouseup`,e),n=!0}),Ko(e,`click`).pipe(bs(this._closed$)).subscribe(t=>{this.$log.info(`ngbModalWindow click`,t),t.target===e&&(this.backdrop===`static`&&this._bumpBackdrop(),this.backdrop===!0&&!n&&this._ngZone.run(()=>{this.dismiss(0)})),n=!1})}_disableEventHandling(){this._closed$.next()}_restoreFocus(){let e=document.body,t=this._elWithFocus,n=t instanceof HTMLElement&&e.contains(t)?t:e;this._ngZone.runOutsideAngular(()=>setTimeout(()=>n.focus())),this._elWithFocus=null}_bumpBackdrop(){this.backdrop===`static`&&Qu(this._ngZone,this.$element,Rf,{animation:!!this.animation,runningTransition:`continue`})}static get $name(){return`ngbModalWindow`}static get $inject(){return[`$element`,Fc.$name,ks.$name,`$log`]}static get $factory(){return{controller:e,controllerAs:`$`,transclude:!0,template:If,bindings:{animation:`<?`,ariaLabelledBy:`<?`,ariaDescribedBy:`<?`,backdrop:`<?`,centered:`<?`,fullscreen:`<?`,keyboard:`<?`,role:`<?`,scrollable:`<?`,size:`<?`,windowClass:`<?`,modalDialogClass:`<?`}}}};X([fc(`dialog`,{read:Bc,static:!0})],Hf.prototype,`_dialogRef`,2);var Uf=Hf,Wf=u.default.module(`ngb.modal`,[Wc.name]);Wf.service(jf.$name,jf),Wf.service(Af.$name,Af),Wf.service(Sf.$name,Sf),Wf.component(Ff.$name,Ff.$factory),Wf.component(Uf.$name,Uf.$factory);var Gf=class{constructor(e){this.ngbConfig=e,this.destroyOnHide=!0,this.orientation=`horizontal`,this.roles=`tablist`,this.keyboard=!0}get animation(){return this._animation??this.ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.nav.config.service`}},Kf=class e{static get $name(){return`ngbNavContent`}static get $factory(){return()=>({controller:e,bindToController:!0,restrict:`A`})}},qf=e=>u.default.isDefined(e)&&e!==``,Jf=0,Yf=class e{constructor(e){this.$element=e}$onInit(){u.default.isDefined(this.domId)||(this.domId=`ngb-nav-${Jf++}`)}$postLink(){this.$element.addClass(`nav-item`)}get active(){return this._nav.activeId===this.id}get id(){return qf(this._id)?this._id:this.domId}get panelDomId(){return`${this.domId}-panel`}isDisabled(){return this.ngDisabled?.disabled??!1}isPanelInDom(){return u.default.isDefined(this.destroyOnHide)?!this.destroyOnHide:!this._nav.destroyOnHide||this.active}isNgContainer(){return Z(this.$element).nodeType===Node.COMMENT_NODE}static get $inject(){return[`$element`]}static get $name(){return`ngbNavItem`}static get $factory(){return()=>({controller:e,restrict:`A`,bindToController:!0,require:{_nav:`^ngbNav`,ngDisabled:`?ngDisabled`},scope:{destroyOnHide:`<?`,domId:`@?`,_id:`@?ngbNavItem`,shown:`&?`,hidden:`&?`},transclude:!0,template:`<ng-content></ng-content>`})}};X([qs(Kf,{descendants:!1,read:kc})],Yf.prototype,`contentTpl`,2);var Xf=Yf,Zf=class{constructor(e,t,n){this.$element=e,this.$attrs=t,this.$scope=n}$postLink(){this.$element.addClass(`nav-link`),this.nativeElement=Z(this.$element),this._updateDom(),this._sub=this.ngbNav.navItemChange$.subscribe(()=>this._updateDom()),this._unwatchDisabled=this.$scope.$watch(()=>this.ngbNavItem.isDisabled(),()=>this._updateDom())}$onDestroy(){this._sub?.unsubscribe(),this._unwatchDisabled?.(),this._clickHandler&&this.$element.off(`click`,this._clickHandler)}get tabindex(){return this.ngbNav.keyboard===!1?this.ngbNavItem.isDisabled()?-1:void 0:this.ngbNav._navigatingWithKeyboard||this.ngbNavItem.isDisabled()||!this.ngbNavItem.active?-1:void 0}_setupButton(){this.$element.attr(`type`,`button`),this._clickHandler=()=>this.$scope.$evalAsync(()=>this.ngbNav.click(this.ngbNavItem)),this.$element.on(`click`,this._clickHandler)}_updateDom(){let e=this.ngbNavItem,t=this.ngbNav,n=this.$attrs.role;this.$element.attr(`id`,e.domId),this.$element.toggleClass(`nav-item`,e.isNgContainer()),this.$element.toggleClass(`active`,!!e.active),this.$element.toggleClass(`disabled`,e.isDisabled()),this.nativeElement instanceof HTMLButtonElement&&this.$element.prop(`disabled`,e.isDisabled()),fd(this.$element,`tabindex`,this.tabindex?.toString()),fd(this.$element,`aria-controls`,e.isPanelInDom()?e.panelDomId:void 0),fd(this.$element,`aria-selected`,String(e.active)),fd(this.$element,`aria-disabled`,e.isDisabled()?`true`:void 0),fd(this.$element,`role`,n,t.roles?`tab`:void 0)}static get $inject(){return[`$element`,`$attrs`,`$scope`]}},Qf=e=>u.default.isDefined(e)&&e!==``,$f=class e{constructor(e,t,n,r){this.$element=e,this.$attributes=t,this.$scope=n,this.config=r,this._navigatingWithKeyboard=!1,this.navItemChange$=new Y}$onInit(){this.animation??=this.config.animation,this.destroyOnHide??=this.config.destroyOnHide,this.keyboard??=this.config.keyboard,this.orientation??=this.config.orientation,this.roles??=this.config.roles}$postLink(){this.$element.addClass(`nav`),this.$element.on(`keydown`,this.onKeyDown.bind(this)),this.$element.on(`focusout`,this.onFocusout.bind(this));let e=e=>{this.role=e,fd(this.$element,`role`,this.role?this.role:this.roles?`tablist`:void 0)};if(this.$attributes.$observe(`role`,e),e(this.$attributes.role),!(0,u.isDefined)(this.activeId)){let e=this.items.first?.id??null;Qf(e)&&this.$scope.$applyAsync(()=>this._updateActiveId(e,!1))}this.itemsSubscription=this.items.changes.subscribe(()=>this._notifyItemChanged(this.activeId))}$onChanges(e){this.$element.toggleClass(`flex-column`,this.orientation===`vertical`),fd(this.$element,`aria-orientation`,this.orientation===`vertical`&&this.roles===`tablist`?`vertical`:void 0),e.activeId&&!e.activeId.isFirstChange()&&this._notifyItemChanged(e.activeId.currentValue)}$onDestroy(){this.itemsSubscription?.unsubscribe(),this.navItemChange$.complete(),this.$element.off(`keydown`),this.$element.off(`focusout`)}onKeyDown(e){if(this.roles!==`tablist`||!this.keyboard)return;let t=this.links.filter(e=>!e.ngbNavItem.isDisabled()),{length:n}=t,r=-1;if(t.forEach((e,t)=>{e.nativeElement===document.activeElement&&(r=t)}),n){switch(e.key){case`ArrowUp`:case`ArrowLeft`:r=(r-1+n)%n;break;case`ArrowRight`:case`ArrowDown`:r=(r+1)%n;break;case`Home`:r=0;break;case`End`:r=n-1}this.keyboard===`changeWithArrows`&&this.select(t[r].ngbNavItem.id),t[r].nativeElement.focus(),this._navigatingWithKeyboard=!0,e.preventDefault()}}onFocusout({relatedTarget:e}){Z(this.$element).contains(e)||(this._navigatingWithKeyboard=!1)}click(e){e.isDisabled()||this._updateActiveId(e.id)}select(e){this._updateActiveId(e,!1)}_updateActiveId(e,t=!0){if(this.activeId===e)return;let n=!1;t&&this.navChange?.({$event:{activeId:this.activeId,nextId:e,preventDefault:()=>{n=!0}}}),n||(this.activeId=e,this.activeIdChange?.({$event:e}),this._notifyItemChanged(e))}_notifyItemChanged(e){this.navItemChange$.next(this._getItemById(e))}_getItemById(e){return this.items?.find(t=>t.id===e)||null}static get $name(){return`ngbNav`}static get $inject(){return[`$element`,`$attrs`,`$scope`,Gf.$name]}static get $factory(){return()=>({restrict:`A`,scope:{activeId:`=?`,animation:`<?`,destroyOnHide:`<?`,keyboard:`<?`,orientation:`<?`,roles:`<?`,activeIdChange:`&?`,hidden:`&?`,navChange:`&?`,shown:`&?`},bindToController:!0,controller:e,transclude:!0,template:`<ng-content></ng-content>`})}};X([ec(Xf)],$f.prototype,`items`,2),X([ec(Zf)],$f.prototype,`links`,2);var ep=$f,tp=class{constructor(){this.counter=0}get count$(){return this.count$}increase(){this.counter+=1}decrease(){--this.counter}},np=class{static get $name(){return`ngb.nav.counter.factory`}static $factory(){return new tp}},rp=class e{constructor(e,t){this.$attributes=e,this.$element=t}$onInit(){this.$attributes.$observe(`role`,e=>{fd(this.$element,`role`,e,this.nav.roles?`presentation`:void 0)})}static get $name(){return`ngbNavItemRole`}static get $inject(){return[`$attrs`,`$element`]}static get $factory(){return()=>({controller:e,bindToController:!0,require:{nav:`^ngbNav`},restrict:`A`})}},ip=class e extends Zf{constructor(e,t,n){super(e,t,n),this.$attrs=t}$postLink(){super.$postLink();let e=this.nativeElement.tagName.toLowerCase();if(e===`button`){this._setupButton();return}if(e!==`a`)return;let t=Object.hasOwn(this.$attrs.$attr,`uiSref`);t||this.$element.attr(`href`,``),this._clickHandler=e=>{t||e.preventDefault(),this.$scope.$evalAsync(()=>this.ngbNav.click(this.ngbNavItem))},this.$element.on(`click`,this._clickHandler)}static get $name(){return`ngbNavLink`}static get $inject(){return[`$element`,`$attrs`,`$scope`]}static get $factory(){return()=>({controller:e,require:{ngbNavItem:`^ngbNavItem`,ngbNav:`^ngbNav`},restrict:`A`,bindToController:!0})}},ap=class e extends Zf{$postLink(){super.$postLink(),this._setupButton()}static get $name(){return`ngbNavLinkButton`}static get $factory(){return()=>({controller:e,require:{ngbNavItem:`^ngbNavItem`,ngbNav:`^ngbNav`},restrict:`A`,bindToController:!0})}},op=class e{constructor(e){this.$element=e}$postLink(){this.nativeElement=this.$element[0],this.$element.addClass(`tab-pane`),this.nav.animation&&this.$element.addClass(`fade`),this.$element.attr(`id`,this.item.panelDomId),this.$element.attr(`aria-labelledby`,this.item.domId),fd(this.$element,`role`,this.role,this.nav.roles?`tabpanel`:void 0)}static get $name(){return`ngbNavPane`}static get $inject(){return[`$element`]}static get $factory(){return()=>({controller:e,controllerAs:`$`,restrict:`A`,scope:{item:`<`,nav:`<`,role:`<?`},bindToController:!0,template:`
         <ng-container
           ng-template-outlet="$.item.contentTpl"
@@ -88,15 +88,15 @@ Watchers fired in the last 5 iterations: {1}`,e,C)}while(f||m.length);for(y();_<
         </div>
       `})}};X([_c(op)],lp.prototype,`_panes`,2);var up=lp,dp=u.default.module(`ngb.nav`,[Wc.name]);dp.factory(np.$name,np.$factory),dp.directive(ep.$name,ep.$factory),dp.service(Gf.$name,Gf),dp.directive(ap.$name,ap.$factory),dp.directive(Kf.$name,Kf.$factory),dp.directive(Xf.$name,Xf.$factory),dp.directive(rp.$name,rp.$factory),dp.directive(up.$name,up.$factory),dp.directive(ip.$name,ip.$factory),dp.directive(op.$name,op.$factory);var fp=class{constructor(e){this._ngbConfig=e,this.backdrop=!0,this.keyboard=!0,this.position=`start`,this.scroll=!1}get animation(){return this._animation??this._ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.offcanvas.config.service`}},pp=(e,t)=>{t&&ed(e),e.addClass(`show`)},mp=e=>{e.removeClass(`show`)},hp=[`animation`,`backdropClass`],gp=class e{constructor(e,t){this.$element=e,this._ngZone=t}$postLink(){this._ngZone.runOutsideAngular(()=>queueMicrotask(()=>Qu(this._ngZone,this.$element,pp,{animation:this.animation??!0,runningTransition:`continue`}))),this.$element.addClass(`offcanvas-backdrop`),this.$element.on(`mousedown`,this.dismiss.bind(this))}$onChanges(){this.$element.toggleClass(`show`,!this.animation),this.$element.toggleClass(`fade`,this.animation),this._appliedBackdropClass&&this._appliedBackdropClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.removeClass(e)}),this.backdropClass&&this.backdropClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.addClass(e)}),this._appliedBackdropClass=this.backdropClass}$onDestroy(){this.$element.off(`mousedown`)}hide(){return Qu(this._ngZone,this.$element,mp,{animation:this.animation??!0,runningTransition:`stop`}).pipe(cs(void 0))}dismiss(){this.static||this.onDismiss?.({$event:0})}updateOptions(e){let t=e;this._ngZone.run(()=>{hp.forEach(e=>{u.default.isDefined(t[e])&&Object.assign(this,{[e]:t[e]})}),this.$onChanges()})}static get $name(){return`ngbOffcanvasBackdrop`}static get $inject(){return[`$element`,Fc.$name]}static get $factory(){return{bindings:{animation:`<?`,backdropClass:`@?`,static:`<?`,onDismiss:`&?`},controller:e,template:``}}},_p=class{close(e){}dismiss(e){}},vp=class{constructor(e,t,n,r,i){this.$q=e,this.panelRef=t,this.contentRef=n,this.backdropRef=r,this._beforeDismiss=i,this._hidden=new Y,this._dismissed=new Y,this._closed=new Y;let a=this.$q.defer();this.result=a.promise,this._reject=a.reject,this._resolve=a.resolve,a.promise.then(u.default.noop,u.default.noop),this.panelRef.componentInstance&&(this.panelRef.componentInstance.onDismiss=({$event:e})=>this.dismiss(e)),this.backdropRef?.componentInstance&&(this.backdropRef.componentInstance.onDismiss=({$event:e})=>this.dismiss(e))}dismiss(e){if(!this.panelRef)return;if(!this._beforeDismiss){this._dismiss(e);return}let t=this._beforeDismiss();this.$q.when(t).then(t=>{t!==!1&&this._dismiss(e)},u.default.noop)}close(e){this.panelRef&&(this._closed.next(e),this._resolve?.(e),this._removeOffcanvasElements())}_dismiss(e){this._dismissed.next(e),this._reject?.(e),this._removeOffcanvasElements()}get closed(){return this._closed.asObservable().pipe(bs(this._hidden))}get dismissed(){return this._dismissed.asObservable().pipe(bs(this._hidden))}get hidden(){return this._hidden.asObservable()}get shown(){return this.panelRef.componentInstance?.shown.asObservable()}get componentInstance(){return this.contentRef.componentInstance}_removeOffcanvasElements(){let e=this.panelRef.componentInstance?.hide(),t=this.backdropRef?.componentInstance?.hide()??So(void 0);e?.subscribe(()=>{this.panelRef.$element.remove(),this.panelRef.destroy(),this.contentRef.destroy(),this.panelRef=null,this.contentRef=null}),t.subscribe(()=>{this.backdropRef&&=(this.backdropRef.$element.remove(),this.backdropRef.destroy(),null)}),as(e??So(void 0),t).subscribe(()=>{this._hidden.next(),this._hidden.complete()})}},yp=(e,t)=>(t&&ed(e),e.addClass(`show showing`),()=>{e.removeClass(`showing`)}),bp=e=>(e.removeClass(`showing`),e.addClass(`hiding`),()=>{e.removeClass(`show hiding`)}),xp=[`animation`,`ariaLabelledBy`,`ariaDescribedBy`,`keyboard`,`panelClass`,`position`],Sp=class e{constructor(e,t){this.$element=e,this._ngZone=t,this.keyboard=!0,this.position=`start`,this.shown=new Y,this.hidden=new Y,this._elWithFocus=null,this._closed$=new Y}$onInit(){this._elWithFocus=document.activeElement}$postLink(){this.$element.addClass(`offcanvas`),this.$element.attr(`role`,`dialog`),this.$element.attr(`tabindex`,`-1`),this.$element.attr(`aria-modal`,`true`),this._ngZone.runOutsideAngular(()=>queueMicrotask(()=>this._show()))}$onChanges(){let e=`offcanvas-${this.position}`;this._appliedPositionClass&&this.$element.removeClass(this._appliedPositionClass),this.$element.addClass(e),this._appliedPositionClass=e,this._appliedPanelClass&&this._appliedPanelClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.removeClass(e)}),this.panelClass&&this.panelClass.split(/\s+/).filter(Boolean).forEach(e=>{this.$element.addClass(e)}),this._appliedPanelClass=this.panelClass,fd(this.$element,`aria-labelledby`,this.ariaLabelledBy),fd(this.$element,`aria-describedby`,this.ariaDescribedBy)}$onDestroy(){this._disableEventHandling()}dismiss(e){this.onDismiss?.({$event:e})}updateOptions(e){let t=e;this._ngZone.run(()=>{xp.forEach(e=>{u.default.isDefined(t[e])&&Object.assign(this,{[e]:t[e]})}),this.$onChanges()})}hide(){let e={animation:!!this.animation,runningTransition:`stop`},t=Qu(this._ngZone,this.$element,bp,e).pipe(cs(void 0));return t.subscribe(()=>{this.hidden.next(),this.hidden.complete()}),this._disableEventHandling(),this._restoreFocus(),t}_show(){let e={animation:!!this.animation,runningTransition:`continue`};Qu(this._ngZone,this.$element,yp,e).pipe(cs(void 0)).subscribe(()=>{this.shown.next(),this.shown.complete()}),this._enableEventHandling(),this._setFocus()}_enableEventHandling(){Ko(Z(this.$element),`keydown`).pipe(bs(this._closed$),ns(e=>e.key===`Escape`)).subscribe(e=>{this.keyboard&&requestAnimationFrame(()=>{e.defaultPrevented||this._ngZone.run(()=>this.dismiss(1))})})}_disableEventHandling(){this._closed$.next()}_setFocus(){let e=Z(this.$element);if(!e.contains(document.activeElement)){let t=e.querySelector(`[ngbAutofocus]`),[n]=Wu(e);(t||n||e).focus()}}_restoreFocus(){let e=document.body,t=this._elWithFocus,n=t instanceof HTMLElement&&e.contains(t)?t:e;this._ngZone.runOutsideAngular(()=>setTimeout(()=>n.focus())),this._elWithFocus=null}static get $name(){return`ngbOffcanvasPanel`}static get $inject(){return[`$element`,Fc.$name]}static get $factory(){return{bindings:{animation:`<?`,ariaLabelledBy:`<?`,ariaDescribedBy:`<?`,keyboard:`<?`,panelClass:`<?`,position:`<?`,onDismiss:`&?`},controller:e,controllerAs:`$`,template:``}}},Cp=class{constructor(e,t,n,r,i){this.ngbScrollbar=e,this._ngZone=t,this.$compile=n,this.$rootScope=r,this.$q=i,this._scrollBarRestoreFn=null,this._activePanelCmptHasChanged=new Y,this._activeInstance=new Y,this._activePanelCmptHasChanged.subscribe(()=>{this._panelRef&&Gu(this._ngZone,Z(this._panelRef.$element),this._activePanelCmptHasChanged)})}async open(e,t){let n=this.$q.defer(),r=this._resolveContainer(t.container);if(!r)throw Error(`The specified offcanvas container "${t.container||`body`}" was not found in the DOM.`);t.scroll||this._hideScrollBar();let i=new _p,a=this._getContentRef(e,i,t),o=t.backdrop===!1?void 0:this._attachBackdrop(r);return await this.$q.all([o,a]).then(([e,a])=>this._attachPanelComponent(r,a.$element).then(r=>{let o=new vp(this.$q,r,a,e,t.beforeDismiss);i.close=e=>{o.close(e)},i.dismiss=e=>{o.dismiss(e)},r.componentInstance&&this._applyPanelOptions(r.componentInstance,t),e?.componentInstance&&this._applyBackdropOptions(e.componentInstance,t),this._registerOffcanvasRef(o),this._registerPanelRef(r),o.hidden.pipe(_s(()=>this._restoreScrollBar())).subscribe(),n.resolve(o)})),n.promise}get activeInstance(){return this._activeInstance.asObservable()}dismiss(e){this._offcanvasRef?.dismiss(e)}hasOpenOffcanvas(){return!!this._offcanvasRef}_restoreScrollBar(){let e=this._scrollBarRestoreFn;e&&(this._scrollBarRestoreFn=null,e())}_hideScrollBar(){this._scrollBarRestoreFn||=this.ngbScrollbar.hide()}_resolveContainer(e){if(u.default.isString(e)){let t=document.querySelector(String(e));return t?u.default.element(t):void 0}return e??u.default.element(document.body)}_attachBackdrop(e){let t=this.$q.defer(),n=this.$rootScope.$new(!0),r=this.$compile(`<ngb-offcanvas-backdrop></ngb-offcanvas-backdrop>`)(n);e.append(r);let i=this.$rootScope.$watch(()=>r.controller(gp.$name),e=>{i();let a=new Ef(r,n,e);t.resolve(a)});return t.promise}_attachPanelComponent(e,t){let n=this.$q.defer(),r=this.$rootScope.$new(!0),i=this.$compile(`<ngb-offcanvas-panel></ngb-offcanvas-panel>`)(r);i.append(t),e.append(i);let a=this.$rootScope.$watch(()=>i.controller(Sp.$name),e=>{a();let t=new Ef(i,r,e);n.resolve(t)});return n.promise}_applyPanelOptions(e,t){e.updateOptions(t)}_applyBackdropOptions(e,t){e.updateOptions(t),e.static=t.backdrop===`static`}_getContentRef(e,t,n){let r=this.$q.defer();if(e instanceof kc){let n=e.createEmbeddedView({$implicit:t,close:e=>t.close(e),dismiss:e=>t.dismiss(e)});return r.resolve(new Ef(u.default.element(n.rootNodes),void 0,void 0,n)),r.promise}let i=this.$rootScope.$new(!0),a=ud(e),o=this._buildBindingsAttrs(n),s=this.$compile(`<${a} ${o} ngb-active-offcanvas="activeOffcanvas"></${a}>`);i.activeOffcanvas=t,u.default.extend(i,n.bindings);let c=s(i),l=this.$rootScope.$watch(()=>c.controller(e),e=>{l();let t=new Ef(c,i,e);r.resolve(t)});return r.promise}_buildBindingsAttrs(e){return Object.entries(e.bindings||{}).map(([e,t])=>`${ud(e)}="${t}"`).join(` `)}_registerOffcanvasRef(e){let t=()=>{this._offcanvasRef=void 0,this._activeInstance.next(this._offcanvasRef)};this._offcanvasRef=e,this._activeInstance.next(this._offcanvasRef),e.result?.then(t,t)}_registerPanelRef(e){this._panelRef=e,this._activePanelCmptHasChanged.next(),e.$scope?.$on(`$destroy`,()=>{this._panelRef=void 0,this._activePanelCmptHasChanged.next()})}static get $name(){return`ngb.offcanvas.stack.service`}static get $inject(){return[Tf.$name,Fc.$name,`$compile`,`$rootScope`,`$q`]}},wp=class{constructor(e,t){this.ngbOffcanvasStack=e,this.ngbOffcanvasConfig=t}open(e,t={}){let n={...this.ngbOffcanvasConfig,animation:this.ngbOffcanvasConfig.animation,...t};return this.ngbOffcanvasStack.open(e,n)}get activeInstance(){return this.ngbOffcanvasStack.activeInstance}dismiss(e){this.ngbOffcanvasStack.dismiss(e)}hasOpenOffcanvas(){return this.ngbOffcanvasStack.hasOpenOffcanvas()}static get $name(){return`ngb.offcanvas.service`}static get $inject(){return[Cp.$name,fp.$name]}},Tp=u.default.module(`ngb.offcanvas`,[Wc.name]);Tp.service(wp.$name,wp),Tp.service(Cp.$name,Cp),Tp.service(fp.$name,fp),Tp.component(gp.$name,gp.$factory),Tp.component(Sp.$name,Sp.$factory);var Ep=class{constructor(e){this._config=e,this.autoClose=!0,this.placement=`auto`,this.popperOptions=e=>e,this.triggers=`click`,this.disablePopover=!1,this.openDelay=0,this.closeDelay=0}get animation(){return this._animation??this._config.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.popover-config.service`}},Dp=`<div class="popover-arrow" data-popper-arrow></div>\r
 \r
-<h3 ng-if="$.title" class="popover-header">\r
-    <ng-template ng-ref="simpleTitle">{{ $.title }}</ng-template>\r
-    <ng-template\r
-            ng-template-outlet="$.isTitleTemplate() ? $.title : simpleTitle"\r
-            ng-template-outlet-context="$.context"\r
-    ></ng-template>\r
-</h3>\r
-\r
-<div class="popover-body" ngb-popup-content></div>\r
+<h3 ng-if="$.title" class="popover-header">
+    <ng-template ng-ref="simpleTitle">{{ $.title }}</ng-template>
+    <ng-template
+            ng-template-outlet="$.isTitleTemplate() ? $.title : simpleTitle"
+            ng-template-outlet-context="$.context"
+    ></ng-template>
+</h3>
+
+<div class="popover-body" ngb-popup-content></div>
 `,Op=class e{constructor(e){this.$element=e}$postLink(){this.$element.addClass(`popover`),this.$element.attr(`role`,`tooltip`),this.$element.css(`position`,`absolute`)}$onChanges(e){this.id?this.$element.attr(`id`,this.id):this.$element.removeAttr(`id`),this.$element.toggleClass(`fade`,this.animation);let t=e?.popoverClass?.previousValue;typeof t==`string`&&t&&this.$element.removeClass(t),this.popoverClass&&this.$element.addClass(this.popoverClass),(this.onMouseEnter||this.onMouseLeave)&&(this.$element.off(`mouseenter`),this.$element.off(`mouseleave`),this.$element.on(`mouseenter`,this.onMouseEnter?.bind(this)??u.default.noop),this.$element.on(`mouseleave`,this.onMouseLeave?.bind(this)??u.default.noop))}$onDestroy(){this.$element.off(`mouseenter`),this.$element.off(`mouseleave`)}isTitleTemplate(){return this.title instanceof kc}static get $inject(){return[`$element`]}static get $factory(){return{bindings:{animation:`<?`,title:`<?`,id:`<?`,popoverClass:`@?`,context:`<?`,onMouseEnter:`&?`,onMouseLeave:`&?`},controller:e,controllerAs:`$`,template:Dp}}static get $name(){return`ngbPopoverWindow`}},kp={hover:[`mouseenter`,`mouseleave`],focus:[`focusin`,`focusout`]};function Ap(e=``){let t=(e||``).trim();if(t.length===0)return[];let n=t.split(/\s+/).map(e=>e.split(`:`)).map(e=>kp[e[0]]||e),r=n.filter(e=>e.includes(`manual`));if(r.length>1)throw`Triggers parse error: only one manual trigger is allowed`;if(r.length===1&&n.length>1)throw`Triggers parse error: manual trigger can't be mixed with other triggers`;return r.length?[]:n}function jp(e,t,n,r,i,a,o=0,s=0,c=Ba,l=Ba){let u=Ap(n);if(u.length===0)return()=>{};let d=new Set,f=[],p;function m(e,n){t.addEventListener(e,n),f.push(()=>t.removeEventListener(e,n))}function h(t,n){e.cancel(p),n>0?p=e(t,n):t()}for(let[t,n]of u)if(n?(m(t,()=>{d.add(t),h(()=>d.size>0&&i(),o)}),m(n,()=>{d.delete(t),h(()=>d.size===0&&a(),s)})):m(t,()=>r()?h(a,s):h(i,o)),t===`mouseenter`&&n===`mouseleave`&&s>0){let n=c.subscribe(()=>{d.delete(t),e.cancel(p)}),r=l.subscribe(()=>{d.delete(t),h(()=>d.size===0&&a(),s)});f.push(()=>n.unsubscribe(),()=>r.unsubscribe())}return f.push(()=>e.cancel(p)),()=>{f.forEach(e=>{e()})}}var Mp=0,Np=class e{constructor(e,t,n,r,i,a,o,s){this._config=e,this.$element=t,this._popupFactory=n,this._rtl=r,this.$timeout=i,this.$scope=a,this._ngZone=o,this._changeDetector=s,this._ngbPopoverWindowId=`ngb-popover-${Mp++}`,this._windowRef=null,this._hidden$=new Y,this._mouseEnterPopover=new Y,this._mouseLeavePopover=new Y,this._opening=!0,this._transitioning=!1,this._nativeElement=Z(this.$element)}open(e){if(!this._opening&&this._transitioning&&this._windowRef&&(this._transitioning=!1,$u(this._windowRef.$element)),!this._windowRef&&!this._isDisabled()){let t=e??this.popoverContext,{windowRef:n,transition$:r}=this._popupService.open(this.ngbPopover,t,this.animation);this._opening=!0,this._transitioning=!0,this._windowRef=n,n.setInput(`animation`,this.animation),n.setInput(`title`,this.popoverTitle),n.setInput(`context`,t),n.setInput(`popoverClass`,this.popoverClass),n.setInput(`id`,this._ngbPopoverWindowId),n.setInput(`onMouseEnter`,()=>this._mouseEnterPopover.next()),n.setInput(`onMouseLeave`,()=>this._mouseLeavePopover.next()),this._getPositionTargetElement().setAttribute(`aria-describedby`,this._ngbPopoverWindowId);let i=Z(n.$element);this.container===`body`?document.body.appendChild(i):this._nativeElement.parentNode?.insertBefore(i,this._nativeElement.nextSibling),n.$scope?.$evalAsync(),this._changeDetector.markForCheck(),this._ngZone.runOutsideAngular(()=>{this._positioning.createPopper({hostElement:this._getPositionTargetElement(),targetElement:i,placement:this.placement,baseClass:`bs-popover`,updatePopperOptions:e=>this.popperOptions(hf([0,8])(e))}),Promise.resolve().then(()=>this._positioning.update()),this._afterRenderRef=this.$scope.$watch(()=>this._positioning.update())}),tf(this._ngZone,this.autoClose,this._hidden$,()=>this.close(),[i]),r.subscribe(()=>{this._transitioning&&(this._transitioning=!1,this.shown?.())})}}close(e=this.animation){this._opening&&this._transitioning&&this._windowRef&&(this._transitioning=!1,$u(this._windowRef.$element));let t=this._windowRef;t&&(this._getPositionTargetElement().removeAttribute(`aria-describedby`),this._opening=!1,this._transitioning=!0,this._popupService.close(e).subscribe(()=>{t.$element.remove(),this._windowRef=null,this._positioning.destroy(),this._afterRenderRef?.(),this._afterRenderRef=void 0,this._transitioning&&(this._transitioning=!1,this._hidden$.next(),this.hidden?.()),this._changeDetector.markForCheck()}))}toggle(){this._windowRef?this.close():this.open()}isOpen(){return this._windowRef!=null}$onInit(){this._popupService=this._popupFactory.$create(Op.$name),this._positioning=mf(this._rtl),this.animation=this.animation??this._config.animation,this.autoClose=this.autoClose??this._config.autoClose,this.placement=this.placement??this._config.placement,this.popperOptions=this.popperOptions??this._config.popperOptions,this.triggers=this.triggers??this._config.triggers,this.container=this.container??this._config.container,this.disablePopover=this.disablePopover??this._config.disablePopover,this.popoverClass=this.popoverClass??this._config.popoverClass,this.openDelay=this.openDelay??this._config.openDelay,this.closeDelay=this.closeDelay??this._config.closeDelay,this._unregisterListenersFn=jp(this.$timeout,this._nativeElement,this.triggers,this.isOpen.bind(this),this.open.bind(this),this.close.bind(this),+this.openDelay,+this.closeDelay,this._mouseEnterPopover,this._mouseLeavePopover)}$onChanges(e){let{ngbPopover:t,popoverTitle:n,disablePopover:r,popoverClass:i}=e;i&&this.isOpen()&&this._windowRef?.setInput(`popoverClass`,i.currentValue),(t||n||r)&&this._isDisabled()&&this.close()}$onDestroy(){this.close(!1),this._unregisterListenersFn?.()}_isDisabled(){return this.disablePopover?!0:!this.ngbPopover&&!this.popoverTitle}_getPositionTargetElement(){return(typeof this.positionTarget==`string`?document.querySelector(this.positionTarget):this.positionTarget)||this._nativeElement}static get $inject(){return[Ep.$name,`$element`,kf.$name,gf.$name,`$timeout`,`$scope`,Fc.$name,ks.$name]}static get $factory(){return()=>({bindToController:{animation:`<?`,autoClose:`<?`,ngbPopover:`<?`,popoverTitle:`<?`,placement:`<?`,popperOptions:`<?`,triggers:`<?`,positionTarget:`<?`,container:`<?`,disablePopover:`<?`,popoverClass:`@?`,popoverContext:`<?`,openDelay:`<?`,closeDelay:`<?`,shown:`&?`,hidden:`&?`},controller:e,restrict:`A`,scope:!0})}static get $name(){return`ngbPopover`}},Pp=u.default.module(`ngb.popover`,[Wc.name]);Pp.service(Lu.$name,Lu),Pp.factory(kf.$name,kf),Pp.service(gf.$name,gf),Pp.service(Ep.$name,Ep),Pp.component(Op.$name,Op.$factory),Pp.directive(Np.$name,Np.$factory);var Fp=`<div\r
     class="progress-bar"\r
     ng-class="[\r
@@ -106,3603 +106,3603 @@ Watchers fired in the last 5 iterations: {1}`,e,C)}while(f||m.length);for(y();_<
     ]"\r
     ng-style="{ width: !$.stacked ? $.getPercentValue() + '%' : null }">\r
     <span ng-if="$.showValue">{{ $.getValue() / $.max | ngbProgressbarPercent }}</span>\r
-    <ng-content></ng-content>\r
+    <ng-content></ng-content>
 </div>\r
-`,Ip=class{constructor(){this.ariaLabel=`progress bar`,this.animated=!1,this.max=100,this.showValue=!1,this.striped=!1}static get $name(){return`ngb.progressbar.config.service`}},Lp=class e{constructor(e,t){this.ngbProgressbarConfig=e,this.$element=t}$onInit(){this.animated=this.animated??this.ngbProgressbarConfig.animated,this.ariaLabel=this.ariaLabel??this.ngbProgressbarConfig.ariaLabel,this.height=this.height??this.ngbProgressbarConfig.height,this._max=this._max??this.ngbProgressbarConfig.max,this.showValue=this.showValue??this.ngbProgressbarConfig.showValue,this.striped=this.striped??this.ngbProgressbarConfig.striped,this.textType=this.textType??this.ngbProgressbarConfig.textType,this.type=this.type??this.ngbProgressbarConfig.type,this.value=this.value??0}$postLink(){this.$element.attr(`role`,`progressbar`),this.$element.addClass(`progress`),this.$element.css({height:this.height??``}),this.$element.attr(`aria-valuemin`,0),this.$element.attr(`aria-label`,`${this.ariaLabel}`)}$onChanges(){this.$element.attr(`aria-valuenow`,this.getValue()),this.$element.attr(`aria-valuemax`,this.max),this.stacked&&this.$element.css({width:`${this.getPercentValue()}%`})}set max(e){this._max=!u.default.isNumber(e)||e<=0?100:e}get max(){return this._max??this.ngbProgressbarConfig.max}getValue(){return nd(this.value??0,this.max??this.ngbProgressbarConfig.max)}getPercentValue(){return 100*this.getValue()/(this.max??this.ngbProgressbarConfig.max)}static get $name(){return`ngbProgressbar`}static get $inject(){return[Ip.$name,`$element`]}static get $factory(){return{bindings:{animated:`<?`,ariaLabel:`@?`,height:`@?`,max:`<?`,showValue:`<?`,striped:`<?`,textType:`@?`,type:`@?`,value:`<`},require:{stacked:`^?ngbProgressbarStacked`},transclude:!0,controller:e,controllerAs:`$`,template:Fp}}},Rp=class{static get $name(){return`ngbProgressbarPercent`}static $transform(){return e=>{let t=Number(e);return Number.isFinite(t)?`${Math.round(t*1e4)/100}%`:`0%`}}},zp=class e{constructor(e){this.$element=e}$postLink(){this.$element.addClass(`progress-stacked`)}static get $name(){return`ngbProgressbarStacked`}static get $inject(){return[`$element`]}static get $factory(){return{controller:e,controllerAs:`$`}}},Bp=u.default.module(`ngb.progressbar`,[Wc.name]);Bp.service(Ip.$name,Ip),Bp.component(Lp.$name,Lp.$factory),Bp.component(zp.$name,zp.$factory),Bp.filter(Rp.$name,Rp.$transform);var Vp=`<ng-template ng-ref="defaultStar" let-fill="fill">{{ fill === 100 ? '&#9733;' : '&#9734;' }}</ng-template>\r
-\r
-<span ng-repeat="star in $.contexts track by $index">\r
-    <span class="visually-hidden">({{ $index < $.nextRate ? '*' : ' ' }})</span>\r
-    <span\r
-        ng-mouseenter="$.enter($index + 1)"\r
-        ng-click="$.handleClick($index + 1)"\r
-        ng-style="{ cursor: $.isInteractive() ? 'pointer' : 'default' }">\r
-        <ng-container\r
-            ng-template-outlet="$.starTemplate || $.starTemplateFromContent || $.defaultStarTemplate"\r
-            ng-template-outlet-context="star">\r
-        </ng-container>\r
-    </span>\r
-</span>\r
-\r
-<ng-content></ng-content>\r
-`,Hp=class{constructor(){this.max=10,this.readonly=!1,this.resettable=!1,this.tabindex=0}static get $name(){return`ngb.rating.config.service`}},Up=class e{constructor(e,t,n){this.$element=e,this.$scope=t,this.ngbRatingConfig=n,this.contexts=[]}$onInit(){this.readonly=this.readonly??this.ngbRatingConfig.readonly,this.resettable=this.resettable??this.ngbRatingConfig.resettable,this.tabindex=this.tabindex??this.ngbRatingConfig.tabindex,this.rate=this.rate??0,this._setupContexts(),this.update(this.rate)}$postLink(){this.$element.addClass(`d-inline-flex`),this.$element.attr(`role`,`slider`),this.$element.attr(`aria-valuemin`,`0`),this.$element.on(`blur`,()=>this.$scope.$evalAsync()),this.$element.on(`keydown`,e=>this.$scope.$evalAsync(()=>this._handleKeyDown(e))),this.$element.on(`mouseleave`,()=>this.$scope.$evalAsync(()=>this.reset())),this.removeDisabledListener=this.ngDisabled?.onChange(()=>this._render()),this._render()}$onDestroy(){this.$element.off(`blur`),this.$element.off(`keydown`),this.$element.off(`mouseleave`),this.removeDisabledListener?.()}$onChanges(e){`rate`in e&&this.update(this.rate),`max`in e&&!e.max.isFirstChange()&&this._updateMax(),this._render()}set max(e){this._max=e}get max(){return this._max??this.ngbRatingConfig.max}ariaValueText(e,t){return`${e} out of ${t}`}isInteractive(){return!this.readonly&&!this.isDisabled()}isDisabled(){return this.ngDisabled?.disabled??!1}enter(e){this.isInteractive()&&this._updateState(e),this.hover?.({$event:e})}handleClick(e){this.isInteractive()&&this.update(this.resettable&&this.rate===e?0:e)}reset(){this.leave?.({$event:this.nextRate}),this._updateState(this.rate)}update(e){let t=nd(e,this.max,0);this.isInteractive()&&this.rate!==t&&(this.rate=t,this.rateChange?.({$event:this.rate})),this._updateState(this.rate)}_handleKeyDown(e){switch(e.key){case`ArrowDown`:case`ArrowLeft`:this.update(this.rate-1);break;case`ArrowUp`:case`ArrowRight`:this.update(this.rate+1);break;case`Home`:this.update(0);break;case`End`:this.update(this.max);break;default:return}e.preventDefault()}_updateState(e){this.nextRate=e,this.contexts=this.contexts.map((t,n)=>({...t,fill:Math.round(nd(e-n,1,0)*100)})),this._render()}_render(){this.$element.attr(`tabindex`,this.isDisabled()?`-1`:`${this.tabindex??this.ngbRatingConfig.tabindex}`),this.$element.attr(`aria-valuemax`,`${this.max}`),this.$element.attr(`aria-valuenow`,`${this.nextRate}`),this.$element.attr(`aria-valuetext`,this.ariaValueText(this.nextRate,this.max)),this.readonly&&!this.isDisabled()?this.$element.attr(`aria-readonly`,`true`):this.$element.removeAttr(`aria-readonly`),this.isDisabled()?this.$element.attr(`aria-disabled`,`true`):this.$element.removeAttr(`aria-disabled`)}_updateMax(){this.max>0&&(this._setupContexts(),this.update(this.rate))}_setupContexts(){this.contexts=Array.from({length:this.max},(e,t)=>({fill:0,index:t}))}static get $name(){return`ngbRating`}static get $inject(){return[`$element`,`$scope`,Hp.$name]}static get $factory(){return{bindings:{max:`<?`,rate:`<?`,rateChange:`&?`,readonly:`<?`,resettable:`<?`,starTemplate:`<?`,tabindex:`<?`,ariaValueText:`<?`,hover:`&?`,leave:`&?`},controller:e,controllerAs:`$`,require:{ngDisabled:`?ngDisabled`},transclude:!0,template:Vp}}};X([qs(kc,{static:!1})],Up.prototype,`starTemplateFromContent`,2),X([fc(`defaultStar`,{read:kc,static:!0})],Up.prototype,`defaultStarTemplate`,2);var Wp=Up,Gp=u.default.module(`ngb.rating`,[Wc.name]);Gp.component(Wp.$name,Wp.$factory),Gp.service(Hp.$name,Hp);function Kp(e){return e?e instanceof Element?e:Z(e):null}function qp(e,t){if(!e||t==null)return null;let n=Kp(e);return n?u.default.isString(t)?n.querySelector(`#${CSS.escape(t)}`):Kp(t):null}function Jp(e,t){let n=[...t].map(({id:e})=>`#${CSS.escape(e)}`).join(`,`);return Array.from(e.querySelectorAll(n))}var Yp=(e,t,n)=>{let{rootElement:r,fragments:i,scrollSpy:a,options:o,entries:s}=e,c=Jp(r,i),l=n;if(!l.initialized){l.initialized=!0,l.gapFragment=null,l.visibleFragments=new Set;let e=qp(r,o?.initialFragment);if(e){a.scrollTo(e);return}}let u=l.visibleFragments;for(let e of s){let{isIntersecting:n,target:r}=e;if(n){l.gapFragment&&=(u.delete(l.gapFragment),null),u.add(r);continue}if(u.delete(r),!(u.size>0||a.active===``)){if(e.boundingClientRect.top<e.rootBounds.top){l.gapFragment=r,u.add(l.gapFragment);continue}if(r===c[0]){l.gapFragment=null,u.clear(),t(``);return}l.gapFragment=c[c.indexOf(r)-1]||null,l.gapFragment&&u.add(l.gapFragment)}}for(let e of c)if(u.has(e)){t(e.id);break}},Xp=class{constructor(){this.scrollBehavior=`smooth`,this.processChanges=Yp}static get $name(){return`ngb.scrollspy.config.service`}},Zp=class e{constructor(e){this.$element=e}$postLink(){this.$element.attr(`id`,this.id),this.ngbScrollSpy._registerFragment(this)}$onChanges(){this.$element.attr(`id`,this.id)}$onDestroy(){this.ngbScrollSpy._unregisterFragment(this)}static get $name(){return`ngbScrollSpyFragment`}static get $factory(){return()=>({bindToController:{id:`@ngbScrollSpyFragment`},controller:e,require:{ngbScrollSpy:`^ngbScrollSpy`},scope:!0,restrict:`A`})}static get $inject(){return[`$element`]}},Qp=3,$p=class{constructor(e,t,n){this.$config=e,this._diChangeDetectorRef=t,this._ngZone=n,this._observer=null,this._containerElement=null,this._fragments=new Set,this._preRegisteredFragments=new Set,this._active$=new Y,this._distinctActive$=this._active$.pipe(ms()),this._active=``,this._scrollBehavior=this.$config.scrollBehavior,this._changeDetectorRef=this._diChangeDetectorRef,this._activeSubscription=this._distinctActive$.subscribe(e=>{this._active=e,this._changeDetectorRef.markForCheck()})}get active(){return this._active}get active$(){return this._distinctActive$}start(e){this._cleanup();let{root:t,rootMargin:n,scrollBehavior:r,threshold:i,fragments:a,changeDetectorRef:o,processChanges:s}={...e},c=qp(document.documentElement,t??document.documentElement);if(!c)return;this._containerElement=u.default.element(c),this._changeDetectorRef=o??this._diChangeDetectorRef,this._scrollBehavior=r??this.$config.scrollBehavior;let l=s??this.$config.processChanges,d={};this._observer=new IntersectionObserver(t=>l({entries:t,rootElement:c,fragments:this._fragments,scrollSpy:this,options:{...e}},e=>this._active$.next(e),d),{root:c,...n&&{rootMargin:n},...i&&{threshold:i}});for(let e of[...this._preRegisteredFragments,...a??[]])this.observe(e);this._preRegisteredFragments.clear()}stop(){this._cleanup(),this._active$.next(``)}scrollTo(e,t){let{behavior:n}={behavior:this._scrollBehavior,...t},r=qp(document.documentElement,this._containerElement);if(!r)return;let i=qp(r,e);if(!i)return;let a=i.offsetTop-r.offsetTop;r.scrollTo({top:a,behavior:n});let o=r.scrollTop,s=0;this._ngZone.runOutsideAngular(()=>{let e=()=>{let t=o===r.scrollTop;if(t?s++:s=0,!t||t&&s<Qp){o=r.scrollTop,requestAnimationFrame(e);return}this._ngZone.run(()=>this._active$.next(i.id))};requestAnimationFrame(e)})}observe(e){if(!this._observer){this._preRegisteredFragments.add(e);return}let t=qp(this._containerElement,e);!t||this._fragments.has(t)||(this._fragments.add(t),this._observer.observe(t))}unobserve(e){if(!this._observer){this._preRegisteredFragments.delete(e);return}let t=qp(this._containerElement,e);if(t){this._fragments.delete(t),this._observer.disconnect();for(let e of this._fragments)this._observer.observe(e)}}$onDestroy(){this._cleanup(),this._activeSubscription.unsubscribe(),this._active$.complete()}_cleanup(){this._fragments.clear(),this._observer?.disconnect(),this._changeDetectorRef=this._diChangeDetectorRef,this._scrollBehavior=this.$config.scrollBehavior,this._observer=null,this._containerElement=null}static get $name(){return`ngb.scrollspy.service`}static get $inject(){return[Xp.$name,ks.$name,Fc.$name]}},em=class e{constructor(e,t){this.$element=e,this.$scrollSpy=t,this._isActive=!1}$onInit(){this._scrollSpyAPI=this.scrollSpyMenu??this.scrollSpy??this.parentScrollSpy??this.$scrollSpy,this._applyData(this.data)}$postLink(){this.scrollSpyMenu||(this._activeSubscription=this._scrollSpyAPI.active$.subscribe(e=>{e===this.fragment?this._activate():this._deactivate()})),this._clickListener=()=>this.scrollTo(),this.$element.on(`click`,this._clickListener),this._applyHostBindings()}$onChanges(){this._applyData(this.data),this._applyHostBindings()}$onDestroy(){this._clickListener&&this.$element.off(`click`,this._clickListener),this._activeSubscription?.unsubscribe()}_activate(){this._isActive=!0,this._applyHostBindings(),this.scrollSpyMenu?.getItem(this.parent??``)?._activate()}_deactivate(){this._isActive=!1,this._applyHostBindings(),this.scrollSpyMenu?.getItem(this.parent??``)?._deactivate()}isActive(){return this._isActive}scrollTo(e){this._scrollSpyAPI.scrollTo(this.fragment,e)}_applyData(e){if(this.scrollSpy&&(this._scrollSpyAPI=this.scrollSpy),Array.isArray(e)){this._scrollSpyAPI=e[0],this.fragment=e[1],this.parent??=e[2];return}if(u.default.isString(e)){this.fragment=e;return}e&&(this._scrollSpyAPI=e)}_applyHostBindings(){this.$element.toggleClass(`active`,this.isActive())}static get $name(){return`ngbScrollSpyItem`}static get $factory(){return()=>({bindToController:{data:`@?ngbScrollSpyItem`,fragment:`@?`,parent:`@?`,scrollSpy:`<?`},controller:e,require:{parentScrollSpy:`?^ngbScrollSpy`,scrollSpyMenu:`?^ngbScrollSpyMenu`},scope:!0,restrict:`A`})}static get $inject(){return[`$element`,$p.$name]}},tm=class e{constructor(e){this.$scrollSpy=e,this._map=new Map,this._lastActiveItem=null}$onInit(){this._scrollSpyRef=this.scrollSpy??this.parentScrollSpy??this.$scrollSpy}$postLink(){this._rebuildMap(),this._itemsSubscription=this._items.changes.subscribe(()=>this._rebuildMap()),this._activeSubscription=this._scrollSpyRef.active$.subscribe(e=>{this._lastActiveItem?._deactivate();let t=this._map.get(e);t&&(t._activate(),this._lastActiveItem=t)})}$onDestroy(){this._activeSubscription?.unsubscribe(),this._itemsSubscription?.unsubscribe(),this._map.clear(),this._lastActiveItem=null}get active(){return this._scrollSpyRef.active}get active$(){return this._scrollSpyRef.active$}scrollTo(e,t){this._scrollSpyRef.scrollTo(e,t)}getItem(e){return this._map.get(e)}_rebuildMap(){this._map.clear();for(let e of this._items)this._map.set(e.fragment,e)}static get $name(){return`ngbScrollSpyMenu`}static get $factory(){return()=>({bindToController:{scrollSpy:`<?ngbScrollSpyMenu`},controller:e,require:{parentScrollSpy:`?^ngbScrollSpy`},scope:!0,restrict:`A`,transclude:!0,template:`<ng-content></ng-content>`})}static get $inject(){return[$p.$name]}};X([ec(em,{descendants:!0})],tm.prototype,`_items`,2);var nm=tm,rm=class e{constructor(e,t,n,r){this.$element=e,this._changeDetector=n,this._initialFragment=null,this._service=new $p(t,this._changeDetector,r)}set active(e){this._initialFragment=e,e&&this.scrollTo(e)}get active(){return this._service.active}get active$(){return this._service.active$}$postLink(){this.$element.attr(`tabindex`,`0`),this.$element.css(`overflow-y`,`auto`),this._service.start({processChanges:this.processChanges,root:this.$element,rootMargin:this.rootMargin,threshold:this.threshold,scrollBehavior:this.scrollBehavior,changeDetectorRef:this._changeDetector,...this._initialFragment&&{initialFragment:this._initialFragment}}),this._activeChangeSubscription=this._service.active$.subscribe(e=>{this.activeChange?.({$event:e})})}$onChanges(e){e.active&&!e.active.isFirstChange()&&(this.active=e.active.currentValue)}$onDestroy(){this._activeChangeSubscription?.unsubscribe(),this._service.$onDestroy()}_registerFragment(e){this._service.observe(e.id)}_unregisterFragment(e){this._service.unobserve(e.id)}scrollTo(e,t){this._service.scrollTo(e,{...this.scrollBehavior&&{behavior:this.scrollBehavior},...t})}static get $name(){return`ngbScrollSpy`}static get $factory(){return()=>({bindToController:{active:`@?`,activeChange:`&?`,processChanges:`<?`,rootMargin:`@?`,scrollBehavior:`@?`,threshold:`<?`},controller:e,scope:!0,restrict:`A`})}static get $inject(){return[`$element`,Xp.$name,ks.$name,Fc.$name]}},im=u.default.module(`ngb.scrollspy`,[zc.name]);im.directive(rm.$name,rm.$factory),im.directive(Zp.$name,Zp.$factory),im.directive(em.$name,em.$factory),im.directive(nm.$name,nm.$factory),im.service(Xp.$name,Xp),im.service($p.$name,$p);var am=`<fieldset ng-disabled="$.isDisabled()" ng-class="{ disabled: $.isDisabled() }">\r
-    <div class="d-flex align-items-center">\r
-        <div class="d-flex flex-column align-items-center">\r
-            <button\r
-                ng-if="$.spinners"\r
-                ng-click="$.changeHour($.hourStep)"\r
-                ng-disabled="$.isDisabled()"\r
-                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"\r
-                class="btn btn-link px-2 py-0 lh-1"\r
-                tabindex="-1"\r
-                type="button">\r
-                <span\r
-                    class="chevron ngb-tp-chevron"\r
-                    style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: 0.15em; transform: rotate(-45deg); vertical-align: middle; width: 0.69em;"\r
-                    aria-hidden="true">\r
-                </span>\r
-                <span class="visually-hidden">Increment hours</span>\r
-            </button>\r
-\r
-            <input\r
-                ng-model="$.hourInput"\r
-                ng-model-options="{ updateOn: 'change' }"\r
-                ng-change="$.updateHour($.hourInput)"\r
-                ng-blur="$.handleBlur()"\r
-                ng-keydown="$event.key === 'ArrowUp' && $.changeHour($.hourStep); $event.key === 'ArrowDown' && $.changeHour(-$.hourStep); ($event.key === 'ArrowUp' || $event.key === 'ArrowDown') && $event.preventDefault()"\r
-                ng-readonly="$.readonlyInputs"\r
-                ng-disabled="$.isDisabled()"\r
-                ng-class="{ 'form-control-sm': $.isSmallSize, 'form-control-lg': $.isLargeSize }"\r
-                class="form-control text-center w-auto px-1"\r
-                type="text"\r
-                size="2"\r
-                maxlength="2"\r
-                inputmode="numeric"\r
-                placeholder="HH"\r
-                aria-label="Hours">\r
-\r
-            <button\r
-                ng-if="$.spinners"\r
-                ng-click="$.changeHour(-$.hourStep)"\r
-                ng-disabled="$.isDisabled()"\r
-                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"\r
-                class="btn btn-link px-2 py-0 lh-1"\r
-                tabindex="-1"\r
-                type="button">\r
-                <span\r
-                    class="chevron ngb-tp-chevron bottom"\r
-                    style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: -0.3em; transform: rotate(135deg); vertical-align: middle; width: 0.69em;"\r
-                    aria-hidden="true">\r
-                </span>\r
-                <span class="visually-hidden">Decrement hours</span>\r
-            </button>\r
-        </div>\r
-\r
-        <div class="mx-1 fw-bold" aria-hidden="true">:</div>\r
-\r
-        <div class="d-flex flex-column align-items-center">\r
-            <button\r
-                ng-if="$.spinners"\r
-                ng-click="$.changeMinute($.minuteStep)"\r
-                ng-disabled="$.isDisabled()"\r
-                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"\r
-                class="btn btn-link px-2 py-0 lh-1"\r
-                tabindex="-1"\r
-                type="button">\r
-                <span\r
-                    class="chevron ngb-tp-chevron"\r
-                    style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: 0.15em; transform: rotate(-45deg); vertical-align: middle; width: 0.69em;"\r
-                    aria-hidden="true">\r
-                </span>\r
-                <span class="visually-hidden">Increment minutes</span>\r
-            </button>\r
-\r
-            <input\r
-                ng-model="$.minuteInput"\r
-                ng-model-options="{ updateOn: 'change' }"\r
-                ng-change="$.updateMinute($.minuteInput)"\r
-                ng-blur="$.handleBlur()"\r
-                ng-keydown="$event.key === 'ArrowUp' && $.changeMinute($.minuteStep); $event.key === 'ArrowDown' && $.changeMinute(-$.minuteStep); ($event.key === 'ArrowUp' || $event.key === 'ArrowDown') && $event.preventDefault()"\r
-                ng-readonly="$.readonlyInputs"\r
-                ng-disabled="$.isDisabled()"\r
-                ng-class="{ 'form-control-sm': $.isSmallSize, 'form-control-lg': $.isLargeSize }"\r
-                class="form-control text-center w-auto px-1"\r
-                type="text"\r
-                size="2"\r
-                maxlength="2"\r
-                inputmode="numeric"\r
-                placeholder="MM"\r
-                aria-label="Minutes">\r
-\r
-            <button\r
-                ng-if="$.spinners"\r
-                ng-click="$.changeMinute(-$.minuteStep)"\r
-                ng-disabled="$.isDisabled()"\r
-                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"\r
-                class="btn btn-link px-2 py-0 lh-1"\r
-                tabindex="-1"\r
-                type="button">\r
-                <span\r
-                    class="chevron ngb-tp-chevron bottom"\r
-                    style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: -0.3em; transform: rotate(135deg); vertical-align: middle; width: 0.69em;"\r
-                    aria-hidden="true">\r
-                </span>\r
-                <span class="visually-hidden">Decrement minutes</span>\r
-            </button>\r
-        </div>\r
-\r
-        <div ng-if="$.seconds" class="d-flex align-items-center">\r
-            <div class="mx-1 fw-bold" aria-hidden="true">:</div>\r
-\r
-            <div class="d-flex flex-column align-items-center">\r
-                <button\r
-                    ng-if="$.spinners"\r
-                    ng-click="$.changeSecond($.secondStep)"\r
-                    ng-disabled="$.isDisabled()"\r
-                    ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"\r
-                    class="btn btn-link px-2 py-0 lh-1"\r
-                    tabindex="-1"\r
-                    type="button">\r
-                    <span\r
-                        class="chevron ngb-tp-chevron"\r
-                        style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: 0.15em; transform: rotate(-45deg); vertical-align: middle; width: 0.69em;"\r
-                        aria-hidden="true">\r
-                    </span>\r
-                    <span class="visually-hidden">Increment seconds</span>\r
-                </button>\r
-\r
-                <input\r
-                    ng-model="$.secondInput"\r
-                    ng-model-options="{ updateOn: 'change' }"\r
-                    ng-change="$.updateSecond($.secondInput)"\r
-                    ng-blur="$.handleBlur()"\r
-                    ng-keydown="$event.key === 'ArrowUp' && $.changeSecond($.secondStep); $event.key === 'ArrowDown' && $.changeSecond(-$.secondStep); ($event.key === 'ArrowUp' || $event.key === 'ArrowDown') && $event.preventDefault()"\r
-                    ng-readonly="$.readonlyInputs"\r
-                    ng-disabled="$.isDisabled()"\r
-                    ng-class="{ 'form-control-sm': $.isSmallSize, 'form-control-lg': $.isLargeSize }"\r
-                    class="form-control text-center w-auto px-1"\r
-                    type="text"\r
-                    size="2"\r
-                    maxlength="2"\r
-                    inputmode="numeric"\r
-                    placeholder="SS"\r
-                    aria-label="Seconds">\r
-\r
-                <button\r
-                    ng-if="$.spinners"\r
-                    ng-click="$.changeSecond(-$.secondStep)"\r
-                    ng-disabled="$.isDisabled()"\r
-                    ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"\r
-                    class="btn btn-link px-2 py-0 lh-1"\r
-                    tabindex="-1"\r
-                    type="button">\r
-                    <span\r
-                        class="chevron ngb-tp-chevron bottom"\r
-                        style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: -0.3em; transform: rotate(135deg); vertical-align: middle; width: 0.69em;"\r
-                        aria-hidden="true">\r
-                    </span>\r
-                    <span class="visually-hidden">Decrement seconds</span>\r
-                </button>\r
-            </div>\r
-        </div>\r
-\r
-        <div ng-if="$.meridian" class="ms-2">\r
-            <button\r
-                ng-click="$.toggleMeridian()"\r
-                ng-disabled="$.isDisabled()"\r
-                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"\r
-                class="btn btn-outline-primary"\r
-                type="button">\r
-                {{\r
-                    $.model && $.model.hour >= 12\r
-                        ? $.i18n.getAfternoonPeriod()\r
-                        : $.i18n.getMorningPeriod()\r
-                }}\r
-            </button>\r
-        </div>\r
-    </div>\r
-</fieldset>\r
-`,om=class{constructor(e,t,n){this.hour=cd(e),this.minute=cd(t),this.second=cd(n)}changeHour(e=1){this.updateHour((isNaN(this.hour)?0:this.hour)+e)}updateHour(e){if(ld(e)){this.hour=(e<0?24+e:e)%24;return}this.hour=NaN}changeMinute(e=1){this.updateMinute((isNaN(this.minute)?0:this.minute)+e)}updateMinute(e){if(ld(e)){this.minute=e%60<0?60+e%60:e%60,this.changeHour(Math.floor(e/60));return}this.minute=NaN}changeSecond(e=1){this.updateSecond((isNaN(this.second)?0:this.second)+e)}updateSecond(e){if(ld(e)){this.second=e<0?60+e%60:e%60,this.changeMinute(Math.floor(e/60));return}this.second=NaN}isValid(e=!0){return ld(this.hour)&&ld(this.minute)&&(!e||ld(this.second))}toString(){return`${this.hour||0}:${this.minute||0}:${this.second||0}`}},sm=class{constructor(){this.meridian=!1,this.spinners=!0,this.seconds=!1,this.hourStep=1,this.minuteStep=1,this.secondStep=1,this.disabled=!1,this.readonlyInputs=!1,this.size=`medium`}static get $name(){return`ngb.timepicker.config.service`}static get $inject(){return[]}},cm=class{static get $name(){return`ngb.timepicker.time.adapter`}},lm=class e extends cm{fromModel(e){return e&&Q(e.hour)&&Q(e.minute)?{hour:e.hour,minute:e.minute,second:Q(e.second)?e.second:null}:null}toModel(e){return e&&Q(e.hour)&&Q(e.minute)?{hour:e.hour,minute:e.minute,second:Q(e.second)?e.second:null}:null}static $factory(){return new e}},um=class{static get $name(){return`ngb.timepicker.i18n`}},dm=class extends um{constructor(e){super(),this.periods=[],this.periods=[e(new Date(36e5),`a`,`UTC`),e(new Date(468e5),`a`,`UTC`)]}getMorningPeriod(){return this.periods[0]}getAfternoonPeriod(){return this.periods[1]}static get $inject(){return[`dateFilter`]}},fm=/[^0-9]/g,pm=class e{constructor(e,t,n,r,i,a){this.$element=e,this._config=t,this._cd=n,this._ngbTimeAdapter=r,this.i18n=i,this.$log=a,this.hourInput=``,this.minuteInput=``,this.secondInput=``,this.onChange=u.default.noop,this.onTouched=u.default.noop,this.handleInputEvent=e=>{let t=e.target;t instanceof HTMLInputElement&&this.formatInput(t)}}set hourStep(e){this._hourStep=Q(e)?e:this._config.hourStep}get hourStep(){return this._hourStep}set minuteStep(e){this._minuteStep=Q(e)?e:this._config.minuteStep}get minuteStep(){return this._minuteStep}set secondStep(e){this._secondStep=Q(e)?e:this._config.secondStep}get secondStep(){return this._secondStep}$onInit(){if(this.meridian=this.meridian??this._config.meridian,this.spinners=this.spinners??this._config.spinners,this.seconds=this.seconds??this._config.seconds,this.hourStep=this.hourStep??this._config.hourStep,this.minuteStep=this.minuteStep??this._config.minuteStep,this.secondStep=this.secondStep??this._config.secondStep,this.readonlyInputs=this.readonlyInputs??this._config.readonlyInputs,this.size=this.size??this._config.size,!this.ngModelCtrl){this.$log.error(`[ngbTimepicker] The ng-model attribute is required.`);return}let e=this.ngModelCtrl;e.$render=()=>this.writeValue(e.$viewValue),this.registerOnChange(t=>e.$setViewValue(t)),this.registerOnTouched(()=>e.$setTouched()),e.$render()}$postLink(){this.$element.addClass(`d-inline-block fs-6`),this.$element.on(`input`,this.handleInputEvent),this.renderInputValues()}$onDestroy(){this.$element.off(`input`,this.handleInputEvent)}writeValue(e){let t=this._ngbTimeAdapter.fromModel(e);this.model=t?new om(t.hour,t.minute,t.second):new om,!this.seconds&&(!t||!ld(t.second))&&(this.model.second=0),this.renderInputValues(),this._cd.markForCheck()}registerOnChange(e){this.onChange=e}registerOnTouched(e){this.onTouched=e}setDisabledState(e){this.formsDisabled=e}isDisabled(){return this.ngDisabled?.disabled??this.formsDisabled??this._config.disabled}changeHour(e){this.model?.changeHour(e),this.propagateModelChange()}changeMinute(e){this.model?.changeMinute(e),this.propagateModelChange()}changeSecond(e){this.model?.changeSecond(e),this.propagateModelChange()}updateHour(e){let t=this.model?this.model.hour>=12:!1,n=cd(e);this.meridian&&(t&&n<12||!t&&n===12)?this.model?.updateHour(n+12):this.model?.updateHour(n),this.propagateModelChange()}updateMinute(e){this.model?.updateMinute(cd(e)),this.propagateModelChange()}updateSecond(e){this.model?.updateSecond(cd(e)),this.propagateModelChange()}toggleMeridian(){this.model&&ld(this.model.hour)&&this.meridian&&this.changeHour(12)}formatInput(e){e.value=e.value.replace(fm,``)}formatHour(e){return ld(e)?this.meridian?id(e%12==0?12:e%12):id(e%24):id(NaN)}formatMinSec(e){return id(ld(e)?e:NaN)}handleBlur(){this.onTouched()}get isSmallSize(){return this.size===`small`}get isLargeSize(){return this.size===`large`}$onChanges(e){e.seconds&&!this.seconds&&this.model&&!ld(this.model.second)&&(this.model.second=0,this.propagateModelChange(!1)),this.renderInputValues()}propagateModelChange(e=!0){if(this.renderInputValues(),e&&this.onTouched(),!this.model?.isValid(this.seconds)){this.onChange(this._ngbTimeAdapter.toModel(null));return}this.onChange(this._ngbTimeAdapter.toModel({hour:this.model.hour,minute:this.model.minute,second:this.model.second}))}renderInputValues(){this.hourInput=this.formatHour(this.model?.hour),this.minuteInput=this.formatMinSec(this.model?.minute),this.secondInput=this.formatMinSec(this.model?.second)}static get $name(){return`ngbTimepicker`}static get $inject(){return[`$element`,sm.$name,ks.$name,cm.$name,um.$name,`$log`]}static get $factory(){return{controller:e,controllerAs:`$`,require:{ngModelCtrl:`?ngModel`,ngDisabled:`?ngDisabled`},bindings:{meridian:`<?`,spinners:`<?`,seconds:`<?`,hourStep:`<?`,minuteStep:`<?`,secondStep:`<?`,readonlyInputs:`<?`,size:`<?`},template:am}}},mm=u.default.module(`ngb.timepicker`,[Wc.name]);mm.component(pm.$name,pm.$factory),mm.service(sm.$name,sm),mm.factory(cm.$name,lm.$factory),mm.service(um.$name,dm);var hm=`<ng-template ng-ref="headerTpl">\r
-    <strong class="me-auto">{{ $.header }}</strong>\r
-</ng-template>\r
-\r
-<div ng-if="$.contentHeaderTpl || $.header" class="toast-header">\r
-    <ng-container ng-template-outlet="$.contentHeaderTpl || $.headerTpl"></ng-container>\r
-    <button type="button" class="btn-close" aria-label="Close" ng-click="$.hide()"></button>\r
-</div>\r
-\r
-<div class="toast-body">\r
-    <ng-content></ng-content>\r
-</div>\r
-`,gm=class{constructor(e){this.ngbConfig=e,this.ariaLive=`polite`,this.autohide=!0,this.delay=5e3}get animation(){return this._animation??this.ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.toast.config.service`}},_m=class e{static get $name(){return`ngbToastHeader`}static get $factory(){return()=>({bindToController:!0,controller:e,restrict:`A`})}},vm=(e,t)=>t?(e.addClass(`fade`),ed(e),e.addClass(`show showing`),()=>{e.removeClass(`showing`)}):(e.addClass(`show`),u.default.noop),ym=(e,t)=>(e.addClass(`showing`),()=>{if(!t){e.removeClass(`d-block`);return}e.removeClass(`show showing`)}),bm=class e{constructor(e,t,n,r,i){this.$element=e,this.ngbToastConfig=t,this.$timeout=n,this.$attrs=r,this._ngZone=i,this.contentHeaderTpl=null,this._timeoutID=null}$onInit(){this.animation=this.animation??this.ngbToastConfig.animation,this.autohide=this.autohide??this.ngbToastConfig.autohide,this.delay=this.delay??this.ngbToastConfig.delay,this.ariaLive=this.$attrs.ariaLive??this.ngbToastConfig.ariaLive}$postLink(){this.$element.attr(`role`,`alert`),this.$element.attr(`aria-live`,this.ariaLive??this.ngbToastConfig.ariaLive),this.$element.attr(`aria-atomic`,`true`),this.$element.addClass(`toast d-block`),this._init(),this.show()}$onChanges(e){this.$element.toggleClass(`fade`,this.animation),`autohide`in e&&(this._clearTimeout(),this._init())}hide(){this._clearTimeout();let e=Qu(this._ngZone,this.$element,ym,{animation:this.animation??this.ngbToastConfig.animation,runningTransition:`stop`});return e.subscribe(()=>this.hidden?.()),e}show(){let e=Qu(this._ngZone,this.$element,vm,{animation:this.animation??this.ngbToastConfig.animation,runningTransition:`continue`});return e.subscribe(()=>this.shown?.()),e}_init(){this.autohide&&!this._timeoutID&&(this._timeoutID=this.$timeout(()=>{this.hide()},this.delay))}_clearTimeout(){this._timeoutID&&=(this.$timeout.cancel(this._timeoutID),null)}static get $name(){return`ngbToast`}static get $inject(){return[`$element`,gm.$name,`$timeout`,`$attrs`,Fc.$name]}static get $factory(){return{bindings:{animation:`<?`,autohide:`<?`,delay:`<?`,header:`@?`,hidden:`&?`,shown:`&?`},controllerAs:`$`,transclude:!0,controller:e,template:hm}}};X([qs(_m,{read:kc,static:!0})],bm.prototype,`contentHeaderTpl`,2),X([fc(`headerTpl`,{read:kc,static:!0})],bm.prototype,`headerTpl`,2);var xm=bm,Sm=u.default.module(`ngb.toast`,[Wc.name]);Sm.service(gm.$name,gm),Sm.component(xm.$name,xm.$factory),Sm.directive(_m.$name,_m.$factory);var Cm=class{constructor(e){this.$config=e,this.autoClose=!0,this.placement=`auto`,this.popperOptions=e=>e,this.triggers=`hover focus`,this.disableTooltip=!1,this.openDelay=0,this.closeDelay=0}get animation(){return this._animation??this.$config.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.tooltip.config.service`}},wm=`<div class="tooltip-arrow" data-popper-arrow></div>\r
-<div class="tooltip-inner" ngb-popup-content></div>\r
-`,Tm=class e{constructor(e){this.$element=e}$postLink(){this.$element.attr(`role`,`tooltip`),this.$element.addClass(`tooltip`)}$onChanges(e){this.id?this.$element.attr(`id`,this.id):this.$element.removeAttr(`id`),this.$element.toggleClass(`fade`,this.animation);let t=e?.tooltipClass?.previousValue;typeof t==`string`&&t&&this.$element.removeClass(t),this.tooltipClass&&this.$element.addClass(this.tooltipClass),(this.onMouseEnter||this.onMouseLeave)&&(this.$element.off(`mouseenter`),this.$element.off(`mouseleave`),this.$element.on(`mouseenter`,this.onMouseEnter?.bind(this)??u.default.noop),this.$element.on(`mouseleave`,this.onMouseLeave?.bind(this)??u.default.noop))}static get $inject(){return[`$element`]}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{animation:`<?`,id:`<?`,tooltipClass:`@?`,onMouseEnter:`&?`,onMouseLeave:`&?`},template:wm}}static get $name(){return`ngbTooltipWindow`}},Em=0,Dm=class e{constructor(e,t,n,r,i,a,o,s,c){this._config=e,this.$element=t,this.popupFactory=n,this.$ngbRTL=r,this.$timeout=i,this.$scope=a,this._ngZone=o,this._changeDetector=s,this.$attrs=c,this._ngbTooltipWindowId=`ngb-tooltip-${Em++}`,this._windowRef=null,this._destroyCloseHandlers$=new Y,this._transitioning=!1,this._opening=!0,this._mouseenterContent$=new Y,this._mouseleaveContent$=new Y}$onInit(){this.popupService=this.popupFactory.$create(Tm.$name),this._positioning=mf(this.$ngbRTL),this.animation=this.animation??this._config.animation,this.autoClose=this.autoClose??this._config.autoClose,this.placement=this.placement??this._config.placement,this.popperOptions=this.popperOptions??this._config.popperOptions,this.triggers=this.triggers??this._config.triggers,this.container=this.container??this._config.container,this.disableTooltip=this.disableTooltip??this._config.disableTooltip,this.tooltipClass=this.tooltipClass??this._config.tooltipClass,this.openDelay=this.openDelay??this._config.openDelay,this.closeDelay=this.closeDelay??this._config.closeDelay,this._ngbTooltip=this._ngbTooltip??this.$attrs.ngbTooltip}$postLink(){this._listenToTriggers()}$onChanges(e){e.triggers&&!e.triggers.isFirstChange()&&this._listenToTriggers(),e.tooltipClass&&this.isOpen()&&this._windowRef.setInput(`tooltipClass`,e.tooltipClass.currentValue),this.isOpen()&&(e.placement||e.popperOptions||e.positionTarget)&&(this._positioning.setOptions({hostElement:Z(this._getPositionTargetElement()),targetElement:Z(this._windowRef.$element),placement:this.placement,baseClass:`bs-tooltip`,updatePopperOptions:e=>this.popperOptions(hf([0,6])(e))}),this._positioning.update()),this.isOpen()&&e.disableTooltip?.currentValue&&this.close()}open(e){if(!this._opening&&this._transitioning&&(this._transitioning=!1,$u(this._windowRef.$element)),this._windowRef||this.disableTooltip||!this._ngbTooltip){this._changeDetector.markForCheck();return}let{windowRef:t,transition$:n}=this.popupService.open(this._ngbTooltip,e??this.tooltipContext,this.animation);this._opening=!0,this._transitioning=!0,this._windowRef=t,t.setInput(`animation`,this.animation),t.setInput(`tooltipClass`,this.tooltipClass),t.setInput(`id`,this._ngbTooltipWindowId),t.setInput(`onMouseEnter`,()=>this._mouseenterContent$.next()),t.setInput(`onMouseLeave`,()=>this._mouseleaveContent$.next()),Z(this._getPositionTargetElement()).setAttribute(`aria-describedby`,this._ngbTooltipWindowId),this._applyContainer(),this._positioning.createPopper({hostElement:Z(this._getPositionTargetElement()),targetElement:Z(this._windowRef.$element),placement:this.placement,baseClass:`bs-tooltip`,updatePopperOptions:e=>this.popperOptions(hf([0,6])(e))}),Promise.resolve().then(()=>this._positioning.update()),this._watchPositioning(),this._setCloseHandlers(),n.subscribe(()=>{this._transitioning&&(this._transitioning=!1,this._positioning.update(),this.shown?.())}),this._changeDetector.markForCheck()}close(e=this.animation){this._opening&&this._transitioning&&(this._transitioning=!1,$u(this._windowRef.$element)),this._windowRef&&(this._opening=!1,this._transitioning=!0,this._destroyCloseHandlers$.next(),Z(this._getPositionTargetElement()).removeAttribute(`aria-describedby`),this.popupService.close(e).subscribe(()=>{this._windowRef=null,this._positioning.destroy(),this._unwatchPositioning?.(),this._unwatchPositioning=void 0,this._transitioning&&(this._transitioning=!1,this.hidden?.()),this._changeDetector.markForCheck()}))}toggle(){this._windowRef?this.close():this.open()}isOpen(){return this._windowRef!=null}$onDestroy(){this.close(!1),this._unlistenTriggers?.(),this._destroyCloseHandlers$.next(),this._destroyCloseHandlers$.complete()}_getPositionTargetElement(){let e=Z(this.$element),t=this.positionTarget?document.querySelector(this.positionTarget):null;return u.default.element(t??e)}_applyContainer(){this._getContainerElement().append(this._windowRef.$element)}_getContainerElement(){if(!this.container)return this.$element.parent();if(this.container===`body`)return u.default.element(document.body);let e=document.querySelector(this.container);if(!e)throw Error(`[ngb-tooltip]: The specified container "${this.container}" was not found in the DOM.`);return u.default.element(e)}_listenToTriggers(){this._unlistenTriggers?.(),this._unlistenTriggers=jp(this.$timeout,Z(this.$element),this.triggers,()=>this.isOpen(),()=>this.open(),()=>this.close(),+this.openDelay,+this.closeDelay,this._mouseenterContent$,this._mouseleaveContent$)}_setCloseHandlers(){this._destroyCloseHandlers$.next(),tf(this._ngZone,this.autoClose,this._destroyCloseHandlers$,e=>{this.close(),e===0&&Z(this.$element).focus()},this._windowRef?[Z(this._windowRef.$element)]:[],[Z(this.$element)])}_watchPositioning(){this._unwatchPositioning?.(),this._unwatchPositioning=this.$scope.$watch(()=>{this._windowRef&&this._positioning.update()})}set ngbTooltip(e){this._ngbTooltip=e,!e&&this.isOpen()&&this.close()}static get $inject(){return[Cm.$name,`$element`,kf.$name,gf.$name,`$timeout`,`$scope`,Fc.$name,ks.$name,`$attrs`]}static get $factory(){return()=>({controller:e,bindToController:{ngbTooltip:`<?`,animation:`<?`,autoClose:`<?`,placement:`<?`,popperOptions:`<?`,triggers:`<?`,positionTarget:`@?`,container:`<?`,disableTooltip:`<?`,tooltipClass:`@?`,tooltipContext:`<?`,openDelay:`<?`,closeDelay:`<?`,shown:`&?`,hidden:`&?`},scope:!0,restrict:`A`})}static get $name(){return`ngbTooltip`}},Om=u.default.module(`ngb.tooltip`,[Wc.name]);Om.component(Tm.$name,Tm.$factory),Om.directive(Dm.$name,Dm.$factory),Om.service(Cm.$name,Cm);var km=`<span\r
-    ng-repeat="part in $.parts track by $index"\r
-    ng-class="[$odd ? $.highlightClass : '', $odd && $.highlightClass === 'ngb-highlight' ? 'fw-bold' : '']">{{ part }}</span>\r
-`,Am=class e{constructor(){this.parts=[]}$onChanges(){this.highlightClass=this.highlightClass??`ngb-highlight`,this.accentSensitive=this.accentSensitive??!0,!this.accentSensitive&&!String.prototype.normalize&&(console.warn("The `accentSensitive` input in `ngb-highlight` cannot be set to `false` in a browser that does not implement the `String.normalize` function. You will have to include a polyfill in your application to use this feature in the current browser."),this.accentSensitive=!0);let e=rd(this.result),t=Array.isArray(this.term)?this.term:[this.term],n=e=>this.accentSensitive?e:od(e),r=t.map(e=>ad(n(rd(e)))).filter(e=>e),i=this.accentSensitive?e:od(e),a=r.length?i.split(RegExp(`(${r.join(`|`)})`,`gmi`)):[e];if(this.accentSensitive)return this.parts=a,a;let o=0;this.parts=a.map(t=>e.substring(o,o+=t.length))}static get $name(){return`ngbHighlight`}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{term:`<`,result:`<`,highlightClass:`<?`,accentSensitive:`<?`},template:km.trim()}}},jm=class{constructor(){this.editable=!0,this.focusFirst=!0,this.selectOnExact=!1,this.showHint=!1,this.placement=[`bottom-start`,`bottom-end`,`top-start`,`top-end`],this.popperOptions=e=>e}static get $name(){return`ngb.typeahead.config.service`}},Mm=`<ng-template ng-ref="rt" let-result="result" let-term="term" let-formatter="formatter">\r
-    <ngb-highlight result="formatter(result)" term="term"></ngb-highlight>\r
-</ng-template>\r
-\r
-<button\r
-        type="button"\r
-        class="dropdown-item"\r
-        role="option"\r
-        ng-attr-id="{{ $.id + '-' + $index }}"\r
-        ng-class="{ active: $index === $.activeIdx }"\r
-        ng-mouseenter="$.markActive($index)"\r
-        ng-click="$.select(result)"\r
-        ng-repeat="result in $.results track by $index">\r
-    <ng-container\r
-            ng-template-outlet="$.resultTemplate || rt"\r
-            ng-template-outlet-context="{ result: result, term: $.term, formatter: $.formatter }"\r
-    ></ng-container>\r
-</button>\r
-`,Nm=class e{constructor(e){this.$element=e,this.activeIdx=0,this.results=[],this.preventMouseDownDefault=e=>e.preventDefault()}set id(e){if(e){this.$element.attr(`id`,e);return}this.$element.removeAttr(`id`)}get id(){return this.$element.attr(`id`)??``}$onInit(){this.focusFirst=this.focusFirst??!0,this.formatter=this.formatter??rd,this.resetActive()}$postLink(){this.$element.addClass(`dropdown-menu show`),this.$element.attr(`role`,`listbox`),this.$element.on(`mousedown`,this.preventMouseDownDefault)}$onChanges(e){let t=e.popupClass?.previousValue;typeof t==`string`&&t&&this.$element.removeClass(t),this.popupClass&&this.$element.addClass(this.popupClass)}$onDestroy(){this.$element.off(`mousedown`,this.preventMouseDownDefault)}hasActive(){return this.activeIdx>-1&&this.activeIdx<this.results.length}getActive(){return this.results[this.activeIdx]}markActive(e){this.activeIdx=e,this._activeChanged()}next(){if(this.activeIdx!==this.results.length-1){this.activeIdx++,this._activeChanged();return}this.activeIdx=this.focusFirst?(this.activeIdx+1)%this.results.length:-1,this._activeChanged()}prev(){if(this.activeIdx===0){this.activeIdx=this.focusFirst?this.results.length-1:-1,this._activeChanged();return}if(this.activeIdx>0){this.activeIdx--,this._activeChanged();return}this.activeIdx=this.results.length-1,this._activeChanged()}resetActive(){this.activeIdx=this.focusFirst?0:-1,this._activeChanged()}select(e){this.selectEvent?.({$event:e})}_activeChanged(){this.activeChangeEvent?.({$event:this.activeIdx>=0?this.id+`-`+this.activeIdx:void 0})}static get $name(){return`ngbTypeaheadWindow`}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{focusFirst:`<?`,results:`<?`,term:`<?`,formatter:`<?`,resultTemplate:`<?`,popupClass:`<?`,selectEvent:`&?select`,activeChangeEvent:`&?activeChange`},template:Mm}}static get $inject(){return[`$element`]}},Pm={$name:`ARIA_LIVE_DELAY`,$value:100};function Fm(e=!1){let t=document.body,n=u.default.element(t.querySelector(`#ngb-live`));return n==null&&e&&(n=u.default.element(`<div></div>`),n.attr(`id`,`ngb-live`),n.attr(`aria-live`,`polite`),n.attr(`aria-atomic`,`true`),n.addClass(`visually-hidden`),u.default.element(t).append(n)),n}var Im=class{constructor(e,t){this.ariaLiveDelay=e,this.$timeout=t}onDestroy(){let e=Fm();e&&e.remove()}say(e){let t=Fm(!0),n=this.ariaLiveDelay;if(!t)return;t.empty();let r=()=>t.append(e);if(!n){r();return}this.$timeout(r,this.ariaLiveDelay)}static get $name(){return`ngb.live.service`}static get $inject(){return[Pm.$name,`$timeout`]}},Lm=0,Rm=class e{constructor(e,t,n,r,i,a,o,s){this.$element=e,this.$scope=t,this._config=n,this._live=r,this._ngZone=i,this._changeDetector=a,this._popupFactory=o,this._rtl=s,this.activeDescendant=null,this.popupId=`ngb-typeahead-${Lm++}`,this._onTouched=()=>{},this._onChange=e=>{},this._resubscribeTypeahead$=new ja(null),this._closed$=new Y,this._inputValueBackup=null,this._inputValueForSelectOnExact=null,this._subscription=null,this._windowRef=null,this._handleBlurEvent=()=>this._ngZone.run(()=>this.handleBlur()),this._handleKeyDownEvent=e=>this._ngZone.run(()=>this.handleKeyDown(e))}$onInit(){this._positioning=mf(this._rtl),this._popupService=this._popupFactory.$create(Nm.$name),this.autocomplete=this.autocomplete??`off`,this.container=this.container??this._config.container,this.editable=this.editable??this._config.editable,this.focusFirst=this.focusFirst??this._config.focusFirst,this.selectOnExact=this.selectOnExact??this._config.selectOnExact,this.showHint=this.showHint??this._config.showHint,this.placement=this.placement??this._config.placement,this.popperOptions=this.popperOptions??this._config.popperOptions;let e=this._nativeElement;if(this._valueChanges$=Ko(e,`input`).pipe(wo(e=>e.target.value)),this.ngModelCtrl){let e=this.ngModelCtrl;e.$render=()=>this.writeValue(e.$viewValue),this.registerOnChange(t=>e.$setViewValue(t)),this.registerOnTouched(()=>e.$setTouched()),e.$render()}this._subscribeToUserInput()}$postLink(){this.$element.on(`blur`,this._handleBlurEvent),this.$element.on(`keydown`,this._handleKeyDownEvent),this.$element.attr(`autocapitalize`,`off`),this.$element.attr(`autocorrect`,`off`),this.$element.attr(`role`,`combobox`),this._renderHostState()}$onChanges(e){let t=e.ngbTypeahead;t&&!t.isFirstChange()&&(this._unsubscribeFromUserInput(),this._subscribeToUserInput()),this._renderHostState()}$onDestroy(){this.$element.off(`blur`,this._handleBlurEvent),this.$element.off(`keydown`,this._handleKeyDownEvent),this._closePopup(),this._unsubscribeFromUserInput(),this._closed$.complete(),this._resubscribeTypeahead$.complete()}registerOnChange(e){this._onChange=e}registerOnTouched(e){this._onTouched=e}writeValue(e){this._writeInputValue(this._formatItemForInput(e)),this.showHint&&(this._inputValueBackup=e)}setDisabledState(e){this._nativeElement.disabled=e}dismissPopup(){this.isPopupOpen()&&(this._resubscribeTypeahead$.next(null),this._closePopup(),this.showHint&&this._inputValueBackup!==null&&this._writeInputValue(this._inputValueBackup),this._changeDetector.markForCheck())}isPopupOpen(){return this._windowRef!=null}handleBlur(){this._resubscribeTypeahead$.next(null),this._onTouched()}handleKeyDown(e){if(!this.isPopupOpen())return;let t=this._windowRef?.componentInstance;if(t)switch(e.key){case`ArrowDown`:e.preventDefault(),t.next(),this._showHint();break;case`ArrowUp`:e.preventDefault(),t.prev(),this._showHint();break;case`Enter`:case`Tab`:{let n=t.getActive();n!=null&&(e.preventDefault(),e.stopPropagation(),this._selectResult(n)),this._closePopup();break}}}get _nativeElement(){return Z(this.$element)}_openPopup(){if(this.isPopupOpen())return;this._inputValueBackup=this._nativeElement.value;let{windowRef:e}=this._popupService.open();this._windowRef=e,e.setInput(`id`,this.popupId),e.setInput(`popupClass`,this.popupClass),e.setInput(`selectEvent`,({$event:e})=>this._selectResultClosePopup(e)),e.setInput(`activeChangeEvent`,({$event:e})=>{this.activeDescendant=e??null,this._renderHostState()});let t=Z(e.$element);if(this.container===`body`)t.style.zIndex=`1055`,document.body.appendChild(t);else{let e=this._nativeElement;e.parentNode?.insertBefore(t,e.nextSibling)}this._renderHostState(),this._changeDetector.markForCheck(),this._ngZone.runOutsideAngular(()=>{this._windowRef&&(this._positioning.createPopper({hostElement:this._nativeElement,targetElement:t,placement:this.placement??this._config.placement,updatePopperOptions:e=>(this.popperOptions??this._config.popperOptions)(hf([0,2])(e))}),this._watchPositioning())}),tf(this._ngZone,`outside`,this._closed$,()=>this.dismissPopup(),[t],[this._nativeElement])}_closePopup(){this._popupService.close().subscribe(()=>{this._positioning.destroy(),this._unwatchPositioning?.(),this._unwatchPositioning=void 0,this._closed$.next(),this._windowRef=null,this.activeDescendant=null,this._renderHostState()})}_selectResult(e){let t=!1;this.selectItem?.({$event:{item:e,preventDefault:()=>{t=!0}}}),this._resubscribeTypeahead$.next(null),t||(this.writeValue(e),this._onChange(e))}_selectResultClosePopup(e){this._selectResult(e),this._closePopup()}_showHint(){let e=this._windowRef?.componentInstance;if(this.showHint&&e?.hasActive()&&this._inputValueBackup!=null){let t=this._inputValueBackup.toLowerCase(),n=this._formatItemForInput(e.getActive());t===n.substring(0,this._inputValueBackup.length).toLowerCase()?(this._writeInputValue(this._inputValueBackup+n.substring(this._inputValueBackup.length)),this._nativeElement.setSelectionRange(this._inputValueBackup.length,n.length)):this._writeInputValue(n)}}_formatItemForInput(e){return e!=null&&this.inputFormatter?this.inputFormatter(e):rd(e)}_writeInputValue(e){this._nativeElement.value=rd(e)}_subscribeToUserInput(){let e=this._valueChanges$.pipe(xs(e=>{this._inputValueBackup=this.showHint?e:null,this._inputValueForSelectOnExact=this.selectOnExact?e:null,this._ngZone.run(()=>this._onChange(this.editable?e:null))}),this.ngbTypeahead?this.ngbTypeahead:()=>So([]));this._subscription=this._resubscribeTypeahead$.pipe(ys(()=>e)).subscribe(e=>{this._ngZone.run(()=>{if(!e||e.length===0)this._closePopup();else if(this.selectOnExact&&e.length===1&&this._formatItemForInput(e[0])===this._inputValueForSelectOnExact)this._selectResult(e[0]),this._closePopup();else{this._openPopup();let t=this._windowRef;if(!t)return;t.setInput(`focusFirst`,this.focusFirst),t.setInput(`results`,e),t.setInput(`term`,this._nativeElement.value),this.resultFormatter&&t.setInput(`formatter`,this.resultFormatter),this.resultTemplate&&t.setInput(`resultTemplate`,this.resultTemplate),t.componentInstance?.resetActive(),t.$scope?.$digest(),this._showHint()}let t=e?e.length:0;this._live.say(t===0?`No results available`:`${t} result${t===1?``:`s`} available`)})})}_unsubscribeFromUserInput(){this._subscription?.unsubscribe(),this._subscription=null}_watchPositioning(){this._unwatchPositioning?.(),this._unwatchPositioning=this.$scope.$watch(()=>{this._windowRef&&this._positioning.update()})}_renderHostState(){this.$element.attr(`autocomplete`,this.autocomplete??`off`),this.$element.attr(`aria-autocomplete`,this.showHint?`both`:`list`),this.$element.attr(`aria-expanded`,`${this.isPopupOpen()}`),this.isPopupOpen()?(this.$element.addClass(`open`),this.$element.attr(`aria-controls`,this.popupId)):(this.$element.removeClass(`open`),this.$element.removeAttr(`aria-controls`)),this.activeDescendant?this.$element.attr(`aria-activedescendant`,this.activeDescendant):this.$element.removeAttr(`aria-activedescendant`)}static get $inject(){return[`$element`,`$scope`,jm.$name,Im.$name,Fc.$name,ks.$name,kf.$name,gf.$name]}static get $name(){return`ngbTypeahead`}static get $factory(){return()=>({bindToController:{autocomplete:`<?`,container:`<?`,editable:`<?`,focusFirst:`<?`,inputFormatter:`<?`,ngbTypeahead:`<?`,placement:`<?`,popperOptions:`<?`,popupClass:`<?`,resultFormatter:`<?`,resultTemplate:`<?`,selectOnExact:`<?`,showHint:`<?`,selectItem:`&?`},controller:e,require:{ngModelCtrl:`?ngModel`},restrict:`A`,scope:!0})}},zm=u.default.module(`ngb.typeahead`,[Wc.name]);zm.constant(Pm.$name,Pm.$value),zm.factory(kf.$name,kf),zm.service(Im.$name,Im),zm.service(gf.$name,gf),zm.service(jm.$name,jm),zm.component(Am.$name,Am.$factory),zm.component(Nm.$name,Nm.$factory),zm.directive(Rm.$name,Rm.$factory);var Bm=class e{static get $name(){return`ngbPaginationEllipsis`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Vm=class e{static get $name(){return`ngbPaginationFirst`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Hm=class e{static get $name(){return`ngbPaginationLast`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Um=class e{static get $name(){return`ngbPaginationNext`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Wm=class e{static get $name(){return`ngbPaginationNumber`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Gm=class e{static get $name(){return`ngbPaginationPrevious`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Km=class e{static get $name(){return`ngbPaginationNumber`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},qm=`<ng-template ng-ref="first">\r
-    <span aria-hidden="true" i18n="@@ngb.pagination.first">&laquo;&laquo;</span>\r
-</ng-template>\r
-\r
-<ng-template ng-ref="previous">\r
-    <span aria-hidden="true" i18n="@@ngb.pagination.previous">&laquo;</span>\r
-</ng-template>\r
-\r
-<ng-template ng-ref="next">\r
-    <span aria-hidden="true" i18n="@@ngb.pagination.next">&raquo;</span>\r
-</ng-template>\r
-\r
-<ng-template ng-ref="last">\r
-    <span aria-hidden="true" i18n="@@ngb.pagination.last">&raquo;&raquo;</span>\r
-</ng-template>\r
-\r
-<ng-template ng-ref="ellipsis">...</ng-template>\r
-\r
-<ng-template ng-ref="defaultNumber" let-page let-currentPage="currentPage">\r
-    {{ page }}\r
-</ng-template>\r
-\r
-<ul class="pagination" ng-class="$.size ? 'pagination-' + $.size : null">\r
-    <li ng-if="$.boundaryLinks" class="page-item" ng-class="{ 'disabled': $.previousDisabled() }">\r
-        <a\r
-                aria-label="First"\r
-                i18n-aria-label="@@ngb.pagination.first-aria"\r
-                class="page-link"\r
-                href\r
-                ng-click="$.selectPage(1); $event.preventDefault()"\r
-                ng-attr-tabindex="$.previousDisabled() ? '-1' : null"\r
-                ng-attr-aria-disabled="$.previousDisabled() ? 'true' : null">\r
-            <ng-template\r
-                    ng-template-outlet="($.tplFirst && $.tplFirst.templateRef) || first"\r
-                    ng-template-outlet-context="{ disabled: $.previousDisabled(), currentPage: $.page }">\r
-            </ng-template>\r
-        </a>\r
-    </li>\r
-\r
-    <li ng-if="$.directionLinks" class="page-item" ng-class="{ 'disabled': $.previousDisabled() }">\r
-        <a\r
-                aria-label="Previous"\r
-                i18n-aria-label="@@ngb.pagination.previous-aria"\r
-                class="page-link"\r
-                href\r
-                ng-click="$.selectPage($.page - 1); $event.preventDefault()"\r
-                ng-attr-tabindex="$.previousDisabled() ? '-1' : null"\r
-                ng-attr-aria-disabled="$.previousDisabled() ? 'true' : null">\r
-            <ng-template\r
-                    ng-template-outlet="($.tplPrevious && $.tplPrevious.templateRef) || previous"\r
-                    ng-template-outlet-context="{ disabled: $.previousDisabled() }">\r
-            </ng-template>\r
-        </a>\r
-    </li>\r
-\r
-    <li\r
-            ng-repeat="pageNumber in ($.tplPages ? [] : $.pages) track by $index"\r
-            class="page-item"\r
-            ng-class="{ 'active': pageNumber === $.page, 'disabled': $.isEllipsis(pageNumber) || $.isDisabled() }">\r
-        <a ng-if="$.isEllipsis(pageNumber)" class="page-link" tabindex="-1" aria-disabled="true">\r
-            <ng-template\r
-                    ng-template-outlet="($.tplEllipsis && $.tplEllipsis.templateRef) || ellipsis"\r
-                    ng-template-outlet-context="{ disabled: true, currentPage: $.page }">\r
-            </ng-template>\r
-        </a>\r
-\r
-        <a\r
-                ng-if="!$.isEllipsis(pageNumber)"\r
-                class="page-link"\r
-                href\r
-                ng-click="$.selectPage(pageNumber); $event.preventDefault()"\r
-                ng-attr-tabindex="$.isDisabled() ? '-1' : null"\r
-                ng-attr-aria-disabled="$.isDisabled() ? 'true' : null"\r
-                ng-attr-aria-current="pageNumber === $.page ? 'page' : null">\r
-            <ng-template\r
-                    ng-template-outlet="($.tplNumber && $.tplNumber.templateRef) || defaultNumber"\r
-                    ng-template-outlet-context="{ disabled: $.isDisabled(), $implicit: pageNumber, currentPage: $.page }">\r
-            </ng-template>\r
-        </a>\r
-    </li>\r
-\r
-    <ng-template\r
-            ng-if="$.tplPages"\r
-            ng-template-outlet="$.tplPages.templateRef"\r
-            ng-template-outlet-context="{ $implicit: $.page, pages: $.pages, disabled: $.isDisabled() }">\r
-    </ng-template>\r
-\r
-    <li ng-if="$.directionLinks" class="page-item" ng-class="{ 'disabled': $.nextDisabled() }">\r
-        <a\r
-                aria-label="Next"\r
-                i18n-aria-label="@@ngb.pagination.next-aria"\r
-                class="page-link"\r
-                href\r
-                ng-click="$.selectPage($.page + 1); $event.preventDefault()"\r
-                ng-attr-tabindex="$.nextDisabled() ? '-1' : null"\r
-                ng-attr-aria-disabled="$.nextDisabled() ? 'true' : null">\r
-            <ng-template\r
-                    ng-template-outlet="($.tplNext && $.tplNext.templateRef) || next"\r
-                    ng-template-outlet-context="{ disabled: $.nextDisabled(), currentPage: $.page }">\r
-            </ng-template>\r
-        </a>\r
-    </li>\r
-\r
-    <li ng-if="$.boundaryLinks" class="page-item" ng-class="{ 'disabled': $.nextDisabled() }">\r
-        <a\r
-                aria-label="Last"\r
-                i18n-aria-label="@@ngb.pagination.last-aria"\r
-                class="page-link"\r
-                href\r
-                ng-click="$.selectPage($.pageCount); $event.preventDefault()"\r
-                ng-attr-tabindex="$.nextDisabled() ? '-1' : null"\r
-                ng-attr-aria-disabled="$.nextDisabled() ? 'true' : null"\r
-        >\r
-            <ng-template\r
-                    ng-template-outlet="($.tplLast && $.tplLast.templateRef) || last"\r
-                    ng-template-outlet-context="{ disabled: $.nextDisabled(), currentPage: $.page }">\r
-            </ng-template>\r
-        </a>\r
-    </li>\r
-</ul>\r
-`,Jm=class{constructor(){this.disabled=!1,this.boundaryLinks=!1,this.directionLinks=!0,this.ellipses=!0,this.maxSize=0,this.pageSize=10,this.rotate=!1}static get $name(){return`ngb.pagination-config.service`}},Ym=class e{constructor(e,t){this.$element=e,this._config=t,this.pageCount=0,this.pages=[]}$onInit(){this.boundaryLinks=this.boundaryLinks??this._config.boundaryLinks,this.directionLinks=this.directionLinks??this._config.directionLinks,this.ellipses=this.ellipses??this._config.ellipses,this.rotate=this.rotate??this._config.rotate,this.maxSize=this.maxSize??this._config.maxSize,this.pageSize=this.pageSize??this._config.pageSize,this.page=this.page??1,this.size=this.size??this._config.size,this._updatePages(this.page)}$postLink(){this.$element.attr(`role`,`navigation`)}isDisabled(){return this.ngDisabled?.disabled??this._config.disabled}hasPrevious(){return this.page>1}hasNext(){return this.page<this.pageCount}nextDisabled(){return!this.hasNext()||this.isDisabled()}previousDisabled(){return!this.hasPrevious()||this.isDisabled()}selectPage(e){this._updatePages(e)}isEllipsis(e){return e===-1}_applyEllipses(e,t){this.ellipses&&(e>0&&(e>2&&this.pages.unshift(-1),e===2&&this.pages.unshift(2),this.pages.unshift(1)),t<this.pageCount&&(t<this.pageCount-2&&this.pages.push(-1),t===this.pageCount-2&&this.pages.push(this.pageCount-1),this.pages.push(this.pageCount)))}_applyRotation(){let e=0,t=this.pageCount,n=Math.floor(this.maxSize/2),r=this.maxSize%2==0?n-1:n;return this.page<=n?t=this.maxSize:this.pageCount-this.page<n?e=this.pageCount-this.maxSize:(e=this.page-n-1,t=this.page+r),[e,t]}_applyPagination(){let e=(Math.ceil(this.page/this.maxSize)-1)*this.maxSize;return[e,e+this.maxSize]}_setPageInRange(e){let t=this.page;this.page=nd(e,this.pageCount,1),this.page!=t&&ld(this.collectionSize)&&this.pageChange?.({$event:this.page})}_updatePages(e){this.pageCount=Math.ceil(this.collectionSize/this.pageSize),ld(this.pageCount)||(this.pageCount=0),this.pages.length=0;for(let e=1;e<=this.pageCount;e++)this.pages.push(e);if(this._setPageInRange(e),this.maxSize>0&&this.pageCount>this.maxSize){let e=0,t=this.pageCount;[e,t]=this.rotate?this._applyRotation():this._applyPagination();let n=this.pages.slice(e,t);this.pages.splice(0,this.pages.length,...n),this._applyEllipses(e,t)}}static get $name(){return`ngbPagination`}static get $factory(){return{controller:e,controllerAs:`$`,template:qm,require:{ngDisabled:`?ngDisabled`},bindings:{boundaryLinks:`<?`,directionLinks:`<?`,ellipses:`<?`,rotate:`<?`,collectionSize:`<`,maxSize:`<?`,page:`<?`,pageSize:`<?`,pageChange:`&?`,size:`<?`}}}static get $inject(){return[`$element`,Jm.$name]}};X([qs(Bm,{static:!1})],Ym.prototype,`tplEllipsis`,2),X([qs(Vm,{static:!1})],Ym.prototype,`tplFirst`,2),X([qs(Hm,{static:!1})],Ym.prototype,`tplLast`,2),X([qs(Um,{static:!1})],Ym.prototype,`tplNext`,2),X([qs(Wm,{static:!1})],Ym.prototype,`tplNumber`,2),X([qs(Gm,{static:!1})],Ym.prototype,`tplPrevious`,2),X([qs(Km,{static:!1})],Ym.prototype,`tplPages`,2);var Xm=Ym,Zm=u.default.module(`ngb-pagination`,[zc.name]);Zm.component(Xm.$name,Xm.$factory),Zm.service(Jm.$name,Jm),Zm.directive(Bm.$name,Bm.$factory),Zm.directive(Vm.$name,Vm.$factory),Zm.directive(Hm.$name,Hm.$factory),Zm.directive(Um.$name,Um.$factory),Zm.directive(Wm.$name,Wm.$factory),Zm.directive(Um.$name,Um.$factory),Zm.directive(Km.$name,Km.$factory),Zm.directive(Gm.$name,Gm.$factory);var Qm=class{},$m=class extends Qm{fromModel(e){return e&&Q(e.year)&&Q(e.month)&&Q(e.day)?{year:e.year,month:e.month,day:e.day}:null}toModel(e){return e&&Q(e.year)&&Q(e.month)&&Q(e.day)?{year:e.year,month:e.month,day:e.day}:null}},eh=class e{static from(t){return t instanceof e?t:t?new e(t.year,t.month,t.day):null}constructor(e,t,n){this.year=Q(e)?e:null,this.month=Q(t)?t:null,this.day=Q(n)?n:null}equals(e){return e!=null&&this.year===e.year&&this.month===e.month&&this.day===e.day}before(e){return e?this.year===e.year?this.month===e.month?this.day!==e.day&&this.day<e.day:this.month<e.month:this.year<e.year:!1}after(e){return e?this.year===e.year?this.month===e.month?this.day!==e.day&&this.day>e.day:this.month>e.month:this.year>e.year:!1}};function th(e){return new eh(e.getFullYear(),e.getMonth()+1,e.getDate())}function nh(e){let t=new Date(e.year,e.month-1,e.day,12);return isNaN(t.getTime())||t.setFullYear(e.year),t}var rh=class{},ih=class extends rh{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){let r=nh(e),i=!0,a=r.getMonth(),o={y:()=>{r.setFullYear(r.getFullYear()+n)},m:()=>{a+=n,r.setMonth(a),a%=12,a<0&&(a+=12)},d:()=>{r.setDate(r.getDate()+n),i=!1}}[t];return o?(o(),i&&r.getMonth()!==a&&r.setDate(0),th(r)):e}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=nh(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=nh(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime();return r.setMonth(0),r.setDate(1),Math.floor(Math.round((i-r.getTime())/864e5)/7)+1}getToday(){return th(new Date)}isValid(e){if(!e||!Q(e.year)||!Q(e.month)||!Q(e.day)||e.year===0)return!1;let t=nh(e);return!isNaN(t.getTime())&&t.getFullYear()===e.year&&t.getMonth()+1===e.month&&t.getDate()===e.day}},ah=`<ng-template\r
-  ng-ref="defaultDayTemplate"\r
-  let-date="date"\r
-  let-current-month="currentMonth"\r
-  let-selected="selected"\r
-  let-disabled="disabled"\r
-  let-focused="focused">\r
-  <div\r
-    ngb-datepicker-day-view\r
-    date="date"\r
-    current-month="currentMonth"\r
-    i18n="$.i18n"\r
-    selected="selected"\r
-    disabled="disabled"\r
-    focused="focused"\r
-    class="btn btn-light border-0 p-0 text-center rounded-1"\r
-    style="width: 2rem; height: 2rem; line-height: 2rem; background: transparent">\r
-  </div>\r
-</ng-template>\r
-\r
-<ng-template ng-ref="defaultContentTemplate">\r
-  <div\r
-    ng-repeat="month in $.model.months track by $index"\r
-    class="ngb-dp-month pe-none"\r
-    ng-class="{ 'ps-3': !$first, 'ps-1': $first, 'pe-1': $last }">\r
-    <div\r
-      ng-if="$.navigation === 'none' || ($.displayMonths > 1 && $.navigation === 'select')"\r
-      class="ngb-dp-month-name fs-5 text-center bg-body-tertiary"\r
-      ng-class="{ 'text-muted': $.model.disabled }"\r
-      style="height: 2rem; line-height: 2rem">\r
-      {{ $.i18n.getMonthLabel(month.firstDate) }}\r
-    </div>\r
-    <ngb-datepicker-month class="d-block pe-auto" month="month.firstDate" datepicker="$"></ngb-datepicker-month>\r
-  </div>\r
-</ng-template>\r
-\r
-<div class="ngb-dp-header pt-1 border-bottom-0 rounded-top bg-body-tertiary">\r
-  <ngb-datepicker-navigation\r
-    ng-if="$.navigation !== 'none' && $.model"\r
-    date="$.model.firstDate"\r
-    i18n="$.i18n"\r
-    months="$.model.months"\r
-    disabled="$.model.disabled"\r
-    show-select="$.model.navigation === 'select'"\r
-    prev-disabled="$.model.prevDisabled"\r
-    next-disabled="$.model.nextDisabled"\r
-    select-boxes="$.model.selectBoxes"\r
-    navigate="$.onNavigateEvent($event)"\r
-    select="$.onNavigateDateSelect($event)"\r
-    class="d-flex align-items-center">\r
-  </ngb-datepicker-navigation>\r
-</div>\r
-\r
-<div\r
-  class="ngb-dp-content"\r
-  ng-class="{ 'ngb-dp-months': !$.contentTemplate, 'd-flex': !$.contentTemplate }"\r
-  ng-ref="content">\r
-  <ng-template\r
-    ng-if="$.model"\r
-    ng-template-outlet="$.contentTemplate || ($.contentTemplateFromContent && $.contentTemplateFromContent.templateRef) || defaultContentTemplate"\r
-    ng-template-outlet-context="{ $implicit: $ }">\r
-  </ng-template>\r
-</div>\r
-\r
-<ng-template ng-if="$.footerTemplate" ng-template-outlet="$.footerTemplate"></ng-template>\r
-<ng-content></ng-content>\r
-`,oh=class{getMonthLabel(e){return`${this.getMonthFullName(e.month,e.year)} ${this.getYearNumerals(e.year)}`}getDayNumerals(e){return`${e.day}`}getWeekNumerals(e){return`${e}`}getYearNumerals(e){return`${e}`}getWeekLabel(){return``}},sh=class extends oh{constructor(e,t){super(),this.$locale=e,this.$filter=t,this._monthsShort=Array.from({length:12},(e,t)=>Intl.DateTimeFormat(this.$locale.id,{month:`short`,timeZone:`UTC`}).format(Date.UTC(2e3,t))),this._monthsFull=Array.from({length:12},(e,t)=>Intl.DateTimeFormat(this.$locale.id,{month:`long`,timeZone:`UTC`}).format(Date.UTC(2e3,t)))}getWeekdayLabel(e,t=`narrow`){return[1,2,3,4,5,6,7].map(e=>Intl.DateTimeFormat(this.$locale.id,{weekday:t,timeZone:`UTC`}).format(Date.UTC(2e3,4,e)))[e-1]||``}getMonthShortName(e){return this._monthsShort[e-1]||``}getMonthFullName(e){return this._monthsFull[e-1]||``}getDayAriaLabel(e){let t=new Date(e.year,e.month-1,e.day);return this.$filter(`date`)(t,`fullDate`)}};function ch(e,t){return!uh(e,t)}function lh(e,t){return!e&&!t?!1:!e||!t||e.year!==t.year||e.month!==t.month}function uh(e,t){return!e&&!t||!!e&&!!t&&e.equals(t)}function dh(e,t){if(t&&e&&t.before(e))throw Error(`'maxDate' ${t} should be greater than 'minDate' ${e}`)}function fh(e,t,n){return e&&t&&e.before(t)?t:e&&n&&e.after(n)?n:e||null}function ph(e,t){let{minDate:n,maxDate:r,disabled:i,markDisabled:a}=t;return!(e==null||i||a&&a(e,{year:e.year,month:e.month})||n&&e.before(n)||r&&e.after(r))}function mh(e,t,n,r){if(!t)return[];let i=e.getMonths(t.year);if(n&&t.year===n.year){let e=i.findIndex(e=>e===n.month);i=i.slice(e)}if(r&&t.year===r.year){let e=i.findIndex(e=>e===r.month);i=i.slice(0,e+1)}return i}function hh(e,t,n){if(!e)return[];let r=t?Math.max(t.year,e.year-500):e.year-10,i=(n?Math.min(n.year,e.year+500):e.year+10)-r+1,a=Array(i);for(let e=0;e<i;e++)a[e]=r+e;return a}function gh(e,t,n){let r=Object.assign(e.getNext(t,`m`),{day:1});return n!=null&&r.after(n)}function _h(e,t,n){let r=Object.assign(e.getPrev(t,`m`),{day:1});return n!=null&&(r.year===n.year&&r.month<n.month||r.year<n.year&&n.month===1)}function vh(e,t,n,r,i){let{displayMonths:a,months:o}=n,s=o.splice(0,o.length);return Array.from({length:a},(n,r)=>{let a=Object.assign(e.getNext(t,`m`,r),{day:1});if(o[r]=null,!i){let e=s.findIndex(e=>e.firstDate.equals(a));e!==-1&&(o[r]=s.splice(e,1)[0])}return a}).forEach((t,i)=>{o[i]??(o[i]=yh(e,t,n,r,s.shift()||{}))}),o}function yh(e,t,n,r,i={}){let{dayTemplateData:a,minDate:o,maxDate:s,firstDayOfWeek:c,markDisabled:l,outsideDays:u,weekdayWidth:d,weekdaysVisible:f}=n,p=e.getToday();i.firstDate=null,i.lastDate=null,i.number=t.month,i.year=t.year,i.weeks=i.weeks||[],i.weekdays=i.weekdays||[],t=bh(e,t,c),f||(i.weekdays.length=0);for(let n=0;n<e.getWeeksPerMonth();n++){let m=i.weeks[n];m||=i.weeks[n]={number:0,days:[],collapsed:!0};let h=m.days;for(let c=0;c<e.getDaysPerWeek();c++){n===0&&f&&(i.weekdays[c]=r.getWeekdayLabel(e.getWeekday(t),d));let u=new eh(t.year,t.month,t.day),m=e.getNext(u),g=r.getDayAriaLabel(u),_=!!(o&&u.before(o)||s&&u.after(s));!_&&l&&(_=l(u,{month:i.number,year:i.year}));let v=u.equals(p),y=a?a(u,{month:i.number,year:i.year}):void 0;i.firstDate===null&&u.month===i.number&&(i.firstDate=u),u.month===i.number&&m.month!==i.number&&(i.lastDate=u);let b=h[c];b||=h[c]={},b.date=u,b.context=Object.assign(b.context||{},{$implicit:u,date:u,data:y,currentMonth:i.number,currentYear:i.year,disabled:_,focused:!1,selected:!1,today:v}),b.tabindex=-1,b.ariaLabel=g,b.hidden=!1,t=m}m.number=e.getWeekNumber(h.map(e=>e.date),c),m.collapsed=u===`collapsed`&&h[0].date.month!==i.number&&h[h.length-1].date.month!==i.number}return i}function bh(e,t,n){let r=e.getDaysPerWeek(),i=new eh(t.year,t.month,1),a=e.getWeekday(i)%r;return e.getPrev(i,`d`,(r+a-n)%r)}var xh=class{constructor(e,t,n=new ih,r){this._calendar=n,this._VALIDATORS={dayTemplateData:e=>{if(this._state.dayTemplateData!==e)return{dayTemplateData:e??null}},displayMonths:e=>{if(e=cd(e),Q(e)&&e>0&&this._state.displayMonths!==e)return{displayMonths:e}},disabled:e=>{if(this._state.disabled!==e)return{disabled:e}},firstDayOfWeek:e=>{if(e=cd(e),Q(e)&&e>=0&&this._state.firstDayOfWeek!==e)return{firstDayOfWeek:e}},focusVisible:e=>{if(this._state.focusVisible!==e&&!this._state.disabled)return{focusVisible:e}},markDisabled:e=>{if(this._state.markDisabled!==e)return{markDisabled:e??null}},maxDate:e=>{let t=this.toValidDate(e,null);if(ch(this._state.maxDate,t))return{maxDate:t}},minDate:e=>{let t=this.toValidDate(e,null);if(ch(this._state.minDate,t))return{minDate:t}},navigation:e=>{if(this._state.navigation!==e)return{navigation:e}},outsideDays:e=>{if(this._state.outsideDays!==e)return{outsideDays:e}},weekdays:e=>{let t=e===!0||e===!1?`narrow`:e,n=e===!0||e===!1?e:!0;if(this._state.weekdayWidth!==t||this._state.weekdaysVisible!==n)return{weekdayWidth:t,weekdaysVisible:n}}},this._model$=new Y,this._dateSelect$=new Y,this._state={dayTemplateData:null,markDisabled:null,maxDate:null,minDate:null,disabled:!1,displayMonths:1,firstDate:null,firstDayOfWeek:1,lastDate:null,focusDate:null,focusVisible:!1,months:[],navigation:`select`,outsideDays:`visible`,prevDisabled:!1,nextDisabled:!1,selectedDate:null,selectBoxes:{years:[],months:[]},weekdayWidth:`narrow`,weekdaysVisible:!0},this._i18n=r??new sh(e,t)}get model$(){return this._model$.pipe(ns(e=>e.months.length>0))}get dateSelect$(){return this._dateSelect$.pipe(ns(e=>e!==null))}set(e){let t=Object.keys(e).map(t=>{let n=this._VALIDATORS[t];return n(e[t])??{}}).reduce((e,t)=>({...e,...t}),{});Object.keys(t).length>0&&this._nextState(t)}focus(e){let t=this.toValidDate(e,null);t!=null&&!this._state.disabled&&ch(this._state.focusDate,t)&&this._nextState({focusDate:e})}focusSelect(){ph(this._state.focusDate,this._state)&&this.select(this._state.focusDate,{emitEvent:!0})}open(e){let t=this.toValidDate(e,this._calendar.getToday());t!=null&&!this._state.disabled&&(!this._state.firstDate||lh(this._state.firstDate,t))&&this._nextState({firstDate:t})}select(e,t={}){let n=this.toValidDate(e,null);n!=null&&!this._state.disabled&&(ch(this._state.selectedDate,n)&&this._nextState({selectedDate:n}),t.emitEvent&&ph(n,this._state)&&this._dateSelect$.next(n))}toValidDate(e,t){let n=eh.from(e);return t===void 0&&(t=this._calendar.getToday()),this._calendar.isValid(n)?n:t}getMonth(e){for(let t of this._state.months)if(e.month===t.number&&e.year===t.year)return t;throw Error(`month ${e.month} of year ${e.year} not found`)}_nextState(e){let t=this._updateState(e);this._patchContexts(t),this._state=t,this._model$.next(this._state)}_patchContexts(e){let{months:t,displayMonths:n,selectedDate:r,focusDate:i,focusVisible:a,disabled:o,outsideDays:s}=e;e.months.forEach(e=>{e.weeks.forEach(c=>{c.days.forEach(c=>{i&&(c.context.focused=i.equals(c.date)&&a),c.tabindex=!o&&i&&c.date.equals(i)&&i.month===e.number?0:-1,o===!0&&(c.context.disabled=!0),r!==void 0&&(c.context.selected=r!==null&&r.equals(c.date)),e.number!==c.date.month&&(c.hidden=s===`hidden`||s===`collapsed`||n>1&&c.date.after(t[0].firstDate)&&c.date.before(t[n-1].lastDate))})})})}_updateState(e){let t=Object.assign({},this._state,e),{firstDate:n}=t;if((`minDate`in e||`maxDate`in e)&&(dh(t.minDate,t.maxDate),t.focusDate=fh(t.focusDate,t.minDate,t.maxDate),t.firstDate=fh(t.firstDate,t.minDate,t.maxDate),n=t.focusDate),`disabled`in e&&(t.focusVisible=!1),`selectedDate`in e&&this._state.months.length===0&&(n=t.selectedDate),`focusVisible`in e||`focusDate`in e&&(t.focusDate=fh(t.focusDate,t.minDate,t.maxDate),n=t.focusDate,t.months.length!==0&&t.focusDate&&!t.focusDate.before(t.firstDate)&&!t.focusDate.after(t.lastDate))||(`firstDate`in e&&(t.firstDate=fh(t.firstDate,t.minDate,t.maxDate),n=t.firstDate),!n))return t;let r=`dayTemplateData`in e||`firstDayOfWeek`in e||`markDisabled`in e||`minDate`in e||`maxDate`in e||`disabled`in e||`outsideDays`in e||`weekdaysVisible`in e,i=vh(this._calendar,n,t,this._i18n,r);t.months=i,t.firstDate=i[0].firstDate,t.lastDate=i[i.length-1].lastDate,`selectedDate`in e&&!ph(t.selectedDate,t)&&(t.selectedDate=null),`firstDate`in e&&(!t.focusDate||t.focusDate.before(t.firstDate)||t.focusDate.after(t.lastDate))&&(t.focusDate=n);let a=!this._state.firstDate||this._state.firstDate.year!==t.firstDate.year,o=!this._state.firstDate||this._state.firstDate.month!==t.firstDate.month;return t.navigation===`select`?((`minDate`in e||`maxDate`in e||t.selectBoxes.years.length===0||a)&&(t.selectBoxes.years=hh(t.firstDate,t.minDate,t.maxDate)),(`minDate`in e||`maxDate`in e||t.selectBoxes.months.length===0||a)&&(t.selectBoxes.months=mh(this._calendar,t.firstDate,t.minDate,t.maxDate))):t.selectBoxes={years:[],months:[]},(t.navigation===`arrows`||t.navigation===`select`)&&(o||a||`minDate`in e||`maxDate`in e||`disabled`in e)&&(t.prevDisabled=t.disabled||_h(this._calendar,t.firstDate,t.minDate),t.nextDisabled=t.disabled||gh(this._calendar,t.lastDate,t.maxDate)),t}},Sh=class{constructor(){this.displayMonths=1,this.firstDayOfWeek=1,this.navigation=`select`,this.outsideDays=`visible`,this.showWeekNumbers=!1,this.weekdays=`narrow`}static get $name(){return`ngb.datepicker-config.service`}},Ch=class e{static get $name(){return`ngbDatepickerContent`}static $factory(){return{controller:e,bindToController:!0,restrict:`A`,require:{templateRef:`ngTemplate`}}}},wh=class{processKey(e,t){let{state:n,calendar:r}=t;switch(e.key){case`PageUp`:t.focusDate(r.getPrev(n.focusedDate,e.shiftKey?`y`:`m`,1));break;case`PageDown`:t.focusDate(r.getNext(n.focusedDate,e.shiftKey?`y`:`m`,1));break;case`End`:t.focusDate(e.shiftKey?n.maxDate:n.lastDate);break;case`Home`:t.focusDate(e.shiftKey?n.minDate:n.firstDate);break;case`ArrowLeft`:t.focusDate(r.getPrev(n.focusedDate,`d`,1));break;case`ArrowUp`:t.focusDate(r.getPrev(n.focusedDate,`d`,r.getDaysPerWeek()));break;case`ArrowRight`:t.focusDate(r.getNext(n.focusedDate,`d`,1));break;case`ArrowDown`:t.focusDate(r.getNext(n.focusedDate,`d`,r.getDaysPerWeek()));break;case`Enter`:case` `:t.focusSelect();break;default:return}e.preventDefault(),e.stopPropagation()}static get $name(){return`ngb.datepicker.keyboard.service`}},Th=(e=>(e[e.PREV=0]=`PREV`,e[e.NEXT=1]=`NEXT`,e))(Th||{}),Eh=[`dayTemplateData`,`displayMonths`,`markDisabled`,`firstDayOfWeek`,`navigation`,`minDate`,`maxDate`,`outsideDays`,`weekdays`],Dh=class e{constructor(e,t,n,r,i,a){this.$element=e,this.$scope=t,this.$locale=n,this.$filter=r,this._config=i,this._changeDetector=a,this._keyboardService=new wh,this._controlValue=null,this._initialized=!1,this.onChange=()=>void 0,this.onTouched=()=>void 0,this._handleFocusChange=e=>{let t=e.target,n=e.relatedTarget;t?.classList.contains(`ngb-dp-day`)&&n?.classList.contains(`ngb-dp-day`)&&this.$element[0].contains(t)&&this.$element[0].contains(n)||this.$scope.$evalAsync(()=>this._service.set({focusVisible:e.type===`focusin`}))}}_subscribeToService(){this._dateSelectSubscription=this._service.dateSelect$.subscribe(e=>{this.$scope.$evalAsync(()=>this.dateSelect?.({$event:e}))}),this._modelSubscription=this._service.model$.subscribe(e=>{this.$scope.$evalAsync(()=>this._applyModel(e))})}$onInit(){this.calendar=this.calendar??new ih,this.dateAdapter=this.dateAdapter??new $m,this.i18n=this.i18n??new sh(this.$locale,this.$filter),this._createService(),this.dayTemplate=this.dayTemplate??this._config.dayTemplate,this.dayTemplateData=this.dayTemplateData??this._config.dayTemplateData,this.displayMonths=this.displayMonths??this._config.displayMonths,this.firstDayOfWeek=this.firstDayOfWeek??this._config.firstDayOfWeek,this.footerTemplate=this.footerTemplate??this._config.footerTemplate,this.markDisabled=this.markDisabled??this._config.markDisabled,this.maxDate=this.maxDate??this._config.maxDate,this.minDate=this.minDate??this._config.minDate,this.navigation=this.navigation??this._config.navigation,this.outsideDays=this.outsideDays??this._config.outsideDays,this.showWeekNumbers=this.showWeekNumbers??this._config.showWeekNumbers,this.startDate=this.startDate??this._config.startDate,this.weekdays=this.weekdays??this._config.weekdays,this._service.set(this._collectInputs()),this.ngModelCtrl&&(this.registerOnChange(e=>this.ngModelCtrl?.$setViewValue(e)),this.registerOnTouched(()=>this.ngModelCtrl?.$setTouched()),this.ngModelCtrl.$render=()=>this.writeValue(this.ngModelCtrl?.$viewValue),this.ngModelCtrl.$render()),this.navigateTo(this.startDate??this._controlValue),this._initialized=!0}$postLink(){this.dayTemplate=this.dayTemplate??this._defaultDayTemplate,this.$element.addClass(`d-inline-block border rounded-1`),this.$element.toggleClass(`disabled`,!!this.model?.disabled),this.$element.on(`focusin focusout`,this._handleFocusChange),this._removeDisabledListener=this.ngDisabled?.onChange(e=>this.setDisabledState(e)),this.ngDisabled&&this.setDisabledState(this.ngDisabled.disabled)}$onChanges(e){if(!this._initialized)return;if(e.calendar||e.i18n){this.calendar=this.calendar??new ih,this.i18n=this.i18n??new sh(this.$locale,this.$filter),this._createService(),this._service.set(this._collectInputs()),this._service.select(this._controlValue),this.navigateTo(this.startDate??this._controlValue);return}let t=this._collectInputs(Eh.filter(t=>t in e));this._service.set(t);let n=e.startDate;n&&lh(n.previousValue,n.currentValue)&&this.navigateTo(this.startDate)}$onDestroy(){this.$element.off(`focusin focusout`,this._handleFocusChange),this._removeDisabledListener?.(),this._modelSubscription?.unsubscribe(),this._dateSelectSubscription?.unsubscribe()}get state(){return this._publicState}getMonth(e){return this._service.getMonth(e)}processKey(e){this._keyboardService.processKey(e,this)}focusDate(e){this._service.focus(eh.from(e))}focusSelect(){this._service.focusSelect()}focus(){queueMicrotask(()=>{this.$element[0].querySelector(`div.ngb-dp-day[tabindex="0"]`)?.focus()})}navigateTo(e){let t=e?eh.from(e.day?e:{...e,day:1}):null;this._service.open(t)}onDateSelect(e){this._service.focus(e),this._service.select(e,{emitEvent:!0})}onNavigateDateSelect(e){this._service.open(e)}onNavigateEvent(e){let t=this.model.firstDate;t&&(e===0?this._service.open(this.calendar.getPrev(t,`m`,1)):e===1&&this._service.open(this.calendar.getNext(t,`m`,1)))}setDisabledState(e){this._service.set({disabled:e})}registerOnChange(e){this.onChange=e}registerOnTouched(e){this.onTouched=e}writeValue(e){this.dateAdapter&&(this._controlValue=eh.from(this.dateAdapter.fromModel(e)),this._service.select(this._controlValue))}_collectInputs(e=Eh){let t={};for(let n of e)t[n]=this[n];return t}_createService(){this._modelSubscription?.unsubscribe(),this._dateSelectSubscription?.unsubscribe(),this._service=new xh(this.$locale,this.$filter,this.calendar,this.i18n),this._subscribeToService()}_applyModel(e){let t=e.firstDate,n=e.lastDate,r=e.focusDate;if(!t||!n||!r)return;let i=this.model?.firstDate??null,a=!1;if(!t.equals(i)&&(this.navigate?.({$event:{current:i?{year:i.year,month:i.month}:null,next:{year:t.year,month:t.month},preventDefault:()=>{a=!0}}}),a&&i)){this._service.open(i);return}let o=this.model?.focusDate??null;this.model=e,this._publicState={maxDate:e.maxDate,minDate:e.minDate,firstDate:t,lastDate:n,focusedDate:r,months:e.months.map(e=>e.firstDate)},ch(e.selectedDate,this._controlValue)&&(this._controlValue=e.selectedDate,this.onTouched(),this.onChange(this.dateAdapter?.toModel(e.selectedDate))),ch(e.focusDate,o)&&o&&e.focusVisible&&this.focus(),this.$element.toggleClass(`disabled`,e.disabled),this._changeDetector.markForCheck()}static get $name(){return`ngbDatepicker`}static get $inject(){return[`$element`,`$scope`,`$locale`,`$filter`,Sh.$name,ks.$name]}static get $factory(){return{bindings:{contentTemplate:`<?`,calendar:`<?`,dateAdapter:`<?`,dayTemplate:`<?`,dayTemplateData:`<?`,displayMonths:`<?`,firstDayOfWeek:`<?`,footerTemplate:`<?`,i18n:`<?`,markDisabled:`<?`,maxDate:`<?`,minDate:`<?`,navigation:`@?`,outsideDays:`@?`,showWeekNumbers:`<?`,startDate:`<?`,weekdays:`<?`,dateSelect:`&?`,navigate:`&?`},controller:e,controllerAs:`$`,require:{ngModelCtrl:`?ngModel`,ngDisabled:`?ngDisabled`},transclude:!0,template:ah}}};X([fc(`defaultDayTemplate`,{read:void 0,static:!0})],Dh.prototype,`_defaultDayTemplate`,2),X([qs(Ch,{static:!0})],Dh.prototype,`contentTemplateFromContent`,2);var Oh=Dh,kh=class e{constructor(e,t,n){this.$element=e,this.$locale=t,this.$filter=n}$onInit(){this.i18n=this.i18n??new sh(this.$locale,this.$filter),this.$element.addClass(`btn btn-light border-0 p-0 text-center rounded-1`),this.$element.css({width:`2rem`,height:`2rem`,lineHeight:`2rem`,background:`transparent`})}$postLink(){this._renderClasses()}$onChanges(e){this._renderClasses()}isMuted(){return!this.selected&&(this.date.month!==this.currentMonth||this.disabled)}_renderClasses(){this.date&&(this.$element.toggleClass(`bg-primary`,!!this.selected),this.$element.toggleClass(`text-white`,!!this.selected),this.$element.toggleClass(`text-muted`,this.isMuted()),this.$element.toggleClass(`outside`,this.isMuted()),this.$element.toggleClass(`opacity-50`,this.isMuted()),this.$element.toggleClass(`active`,!!this.focused))}static get $name(){return`ngbDatepickerDayView`}static get $inject(){return[`$element`,`$locale`,`$filter`]}static $factory(){return{bindToController:{currentMonth:`<`,date:`<`,disabled:`<`,focused:`<`,i18n:`<`,selected:`<`},controller:e,controllerAs:`$day`,restrict:`A`,scope:!0,template:`{{ $day.i18n && $day.i18n.getDayNumerals($day.date) }}`}}},Ah=`<div\r
-  ng-if="$.viewModel.weekdays.length"\r
-  class="ngb-dp-week ngb-dp-weekdays d-flex rounded-0 border-bottom bg-body-tertiary"\r
-  role="row">\r
-  <div\r
-    ng-if="$.datepicker.showWeekNumbers"\r
-    class="ngb-dp-weekday ngb-dp-showweek small fst-italic text-center"\r
-    ng-class="{ 'text-muted': $.datepicker.model.disabled }"\r
-    style="width: 2rem; height: 2rem; line-height: 2rem">\r
-    {{ $.datepicker.i18n.getWeekLabel() }}\r
-  </div>\r
-  <div\r
-    ng-repeat="weekday in $.viewModel.weekdays track by $index"\r
-    class="ngb-dp-weekday small fst-italic text-center text-info"\r
-    ng-class="{ 'text-muted': $.datepicker.model.disabled }"\r
-    style="width: 2rem; height: 2rem; line-height: 2rem"\r
-    role="columnheader">\r
-    {{ weekday }}\r
-  </div>\r
-</div>\r
-\r
-<div\r
-  ng-repeat="week in $.viewModel.weeks track by $index"\r
-  ng-if="!week.collapsed"\r
-  class="ngb-dp-week d-flex rounded-1"\r
-  ng-class="{ 'pb-1': $last }"\r
-  role="row">\r
-  <div\r
-    ng-if="$.datepicker.showWeekNumbers"\r
-    class="ngb-dp-week-number small text-muted fst-italic text-center"\r
-    style="width: 2rem; height: 2rem; line-height: 2rem">\r
-    {{ $.datepicker.i18n.getWeekNumerals(week.number) }}\r
-  </div>\r
-  <div\r
-    ng-repeat="day in week.days track by day.date.year + '-' + day.date.month + '-' + day.date.day"\r
-    ng-click="$.doSelect(day); $event.preventDefault()"\r
-    class="ngb-dp-day"\r
-    style="width: 2rem; height: 2rem; cursor: pointer"\r
-    ng-style="{ cursor: day.context.disabled || day.hidden ? 'default' : 'pointer' }"\r
-    ng-class="{ disabled: day.context.disabled, hidden: day.hidden, invisible: day.hidden, 'pe-none': day.context.disabled || day.hidden, 'z-1': day.tabindex === 0, 'ngb-dp-today': day.context.today }"\r
-    role="gridcell"\r
-    ng-attr-tabindex="{{ day.tabindex }}"\r
-    ng-attr-aria-label="{{ day.ariaLabel }}"\r
-    ng-attr-aria-disabled="{{ day.context.disabled }}"\r
-    ng-attr-aria-selected="{{ day.context.selected }}">\r
-    <ng-template\r
-      ng-if="!day.hidden"\r
-      ng-template-outlet="$.datepicker.dayTemplate"\r
-      ng-template-outlet-context="day.context">\r
-    </ng-template>\r
-  </div>\r
-</div>\r
-`,jh=class e{constructor(e,t){this.$element=e,this.$scope=t,this._handleKeyDown=e=>{this.datepicker?.processKey(e)}}set month(e){this._month=e,this.datepicker&&e&&(this.viewModel=this.datepicker.getMonth(e))}get month(){return this._month}$onInit(){if(this.datepicker=this.datepicker??this._parentDatepicker??this._findDatepickerInTemplateScope(),!this.datepicker)throw Error(`ngb-datepicker-month must be used inside an ngb-datepicker.`);this._month&&(this.viewModel=this.datepicker.getMonth(this._month))}$postLink(){this.$element.addClass(`d-block pe-auto`),this.$element.attr(`role`,`grid`),this.$element.on(`keydown`,this._handleKeyDown)}$onDestroy(){this.$element.off(`keydown`,this._handleKeyDown)}doSelect(e){!e.context.disabled&&!e.hidden&&this.datepicker?.onDateSelect(e.date)}_findDatepickerInTemplateScope(){let e=this.$scope.$parent;for(;e;){for(let t of Object.keys(e)){if(t.startsWith(`$`))continue;let n=e[t];if(n&&typeof n==`object`&&typeof n.getMonth==`function`&&typeof n.onDateSelect==`function`)return n}e=e.$parent}}static get $name(){return`ngbDatepickerMonth`}static get $inject(){return[`$element`,`$scope`]}static get $factory(){return{bindings:{datepicker:`<?`,month:`<`},controller:e,controllerAs:`$`,require:{_parentDatepicker:`?^^ngbDatepicker`},template:Ah}}},Mh=`<div class="ngb-dp-arrow ngb-dp-arrow-prev d-flex flex-grow-1 p-0 m-0" style="width: 2rem; height: 2rem">\r
-  <button\r
-    type="button"\r
-    class="btn btn-link ngb-dp-arrow-btn z-1 py-0 px-1 mx-2 my-0 bg-transparent border-0"\r
-    ng-click="$.onClickPrev($event)"\r
-    ng-disabled="$.prevDisabled"\r
-    i18n-aria-label="@@ngb.datepicker.previous-month"\r
-    aria-label="Previous month"\r
-    i18n-title="@@ngb.datepicker.previous-month"\r
-    title="Previous month">\r
-    <span\r
-      class="ngb-dp-navigation-chevron d-inline-block"\r
-      style="width: .75em; height: .75em; margin-right: .15em; margin-left: .25em; border-style: solid; border-width: .2em .2em 0 0; transform: rotate(-135deg)">\r
-    </span>\r
-  </button>\r
-</div>\r
-\r
-<ngb-datepicker-navigation-select\r
-  ng-if="$.showSelect"\r
-  class="ngb-dp-navigation-select d-flex flex-grow-1"\r
-  style="flex-basis: 9rem"\r
-  date="$.date"\r
-  i18n="$.i18n"\r
-  disabled="$.disabled"\r
-  months="$.selectBoxes.months"\r
-  years="$.selectBoxes.years"\r
-  select="$.select({ $event: $event })">\r
-</ngb-datepicker-navigation-select>\r
-\r
-<ng-container ng-if="!$.showSelect">\r
-  <ng-container ng-repeat="month in $.months track by $index">\r
-    <div ng-if="$index > 0" class="ngb-dp-arrow d-flex flex-grow-1 p-0 m-0" style="width: 2rem; height: 2rem"></div>\r
-    <div\r
-      class="ngb-dp-month-name fs-5 text-center"\r
-      ng-class="{ 'text-muted': $.disabled }"\r
-      style="height: 2rem; line-height: 2rem">\r
-      {{ $.i18n.getMonthLabel(month.firstDate) }}\r
-    </div>\r
-    <div\r
-      ng-if="$index !== $.months.length - 1"\r
-      class="ngb-dp-arrow d-flex flex-grow-1 p-0 m-0"\r
-      style="width: 2rem; height: 2rem">\r
-    </div>\r
-  </ng-container>\r
-</ng-container>\r
-\r
-<div class="visually-hidden" aria-live="polite">\r
-  <span ng-repeat="month in $.months track by $index">{{ $.i18n.getMonthLabel(month.firstDate) }}</span>\r
-</div>\r
-\r
-<div\r
-  class="ngb-dp-arrow ngb-dp-arrow-next d-flex flex-grow-1 justify-content-end p-0 m-0"\r
-  style="width: 2rem; height: 2rem">\r
-  <button\r
-    type="button"\r
-    class="btn btn-link ngb-dp-arrow-btn z-1 py-0 px-1 mx-2 my-0 bg-transparent border-0"\r
-    ng-click="$.onClickNext($event)"\r
-    ng-disabled="$.nextDisabled"\r
-    i18n-aria-label="@@ngb.datepicker.next-month"\r
-    aria-label="Next month"\r
-    i18n-title="@@ngb.datepicker.next-month"\r
-    title="Next month">\r
-    <span\r
-      class="ngb-dp-navigation-chevron d-inline-block"\r
-      style="width: .75em; height: .75em; margin-right: .25em; margin-left: .15em; border-style: solid; border-width: .2em .2em 0 0; transform: rotate(45deg)">\r
-    </span>\r
-  </button>\r
-</div>\r
-`,Nh=class e{constructor(e,t,n){this.$element=e,this.$locale=t,this.$filter=n,this.navigation=Th,this.months=[]}$onInit(){this.i18n=this.i18n??new sh(this.$locale,this.$filter),this.$element.addClass(`d-flex align-items-center`)}onClickPrev(e){e.currentTarget?.focus(),this.navigate?.({$event:0})}onClickNext(e){e.currentTarget?.focus(),this.navigate?.({$event:1})}static get $name(){return`ngbDatepickerNavigation`}static get $inject(){return[`$element`,`$locale`,`$filter`]}static get $factory(){return{bindings:{date:`<`,disabled:`<`,i18n:`<?`,months:`<`,showSelect:`<`,prevDisabled:`<`,nextDisabled:`<`,selectBoxes:`<`,navigate:`&?`,select:`&?`},controller:e,controllerAs:`$`,template:Mh}}},Ph=`<select\r
-  ng-disabled="$.disabled"\r
-  ng-model="$.selectedMonth"\r
-  ng-change="$.changeMonth($.selectedMonth)"\r
-  class="form-select flex-grow-1 py-0 px-2 small"\r
-  style="height: 1.85rem"\r
-  i18n-aria-label="@@ngb.datepicker.select-month"\r
-  aria-label="Select month"\r
-  i18n-title="@@ngb.datepicker.select-month"\r
-  title="Select month">\r
-  <option\r
-    ng-repeat="month in $.months track by month"\r
-    ng-value="month"\r
-    ng-attr-aria-label="{{ $.i18n.getMonthFullName(month, $.date.year) }}">\r
-    {{ $.i18n.getMonthShortName(month, $.date.year) }}\r
-  </option>\r
-</select>\r
-<select\r
-  ng-disabled="$.disabled"\r
-  ng-model="$.selectedYear"\r
-  ng-change="$.changeYear($.selectedYear)"\r
-  class="form-select flex-grow-1 py-0 px-2 small"\r
-  style="height: 1.85rem"\r
-  i18n-aria-label="@@ngb.datepicker.select-year"\r
-  aria-label="Select year"\r
-  i18n-title="@@ngb.datepicker.select-year"\r
-  title="Select year">\r
-  <option ng-repeat="year in $.years track by year" ng-value="year">\r
-    {{ $.i18n.getYearNumerals(year) }}\r
-  </option>\r
-</select>\r
-`,Fh=class e{constructor(e,t,n){this.$element=e,this.$locale=t,this.$filter=n,this.months=[],this.years=[],this.selectedMonth=0,this.selectedYear=0}$onInit(){this.i18n=this.i18n??new sh(this.$locale,this.$filter),this.$element.addClass(`d-flex flex-grow-1`),this.$element.css(`flex-basis`,`9rem`),this._syncSelection()}$onChanges(e){this._syncSelection()}changeMonth(e){this.select?.({$event:new eh(this.date.year,cd(e),1)})}changeYear(e){this.select?.({$event:new eh(cd(e),this.date.month,1)})}_syncSelection(){this.date&&(this.selectedMonth=this.date.month,this.selectedYear=this.date.year)}static get $name(){return`ngbDatepickerNavigationSelect`}static get $inject(){return[`$element`,`$locale`,`$filter`]}static get $factory(){return{bindings:{date:`<`,disabled:`<`,i18n:`<?`,months:`<`,years:`<`,select:`&?`},controller:e,controllerAs:`$`,template:Ph}}},Ih=class{},Lh=class extends Ih{parse(e){if(e!=null){let t=e.trim().split(`-`);if(t.length===1&&ld(t[0]))return{year:cd(t[0]),month:null,day:null};if(t.length===2&&ld(t[0])&&ld(t[1]))return{year:cd(t[0]),month:cd(t[1]),day:null};if(t.length===3&&ld(t[0])&&ld(t[1])&&ld(t[2]))return{year:cd(t[0]),month:cd(t[1]),day:cd(t[2])}}return null}format(e){return e?`${e.year}-${ld(e.month)?id(e.month):``}-${ld(e.day)?id(e.day):``}`:``}},Rh=class extends Sh{constructor(){super(...arguments),this.autoClose=!0,this.container=null,this.placement=[`bottom-start`,`bottom-end`,`top-start`,`top-end`],this.popperOptions=e=>e,this.restoreFocus=!0}static get $name(){return`ngb.input-datepicker-config.service`}},zh=[`contentTemplate`,`dayTemplate`,`dayTemplateData`,`displayMonths`,`firstDayOfWeek`,`footerTemplate`,`markDisabled`,`minDate`,`maxDate`,`navigation`,`outsideDays`,`showWeekNumbers`,`weekdays`],Bh=class e{constructor(e,t,n,r,i,a,o,s){this.$element=e,this.$scope=t,this._config=n,this._ngZone=r,this._changeDetector=i,this._closed$=new Y,this._windowRef=null,this._model=null,this._inputValue=``,this._disabled=!1,this._elementWithFocus=null,this._onChange=()=>void 0,this._onTouched=()=>void 0,this._validatorChange=()=>void 0,this._handleChange=()=>this.manualDateChange(this._nativeElement.value,!0),this._handleFocus=()=>this.onFocus(),this._handleBlur=()=>this.onBlur(),this._nativeElement=Z(e);let c=new kf(a,r,o);this._popupService=c.$create(Oh.$name),this._positioning=mf(s)}get disabled(){return this._disabled}set disabled(e){this._disabled=e===``||e===void 0&&!!this._nativeElement?.hasAttribute(`disabled`)||!!(e&&e!==`false`),this._nativeElement?.toggleAttribute(`disabled`,this._disabled),this._windowRef?.componentInstance?.setDisabledState(this._disabled)}$onInit(){if(this.calendar=this.calendar??new ih,this.dateAdapter=this.dateAdapter??new $m,this.parserFormatter=this.parserFormatter??new Lh,this.autoClose=this.autoClose??this._config.autoClose,this.container=this.container??this._config.container,this.dayTemplate=this.dayTemplate??this._config.dayTemplate,this.dayTemplateData=this.dayTemplateData??this._config.dayTemplateData,this.displayMonths=this.displayMonths??this._config.displayMonths,this.firstDayOfWeek=this.firstDayOfWeek??this._config.firstDayOfWeek,this.footerTemplate=this.footerTemplate??this._config.footerTemplate,this.markDisabled=this.markDisabled??this._config.markDisabled,this.maxDate=this.maxDate??this._config.maxDate,this.minDate=this.minDate??this._config.minDate,this.navigation=this.navigation??this._config.navigation,this.outsideDays=this.outsideDays??this._config.outsideDays,this.placement=this.placement??this._config.placement,this.popperOptions=this.popperOptions??this._config.popperOptions,this.positionTarget=this.positionTarget??this._config.positionTarget,this.restoreFocus=this.restoreFocus??this._config.restoreFocus,this.showWeekNumbers=this.showWeekNumbers??this._config.showWeekNumbers,this.startDate=this.startDate??this._config.startDate,this.weekdays=this.weekdays??this._config.weekdays,this.ngModelCtrl){let e=this.ngModelCtrl;this.registerOnChange(t=>e.$setViewValue(t)),this.registerOnTouched(()=>e.$setTouched()),this.registerOnValidatorChange(()=>e.$validate()),e.$parsers.unshift(e=>this._parseViewValue(e)),e.$validators.ngbDate=e=>this.validate({value:e})===null,e.$render=()=>this.writeValue(e.$modelValue),e.$render()}}$postLink(){this.$element.on(`change`,this._handleChange),this.$element.on(`focus`,this._handleFocus),this.$element.on(`blur`,this._handleBlur),this._removeDisabledListener=this.ngDisabled?.onChange(e=>this.setDisabledState(e||this._nativeElement.disabled)),this.setDisabledState(!!this.ngDisabled?.disabled||this.disabled||this._nativeElement.disabled)}$onChanges(e){if((e.minDate||e.maxDate)&&this._validatorChange(),e.datepickerClass&&this._windowRef){let{currentValue:t,previousValue:n}=e.datepickerClass;n&&this._windowRef.$element.removeClass(n),t&&this._windowRef.$element.addClass(t)}if(e.autoClose&&this.isOpen()&&this._setCloseHandlers(),this._windowRef){for(let t of zh)t in e&&this._windowRef.setInput(t,this[t]);e.startDate&&this._windowRef.componentInstance?.navigateTo(this.startDate)}}$onDestroy(){this.$element.off(`change`,this._handleChange),this.$element.off(`focus`,this._handleFocus),this.$element.off(`blur`,this._handleBlur),this._removeDisabledListener?.(),this.close(!1),this._closed$.complete()}writeValue(e){this.dateAdapter&&(this._model=this._fromDateStruct(this.dateAdapter.fromModel(e)),this._writeModelValue(this._model))}registerOnChange(e){this._onChange=e}registerOnTouched(e){this._onTouched=e}registerOnValidatorChange(e){this._validatorChange=e}validate(e){let t=e.value;if(t!=null){let e=this.dateAdapter?this._fromDateStruct(this.dateAdapter.fromModel(t)):null;if(!e)return{ngbDate:{invalid:t}};if(this.minDate&&e.before(eh.from(this.minDate)))return{ngbDate:{minDate:{minDate:this.minDate,actual:t}}};if(this.maxDate&&e.after(eh.from(this.maxDate)))return{ngbDate:{maxDate:{maxDate:this.maxDate,actual:t}}}}return null}manualDateChange(e,t=!1){let n=e!==this._inputValue;n&&(this._inputValue=e,this._model=this._fromDateStruct(this.parserFormatter?.parse(e)??null)),(n||!t)&&this._onChange(this._model&&this.dateAdapter?this.dateAdapter.toModel(this._model):e===``?null:e),t&&this._model&&this._writeModelValue(this._model)}setDisabledState(e){this.disabled=e,this._windowRef?.$element.toggleClass(`disabled`,e),this._windowRef&&this.$scope.$evalAsync(()=>this._windowRef?.$element.toggleClass(`disabled`,this.disabled))}isOpen(){return this._windowRef!==null}open(){if(this.isOpen())return;let{windowRef:e}=this._popupService.open();this._windowRef=e;let t=e.componentInstance;if(!t)throw Error(`Unable to create the datepicker popup component.`);e.$element.addClass(`dropdown-menu show p-0`),this.datepickerClass&&e.$element.addClass(this.datepickerClass),this.container===`body`&&(e.$element.addClass(`ngb-dp-body`),e.$element.css(`z-index`,`1055`)),this._applyDatepickerInputs(e),e.setInput(`dateSelect`,({$event:e})=>this._selectDate(e)),e.setInput(`navigate`,({$event:e})=>this.navigate?.({$event:e})),e.setInput(`startDate`,this.startDate??this._model),t.writeValue(this.dateAdapter?.toModel(this._model)),t.setDisabledState(!!this.disabled),e.$element.toggleClass(`disabled`,!!this.disabled),this.$scope.$evalAsync(()=>this._windowRef?.$element.toggleClass(`disabled`,this.disabled));let n=Z(e.$element);this.container===`body`?document.body.appendChild(n):this._nativeElement.parentNode?.insertBefore(n,this._nativeElement.nextSibling),this._elementWithFocus=document.activeElement,Gu(this._ngZone,n,this._closed$,!0),queueMicrotask(()=>t.focus());let r=this._resolvePositionTarget();this._ngZone.runOutsideAngular(()=>{this._positioning.createPopper({hostElement:r,targetElement:n,placement:this.placement,updatePopperOptions:e=>this.popperOptions(hf([0,2])(e))})}),this._unwatchPositioning=this.$scope.$watch(()=>this._positioning.update()),this._setCloseHandlers(),this._changeDetector.markForCheck()}close(e=!0){this._windowRef&&(this._windowRef=null,this._closed$.next(),this._positioning.destroy(),this._unwatchPositioning?.(),this._unwatchPositioning=void 0,this._popupService.close().subscribe(()=>{this.closed?.(),this._changeDetector.markForCheck()}),e&&this._restoreFocus())}toggle(){this.isOpen()?this.close():this.open()}navigateTo(e){this._windowRef?.componentInstance?.navigateTo(e)}_parseViewValue(e){return typeof e!=`string`||!this.parserFormatter||!this.dateAdapter?e:(this._inputValue=e,this._model=this._fromDateStruct(this.parserFormatter.parse(e)),this._model?this.dateAdapter.toModel(this._model):e===``?null:e)}_selectDate(e){if(!this.dateAdapter)return;this._model=e;let t=this.dateAdapter.toModel(e);this._writeModelValue(e),this._onChange(t),this._onTouched(),this.dateSelect?.({$event:e}),(this.autoClose===!0||this.autoClose===`inside`)&&this.close()}_writeModelValue(e){if(!this.parserFormatter||!this.dateAdapter)return;let t=this.parserFormatter.format(e);this._inputValue=t,this._nativeElement.value=t,this._windowRef?.componentInstance?.writeValue(this.dateAdapter.toModel(e))}_fromDateStruct(e){let t=e?new eh(e.year,e.month,e.day):null;return this.calendar?.isValid(t)?t:null}_applyDatepickerInputs(e){e.setInput(`calendar`,this.calendar),e.setInput(`dateAdapter`,this.dateAdapter),this.i18n&&e.setInput(`i18n`,this.i18n);for(let t of zh){let n=this[t];n!==void 0&&e.setInput(t,n)}}_resolvePositionTarget(){if(typeof this.positionTarget==`string`){let e=document.querySelector(this.positionTarget);if(!e)throw Error(`ngbDatepicker could not find positionTarget "${this.positionTarget}".`);return e}return this.positionTarget instanceof HTMLElement?this.positionTarget:this._nativeElement}_setCloseHandlers(){this._closed$.next();let e=this._windowRef?Z(this._windowRef.$element):null;e&&tf(this._ngZone,this.autoClose,this._closed$,()=>this.close(),[e],[this._nativeElement])}_restoreFocus(){let e=this._elementWithFocus;typeof this.restoreFocus==`string`?e=document.querySelector(this.restoreFocus):this.restoreFocus instanceof HTMLElement&&(e=this.restoreFocus),(e??document.body).focus?.()}onFocus(){this._elementWithFocus=this._nativeElement}onBlur(){this._onTouched()}static get $name(){return`ngbDatepicker`}static get $inject(){return[`$element`,`$scope`,Rh.$name,Fc.$name,ks.$name,`$compile`,`$rootScope`,gf.$name]}static get $factory(){return()=>({bindToController:{autoClose:`<?`,calendar:`<?`,contentTemplate:`<?`,datepickerClass:`@?`,dateAdapter:`<?`,dayTemplate:`<?`,dayTemplateData:`<?`,displayMonths:`<?`,firstDayOfWeek:`<?`,footerTemplate:`<?`,markDisabled:`<?`,i18n:`<?`,minDate:`<?`,maxDate:`<?`,navigation:`@?`,outsideDays:`@?`,placement:`<?`,parserFormatter:`<?`,popperOptions:`<?`,restoreFocus:`<?`,showWeekNumbers:`<?`,startDate:`<?`,container:`@?`,positionTarget:`<?`,weekdays:`<?`,disabled:`<?`,dateSelect:`&?`,navigate:`&?`,closed:`&?`},controller:e,controllerAs:`$datepicker`,require:{ngModelCtrl:`?ngModel`,ngDisabled:`?ngDisabled`},restrict:`A`,scope:!1})}},Vh=u.default.module(`ngb.datepicker`,[Wc.name]);Vh.service(gf.$name,gf),Vh.service(Sh.$name,Sh),Vh.service(Rh.$name,Rh),Vh.component(Oh.$name,Oh.$factory),Vh.component(jh.$name,jh.$factory),Vh.component(Nh.$name,Nh.$factory),Vh.component(Fh.$name,Fh.$factory),Vh.directive(Ch.$name,Ch.$factory),Vh.directive(kh.$name,kh.$factory),Vh.directive(Bh.$name,Bh.$factory);var Hh=u.default.module(`ngb`,[Ad.name,Bp.name,wd.name,Wd.name,Sm.name,Td.name,Wf.name,xf.name,Om.name,dp.name,Tp.name,Pp.name,im.name,Gp.name,mm.name,zm.name,Zm.name,Vh.name]);Hh.service(Lu.$name,Lu),Hh.service(Tf.$name,Tf),Hh.factory(kf.$name,kf),Hh.service(Im.$name,Im),Hh.service(gf.$name,gf),Hh.constant(Pm.$name,Pm.$value);function Uh(e){return new Date(e.year-543,e.month-1,e.day)}function Wh(e){return new eh(e.getFullYear()+543,e.getMonth()+1,e.getDate())}var Gh=class extends ih{getToday(){return Wh(new Date)}getNext(e,t=`d`,n=1){let r=Uh(e),i=!0,a=r.getMonth();switch(t){case`y`:r.setFullYear(r.getFullYear()+n);break;case`m`:a+=n,r.setMonth(a),a%=12,a<0&&(a+=12);break;case`d`:r.setDate(r.getDate()+n),i=!1;break;default:return e}return i&&r.getMonth()!==a&&r.setDate(0),Wh(r)}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Uh(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=Uh(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime();return r.setMonth(0),r.setDate(1),Math.floor(Math.round((i-r.getTime())/864e5)/7)+1}isValid(e){if(!e||!Q(e.year)||!Q(e.month)||!Q(e.day)||e.year===0)return!1;let t=Uh(e);return!isNaN(t.getTime())&&t.getFullYear()===e.year-543&&t.getMonth()+1===e.month&&t.getDate()===e.day}},Kh=[`እሑድ`,`ሰኞ`,`ማክሰኞ`,`ረቡዕ`,`ሓሙስ`,`ዓርብ`,`ቅዳሜ`],qh=[`መስከረም`,`ጥቅምት`,`ኅዳር`,`ታህሣሥ`,`ጥር`,`የካቲት`,`መጋቢት`,`ሚያዝያ`,`ግንቦት`,`ሰኔ`,`ሐምሌ`,`ነሐሴ`,`ጳጉሜ`],Jh=class extends oh{getMonthShortName(e,t){return this.getMonthFullName(e,t)}getMonthFullName(e,t){return qh[e-1]??``}getWeekdayLabel(e){return Kh[e-1]??``}getDayAriaLabel(e){return`${e.day} ${this.getMonthFullName(e.month,e.year)} ${e.year}`}},Yh=1724220.5,Xh=[30,30,30,30,30,30,30,30,30,30,30,30,5];function Zh(e){return e==null?!1:e%4==3||e%4==-1}function Qh(e,t){return e.year=+t,e}function $h(e,t){return t=+t,e.year+=Math.floor((t-1)/13),e.month=Math.floor(((t-1)%13+13)%13)+1,e}function eg(e,t){let n=tg(e.month,e.year);if(t<=0)for(;t<=0;)e=$h(e,e.month-1),n=tg(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=$h(e,e.month+1),n=tg(e.month,e.year);return e.day=t,e}function tg(e,t){let n=Zh(t);return Xh[e-1]+(e===13&&n?1:0)}function ng(e){let t=og(ig(e.year,e.month,e.day));return t.setHours(6,30,3,200),t}function rg(e){return ag(sg(e.getFullYear(),e.getMonth()+1,e.getDate()))}function ig(e,t,n){return e<0&&e++,n+(t-1)*30+(e-1)*365+Math.floor(e/4)+Yh-1}function ag(e){let t=Math.floor(e)+.5-Yh,n=Math.floor((t-Math.floor((t+366)/1461))/365)+1;n<=0&&n--,t=Math.floor(e)+.5-ig(n,1,1);let r=Math.floor(t/30)+1,i=t-(r-1)*30+1;return new eh(n,r,i)}function og(e){let t=Math.floor(e+.5),n=Math.floor((t-1867216.25)/36524.25);n=t+1+n-Math.floor(n/4);let r=n+1524,i=Math.floor((r-122.1)/365.25),a=Math.floor(365.25*i),o=Math.floor((r-a)/30.6001),s=r-a-Math.floor(o*30.6001),c=o-(o>13.5?13:1),l=i-(c>2.5?4716:4715);return l<=0&&l--,new Date(l,c,s)}function sg(e,t,n){e<0&&e++,t<3&&(t+=12,e--);let r=Math.floor(e/100),i=2-r+Math.floor(r/4);return Math.floor(365.25*(e+4716))+Math.floor(30.6001*(t+1))+n+i-1524.5}var cg=class extends rh{getDaysPerWeek(){return 7}getMonths(e){return[1,2,3,4,5,6,7,8,9,10,11,12,13]}getNext(e,t=`d`,n=1){switch(e=new eh(e.year,e.month,e.day),t){case`y`:return e=Qh(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=$h(e,e.month+n),e.day=1,e;case`d`:return eg(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Math.floor(ig(e.year,e.month,e.day)+3)%7;return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=ng(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=ng(new eh(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getWeeksPerMonth(){return 6}getToday(){return rg(new Date)}isValid(e){return e&&Q(e.year)&&Q(e.month)&&Q(e.day)&&!isNaN(ng(e).getTime())}},lg=1080,ug=24*lg,dg=12*lg+793,fg=29*ug+dg,pg=11*lg+204,mg=2092591,hg=1721425.5;function gg(e){return e%4==0&&e%100!=0||e%400==0}function _g(e){let t=Math.floor((235*e-234)/19),n=t*dg+pg,r=t*29+Math.floor(n/ug),i=n%ug,a=r%7;return(a===2||a===4||a===6)&&(r++,a=r%7),a===1&&i>15*lg+204&&!xg(e)?r+=2:a===0&&i>21*lg+589&&xg(e-1)&&r++,r}function vg(e,t){let n=[31,28,31,30,31,30,31,31,30,31,30,31];return gg(t)&&n[1]++,n[e-1]}function yg(e){return xg(e)?13:12}function bg(e){return _g(e+1)-_g(e)}function xg(e){if(e!=null){let t=(e*12+17)%19;return t>=(t<0?-7:12)}return!1}function Sg(e,t){let n=_g(t+1)-_g(t),r=(n<=380?n:n-30)-353,i=xg(t)?[30,29,29,29,30,30,29,30,29,30,29,30,29]:[30,29,29,29,30,29,30,29,30,29,30,29];return r>0&&i[2]++,r>1&&i[1]++,i[e-1]}function Cg(e){let t=0;for(let n=1;n<e.month;n++)t+=Sg(n,e.year);return t+e.day}function wg(e,t){let n=t>=0;for(n||(t=-t);t>0;)n?t>yg(e.year)-e.month?(t-=yg(e.year)-e.month+1,e.year++,e.month=1):(e.month+=t,t=0):t>=e.month?(e.year--,t-=e.month,e.month=yg(e.year)):(e.month-=t,t=0);return e}function Tg(e,t){let n=t>=0;for(n||(t=-t);t>0;)n?t>bg(e.year)-Cg(e)?(t-=bg(e.year)-Cg(e)+1,e.year++,e.month=1,e.day=1):t>Sg(e.month,e.year)-e.day?(t-=Sg(e.month,e.year)-e.day+1,e.month++,e.day=1):(e.day+=t,t=0):t>=e.day?(t-=e.day,e.month--,e.month===0&&(e.year--,e.month=yg(e.year)),e.day=Sg(e.month,e.year)):(e.day-=t,t=0);return e}function Eg(e){let t=new Date(e),n=t.getFullYear(),r=t.getMonth(),i=t.getDate(),a=hg-1+365*(n-1)+Math.floor((n-1)/4)-Math.floor((n-1)/100)+Math.floor((n-1)/400)+Math.floor((367*(r+1)-362)/12+(r+1<=2?0:gg(n)?-1:-2)+i);a=Math.floor(a+.5);let o=a-347997,s=Math.floor(o*ug/fg),c=Math.floor((s*19+234)/235)+1,l=_g(c),u=o-l;for(;u<1;)c--,l=_g(c),u=o-l;let d=1,f=u;for(;f>Sg(d,c);)f-=Sg(d,c),d++;return new eh(c,d,f)}function Dg(e){let t=e.year,n=e.month,r=e.day,i=_g(t);for(let e=1;e<n;e++)i+=Sg(e,t);i+=r;let a=i-mg,o=a>=0;o||(a=-a);let s=1970,c=1,l=1;for(;a>0;)o?a>=(gg(s)?366:365)?(a-=gg(s)?366:365,s++):a>=vg(c,s)?(a-=vg(c,s),c++):(l+=a,a=0):a>=(gg(s-1)?366:365)?(a-=gg(s-1)?366:365,s--):(c>1?c--:(c=12,s--),a>=vg(c,s)?a-=vg(c,s):(l=vg(c,s)-a+1,a=0));return new Date(s,c-1,l)}function Og(e){if(!e)return``;let t=[``,`א`,`ב`,`ג`,`ד`,`ה`,`ו`,`ז`,`ח`,`ט`],n=[`י`,`יא`,`יב`,`יג`,`יד`,`טו`,`טז`,`יז`,`יח`,`יט`],r=[``,``,`כ`,`ל`,`מ`,`נ`,`ס`,`ע`,`פ`,`צ`],i=[``,`ק`,`ר`,`ש`,`ת`,`תק`,`תר`,`תש`,`תת`,`תתק`],a=[``,`א`,`ב`,`בא`,`בב`,`ה`,`הא`,`הב`,`הבא`,`הבב`],o=0,s=[],c=0;for(;e>0;){let l=e%10;if(c===0)o=l;else if(c===1)l===1?s.unshift(n[o]):s.unshift(r[l],t[o]);else if(c===2)s.unshift(i[l]);else{l!==5&&s.unshift(a[l],`׳`,` `);break}e=Math.floor(e/10),c===0&&e===0&&s.unshift(t[l]),c++}return s=s.join(``).split(``),s.length===1?s.push(`׳`):s.length>1&&s.splice(s.length-1,0,`״`),s.join(``)}var kg=[`שני`,`שלישי`,`רביעי`,`חמישי`,`שישי`,`שבת`,`ראשון`],Ag=[`תשרי`,`חשון`,`כסלו`,`טבת`,`שבט`,`אדר`,`ניסן`,`אייר`,`סיון`,`תמוז`,`אב`,`אלול`],jg=[`תשרי`,`חשון`,`כסלו`,`טבת`,`שבט`,`אדר א׳`,`אדר ב׳`,`ניסן`,`אייר`,`סיון`,`תמוז`,`אב`,`אלול`],Mg=class extends oh{getMonthShortName(e,t){return this.getMonthFullName(e,t)}getMonthFullName(e,t){return xg(t)?jg[e-1]??``:Ag[e-1]??``}getWeekdayLabel(e){return kg[e-1]??``}getDayAriaLabel(e){return`${Og(e.day)} ${this.getMonthFullName(e.month,e.year)} ${Og(e.year)}`}getDayNumerals(e){return Og(e.day)}getWeekNumerals(e){return Og(e)}getYearNumerals(e){return Og(e)}},Ng=class extends rh{getDaysPerWeek(){return 7}getMonths(e){return e&&xg(e)?[1,2,3,4,5,6,7,8,9,10,11,12,13]:[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}isValid(e){if(e!=null){let t=ld(e.year)&&ld(e.month)&&ld(e.day);return t=t&&e.month>0&&e.month<=(xg(e.year)?13:12),t=t&&e.day>0&&e.day<=Sg(e.month,e.year),t&&!isNaN(Dg(e).getTime())}return!1}getNext(e,t=`d`,n=1){switch(e=new eh(e.year,e.month,e.day),t){case`y`:return e.year+=n,e.month=1,e.day=1,e;case`m`:return e=wg(e,n),e.day=1,e;case`d`:return Tg(e,n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Dg(e).getDay();return t===0?7:t}getWeekNumber(e,t){let n=e[e.length-1];return Math.ceil(Cg(n)/7)}getToday(){return Eg(new Date)}toGregorian(e){return th(Dg(e))}fromGregorian(e){return Eg(nh(e))}},Pg=class extends rh{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){switch(e=new eh(e.year,e.month,e.day),t){case`y`:return e=this._setYear(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=this._setMonth(e,e.month+n),e.day=1,e;case`d`:return this._setDay(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=this.toGregorian(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=this.toGregorian(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=this.toGregorian(new eh(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getToday(){return this.fromGregorian(new Date)}isValid(e){return e!=null&&ld(e.year)&&ld(e.month)&&ld(e.day)&&!isNaN(this.toGregorian(e).getTime())}_setDay(e,t){t=+t;let n=this.getDaysPerMonth(e.month,e.year);if(t<=0)for(;t<=0;)e=this._setMonth(e,e.month-1),n=this.getDaysPerMonth(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=this._setMonth(e,e.month+1),n=this.getDaysPerMonth(e.month,e.year);return e.day=t,e}_setMonth(e,t){return t=+t,e.year+=Math.floor((t-1)/12),e.month=Math.floor(((t-1)%12+12)%12)+1,e}_setYear(e,t){return e.year=+t,e}};function Fg(e){return(14+11*e)%30<11}function Ig(e){let t=e.getFullYear();return t%4==0&&t%100!=0||t%400==0}function Lg(e,t){return Math.ceil(29.5*t)+(e-1)*354+Math.floor((3+11*e)/30)}function Rg(e){return(e-1)*354+Math.floor((3+11*e)/30)}function zg(e,t){return e-t*Math.floor(e/t)}var Bg=1721425.5,Vg=1948439.5,Hg=class extends Pg{fromGregorian(e){let t=e.getFullYear(),n=e.getMonth(),r=e.getDate(),i=Bg-1+365*(t-1)+Math.floor((t-1)/4)+-Math.floor((t-1)/100)+Math.floor((t-1)/400)+Math.floor((367*(n+1)-362)/12+(n+1<=2?0:Ig(e)?-1:-2)+r);i=Math.floor(i)+.5;let a=i-Vg,o=Math.floor((30*a+10646)/10631),s=Math.ceil((a-29-Rg(o))/29.5);s=Math.min(s,11);let c=Math.ceil(a-Lg(o,s))+1;return new eh(o,s+1,c)}toGregorian(e){let t=e.year,n=e.month-1,r=e.day+Math.ceil(29.5*n)+(t-1)*354+Math.floor((3+11*t)/30)+Vg-1,i=Math.floor(r-.5)+.5,a=i-Bg,o=Math.floor(a/146097),s=zg(a,146097),c=Math.floor(s/36524),l=zg(s,36524),u=Math.floor(l/1461),d=zg(l,1461),f=Math.floor(d/365),p=o*400+c*100+u*4+f;c!==4&&f!==4&&p++;let m=i-(Bg+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)),h=i<Bg-1+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)+Math.floor(739/12+(Ig(new Date(p,3,1))?-1:-2)+1)?0:Ig(new Date(p,3,1))?1:2,g=Math.floor(((m+h)*12+373)/367),_=i-(Bg-1+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)+Math.floor((367*g-362)/12+(g<=2?0:Ig(new Date(p,g-1,1))?-1:-2)+1))+1;return new Date(p,g-1,_)}getDaysPerMonth(e,t){t+=Math.floor(e/13),e=(e-1)%12+1;let n=29+e%2;return e===12&&Fg(t)&&n++,n}},Ug=new Date(1882,10,12),Wg=new Date(2174,10,25),Gg=1300,Kg=1600,qg=864e5,Jg=`101010101010.110101010100.111011001001.011011010100.011011101010.001101101100.101010101101.010101010101.011010101001.011110010010.101110101001.010111010100.101011011010.010101011100.110100101101.011010010101.011101001010.101101010100.101101101010.010110101101.010010101110.101001001111.010100010111.011010001011.011010100101.101011010101.001011010110.100101011011.010010011101.101001001101.110100100110.110110010101.010110101100.100110110110.001010111010.101001011011.010100101011.101010010101.011011001010.101011101001.001011110100.100101110110.001010110110.100101010110.101011001010.101110100100.101111010010.010111011001.001011011100.100101101101.010101001101.101010100101.101101010010.101110100101.010110110100.100110110110.010101010111.001010010111.010101001011.011010100011.011101010010.101101100101.010101101010.101010101011.010100101011.110010010101.110101001010.110110100101.010111001010.101011010110.100101010111.010010101011.100101001011.101010100101.101101010010.101101101010.010101110101.001001110110.100010110111.010001011011.010101010101.010110101001.010110110100.100111011010.010011011101.001001101110.100100110110.101010101010.110101010100.110110110010.010111010101.001011011010.100101011011.010010101011.101001010101.101101001001.101101100100.101101110001.010110110100.101010110101.101001010101.110100100101.111010010010.111011001001.011011010100.101011101001.100101101011.010010101011.101010010011.110101001001.110110100100.110110110010.101010111001.010010111010.101001011011.010100101011.101010010101.101100101010.101101010101.010101011100.010010111101.001000111101.100100011101.101010010101.101101001010.101101011010.010101101101.001010110110.100100111011.010010011011.011001010101.011010101001.011101010100.101101101010.010101101100.101010101101.010101010101.101100101001.101110010010.101110101001.010111010100.101011011010.010101011010.101010101011.010110010101.011101001001.011101100100.101110101010.010110110101.001010110110.101001010110.111001001101.101100100101.101101010010.101101101010.010110101101.001010101110.100100101111.010010010111.011001001011.011010100101.011010101100.101011010110.010101011101.010010011101.101001001101.110100010110.110110010101.010110101010.010110110101.001011011010.100101011011.010010101101.010110010101.011011001010.011011100100.101011101010.010011110101.001010110110.100101010110.101010101010.101101010100.101111010010.010111011001.001011101010.100101101101.010010101101.101010010101.101101001010.101110100101.010110110010.100110110101.010011010110.101010010111.010101000111.011010010011.011101001001.101101010101.010101101010.101001101011.010100101011.101010001011.110101000110.110110100011.010111001010.101011010110.010011011011.001001101011.100101001011.101010100101.101101010010.101101101001.010101110101.000101110110.100010110111.001001011011.010100101011.010101100101.010110110100.100111011010.010011101101.000101101101.100010110110.101010100110.110101010010.110110101001.010111010100.101011011010.100101011011.010010101011.011001010011.011100101001.011101100010.101110101001.010110110010.101010110101.010101010101.101100100101.110110010010.111011001001.011011010010.101011101001.010101101011.010010101011.101001010101.110100101001.110101010100.110110101010.100110110101.010010111010.101000111011.010010011011.101001001101.101010101010.101011010101.001011011010.100101011101.010001011110.101000101110.110010011010.110101010101.011010110010.011010111001.010010111010.101001011101.010100101101.101010010101.101101010010.101110101000.101110110100.010110111001.001011011010.100101011010.101101001010.110110100100.111011010001.011011101000.101101101010.010101101101.010100110101.011010010101.110101001010.110110101000.110111010100.011011011010.010101011011.001010011101.011000101011.101100010101.101101001010.101110010101.010110101010.101010101110.100100101110.110010001111.010100100111.011010010101.011010101010.101011010110.010101011101.001010011101`.split(`.`);function Yg(e,t){let n=Date.UTC(e.getFullYear(),e.getMonth(),e.getDate()),r=Date.UTC(t.getFullYear(),t.getMonth(),t.getDate()),i=Math.abs(n-r);return Math.round(i/qg)}var Xg=class extends Hg{fromGregorian(e){let t=1,n=0,r=1300,i=Yg(e,Ug);if(e.getTime()-Ug.getTime()>=0&&e.getTime()-Wg.getTime()<=0){let e=1300;for(let a=0;a<Jg.length;a++,e++)for(let o=0;o<12;o++){let s=+Jg[a][o]+29;if(i<=s)return t=i+1,t>s&&(t=1,o++),o>11&&(o=0,e++),n=o,r=e,new eh(r,n+1,t);i-=s}return null}return super.fromGregorian(e)}toGregorian(e){let t=e.year,n=e.month-1,r=e.day,i=new Date(Ug),a=r-1;if(t>=Gg&&t<=Kg){for(let e=0;e<t-Gg;e++)for(let t=0;t<12;t++)a+=+Jg[e][t]+29;for(let e=0;e<n;e++)a+=+Jg[t-Gg][e]+29;i.setDate(Ug.getDate()+a)}else i=super.toGregorian(e);return i}getDaysPerMonth(e,t){return t>=Gg&&t<=Kg?+Jg[t-Gg][e-1]+29:super.getDaysPerMonth(e,t)}};function Zg(e){let t=a_(c_(e.year,e.month,e.day));return t.setHours(6,30,3,200),t}function Qg(e){return s_(o_(e.getFullYear(),e.getMonth()+1,e.getDate()))}function $g(e,t){return e.year=+t,e}function e_(e,t){return t=+t,e.year+=Math.floor((t-1)/12),e.month=Math.floor(((t-1)%12+12)%12)+1,e}function t_(e,t){let n=l_(e.month,e.year);if(t<=0)for(;t<=0;)e=e_(e,e.month-1),n=l_(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=e_(e,e.month+1),n=l_(e.month,e.year);return e.day=t,e}function n_(e,t){return e-t*Math.floor(e/t)}function r_(e,t){return Math.trunc(e/t)}function i_(e){let t=[-61,9,38,199,426,686,756,818,1111,1181,1210,1635,2060,2097,2192,2262,2324,2394,2456,3178],n=t.length,r=e+621,i=-14,a=t[0];if(e<a||e>=t[n-1])throw Error(`Invalid Jalali year `+e);let o=0;for(let r=1;r<n;r+=1){let n=t[r];if(o=n-a,e<n)break;i=i+r_(o,33)*8+r_(n_(o,33),4),a=n}let s=e-a;i=i+r_(s,33)*8+r_(n_(s,33)+3,4),n_(o,33)===4&&o-s===4&&(i+=1);let c=r_(r,4)-r_((r_(r,100)+1)*3,4)-150,l=20+i-c;o-s<6&&(s=s-o+r_(o+4,33)*33);let u=n_(n_(s+1,33)-1,4);return u===-1&&(u=4),{leap:u,gy:r,march:l}}function a_(e){let t=4*e+139361631;t=t+r_(r_(4*e+183187720,146097)*3,4)*4-3908;let n=r_(n_(t,1461),4)*5+308,r=r_(n_(n,153),5)+1,i=n_(r_(n,153),12)+1,a=r_(t,1461)-100100+r_(8-i,6);return new Date(a,i-1,r)}function o_(e,t,n){let r=r_((e+r_(t-8,6)+100100)*1461,4)+r_(153*n_(t+9,12)+2,5)+n-34840408;return r=r-r_(r_(e+100100+r_(t-8,6),100)*3,4)+752,r}function s_(e){let t=a_(e).getFullYear(),n=t-621,r=i_(n),i=o_(t,3,r.march),a,o,s;if(s=e-i,s>=0){if(s<=185)return o=1+r_(s,31),a=n_(s,31)+1,new eh(n,o,a);s-=186}else--n,s+=179,r.leap===1&&(s+=1);return o=7+r_(s,30),a=n_(s,30)+1,new eh(n,o,a)}function c_(e,t,n){let r=i_(e);return o_(r.gy,3,r.march)+(t-1)*31-r_(t,7)*(t-7)+n-1}function l_(e,t){return e<=6?31:e<=11||i_(t).leap===0?30:29}var u_=class extends rh{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){switch(e=new eh(e.year,e.month,e.day),t){case`y`:return e=$g(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=e_(e,e.month+n),e.day=1,e;case`d`:return t_(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Zg(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=Zg(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=Zg(new eh(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getToday(){return Qg(new Date)}isValid(e){return e!=null&&Q(e.year)&&Q(e.month)&&Q(e.day)&&!isNaN(Zg(e).getTime())}},d_=class e{static get $factory(){return{controllerAs:`$`,controller:e,template:`<ui-view></ui-view>`}}static get $name(){return`docsApp`}},f_=(e,t)=>{e.state(`docs`,{abstract:!0,component:d_.$name}),t.otherwise(`/`)};f_.$inject=[`$stateProvider`,`$urlRouterProvider`];var p_=class{url;$config(e){this.url=e}$get(){return this.url}static get $name(){return`bootstrapUrl`}static get $configName(){return`bootstrapUrlProvider`}};function m_(e){let t=t=>{t.$config(`${e.url}/docs/${e.version}/`)};return t.$inject=[p_.$configName],t}var h_=class{url;$config(e){this.url=e}$get(){return this.url}static get $name(){return`ngBootstrapUrl`}static get $configName(){return`ngBootstrapUrlProvider`}};function g_(e){let t=t=>{t.$config(`${e.url}/#/`)};return t.$inject=[h_.$configName],t}var __=function(e){return e.light=`light`,e.dark=`dark`,e}({}),v_=class{static $key=`theme_key`;static $value=`theme`},y_=class{static $key=`theme.enum`;static $value=__};function b_(e){return e in __}var x_=class{themeStoredKey;theme;constructor(e){this.themeStoredKey=e}getThemeInLocalStorage(){return localStorage.getItem(this.themeStoredKey)}_getPreferredColorScheme(){return matchMedia(`(prefers-color-scheme: dark)`).matches?__.dark:__.light}$config(){let e=this.getThemeInLocalStorage();if(!e){this.theme=this._getPreferredColorScheme();return}if(!b_(e))throw Error(`this theme is not valid`);this.theme=e}$get(){return this.theme}static get $name(){return`theme`}static get $inject(){return[v_.$key]}static get $configName(){return`themeProvider`}};function S_(){let e=e=>{e.$config()};return e.$inject=[x_.$configName],e}var C_=function(e){return e.ES_MX=`es_mx`,e.EN_US=`en_US`,e}({}),w_=class{static $key=`language_key`;static $value=`language`};function T_(e){return e.toUpperCase()in C_}var E_=class{languageKey;_lang;constructor(e){this.languageKey=e}$config(){let e=this._readFromLocalStorage();if(!e){this._lang=C_.EN_US;return}if(!T_(e)){this._lang=C_.EN_US;return}this._lang=e}$get(){return this._lang}_readFromLocalStorage(){return localStorage.getItem(this.languageKey)}static get $name(){return`language`}static get $configName(){return`languageProvider`}static get $inject(){return[w_.$key]}};function D_(){let e=e=>{e.$config()};return e.$inject=[E_.$configName],e}var O_=class{_currentTheme;themeStorageKey;_element=u.default.element(document.documentElement);constructor(e,t){this._currentTheme=e,this.themeStorageKey=t,this._applyTheme(this._currentTheme)}static get $inject(){return[x_.$name,v_.$key]}get activeTheme(){return this._currentTheme}toggle(){this._currentTheme=this._currentTheme===__.light?__.dark:__.light,this._applyTheme(this._currentTheme)}setActive(e){this._applyTheme(e)}_applyTheme(e){this._currentTheme=e,this._element.attr(`data-bs-theme`,this._currentTheme),this.saveInLocalStorage(this._currentTheme)}saveInLocalStorage(e){localStorage.setItem(this.themeStorageKey,e)}static get $name(){return`docs.theme.service`}},k_=class{language;_changeLang;changeLang$;constructor(e){this.language=e,this._changeLang=new ja(this.language),this.changeLang$=this._changeLang.asObservable()}selectLanguage(e){this._changeLang.next(e)}static get $name(){return`docs.language.service`}static get $inject(){return[E_.$name]}},A_=class e{mode=`desktop`;ngbActiveOffcanvas;static get $factory(){return{bindings:{mode:`@`,ngbActiveOffcanvas:`<?`},controllerAs:`$`,controller:e,templateUrl:`templates/menu.component-e6b60cd8.html`}}static get $inject(){return[]}static get $name(){return`docsMenu`}},j_=class{offCanvasService;_isOpen=!1;_change=new Y;onChange$=this._change.asObservable();constructor(e){this.offCanvasService=e}toggleMenu(){this._isOpen||this.offCanvasService.hasOpenOffcanvas()||(this._setOpenState(!0),this.offCanvasService.open(A_.$name,{bindings:{mode:`mobile`},ariaLabelledBy:`docs-mobile-menu-title`,animation:!0,backdrop:!0,keyboard:!0,panelClass:`border-0 shadow`,position:`start`,scroll:!1}).then(e=>{e.result?.finally(()=>this._setOpenState(!1))},()=>{this._setOpenState(!1)}))}_setOpenState(e){this._isOpen=e,this._change.next(this._isOpen)}static get $inject(){return[wp.$name]}static get $name(){return`core.menu.service`}},M_=class{transitionService;_transition=new Na(void 0);transition$=this._transition.asObservable();_currentTab;get currentTab(){return this._currentTab}set currentTab(e){this._currentTab=e}constructor(e){this.transitionService=e}observeRoute(){this.transitionService.onEnter({},e=>{let t=e.to(),n={title:t.data?.title,tabs:t.data?.tabs,sections:t.data?.sections,externalLinks:t.data?.externalLinks,header:t.data?.header??!0};this._currentTab=t.name,this._transition.next(n)})}static get $name(){return`docs.title.service`}static get $inject(){return[`$transitions`]}};function N_(){let e=e=>{e.observeRoute()};return e.$inject=[M_.$name],e}var P_=class{$transitionService;constructor(e){this.$transitionService=e}observeScroll(){this.$transitionService.onSuccess({},()=>{window.requestAnimationFrame(()=>{document.getElementById(`docs-content-scroll`)?.scrollTo({top:0,left:0,behavior:`auto`})})})}static get $name(){return`docs.scroll.service`}static get $inject(){return[`$transitions`]}};function F_(){let e=e=>{e.observeScroll()};return e.$inject=[P_.$name],e}var I_=class e{static get $name(){return`docsFooter`}static get $factory(){return{controller:e,templateUrl:`templates/footer.component-67e3fcf5.html`}}};function L_(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a}var R_=class e{modalService;themeService;themes;menuService;searchTemplate;constructor(e,t,n,r){this.modalService=e,this.themeService=t,this.themes=n,this.menuService=r}openModal(){this.modalService.open(this.searchTemplate,{fullscreen:`md`,animation:!1}).then(u.default.noop)}static get $name(){return`docsHeader`}static get $inject(){return[jf.$name,O_.$name,y_.$key,j_.$name]}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`templates/header.component-afd3dee6.html`}}};L_([fc(`searchModal`,{static:!0})],R_.prototype,`searchTemplate`,void 0);var z_=class e{static get $name(){return`docsMenuAbstractPageComponent`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`templates/menu-abstract-page.component-921edcdb.html`}}},B_=e=>{e.state(`docs.dashboard`,{abstract:!0,component:z_.$name})};B_.$inject=[`$stateProvider`];var V_=u.default.module(`docs.layout`,[]);V_.component(I_.$name,I_.$factory),V_.component(R_.$name,R_.$factory),V_.component(A_.$name,A_.$factory),V_.component(z_.$name,z_.$factory),V_.config(B_);var H_=u.default.module(`docs.core`,[V_.name]);H_.provider(p_.$name,p_),H_.provider(h_.$name,h_),H_.constant(v_.$key,v_.$value),H_.constant(y_.$key,y_.$value),H_.provider(x_.$name,x_),H_.service(O_.$name,O_),H_.constant(w_.$key,w_.$value),H_.provider(E_.$name,E_),H_.service(k_.$name,k_),H_.service(j_.$name,j_),H_.service(M_.$name,M_),H_.service(P_.$name,P_),H_.config(m_({url:`https://getbootstrap.com`,version:5.3})),H_.config(D_()),H_.config(S_()),H_.config(g_({url:`https://ng-bootstrap.github.io`})),H_.run(F_()),H_.run(N_());var U_=class e{$window;$timeout;value;ariaLabel;buttonClass;copied=!1;constructor(e,t){this.$window=e,this.$timeout=t}copy(){this.$window.navigator.clipboard.writeText(this.value).then(()=>{this.$timeout(()=>{this.copied=!0}),this.$timeout(()=>{this.copied=!1},2e3)})}static get $name(){return`docsCopyButton`}static get $inject(){return[`$window`,`$timeout`]}static get $factory(){return{bindings:{value:`<`,ariaLabel:`@?`,buttonClass:`@?`},controller:e,controllerAs:`copyButton`,templateUrl:`templates/copy-button.component-1f9e7fbc.html`}}},W_=class e{templateRequest;fragment;title;description;htmlCode=``;htmlCodeUrl;tsCode;cssCode;codeCollapsed=!0;activeTab=`html`;static $inject=[`$templateRequest`];constructor(e){this.templateRequest=e}$onInit(){if(!this.htmlCodeUrl)return;let e=Array.isArray(this.htmlCodeUrl)?this.htmlCodeUrl:[this.htmlCodeUrl];Promise.all(e.map(e=>{let t=typeof e==`string`?e:e.url;return this.templateRequest(t).then(t=>typeof e==`string`||!e.label?t:`<!-- ${e.label} -->\n${t}`)})).then(e=>{this.htmlCode=e.join(`
+`,Ip=class{constructor(){this.ariaLabel=`progress bar`,this.animated=!1,this.max=100,this.showValue=!1,this.striped=!1}static get $name(){return`ngb.progressbar.config.service`}},Lp=class e{constructor(e,t){this.ngbProgressbarConfig=e,this.$element=t}$onInit(){this.animated=this.animated??this.ngbProgressbarConfig.animated,this.ariaLabel=this.ariaLabel??this.ngbProgressbarConfig.ariaLabel,this.height=this.height??this.ngbProgressbarConfig.height,this._max=this._max??this.ngbProgressbarConfig.max,this.showValue=this.showValue??this.ngbProgressbarConfig.showValue,this.striped=this.striped??this.ngbProgressbarConfig.striped,this.textType=this.textType??this.ngbProgressbarConfig.textType,this.type=this.type??this.ngbProgressbarConfig.type,this.value=this.value??0}$postLink(){this.$element.attr(`role`,`progressbar`),this.$element.addClass(`progress`),this.$element.css({height:this.height??``}),this.$element.attr(`aria-valuemin`,0),this.$element.attr(`aria-label`,`${this.ariaLabel}`)}$onChanges(){this.$element.attr(`aria-valuenow`,this.getValue()),this.$element.attr(`aria-valuemax`,this.max),this.stacked&&this.$element.css({width:`${this.getPercentValue()}%`})}set max(e){this._max=!u.default.isNumber(e)||e<=0?100:e}get max(){return this._max??this.ngbProgressbarConfig.max}getValue(){return nd(this.value??0,this.max??this.ngbProgressbarConfig.max)}getPercentValue(){return 100*this.getValue()/(this.max??this.ngbProgressbarConfig.max)}static get $name(){return`ngbProgressbar`}static get $inject(){return[Ip.$name,`$element`]}static get $factory(){return{bindings:{animated:`<?`,ariaLabel:`@?`,height:`@?`,max:`<?`,showValue:`<?`,striped:`<?`,textType:`@?`,type:`@?`,value:`<`},require:{stacked:`^?ngbProgressbarStacked`},transclude:!0,controller:e,controllerAs:`$`,template:Fp}}},Rp=class{static get $name(){return`ngbProgressbarPercent`}static $transform(){return e=>{let t=Number(e);return Number.isFinite(t)?`${Math.round(t*1e4)/100}%`:`0%`}}},zp=class e{constructor(e){this.$element=e}$postLink(){this.$element.addClass(`progress-stacked`)}static get $name(){return`ngbProgressbarStacked`}static get $inject(){return[`$element`]}static get $factory(){return{controller:e,controllerAs:`$`}}},Bp=u.default.module(`ngb.progressbar`,[Wc.name]);Bp.service(Ip.$name,Ip),Bp.component(Lp.$name,Lp.$factory),Bp.component(zp.$name,zp.$factory),Bp.filter(Rp.$name,Rp.$transform);var Vp=`<ng-template ng-ref="defaultStar" let-fill="fill">{{ fill === 100 ? '&#9733;' : '&#9734;' }}</ng-template>
 
-`)})}toggleCode(){this.codeCollapsed=!this.codeCollapsed}get hasAdditionalCode(){return!!(this.tsCode||this.cssCode)}get activeCode(){return this.activeTab===`typescript`?this.tsCode??``:this.activeTab===`css`?this.cssCode??``:this.htmlCode}static get $name(){return`docsExampleSection`}static get $factory(){return{bindings:{fragment:`@`,title:`@`,description:`@`,htmlCode:`<`,htmlCodeUrl:`<?`,tsCode:`<?`,cssCode:`<?`},controller:e,controllerAs:`example`,transclude:!0,templateUrl:`templates/example-section.component-32394cad.html`}}},G_=class e{titleService;bootstrapUrl;ngBootstrapUrl;destroyRef=new Y;externalLinks;title;sections=[];constructor(e,t,n){this.titleService=e,this.bootstrapUrl=t,this.ngBootstrapUrl=n}get bootstrapHref(){return this.externalLinks?.bootstrap?`${this.bootstrapUrl}${this.externalLinks.bootstrap}`:void 0}get ngBootstrapHref(){return this.externalLinks?.ngBootstrap?`${this.ngBootstrapUrl}${this.externalLinks.ngBootstrap}`:void 0}$postLink(){this.titleService.transition$.pipe(bs(this.destroyRef)).subscribe(e=>{this.title=e.title,this.sections=e.sections??[],this.externalLinks=e.externalLinks})}$onDestroy(){this.destroyRef.next(),this.destroyRef.complete()}static get $inject(){return[M_.$name,p_.$name,h_.$name]}static get $name(){return`docsPageOutline`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`templates/page-outline.component-960dd8ab.html`}}},K_=class e{titleService;destroyRef=new Y;title;tabs;visible=!1;constructor(e){this.titleService=e}$postLink(){this.titleService.transition$.pipe(bs(this.destroyRef)).subscribe(e=>{this.title=e.title,this.tabs=e.tabs,this.visible=e.header})}$onDestroy(){this.destroyRef.next(),this.destroyRef.complete()}static get $inject(){return[M_.$name]}static get $name(){return`docsTitleHeading`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`templates/title-heading.component-000851b4.html`}}},q_=u.default.module(`docs.shared`,[]);q_.component(U_.$name,U_.$factory),q_.component(W_.$name,W_.$factory),q_.component(G_.$name,G_.$factory),q_.component(K_.$name,K_.$factory);var J_=class e{activePackageManager=`npm`;packageManagers=[{id:`npm`,name:`npm`,command:`npm install ngb-js`},{id:`pnpm`,name:`pnpm`,command:`pnpm add ngb-js`},{id:`yarn`,name:`Yarn`,command:`yarn add ngb-js`},{id:`bun`,name:`Bun`,command:`bun add ngb-js`}];static get $name(){return`docsIntroductionPage`}static get $factory(){return{controller:e,templateUrl:`templates/introduction-page.component-76719756.html`,controllerAs:`$`}}},Y_=class e{static get $name(){return`docsPhilosophyPage`}static get $factory(){return{controller:e,templateUrl:`templates/philosophy-page.component-37bd001a.html`,controllerAs:`$`}}},X_=class e{static get $name(){return`docsWhyNgbJsPage`}static get $factory(){return{controller:e,templateUrl:`templates/why-ngbjs-page.component-ec53a027.html`,controllerAs:`$`}}},Z_=e=>{e.state(`docs.dashboard.introduction`,{url:`/guide/introduction`,component:J_.$name,data:{header:!1,title:`Introduction`,sections:[{id:`origin`,name:`Origin`},{id:`what-is-ngbjs`,name:`What is NgbJS?`},{id:`who-is-it-for`,name:`Who is it for?`},{id:`project-status`,name:`Project status`},{id:`installation`,name:`Installation`},{id:`acknowledgements`,name:`Acknowledgements`}]}}),e.state(`docs.dashboard.philosophy`,{url:`/guide/philosophy`,component:Y_.$name,data:{header:!1,title:`Philosophy`,sections:[{id:`parity-is-priority`,name:`Parity is Priority`},{id:`what-parity-means`,name:`What parity means`},{id:`familiar-by-design`,name:`Familiar by design`},{id:`a-migration-bridge`,name:`A migration bridge`},{id:`when-parity-is-hard`,name:`When parity is hard`}]}}),e.state(`docs.dashboard.whyNgbJs`,{url:`/guide/why-ngbjs`,component:X_.$name,data:{header:!1,title:`Why NgbJS?`,sections:[{id:`the-legacy-reality`,name:`The legacy reality`},{id:`before-and-after`,name:`Before and after`},{id:`what-it-unlocks`,name:`What NgbJS unlocks`},{id:`when-to-use-ngbjs`,name:`When to use NgbJS`},{id:`a-bridge-not-a-destination`,name:`A bridge, not a destination`}]}})};Z_.$inject=[`$stateProvider`];var Q_=u.default.module(`docs.guide`,[]);Q_.component(J_.$name,J_.$factory),Q_.component(Y_.$name,Y_.$factory),Q_.component(X_.$name,X_.$factory),Q_.config(Z_);var $_=class e{static get $name(){return`docsHomeHero`}static get $factory(){return{controller:e,templateUrl:`templates/home-hero.component-37426584.html`}}},ev=class e{installCommand=`npm install ngb-js`;static get $name(){return`docsHomePage`}static get $factory(){return{controller:e,templateUrl:`templates/home-page.component-2061405c.html`,controllerAs:`$`}}},tv=e=>{e.state(`docs.home`,{url:`/`,component:ev.$name})};tv.$inject=[`$stateProvider`];var nv=u.default.module(`docs.home`,[]);nv.component($_.$name,$_.$factory),nv.component(ev.$name,ev.$factory),nv.config(tv);var rv=()=>[{id:1,type:`success`,message:`Your changes were saved successfully.`,animation:!0},{id:2,type:`danger`,message:`Something needs your attention.`,animation:!0},{id:3,type:`warning`,message:`This alert closes without animation.`,animation:!1},{id:4,type:`info`,message:`This one also closes immediately.`,animation:!1}],iv=class e{alerts=rv();close(e){this.alerts=this.alerts.filter(t=>t.id!==e)}reset(){this.alerts=rv()}static get $name(){return`docsAlertCloseable`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/alert-closeable.component-851255ae.html`}}},av=class e{static get $name(){return`docsAlertCustom`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/alert-custom.component-e0d52b22.html`}}},ov=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,dismissible:e.dismissible,type:e.type},e.animation=!1,e.dismissible=!1,e.type=`success`}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.dismissible=this.initialConfig.dismissible,this.config.type=this.initialConfig.type}static get $name(){return`docsAlertGlobal`}static get $inject(){return[Dd.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/alert-global.component-64aef6bd.html`}}},sv=class e{draft=`This value remains after collapsing the panel.`;static get $name(){return`docsAccordionContent`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-content.component-bdb3154c.html`}}},cv=class e{static get $name(){return`docsAccordionCustomHeader`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-custom-header.component-6186c74a.html`}}},lv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,closeOthers:e.closeOthers,destroyOnHide:e.destroyOnHide},e.animation=!1,e.closeOthers=!0,e.destroyOnHide=!1}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.closeOthers=this.initialConfig.closeOthers,this.config.destroyOnHide=this.initialConfig.destroyOnHide}static get $name(){return`docsAccordionGlobal`}static get $inject(){return[Ru.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-global.component-f295ac94.html`}}},uv=class e{static get $name(){return`docsAccordionSimple`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-simple.component-581d82cf.html`}}},dv=class e{accordion;expandAll(){this.accordion.expandAll()}collapseAll(){this.accordion.collapseAll()}toggle(e){this.accordion.toggle(e)}static get $name(){return`docsAccordionTogglePanels`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-toggle-panels.component-20886c84.html`}}};L_([fc(`accordion`,{static:!0})],dv.prototype,`accordion`,void 0);var fv=class e{static get $name(){return`docsOnePanelAccordion`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/one-panel-accordion.component-d32c7fed.html`}}},pv=class e{$timeout;initialSeconds=5;timer;alert;remaining=this.initialSeconds;visible=!0;constructor(e){this.$timeout=e}$onInit(){this.startTimer()}$onDestroy(){this.cancelTimer()}restart(){this.cancelTimer(),this.remaining=this.initialSeconds,this.visible=!0,this.startTimer()}onClosed(){this.visible=!1,this.cancelTimer()}startTimer(){this.timer=this.$timeout(()=>{if(this.remaining--,this.remaining<=0){this.alert?this.alert.close():this.visible=!1;return}this.startTimer()},1e3)}cancelTimer(){this.timer&&=(this.$timeout.cancel(this.timer),void 0)}static get $name(){return`docsSelfClosingAlert`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/self-closing-alert.component-3fe084ee.html`}}};L_([fc(`alert`)],pv.prototype,`alert`,void 0);var mv=class e{static get $name(){return`docsSimpleAlert`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-alert.component-6f539372.html`}}},hv=class e{$element;$timeout;pauseOnHover=!0;pauseOnFocus=!0;unpauseOnArrow=!1;pauseOnIndicator=!1;paused=!1;carousel;constructor(e,t){this.$element=e,this.$timeout=t}$postLink(){this.$timeout(()=>{this.carousel=this.$element.find(`ngb-carousel`).controller(`ngbCarousel`)},0,!1)}onSlide(e){(e.source===`arrowLeft`||e.source===`arrowRight`)&&this.unpauseOnArrow&&(this.carousel?.cycle(),this.paused=!1),e.source===`indicator`&&this.pauseOnIndicator&&(this.carousel?.pause(),this.paused=!0)}toggleCycle(){this.paused?this.carousel?.cycle():this.carousel?.pause(),this.paused=!this.paused}static get $name(){return`docsCarouselControls`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/carousel-controls.component-e500e796.html`}}static get $inject(){return[`$element`,`$timeout`]}},gv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,interval:e.interval,wrap:e.wrap,pauseOnFocus:e.pauseOnFocus,pauseOnHover:e.pauseOnHover,showNavigationArrows:e.showNavigationArrows},e.animation=!1,e.interval=2500,e.wrap=!1,e.pauseOnFocus=!1,e.pauseOnHover=!1,e.showNavigationArrows=!1}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.interval=this.initialConfig.interval,this.config.wrap=this.initialConfig.wrap,this.config.pauseOnFocus=this.initialConfig.pauseOnFocus,this.config.pauseOnHover=this.initialConfig.pauseOnHover,this.config.showNavigationArrows=this.initialConfig.showNavigationArrows}static get $name(){return`docsCarouselGlobal`}static get $inject(){return[Md.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/carousel-global.component-9fd19bc3.html`}}},_v=class e{static get $name(){return`docsCarouselKeyboard`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/carousel-keyboard.component-73150cd9.html`}}},vv=class e{static get $name(){return`docsCarouselSimple`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/carousel-simple.component-8320cf0f.html`}}},yv=class e{collapsed=!0;toggle(){this.collapsed=!this.collapsed}static get $name(){return`docsHorizontalCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/horizontal-collapse.component-c27c1b6c.html`}}},bv=class e{menuCollapsed=!0;toggleMenu(){this.menuCollapsed=!this.menuCollapsed}closeMenu(){this.menuCollapsed=!0}static get $name(){return`docsNavbarCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/navbar-collapse.component-33ec7e2a.html`}}},xv=class e{collapse;collapsed=!0;toggleWithController(){this.collapse.toggle()}toggleWithBinding(){this.collapsed=!this.collapsed}static get $name(){return`docsSimpleCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-collapse.component-ecaa8adc.html`}}};L_([fc(`collapse`,{static:!0})],xv.prototype,`collapse`,void 0);var Sv=class e{static get $name(){return`docsDropdownBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-body.component-20cb9bf5.html`}}},Cv=class e{static get $name(){return`docsDropdownButtonGroups`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-button-groups.component-9d70a7ed.html`}}},wv=class e{restricted=!0;static get $name(){return`docsDropdownDisabledItems`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-disabled-items.component-35b12c9d.html`}}},Tv=class e{email=``;remember=!1;submitted=!1;submit(){this.submitted=!0}static get $name(){return`docsDropdownForm`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-form.component-6ee6bce3.html`}}},Ev=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={autoClose:e.autoClose,container:e.container,placement:e.placement},e.autoClose=`outside`,e.container=`body`,e.placement=[`top-start`,`bottom-start`]}$onDestroy(){this.config.autoClose=this.initialConfig.autoClose,this.config.container=this.initialConfig.container,this.config.placement=this.initialConfig.placement}static get $name(){return`docsDropdownGlobal`}static get $inject(){return[Kd.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-global.component-0da80f84.html`}}},Dv=class e{static get $name(){return`docsDropdownNavbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-navbar.component-11e68e40.html`}}},Ov=class e{dropdown;opened=!1;open(){this.dropdown.open()}close(){this.dropdown.close()}toggle(){this.dropdown.toggle()}static get $name(){return`docsManualDropdown`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/manual-dropdown.component-8d110592.html`}}};L_([fc(`dropdown`,{read:vf,static:!0})],Ov.prototype,`dropdown`,void 0);var kv=class e{static get $name(){return`docsSimpleDropdown`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-dropdown.component-3b0aa7f6.html`}}},Av=class e{ngbActiveModal;title=`Component modal`;description=`This modal receives a component as its content.`;longContent=!1;items=Array.from({length:24},(e,t)=>`Scrollable content row ${t+1}`);static get $name(){return`docsModalDemoContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`,title:`<?`,description:`<?`,longContent:`<?`},controller:e,controllerAs:`$`,templateUrl:`templates/modal-demo-content.component-80507653.html`}}},jv=class e{modal;lastResult=`No result yet`;constructor(e){this.modal=e}async open(){let e=await this.modal.open(Av.$name,{bindings:{title:`Component as content`,description:`NgbActiveModal is provided directly to the content component.`}});e.closed.subscribe(e=>{this.lastResult=`Closed with: ${e}`}),e.dismissed.subscribe(e=>{this.lastResult=`Dismissed with: ${e}`})}static get $name(){return`docsModalComponentContent`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-component-content.component-56893590.html`}}},Mv=class e{modal;content;constructor(e){this.modal=e}open(){this.modal.open(this.content)}static get $name(){return`docsModalDefault`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-default.component-e632efa2.html`}}};L_([fc(`content`,{read:kc,static:!0})],Mv.prototype,`content`,void 0);var Nv=class e{ngbActiveModal;autofocus=!1;static get $name(){return`docsModalFocusContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`,autofocus:`<?`},controller:e,controllerAs:`$`,templateUrl:`templates/modal-focus-content.component-d0d75fbf.html`}}},Pv=class e{modal;constructor(e){this.modal=e}openDefaultFocus(){this.modal.open(Nv.$name,{ariaLabelledBy:`modal-focus-title`,bindings:{autofocus:!1}})}openCustomFocus(){this.modal.open(Nv.$name,{ariaLabelledBy:`modal-focus-title`,bindings:{autofocus:!0}})}static get $name(){return`docsModalFocus`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-focus.component-d7bc4c42.html`}}},Fv=class e{modal;config;initialConfig;constructor(e,t){this.modal=e,this.config=t,this.initialConfig={backdrop:t.backdrop,centered:t.centered,keyboard:t.keyboard,size:t.size}}async open(){this.applyConfig();try{await this.modal.open(Av.$name,{bindings:{title:`Globally configured modal`,description:`This modal is centered, large and cannot be dismissed with Escape or a backdrop click.`}})}finally{this.restoreConfig()}}$onDestroy(){this.restoreConfig()}applyConfig(){this.config.backdrop=`static`,this.config.centered=!0,this.config.keyboard=!1,this.config.size=`lg`}restoreConfig(){this.config.backdrop=this.initialConfig.backdrop,this.config.centered=this.initialConfig.centered,this.config.keyboard=this.initialConfig.keyboard,this.config.size=this.initialConfig.size}static get $name(){return`docsModalGlobal`}static get $inject(){return[jf.$name,Sf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-global.component-18359326.html`}}},Iv=class e{modal;constructor(e){this.modal=e}openCustomWindow(){this.open(`Custom window class`,{windowClass:`modal-window-custom`})}openStaticBackdrop(){this.open(`Static custom backdrop`,{backdrop:`static`,backdropClass:`modal-static-backdrop`,keyboard:!1})}openSmall(){this.open(`Small modal`,{size:`sm`})}openLarge(){this.open(`Large modal`,{size:`lg`})}openExtraLarge(){this.open(`Extra large modal`,{size:`xl`})}openFullscreen(){this.open(`Fullscreen modal`,{fullscreen:!0})}openCentered(){this.open(`Vertically centered modal`,{centered:!0})}openScrollable(){this.open(`Scrollable modal`,{scrollable:!0,size:`lg`},!0)}openCustomDialog(){this.open(`Custom dialog class`,{modalDialogClass:`modal-dialog-custom`})}open(e,t,n=!1){this.modal.open(Av.$name,{...t,bindings:{title:e,description:`These values are applied only to this modal instance.`,longContent:n}})}static get $name(){return`docsModalOptions`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-options.component-b094d1a4.html`}}},Lv=class e{modal;ngbActiveModal;level=1;constructor(e){this.modal=e}dismissAll(){this.modal.dismissAll(`Dismiss all`)}static get $name(){return`docsModalStackedContent`}static get $inject(){return[jf.$name]}static get $factory(){return{bindings:{ngbActiveModal:`<`,level:`<?`},controller:e,controllerAs:`$`,templateUrl:`templates/modal-stacked-content.component-704d3092.html`}}},Rv=class e{modal;constructor(e){this.modal=e}async openStack(){for(let e=1;e<=3;e++)await this.modal.open(Lv.$name,{bindings:{level:e}})}static get $name(){return`docsModalStacked`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-stacked.component-cebd5198.html`}}},zv=class e{ngbActiveModal;ariaReferences=!0;centered=!1;fullscreen=!1;customBackdrop=!1;size=`sm`;customWindow=!1;customDialog=!1;toggleAriaReferences(){this.ariaReferences=!this.ariaReferences,this.ngbActiveModal.update({ariaLabelledBy:this.ariaReferences?`updatable-modal-title`:``,ariaDescribedBy:this.ariaReferences?`updatable-modal-description`:``})}toggleCentered(){this.centered=!this.centered,this.ngbActiveModal.update({centered:this.centered})}toggleFullscreen(){this.fullscreen=!this.fullscreen,this.ngbActiveModal.update({fullscreen:this.fullscreen})}toggleBackdropClass(){this.customBackdrop=!this.customBackdrop,this.ngbActiveModal.update({backdropClass:this.customBackdrop?`modal-updated-backdrop`:``})}cycleSize(){let e=[`sm`,`lg`,`xl`];this.size=e[(e.indexOf(this.size)+1)%e.length],this.ngbActiveModal.update({size:this.size})}toggleWindowClass(){this.customWindow=!this.customWindow,this.ngbActiveModal.update({windowClass:this.customWindow?`modal-updated-window`:``})}toggleDialogClass(){this.customDialog=!this.customDialog,this.ngbActiveModal.update({modalDialogClass:this.customDialog?`modal-updated-dialog`:``})}static get $name(){return`docsModalUpdatableContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`},controller:e,controllerAs:`$`,templateUrl:`templates/modal-updatable-content.component-2bdbed55.html`}}},Bv=class e{modal;constructor(e){this.modal=e}open(){this.modal.open(zv.$name,{ariaLabelledBy:`updatable-modal-title`,ariaDescribedBy:`updatable-modal-description`,size:`sm`})}static get $name(){return`docsModalUpdatable`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-updatable.component-2610b55b.html`}}},Vv=class e{activeId=`alternative-home`;static get $name(){return`docsAlternativeNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/alternative-nav.component-d3f6b279.html`}}},Hv=class e{activeId=`custom-weekly`;static get $name(){return`docsCustomNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/custom-nav.component-9d522e7b.html`}}},Uv=class e{items=[{id:`dynamic-1`,title:`Tab 1`},{id:`dynamic-2`,title:`Tab 2`},{id:`dynamic-3`,title:`Tab 3`}];activeId=`dynamic-1`;nextId=4;add(){let e={id:`dynamic-${this.nextId}`,title:`Tab ${this.nextId}`};this.nextId++,this.items.push(e),this.activeId=e.id}removeActive(){if(this.items.length===1)return;let e=this.items.findIndex(({id:e})=>e===this.activeId),t=this.items[e===0?1:e-1];this.activeId=t.id,this.items=this.items.filter(({id:t})=>t!==this.items[e].id)}static get $name(){return`docsDynamicNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dynamic-nav.component-46ac5418.html`}}},Wv=class e{activeId=`keep-editor`;draft=`This value survives tab changes.`;static get $name(){return`docsKeepContentNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/keep-content-nav.component-be77360d.html`}}},Gv=class e{config;activeId=`global-account`;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,destroyOnHide:e.destroyOnHide,keyboard:e.keyboard,orientation:e.orientation,roles:e.roles},e.animation=!1,e.destroyOnHide=!1,e.keyboard=`changeWithArrows`,e.orientation=`vertical`,e.roles=`tablist`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.animation=this.initialConfig.animation,this.config.destroyOnHide=this.initialConfig.destroyOnHide,this.config.keyboard=this.initialConfig.keyboard,this.config.orientation=this.initialConfig.orientation,this.config.roles=this.initialConfig.roles}static get $name(){return`docsNavGlobal`}static get $inject(){return[Gf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/nav-global.component-5017b76b.html`}}},Kv=class e{nav;activeId=`selecting-first`;select(e){this.nav.select(e)}static get $name(){return`docsSelectingNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/selecting-nav.component-be7643a0.html`}}};L_([fc(`nav`,{read:ep,static:!0})],Kv.prototype,`nav`,void 0);var qv=class e{activeId=`simple-overview`;static get $name(){return`docsSimpleNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-nav.component-61640b59.html`}}},Jv=class e{activeId=`vertical-profile`;static get $name(){return`docsVerticalNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/vertical-nav.component-0b6458ec.html`}}},Yv=class e{ngbActiveOffcanvas;static get $name(){return`docsOffcanvasDemoContent`}static get $factory(){return{bindings:{ngbActiveOffcanvas:`<`},controller:e,controllerAs:`$`,templateUrl:`templates/offcanvas-demo-content.component-bcbefabe.html`}}},Xv=class e{offcanvas;lastResult=`No result yet`;constructor(e){this.offcanvas=e}async open(){let e=await this.offcanvas.open(Yv.$name);e.closed.subscribe(e=>{this.lastResult=`Closed with: ${e}`}),e.dismissed.subscribe(e=>{this.lastResult=`Dismissed with: ${e}`})}static get $name(){return`docsOffcanvasComponentContent`}static get $inject(){return[wp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-component-content.component-ad10d95b.html`}}},Zv=class e{offcanvas;content;constructor(e){this.offcanvas=e}open(){this.offcanvas.open(this.content)}static get $name(){return`docsOffcanvasDefault`}static get $inject(){return[wp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-default.component-420dc640.html`}}};L_([fc(`content`,{read:kc,static:!0})],Zv.prototype,`content`,void 0);var Qv=class e{ngbActiveOffcanvas;autofocus=!1;static get $name(){return`docsOffcanvasFocusContent`}static get $factory(){return{bindings:{ngbActiveOffcanvas:`<`,autofocus:`<?`},controller:e,controllerAs:`$`,templateUrl:`templates/offcanvas-focus-content.component-ea7e15df.html`}}},$v=class e{offcanvas;constructor(e){this.offcanvas=e}openDefaultFocus(){this.offcanvas.open(Qv.$name,{ariaLabelledBy:`offcanvas-focus-title`,bindings:{autofocus:!1}})}openCustomFocus(){this.offcanvas.open(Qv.$name,{ariaLabelledBy:`offcanvas-focus-title`,bindings:{autofocus:!0}})}static get $name(){return`docsOffcanvasFocus`}static get $inject(){return[wp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-focus.component-203e6da0.html`}}},ey=class e{offcanvas;config;initialConfig;constructor(e,t){this.offcanvas=e,this.config=t,this.initialConfig={backdrop:t.backdrop,keyboard:t.keyboard,position:t.position,scroll:t.scroll}}async open(){this.applyConfig();try{await this.offcanvas.open(Yv.$name)}finally{this.restoreConfig()}}$onDestroy(){this.restoreConfig()}applyConfig(){this.config.backdrop=`static`,this.config.keyboard=!1,this.config.position=`end`,this.config.scroll=!0}restoreConfig(){this.config.backdrop=this.initialConfig.backdrop,this.config.keyboard=this.initialConfig.keyboard,this.config.position=this.initialConfig.position,this.config.scroll=this.initialConfig.scroll}static get $name(){return`docsOffcanvasGlobal`}static get $inject(){return[wp.$name,fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-global.component-f0a6c6c9.html`}}},ty=class e{offcanvas;constructor(e){this.offcanvas=e}openCustomPanel(){this.open({panelClass:`offcanvas-panel-custom`})}openStaticBackdrop(){this.open({backdrop:`static`,backdropClass:`offcanvas-static-backdrop`,keyboard:!1})}openStart(){this.open({position:`start`})}openEnd(){this.open({position:`end`})}openTop(){this.open({position:`top`})}openBottom(){this.open({position:`bottom`})}openScrollableBody(){this.open({scroll:!0,backdrop:!1})}open(e){this.offcanvas.open(Yv.$name,e)}static get $name(){return`docsOffcanvasOptions`}static get $inject(){return[wp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-options.component-c41db20c.html`}}},ny=class e{paginatedPage=7;rotatedPage=12;compactPage=12;selectPaginatedPage(e){this.paginatedPage=e}selectRotatedPage(e){this.rotatedPage=e}selectCompactPage(e){this.compactPage=e}static get $name(){return`docsAdvancedPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/advanced-pagination.component-4816903b.html`}}},ry=class e{page=4;selectPage(e){this.page=e}static get $name(){return`docsBasicPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-pagination.component-4f74a936.html`}}},iy=class e{page=3;selectPage(e){this.page=e}static get $name(){return`docsCustomPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/custom-pagination.component-08e82b5d.html`}}},ay=class e{page=3;disabled=!0;selectPage(e){this.page=e}static get $name(){return`docsDisabledPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/disabled-pagination.component-01ec3032.html`}}},oy=class e{startPage=2;centerPage=2;endPage=2;selectStartPage(e){this.startPage=e}selectCenterPage(e){this.centerPage=e}selectEndPage(e){this.endPage=e}static get $name(){return`docsPaginationAlignment`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/pagination-alignment.component-f43ac50c.html`}}},sy=class e{config;page=8;initialConfig;constructor(e){this.config=e,this.initialConfig={boundaryLinks:e.boundaryLinks,directionLinks:e.directionLinks,maxSize:e.maxSize,rotate:e.rotate,size:e.size},e.boundaryLinks=!0,e.directionLinks=!1,e.maxSize=5,e.rotate=!0,e.size=`sm`}selectPage(e){this.page=e}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.boundaryLinks=this.initialConfig.boundaryLinks,this.config.directionLinks=this.initialConfig.directionLinks,this.config.maxSize=this.initialConfig.maxSize,this.config.rotate=this.initialConfig.rotate,this.config.size=this.initialConfig.size}static get $name(){return`docsPaginationGlobal`}static get $inject(){return[Jm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/pagination-global.component-2ada8d01.html`}}},cy=class e{smallPage=2;defaultPage=2;largePage=2;selectSmallPage(e){this.smallPage=e}selectDefaultPage(e){this.defaultPage=e}selectLargePage(e){this.largePage=e}static get $name(){return`docsPaginationSize`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/pagination-size.component-07f717cc.html`}}},ly=class e{date={year:2026,month:8,day:24};static get $name(){return`docsBasicDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-datepicker.component-596eb4f9.html`}}},uy=class extends Qm{fromModel(e){if(!e)return null;let[t,n,r]=e.split(`/`).map(Number);return t&&n&&r?{year:t,month:n,day:r}:null}toModel(e){return e?`${e.year}/${e.month}/${e.day}`:null}},dy=class extends Ih{parse(e){let[t,n,r]=e.split(`.`).map(Number);return t&&n&&r?{year:r,month:n,day:t}:null}format(e){return e?`${String(e.day).padStart(2,`0`)}.${String(e.month).padStart(2,`0`)}.${e.year}`:``}},fy=class e{adapter=new uy;formatter=new dy;date=`2026/8/24`;static get $name(){return`docsDatepickerCustomAdapter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-custom-adapter.component-ba1c5554.html`}}},py=class e{date={year:2026,month:8,day:24};dayData(e){let t=new Date(e.year,e.month-1,e.day).getDay();return{weekend:t===0||t===6}}static get $name(){return`docsDatepickerCustomDay`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-custom-day.component-5af12ed4.html`}}},my=class e{previous(e){e.navigateTo(e.calendar.getPrev(e.state.firstDate,`m`,1))}next(e){e.navigateTo(e.calendar.getNext(e.state.firstDate,`m`,1))}today(e){e.navigateTo(e.calendar.getToday())}static get $name(){return`docsDatepickerCustomMonth`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-custom-month.component-dad56817.html`}}},hy=class e{date=null;datepicker;today(){this.datepicker&&(this.date=this.datepicker.calendar.getToday())}clear(){this.date=null}static get $name(){return`docsDatepickerFooter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-footer.component-83bf2b39.html`}}},gy=class e{config;inputConfig;inlineDefaults;inputDefaults;inlineDate={year:2026,month:8,day:24};popupDate={year:2026,month:8,day:24};constructor(e,t){this.config=e,this.inputConfig=t,this.inlineDefaults=this.capture(e),this.inputDefaults=this.capture(t),Object.assign(e,{displayMonths:2,navigation:`arrows`,outsideDays:`hidden`,showWeekNumbers:!0,weekdays:`short`}),Object.assign(t,{displayMonths:2,navigation:`arrows`,outsideDays:`hidden`,showWeekNumbers:!0,weekdays:`short`})}$postLink(){this.restore()}$onDestroy(){this.restore()}capture(e){return{displayMonths:e.displayMonths,navigation:e.navigation,outsideDays:e.outsideDays,showWeekNumbers:e.showWeekNumbers,weekdays:e.weekdays}}restore(){Object.assign(this.config,this.inlineDefaults),Object.assign(this.inputConfig,this.inputDefaults)}static get $name(){return`docsDatepickerGlobal`}static get $inject(){return[Sh.$name,Rh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-global.component-07815f76.html`}}},_y=class extends oh{months=[`enero`,`febrero`,`marzo`,`abril`,`mayo`,`junio`,`julio`,`agosto`,`septiembre`,`octubre`,`noviembre`,`diciembre`];weekdays=[`L`,`M`,`X`,`J`,`V`,`S`,`D`];getWeekdayLabel(e){return this.weekdays[e-1]??``}getMonthShortName(e){return this.months[e-1]?.slice(0,3)??``}getMonthFullName(e){return this.months[e-1]??``}getDayAriaLabel(e){return`${e.day} de ${this.getMonthFullName(e.month)} de ${e.year}`}},vy=class e{i18n=new _y;date={year:2026,month:8,day:24};static get $name(){return`docsDatepickerI18n`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-i18n.component-f0017dae.html`}}},yy=class e{date={year:2026,month:8,day:24};datepicker;onKeydown(e){if(!this.datepicker||e.key!==`[`&&e.key!==`]`)return;let t=(e.key===`[`?-1:1)<0?this.datepicker.calendar.getPrev(this.datepicker.state.firstDate,`m`,1):this.datepicker.calendar.getNext(this.datepicker.state.firstDate,`m`,1);this.datepicker.navigateTo(t),e.preventDefault(),e.stopPropagation()}static get $name(){return`docsDatepickerKeyboard`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-keyboard.component-99c82020.html`}}},by=class e{date=null;target=`#datepicker-custom-position-target`;static get $name(){return`docsDatepickerPositionTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-position-target.component-fd92d02c.html`}}},xy=class e{disabled=!0;date={year:2026,month:8,day:24};static get $name(){return`docsDisabledDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/disabled-datepicker.component-260b2562.html`}}},Sy=class e{date={year:2026,month:8,day:24};static get $name(){return`docsMultipleMonthsDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/multiple-months-datepicker.component-0ffc523c.html`}}},Cy=class e{date={year:2026,month:8,day:24};static get $name(){return`docsPopupDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popup-datepicker.component-26170c6b.html`}}},wy=class e{calendar=new ih;hoveredDate=null;fromDate=this.calendar.getToday();toDate=this.calendar.getNext(this.fromDate,`d`,10);select(e){!this.fromDate||this.toDate?(this.fromDate=e,this.toDate=null):e.after(this.fromDate)?this.toDate=e:this.fromDate=e}isHovered(e){return!!this.fromDate&&!this.toDate&&!!this.hoveredDate&&e.after(this.fromDate)&&e.before(this.hoveredDate)}isInside(e){return!!this.toDate&&e.after(this.fromDate)&&e.before(this.toDate)}isRange(e){return e.equals(this.fromDate)||!!this.toDate&&e.equals(this.toDate)||this.isInside(e)||this.isHovered(e)}static get $name(){return`docsRangeDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/range-datepicker.component-1e9b78e8.html`}}},Ty=class e{calendar=new ih;hoveredDate=null;fromDate=this.calendar.getToday();toDate=this.calendar.getNext(this.fromDate,`d`,7);model=this.fromDate;select(e){!this.fromDate||this.toDate?(this.fromDate=e,this.toDate=null):e.after(this.fromDate)?this.toDate=e:this.fromDate=e,this.model=e}isHovered(e){return!!this.fromDate&&!this.toDate&&!!this.hoveredDate&&e.after(this.fromDate)&&e.before(this.hoveredDate)}isInside(e){return!!this.toDate&&e.after(this.fromDate)&&e.before(this.toDate)}isRange(e){return e.equals(this.fromDate)||!!this.toDate&&e.equals(this.toDate)||this.isInside(e)||this.isHovered(e)}static get $name(){return`docsRangePopupDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/range-popup-datepicker.component-dd7af52f.html`}}},Ey=class e{popover;static get $name(){return`docsPopoverAutoclose`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-autoclose.component-5755f907.html`}}},Dy=class e{static get $name(){return`docsPopoverBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-body.component-1612ef66.html`}}},Oy=class e{name=`World`;contentTemplate;titleTemplate;french;german;english;toggleWithGreeting(e,t,n){e.isOpen()?e.close():e.open({greeting:t,language:n})}static get $name(){return`docsPopoverContext`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-context.component-89ce1950.html`}}},ky=class e{static get $name(){return`docsPopoverCustomClass`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-custom-class.component-f9cfd278.html`}}},Ay=class e{static get $name(){return`docsPopoverCustomTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-custom-target.component-41ca47e9.html`}}},jy=class e{static get $name(){return`docsPopoverDelays`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-delays.component-ea6da360.html`}}},My=class e{popover;events=[];record(e){this.events.unshift({name:e,time:new Date})}static get $name(){return`docsPopoverEvents`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-events.component-43e3cd83.html`}}},Ny=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,openDelay:e.openDelay,placement:e.placement,triggers:e.triggers},e.container=`body`,e.openDelay=300,e.placement=`end`,e.triggers=`mouseenter:mouseleave`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.openDelay=this.initialConfig.openDelay,this.config.placement=this.initialConfig.placement,this.config.triggers=this.initialConfig.triggers}static get $name(){return`docsPopoverGlobal`}static get $inject(){return[Ep.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-global.component-e3b32b07.html`}}},Py=class e{popover;static get $name(){return`docsPopoverManualControl`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-manual-control.component-e74ce0bd.html`}}},Fy=class e{static get $name(){return`docsPopoverPlacements`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-placements.component-f72cde48.html`}}},Iy=class e{name=`NgbJS`;contentTemplate;titleTemplate;static get $name(){return`docsPopoverTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-template.component-692fbb3b.html`}}},Ly=class e{manual;static get $name(){return`docsPopoverTriggers`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-triggers.component-3db3a04c.html`}}},Ry=class e{static get $name(){return`docsContextualTextProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/contextual-text-progressbar.component-cd4e18c2.html`}}},zy=class e{static get $name(){return`docsCustomLabelsProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/custom-labels-progressbar.component-f0b0b608.html`}}},By=class e{static get $name(){return`docsProgressBarsStacked`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/progress-bars-stacked.component-675c328f.html`}}},Vy=class e{static get $name(){return`docsProgressHeight`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/progress-height.component-6abf975d.html`}}},Hy=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animated:e.animated,height:e.height,max:e.max,showValue:e.showValue,striped:e.striped,textType:e.textType,type:e.type},e.animated=!0,e.height=`1.5rem`,e.max=200,e.showValue=!0,e.striped=!0,e.textType=`light`,e.type=`primary`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){Object.assign(this.config,this.initialConfig)}static get $name(){return`docsProgressbarGlobal`}static get $inject(){return[Ip.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/progressbar-global.component-766d59af.html`}}},Uy=class e{static get $name(){return`docsSimpleProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-progressbar.component-5d0056c3.html`}}},Wy=class e{static get $name(){return`docsStripedProgressBar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/striped-progress-bar.component-4a655617.html`}}},Gy=class e{rating=3;setRating(e){this.rating=e}static get $name(){return`docsBasicRating`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-rating.component-7318952e.html`}}},Ky=class e{rating=6;setRating(e){this.rating=e}static get $name(){return`docsRatingCustomTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-custom-template.component-a32b6c5c.html`}}},qy=class e{rating=3.14;heartTemplate;ariaValueText=(e,t)=>`${e} out of ${t} hearts`;static get $name(){return`docsRatingDecimal`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-decimal.component-b61f8f3d.html`}}},Jy=class e{selected=0;hovered=0;readonly=!1;setSelected(e){this.selected=e}setHovered(e){this.hovered=e}static get $name(){return`docsRatingEvents`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-events.component-553fcc1c.html`}}},Yy=class e{rating=null;disabled=!1;form;setRating(e){this.rating=e}clear(){this.rating=null}static get $name(){return`docsRatingForm`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-form.component-5b2fba1b.html`}}},Xy=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={max:e.max,readonly:e.readonly,resettable:e.resettable,tabindex:e.tabindex},e.max=5,e.readonly=!0,e.resettable=!0,e.tabindex=-1}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){Object.assign(this.config,this.initialConfig)}static get $name(){return`docsRatingGlobal`}static get $inject(){return[Hp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-global.component-01f3bde3.html`}}},Zy=class e{static get $name(){return`docsBasicScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-scrollspy.component-65eb855e.html`}}},Qy=class e{static get $name(){return`docsNavbarScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/navbar-scrollspy.component-08b656c4.html`}}},$y=class e{static get $name(){return`docsNestedScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/nested-scrollspy.component-090e14ea.html`}}},eb=class e{static get $name(){return`docsScrollspyMenuItems`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/scrollspy-menu-items.component-444ee18e.html`}}},tb=class e{$element;scrollSpy;fragments=[`service-introduction`,`service-options`,`service-finish`];running=!1;observingFinish=!0;root;constructor(e,t){this.$element=e,this.scrollSpy=t}$postLink(){this.root=this.$element[0].querySelector(`[data-service-scrollspy]`)??void 0,this.start()}$onDestroy(){this.scrollSpy.stop()}start(){this.root&&(this.scrollSpy.start({root:this.root,fragments:this.fragments,rootMargin:`0px 0px -45%`}),this.running=!0,this.observingFinish=!0)}stop(){this.scrollSpy.stop(),this.running=!1}toggleFinish(){this.observingFinish?this.scrollSpy.unobserve(`service-finish`):this.scrollSpy.observe(`service-finish`),this.observingFinish=!this.observingFinish}static get $name(){return`docsScrollspyServiceDemo`}static get $inject(){return[`$element`,$p.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/scrollspy-service-demo.component-41481748.html`}}},nb=class e{time={hour:13,minute:30,second:0};static get $name(){return`docsBasicTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-timepicker.component-0474ad53.html`}}},rb=class e{time={hour:13,minute:30,second:0};meridian=!0;static get $name(){return`docsMeridianTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/meridian-timepicker.component-75dfa15a.html`}}},ib=class e{time={hour:13,minute:30,second:25};seconds=!0;static get $name(){return`docsSecondsTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/seconds-timepicker.component-16f61fd8.html`}}},ab=class e{time={hour:13,minute:30,second:0};spinners=!0;static get $name(){return`docsSpinnersTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/spinners-timepicker.component-cbc77dfa.html`}}},ob=e=>e.toString().padStart(2,`0`),sb=class extends cm{fromModel(e){if(!e)return null;let[t,n,r]=e.split(`:`).map(Number);return{hour:t,minute:n,second:r}}toModel(e){return e?`${ob(e.hour)}:${ob(e.minute)}:${ob(e.second??0)}`:null}},cb=class e{adapter=new sb;time=this.adapter.fromModel(`13:30:00`);model=`13:30:00`;$doCheck(){this.model=this.adapter.toModel(this.time)??``}static get $name(){return`docsTimepickerCustomAdapter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/timepicker-custom-adapter.component-7d1eccc5.html`}}},lb=class e{time={hour:13,minute:30,second:0};hourStep=1;minuteStep=15;secondStep=30;static get $name(){return`docsTimepickerCustomSteps`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/timepicker-custom-steps.component-6c55232e.html`}}},ub=class extends um{getMorningPeriod(){return`π.μ.`}getAfternoonPeriod(){return`μ.μ.`}},db=class e{i18n;time={hour:13,minute:30,second:0};constructor(e){this.i18n=e}static get $name(){return`docsTimepickerI18n`}static get $inject(){return[um.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/timepicker-i18n.component-4effa662.html`}}},fb=class e{time=null;static get $name(){return`docsTimepickerValidation`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/timepicker-validation.component-dbd80649.html`}}},pb=()=>({restrict:`A`,require:`ngModel`,link:(e,t,n,r)=>{let i=r;i.$validators.lunchtime=e=>!e||e.hour>=12&&e.hour<=13}}),mb=class e{$timeout;visible=!0;reopenTimer;constructor(e){this.$timeout=e}close(){this.visible=!1,this.reopenTimer=this.$timeout(()=>{this.visible=!0},3e3)}$onDestroy(){this.reopenTimer&&this.$timeout.cancel(this.reopenTimer)}static get $name(){return`docsCloseableToast`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/closeable-toast.component-f73c9946.html`}}},hb=class e{showHeaderToast=!0;static get $name(){return`docsInlineToast`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/inline-toast.component-f83cd7d5.html`}}},gb=class e{$timeout;visible=!1;autohide=!0;constructor(e){this.$timeout=e}show(){this.visible=!1,this.autohide=!0,this.$timeout(()=>this.visible=!0)}hide(){this.visible=!1,this.autohide=!0}static get $name(){return`docsPreventAutohideToast`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/prevent-autohide-toast.component-8b7ffe4e.html`}}},_b=class e{visible=!0;static get $name(){return`docsTemplateHeaderToast`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/template-header-toast.component-36ddc2d8.html`}}},vb=class{toasts=[];nextId=0;show(e,t={}){this.toasts.push({id:++this.nextId,body:e,...t})}remove(e){let t=this.toasts.indexOf(e);t>=0&&this.toasts.splice(t,1)}clear(){this.toasts.length=0}static get $name(){return`docs.toast.service`}},yb=class e{toastService;constructor(e){this.toastService=e}showStandard(){this.toastService.show(`I am a standard toast.`)}showSuccess(){this.toastService.show(`Your changes were saved.`,{className:`bg-success text-white`,delay:8e3})}showDanger(){this.toastService.show(`The operation could not be completed.`,{className:`bg-danger text-white`,delay:1e4})}$onDestroy(){this.toastService.clear()}static get $name(){return`docsToastManagement`}static get $inject(){return[vb.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/toast-management.component-f1cc52a0.html`}}},bb=class e{contentTemplate;static get $name(){return`docsTooltipAutoclose`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-autoclose.component-8a84f6c0.html`}}},xb=class e{static get $name(){return`docsTooltipBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-body.component-2defef40.html`}}},Sb=class e{name=`World`;contentTemplate;french;german;english;toggleWithGreeting(e,t){e.isOpen()?e.close():e.open({greeting:t})}static get $name(){return`docsTooltipContext`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-context.component-66b9f25a.html`}}},Cb=class e{static get $name(){return`docsTooltipCustomClass`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-custom-class.component-3a21e284.html`}}},wb=class e{static get $name(){return`docsTooltipCustomTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-custom-target.component-58862139.html`}}},Tb=class e{static get $name(){return`docsTooltipDelays`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-delays.component-722c4ca1.html`}}},Eb=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,openDelay:e.openDelay,placement:e.placement,triggers:e.triggers},e.container=`body`,e.openDelay=300,e.placement=`end`,e.triggers=`mouseenter:mouseleave`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.openDelay=this.initialConfig.openDelay,this.config.placement=this.initialConfig.placement,this.config.triggers=this.initialConfig.triggers}static get $name(){return`docsTooltipGlobal`}static get $inject(){return[Cm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-global.component-ab32dab0.html`}}},Db=class e{static get $name(){return`docsTooltipPlacements`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-placements.component-cb107f8e.html`}}},Ob=class e{name=`NgbJS`;contentTemplate;static get $name(){return`docsTooltipTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-template.component-769940d5.html`}}},kb=class e{manual;static get $name(){return`docsTooltipTriggers`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-triggers.component-2b933fea.html`}}},Ab=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`].map(e=>({name:e})),jb=class e{model;formatter=e=>e.name;search=e=>e.pipe(ss(200),wo(e=>e?Ab.filter(t=>t.name.toLowerCase().includes(e.toLowerCase())):[]));static get $name(){return`docsExactTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/exact-typeahead.component-bdd7b1ed.html`}}},Mb=`Alabama.Alaska.Arizona.Arkansas.California.Colorado.Connecticut.Delaware.Florida.Georgia.Hawaii.Idaho.Illinois.Indiana.Iowa.Kansas.Kentucky.Louisiana.Maine.Maryland.Massachusetts.Michigan.Minnesota.Mississippi.Missouri.Montana.Nebraska.Nevada.New Hampshire.New Jersey.New Mexico.New York.North Carolina.North Dakota.Ohio.Oklahoma.Oregon.Pennsylvania.Rhode Island.South Carolina.South Dakota.Tennessee.Texas.Utah.Vermont.Virginia.Washington.West Virginia.Wisconsin.Wyoming`.split(`.`),Nb=class e{model=``;focus$=new Y;search=e=>Qo(e.pipe(ss(200),ms()),this.focus$).pipe(wo(e=>(e?Mb.filter(t=>t.toLowerCase().includes(e.toLowerCase())):Mb).slice(0,10)));$onDestroy(){this.focus$.complete()}static get $name(){return`docsFocusTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/focus-typeahead.component-7fb35bbc.html`}}},Pb=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`],Fb=class e{model=``;formatter=e=>e.toUpperCase();search=e=>e.pipe(ss(200),ms(),wo(e=>e?Pb.filter(t=>t.toLowerCase().includes(e.toLowerCase())):[]));static get $name(){return`docsFormattedTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/formatted-typeahead.component-78c7fbc0.html`}}},Ib=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`].map((e,t)=>({id:t,name:e})),Lb=class e{model=null;formatter=e=>e.name;search=e=>e.pipe(ss(200),ms(),wo(e=>e.length<2?[]:Ib.filter(t=>t.name.toLowerCase().includes(e.toLowerCase()))));static get $name(){return`docsNonEditableTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/non-editable-typeahead.component-1e639833.html`}}},Rb=`Alabama.Alaska.Arizona.Arkansas.California.Colorado.Connecticut.Delaware.Florida.Georgia.Hawaii.Idaho.Illinois.Indiana.Iowa.Kansas.Kentucky.Louisiana.Maine.Maryland.Massachusetts.Michigan.Minnesota.Mississippi.Missouri.Montana.Nebraska.Nevada.New Hampshire.New Jersey.New Mexico.New York.North Carolina.North Dakota.Ohio.Oklahoma.Oregon.Pennsylvania.Rhode Island.South Carolina.South Dakota.Tennessee.Texas.Utah.Vermont.Virginia.Washington.West Virginia.Wisconsin.Wyoming`.split(`.`),zb=class e{model=``;search=e=>e.pipe(ss(200),ms(),wo(e=>e.length<2?[]:Rb.filter(t=>t.toLowerCase().includes(e.toLowerCase())).slice(0,10)));static get $name(){return`docsSimpleTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-typeahead.component-b709f397.html`}}},Bb=[{name:`Mexico`,flag:`🇲🇽`,region:`North America`},{name:`Argentina`,flag:`🇦🇷`,region:`South America`},{name:`Brazil`,flag:`🇧🇷`,region:`South America`},{name:`Canada`,flag:`🇨🇦`,region:`North America`},{name:`Colombia`,flag:`🇨🇴`,region:`South America`},{name:`Germany`,flag:`🇩🇪`,region:`Europe`},{name:`Japan`,flag:`🇯🇵`,region:`Asia`},{name:`Spain`,flag:`🇪🇸`,region:`Europe`}],Vb=class e{model;resultTemplate;formatter=e=>e.name;search=e=>e.pipe(ss(200),wo(e=>e?Bb.filter(t=>t.name.toLowerCase().includes(e.toLowerCase())).slice(0,8):[]));static get $name(){return`docsTemplateResultsTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/template-results-typeahead.component-ce6c3b98.html`}}},Hb=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`],Ub=class e{config;model=``;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,selectOnExact:e.selectOnExact,showHint:e.showHint},e.container=`body`,e.selectOnExact=!0,e.showHint=!0}search=e=>e.pipe(ss(200),ms(),wo(e=>e.length<2?[]:Hb.filter(t=>t.toLowerCase().startsWith(e.toLowerCase()))));$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.selectOnExact=this.initialConfig.selectOnExact,this.config.showHint=this.initialConfig.showHint}static get $name(){return`docsTypeaheadGlobal`}static get $inject(){return[jm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/typeahead-global.component-734bcf63.html`}}},Wb=`https://en.wikipedia.org/w/api.php`,Gb=class{$http;constructor(e){this.$http=e}search(e){return e?xo(this.$http.get(Wb,{params:{action:`opensearch`,format:`json`,origin:`*`,search:e}})).pipe(wo(e=>e.data[1])):So([])}static get $name(){return`docs.wikipedia.search.service`}static get $inject(){return[`$http`]}},Kb=class e{wikipedia;model=``;searching=!1;searchFailed=!1;constructor(e){this.wikipedia=e}search=e=>e.pipe(ss(300),ms(),xs(()=>this.searching=!0),ys(e=>this.wikipedia.search(e).pipe(xs(()=>this.searchFailed=!1),os(()=>(this.searchFailed=!0,So([]))))),xs(()=>this.searching=!1));static get $name(){return`docsWikipediaTypeahead`}static get $inject(){return[Gb.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/wikipedia-typeahead.component-8d0beed7.html`}}},qb=class e{static get $name(){return`docsAlertApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/alert-api-page.component-69e5788a.html`,controllerAs:`$`}}},Jb=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-interface AlertExample {\r
-    id: number;\r
-    type: string;\r
-    message: string;\r
-    animation: boolean;\r
-}\r
-\r
-const createAlerts = (): AlertExample[] => [\r
-    { id: 1, type: "success", message: "Your changes were saved successfully.", animation: true },\r
-    { id: 2, type: "danger", message: "Something needs your attention.", animation: true },\r
-    { id: 3, type: "warning", message: "This alert closes without animation.", animation: false },\r
-    { id: 4, type: "info", message: "This one also closes immediately.", animation: false },\r
-];\r
-\r
-export class AlertCloseableComponent implements IComponentController {\r
-    public alerts = createAlerts();\r
-\r
-    public close(id: number) {\r
-        this.alerts = this.alerts.filter((alert) => alert.id !== id);\r
-    }\r
-\r
-    public reset() {\r
-        this.alerts = createAlerts();\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsAlertCloseable"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: AlertCloseableComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/alert-closeable/alert-closeable.component.html",\r
-        }\r
-    }\r
-}\r
-`,Yb=`.alert-custom {\r
-    --bs-alert-color: var(--bs-emphasis-color);\r
-    --bs-alert-bg: var(--bs-tertiary-bg);\r
-    --bs-alert-border-color: var(--bs-primary-border-subtle);\r
-    --bs-alert-link-color: var(--bs-primary-text-emphasis);\r
-\r
-    border-left: 0.25rem solid var(--bs-primary);\r
-}\r
-`,Xb=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbAlertConfig } from "ngb-js";\r
-\r
-export class AlertGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<NgbAlertConfig, "animation" | "dismissible" | "type">;\r
-\r
-    constructor(private readonly config: NgbAlertConfig) {\r
-        this.initialConfig = {\r
-            animation: config.animation,\r
-            dismissible: config.dismissible,\r
-            type: config.type,\r
-        };\r
-\r
-        config.animation = false;\r
-        config.dismissible = false;\r
-        config.type = "success";\r
-    }\r
-\r
-    $onDestroy() {\r
-        this.config.animation = this.initialConfig.animation;\r
-        this.config.dismissible = this.initialConfig.dismissible;\r
-        this.config.type = this.initialConfig.type;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsAlertGlobal"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbAlertConfig.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: AlertGlobalComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/alert-global/alert-global.component.html",\r
-        }\r
-    }\r
-}\r
-`,Zb=`import type { INgbAlert } from "ngb-js";\r
-import type { IComponentController, IComponentOptions, IPromise, ITimeoutService } from "angular";\r
-import { ViewChild } from "ngjs-core";\r
-\r
-export class SelfClosingAlertComponent implements IComponentController {\r
-    private readonly initialSeconds = 5;\r
-    private timer?: IPromise<void>;\r
-\r
-    @ViewChild("alert")\r
-    private alert?: INgbAlert;\r
-\r
-    public remaining = this.initialSeconds;\r
-    public visible = true;\r
-\r
-    constructor(private readonly $timeout: ITimeoutService) {}\r
-\r
-    $onInit() {\r
-        this.startTimer();\r
-    }\r
-\r
-    $onDestroy() {\r
-        this.cancelTimer();\r
-    }\r
-\r
-    public restart() {\r
-        this.cancelTimer();\r
-        this.remaining = this.initialSeconds;\r
-        this.visible = true;\r
-        this.startTimer();\r
-    }\r
-\r
-    public onClosed() {\r
-        this.visible = false;\r
-        this.cancelTimer();\r
-    }\r
-\r
-    private startTimer() {\r
-        this.timer = this.$timeout(() => {\r
-            this.remaining--;\r
-\r
-            if (this.remaining <= 0) {\r
-                if (this.alert) {\r
-                    this.alert.close();\r
-                } else {\r
-                    this.visible = false;\r
-                }\r
-                return;\r
-            }\r
-\r
-            this.startTimer();\r
-        }, 1000);\r
-    }\r
-\r
-    private cancelTimer() {\r
-        if (this.timer) {\r
-            this.$timeout.cancel(this.timer);\r
-            this.timer = undefined;\r
-        }\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsSelfClosingAlert"\r
-    }\r
-\r
-    static get $inject() {\r
-        return ["$timeout"]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: SelfClosingAlertComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/self-closing-alert/self-closing-alert.component.html",\r
-        }\r
-    }\r
-}\r
-`,Qb=class e{examples={simple:{html:mv.$factory.templateUrl},closeable:{html:iv.$factory.templateUrl,typescript:Jb},selfClosing:{html:pv.$factory.templateUrl,typescript:Zb},custom:{html:av.$factory.templateUrl,css:Yb},global:{html:ov.$factory.templateUrl,typescript:Xb}};static get $name(){return`docsAlertExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/alert-examples-page.component-58a0e458.html`,controllerAs:`$`}}},$b=class e{static get $name(){return`docsAccordionApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/accordion-api-page.component-e864b71b.html`,controllerAs:`$`}}},ex=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class AccordionContentComponent implements IComponentController {\r
-    public draft = "This value remains after collapsing the panel.";\r
-\r
-    static get $name() {\r
-        return "docsAccordionContent"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: AccordionContentComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/accordion-content/accordion-content.component.html",\r
-        }\r
-    }\r
-}\r
-`,tx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbAccordionConfig } from "ngb-js";\r
-\r
-export class AccordionGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<NgbAccordionConfig, "animation" | "closeOthers" | "destroyOnHide">;\r
-\r
-    constructor(private readonly config: NgbAccordionConfig) {\r
-        this.initialConfig = {\r
-            animation: config.animation,\r
-            closeOthers: config.closeOthers,\r
-            destroyOnHide: config.destroyOnHide,\r
-        };\r
-\r
-        config.animation = false;\r
-        config.closeOthers = true;\r
-        config.destroyOnHide = false;\r
-    }\r
-\r
-    $onDestroy() {\r
-        this.config.animation = this.initialConfig.animation;\r
-        this.config.closeOthers = this.initialConfig.closeOthers;\r
-        this.config.destroyOnHide = this.initialConfig.destroyOnHide;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsAccordionGlobal"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbAccordionConfig.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: AccordionGlobalComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/accordion-global/accordion-global.component.html",\r
-        }\r
-    }\r
-}\r
-`,nx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { ViewChild } from "ngjs-core";\r
-\r
-interface AccordionController {\r
-    expandAll(): void;\r
-    collapseAll(): void;\r
-    toggle(itemId: string): void;\r
-}\r
-\r
-export class AccordionTogglePanelsComponent implements IComponentController {\r
-    @ViewChild("accordion", { static: true })\r
-    private accordion!: AccordionController;\r
-\r
-    public expandAll() {\r
-        this.accordion.expandAll();\r
-    }\r
-\r
-    public collapseAll() {\r
-        this.accordion.collapseAll();\r
-    }\r
-\r
-    public toggle(itemId: string) {\r
-        this.accordion.toggle(itemId);\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsAccordionTogglePanels"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: AccordionTogglePanelsComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component.html",\r
-        }\r
-    }\r
-}\r
-`,rx=class e{examples={simple:{html:uv.$factory.templateUrl},onePanel:{html:fv.$factory.templateUrl},togglePanels:{html:dv.$factory.templateUrl,typescript:nx},customHeader:{html:cv.$factory.templateUrl},content:{html:sv.$factory.templateUrl,typescript:ex},global:{html:lv.$factory.templateUrl,typescript:tx}};static get $name(){return`docsAccordionExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/accordion-examples-page.component-4963b03d.html`,controllerAs:`$`}}},ix=class e{static get $name(){return`docsCarouselApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/carousel-api-page.component-5ad79d27.html`,controllerAs:`$`}}},ax=`import type { IAugmentedJQuery, IComponentController, IComponentOptions, ITimeoutService } from "angular";\r
-\r
-interface CarouselController {\r
-    cycle(): void;\r
-    pause(): void;\r
-}\r
-\r
-interface CarouselSlideEvent {\r
-    source?: "timer" | "arrowLeft" | "arrowRight" | "indicator";\r
-}\r
-\r
-export class CarouselControlsComponent implements IComponentController {\r
-    public pauseOnHover = true;\r
-    public pauseOnFocus = true;\r
-    public unpauseOnArrow = false;\r
-    public pauseOnIndicator = false;\r
-    public paused = false;\r
-\r
-    private carousel?: CarouselController;\r
-\r
-    constructor(\r
-        private readonly $element: IAugmentedJQuery,\r
-        private readonly $timeout: ITimeoutService,\r
-    ) {}\r
-\r
-    public $postLink() {\r
-        this.$timeout(\r
-            () => {\r
-                this.carousel = this.$element.find("ngb-carousel").controller("ngbCarousel") as CarouselController;\r
-            },\r
-            0,\r
-            false,\r
-        );\r
-    }\r
-\r
-    public onSlide(event: CarouselSlideEvent) {\r
-        const isArrow = event.source === "arrowLeft" || event.source === "arrowRight";\r
-\r
-        if (isArrow && this.unpauseOnArrow) {\r
-            this.carousel?.cycle();\r
-            this.paused = false;\r
-        }\r
-\r
-        if (event.source === "indicator" && this.pauseOnIndicator) {\r
-            this.carousel?.pause();\r
-            this.paused = true;\r
-        }\r
-    }\r
-\r
-    public toggleCycle() {\r
-        if (this.paused) {\r
-            this.carousel?.cycle();\r
-        } else {\r
-            this.carousel?.pause();\r
-        }\r
-\r
-        this.paused = !this.paused;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsCarouselControls"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: CarouselControlsComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/carousel-controls/carousel-controls.component.html",\r
-        }\r
-    }\r
-\r
-    static get $inject() {\r
-        return ["$element", "$timeout"]\r
-    }\r
-}\r
-`,ox=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbCarouselConfig } from "ngb-js";\r
-\r
-export class CarouselGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<\r
-        NgbCarouselConfig,\r
-        "animation" | "interval" | "wrap" | "pauseOnFocus" | "pauseOnHover" | "showNavigationArrows"\r
-    >;\r
-\r
-    constructor(private readonly config: NgbCarouselConfig) {\r
-        this.initialConfig = {\r
-            animation: config.animation,\r
-            interval: config.interval,\r
-            wrap: config.wrap,\r
-            pauseOnFocus: config.pauseOnFocus,\r
-            pauseOnHover: config.pauseOnHover,\r
-            showNavigationArrows: config.showNavigationArrows,\r
-        };\r
-\r
-        config.animation = false;\r
-        config.interval = 2500;\r
-        config.wrap = false;\r
-        config.pauseOnFocus = false;\r
-        config.pauseOnHover = false;\r
-        config.showNavigationArrows = false;\r
-    }\r
-\r
-    public $onDestroy() {\r
-        this.config.animation = this.initialConfig.animation;\r
-        this.config.interval = this.initialConfig.interval;\r
-        this.config.wrap = this.initialConfig.wrap;\r
-        this.config.pauseOnFocus = this.initialConfig.pauseOnFocus;\r
-        this.config.pauseOnHover = this.initialConfig.pauseOnHover;\r
-        this.config.showNavigationArrows = this.initialConfig.showNavigationArrows;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsCarouselGlobal"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbCarouselConfig.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: CarouselGlobalComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/carousel-global/carousel-global.component.html",\r
-        }\r
-    }\r
-}\r
-`,sx=class e{examples={simple:{html:vv.$factory.templateUrl},keyboard:{html:_v.$factory.templateUrl},controls:{html:hv.$factory.templateUrl,typescript:ax},global:{html:gv.$factory.templateUrl,typescript:ox}};static get $name(){return`docsCarouselExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/carousel-examples-page.component-dccf0e02.html`,controllerAs:`$`}}},cx=class e{static get $name(){return`docsCollapseApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/collapse-api-page.component-5644fc36.html`,controllerAs:`$`}}},lx=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class HorizontalCollapseComponent implements IComponentController {\r
-    public collapsed = true;\r
-\r
-    public toggle() {\r
-        this.collapsed = !this.collapsed;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsHorizontalCollapse"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: HorizontalCollapseComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/horizontal-collapse/horizontal-collapse.component.html",\r
-        }\r
-    }\r
-}\r
-`,ux=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class NavbarCollapseComponent implements IComponentController {\r
-    public menuCollapsed = true;\r
-\r
-    public toggleMenu() {\r
-        this.menuCollapsed = !this.menuCollapsed;\r
-    }\r
-\r
-    public closeMenu() {\r
-        this.menuCollapsed = true;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsNavbarCollapse"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: NavbarCollapseComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/navbar-collapse/navbar-collapse.component.html",\r
-        }\r
-    }\r
-}\r
-`,dx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { INgbCollapse } from "ngb-js";\r
-import { ViewChild } from "ngjs-core";\r
-\r
-export class SimpleCollapseComponent implements IComponentController {\r
-    @ViewChild("collapse", { static: true })\r
-    private collapse!: INgbCollapse;\r
-\r
-    public collapsed = true;\r
-\r
-    public toggleWithController() {\r
-        this.collapse.toggle();\r
-    }\r
-\r
-    public toggleWithBinding() {\r
-        this.collapsed = !this.collapsed;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsSimpleCollapse"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: SimpleCollapseComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/simple-collapse/simple-collapse.component.html",\r
-        }\r
-    }\r
-}\r
-`,fx=class e{examples={simple:{html:xv.$factory.templateUrl,typescript:dx},horizontal:{html:yv.$factory.templateUrl,typescript:lx},navbar:{html:bv.$factory.templateUrl,typescript:ux}};static get $name(){return`docsCollapseExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/collapse-examples-page.component-acb6de4b.html`,controllerAs:`$`}}},px=class e{static get $name(){return`docsDatepickerApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/datepicker-api-page.component-1dd9b606.html`,controllerAs:`$`}}},mx=class extends oh{months;weekdays;localeName;constructor(e,t,n){super(),this.months=e,this.weekdays=t,this.localeName=n}getWeekdayLabel(e){return this.weekdays[e-1]??``}getMonthShortName(e){return this.months[e-1]?.slice(0,3)??``}getMonthFullName(e){return this.months[e-1]??``}getDayAriaLabel(e){return`${this.localeName}: ${e.day} ${this.getMonthFullName(e.month)} ${e.year}`}},hx=[`د`,`س`,`چ`,`پ`,`ج`,`ش`,`ی`],gx=[`فروردین`,`اردیبهشت`,`خرداد`,`تیر`,`مرداد`,`شهریور`,`مهر`,`آبان`,`آذر`,`دی`,`بهمن`,`اسفند`],_x=[`ن`,`ث`,`ر`,`خ`,`ج`,`س`,`ح`],vx=[`محرّم`,`صفر`,`ربيع الأول`,`ربيع الآخر`,`جمادى الأولى`,`جمادى الآخرة`,`رجب`,`شعبان`,`رمضان`,`شوّال`,`ذو القعدة`,`ذو الحجة`],yx=[`จ`,`อ`,`พ`,`พฤ`,`ศ`,`ส`,`อา`],bx=[`มกราคม`,`กุมภาพันธ์`,`มีนาคม`,`เมษายน`,`พฤษภาคม`,`มิถุนายน`,`กรกฎาคม`,`สิงหาคม`,`กันยายน`,`ตุลาคม`,`พฤศจิกายน`,`ธันวาคม`],xx=[`ᔑリ⊣⚍ᔑ∷||`,`⎓ᒷʖ∷⚍ᔑ∷||`,`ᒲᔑ∷ᓵ⍑`,`ᔑ!¡∷╎ꖎ`,`ᒲᔑ||`,`⋮⚍リᒷ`,`⋮⚍ꖎ||`,`ᔑ⚍⊣⚍ᓭℸ̣`,`ᓭᒷ!¡ℸ̣ᒷᒲʖᒷ∷`,`𝙹ᓵℸ̣𝙹ʖᒷ∷`,`リ𝙹⍊ᒷᒲʖᒷ∷`,`↸ᒷᓵᒷᒲʖᒷ∷`],Sx=[`ᒲ`,`ℸ̣`,`∴`,`ℸ̣`,`⎓`,`ᓭ`,`ᓭ`],Cx=class e{calendars={hebrew:this.create(new Ng,new Mg),jalali:this.create(new u_,new mx(gx,hx,`Jalali`)),islamicCivil:this.create(new Hg,new mx(vx,_x,`Islamic Civil`)),islamicUmalqura:this.create(new Xg,new mx(vx,_x,`Islamic Umm al-Qura`)),buddhist:this.create(new Gh,new mx(bx,yx,`Buddhist`)),ethiopian:this.create(new cg,new Jh),intergalactic:this.create(new ih,new mx(xx,Sx,`Intergalactic Standard`))};create(e,t){return{calendar:e,i18n:t,date:e.getToday()}}static get $name(){return`docsDatepickerCalendarsPage`}static get $factory(){return{controller:e,controllerAs:`$`,templateUrl:`templates/datepicker-calendars-page.component-5e7abf5e.html`}}},wx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbDateAdapter, NgbDateParserFormatter, type NgbDateStruct } from "ngb-js";\r
-\r
-class StringDateAdapter extends NgbDateAdapter<string> {\r
-    fromModel(value: string | null): NgbDateStruct | null {\r
-        if (!value) return null;\r
-        const [year, month, day] = value.split("/").map(Number);\r
-        return year && month && day ? { year, month, day } : null;\r
-    }\r
-    toModel(date: NgbDateStruct | null): string | null { return date ? \`\${date.year}/\${date.month}/\${date.day}\` : null; }\r
-}\r
-\r
-class DotDateParserFormatter extends NgbDateParserFormatter {\r
-    parse(value: string): NgbDateStruct | null {\r
-        const [day, month, year] = value.split(".").map(Number);\r
-        return day && month && year ? { year, month, day } : null;\r
-    }\r
-    format(date: NgbDateStruct | null): string { return date ? \`\${String(date.day).padStart(2, "0")}.\${String(date.month).padStart(2, "0")}.\${date.year}\` : ""; }\r
-}\r
-\r
-export class DatepickerCustomAdapterComponent implements IComponentController {\r
-    public readonly adapter = new StringDateAdapter();\r
-    public readonly formatter = new DotDateParserFormatter();\r
-    public date = "2026/8/24";\r
-    static get $name() { return "docsDatepickerCustomAdapter" }\r
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-adapter/datepicker-custom-adapter.component.html" } }\r
-}\r
-`,Tx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbDateStruct } from "ngb-js";\r
-\r
-export class BasicDatepickerComponent implements IComponentController {\r
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
-    static get $name() { return "docsBasicDatepicker" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: BasicDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-datepicker/basic-datepicker.component.html" }\r
-    }\r
-}\r
-`,Ex=`.docs-custom-day { position: relative; display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }\r
-.docs-custom-day.weekend { color: var(--bs-danger); }\r
-.docs-custom-day.today { font-weight: 700; box-shadow: inset 0 0 0 1px var(--bs-primary); }\r
-.docs-custom-day.selected { color: var(--bs-white); background: var(--bs-primary); }\r
-.docs-custom-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .4); outline-offset: 1px; }\r
-.docs-custom-day .bi-dot { position: absolute; bottom: -.35rem; font-size: 1.25rem; }\r
-`,Dx=`import "@/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbDateStruct } from "ngb-js";\r
-\r
-export class DatepickerCustomDayComponent implements IComponentController {\r
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
-    public dayData(date: NgbDateStruct) {\r
-        const weekday = new Date(date.year, date.month - 1, date.day).getDay();\r
-        return { weekend: weekday === 0 || weekday === 6 };\r
-    }\r
-    static get $name() { return "docsDatepickerCustomDay" }\r
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomDayComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.html" } }\r
-}\r
-`,Ox=`.docs-month-layout { display: grid; grid-template-columns: repeat(2, max-content); gap: 1rem; }\r
-@media (max-width: 575.98px) { .docs-month-layout { grid-template-columns: max-content; } }\r
-`,kx=`import "@/features/lib/components/datepicker-custom-month/datepicker-custom-month.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbDatepicker } from "ngb-js";\r
-\r
-export class DatepickerCustomMonthComponent implements IComponentController {\r
-    public previous(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getPrev(datepicker.state.firstDate, "m", 1)); }\r
-    public next(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getNext(datepicker.state.firstDate, "m", 1)); }\r
-    public today(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getToday()); }\r
-    static get $name() { return "docsDatepickerCustomMonth" }\r
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomMonthComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-month/datepicker-custom-month.component.html" } }\r
-}\r
-`,Ax=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbDateStruct } from "ngb-js";\r
-\r
-export class DisabledDatepickerComponent implements IComponentController {\r
-    public disabled = true;\r
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
-    static get $name() { return "docsDisabledDatepicker" }\r
-    static get $factory(): IComponentOptions { return { controller: DisabledDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/disabled-datepicker/disabled-datepicker.component.html" } }\r
-}\r
-`,jx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbDatepicker, NgbDateStruct } from "ngb-js";\r
-\r
-export class DatepickerFooterComponent implements IComponentController {\r
-    public date: NgbDateStruct | null = null;\r
-    public datepicker?: NgbDatepicker;\r
-    public today() { if (this.datepicker) this.date = this.datepicker.calendar.getToday(); }\r
-    public clear() { this.date = null; }\r
-    static get $name() { return "docsDatepickerFooter" }\r
-    static get $factory(): IComponentOptions { return { controller: DatepickerFooterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-footer/datepicker-footer.component.html" } }\r
-}\r
-`,Mx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbDatepickerConfig, NgbInputDatepickerConfig, type NgbDateStruct } from "ngb-js";\r
-\r
-type DatepickerDefaults = Pick<NgbDatepickerConfig, "displayMonths" | "navigation" | "outsideDays" | "showWeekNumbers" | "weekdays">;\r
-\r
-export class DatepickerGlobalComponent implements IComponentController {\r
-    private readonly inlineDefaults: DatepickerDefaults;\r
-    private readonly inputDefaults: DatepickerDefaults;\r
-    public inlineDate: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
-    public popupDate: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
-\r
-    constructor(private readonly config: NgbDatepickerConfig, private readonly inputConfig: NgbInputDatepickerConfig) {\r
-        this.inlineDefaults = this.capture(config);\r
-        this.inputDefaults = this.capture(inputConfig);\r
-        Object.assign(config, { displayMonths: 2, navigation: "arrows", outsideDays: "hidden", showWeekNumbers: true, weekdays: "short" });\r
-        Object.assign(inputConfig, { displayMonths: 2, navigation: "arrows", outsideDays: "hidden", showWeekNumbers: true, weekdays: "short" });\r
-    }\r
-    public $postLink() { this.restore(); }\r
-    public $onDestroy() { this.restore(); }\r
-    private capture(config: NgbDatepickerConfig): DatepickerDefaults { return { displayMonths: config.displayMonths, navigation: config.navigation, outsideDays: config.outsideDays, showWeekNumbers: config.showWeekNumbers, weekdays: config.weekdays }; }\r
-    private restore() { Object.assign(this.config, this.inlineDefaults); Object.assign(this.inputConfig, this.inputDefaults); }\r
-    static get $name() { return "docsDatepickerGlobal" }\r
-    static get $inject() { return [NgbDatepickerConfig.$name, NgbInputDatepickerConfig.$name] }\r
-    static get $factory(): IComponentOptions { return { controller: DatepickerGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-global/datepicker-global.component.html" } }\r
-}\r
-`,Nx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbDatepickerI18n, type NgbDateStruct } from "ngb-js";\r
-\r
-class SpanishDatepickerI18n extends NgbDatepickerI18n {\r
-    private readonly months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];\r
-    private readonly weekdays = ["L", "M", "X", "J", "V", "S", "D"];\r
-    getWeekdayLabel(weekday: number) { return this.weekdays[weekday - 1] ?? ""; }\r
-    getMonthShortName(month: number) { return this.months[month - 1]?.slice(0, 3) ?? ""; }\r
-    getMonthFullName(month: number) { return this.months[month - 1] ?? ""; }\r
-    getDayAriaLabel(date: NgbDateStruct) { return \`\${date.day} de \${this.getMonthFullName(date.month)} de \${date.year}\`; }\r
-}\r
-\r
-export class DatepickerI18nComponent implements IComponentController {\r
-    public readonly i18n = new SpanishDatepickerI18n();\r
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
-    static get $name() { return "docsDatepickerI18n" }\r
-    static get $factory(): IComponentOptions { return { controller: DatepickerI18nComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-i18n/datepicker-i18n.component.html" } }\r
-}\r
-`,Px=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbDatepicker, NgbDateStruct } from "ngb-js";\r
-\r
-export class DatepickerKeyboardComponent implements IComponentController {\r
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
-    public datepicker?: NgbDatepicker;\r
-    public onKeydown(event: KeyboardEvent | JQueryEventObject) {\r
-        if (!this.datepicker || (event.key !== "[" && event.key !== "]")) return;\r
-        const direction = event.key === "[" ? -1 : 1;\r
-        const target = direction < 0\r
-            ? this.datepicker.calendar.getPrev(this.datepicker.state.firstDate, "m", 1)\r
-            : this.datepicker.calendar.getNext(this.datepicker.state.firstDate, "m", 1);\r
-        this.datepicker.navigateTo(target);\r
-        event.preventDefault();\r
-        event.stopPropagation();\r
-    }\r
-    static get $name() { return "docsDatepickerKeyboard" }\r
-    static get $factory(): IComponentOptions { return { controller: DatepickerKeyboardComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-keyboard/datepicker-keyboard.component.html" } }\r
-}\r
-`,Fx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbDateStruct } from "ngb-js";\r
-\r
-export class MultipleMonthsDatepickerComponent implements IComponentController {\r
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
-    static get $name() { return "docsMultipleMonthsDatepicker" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: MultipleMonthsDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/multiple-months-datepicker/multiple-months-datepicker.component.html" }\r
-    }\r
-}\r
-`,Ix=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbDateStruct } from "ngb-js";\r
-\r
-export class PopupDatepickerComponent implements IComponentController {\r
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
-    static get $name() { return "docsPopupDatepicker" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopupDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popup-datepicker/popup-datepicker.component.html" }\r
-    }\r
-}\r
-`,Lx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbDateStruct } from "ngb-js";\r
-\r
-export class DatepickerPositionTargetComponent implements IComponentController {\r
-    public date: NgbDateStruct | null = null;\r
-    public readonly target = "#datepicker-custom-position-target";\r
-    static get $name() { return "docsDatepickerPositionTarget" }\r
-    static get $factory(): IComponentOptions { return { controller: DatepickerPositionTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-position-target/datepicker-position-target.component.html" } }\r
-}\r
-`,Rx=`.docs-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }\r
-.docs-range-day.range { background: var(--bs-primary); color: var(--bs-white); }\r
-.docs-range-day.faded { background: rgba(var(--bs-primary-rgb), .2); color: var(--bs-body-color); }\r
-.docs-range-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 1px; }\r
-`,zx=`import "@/features/lib/components/range-datepicker/range-datepicker.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbCalendarGregorian, NgbDate } from "ngb-js";\r
-\r
-export class RangeDatepickerComponent implements IComponentController {\r
-    private readonly calendar = new NgbCalendarGregorian();\r
-    public hoveredDate: NgbDate | null = null;\r
-    public fromDate = this.calendar.getToday();\r
-    public toDate: NgbDate | null = this.calendar.getNext(this.fromDate, "d", 10);\r
-\r
-    public select(date: NgbDate) {\r
-        if (!this.fromDate || this.toDate) {\r
-            this.fromDate = date;\r
-            this.toDate = null;\r
-        } else if (date.after(this.fromDate)) {\r
-            this.toDate = date;\r
-        } else {\r
-            this.fromDate = date;\r
-        }\r
-    }\r
-    public isHovered(date: NgbDate) { return !!this.fromDate && !this.toDate && !!this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate); }\r
-    public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }\r
-    public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }\r
-\r
-    static get $name() { return "docsRangeDatepicker" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-datepicker/range-datepicker.component.html" }\r
-    }\r
-}\r
-`,Bx=`.docs-popup-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }\r
-.docs-popup-range-day.range { background: var(--bs-primary); color: var(--bs-white); }\r
-.docs-popup-range-day.faded { background: rgba(var(--bs-primary-rgb), .2); color: var(--bs-body-color); }\r
-.docs-popup-range-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 1px; }\r
-`,Vx=`import "@/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbCalendarGregorian, NgbDate } from "ngb-js";\r
-\r
-export class RangePopupDatepickerComponent implements IComponentController {\r
-    private readonly calendar = new NgbCalendarGregorian();\r
-    public hoveredDate: NgbDate | null = null;\r
-    public fromDate = this.calendar.getToday();\r
-    public toDate: NgbDate | null = this.calendar.getNext(this.fromDate, "d", 7);\r
-    public model: NgbDate | null = this.fromDate;\r
-    public select(date: NgbDate) {\r
-        if (!this.fromDate || this.toDate) { this.fromDate = date; this.toDate = null; }\r
-        else if (date.after(this.fromDate)) { this.toDate = date; }\r
-        else { this.fromDate = date; }\r
-        this.model = date;\r
-    }\r
-    public isHovered(date: NgbDate) { return !!this.fromDate && !this.toDate && !!this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate); }\r
-    public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }\r
-    public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }\r
-    static get $name() { return "docsRangePopupDatepicker" }\r
-    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.html" } }\r
-}\r
-`,Hx=class e{examples={basic:{html:ly.$factory.templateUrl,typescript:Tx},popup:{html:Cy.$factory.templateUrl,typescript:Ix},multiple:{html:Sy.$factory.templateUrl,typescript:Fx},range:{html:wy.$factory.templateUrl,typescript:zx,css:Rx},rangePopup:{html:Ty.$factory.templateUrl,typescript:Vx,css:Bx},disabled:{html:xy.$factory.templateUrl,typescript:Ax},adapter:{html:fy.$factory.templateUrl,typescript:wx},i18n:{html:vy.$factory.templateUrl,typescript:Nx},customDay:{html:py.$factory.templateUrl,typescript:Dx,css:Ex},customMonth:{html:my.$factory.templateUrl,typescript:kx,css:Ox},footer:{html:hy.$factory.templateUrl,typescript:jx},position:{html:by.$factory.templateUrl,typescript:Lx},keyboard:{html:yy.$factory.templateUrl,typescript:Px},global:{html:gy.$factory.templateUrl,typescript:Mx}};static get $name(){return`docsDatepickerExamplesPage`}static get $factory(){return{controller:e,controllerAs:`$`,templateUrl:`templates/datepicker-examples-page.component-b64f21ef.html`}}},Ux=class e{static get $name(){return`docsDropdownApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/dropdown-api-page.component-2104f6f4.html`,controllerAs:`$`}}},Wx=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class DropdownDisabledItemsComponent implements IComponentController {\r
-    public restricted = true;\r
-\r
-    static get $name() {\r
-        return "docsDropdownDisabledItems"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: DropdownDisabledItemsComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/dropdown-disabled-items/dropdown-disabled-items.component.html",\r
-        }\r
-    }\r
-}\r
-`,Gx=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class DropdownFormComponent implements IComponentController {\r
-    public email = "";\r
-    public remember = false;\r
-    public submitted = false;\r
-\r
-    public submit() {\r
-        this.submitted = true;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsDropdownForm"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: DropdownFormComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/dropdown-form/dropdown-form.component.html",\r
-        }\r
-    }\r
-}\r
-`,Kx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbDropdownConfig } from "ngb-js";\r
-\r
-export class DropdownGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<NgbDropdownConfig, "autoClose" | "container" | "placement">;\r
-\r
-    constructor(private readonly config: NgbDropdownConfig) {\r
-        this.initialConfig = {\r
-            autoClose: config.autoClose,\r
-            container: config.container,\r
-            placement: config.placement,\r
-        };\r
-\r
-        config.autoClose = "outside";\r
-        config.container = "body";\r
-        config.placement = ["top-start", "bottom-start"];\r
-    }\r
-\r
-    public $onDestroy() {\r
-        this.config.autoClose = this.initialConfig.autoClose;\r
-        this.config.container = this.initialConfig.container;\r
-        this.config.placement = this.initialConfig.placement;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsDropdownGlobal"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbDropdownConfig.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: DropdownGlobalComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/dropdown-global/dropdown-global.component.html",\r
-        }\r
-    }\r
-}\r
-`,qx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbDropdown } from "ngb-js";\r
-import { ViewChild } from "ngjs-core";\r
-\r
-export class ManualDropdownComponent implements IComponentController {\r
-    @ViewChild("dropdown", { read: NgbDropdown, static: true })\r
-    private dropdown!: NgbDropdown;\r
-\r
-    public opened = false;\r
-\r
-    public open() {\r
-        this.dropdown.open();\r
-    }\r
-\r
-    public close() {\r
-        this.dropdown.close();\r
-    }\r
-\r
-    public toggle() {\r
-        this.dropdown.toggle();\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsManualDropdown"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: ManualDropdownComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/manual-dropdown/manual-dropdown.component.html",\r
-        }\r
-    }\r
-}\r
-`,Jx=class e{examples={simple:{html:kv.$factory.templateUrl},manual:{html:Ov.$factory.templateUrl,typescript:qx},buttonGroups:{html:Cv.$factory.templateUrl},disabledItems:{html:wv.$factory.templateUrl,typescript:Wx},form:{html:Tv.$factory.templateUrl,typescript:Gx},body:{html:Sv.$factory.templateUrl},navbar:{html:Dv.$factory.templateUrl},global:{html:Ev.$factory.templateUrl,typescript:Kx}};static get $name(){return`docsDropdownExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/dropdown-examples-page.component-fefe9aa4.html`,controllerAs:`$`}}},Yx=class e{static get $name(){return`docsModalApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/modal-api-page.component-99ab9b16.html`,controllerAs:`$`}}},Xx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"\r
-import { NgbModal } from "ngb-js";\r
-\r
-export class ModalComponentContentComponent implements IComponentController {\r
-    public lastResult = "No result yet";\r
-\r
-    constructor(private readonly modal: NgbModal) {}\r
-\r
-    public async open() {\r
-        const modalRef = await this.modal.open(ModalDemoContentComponent.$name, {\r
-            bindings: {\r
-                title: "Component as content",\r
-                description: "NgbActiveModal is provided directly to the content component.",\r
-            },\r
-        });\r
-\r
-        modalRef.closed.subscribe((result) => {\r
-            this.lastResult = \`Closed with: \${result}\`;\r
-        });\r
-\r
-        modalRef.dismissed.subscribe((reason) => {\r
-            this.lastResult = \`Dismissed with: \${reason}\`;\r
-        });\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsModalComponentContent"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbModal.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: ModalComponentContentComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/modal-component-content/modal-component-content.component.html",\r
-        }\r
-    }\r
-}\r
-`,Zx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbModal } from "ngb-js";\r
-import { TemplateRef, ViewChild } from "ngjs-core";\r
-\r
-export class ModalDefaultComponent implements IComponentController {\r
-    @ViewChild("content", { read: TemplateRef, static: true })\r
-    private content!: TemplateRef<unknown>;\r
-\r
-    constructor(private readonly modal: NgbModal) {}\r
-\r
-    public open() {\r
-        this.modal.open(this.content);\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsModalDefault"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbModal.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: ModalDefaultComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/modal-default/modal-default.component.html",\r
-        }\r
-    }\r
-}\r
-`,Qx=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbActiveModal } from "ngb-js";\r
-\r
-export class ModalDemoContentComponent implements IComponentController {\r
-    public ngbActiveModal!: NgbActiveModal;\r
-    public title = "Component modal";\r
-    public description = "This modal receives a component as its content.";\r
-    public longContent = false;\r
-    public readonly items = Array.from({ length: 24 }, (_, index) => \`Scrollable content row \${index + 1}\`);\r
-\r
-    static get $name() {\r
-        return "docsModalDemoContent"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            bindings: {\r
-                ngbActiveModal: "<",\r
-                title: "<?",\r
-                description: "<?",\r
-                longContent: "<?",\r
-            },\r
-            controller: ModalDemoContentComponent,\r
-            controllerAs: "$",\r
-            templateUrl: "src/app/features/lib/components/modal-demo-content/modal-demo-content.component.html",\r
-        }\r
-    }\r
-}\r
-`,$x=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { ModalFocusContentComponent } from "@/features/lib/components/modal-focus-content/modal-focus-content.component"\r
-import { NgbModal } from "ngb-js";\r
-\r
-export class ModalFocusComponent implements IComponentController {\r
-    constructor(private readonly modal: NgbModal) {}\r
-\r
-    public openDefaultFocus() {\r
-        this.modal.open(ModalFocusContentComponent.$name, {\r
-            ariaLabelledBy: "modal-focus-title",\r
-            bindings: { autofocus: false },\r
-        });\r
-    }\r
-\r
-    public openCustomFocus() {\r
-        this.modal.open(ModalFocusContentComponent.$name, {\r
-            ariaLabelledBy: "modal-focus-title",\r
-            bindings: { autofocus: true },\r
-        });\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsModalFocus"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbModal.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: ModalFocusComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/modal-focus/modal-focus.component.html",\r
-        }\r
-    }\r
-}\r
-`,eS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbActiveModal } from "ngb-js";\r
-\r
-export class ModalFocusContentComponent implements IComponentController {\r
-    public ngbActiveModal!: NgbActiveModal;\r
-    public autofocus = false;\r
-\r
-    static get $name() {\r
-        return "docsModalFocusContent"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            bindings: {\r
-                ngbActiveModal: "<",\r
-                autofocus: "<?",\r
-            },\r
-            controller: ModalFocusContentComponent,\r
-            controllerAs: "$",\r
-            templateUrl: "src/app/features/lib/components/modal-focus-content/modal-focus-content.component.html",\r
-        }\r
-    }\r
-}\r
-`,tS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"\r
-import { NgbModal, NgbModalConfig } from "ngb-js";\r
-\r
-export class ModalGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<NgbModalConfig, "backdrop" | "centered" | "keyboard" | "size">;\r
-\r
-    constructor(\r
-        private readonly modal: NgbModal,\r
-        private readonly config: NgbModalConfig,\r
-    ) {\r
-        this.initialConfig = {\r
-            backdrop: config.backdrop,\r
-            centered: config.centered,\r
-            keyboard: config.keyboard,\r
-            size: config.size,\r
-        };\r
-\r
-    }\r
-\r
-    public async open() {\r
-        this.applyConfig();\r
-\r
-        try {\r
-            await this.modal.open(ModalDemoContentComponent.$name, {\r
-                bindings: {\r
-                    title: "Globally configured modal",\r
-                    description: "This modal is centered, large and cannot be dismissed with Escape or a backdrop click.",\r
-                },\r
-            });\r
-        } finally {\r
-            this.restoreConfig();\r
-        }\r
-    }\r
-\r
-    public $onDestroy() {\r
-        this.restoreConfig();\r
-    }\r
-\r
-    private applyConfig() {\r
-        this.config.backdrop = "static";\r
-        this.config.centered = true;\r
-        this.config.keyboard = false;\r
-        this.config.size = "lg";\r
-    }\r
-\r
-    private restoreConfig() {\r
-        this.config.backdrop = this.initialConfig.backdrop;\r
-        this.config.centered = this.initialConfig.centered;\r
-        this.config.keyboard = this.initialConfig.keyboard;\r
-        this.config.size = this.initialConfig.size;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsModalGlobal"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbModal.$name, NgbModalConfig.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: ModalGlobalComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/modal-global/modal-global.component.html",\r
-        }\r
-    }\r
-}\r
-`,nS=`.modal-window-custom .modal-content {\r
-    border-top: 0.3rem solid var(--bs-primary);\r
-}\r
-\r
-.modal-static-backdrop,\r
-.modal-updated-backdrop {\r
-    --bs-backdrop-bg: var(--bs-danger);\r
-    --bs-backdrop-opacity: 0.35;\r
-}\r
-\r
-.modal-dialog-custom .modal-content,\r
-.modal-updated-dialog .modal-content {\r
-    border-radius: 1.5rem;\r
-    box-shadow: var(--bs-box-shadow-lg);\r
-}\r
-\r
-.modal-updated-window .modal-content {\r
-    border-color: var(--bs-success);\r
-}\r
-`,rS=`import "@/features/lib/components/modal-options/modal-options.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"\r
-import { NgbModal, type NgbModalOptions } from "ngb-js";\r
-\r
-export class ModalOptionsComponent implements IComponentController {\r
-    constructor(private readonly modal: NgbModal) {}\r
-\r
-    public openCustomWindow() {\r
-        this.open("Custom window class", { windowClass: "modal-window-custom" });\r
-    }\r
-\r
-    public openStaticBackdrop() {\r
-        this.open("Static custom backdrop", {\r
-            backdrop: "static",\r
-            backdropClass: "modal-static-backdrop",\r
-            keyboard: false,\r
-        });\r
-    }\r
-\r
-    public openSmall() {\r
-        this.open("Small modal", { size: "sm" });\r
-    }\r
-\r
-    public openLarge() {\r
-        this.open("Large modal", { size: "lg" });\r
-    }\r
-\r
-    public openExtraLarge() {\r
-        this.open("Extra large modal", { size: "xl" });\r
-    }\r
-\r
-    public openFullscreen() {\r
-        this.open("Fullscreen modal", { fullscreen: true });\r
-    }\r
-\r
-    public openCentered() {\r
-        this.open("Vertically centered modal", { centered: true });\r
-    }\r
-\r
-    public openScrollable() {\r
-        this.open("Scrollable modal", { scrollable: true, size: "lg" }, true);\r
-    }\r
-\r
-    public openCustomDialog() {\r
-        this.open("Custom dialog class", { modalDialogClass: "modal-dialog-custom" });\r
-    }\r
-\r
-    private open(title: string, options: NgbModalOptions, longContent = false) {\r
-        this.modal.open(ModalDemoContentComponent.$name, {\r
-            ...options,\r
-            bindings: {\r
-                title,\r
-                description: "These values are applied only to this modal instance.",\r
-                longContent,\r
-            },\r
-        });\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsModalOptions"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbModal.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: ModalOptionsComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/modal-options/modal-options.component.html",\r
-        }\r
-    }\r
-}\r
-`,iS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { ModalStackedContentComponent } from "@/features/lib/components/modal-stacked-content/modal-stacked-content.component"\r
-import { NgbModal } from "ngb-js";\r
-\r
-export class ModalStackedComponent implements IComponentController {\r
-    constructor(private readonly modal: NgbModal) {}\r
-\r
-    public async openStack() {\r
-        for (let level = 1; level <= 3; level++) {\r
-            await this.modal.open(ModalStackedContentComponent.$name, {\r
-                bindings: {\r
-                    level,\r
-                },\r
-            });\r
-        }\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsModalStacked"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbModal.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: ModalStackedComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/modal-stacked/modal-stacked.component.html",\r
-        }\r
-    }\r
-}\r
-`,aS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbModal, type NgbActiveModal } from "ngb-js";\r
-\r
-export class ModalStackedContentComponent implements IComponentController {\r
-    public ngbActiveModal!: NgbActiveModal;\r
-    public level = 1;\r
-\r
-    constructor(private readonly modal: NgbModal) {}\r
-\r
-    public dismissAll() {\r
-        this.modal.dismissAll("Dismiss all");\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsModalStackedContent"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbModal.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            bindings: {\r
-                ngbActiveModal: "<",\r
-                level: "<?",\r
-            },\r
-            controller: ModalStackedContentComponent,\r
-            controllerAs: "$",\r
-            templateUrl: "src/app/features/lib/components/modal-stacked-content/modal-stacked-content.component.html",\r
-        }\r
-    }\r
-}\r
-`,oS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { ModalUpdatableContentComponent } from "@/features/lib/components/modal-updatable-content/modal-updatable-content.component"\r
-import { NgbModal } from "ngb-js";\r
-\r
-export class ModalUpdatableComponent implements IComponentController {\r
-    constructor(private readonly modal: NgbModal) {}\r
-\r
-    public open() {\r
-        this.modal.open(ModalUpdatableContentComponent.$name, {\r
-            ariaLabelledBy: "updatable-modal-title",\r
-            ariaDescribedBy: "updatable-modal-description",\r
-            size: "sm",\r
-        });\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsModalUpdatable"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbModal.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: ModalUpdatableComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/modal-updatable/modal-updatable.component.html",\r
-        }\r
-    }\r
-}\r
-`,sS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbActiveModal, NgbModalUpdatableOptions } from "ngb-js";\r
-\r
-export class ModalUpdatableContentComponent implements IComponentController {\r
-    public ngbActiveModal!: NgbActiveModal;\r
-    public ariaReferences = true;\r
-    public centered = false;\r
-    public fullscreen = false;\r
-    public customBackdrop = false;\r
-    public size: NgbModalUpdatableOptions["size"] = "sm";\r
-    public customWindow = false;\r
-    public customDialog = false;\r
-\r
-    public toggleAriaReferences() {\r
-        this.ariaReferences = !this.ariaReferences;\r
-        this.ngbActiveModal.update({\r
-            ariaLabelledBy: this.ariaReferences ? "updatable-modal-title" : "",\r
-            ariaDescribedBy: this.ariaReferences ? "updatable-modal-description" : "",\r
-        });\r
-    }\r
-\r
-    public toggleCentered() {\r
-        this.centered = !this.centered;\r
-        this.ngbActiveModal.update({ centered: this.centered });\r
-    }\r
-\r
-    public toggleFullscreen() {\r
-        this.fullscreen = !this.fullscreen;\r
-        this.ngbActiveModal.update({ fullscreen: this.fullscreen });\r
-    }\r
-\r
-    public toggleBackdropClass() {\r
-        this.customBackdrop = !this.customBackdrop;\r
-        this.ngbActiveModal.update({ backdropClass: this.customBackdrop ? "modal-updated-backdrop" : "" });\r
-    }\r
-\r
-    public cycleSize() {\r
-        const sizes: Array<NgbModalUpdatableOptions["size"]> = ["sm", "lg", "xl"];\r
-        this.size = sizes[(sizes.indexOf(this.size) + 1) % sizes.length];\r
-        this.ngbActiveModal.update({ size: this.size });\r
-    }\r
-\r
-    public toggleWindowClass() {\r
-        this.customWindow = !this.customWindow;\r
-        this.ngbActiveModal.update({ windowClass: this.customWindow ? "modal-updated-window" : "" });\r
-    }\r
-\r
-    public toggleDialogClass() {\r
-        this.customDialog = !this.customDialog;\r
-        this.ngbActiveModal.update({ modalDialogClass: this.customDialog ? "modal-updated-dialog" : "" });\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsModalUpdatableContent"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            bindings: {\r
-                ngbActiveModal: "<",\r
-            },\r
-            controller: ModalUpdatableContentComponent,\r
-            controllerAs: "$",\r
-            templateUrl: "src/app/features/lib/components/modal-updatable-content/modal-updatable-content.component.html",\r
-        }\r
-    }\r
-}\r
-`,cS=class e{examples={defaults:{html:Mv.$factory.templateUrl,typescript:Zx},componentContent:{html:[{label:`modal-component-content.component.html`,url:jv.$factory.templateUrl},{label:`modal-demo-content.component.html`,url:Av.$factory.templateUrl}],typescript:`${Xx}\n\n// modal-demo-content.component.ts\n${Qx}`},focus:{html:[{label:`modal-focus.component.html`,url:Pv.$factory.templateUrl},{label:`modal-focus-content.component.html`,url:Nv.$factory.templateUrl}],typescript:`${$x}\n\n// modal-focus-content.component.ts\n${eS}`},options:{html:Iv.$factory.templateUrl,typescript:rS,css:nS},updatable:{html:[{label:`modal-updatable.component.html`,url:Bv.$factory.templateUrl},{label:`modal-updatable-content.component.html`,url:zv.$factory.templateUrl}],typescript:`${oS}\n\n// modal-updatable-content.component.ts\n${sS}`,css:nS},stacked:{html:[{label:`modal-stacked.component.html`,url:Rv.$factory.templateUrl},{label:`modal-stacked-content.component.html`,url:Lv.$factory.templateUrl}],typescript:`${iS}\n\n// modal-stacked-content.component.ts\n${aS}`},global:{html:Fv.$factory.templateUrl,typescript:tS}};static get $name(){return`docsModalExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/modal-examples-page.component-f5099726.html`,controllerAs:`$`}}},lS=class e{static get $name(){return`docsNavApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/nav-api-page.component-657c6332.html`,controllerAs:`$`}}},uS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class AlternativeNavComponent implements IComponentController {\r
-    public activeId = "alternative-home";\r
-\r
-    static get $name() {\r
-        return "docsAlternativeNav"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: AlternativeNavComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/alternative-nav/alternative-nav.component.html",\r
-        }\r
-    }\r
-}\r
-`,dS=`.nav-custom {\r
-    gap: 0.5rem;\r
-    padding: 0.35rem;\r
-    border: 1px solid var(--bs-border-color);\r
-    border-radius: var(--bs-border-radius-pill);\r
-    background: var(--bs-tertiary-bg);\r
-}\r
-\r
-.nav-custom .nav-link {\r
-    border-radius: var(--bs-border-radius-pill);\r
-    color: var(--bs-secondary-color);\r
-}\r
-\r
-.nav-custom .nav-link.active {\r
-    color: var(--bs-primary-text-emphasis);\r
-    background: var(--bs-primary-bg-subtle);\r
-    box-shadow: var(--bs-box-shadow-sm);\r
-}\r
-`,fS=`import "@/features/lib/components/custom-nav/custom-nav.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class CustomNavComponent implements IComponentController {\r
-    public activeId = "custom-weekly";\r
-\r
-    static get $name() {\r
-        return "docsCustomNav"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: CustomNavComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/custom-nav/custom-nav.component.html",\r
-        }\r
-    }\r
-}\r
-`,pS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-interface DynamicNavItem {\r
-    id: string;\r
-    title: string;\r
-}\r
-\r
-export class DynamicNavComponent implements IComponentController {\r
-    public items: DynamicNavItem[] = [\r
-        { id: "dynamic-1", title: "Tab 1" },\r
-        { id: "dynamic-2", title: "Tab 2" },\r
-        { id: "dynamic-3", title: "Tab 3" },\r
-    ];\r
-    public activeId = "dynamic-1";\r
-    private nextId = 4;\r
-\r
-    public add() {\r
-        const item = {\r
-            id: \`dynamic-\${this.nextId}\`,\r
-            title: \`Tab \${this.nextId}\`,\r
-        };\r
-\r
-        this.nextId++;\r
-        this.items.push(item);\r
-        this.activeId = item.id;\r
-    }\r
-\r
-    public removeActive() {\r
-        if (this.items.length === 1) return;\r
-\r
-        const activeIndex = this.items.findIndex(({ id }) => id === this.activeId);\r
-        const replacement = this.items[activeIndex === 0 ? 1 : activeIndex - 1];\r
-\r
-        this.activeId = replacement.id;\r
-        this.items = this.items.filter(({ id }) => id !== this.items[activeIndex].id);\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsDynamicNav"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: DynamicNavComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/dynamic-nav/dynamic-nav.component.html",\r
-        }\r
-    }\r
-}\r
-`,mS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class KeepContentNavComponent implements IComponentController {\r
-    public activeId = "keep-editor";\r
-    public draft = "This value survives tab changes.";\r
-\r
-    static get $name() {\r
-        return "docsKeepContentNav"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: KeepContentNavComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/keep-content-nav/keep-content-nav.component.html",\r
-        }\r
-    }\r
-}\r
-`,hS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbNavConfig } from "ngb-js";\r
-\r
-export class NavGlobalComponent implements IComponentController {\r
-    public activeId = "global-account";\r
-\r
-    private readonly initialConfig: Pick<\r
-        NgbNavConfig,\r
-        "animation" | "destroyOnHide" | "keyboard" | "orientation" | "roles"\r
-    >;\r
-\r
-    constructor(private readonly config: NgbNavConfig) {\r
-        this.initialConfig = {\r
-            animation: config.animation,\r
-            destroyOnHide: config.destroyOnHide,\r
-            keyboard: config.keyboard,\r
-            orientation: config.orientation,\r
-            roles: config.roles,\r
-        };\r
-\r
-        config.animation = false;\r
-        config.destroyOnHide = false;\r
-        config.keyboard = "changeWithArrows";\r
-        config.orientation = "vertical";\r
-        config.roles = "tablist";\r
-    }\r
-\r
-    public $postLink() {\r
-        this.restoreConfig();\r
-    }\r
-\r
-    public $onDestroy() {\r
-        this.restoreConfig();\r
-    }\r
-\r
-    private restoreConfig() {\r
-        this.config.animation = this.initialConfig.animation;\r
-        this.config.destroyOnHide = this.initialConfig.destroyOnHide;\r
-        this.config.keyboard = this.initialConfig.keyboard;\r
-        this.config.orientation = this.initialConfig.orientation;\r
-        this.config.roles = this.initialConfig.roles;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsNavGlobal"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbNavConfig.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: NavGlobalComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/nav-global/nav-global.component.html",\r
-        }\r
-    }\r
-}\r
-`,gS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbNav } from "ngb-js";\r
-import { ViewChild } from "ngjs-core";\r
-\r
-export class SelectingNavComponent implements IComponentController {\r
-    @ViewChild("nav", { read: NgbNav, static: true })\r
-    public nav!: NgbNav;\r
-\r
-    public activeId = "selecting-first";\r
-\r
-    public select(id: string) {\r
-        this.nav.select(id);\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsSelectingNav"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: SelectingNavComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/selecting-nav/selecting-nav.component.html",\r
-        }\r
-    }\r
-}\r
-`,_S=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class SimpleNavComponent implements IComponentController {\r
-    public activeId = "simple-overview";\r
-\r
-    static get $name() {\r
-        return "docsSimpleNav"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: SimpleNavComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/simple-nav/simple-nav.component.html",\r
-        }\r
-    }\r
-}\r
-`,vS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class VerticalNavComponent implements IComponentController {\r
-    public activeId = "vertical-profile";\r
-\r
-    static get $name() {\r
-        return "docsVerticalNav"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: VerticalNavComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/vertical-nav/vertical-nav.component.html",\r
-        }\r
-    }\r
-}\r
-`,yS=class e{examples={simple:{html:qv.$factory.templateUrl,typescript:_S},alternative:{html:Vv.$factory.templateUrl,typescript:uS},vertical:{html:Jv.$factory.templateUrl,typescript:vS},selecting:{html:Kv.$factory.templateUrl,typescript:gS},keepContent:{html:Wv.$factory.templateUrl,typescript:mS},dynamic:{html:Uv.$factory.templateUrl,typescript:pS},custom:{html:Hv.$factory.templateUrl,typescript:fS,css:dS},global:{html:Gv.$factory.templateUrl,typescript:hS}};static get $name(){return`docsNavExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/nav-examples-page.component-c8820cd5.html`,controllerAs:`$`}}},bS=class e{static get $name(){return`docsOffcanvasApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/offcanvas-api-page.component-28690c44.html`,controllerAs:`$`}}},xS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"\r
-import { NgbOffcanvas } from "ngb-js";\r
-\r
-export class OffcanvasComponentContentComponent implements IComponentController {\r
-    public lastResult = "No result yet";\r
-\r
-    constructor(private readonly offcanvas: NgbOffcanvas) {}\r
-\r
-    public async open() {\r
-        const offcanvasRef = await this.offcanvas.open(OffcanvasDemoContentComponent.$name);\r
-\r
-        offcanvasRef.closed.subscribe((result) => {\r
-            this.lastResult = \`Closed with: \${result}\`;\r
-        });\r
-\r
-        offcanvasRef.dismissed.subscribe((reason) => {\r
-            this.lastResult = \`Dismissed with: \${reason}\`;\r
-        });\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsOffcanvasComponentContent"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbOffcanvas.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: OffcanvasComponentContentComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/offcanvas-component-content/offcanvas-component-content.component.html",\r
-        }\r
-    }\r
-}\r
-`,SS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbOffcanvas } from "ngb-js";\r
-import { TemplateRef, ViewChild } from "ngjs-core";\r
-\r
-export class OffcanvasDefaultComponent implements IComponentController {\r
-    @ViewChild("content", { read: TemplateRef, static: true })\r
-    private content!: TemplateRef<unknown>;\r
-\r
-    constructor(private readonly offcanvas: NgbOffcanvas) {}\r
-\r
-    public open() {\r
-        this.offcanvas.open(this.content);\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsOffcanvasDefault"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbOffcanvas.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: OffcanvasDefaultComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/offcanvas-default/offcanvas-default.component.html",\r
-        }\r
-    }\r
-}\r
-`,CS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbActiveOffcanvas } from "ngb-js";\r
-\r
-export class OffcanvasDemoContentComponent implements IComponentController {\r
-    public ngbActiveOffcanvas!: NgbActiveOffcanvas;\r
-\r
-    static get $name() {\r
-        return "docsOffcanvasDemoContent"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            bindings: {\r
-                ngbActiveOffcanvas: "<",\r
-            },\r
-            controller: OffcanvasDemoContentComponent,\r
-            controllerAs: "$",\r
-            templateUrl: "src/app/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component.html",\r
-        }\r
-    }\r
-}\r
-`,wS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { OffcanvasFocusContentComponent } from "@/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component"\r
-import { NgbOffcanvas } from "ngb-js";\r
-\r
-export class OffcanvasFocusComponent implements IComponentController {\r
-    constructor(private readonly offcanvas: NgbOffcanvas) {}\r
-\r
-    public openDefaultFocus() {\r
-        this.offcanvas.open(OffcanvasFocusContentComponent.$name, {\r
-            ariaLabelledBy: "offcanvas-focus-title",\r
-            bindings: { autofocus: false },\r
-        });\r
-    }\r
-\r
-    public openCustomFocus() {\r
-        this.offcanvas.open(OffcanvasFocusContentComponent.$name, {\r
-            ariaLabelledBy: "offcanvas-focus-title",\r
-            bindings: { autofocus: true },\r
-        });\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsOffcanvasFocus"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbOffcanvas.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: OffcanvasFocusComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/offcanvas-focus/offcanvas-focus.component.html",\r
-        }\r
-    }\r
-}\r
-`,TS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbActiveOffcanvas } from "ngb-js";\r
-\r
-export class OffcanvasFocusContentComponent implements IComponentController {\r
-    public ngbActiveOffcanvas!: NgbActiveOffcanvas;\r
-    public autofocus = false;\r
-\r
-    static get $name() {\r
-        return "docsOffcanvasFocusContent"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            bindings: {\r
-                ngbActiveOffcanvas: "<",\r
-                autofocus: "<?",\r
-            },\r
-            controller: OffcanvasFocusContentComponent,\r
-            controllerAs: "$",\r
-            templateUrl: "src/app/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.html",\r
-        }\r
-    }\r
-}\r
-`,ES=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"\r
-import { NgbOffcanvas, NgbOffcanvasConfig } from "ngb-js";\r
-\r
-export class OffcanvasGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<\r
-        NgbOffcanvasConfig,\r
-        "backdrop" | "keyboard" | "position" | "scroll"\r
-    >;\r
-\r
-    constructor(\r
-        private readonly offcanvas: NgbOffcanvas,\r
-        private readonly config: NgbOffcanvasConfig,\r
-    ) {\r
-        this.initialConfig = {\r
-            backdrop: config.backdrop,\r
-            keyboard: config.keyboard,\r
-            position: config.position,\r
-            scroll: config.scroll,\r
-        };\r
-    }\r
-\r
-    public async open() {\r
-        this.applyConfig();\r
-\r
-        try {\r
-            await this.offcanvas.open(OffcanvasDemoContentComponent.$name);\r
-        } finally {\r
-            this.restoreConfig();\r
-        }\r
-    }\r
-\r
-    public $onDestroy() {\r
-        this.restoreConfig();\r
-    }\r
-\r
-    private applyConfig() {\r
-        this.config.backdrop = "static";\r
-        this.config.keyboard = false;\r
-        this.config.position = "end";\r
-        this.config.scroll = true;\r
-    }\r
-\r
-    private restoreConfig() {\r
-        this.config.backdrop = this.initialConfig.backdrop;\r
-        this.config.keyboard = this.initialConfig.keyboard;\r
-        this.config.position = this.initialConfig.position;\r
-        this.config.scroll = this.initialConfig.scroll;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsOffcanvasGlobal"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbOffcanvas.$name, NgbOffcanvasConfig.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: OffcanvasGlobalComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/offcanvas-global/offcanvas-global.component.html",\r
-        }\r
-    }\r
-}\r
-`,DS=`.offcanvas-panel-custom {\r
-    --bs-offcanvas-width: 28rem;\r
-    border-color: var(--bs-primary-border-subtle);\r
-}\r
-\r
-.offcanvas-static-backdrop {\r
-    --bs-backdrop-bg: var(--bs-danger);\r
-    --bs-backdrop-opacity: 0.35;\r
-}\r
-`,OS=`import "@/features/lib/components/offcanvas-options/offcanvas-options.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"\r
-import { NgbOffcanvas, type NgbOffcanvasOptions } from "ngb-js";\r
-\r
-export class OffcanvasOptionsComponent implements IComponentController {\r
-    constructor(private readonly offcanvas: NgbOffcanvas) {}\r
-\r
-    public openCustomPanel() {\r
-        this.open({ panelClass: "offcanvas-panel-custom" });\r
-    }\r
-\r
-    public openStaticBackdrop() {\r
-        this.open({\r
-            backdrop: "static",\r
-            backdropClass: "offcanvas-static-backdrop",\r
-            keyboard: false,\r
-        });\r
-    }\r
-\r
-    public openStart() {\r
-        this.open({ position: "start" });\r
-    }\r
-\r
-    public openEnd() {\r
-        this.open({ position: "end" });\r
-    }\r
-\r
-    public openTop() {\r
-        this.open({ position: "top" });\r
-    }\r
-\r
-    public openBottom() {\r
-        this.open({ position: "bottom" });\r
-    }\r
-\r
-    public openScrollableBody() {\r
-        this.open({ scroll: true, backdrop: false });\r
-    }\r
-\r
-    private open(options: NgbOffcanvasOptions) {\r
-        this.offcanvas.open(OffcanvasDemoContentComponent.$name, options);\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsOffcanvasOptions"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbOffcanvas.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: OffcanvasOptionsComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/offcanvas-options/offcanvas-options.component.html",\r
-        }\r
-    }\r
-}\r
-`,kS=class e{examples={defaults:{html:Zv.$factory.templateUrl,typescript:SS},componentContent:{html:[{label:`offcanvas-component-content.component.html`,url:Xv.$factory.templateUrl},{label:`offcanvas-demo-content.component.html`,url:Yv.$factory.templateUrl}],typescript:`${xS}\n\n// offcanvas-demo-content.component.ts\n${CS}`},focus:{html:[{label:`offcanvas-focus.component.html`,url:$v.$factory.templateUrl},{label:`offcanvas-focus-content.component.html`,url:Qv.$factory.templateUrl}],typescript:`${wS}\n\n// offcanvas-focus-content.component.ts\n${TS}`},options:{html:ty.$factory.templateUrl,typescript:OS,css:DS},global:{html:ey.$factory.templateUrl,typescript:ES}};static get $name(){return`docsOffcanvasExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/offcanvas-examples-page.component-56d37205.html`,controllerAs:`$`}}},AS=class e{static get $name(){return`docsPaginationApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/pagination-api-page.component-c62638bc.html`,controllerAs:`$`}}},jS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class AdvancedPaginationComponent implements IComponentController {\r
-    public paginatedPage = 7;\r
-    public rotatedPage = 12;\r
-    public compactPage = 12;\r
-\r
-    public selectPaginatedPage(page: number) { this.paginatedPage = page; }\r
-    public selectRotatedPage(page: number) { this.rotatedPage = page; }\r
-    public selectCompactPage(page: number) { this.compactPage = page; }\r
-\r
-    static get $name() {\r
-        return "docsAdvancedPagination"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: AdvancedPaginationComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/advanced-pagination/advanced-pagination.component.html",\r
-        }\r
-    }\r
-}\r
-`,MS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class BasicPaginationComponent implements IComponentController {\r
-    public page = 4;\r
-\r
-    public selectPage(page: number) {\r
-        this.page = page;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsBasicPagination"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: BasicPaginationComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/basic-pagination/basic-pagination.component.html",\r
-        }\r
-    }\r
-}\r
-`,NS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class CustomPaginationComponent implements IComponentController {\r
-    public page = 3;\r
-\r
-    public selectPage(page: number) {\r
-        this.page = page;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsCustomPagination"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: CustomPaginationComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/custom-pagination/custom-pagination.component.html",\r
-        }\r
-    }\r
-}\r
-`,PS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class DisabledPaginationComponent implements IComponentController {\r
-    public page = 3;\r
-    public disabled = true;\r
-\r
-    public selectPage(page: number) {\r
-        this.page = page;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsDisabledPagination"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: DisabledPaginationComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/disabled-pagination/disabled-pagination.component.html",\r
-        }\r
-    }\r
-}\r
-`,FS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class PaginationAlignmentComponent implements IComponentController {\r
-    public startPage = 2;\r
-    public centerPage = 2;\r
-    public endPage = 2;\r
-\r
-    public selectStartPage(page: number) { this.startPage = page; }\r
-    public selectCenterPage(page: number) { this.centerPage = page; }\r
-    public selectEndPage(page: number) { this.endPage = page; }\r
-\r
-    static get $name() {\r
-        return "docsPaginationAlignment"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: PaginationAlignmentComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/pagination-alignment/pagination-alignment.component.html",\r
-        }\r
-    }\r
-}\r
-`,IS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbPaginationConfig } from "ngb-js";\r
-\r
-export class PaginationGlobalComponent implements IComponentController {\r
-    public page = 8;\r
-\r
-    private readonly initialConfig: Pick<\r
-        NgbPaginationConfig,\r
-        "boundaryLinks" | "directionLinks" | "maxSize" | "rotate" | "size"\r
-    >;\r
-\r
-    constructor(private readonly config: NgbPaginationConfig) {\r
-        this.initialConfig = {\r
-            boundaryLinks: config.boundaryLinks,\r
-            directionLinks: config.directionLinks,\r
-            maxSize: config.maxSize,\r
-            rotate: config.rotate,\r
-            size: config.size,\r
-        };\r
-\r
-        config.boundaryLinks = true;\r
-        config.directionLinks = false;\r
-        config.maxSize = 5;\r
-        config.rotate = true;\r
-        config.size = "sm";\r
-    }\r
-\r
-    public selectPage(page: number) {\r
-        this.page = page;\r
-    }\r
-\r
-    public $postLink() {\r
-        this.restoreConfig();\r
-    }\r
-\r
-    public $onDestroy() {\r
-        this.restoreConfig();\r
-    }\r
-\r
-    private restoreConfig() {\r
-        this.config.boundaryLinks = this.initialConfig.boundaryLinks;\r
-        this.config.directionLinks = this.initialConfig.directionLinks;\r
-        this.config.maxSize = this.initialConfig.maxSize;\r
-        this.config.rotate = this.initialConfig.rotate;\r
-        this.config.size = this.initialConfig.size;\r
-    }\r
-\r
-    static get $name() {\r
-        return "docsPaginationGlobal"\r
-    }\r
-\r
-    static get $inject() {\r
-        return [NgbPaginationConfig.$name]\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: PaginationGlobalComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/pagination-global/pagination-global.component.html",\r
-        }\r
-    }\r
-}\r
-`,LS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class PaginationSizeComponent implements IComponentController {\r
-    public smallPage = 2;\r
-    public defaultPage = 2;\r
-    public largePage = 2;\r
-\r
-    public selectSmallPage(page: number) { this.smallPage = page; }\r
-    public selectDefaultPage(page: number) { this.defaultPage = page; }\r
-    public selectLargePage(page: number) { this.largePage = page; }\r
-\r
-    static get $name() {\r
-        return "docsPaginationSize"\r
-    }\r
-\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: PaginationSizeComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/pagination-size/pagination-size.component.html",\r
-        }\r
-    }\r
-}\r
-`,RS=class e{examples={basic:{html:ry.$factory.templateUrl,typescript:MS},advanced:{html:ny.$factory.templateUrl,typescript:jS},custom:{html:iy.$factory.templateUrl,typescript:NS},size:{html:cy.$factory.templateUrl,typescript:LS},alignment:{html:oy.$factory.templateUrl,typescript:FS},disabled:{html:ay.$factory.templateUrl,typescript:PS},global:{html:sy.$factory.templateUrl,typescript:IS}};static get $name(){return`docsPaginationExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/pagination-examples-page.component-098ceb3f.html`,controllerAs:`$`}}},zS=class e{static get $name(){return`docsPopoverApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/popover-api-page.component-0453e57b.html`,controllerAs:`$`}}},BS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbPopover } from "ngb-js";\r
-\r
-export class PopoverAutocloseComponent implements IComponentController {\r
-    public popover?: NgbPopover;\r
-    static get $name() { return "docsPopoverAutoclose" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverAutocloseComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-autoclose/popover-autoclose.component.html" }\r
-    }\r
-}\r
-`,VS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class PopoverBodyComponent implements IComponentController {\r
-    static get $name() { return "docsPopoverBody" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverBodyComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-body/popover-body.component.html" }\r
-    }\r
-}\r
-`,HS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbPopover } from "ngb-js";\r
-import type { TemplateRef } from "ngjs-core";\r
-\r
-export class PopoverContextComponent implements IComponentController {\r
-    public name = "World";\r
-    public contentTemplate?: TemplateRef<unknown>;\r
-    public titleTemplate?: TemplateRef<unknown>;\r
-    public french?: NgbPopover;\r
-    public german?: NgbPopover;\r
-    public english?: NgbPopover;\r
-\r
-    public toggleWithGreeting(popover: NgbPopover, greeting: string, language: string) {\r
-        popover.isOpen() ? popover.close() : popover.open({ greeting, language });\r
-    }\r
-\r
-    static get $name() { return "docsPopoverContext" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverContextComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-context/popover-context.component.html" }\r
-    }\r
-}\r
-`,US=`.docs-popover-custom {\r
-    --bs-popover-border-color: var(--bs-primary-border-subtle);\r
-    --bs-popover-header-bg: var(--bs-primary-bg-subtle);\r
-    --bs-popover-header-color: var(--bs-primary-text-emphasis);\r
-\r
-    box-shadow: var(--bs-box-shadow-sm);\r
-}\r
-`,WS=`import "@/features/lib/components/popover-custom-class/popover-custom-class.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class PopoverCustomClassComponent implements IComponentController {\r
-    static get $name() { return "docsPopoverCustomClass" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverCustomClassComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-custom-class/popover-custom-class.component.html" }\r
-    }\r
-}\r
-`,GS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class PopoverCustomTargetComponent implements IComponentController {\r
-    static get $name() { return "docsPopoverCustomTarget" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverCustomTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-custom-target/popover-custom-target.component.html" }\r
-    }\r
-}\r
-`,KS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class PopoverDelaysComponent implements IComponentController {\r
-    static get $name() { return "docsPopoverDelays" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverDelaysComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-delays/popover-delays.component.html" }\r
-    }\r
-}\r
-`,qS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbPopover } from "ngb-js";\r
-\r
-export class PopoverEventsComponent implements IComponentController {\r
-    public popover?: NgbPopover;\r
-    public events: { name: string; time: Date }[] = [];\r
-    public record(name: string) { this.events.unshift({ name, time: new Date() }); }\r
-    static get $name() { return "docsPopoverEvents" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverEventsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-events/popover-events.component.html" }\r
-    }\r
-}\r
-`,JS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbPopoverConfig } from "ngb-js";\r
-\r
-export class PopoverGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<NgbPopoverConfig, "container" | "openDelay" | "placement" | "triggers">;\r
-\r
-    constructor(private readonly config: NgbPopoverConfig) {\r
-        this.initialConfig = {\r
-            container: config.container,\r
-            openDelay: config.openDelay,\r
-            placement: config.placement,\r
-            triggers: config.triggers,\r
-        };\r
-        config.container = "body";\r
-        config.openDelay = 300;\r
-        config.placement = "end";\r
-        config.triggers = "mouseenter:mouseleave";\r
-    }\r
-\r
-    public $postLink() { this.restoreConfig(); }\r
-    public $onDestroy() { this.restoreConfig(); }\r
-    private restoreConfig() {\r
-        this.config.container = this.initialConfig.container;\r
-        this.config.openDelay = this.initialConfig.openDelay;\r
-        this.config.placement = this.initialConfig.placement;\r
-        this.config.triggers = this.initialConfig.triggers;\r
-    }\r
-\r
-    static get $name() { return "docsPopoverGlobal" }\r
-    static get $inject() { return [NgbPopoverConfig.$name] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-global/popover-global.component.html" }\r
-    }\r
-}\r
-`,YS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbPopover } from "ngb-js";\r
-\r
-export class PopoverManualControlComponent implements IComponentController {\r
-    public popover?: NgbPopover;\r
-    static get $name() { return "docsPopoverManualControl" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverManualControlComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-manual-control/popover-manual-control.component.html" }\r
-    }\r
-}\r
-`,XS=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class PopoverPlacementsComponent implements IComponentController {\r
-    static get $name() { return "docsPopoverPlacements" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverPlacementsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-placements/popover-placements.component.html" }\r
-    }\r
-}\r
-`,ZS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { TemplateRef } from "ngjs-core";\r
-\r
-export class PopoverTemplateComponent implements IComponentController {\r
-    public name = "NgbJS";\r
-    public contentTemplate?: TemplateRef<unknown>;\r
-    public titleTemplate?: TemplateRef<unknown>;\r
-    static get $name() { return "docsPopoverTemplate" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-template/popover-template.component.html" }\r
-    }\r
-}\r
-`,QS=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbPopover } from "ngb-js";\r
-\r
-export class PopoverTriggersComponent implements IComponentController {\r
-    public manual?: NgbPopover;\r
-    static get $name() { return "docsPopoverTriggers" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PopoverTriggersComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-triggers/popover-triggers.component.html" }\r
-    }\r
-}\r
-`,$S=class e{examples={placements:{html:Fy.$factory.templateUrl,typescript:XS},template:{html:Iy.$factory.templateUrl,typescript:ZS},triggers:{html:Ly.$factory.templateUrl,typescript:QS},manual:{html:Py.$factory.templateUrl,typescript:YS},autoclose:{html:Ey.$factory.templateUrl,typescript:BS},context:{html:Oy.$factory.templateUrl,typescript:HS},customTarget:{html:Ay.$factory.templateUrl,typescript:GS},delays:{html:jy.$factory.templateUrl,typescript:KS},events:{html:My.$factory.templateUrl,typescript:qS},body:{html:Dy.$factory.templateUrl,typescript:VS},customClass:{html:ky.$factory.templateUrl,typescript:WS,css:US},global:{html:Ny.$factory.templateUrl,typescript:JS}};static get $name(){return`docsPopoverExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/popover-examples-page.component-1d0efb30.html`,controllerAs:`$`}}},eC=class e{static get $name(){return`docsProgressbarApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/progressbar-api-page.component-3c7a802e.html`,controllerAs:`$`}}},tC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class ContextualTextProgressbarComponent implements IComponentController {\r
-    static get $name() { return "docsContextualTextProgressbar" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: ContextualTextProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/contextual-text-progressbar/contextual-text-progressbar.component.html" }\r
-    }\r
-}\r
-`,nC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbProgressbarConfig } from "ngb-js";\r
-\r
-export class ProgressbarGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<NgbProgressbarConfig, "animated" | "height" | "max" | "showValue" | "striped" | "textType" | "type">;\r
-\r
-    constructor(private readonly config: NgbProgressbarConfig) {\r
-        this.initialConfig = {\r
-            animated: config.animated,\r
-            height: config.height,\r
-            max: config.max,\r
-            showValue: config.showValue,\r
-            striped: config.striped,\r
-            textType: config.textType,\r
-            type: config.type,\r
-        };\r
-        config.animated = true;\r
-        config.height = "1.5rem";\r
-        config.max = 200;\r
-        config.showValue = true;\r
-        config.striped = true;\r
-        config.textType = "light";\r
-        config.type = "primary";\r
-    }\r
-\r
-    public $postLink() { this.restoreConfig(); }\r
-    public $onDestroy() { this.restoreConfig(); }\r
-    private restoreConfig() { Object.assign(this.config, this.initialConfig); }\r
-\r
-    static get $name() { return "docsProgressbarGlobal" }\r
-    static get $inject() { return [NgbProgressbarConfig.$name] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: ProgressbarGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progressbar-global/progressbar-global.component.html" }\r
-    }\r
-}\r
-`,rC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class ProgressHeightComponent implements IComponentController {\r
-    static get $name() { return "docsProgressHeight" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: ProgressHeightComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progress-height/progress-height.component.html" }\r
-    }\r
-}\r
-`,iC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class CustomLabelsProgressbarComponent implements IComponentController {\r
-    static get $name() { return "docsCustomLabelsProgressbar" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: CustomLabelsProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/custom-labels-progressbar/custom-labels-progressbar.component.html" }\r
-    }\r
-}\r
-`,aC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class SimpleProgressbarComponent implements IComponentController {\r
-    static get $name() { return "docsSimpleProgressbar" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: SimpleProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/simple-progressbar/simple-progressbar.component.html" }\r
-    }\r
-}\r
-`,oC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class ProgressBarsStackedComponent implements IComponentController {\r
-    static get $name() { return "docsProgressBarsStacked" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: ProgressBarsStackedComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progress-bars-stacked/progress-bars-stacked.component.html" }\r
-    }\r
-}\r
-`,sC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class StripedProgressBarComponent implements IComponentController {\r
-    static get $name() { return "docsStripedProgressBar" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: StripedProgressBarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/striped-progress-bar/striped-progress-bar.component.html" }\r
-    }\r
-}\r
-`,cC=class e{examples={simple:{html:Uy.$factory.templateUrl,typescript:aC},contextual:{html:Ry.$factory.templateUrl,typescript:tC},striped:{html:Wy.$factory.templateUrl,typescript:sC},labels:{html:zy.$factory.templateUrl,typescript:iC},height:{html:Vy.$factory.templateUrl,typescript:rC},stacked:{html:By.$factory.templateUrl,typescript:oC},global:{html:Hy.$factory.templateUrl,typescript:nC}};static get $name(){return`docsProgressbarExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/progressbar-examples-page.component-c518dfee.html`,controllerAs:`$`}}},lC=class e{static get $name(){return`docsRatingApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/rating-api-page.component-d59be42e.html`,controllerAs:`$`}}},uC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class BasicRatingComponent implements IComponentController {\r
-    public rating = 3;\r
-    public setRating(rating: number) { this.rating = rating; }\r
-    static get $name() { return "docsBasicRating" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: BasicRatingComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-rating/basic-rating.component.html" }\r
-    }\r
-}\r
-`,dC=`.rating-demo-star {\r
-    color: var(--bs-secondary-color);\r
-    font-size: 2rem;\r
-    padding-right: 0.15rem;\r
-}\r
-\r
-.rating-demo-star.filled {\r
-    color: var(--bs-warning);\r
-}\r
-\r
-.rating-demo-star.filled.low {\r
-    color: var(--bs-danger);\r
-}\r
-`,fC=`import "@/features/lib/components/rating-custom-template/rating-custom-template.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class RatingCustomTemplateComponent implements IComponentController {\r
-    public rating = 6;\r
-    public setRating(rating: number) { this.rating = rating; }\r
-    static get $name() { return "docsRatingCustomTemplate" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: RatingCustomTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-custom-template/rating-custom-template.component.html" }\r
-    }\r
-}\r
-`,pC=`.rating-demo-heart {\r
-    color: var(--bs-secondary-bg);\r
-    display: inline-block;\r
-    font-size: 2.25rem;\r
-    margin-right: 0.15rem;\r
-    position: relative;\r
-}\r
-\r
-.rating-demo-heart-fill {\r
-    color: var(--bs-danger);\r
-    left: 0;\r
-    overflow: hidden;\r
-    position: absolute;\r
-    top: 0;\r
-}\r
-`,mC=`import "@/features/lib/components/rating-decimal/rating-decimal.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-import type { TemplateRef } from "ngjs-core";\r
-\r
-export class RatingDecimalComponent implements IComponentController {\r
-    public rating = 3.14;\r
-    public heartTemplate?: TemplateRef<unknown>;\r
-    public readonly ariaValueText = (current: number, max: number) => \`\${current} out of \${max} hearts\`;\r
-    static get $name() { return "docsRatingDecimal" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: RatingDecimalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-decimal/rating-decimal.component.html" }\r
-    }\r
-}\r
-`,hC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class RatingEventsComponent implements IComponentController {\r
-    public selected = 0;\r
-    public hovered = 0;\r
-    public readonly = false;\r
-    public setSelected(value: number) { this.selected = value; }\r
-    public setHovered(value: number) { this.hovered = value; }\r
-    static get $name() { return "docsRatingEvents" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: RatingEventsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-events/rating-events.component.html" }\r
-    }\r
-}\r
-`,gC=`import type { IComponentController, IComponentOptions, IFormController } from "angular";\r
-\r
-export class RatingFormComponent implements IComponentController {\r
-    public rating: number | null = null;\r
-    public disabled = false;\r
-    public form?: IFormController;\r
-\r
-    public setRating(rating: number) { this.rating = rating; }\r
-    public clear() { this.rating = null; }\r
-\r
-    static get $name() { return "docsRatingForm" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: RatingFormComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-form/rating-form.component.html" }\r
-    }\r
-}\r
-`,_C=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbRatingConfig } from "ngb-js";\r
-\r
-export class RatingGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<NgbRatingConfig, "max" | "readonly" | "resettable" | "tabindex">;\r
-\r
-    constructor(private readonly config: NgbRatingConfig) {\r
-        this.initialConfig = {\r
-            max: config.max,\r
-            readonly: config.readonly,\r
-            resettable: config.resettable,\r
-            tabindex: config.tabindex,\r
-        };\r
-        config.max = 5;\r
-        config.readonly = true;\r
-        config.resettable = true;\r
-        config.tabindex = -1;\r
-    }\r
-\r
-    public $postLink() { this.restoreConfig(); }\r
-    public $onDestroy() { this.restoreConfig(); }\r
-    private restoreConfig() { Object.assign(this.config, this.initialConfig); }\r
-\r
-    static get $name() { return "docsRatingGlobal" }\r
-    static get $inject() { return [NgbRatingConfig.$name] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: RatingGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-global/rating-global.component.html" }\r
-    }\r
-}\r
-`,vC=class e{examples={basic:{html:Gy.$factory.templateUrl,typescript:uC},events:{html:Jy.$factory.templateUrl,typescript:hC},customTemplate:{html:Ky.$factory.templateUrl,typescript:fC,css:dC},decimal:{html:qy.$factory.templateUrl,typescript:mC,css:pC},form:{html:Yy.$factory.templateUrl,typescript:gC},global:{html:Xy.$factory.templateUrl,typescript:_C}};static get $name(){return`docsRatingExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/rating-examples-page.component-a2a18aa5.html`,controllerAs:`$`}}},yC=class e{static get $name(){return`docsScrollspyApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/scrollspy-api-page.component-6f0afb2a.html`,controllerAs:`$`}}},bC=`import type { IAugmentedJQuery, IComponentController, IComponentOptions } from "angular";\r
-import { NgbScrollSpyService } from "ngb-js";\r
-\r
-export class ScrollspyServiceDemoComponent implements IComponentController {\r
-    public readonly fragments = ["service-introduction", "service-options", "service-finish"];\r
-    public running = false;\r
-    public observingFinish = true;\r
-    private root?: HTMLElement;\r
-\r
-    constructor(\r
-        private readonly $element: IAugmentedJQuery,\r
-        public readonly scrollSpy: NgbScrollSpyService,\r
-    ) {}\r
-\r
-    public $postLink(): void {\r
-        this.root = this.$element[0].querySelector<HTMLElement>("[data-service-scrollspy]") ?? undefined;\r
-        this.start();\r
-    }\r
-\r
-    public $onDestroy(): void {\r
-        this.scrollSpy.stop();\r
-    }\r
-\r
-    public start(): void {\r
-        if (!this.root) return;\r
-        this.scrollSpy.start({\r
-            root: this.root,\r
-            fragments: this.fragments,\r
-            rootMargin: "0px 0px -45%",\r
-        });\r
-        this.running = true;\r
-        this.observingFinish = true;\r
-    }\r
-\r
-    public stop(): void {\r
-        this.scrollSpy.stop();\r
-        this.running = false;\r
-    }\r
-\r
-    public toggleFinish(): void {\r
-        if (this.observingFinish) {\r
-            this.scrollSpy.unobserve("service-finish");\r
-        } else {\r
-            this.scrollSpy.observe("service-finish");\r
-        }\r
-        this.observingFinish = !this.observingFinish;\r
-    }\r
-\r
-    static get $name() { return "docsScrollspyServiceDemo" }\r
-    static get $inject() { return ["$element", NgbScrollSpyService.$name] }\r
-    static get $factory(): IComponentOptions {\r
-        return {\r
-            controller: ScrollspyServiceDemoComponent,\r
-            controllerAs: "example",\r
-            templateUrl: "src/app/features/lib/components/scrollspy-service-demo/scrollspy-service-demo.component.html",\r
-        }\r
-    }\r
-}\r
-`,xC=class e{examples={basic:{html:Zy.$factory.templateUrl},menuItems:{html:eb.$factory.templateUrl},nested:{html:$y.$factory.templateUrl},navbar:{html:Qy.$factory.templateUrl},service:{html:tb.$factory.templateUrl,typescript:bC}};static get $name(){return`docsScrollspyExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/scrollspy-examples-page.component-b266f3a2.html`,controllerAs:`$`}}},SC=class e{static get $name(){return`docsTimepickerApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/timepicker-api-page.component-28289759.html`,controllerAs:`$`}}},CC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbTimeAdapter, type NgbTimeStruct } from "ngb-js";\r
-\r
-const pad = (value: number): string => value.toString().padStart(2, "0");\r
-\r
-export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {\r
-    public fromModel(value: string | null): NgbTimeStruct | null {\r
-        if (!value) return null;\r
-        const [hour, minute, second] = value.split(":").map(Number);\r
-        return { hour, minute, second };\r
-    }\r
-\r
-    public toModel(time: NgbTimeStruct | null): string | null {\r
-        return time ? \`\${pad(time.hour)}:\${pad(time.minute)}:\${pad(time.second ?? 0)}\` : null;\r
-    }\r
-}\r
-\r
-// Register once in your application module:\r
-// AppModule.service(NgbTimeAdapter.$name, NgbTimeStringAdapter);\r
-\r
-export class TimepickerCustomAdapterComponent implements IComponentController {\r
-    public readonly adapter = new NgbTimeStringAdapter();\r
-    public time = this.adapter.fromModel("13:30:00");\r
-    public model = "13:30:00";\r
-\r
-    public $doCheck(): void {\r
-        this.model = this.adapter.toModel(this.time) ?? "";\r
-    }\r
-\r
-    static get $name() { return "docsTimepickerCustomAdapter" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TimepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-custom-adapter/timepicker-custom-adapter.component.html" }\r
-    }\r
-}\r
-`,wC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbTimeStruct } from "ngb-js";\r
-\r
-export class BasicTimepickerComponent implements IComponentController {\r
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
-    static get $name() { return "docsBasicTimepicker" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: BasicTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-timepicker/basic-timepicker.component.html" }\r
-    }\r
-}\r
-`,TC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbTimepickerI18n, type NgbTimeStruct } from "ngb-js";\r
-\r
-export class GreekTimepickerI18n extends NgbTimepickerI18n {\r
-    public getMorningPeriod(): string { return "π.μ."; }\r
-    public getAfternoonPeriod(): string { return "μ.μ."; }\r
-}\r
-\r
-// Register once in your application module:\r
-// AppModule.service(NgbTimepickerI18n.$name, GreekTimepickerI18n);\r
-\r
-export class TimepickerI18nComponent implements IComponentController {\r
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
-    constructor(public readonly i18n: NgbTimepickerI18n) {}\r
-    static get $name() { return "docsTimepickerI18n" }\r
-    static get $inject() { return [NgbTimepickerI18n.$name] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TimepickerI18nComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-i18n/timepicker-i18n.component.html" }\r
-    }\r
-}\r
-`,EC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbTimeStruct } from "ngb-js";\r
-\r
-export class MeridianTimepickerComponent implements IComponentController {\r
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
-    public meridian = true;\r
-    static get $name() { return "docsMeridianTimepicker" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: MeridianTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/meridian-timepicker/meridian-timepicker.component.html" }\r
-    }\r
-}\r
-`,DC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbTimeStruct } from "ngb-js";\r
-\r
-export class SecondsTimepickerComponent implements IComponentController {\r
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 25 };\r
-    public seconds = true;\r
-    static get $name() { return "docsSecondsTimepicker" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: SecondsTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/seconds-timepicker/seconds-timepicker.component.html" }\r
-    }\r
-}\r
-`,OC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbTimeStruct } from "ngb-js";\r
-\r
-export class SpinnersTimepickerComponent implements IComponentController {\r
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
-    public spinners = true;\r
-    static get $name() { return "docsSpinnersTimepicker" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: SpinnersTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/spinners-timepicker/spinners-timepicker.component.html" }\r
-    }\r
-}\r
-`,kC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbTimeStruct } from "ngb-js";\r
-\r
-export class TimepickerCustomStepsComponent implements IComponentController {\r
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
-    public hourStep = 1;\r
-    public minuteStep = 15;\r
-    public secondStep = 30;\r
-    static get $name() { return "docsTimepickerCustomSteps" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TimepickerCustomStepsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-custom-steps/timepicker-custom-steps.component.html" }\r
-    }\r
-}\r
-`,AC=`import type { IComponentController, IComponentOptions, IDirective, INgModelController } from "angular";\r
-import type { NgbTimeStruct } from "ngb-js";\r
-\r
-export class TimepickerValidationComponent implements IComponentController {\r
-    public time: NgbTimeStruct | null = null;\r
-    static get $name() { return "docsTimepickerValidation" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TimepickerValidationComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-validation/timepicker-validation.component.html" }\r
-    }\r
-}\r
-\r
-export const timepickerLunchValidator = (): IDirective => ({\r
-    restrict: "A",\r
-    require: "ngModel",\r
-    link: (_scope, _element, _attributes, controller) => {\r
-        const ngModel = controller as INgModelController;\r
-        ngModel.$validators.lunchtime = (modelValue: NgbTimeStruct | null) =>\r
-            !modelValue || (modelValue.hour >= 12 && modelValue.hour <= 13);\r
-    },\r
-});\r
-`,jC=class e{examples={basic:{html:nb.$factory.templateUrl,typescript:wC},meridian:{html:rb.$factory.templateUrl,typescript:EC},seconds:{html:ib.$factory.templateUrl,typescript:DC},spinners:{html:ab.$factory.templateUrl,typescript:OC},steps:{html:lb.$factory.templateUrl,typescript:kC},validation:{html:fb.$factory.templateUrl,typescript:AC},adapter:{html:cb.$factory.templateUrl,typescript:CC},i18n:{html:db.$factory.templateUrl,typescript:TC}};static get $name(){return`docsTimepickerExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/timepicker-examples-page.component-94a32713.html`,controllerAs:`$`}}},MC=class e{static get $name(){return`docsToastApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/toast-api-page.component-c9278b80.html`,controllerAs:`$`}}},NC=`import type { IComponentController, IComponentOptions, IPromise, ITimeoutService } from "angular";\r
-\r
-export class CloseableToastComponent implements IComponentController {\r
-    public visible = true;\r
-    private reopenTimer?: IPromise<void>;\r
-\r
-    constructor(private readonly $timeout: ITimeoutService) {}\r
-\r
-    public close(): void {\r
-        this.visible = false;\r
-        this.reopenTimer = this.$timeout(() => {\r
-            this.visible = true;\r
-        }, 3000);\r
-    }\r
-\r
-    public $onDestroy(): void {\r
-        if (this.reopenTimer) this.$timeout.cancel(this.reopenTimer);\r
-    }\r
-\r
-    static get $name() { return "docsCloseableToast" }\r
-    static get $inject() { return ["$timeout"] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: CloseableToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/closeable-toast/closeable-toast.component.html" }\r
-    }\r
-}\r
-`,PC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class InlineToastComponent implements IComponentController {\r
-    public showHeaderToast = true;\r
-    static get $name() { return "docsInlineToast" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: InlineToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/inline-toast/inline-toast.component.html" }\r
-    }\r
-}\r
-`,FC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-interface ManagedToast {\r
-    id: number;\r
-    body: string;\r
-    className?: string;\r
-    delay?: number;\r
-}\r
-\r
-export class DocsToastService {\r
-    public readonly toasts: ManagedToast[] = [];\r
-    private nextId = 0;\r
-\r
-    public show(body: string, options: Omit<ManagedToast, "id" | "body"> = {}): void {\r
-        this.toasts.push({ id: ++this.nextId, body, ...options });\r
-    }\r
-\r
-    public remove(toast: ManagedToast): void {\r
-        const index = this.toasts.indexOf(toast);\r
-        if (index >= 0) this.toasts.splice(index, 1);\r
-    }\r
-\r
-    public clear(): void {\r
-        this.toasts.length = 0;\r
-    }\r
-\r
-    static get $name() { return "docs.toast.service" }\r
-}\r
-\r
-export class ToastManagementComponent implements IComponentController {\r
-    constructor(public readonly toastService: DocsToastService) {}\r
-\r
-    public showStandard(): void {\r
-        this.toastService.show("I am a standard toast.");\r
-    }\r
-\r
-    public showSuccess(): void {\r
-        this.toastService.show("Your changes were saved.", { className: "bg-success text-white", delay: 8000 });\r
-    }\r
-\r
-    public showDanger(): void {\r
-        this.toastService.show("The operation could not be completed.", { className: "bg-danger text-white", delay: 10000 });\r
-    }\r
-\r
-    public $onDestroy(): void {\r
-        this.toastService.clear();\r
-    }\r
-\r
-    static get $name() { return "docsToastManagement" }\r
-    static get $inject() { return [DocsToastService.$name] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: ToastManagementComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/toast-management/toast-management.component.html" }\r
-    }\r
-}\r
-`,IC=`import type { IComponentController, IComponentOptions, ITimeoutService } from "angular";\r
-\r
-export class PreventAutohideToastComponent implements IComponentController {\r
-    public visible = false;\r
-    public autohide = true;\r
-\r
-    constructor(private readonly $timeout: ITimeoutService) {}\r
-\r
-    public show(): void {\r
-        this.visible = false;\r
-        this.autohide = true;\r
-        this.$timeout(() => this.visible = true);\r
-    }\r
-\r
-    public hide(): void {\r
-        this.visible = false;\r
-        this.autohide = true;\r
-    }\r
-\r
-    static get $name() { return "docsPreventAutohideToast" }\r
-    static get $inject() { return ["$timeout"] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: PreventAutohideToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/prevent-autohide-toast/prevent-autohide-toast.component.html" }\r
-    }\r
-}\r
-`,LC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class TemplateHeaderToastComponent implements IComponentController {\r
-    public visible = true;\r
-    static get $name() { return "docsTemplateHeaderToast" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TemplateHeaderToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/template-header-toast/template-header-toast.component.html" }\r
-    }\r
-}\r
-`,RC=class e{examples={inline:{html:hb.$factory.templateUrl,typescript:PC},templateHeader:{html:_b.$factory.templateUrl,typescript:LC},closeable:{html:mb.$factory.templateUrl,typescript:NC},preventAutohide:{html:gb.$factory.templateUrl,typescript:IC},management:{html:yb.$factory.templateUrl,typescript:FC}};static get $name(){return`docsToastExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/toast-examples-page.component-af744c3d.html`,controllerAs:`$`}}},zC=class e{static get $name(){return`docsTooltipApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/tooltip-api-page.component-d6aba518.html`,controllerAs:`$`}}},BC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { TemplateRef } from "ngjs-core";\r
-\r
-export class TooltipAutocloseComponent implements IComponentController {\r
-    public contentTemplate?: TemplateRef<unknown>;\r
-    static get $name() { return "docsTooltipAutoclose" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipAutocloseComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-autoclose/tooltip-autoclose.component.html" }\r
-    }\r
-}\r
-`,VC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class TooltipBodyComponent implements IComponentController {\r
-    static get $name() { return "docsTooltipBody" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipBodyComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-body/tooltip-body.component.html" }\r
-    }\r
-}\r
-`,HC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbTooltip } from "ngb-js";\r
-import type { TemplateRef } from "ngjs-core";\r
-\r
-export class TooltipContextComponent implements IComponentController {\r
-    public name = "World";\r
-    public contentTemplate?: TemplateRef<unknown>;\r
-    public french?: NgbTooltip;\r
-    public german?: NgbTooltip;\r
-    public english?: NgbTooltip;\r
-\r
-    public toggleWithGreeting(tooltip: NgbTooltip, greeting: string): void {\r
-        tooltip.isOpen() ? tooltip.close() : tooltip.open({ greeting });\r
-    }\r
-\r
-    static get $name() { return "docsTooltipContext" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipContextComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-context/tooltip-context.component.html" }\r
-    }\r
-}\r
-`,UC=`.docs-tooltip-custom {\r
-    --bs-tooltip-bg: var(--bs-primary-bg-subtle);\r
-    --bs-tooltip-color: var(--bs-primary-text-emphasis);\r
-    --bs-tooltip-opacity: 1;\r
-\r
-    filter: drop-shadow(0 .25rem .5rem rgba(var(--bs-body-color-rgb), .15));\r
-}\r
-`,WC=`import "@/features/lib/components/tooltip-custom-class/tooltip-custom-class.component.css";\r
-import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class TooltipCustomClassComponent implements IComponentController {\r
-    static get $name() { return "docsTooltipCustomClass" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipCustomClassComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-custom-class/tooltip-custom-class.component.html" }\r
-    }\r
-}\r
-`,GC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class TooltipCustomTargetComponent implements IComponentController {\r
-    static get $name() { return "docsTooltipCustomTarget" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipCustomTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-custom-target/tooltip-custom-target.component.html" }\r
-    }\r
-}\r
-`,KC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class TooltipDelaysComponent implements IComponentController {\r
-    static get $name() { return "docsTooltipDelays" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipDelaysComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-delays/tooltip-delays.component.html" }\r
-    }\r
-}\r
-`,qC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbTooltipConfig } from "ngb-js";\r
-\r
-export class TooltipGlobalComponent implements IComponentController {\r
-    private readonly initialConfig: Pick<NgbTooltipConfig, "container" | "openDelay" | "placement" | "triggers">;\r
-\r
-    constructor(private readonly config: NgbTooltipConfig) {\r
-        this.initialConfig = {\r
-            container: config.container,\r
-            openDelay: config.openDelay,\r
-            placement: config.placement,\r
-            triggers: config.triggers,\r
-        };\r
-        config.container = "body";\r
-        config.openDelay = 300;\r
-        config.placement = "end";\r
-        config.triggers = "mouseenter:mouseleave";\r
-    }\r
-\r
-    public $postLink(): void { this.restoreConfig(); }\r
-    public $onDestroy(): void { this.restoreConfig(); }\r
-\r
-    private restoreConfig(): void {\r
-        this.config.container = this.initialConfig.container;\r
-        this.config.openDelay = this.initialConfig.openDelay;\r
-        this.config.placement = this.initialConfig.placement;\r
-        this.config.triggers = this.initialConfig.triggers;\r
-    }\r
-\r
-    static get $name() { return "docsTooltipGlobal" }\r
-    static get $inject() { return [NgbTooltipConfig.$name] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-global/tooltip-global.component.html" }\r
-    }\r
-}\r
-`,JC=`import type { IComponentController, IComponentOptions } from "angular";\r
-\r
-export class TooltipPlacementsComponent implements IComponentController {\r
-    static get $name() { return "docsTooltipPlacements" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipPlacementsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-placements/tooltip-placements.component.html" }\r
-    }\r
-}\r
-`,YC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { TemplateRef } from "ngjs-core";\r
-\r
-export class TooltipTemplateComponent implements IComponentController {\r
-    public name = "NgbJS";\r
-    public contentTemplate?: TemplateRef<unknown>;\r
-    static get $name() { return "docsTooltipTemplate" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-template/tooltip-template.component.html" }\r
-    }\r
-}\r
-`,XC=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { NgbTooltip } from "ngb-js";\r
-\r
-export class TooltipTriggersComponent implements IComponentController {\r
-    public manual?: NgbTooltip;\r
-    static get $name() { return "docsTooltipTriggers" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TooltipTriggersComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-triggers/tooltip-triggers.component.html" }\r
-    }\r
-}\r
-`,ZC=class e{examples={placements:{html:Db.$factory.templateUrl,typescript:JC},template:{html:Ob.$factory.templateUrl,typescript:YC},triggers:{html:kb.$factory.templateUrl,typescript:XC},autoclose:{html:bb.$factory.templateUrl,typescript:BC},context:{html:Sb.$factory.templateUrl,typescript:HC},customTarget:{html:wb.$factory.templateUrl,typescript:GC},delays:{html:Tb.$factory.templateUrl,typescript:KC},body:{html:xb.$factory.templateUrl,typescript:VC},customClass:{html:Cb.$factory.templateUrl,typescript:WC,css:UC},global:{html:Eb.$factory.templateUrl,typescript:qC}};static get $name(){return`docsTooltipExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/tooltip-examples-page.component-55fec424.html`,controllerAs:`$`}}},QC=class e{static get $name(){return`docsTypeaheadApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/typeahead-api-page.component-42060169.html`,controllerAs:`$`}}},$C=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { debounceTime, map, type OperatorFunction } from "rxjs";\r
-\r
-interface State { name: string }\r
-const STATES: State[] = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"].map(name => ({ name }));\r
-\r
-export class ExactTypeaheadComponent implements IComponentController {\r
-    public model?: State;\r
-    public readonly formatter = (state: State): string => state.name;\r
-    public readonly search: OperatorFunction<string, State[]> = text$ => text$.pipe(\r
-        debounceTime(200),\r
-        map(term => term ? STATES.filter(state => state.name.toLowerCase().includes(term.toLowerCase())) : []),\r
-    );\r
-    static get $name() { return "docsExactTypeahead" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: ExactTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/exact-typeahead/exact-typeahead.component.html" }\r
-    }\r
-}\r
-`,ew=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { debounceTime, distinctUntilChanged, map, merge, type OperatorFunction, Subject } from "rxjs";\r
-\r
-const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];\r
-\r
-export class FocusTypeaheadComponent implements IComponentController {\r
-    public model = "";\r
-    public readonly focus$ = new Subject<string>();\r
-    public readonly search: OperatorFunction<string, string[]> = text$ => merge(\r
-        text$.pipe(debounceTime(200), distinctUntilChanged()),\r
-        this.focus$,\r
-    ).pipe(\r
-        map(term => (term ? STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())) : STATES).slice(0, 10)),\r
-    );\r
-    public $onDestroy(): void { this.focus$.complete(); }\r
-    static get $name() { return "docsFocusTypeahead" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: FocusTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/focus-typeahead/focus-typeahead.component.html" }\r
-    }\r
-}\r
-`,tw=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";\r
-\r
-const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"];\r
-\r
-export class FormattedTypeaheadComponent implements IComponentController {\r
-    public model = "";\r
-    public readonly formatter = (result: string): string => result.toUpperCase();\r
-    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(\r
-        debounceTime(200),\r
-        distinctUntilChanged(),\r
-        map(term => term ? STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())) : []),\r
-    );\r
-    static get $name() { return "docsFormattedTypeahead" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: FormattedTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/formatted-typeahead/formatted-typeahead.component.html" }\r
-    }\r
-}\r
-`,nw=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { NgbTypeaheadConfig } from "ngb-js";\r
-import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";\r
-\r
-const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"];\r
-\r
-export class TypeaheadGlobalComponent implements IComponentController {\r
-    public model = "";\r
-    private readonly initialConfig: Pick<NgbTypeaheadConfig, "container" | "selectOnExact" | "showHint">;\r
-\r
-    constructor(private readonly config: NgbTypeaheadConfig) {\r
-        this.initialConfig = {\r
-            container: config.container,\r
-            selectOnExact: config.selectOnExact,\r
-            showHint: config.showHint,\r
-        };\r
-        config.container = "body";\r
-        config.selectOnExact = true;\r
-        config.showHint = true;\r
-    }\r
-\r
-    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(\r
-        debounceTime(200),\r
-        distinctUntilChanged(),\r
-        map(term => term.length < 2 ? [] : STATES.filter(state => state.toLowerCase().startsWith(term.toLowerCase()))),\r
-    );\r
-\r
-    public $postLink(): void { this.restoreConfig(); }\r
-    public $onDestroy(): void { this.restoreConfig(); }\r
-    private restoreConfig(): void {\r
-        this.config.container = this.initialConfig.container;\r
-        this.config.selectOnExact = this.initialConfig.selectOnExact;\r
-        this.config.showHint = this.initialConfig.showHint;\r
-    }\r
-\r
-    static get $name() { return "docsTypeaheadGlobal" }\r
-    static get $inject() { return [NgbTypeaheadConfig.$name] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TypeaheadGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/typeahead-global/typeahead-global.component.html" }\r
-    }\r
-}\r
-`,rw=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";\r
-\r
-interface State { id: number; name: string }\r
-const STATES: State[] = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"].map((name, id) => ({ id, name }));\r
-\r
-export class NonEditableTypeaheadComponent implements IComponentController {\r
-    public model: State | null = null;\r
-    public readonly formatter = (state: State): string => state.name;\r
-    public readonly search: OperatorFunction<string, State[]> = text$ => text$.pipe(\r
-        debounceTime(200),\r
-        distinctUntilChanged(),\r
-        map(term => term.length < 2 ? [] : STATES.filter(state => state.name.toLowerCase().includes(term.toLowerCase()))),\r
-    );\r
-    static get $name() { return "docsNonEditableTypeahead" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: NonEditableTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/non-editable-typeahead/non-editable-typeahead.component.html" }\r
-    }\r
-}\r
-`,iw=`import type { IComponentController, IComponentOptions } from "angular";\r
-import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";\r
-\r
-const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];\r
-\r
-export class SimpleTypeaheadComponent implements IComponentController {\r
-    public model = "";\r
-    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(\r
-        debounceTime(200),\r
-        distinctUntilChanged(),\r
-        map(term => term.length < 2 ? [] : STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())).slice(0, 10)),\r
-    );\r
-    static get $name() { return "docsSimpleTypeahead" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: SimpleTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/simple-typeahead/simple-typeahead.component.html" }\r
-    }\r
-}\r
-`,aw=`import type { IComponentController, IComponentOptions } from "angular";\r
-import type { TemplateRef } from "ngjs-core";\r
-import { debounceTime, map, type OperatorFunction } from "rxjs";\r
-\r
-interface Country { name: string; flag: string; region: string }\r
-const COUNTRIES: Country[] = [\r
-    { name: "Mexico", flag: "🇲🇽", region: "North America" },\r
-    { name: "Argentina", flag: "🇦🇷", region: "South America" },\r
-    { name: "Brazil", flag: "🇧🇷", region: "South America" },\r
-    { name: "Canada", flag: "🇨🇦", region: "North America" },\r
-    { name: "Colombia", flag: "🇨🇴", region: "South America" },\r
-    { name: "Germany", flag: "🇩🇪", region: "Europe" },\r
-    { name: "Japan", flag: "🇯🇵", region: "Asia" },\r
-    { name: "Spain", flag: "🇪🇸", region: "Europe" },\r
-];\r
-\r
-export class TemplateResultsTypeaheadComponent implements IComponentController {\r
-    public model?: Country;\r
-    public resultTemplate?: TemplateRef<unknown>;\r
-    public readonly formatter = (country: Country): string => country.name;\r
-    public readonly search: OperatorFunction<string, Country[]> = text$ => text$.pipe(\r
-        debounceTime(200),\r
-        map(term => term ? COUNTRIES.filter(country => country.name.toLowerCase().includes(term.toLowerCase())).slice(0, 8) : []),\r
-    );\r
-    static get $name() { return "docsTemplateResultsTypeahead" }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: TemplateResultsTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/template-results-typeahead/template-results-typeahead.component.html" }\r
-    }\r
-}\r
-`,ow=`import type { IComponentController, IComponentOptions, IHttpService } from "angular";\r
-import { catchError, debounceTime, distinctUntilChanged, from, map, of, type OperatorFunction, switchMap, tap } from "rxjs";\r
-\r
-const WIKI_URL = "https://en.wikipedia.org/w/api.php";\r
-type WikiResponse = [string, string[], string[], string[]];\r
-\r
-export class WikipediaSearchService {\r
-    constructor(private readonly $http: IHttpService) {}\r
-\r
-    public search(term: string) {\r
-        if (!term) return of([] as string[]);\r
-        return from(this.$http.get<WikiResponse>(WIKI_URL, {\r
-            params: { action: "opensearch", format: "json", origin: "*", search: term },\r
-        })).pipe(map(response => response.data[1]));\r
-    }\r
-\r
-    static get $name() { return "docs.wikipedia.search.service" }\r
-    static get $inject() { return ["$http"] }\r
-}\r
-\r
-export class WikipediaTypeaheadComponent implements IComponentController {\r
-    public model = "";\r
-    public searching = false;\r
-    public searchFailed = false;\r
-\r
-    constructor(private readonly wikipedia: WikipediaSearchService) {}\r
-\r
-    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(\r
-        debounceTime(300),\r
-        distinctUntilChanged(),\r
-        tap(() => this.searching = true),\r
-        switchMap(term => this.wikipedia.search(term).pipe(\r
-            tap(() => this.searchFailed = false),\r
-            catchError(() => {\r
-                this.searchFailed = true;\r
-                return of([] as string[]);\r
-            }),\r
-        )),\r
-        tap(() => this.searching = false),\r
-    );\r
-\r
-    static get $name() { return "docsWikipediaTypeahead" }\r
-    static get $inject() { return [WikipediaSearchService.$name] }\r
-    static get $factory(): IComponentOptions {\r
-        return { controller: WikipediaTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/wikipedia-typeahead/wikipedia-typeahead.component.html" }\r
-    }\r
-}\r
+<span ng-repeat="star in $.contexts track by $index">
+    <span class="visually-hidden">({{ $index < $.nextRate ? '*' : ' ' }})</span>
+    <span
+        ng-mouseenter="$.enter($index + 1)"
+        ng-click="$.handleClick($index + 1)"
+        ng-style="{ cursor: $.isInteractive() ? 'pointer' : 'default' }">
+        <ng-container
+            ng-template-outlet="$.starTemplate || $.starTemplateFromContent || $.defaultStarTemplate"
+            ng-template-outlet-context="star">
+        </ng-container>
+    </span>
+</span>
+
+<ng-content></ng-content>
+`,Hp=class{constructor(){this.max=10,this.readonly=!1,this.resettable=!1,this.tabindex=0}static get $name(){return`ngb.rating.config.service`}},Up=class e{constructor(e,t,n){this.$element=e,this.$scope=t,this.ngbRatingConfig=n,this.contexts=[]}$onInit(){this.readonly=this.readonly??this.ngbRatingConfig.readonly,this.resettable=this.resettable??this.ngbRatingConfig.resettable,this.tabindex=this.tabindex??this.ngbRatingConfig.tabindex,this.rate=this.rate??0,this._setupContexts(),this.update(this.rate)}$postLink(){this.$element.addClass(`d-inline-flex`),this.$element.attr(`role`,`slider`),this.$element.attr(`aria-valuemin`,`0`),this.$element.on(`blur`,()=>this.$scope.$evalAsync()),this.$element.on(`keydown`,e=>this.$scope.$evalAsync(()=>this._handleKeyDown(e))),this.$element.on(`mouseleave`,()=>this.$scope.$evalAsync(()=>this.reset())),this.removeDisabledListener=this.ngDisabled?.onChange(()=>this._render()),this._render()}$onDestroy(){this.$element.off(`blur`),this.$element.off(`keydown`),this.$element.off(`mouseleave`),this.removeDisabledListener?.()}$onChanges(e){`rate`in e&&this.update(this.rate),`max`in e&&!e.max.isFirstChange()&&this._updateMax(),this._render()}set max(e){this._max=e}get max(){return this._max??this.ngbRatingConfig.max}ariaValueText(e,t){return`${e} out of ${t}`}isInteractive(){return!this.readonly&&!this.isDisabled()}isDisabled(){return this.ngDisabled?.disabled??!1}enter(e){this.isInteractive()&&this._updateState(e),this.hover?.({$event:e})}handleClick(e){this.isInteractive()&&this.update(this.resettable&&this.rate===e?0:e)}reset(){this.leave?.({$event:this.nextRate}),this._updateState(this.rate)}update(e){let t=nd(e,this.max,0);this.isInteractive()&&this.rate!==t&&(this.rate=t,this.rateChange?.({$event:this.rate})),this._updateState(this.rate)}_handleKeyDown(e){switch(e.key){case`ArrowDown`:case`ArrowLeft`:this.update(this.rate-1);break;case`ArrowUp`:case`ArrowRight`:this.update(this.rate+1);break;case`Home`:this.update(0);break;case`End`:this.update(this.max);break;default:return}e.preventDefault()}_updateState(e){this.nextRate=e,this.contexts=this.contexts.map((t,n)=>({...t,fill:Math.round(nd(e-n,1,0)*100)})),this._render()}_render(){this.$element.attr(`tabindex`,this.isDisabled()?`-1`:`${this.tabindex??this.ngbRatingConfig.tabindex}`),this.$element.attr(`aria-valuemax`,`${this.max}`),this.$element.attr(`aria-valuenow`,`${this.nextRate}`),this.$element.attr(`aria-valuetext`,this.ariaValueText(this.nextRate,this.max)),this.readonly&&!this.isDisabled()?this.$element.attr(`aria-readonly`,`true`):this.$element.removeAttr(`aria-readonly`),this.isDisabled()?this.$element.attr(`aria-disabled`,`true`):this.$element.removeAttr(`aria-disabled`)}_updateMax(){this.max>0&&(this._setupContexts(),this.update(this.rate))}_setupContexts(){this.contexts=Array.from({length:this.max},(e,t)=>({fill:0,index:t}))}static get $name(){return`ngbRating`}static get $inject(){return[`$element`,`$scope`,Hp.$name]}static get $factory(){return{bindings:{max:`<?`,rate:`<?`,rateChange:`&?`,readonly:`<?`,resettable:`<?`,starTemplate:`<?`,tabindex:`<?`,ariaValueText:`<?`,hover:`&?`,leave:`&?`},controller:e,controllerAs:`$`,require:{ngDisabled:`?ngDisabled`},transclude:!0,template:Vp}}};X([qs(kc,{static:!1})],Up.prototype,`starTemplateFromContent`,2),X([fc(`defaultStar`,{read:kc,static:!0})],Up.prototype,`defaultStarTemplate`,2);var Wp=Up,Gp=u.default.module(`ngb.rating`,[Wc.name]);Gp.component(Wp.$name,Wp.$factory),Gp.service(Hp.$name,Hp);function Kp(e){return e?e instanceof Element?e:Z(e):null}function qp(e,t){if(!e||t==null)return null;let n=Kp(e);return n?u.default.isString(t)?n.querySelector(`#${CSS.escape(t)}`):Kp(t):null}function Jp(e,t){let n=[...t].map(({id:e})=>`#${CSS.escape(e)}`).join(`,`);return Array.from(e.querySelectorAll(n))}var Yp=(e,t,n)=>{let{rootElement:r,fragments:i,scrollSpy:a,options:o,entries:s}=e,c=Jp(r,i),l=n;if(!l.initialized){l.initialized=!0,l.gapFragment=null,l.visibleFragments=new Set;let e=qp(r,o?.initialFragment);if(e){a.scrollTo(e);return}}let u=l.visibleFragments;for(let e of s){let{isIntersecting:n,target:r}=e;if(n){l.gapFragment&&=(u.delete(l.gapFragment),null),u.add(r);continue}if(u.delete(r),!(u.size>0||a.active===``)){if(e.boundingClientRect.top<e.rootBounds.top){l.gapFragment=r,u.add(l.gapFragment);continue}if(r===c[0]){l.gapFragment=null,u.clear(),t(``);return}l.gapFragment=c[c.indexOf(r)-1]||null,l.gapFragment&&u.add(l.gapFragment)}}for(let e of c)if(u.has(e)){t(e.id);break}},Xp=class{constructor(){this.scrollBehavior=`smooth`,this.processChanges=Yp}static get $name(){return`ngb.scrollspy.config.service`}},Zp=class e{constructor(e){this.$element=e}$postLink(){this.$element.attr(`id`,this.id),this.ngbScrollSpy._registerFragment(this)}$onChanges(){this.$element.attr(`id`,this.id)}$onDestroy(){this.ngbScrollSpy._unregisterFragment(this)}static get $name(){return`ngbScrollSpyFragment`}static get $factory(){return()=>({bindToController:{id:`@ngbScrollSpyFragment`},controller:e,require:{ngbScrollSpy:`^ngbScrollSpy`},scope:!0,restrict:`A`})}static get $inject(){return[`$element`]}},Qp=3,$p=class{constructor(e,t,n){this.$config=e,this._diChangeDetectorRef=t,this._ngZone=n,this._observer=null,this._containerElement=null,this._fragments=new Set,this._preRegisteredFragments=new Set,this._active$=new Y,this._distinctActive$=this._active$.pipe(ms()),this._active=``,this._scrollBehavior=this.$config.scrollBehavior,this._changeDetectorRef=this._diChangeDetectorRef,this._activeSubscription=this._distinctActive$.subscribe(e=>{this._active=e,this._changeDetectorRef.markForCheck()})}get active(){return this._active}get active$(){return this._distinctActive$}start(e){this._cleanup();let{root:t,rootMargin:n,scrollBehavior:r,threshold:i,fragments:a,changeDetectorRef:o,processChanges:s}={...e},c=qp(document.documentElement,t??document.documentElement);if(!c)return;this._containerElement=u.default.element(c),this._changeDetectorRef=o??this._diChangeDetectorRef,this._scrollBehavior=r??this.$config.scrollBehavior;let l=s??this.$config.processChanges,d={};this._observer=new IntersectionObserver(t=>l({entries:t,rootElement:c,fragments:this._fragments,scrollSpy:this,options:{...e}},e=>this._active$.next(e),d),{root:c,...n&&{rootMargin:n},...i&&{threshold:i}});for(let e of[...this._preRegisteredFragments,...a??[]])this.observe(e);this._preRegisteredFragments.clear()}stop(){this._cleanup(),this._active$.next(``)}scrollTo(e,t){let{behavior:n}={behavior:this._scrollBehavior,...t},r=qp(document.documentElement,this._containerElement);if(!r)return;let i=qp(r,e);if(!i)return;let a=i.offsetTop-r.offsetTop;r.scrollTo({top:a,behavior:n});let o=r.scrollTop,s=0;this._ngZone.runOutsideAngular(()=>{let e=()=>{let t=o===r.scrollTop;if(t?s++:s=0,!t||t&&s<Qp){o=r.scrollTop,requestAnimationFrame(e);return}this._ngZone.run(()=>this._active$.next(i.id))};requestAnimationFrame(e)})}observe(e){if(!this._observer){this._preRegisteredFragments.add(e);return}let t=qp(this._containerElement,e);!t||this._fragments.has(t)||(this._fragments.add(t),this._observer.observe(t))}unobserve(e){if(!this._observer){this._preRegisteredFragments.delete(e);return}let t=qp(this._containerElement,e);if(t){this._fragments.delete(t),this._observer.disconnect();for(let e of this._fragments)this._observer.observe(e)}}$onDestroy(){this._cleanup(),this._activeSubscription.unsubscribe(),this._active$.complete()}_cleanup(){this._fragments.clear(),this._observer?.disconnect(),this._changeDetectorRef=this._diChangeDetectorRef,this._scrollBehavior=this.$config.scrollBehavior,this._observer=null,this._containerElement=null}static get $name(){return`ngb.scrollspy.service`}static get $inject(){return[Xp.$name,ks.$name,Fc.$name]}},em=class e{constructor(e,t){this.$element=e,this.$scrollSpy=t,this._isActive=!1}$onInit(){this._scrollSpyAPI=this.scrollSpyMenu??this.scrollSpy??this.parentScrollSpy??this.$scrollSpy,this._applyData(this.data)}$postLink(){this.scrollSpyMenu||(this._activeSubscription=this._scrollSpyAPI.active$.subscribe(e=>{e===this.fragment?this._activate():this._deactivate()})),this._clickListener=()=>this.scrollTo(),this.$element.on(`click`,this._clickListener),this._applyHostBindings()}$onChanges(){this._applyData(this.data),this._applyHostBindings()}$onDestroy(){this._clickListener&&this.$element.off(`click`,this._clickListener),this._activeSubscription?.unsubscribe()}_activate(){this._isActive=!0,this._applyHostBindings(),this.scrollSpyMenu?.getItem(this.parent??``)?._activate()}_deactivate(){this._isActive=!1,this._applyHostBindings(),this.scrollSpyMenu?.getItem(this.parent??``)?._deactivate()}isActive(){return this._isActive}scrollTo(e){this._scrollSpyAPI.scrollTo(this.fragment,e)}_applyData(e){if(this.scrollSpy&&(this._scrollSpyAPI=this.scrollSpy),Array.isArray(e)){this._scrollSpyAPI=e[0],this.fragment=e[1],this.parent??=e[2];return}if(u.default.isString(e)){this.fragment=e;return}e&&(this._scrollSpyAPI=e)}_applyHostBindings(){this.$element.toggleClass(`active`,this.isActive())}static get $name(){return`ngbScrollSpyItem`}static get $factory(){return()=>({bindToController:{data:`@?ngbScrollSpyItem`,fragment:`@?`,parent:`@?`,scrollSpy:`<?`},controller:e,require:{parentScrollSpy:`?^ngbScrollSpy`,scrollSpyMenu:`?^ngbScrollSpyMenu`},scope:!0,restrict:`A`})}static get $inject(){return[`$element`,$p.$name]}},tm=class e{constructor(e){this.$scrollSpy=e,this._map=new Map,this._lastActiveItem=null}$onInit(){this._scrollSpyRef=this.scrollSpy??this.parentScrollSpy??this.$scrollSpy}$postLink(){this._rebuildMap(),this._itemsSubscription=this._items.changes.subscribe(()=>this._rebuildMap()),this._activeSubscription=this._scrollSpyRef.active$.subscribe(e=>{this._lastActiveItem?._deactivate();let t=this._map.get(e);t&&(t._activate(),this._lastActiveItem=t)})}$onDestroy(){this._activeSubscription?.unsubscribe(),this._itemsSubscription?.unsubscribe(),this._map.clear(),this._lastActiveItem=null}get active(){return this._scrollSpyRef.active}get active$(){return this._scrollSpyRef.active$}scrollTo(e,t){this._scrollSpyRef.scrollTo(e,t)}getItem(e){return this._map.get(e)}_rebuildMap(){this._map.clear();for(let e of this._items)this._map.set(e.fragment,e)}static get $name(){return`ngbScrollSpyMenu`}static get $factory(){return()=>({bindToController:{scrollSpy:`<?ngbScrollSpyMenu`},controller:e,require:{parentScrollSpy:`?^ngbScrollSpy`},scope:!0,restrict:`A`,transclude:!0,template:`<ng-content></ng-content>`})}static get $inject(){return[$p.$name]}};X([ec(em,{descendants:!0})],tm.prototype,`_items`,2);var nm=tm,rm=class e{constructor(e,t,n,r){this.$element=e,this._changeDetector=n,this._initialFragment=null,this._service=new $p(t,this._changeDetector,r)}set active(e){this._initialFragment=e,e&&this.scrollTo(e)}get active(){return this._service.active}get active$(){return this._service.active$}$postLink(){this.$element.attr(`tabindex`,`0`),this.$element.css(`overflow-y`,`auto`),this._service.start({processChanges:this.processChanges,root:this.$element,rootMargin:this.rootMargin,threshold:this.threshold,scrollBehavior:this.scrollBehavior,changeDetectorRef:this._changeDetector,...this._initialFragment&&{initialFragment:this._initialFragment}}),this._activeChangeSubscription=this._service.active$.subscribe(e=>{this.activeChange?.({$event:e})})}$onChanges(e){e.active&&!e.active.isFirstChange()&&(this.active=e.active.currentValue)}$onDestroy(){this._activeChangeSubscription?.unsubscribe(),this._service.$onDestroy()}_registerFragment(e){this._service.observe(e.id)}_unregisterFragment(e){this._service.unobserve(e.id)}scrollTo(e,t){this._service.scrollTo(e,{...this.scrollBehavior&&{behavior:this.scrollBehavior},...t})}static get $name(){return`ngbScrollSpy`}static get $factory(){return()=>({bindToController:{active:`@?`,activeChange:`&?`,processChanges:`<?`,rootMargin:`@?`,scrollBehavior:`@?`,threshold:`<?`},controller:e,scope:!0,restrict:`A`})}static get $inject(){return[`$element`,Xp.$name,ks.$name,Fc.$name]}},im=u.default.module(`ngb.scrollspy`,[zc.name]);im.directive(rm.$name,rm.$factory),im.directive(Zp.$name,Zp.$factory),im.directive(em.$name,em.$factory),im.directive(nm.$name,nm.$factory),im.service(Xp.$name,Xp),im.service($p.$name,$p);var am=`<fieldset ng-disabled="$.isDisabled()" ng-class="{ disabled: $.isDisabled() }">
+    <div class="d-flex align-items-center">
+        <div class="d-flex flex-column align-items-center">
+            <button
+                ng-if="$.spinners"
+                ng-click="$.changeHour($.hourStep)"
+                ng-disabled="$.isDisabled()"
+                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"
+                class="btn btn-link px-2 py-0 lh-1"
+                tabindex="-1"
+                type="button">
+                <span
+                    class="chevron ngb-tp-chevron"
+                    style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: 0.15em; transform: rotate(-45deg); vertical-align: middle; width: 0.69em;"
+                    aria-hidden="true">
+                </span>
+                <span class="visually-hidden">Increment hours</span>
+            </button>
+
+            <input
+                ng-model="$.hourInput"
+                ng-model-options="{ updateOn: 'change' }"
+                ng-change="$.updateHour($.hourInput)"
+                ng-blur="$.handleBlur()"
+                ng-keydown="$event.key === 'ArrowUp' && $.changeHour($.hourStep); $event.key === 'ArrowDown' && $.changeHour(-$.hourStep); ($event.key === 'ArrowUp' || $event.key === 'ArrowDown') && $event.preventDefault()"
+                ng-readonly="$.readonlyInputs"
+                ng-disabled="$.isDisabled()"
+                ng-class="{ 'form-control-sm': $.isSmallSize, 'form-control-lg': $.isLargeSize }"
+                class="form-control text-center w-auto px-1"
+                type="text"
+                size="2"
+                maxlength="2"
+                inputmode="numeric"
+                placeholder="HH"
+                aria-label="Hours">
+
+            <button
+                ng-if="$.spinners"
+                ng-click="$.changeHour(-$.hourStep)"
+                ng-disabled="$.isDisabled()"
+                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"
+                class="btn btn-link px-2 py-0 lh-1"
+                tabindex="-1"
+                type="button">
+                <span
+                    class="chevron ngb-tp-chevron bottom"
+                    style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: -0.3em; transform: rotate(135deg); vertical-align: middle; width: 0.69em;"
+                    aria-hidden="true">
+                </span>
+                <span class="visually-hidden">Decrement hours</span>
+            </button>
+        </div>
+
+        <div class="mx-1 fw-bold" aria-hidden="true">:</div>
+
+        <div class="d-flex flex-column align-items-center">
+            <button
+                ng-if="$.spinners"
+                ng-click="$.changeMinute($.minuteStep)"
+                ng-disabled="$.isDisabled()"
+                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"
+                class="btn btn-link px-2 py-0 lh-1"
+                tabindex="-1"
+                type="button">
+                <span
+                    class="chevron ngb-tp-chevron"
+                    style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: 0.15em; transform: rotate(-45deg); vertical-align: middle; width: 0.69em;"
+                    aria-hidden="true">
+                </span>
+                <span class="visually-hidden">Increment minutes</span>
+            </button>
+
+            <input
+                ng-model="$.minuteInput"
+                ng-model-options="{ updateOn: 'change' }"
+                ng-change="$.updateMinute($.minuteInput)"
+                ng-blur="$.handleBlur()"
+                ng-keydown="$event.key === 'ArrowUp' && $.changeMinute($.minuteStep); $event.key === 'ArrowDown' && $.changeMinute(-$.minuteStep); ($event.key === 'ArrowUp' || $event.key === 'ArrowDown') && $event.preventDefault()"
+                ng-readonly="$.readonlyInputs"
+                ng-disabled="$.isDisabled()"
+                ng-class="{ 'form-control-sm': $.isSmallSize, 'form-control-lg': $.isLargeSize }"
+                class="form-control text-center w-auto px-1"
+                type="text"
+                size="2"
+                maxlength="2"
+                inputmode="numeric"
+                placeholder="MM"
+                aria-label="Minutes">
+
+            <button
+                ng-if="$.spinners"
+                ng-click="$.changeMinute(-$.minuteStep)"
+                ng-disabled="$.isDisabled()"
+                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"
+                class="btn btn-link px-2 py-0 lh-1"
+                tabindex="-1"
+                type="button">
+                <span
+                    class="chevron ngb-tp-chevron bottom"
+                    style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: -0.3em; transform: rotate(135deg); vertical-align: middle; width: 0.69em;"
+                    aria-hidden="true">
+                </span>
+                <span class="visually-hidden">Decrement minutes</span>
+            </button>
+        </div>
+
+        <div ng-if="$.seconds" class="d-flex align-items-center">
+            <div class="mx-1 fw-bold" aria-hidden="true">:</div>
+
+            <div class="d-flex flex-column align-items-center">
+                <button
+                    ng-if="$.spinners"
+                    ng-click="$.changeSecond($.secondStep)"
+                    ng-disabled="$.isDisabled()"
+                    ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"
+                    class="btn btn-link px-2 py-0 lh-1"
+                    tabindex="-1"
+                    type="button">
+                    <span
+                        class="chevron ngb-tp-chevron"
+                        style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: 0.15em; transform: rotate(-45deg); vertical-align: middle; width: 0.69em;"
+                        aria-hidden="true">
+                    </span>
+                    <span class="visually-hidden">Increment seconds</span>
+                </button>
+
+                <input
+                    ng-model="$.secondInput"
+                    ng-model-options="{ updateOn: 'change' }"
+                    ng-change="$.updateSecond($.secondInput)"
+                    ng-blur="$.handleBlur()"
+                    ng-keydown="$event.key === 'ArrowUp' && $.changeSecond($.secondStep); $event.key === 'ArrowDown' && $.changeSecond(-$.secondStep); ($event.key === 'ArrowUp' || $event.key === 'ArrowDown') && $event.preventDefault()"
+                    ng-readonly="$.readonlyInputs"
+                    ng-disabled="$.isDisabled()"
+                    ng-class="{ 'form-control-sm': $.isSmallSize, 'form-control-lg': $.isLargeSize }"
+                    class="form-control text-center w-auto px-1"
+                    type="text"
+                    size="2"
+                    maxlength="2"
+                    inputmode="numeric"
+                    placeholder="SS"
+                    aria-label="Seconds">
+
+                <button
+                    ng-if="$.spinners"
+                    ng-click="$.changeSecond(-$.secondStep)"
+                    ng-disabled="$.isDisabled()"
+                    ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"
+                    class="btn btn-link px-2 py-0 lh-1"
+                    tabindex="-1"
+                    type="button">
+                    <span
+                        class="chevron ngb-tp-chevron bottom"
+                        style="border-style: solid; border-width: 0.29em 0.29em 0 0; display: inline-block; height: 0.69em; left: 0.05em; position: relative; top: -0.3em; transform: rotate(135deg); vertical-align: middle; width: 0.69em;"
+                        aria-hidden="true">
+                    </span>
+                    <span class="visually-hidden">Decrement seconds</span>
+                </button>
+            </div>
+        </div>
+
+        <div ng-if="$.meridian" class="ms-2">
+            <button
+                ng-click="$.toggleMeridian()"
+                ng-disabled="$.isDisabled()"
+                ng-class="{ 'btn-sm': $.isSmallSize, 'btn-lg': $.isLargeSize, disabled: $.isDisabled() }"
+                class="btn btn-outline-primary"
+                type="button">
+                {{
+                    $.model && $.model.hour >= 12
+                        ? $.i18n.getAfternoonPeriod()
+                        : $.i18n.getMorningPeriod()
+                }}
+            </button>
+        </div>
+    </div>
+</fieldset>
+`,om=class{constructor(e,t,n){this.hour=cd(e),this.minute=cd(t),this.second=cd(n)}changeHour(e=1){this.updateHour((isNaN(this.hour)?0:this.hour)+e)}updateHour(e){if(ld(e)){this.hour=(e<0?24+e:e)%24;return}this.hour=NaN}changeMinute(e=1){this.updateMinute((isNaN(this.minute)?0:this.minute)+e)}updateMinute(e){if(ld(e)){this.minute=e%60<0?60+e%60:e%60,this.changeHour(Math.floor(e/60));return}this.minute=NaN}changeSecond(e=1){this.updateSecond((isNaN(this.second)?0:this.second)+e)}updateSecond(e){if(ld(e)){this.second=e<0?60+e%60:e%60,this.changeMinute(Math.floor(e/60));return}this.second=NaN}isValid(e=!0){return ld(this.hour)&&ld(this.minute)&&(!e||ld(this.second))}toString(){return`${this.hour||0}:${this.minute||0}:${this.second||0}`}},sm=class{constructor(){this.meridian=!1,this.spinners=!0,this.seconds=!1,this.hourStep=1,this.minuteStep=1,this.secondStep=1,this.disabled=!1,this.readonlyInputs=!1,this.size=`medium`}static get $name(){return`ngb.timepicker.config.service`}static get $inject(){return[]}},cm=class{static get $name(){return`ngb.timepicker.time.adapter`}},lm=class e extends cm{fromModel(e){return e&&Q(e.hour)&&Q(e.minute)?{hour:e.hour,minute:e.minute,second:Q(e.second)?e.second:null}:null}toModel(e){return e&&Q(e.hour)&&Q(e.minute)?{hour:e.hour,minute:e.minute,second:Q(e.second)?e.second:null}:null}static $factory(){return new e}},um=class{static get $name(){return`ngb.timepicker.i18n`}},dm=class extends um{constructor(e){super(),this.periods=[],this.periods=[e(new Date(36e5),`a`,`UTC`),e(new Date(468e5),`a`,`UTC`)]}getMorningPeriod(){return this.periods[0]}getAfternoonPeriod(){return this.periods[1]}static get $inject(){return[`dateFilter`]}},fm=/[^0-9]/g,pm=class e{constructor(e,t,n,r,i,a){this.$element=e,this._config=t,this._cd=n,this._ngbTimeAdapter=r,this.i18n=i,this.$log=a,this.hourInput=``,this.minuteInput=``,this.secondInput=``,this.onChange=u.default.noop,this.onTouched=u.default.noop,this.handleInputEvent=e=>{let t=e.target;t instanceof HTMLInputElement&&this.formatInput(t)}}set hourStep(e){this._hourStep=Q(e)?e:this._config.hourStep}get hourStep(){return this._hourStep}set minuteStep(e){this._minuteStep=Q(e)?e:this._config.minuteStep}get minuteStep(){return this._minuteStep}set secondStep(e){this._secondStep=Q(e)?e:this._config.secondStep}get secondStep(){return this._secondStep}$onInit(){if(this.meridian=this.meridian??this._config.meridian,this.spinners=this.spinners??this._config.spinners,this.seconds=this.seconds??this._config.seconds,this.hourStep=this.hourStep??this._config.hourStep,this.minuteStep=this.minuteStep??this._config.minuteStep,this.secondStep=this.secondStep??this._config.secondStep,this.readonlyInputs=this.readonlyInputs??this._config.readonlyInputs,this.size=this.size??this._config.size,!this.ngModelCtrl){this.$log.error(`[ngbTimepicker] The ng-model attribute is required.`);return}let e=this.ngModelCtrl;e.$render=()=>this.writeValue(e.$viewValue),this.registerOnChange(t=>e.$setViewValue(t)),this.registerOnTouched(()=>e.$setTouched()),e.$render()}$postLink(){this.$element.addClass(`d-inline-block fs-6`),this.$element.on(`input`,this.handleInputEvent),this.renderInputValues()}$onDestroy(){this.$element.off(`input`,this.handleInputEvent)}writeValue(e){let t=this._ngbTimeAdapter.fromModel(e);this.model=t?new om(t.hour,t.minute,t.second):new om,!this.seconds&&(!t||!ld(t.second))&&(this.model.second=0),this.renderInputValues(),this._cd.markForCheck()}registerOnChange(e){this.onChange=e}registerOnTouched(e){this.onTouched=e}setDisabledState(e){this.formsDisabled=e}isDisabled(){return this.ngDisabled?.disabled??this.formsDisabled??this._config.disabled}changeHour(e){this.model?.changeHour(e),this.propagateModelChange()}changeMinute(e){this.model?.changeMinute(e),this.propagateModelChange()}changeSecond(e){this.model?.changeSecond(e),this.propagateModelChange()}updateHour(e){let t=this.model?this.model.hour>=12:!1,n=cd(e);this.meridian&&(t&&n<12||!t&&n===12)?this.model?.updateHour(n+12):this.model?.updateHour(n),this.propagateModelChange()}updateMinute(e){this.model?.updateMinute(cd(e)),this.propagateModelChange()}updateSecond(e){this.model?.updateSecond(cd(e)),this.propagateModelChange()}toggleMeridian(){this.model&&ld(this.model.hour)&&this.meridian&&this.changeHour(12)}formatInput(e){e.value=e.value.replace(fm,``)}formatHour(e){return ld(e)?this.meridian?id(e%12==0?12:e%12):id(e%24):id(NaN)}formatMinSec(e){return id(ld(e)?e:NaN)}handleBlur(){this.onTouched()}get isSmallSize(){return this.size===`small`}get isLargeSize(){return this.size===`large`}$onChanges(e){e.seconds&&!this.seconds&&this.model&&!ld(this.model.second)&&(this.model.second=0,this.propagateModelChange(!1)),this.renderInputValues()}propagateModelChange(e=!0){if(this.renderInputValues(),e&&this.onTouched(),!this.model?.isValid(this.seconds)){this.onChange(this._ngbTimeAdapter.toModel(null));return}this.onChange(this._ngbTimeAdapter.toModel({hour:this.model.hour,minute:this.model.minute,second:this.model.second}))}renderInputValues(){this.hourInput=this.formatHour(this.model?.hour),this.minuteInput=this.formatMinSec(this.model?.minute),this.secondInput=this.formatMinSec(this.model?.second)}static get $name(){return`ngbTimepicker`}static get $inject(){return[`$element`,sm.$name,ks.$name,cm.$name,um.$name,`$log`]}static get $factory(){return{controller:e,controllerAs:`$`,require:{ngModelCtrl:`?ngModel`,ngDisabled:`?ngDisabled`},bindings:{meridian:`<?`,spinners:`<?`,seconds:`<?`,hourStep:`<?`,minuteStep:`<?`,secondStep:`<?`,readonlyInputs:`<?`,size:`<?`},template:am}}},mm=u.default.module(`ngb.timepicker`,[Wc.name]);mm.component(pm.$name,pm.$factory),mm.service(sm.$name,sm),mm.factory(cm.$name,lm.$factory),mm.service(um.$name,dm);var hm=`<ng-template ng-ref="headerTpl">
+    <strong class="me-auto">{{ $.header }}</strong>
+</ng-template>
+
+<div ng-if="$.contentHeaderTpl || $.header" class="toast-header">
+    <ng-container ng-template-outlet="$.contentHeaderTpl || $.headerTpl"></ng-container>
+    <button type="button" class="btn-close" aria-label="Close" ng-click="$.hide()"></button>
+</div>
+
+<div class="toast-body">
+    <ng-content></ng-content>
+</div>
+`,gm=class{constructor(e){this.ngbConfig=e,this.ariaLive=`polite`,this.autohide=!0,this.delay=5e3}get animation(){return this._animation??this.ngbConfig.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.toast.config.service`}},_m=class e{static get $name(){return`ngbToastHeader`}static get $factory(){return()=>({bindToController:!0,controller:e,restrict:`A`})}},vm=(e,t)=>t?(e.addClass(`fade`),ed(e),e.addClass(`show showing`),()=>{e.removeClass(`showing`)}):(e.addClass(`show`),u.default.noop),ym=(e,t)=>(e.addClass(`showing`),()=>{if(!t){e.removeClass(`d-block`);return}e.removeClass(`show showing`)}),bm=class e{constructor(e,t,n,r,i){this.$element=e,this.ngbToastConfig=t,this.$timeout=n,this.$attrs=r,this._ngZone=i,this.contentHeaderTpl=null,this._timeoutID=null}$onInit(){this.animation=this.animation??this.ngbToastConfig.animation,this.autohide=this.autohide??this.ngbToastConfig.autohide,this.delay=this.delay??this.ngbToastConfig.delay,this.ariaLive=this.$attrs.ariaLive??this.ngbToastConfig.ariaLive}$postLink(){this.$element.attr(`role`,`alert`),this.$element.attr(`aria-live`,this.ariaLive??this.ngbToastConfig.ariaLive),this.$element.attr(`aria-atomic`,`true`),this.$element.addClass(`toast d-block`),this._init(),this.show()}$onChanges(e){this.$element.toggleClass(`fade`,this.animation),`autohide`in e&&(this._clearTimeout(),this._init())}hide(){this._clearTimeout();let e=Qu(this._ngZone,this.$element,ym,{animation:this.animation??this.ngbToastConfig.animation,runningTransition:`stop`});return e.subscribe(()=>this.hidden?.()),e}show(){let e=Qu(this._ngZone,this.$element,vm,{animation:this.animation??this.ngbToastConfig.animation,runningTransition:`continue`});return e.subscribe(()=>this.shown?.()),e}_init(){this.autohide&&!this._timeoutID&&(this._timeoutID=this.$timeout(()=>{this.hide()},this.delay))}_clearTimeout(){this._timeoutID&&=(this.$timeout.cancel(this._timeoutID),null)}static get $name(){return`ngbToast`}static get $inject(){return[`$element`,gm.$name,`$timeout`,`$attrs`,Fc.$name]}static get $factory(){return{bindings:{animation:`<?`,autohide:`<?`,delay:`<?`,header:`@?`,hidden:`&?`,shown:`&?`},controllerAs:`$`,transclude:!0,controller:e,template:hm}}};X([qs(_m,{read:kc,static:!0})],bm.prototype,`contentHeaderTpl`,2),X([fc(`headerTpl`,{read:kc,static:!0})],bm.prototype,`headerTpl`,2);var xm=bm,Sm=u.default.module(`ngb.toast`,[Wc.name]);Sm.service(gm.$name,gm),Sm.component(xm.$name,xm.$factory),Sm.directive(_m.$name,_m.$factory);var Cm=class{constructor(e){this.$config=e,this.autoClose=!0,this.placement=`auto`,this.popperOptions=e=>e,this.triggers=`hover focus`,this.disableTooltip=!1,this.openDelay=0,this.closeDelay=0}get animation(){return this._animation??this.$config.animation}set animation(e){this._animation=e}static get $inject(){return[Lu.$name]}static get $name(){return`ngb.tooltip.config.service`}},wm=`<div class="tooltip-arrow" data-popper-arrow></div>
+<div class="tooltip-inner" ngb-popup-content></div>
+`,Tm=class e{constructor(e){this.$element=e}$postLink(){this.$element.attr(`role`,`tooltip`),this.$element.addClass(`tooltip`)}$onChanges(e){this.id?this.$element.attr(`id`,this.id):this.$element.removeAttr(`id`),this.$element.toggleClass(`fade`,this.animation);let t=e?.tooltipClass?.previousValue;typeof t==`string`&&t&&this.$element.removeClass(t),this.tooltipClass&&this.$element.addClass(this.tooltipClass),(this.onMouseEnter||this.onMouseLeave)&&(this.$element.off(`mouseenter`),this.$element.off(`mouseleave`),this.$element.on(`mouseenter`,this.onMouseEnter?.bind(this)??u.default.noop),this.$element.on(`mouseleave`,this.onMouseLeave?.bind(this)??u.default.noop))}static get $inject(){return[`$element`]}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{animation:`<?`,id:`<?`,tooltipClass:`@?`,onMouseEnter:`&?`,onMouseLeave:`&?`},template:wm}}static get $name(){return`ngbTooltipWindow`}},Em=0,Dm=class e{constructor(e,t,n,r,i,a,o,s,c){this._config=e,this.$element=t,this.popupFactory=n,this.$ngbRTL=r,this.$timeout=i,this.$scope=a,this._ngZone=o,this._changeDetector=s,this.$attrs=c,this._ngbTooltipWindowId=`ngb-tooltip-${Em++}`,this._windowRef=null,this._destroyCloseHandlers$=new Y,this._transitioning=!1,this._opening=!0,this._mouseenterContent$=new Y,this._mouseleaveContent$=new Y}$onInit(){this.popupService=this.popupFactory.$create(Tm.$name),this._positioning=mf(this.$ngbRTL),this.animation=this.animation??this._config.animation,this.autoClose=this.autoClose??this._config.autoClose,this.placement=this.placement??this._config.placement,this.popperOptions=this.popperOptions??this._config.popperOptions,this.triggers=this.triggers??this._config.triggers,this.container=this.container??this._config.container,this.disableTooltip=this.disableTooltip??this._config.disableTooltip,this.tooltipClass=this.tooltipClass??this._config.tooltipClass,this.openDelay=this.openDelay??this._config.openDelay,this.closeDelay=this.closeDelay??this._config.closeDelay,this._ngbTooltip=this._ngbTooltip??this.$attrs.ngbTooltip}$postLink(){this._listenToTriggers()}$onChanges(e){e.triggers&&!e.triggers.isFirstChange()&&this._listenToTriggers(),e.tooltipClass&&this.isOpen()&&this._windowRef.setInput(`tooltipClass`,e.tooltipClass.currentValue),this.isOpen()&&(e.placement||e.popperOptions||e.positionTarget)&&(this._positioning.setOptions({hostElement:Z(this._getPositionTargetElement()),targetElement:Z(this._windowRef.$element),placement:this.placement,baseClass:`bs-tooltip`,updatePopperOptions:e=>this.popperOptions(hf([0,6])(e))}),this._positioning.update()),this.isOpen()&&e.disableTooltip?.currentValue&&this.close()}open(e){if(!this._opening&&this._transitioning&&(this._transitioning=!1,$u(this._windowRef.$element)),this._windowRef||this.disableTooltip||!this._ngbTooltip){this._changeDetector.markForCheck();return}let{windowRef:t,transition$:n}=this.popupService.open(this._ngbTooltip,e??this.tooltipContext,this.animation);this._opening=!0,this._transitioning=!0,this._windowRef=t,t.setInput(`animation`,this.animation),t.setInput(`tooltipClass`,this.tooltipClass),t.setInput(`id`,this._ngbTooltipWindowId),t.setInput(`onMouseEnter`,()=>this._mouseenterContent$.next()),t.setInput(`onMouseLeave`,()=>this._mouseleaveContent$.next()),Z(this._getPositionTargetElement()).setAttribute(`aria-describedby`,this._ngbTooltipWindowId),this._applyContainer(),this._positioning.createPopper({hostElement:Z(this._getPositionTargetElement()),targetElement:Z(this._windowRef.$element),placement:this.placement,baseClass:`bs-tooltip`,updatePopperOptions:e=>this.popperOptions(hf([0,6])(e))}),Promise.resolve().then(()=>this._positioning.update()),this._watchPositioning(),this._setCloseHandlers(),n.subscribe(()=>{this._transitioning&&(this._transitioning=!1,this._positioning.update(),this.shown?.())}),this._changeDetector.markForCheck()}close(e=this.animation){this._opening&&this._transitioning&&(this._transitioning=!1,$u(this._windowRef.$element)),this._windowRef&&(this._opening=!1,this._transitioning=!0,this._destroyCloseHandlers$.next(),Z(this._getPositionTargetElement()).removeAttribute(`aria-describedby`),this.popupService.close(e).subscribe(()=>{this._windowRef=null,this._positioning.destroy(),this._unwatchPositioning?.(),this._unwatchPositioning=void 0,this._transitioning&&(this._transitioning=!1,this.hidden?.()),this._changeDetector.markForCheck()}))}toggle(){this._windowRef?this.close():this.open()}isOpen(){return this._windowRef!=null}$onDestroy(){this.close(!1),this._unlistenTriggers?.(),this._destroyCloseHandlers$.next(),this._destroyCloseHandlers$.complete()}_getPositionTargetElement(){let e=Z(this.$element),t=this.positionTarget?document.querySelector(this.positionTarget):null;return u.default.element(t??e)}_applyContainer(){this._getContainerElement().append(this._windowRef.$element)}_getContainerElement(){if(!this.container)return this.$element.parent();if(this.container===`body`)return u.default.element(document.body);let e=document.querySelector(this.container);if(!e)throw Error(`[ngb-tooltip]: The specified container "${this.container}" was not found in the DOM.`);return u.default.element(e)}_listenToTriggers(){this._unlistenTriggers?.(),this._unlistenTriggers=jp(this.$timeout,Z(this.$element),this.triggers,()=>this.isOpen(),()=>this.open(),()=>this.close(),+this.openDelay,+this.closeDelay,this._mouseenterContent$,this._mouseleaveContent$)}_setCloseHandlers(){this._destroyCloseHandlers$.next(),tf(this._ngZone,this.autoClose,this._destroyCloseHandlers$,e=>{this.close(),e===0&&Z(this.$element).focus()},this._windowRef?[Z(this._windowRef.$element)]:[],[Z(this.$element)])}_watchPositioning(){this._unwatchPositioning?.(),this._unwatchPositioning=this.$scope.$watch(()=>{this._windowRef&&this._positioning.update()})}set ngbTooltip(e){this._ngbTooltip=e,!e&&this.isOpen()&&this.close()}static get $inject(){return[Cm.$name,`$element`,kf.$name,gf.$name,`$timeout`,`$scope`,Fc.$name,ks.$name,`$attrs`]}static get $factory(){return()=>({controller:e,bindToController:{ngbTooltip:`<?`,animation:`<?`,autoClose:`<?`,placement:`<?`,popperOptions:`<?`,triggers:`<?`,positionTarget:`@?`,container:`<?`,disableTooltip:`<?`,tooltipClass:`@?`,tooltipContext:`<?`,openDelay:`<?`,closeDelay:`<?`,shown:`&?`,hidden:`&?`},scope:!0,restrict:`A`})}static get $name(){return`ngbTooltip`}},Om=u.default.module(`ngb.tooltip`,[Wc.name]);Om.component(Tm.$name,Tm.$factory),Om.directive(Dm.$name,Dm.$factory),Om.service(Cm.$name,Cm);var km=`<span
+    ng-repeat="part in $.parts track by $index"
+    ng-class="[$odd ? $.highlightClass : '', $odd && $.highlightClass === 'ngb-highlight' ? 'fw-bold' : '']">{{ part }}</span>
+`,Am=class e{constructor(){this.parts=[]}$onChanges(){this.highlightClass=this.highlightClass??`ngb-highlight`,this.accentSensitive=this.accentSensitive??!0,!this.accentSensitive&&!String.prototype.normalize&&(console.warn("The `accentSensitive` input in `ngb-highlight` cannot be set to `false` in a browser that does not implement the `String.normalize` function. You will have to include a polyfill in your application to use this feature in the current browser."),this.accentSensitive=!0);let e=rd(this.result),t=Array.isArray(this.term)?this.term:[this.term],n=e=>this.accentSensitive?e:od(e),r=t.map(e=>ad(n(rd(e)))).filter(e=>e),i=this.accentSensitive?e:od(e),a=r.length?i.split(RegExp(`(${r.join(`|`)})`,`gmi`)):[e];if(this.accentSensitive)return this.parts=a,a;let o=0;this.parts=a.map(t=>e.substring(o,o+=t.length))}static get $name(){return`ngbHighlight`}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{term:`<`,result:`<`,highlightClass:`<?`,accentSensitive:`<?`},template:km.trim()}}},jm=class{constructor(){this.editable=!0,this.focusFirst=!0,this.selectOnExact=!1,this.showHint=!1,this.placement=[`bottom-start`,`bottom-end`,`top-start`,`top-end`],this.popperOptions=e=>e}static get $name(){return`ngb.typeahead.config.service`}},Mm=`<ng-template ng-ref="rt" let-result="result" let-term="term" let-formatter="formatter">
+    <ngb-highlight result="formatter(result)" term="term"></ngb-highlight>
+</ng-template>
+
+<button
+        type="button"\r
+        class="dropdown-item"
+        role="option"
+        ng-attr-id="{{ $.id + '-' + $index }}"
+        ng-class="{ active: $index === $.activeIdx }"
+        ng-mouseenter="$.markActive($index)"
+        ng-click="$.select(result)"
+        ng-repeat="result in $.results track by $index">
+    <ng-container
+            ng-template-outlet="$.resultTemplate || rt"
+            ng-template-outlet-context="{ result: result, term: $.term, formatter: $.formatter }"
+    ></ng-container>
+</button>
+`,Nm=class e{constructor(e){this.$element=e,this.activeIdx=0,this.results=[],this.preventMouseDownDefault=e=>e.preventDefault()}set id(e){if(e){this.$element.attr(`id`,e);return}this.$element.removeAttr(`id`)}get id(){return this.$element.attr(`id`)??``}$onInit(){this.focusFirst=this.focusFirst??!0,this.formatter=this.formatter??rd,this.resetActive()}$postLink(){this.$element.addClass(`dropdown-menu show`),this.$element.attr(`role`,`listbox`),this.$element.on(`mousedown`,this.preventMouseDownDefault)}$onChanges(e){let t=e.popupClass?.previousValue;typeof t==`string`&&t&&this.$element.removeClass(t),this.popupClass&&this.$element.addClass(this.popupClass)}$onDestroy(){this.$element.off(`mousedown`,this.preventMouseDownDefault)}hasActive(){return this.activeIdx>-1&&this.activeIdx<this.results.length}getActive(){return this.results[this.activeIdx]}markActive(e){this.activeIdx=e,this._activeChanged()}next(){if(this.activeIdx!==this.results.length-1){this.activeIdx++,this._activeChanged();return}this.activeIdx=this.focusFirst?(this.activeIdx+1)%this.results.length:-1,this._activeChanged()}prev(){if(this.activeIdx===0){this.activeIdx=this.focusFirst?this.results.length-1:-1,this._activeChanged();return}if(this.activeIdx>0){this.activeIdx--,this._activeChanged();return}this.activeIdx=this.results.length-1,this._activeChanged()}resetActive(){this.activeIdx=this.focusFirst?0:-1,this._activeChanged()}select(e){this.selectEvent?.({$event:e})}_activeChanged(){this.activeChangeEvent?.({$event:this.activeIdx>=0?this.id+`-`+this.activeIdx:void 0})}static get $name(){return`ngbTypeaheadWindow`}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{focusFirst:`<?`,results:`<?`,term:`<?`,formatter:`<?`,resultTemplate:`<?`,popupClass:`<?`,selectEvent:`&?select`,activeChangeEvent:`&?activeChange`},template:Mm}}static get $inject(){return[`$element`]}},Pm={$name:`ARIA_LIVE_DELAY`,$value:100};function Fm(e=!1){let t=document.body,n=u.default.element(t.querySelector(`#ngb-live`));return n==null&&e&&(n=u.default.element(`<div></div>`),n.attr(`id`,`ngb-live`),n.attr(`aria-live`,`polite`),n.attr(`aria-atomic`,`true`),n.addClass(`visually-hidden`),u.default.element(t).append(n)),n}var Im=class{constructor(e,t){this.ariaLiveDelay=e,this.$timeout=t}onDestroy(){let e=Fm();e&&e.remove()}say(e){let t=Fm(!0),n=this.ariaLiveDelay;if(!t)return;t.empty();let r=()=>t.append(e);if(!n){r();return}this.$timeout(r,this.ariaLiveDelay)}static get $name(){return`ngb.live.service`}static get $inject(){return[Pm.$name,`$timeout`]}},Lm=0,Rm=class e{constructor(e,t,n,r,i,a,o,s){this.$element=e,this.$scope=t,this._config=n,this._live=r,this._ngZone=i,this._changeDetector=a,this._popupFactory=o,this._rtl=s,this.activeDescendant=null,this.popupId=`ngb-typeahead-${Lm++}`,this._onTouched=()=>{},this._onChange=e=>{},this._resubscribeTypeahead$=new ja(null),this._closed$=new Y,this._inputValueBackup=null,this._inputValueForSelectOnExact=null,this._subscription=null,this._windowRef=null,this._handleBlurEvent=()=>this._ngZone.run(()=>this.handleBlur()),this._handleKeyDownEvent=e=>this._ngZone.run(()=>this.handleKeyDown(e))}$onInit(){this._positioning=mf(this._rtl),this._popupService=this._popupFactory.$create(Nm.$name),this.autocomplete=this.autocomplete??`off`,this.container=this.container??this._config.container,this.editable=this.editable??this._config.editable,this.focusFirst=this.focusFirst??this._config.focusFirst,this.selectOnExact=this.selectOnExact??this._config.selectOnExact,this.showHint=this.showHint??this._config.showHint,this.placement=this.placement??this._config.placement,this.popperOptions=this.popperOptions??this._config.popperOptions;let e=this._nativeElement;if(this._valueChanges$=Ko(e,`input`).pipe(wo(e=>e.target.value)),this.ngModelCtrl){let e=this.ngModelCtrl;e.$render=()=>this.writeValue(e.$viewValue),this.registerOnChange(t=>e.$setViewValue(t)),this.registerOnTouched(()=>e.$setTouched()),e.$render()}this._subscribeToUserInput()}$postLink(){this.$element.on(`blur`,this._handleBlurEvent),this.$element.on(`keydown`,this._handleKeyDownEvent),this.$element.attr(`autocapitalize`,`off`),this.$element.attr(`autocorrect`,`off`),this.$element.attr(`role`,`combobox`),this._renderHostState()}$onChanges(e){let t=e.ngbTypeahead;t&&!t.isFirstChange()&&(this._unsubscribeFromUserInput(),this._subscribeToUserInput()),this._renderHostState()}$onDestroy(){this.$element.off(`blur`,this._handleBlurEvent),this.$element.off(`keydown`,this._handleKeyDownEvent),this._closePopup(),this._unsubscribeFromUserInput(),this._closed$.complete(),this._resubscribeTypeahead$.complete()}registerOnChange(e){this._onChange=e}registerOnTouched(e){this._onTouched=e}writeValue(e){this._writeInputValue(this._formatItemForInput(e)),this.showHint&&(this._inputValueBackup=e)}setDisabledState(e){this._nativeElement.disabled=e}dismissPopup(){this.isPopupOpen()&&(this._resubscribeTypeahead$.next(null),this._closePopup(),this.showHint&&this._inputValueBackup!==null&&this._writeInputValue(this._inputValueBackup),this._changeDetector.markForCheck())}isPopupOpen(){return this._windowRef!=null}handleBlur(){this._resubscribeTypeahead$.next(null),this._onTouched()}handleKeyDown(e){if(!this.isPopupOpen())return;let t=this._windowRef?.componentInstance;if(t)switch(e.key){case`ArrowDown`:e.preventDefault(),t.next(),this._showHint();break;case`ArrowUp`:e.preventDefault(),t.prev(),this._showHint();break;case`Enter`:case`Tab`:{let n=t.getActive();n!=null&&(e.preventDefault(),e.stopPropagation(),this._selectResult(n)),this._closePopup();break}}}get _nativeElement(){return Z(this.$element)}_openPopup(){if(this.isPopupOpen())return;this._inputValueBackup=this._nativeElement.value;let{windowRef:e}=this._popupService.open();this._windowRef=e,e.setInput(`id`,this.popupId),e.setInput(`popupClass`,this.popupClass),e.setInput(`selectEvent`,({$event:e})=>this._selectResultClosePopup(e)),e.setInput(`activeChangeEvent`,({$event:e})=>{this.activeDescendant=e??null,this._renderHostState()});let t=Z(e.$element);if(this.container===`body`)t.style.zIndex=`1055`,document.body.appendChild(t);else{let e=this._nativeElement;e.parentNode?.insertBefore(t,e.nextSibling)}this._renderHostState(),this._changeDetector.markForCheck(),this._ngZone.runOutsideAngular(()=>{this._windowRef&&(this._positioning.createPopper({hostElement:this._nativeElement,targetElement:t,placement:this.placement??this._config.placement,updatePopperOptions:e=>(this.popperOptions??this._config.popperOptions)(hf([0,2])(e))}),this._watchPositioning())}),tf(this._ngZone,`outside`,this._closed$,()=>this.dismissPopup(),[t],[this._nativeElement])}_closePopup(){this._popupService.close().subscribe(()=>{this._positioning.destroy(),this._unwatchPositioning?.(),this._unwatchPositioning=void 0,this._closed$.next(),this._windowRef=null,this.activeDescendant=null,this._renderHostState()})}_selectResult(e){let t=!1;this.selectItem?.({$event:{item:e,preventDefault:()=>{t=!0}}}),this._resubscribeTypeahead$.next(null),t||(this.writeValue(e),this._onChange(e))}_selectResultClosePopup(e){this._selectResult(e),this._closePopup()}_showHint(){let e=this._windowRef?.componentInstance;if(this.showHint&&e?.hasActive()&&this._inputValueBackup!=null){let t=this._inputValueBackup.toLowerCase(),n=this._formatItemForInput(e.getActive());t===n.substring(0,this._inputValueBackup.length).toLowerCase()?(this._writeInputValue(this._inputValueBackup+n.substring(this._inputValueBackup.length)),this._nativeElement.setSelectionRange(this._inputValueBackup.length,n.length)):this._writeInputValue(n)}}_formatItemForInput(e){return e!=null&&this.inputFormatter?this.inputFormatter(e):rd(e)}_writeInputValue(e){this._nativeElement.value=rd(e)}_subscribeToUserInput(){let e=this._valueChanges$.pipe(xs(e=>{this._inputValueBackup=this.showHint?e:null,this._inputValueForSelectOnExact=this.selectOnExact?e:null,this._ngZone.run(()=>this._onChange(this.editable?e:null))}),this.ngbTypeahead?this.ngbTypeahead:()=>So([]));this._subscription=this._resubscribeTypeahead$.pipe(ys(()=>e)).subscribe(e=>{this._ngZone.run(()=>{if(!e||e.length===0)this._closePopup();else if(this.selectOnExact&&e.length===1&&this._formatItemForInput(e[0])===this._inputValueForSelectOnExact)this._selectResult(e[0]),this._closePopup();else{this._openPopup();let t=this._windowRef;if(!t)return;t.setInput(`focusFirst`,this.focusFirst),t.setInput(`results`,e),t.setInput(`term`,this._nativeElement.value),this.resultFormatter&&t.setInput(`formatter`,this.resultFormatter),this.resultTemplate&&t.setInput(`resultTemplate`,this.resultTemplate),t.componentInstance?.resetActive(),t.$scope?.$digest(),this._showHint()}let t=e?e.length:0;this._live.say(t===0?`No results available`:`${t} result${t===1?``:`s`} available`)})})}_unsubscribeFromUserInput(){this._subscription?.unsubscribe(),this._subscription=null}_watchPositioning(){this._unwatchPositioning?.(),this._unwatchPositioning=this.$scope.$watch(()=>{this._windowRef&&this._positioning.update()})}_renderHostState(){this.$element.attr(`autocomplete`,this.autocomplete??`off`),this.$element.attr(`aria-autocomplete`,this.showHint?`both`:`list`),this.$element.attr(`aria-expanded`,`${this.isPopupOpen()}`),this.isPopupOpen()?(this.$element.addClass(`open`),this.$element.attr(`aria-controls`,this.popupId)):(this.$element.removeClass(`open`),this.$element.removeAttr(`aria-controls`)),this.activeDescendant?this.$element.attr(`aria-activedescendant`,this.activeDescendant):this.$element.removeAttr(`aria-activedescendant`)}static get $inject(){return[`$element`,`$scope`,jm.$name,Im.$name,Fc.$name,ks.$name,kf.$name,gf.$name]}static get $name(){return`ngbTypeahead`}static get $factory(){return()=>({bindToController:{autocomplete:`<?`,container:`<?`,editable:`<?`,focusFirst:`<?`,inputFormatter:`<?`,ngbTypeahead:`<?`,placement:`<?`,popperOptions:`<?`,popupClass:`<?`,resultFormatter:`<?`,resultTemplate:`<?`,selectOnExact:`<?`,showHint:`<?`,selectItem:`&?`},controller:e,require:{ngModelCtrl:`?ngModel`},restrict:`A`,scope:!0})}},zm=u.default.module(`ngb.typeahead`,[Wc.name]);zm.constant(Pm.$name,Pm.$value),zm.factory(kf.$name,kf),zm.service(Im.$name,Im),zm.service(gf.$name,gf),zm.service(jm.$name,jm),zm.component(Am.$name,Am.$factory),zm.component(Nm.$name,Nm.$factory),zm.directive(Rm.$name,Rm.$factory);var Bm=class e{static get $name(){return`ngbPaginationEllipsis`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Vm=class e{static get $name(){return`ngbPaginationFirst`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Hm=class e{static get $name(){return`ngbPaginationLast`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Um=class e{static get $name(){return`ngbPaginationNext`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Wm=class e{static get $name(){return`ngbPaginationNumber`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Gm=class e{static get $name(){return`ngbPaginationPrevious`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},Km=class e{static get $name(){return`ngbPaginationNumber`}static $factory(){return{restrict:`A`,bindToController:!0,controller:e,require:{templateRef:`ngTemplate`}}}},qm=`<ng-template ng-ref="first">
+    <span aria-hidden="true" i18n="@@ngb.pagination.first">&laquo;&laquo;</span>
+</ng-template>
+
+<ng-template ng-ref="previous">
+    <span aria-hidden="true" i18n="@@ngb.pagination.previous">&laquo;</span>
+</ng-template>
+
+<ng-template ng-ref="next">
+    <span aria-hidden="true" i18n="@@ngb.pagination.next">&raquo;</span>
+</ng-template>
+
+<ng-template ng-ref="last">
+    <span aria-hidden="true" i18n="@@ngb.pagination.last">&raquo;&raquo;</span>
+</ng-template>
+
+<ng-template ng-ref="ellipsis">...</ng-template>
+
+<ng-template ng-ref="defaultNumber" let-page let-currentPage="currentPage">
+    {{ page }}
+</ng-template>
+
+<ul class="pagination" ng-class="$.size ? 'pagination-' + $.size : null">
+    <li ng-if="$.boundaryLinks" class="page-item" ng-class="{ 'disabled': $.previousDisabled() }">
+        <a
+                aria-label="First"
+                i18n-aria-label="@@ngb.pagination.first-aria"
+                class="page-link"
+                href
+                ng-click="$.selectPage(1); $event.preventDefault()"
+                ng-attr-tabindex="$.previousDisabled() ? '-1' : null"
+                ng-attr-aria-disabled="$.previousDisabled() ? 'true' : null">
+            <ng-template
+                    ng-template-outlet="($.tplFirst && $.tplFirst.templateRef) || first"
+                    ng-template-outlet-context="{ disabled: $.previousDisabled(), currentPage: $.page }">
+            </ng-template>
+        </a>
+    </li>
+
+    <li ng-if="$.directionLinks" class="page-item" ng-class="{ 'disabled': $.previousDisabled() }">
+        <a
+                aria-label="Previous"
+                i18n-aria-label="@@ngb.pagination.previous-aria"
+                class="page-link"
+                href
+                ng-click="$.selectPage($.page - 1); $event.preventDefault()"
+                ng-attr-tabindex="$.previousDisabled() ? '-1' : null"
+                ng-attr-aria-disabled="$.previousDisabled() ? 'true' : null">
+            <ng-template
+                    ng-template-outlet="($.tplPrevious && $.tplPrevious.templateRef) || previous"
+                    ng-template-outlet-context="{ disabled: $.previousDisabled() }">
+            </ng-template>
+        </a>
+    </li>
+
+    <li
+            ng-repeat="pageNumber in ($.tplPages ? [] : $.pages) track by $index"
+            class="page-item"
+            ng-class="{ 'active': pageNumber === $.page, 'disabled': $.isEllipsis(pageNumber) || $.isDisabled() }">
+        <a ng-if="$.isEllipsis(pageNumber)" class="page-link" tabindex="-1" aria-disabled="true">
+            <ng-template
+                    ng-template-outlet="($.tplEllipsis && $.tplEllipsis.templateRef) || ellipsis"
+                    ng-template-outlet-context="{ disabled: true, currentPage: $.page }">
+            </ng-template>
+        </a>
+
+        <a
+                ng-if="!$.isEllipsis(pageNumber)"
+                class="page-link"
+                href
+                ng-click="$.selectPage(pageNumber); $event.preventDefault()"
+                ng-attr-tabindex="$.isDisabled() ? '-1' : null"
+                ng-attr-aria-disabled="$.isDisabled() ? 'true' : null"
+                ng-attr-aria-current="pageNumber === $.page ? 'page' : null">
+            <ng-template
+                    ng-template-outlet="($.tplNumber && $.tplNumber.templateRef) || defaultNumber"
+                    ng-template-outlet-context="{ disabled: $.isDisabled(), $implicit: pageNumber, currentPage: $.page }">
+            </ng-template>
+        </a>
+    </li>
+
+    <ng-template
+            ng-if="$.tplPages"
+            ng-template-outlet="$.tplPages.templateRef"
+            ng-template-outlet-context="{ $implicit: $.page, pages: $.pages, disabled: $.isDisabled() }">
+    </ng-template>
+
+    <li ng-if="$.directionLinks" class="page-item" ng-class="{ 'disabled': $.nextDisabled() }">
+        <a
+                aria-label="Next"
+                i18n-aria-label="@@ngb.pagination.next-aria"
+                class="page-link"
+                href
+                ng-click="$.selectPage($.page + 1); $event.preventDefault()"
+                ng-attr-tabindex="$.nextDisabled() ? '-1' : null"
+                ng-attr-aria-disabled="$.nextDisabled() ? 'true' : null">
+            <ng-template
+                    ng-template-outlet="($.tplNext && $.tplNext.templateRef) || next"
+                    ng-template-outlet-context="{ disabled: $.nextDisabled(), currentPage: $.page }">
+            </ng-template>
+        </a>
+    </li>
+
+    <li ng-if="$.boundaryLinks" class="page-item" ng-class="{ 'disabled': $.nextDisabled() }">
+        <a
+                aria-label="Last"
+                i18n-aria-label="@@ngb.pagination.last-aria"
+                class="page-link"
+                href
+                ng-click="$.selectPage($.pageCount); $event.preventDefault()"
+                ng-attr-tabindex="$.nextDisabled() ? '-1' : null"
+                ng-attr-aria-disabled="$.nextDisabled() ? 'true' : null"
+        >
+            <ng-template
+                    ng-template-outlet="($.tplLast && $.tplLast.templateRef) || last"
+                    ng-template-outlet-context="{ disabled: $.nextDisabled(), currentPage: $.page }">
+            </ng-template>
+        </a>
+    </li>
+</ul>
+`,Jm=class{constructor(){this.disabled=!1,this.boundaryLinks=!1,this.directionLinks=!0,this.ellipses=!0,this.maxSize=0,this.pageSize=10,this.rotate=!1}static get $name(){return`ngb.pagination-config.service`}},Ym=class e{constructor(e,t){this.$element=e,this._config=t,this.pageCount=0,this.pages=[]}$onInit(){this.boundaryLinks=this.boundaryLinks??this._config.boundaryLinks,this.directionLinks=this.directionLinks??this._config.directionLinks,this.ellipses=this.ellipses??this._config.ellipses,this.rotate=this.rotate??this._config.rotate,this.maxSize=this.maxSize??this._config.maxSize,this.pageSize=this.pageSize??this._config.pageSize,this.page=this.page??1,this.size=this.size??this._config.size,this._updatePages(this.page)}$postLink(){this.$element.attr(`role`,`navigation`)}isDisabled(){return this.ngDisabled?.disabled??this._config.disabled}hasPrevious(){return this.page>1}hasNext(){return this.page<this.pageCount}nextDisabled(){return!this.hasNext()||this.isDisabled()}previousDisabled(){return!this.hasPrevious()||this.isDisabled()}selectPage(e){this._updatePages(e)}isEllipsis(e){return e===-1}_applyEllipses(e,t){this.ellipses&&(e>0&&(e>2&&this.pages.unshift(-1),e===2&&this.pages.unshift(2),this.pages.unshift(1)),t<this.pageCount&&(t<this.pageCount-2&&this.pages.push(-1),t===this.pageCount-2&&this.pages.push(this.pageCount-1),this.pages.push(this.pageCount)))}_applyRotation(){let e=0,t=this.pageCount,n=Math.floor(this.maxSize/2),r=this.maxSize%2==0?n-1:n;return this.page<=n?t=this.maxSize:this.pageCount-this.page<n?e=this.pageCount-this.maxSize:(e=this.page-n-1,t=this.page+r),[e,t]}_applyPagination(){let e=(Math.ceil(this.page/this.maxSize)-1)*this.maxSize;return[e,e+this.maxSize]}_setPageInRange(e){let t=this.page;this.page=nd(e,this.pageCount,1),this.page!=t&&ld(this.collectionSize)&&this.pageChange?.({$event:this.page})}_updatePages(e){this.pageCount=Math.ceil(this.collectionSize/this.pageSize),ld(this.pageCount)||(this.pageCount=0),this.pages.length=0;for(let e=1;e<=this.pageCount;e++)this.pages.push(e);if(this._setPageInRange(e),this.maxSize>0&&this.pageCount>this.maxSize){let e=0,t=this.pageCount;[e,t]=this.rotate?this._applyRotation():this._applyPagination();let n=this.pages.slice(e,t);this.pages.splice(0,this.pages.length,...n),this._applyEllipses(e,t)}}static get $name(){return`ngbPagination`}static get $factory(){return{controller:e,controllerAs:`$`,template:qm,require:{ngDisabled:`?ngDisabled`},bindings:{boundaryLinks:`<?`,directionLinks:`<?`,ellipses:`<?`,rotate:`<?`,collectionSize:`<`,maxSize:`<?`,page:`<?`,pageSize:`<?`,pageChange:`&?`,size:`<?`}}}static get $inject(){return[`$element`,Jm.$name]}};X([qs(Bm,{static:!1})],Ym.prototype,`tplEllipsis`,2),X([qs(Vm,{static:!1})],Ym.prototype,`tplFirst`,2),X([qs(Hm,{static:!1})],Ym.prototype,`tplLast`,2),X([qs(Um,{static:!1})],Ym.prototype,`tplNext`,2),X([qs(Wm,{static:!1})],Ym.prototype,`tplNumber`,2),X([qs(Gm,{static:!1})],Ym.prototype,`tplPrevious`,2),X([qs(Km,{static:!1})],Ym.prototype,`tplPages`,2);var Xm=Ym,Zm=u.default.module(`ngb-pagination`,[zc.name]);Zm.component(Xm.$name,Xm.$factory),Zm.service(Jm.$name,Jm),Zm.directive(Bm.$name,Bm.$factory),Zm.directive(Vm.$name,Vm.$factory),Zm.directive(Hm.$name,Hm.$factory),Zm.directive(Um.$name,Um.$factory),Zm.directive(Wm.$name,Wm.$factory),Zm.directive(Um.$name,Um.$factory),Zm.directive(Km.$name,Km.$factory),Zm.directive(Gm.$name,Gm.$factory);var Qm=class{},$m=class extends Qm{fromModel(e){return e&&Q(e.year)&&Q(e.month)&&Q(e.day)?{year:e.year,month:e.month,day:e.day}:null}toModel(e){return e&&Q(e.year)&&Q(e.month)&&Q(e.day)?{year:e.year,month:e.month,day:e.day}:null}},eh=class e{static from(t){return t instanceof e?t:t?new e(t.year,t.month,t.day):null}constructor(e,t,n){this.year=Q(e)?e:null,this.month=Q(t)?t:null,this.day=Q(n)?n:null}equals(e){return e!=null&&this.year===e.year&&this.month===e.month&&this.day===e.day}before(e){return e?this.year===e.year?this.month===e.month?this.day!==e.day&&this.day<e.day:this.month<e.month:this.year<e.year:!1}after(e){return e?this.year===e.year?this.month===e.month?this.day!==e.day&&this.day>e.day:this.month>e.month:this.year>e.year:!1}};function th(e){return new eh(e.getFullYear(),e.getMonth()+1,e.getDate())}function nh(e){let t=new Date(e.year,e.month-1,e.day,12);return isNaN(t.getTime())||t.setFullYear(e.year),t}var rh=class{},ih=class extends rh{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){let r=nh(e),i=!0,a=r.getMonth(),o={y:()=>{r.setFullYear(r.getFullYear()+n)},m:()=>{a+=n,r.setMonth(a),a%=12,a<0&&(a+=12)},d:()=>{r.setDate(r.getDate()+n),i=!1}}[t];return o?(o(),i&&r.getMonth()!==a&&r.setDate(0),th(r)):e}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=nh(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=nh(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime();return r.setMonth(0),r.setDate(1),Math.floor(Math.round((i-r.getTime())/864e5)/7)+1}getToday(){return th(new Date)}isValid(e){if(!e||!Q(e.year)||!Q(e.month)||!Q(e.day)||e.year===0)return!1;let t=nh(e);return!isNaN(t.getTime())&&t.getFullYear()===e.year&&t.getMonth()+1===e.month&&t.getDate()===e.day}},ah=`<ng-template
+  ng-ref="defaultDayTemplate"
+  let-date="date"
+  let-current-month="currentMonth"
+  let-selected="selected"
+  let-disabled="disabled"
+  let-focused="focused">
+  <div
+    ngb-datepicker-day-view
+    date="date"
+    current-month="currentMonth"
+    i18n="$.i18n"
+    selected="selected"
+    disabled="disabled"
+    focused="focused"
+    class="btn btn-light border-0 p-0 text-center rounded-1"
+    style="width: 2rem; height: 2rem; line-height: 2rem; background: transparent">
+  </div>
+</ng-template>
+
+<ng-template ng-ref="defaultContentTemplate">
+  <div
+    ng-repeat="month in $.model.months track by $index"
+    class="ngb-dp-month pe-none"
+    ng-class="{ 'ps-3': !$first, 'ps-1': $first, 'pe-1': $last }">
+    <div
+      ng-if="$.navigation === 'none' || ($.displayMonths > 1 && $.navigation === 'select')"
+      class="ngb-dp-month-name fs-5 text-center bg-body-tertiary"
+      ng-class="{ 'text-muted': $.model.disabled }"
+      style="height: 2rem; line-height: 2rem">
+      {{ $.i18n.getMonthLabel(month.firstDate) }}
+    </div>
+    <ngb-datepicker-month class="d-block pe-auto" month="month.firstDate" datepicker="$"></ngb-datepicker-month>
+  </div>
+</ng-template>
+
+<div class="ngb-dp-header pt-1 border-bottom-0 rounded-top bg-body-tertiary">
+  <ngb-datepicker-navigation
+    ng-if="$.navigation !== 'none' && $.model"
+    date="$.model.firstDate"
+    i18n="$.i18n"
+    months="$.model.months"
+    disabled="$.model.disabled"
+    show-select="$.model.navigation === 'select'"
+    prev-disabled="$.model.prevDisabled"
+    next-disabled="$.model.nextDisabled"
+    select-boxes="$.model.selectBoxes"
+    navigate="$.onNavigateEvent($event)"
+    select="$.onNavigateDateSelect($event)"
+    class="d-flex align-items-center">
+  </ngb-datepicker-navigation>
+</div>
+
+<div
+  class="ngb-dp-content"
+  ng-class="{ 'ngb-dp-months': !$.contentTemplate, 'd-flex': !$.contentTemplate }"
+  ng-ref="content">
+  <ng-template
+    ng-if="$.model"
+    ng-template-outlet="$.contentTemplate || ($.contentTemplateFromContent && $.contentTemplateFromContent.templateRef) || defaultContentTemplate"
+    ng-template-outlet-context="{ $implicit: $ }">
+  </ng-template>
+</div>
+
+<ng-template ng-if="$.footerTemplate" ng-template-outlet="$.footerTemplate"></ng-template>
+<ng-content></ng-content>
+`,oh=class{getMonthLabel(e){return`${this.getMonthFullName(e.month,e.year)} ${this.getYearNumerals(e.year)}`}getDayNumerals(e){return`${e.day}`}getWeekNumerals(e){return`${e}`}getYearNumerals(e){return`${e}`}getWeekLabel(){return``}},sh=class extends oh{constructor(e,t){super(),this.$locale=e,this.$filter=t,this._monthsShort=Array.from({length:12},(e,t)=>Intl.DateTimeFormat(this.$locale.id,{month:`short`,timeZone:`UTC`}).format(Date.UTC(2e3,t))),this._monthsFull=Array.from({length:12},(e,t)=>Intl.DateTimeFormat(this.$locale.id,{month:`long`,timeZone:`UTC`}).format(Date.UTC(2e3,t)))}getWeekdayLabel(e,t=`narrow`){return[1,2,3,4,5,6,7].map(e=>Intl.DateTimeFormat(this.$locale.id,{weekday:t,timeZone:`UTC`}).format(Date.UTC(2e3,4,e)))[e-1]||``}getMonthShortName(e){return this._monthsShort[e-1]||``}getMonthFullName(e){return this._monthsFull[e-1]||``}getDayAriaLabel(e){let t=new Date(e.year,e.month-1,e.day);return this.$filter(`date`)(t,`fullDate`)}};function ch(e,t){return!uh(e,t)}function lh(e,t){return!e&&!t?!1:!e||!t||e.year!==t.year||e.month!==t.month}function uh(e,t){return!e&&!t||!!e&&!!t&&e.equals(t)}function dh(e,t){if(t&&e&&t.before(e))throw Error(`'maxDate' ${t} should be greater than 'minDate' ${e}`)}function fh(e,t,n){return e&&t&&e.before(t)?t:e&&n&&e.after(n)?n:e||null}function ph(e,t){let{minDate:n,maxDate:r,disabled:i,markDisabled:a}=t;return!(e==null||i||a&&a(e,{year:e.year,month:e.month})||n&&e.before(n)||r&&e.after(r))}function mh(e,t,n,r){if(!t)return[];let i=e.getMonths(t.year);if(n&&t.year===n.year){let e=i.findIndex(e=>e===n.month);i=i.slice(e)}if(r&&t.year===r.year){let e=i.findIndex(e=>e===r.month);i=i.slice(0,e+1)}return i}function hh(e,t,n){if(!e)return[];let r=t?Math.max(t.year,e.year-500):e.year-10,i=(n?Math.min(n.year,e.year+500):e.year+10)-r+1,a=Array(i);for(let e=0;e<i;e++)a[e]=r+e;return a}function gh(e,t,n){let r=Object.assign(e.getNext(t,`m`),{day:1});return n!=null&&r.after(n)}function _h(e,t,n){let r=Object.assign(e.getPrev(t,`m`),{day:1});return n!=null&&(r.year===n.year&&r.month<n.month||r.year<n.year&&n.month===1)}function vh(e,t,n,r,i){let{displayMonths:a,months:o}=n,s=o.splice(0,o.length);return Array.from({length:a},(n,r)=>{let a=Object.assign(e.getNext(t,`m`,r),{day:1});if(o[r]=null,!i){let e=s.findIndex(e=>e.firstDate.equals(a));e!==-1&&(o[r]=s.splice(e,1)[0])}return a}).forEach((t,i)=>{o[i]??(o[i]=yh(e,t,n,r,s.shift()||{}))}),o}function yh(e,t,n,r,i={}){let{dayTemplateData:a,minDate:o,maxDate:s,firstDayOfWeek:c,markDisabled:l,outsideDays:u,weekdayWidth:d,weekdaysVisible:f}=n,p=e.getToday();i.firstDate=null,i.lastDate=null,i.number=t.month,i.year=t.year,i.weeks=i.weeks||[],i.weekdays=i.weekdays||[],t=bh(e,t,c),f||(i.weekdays.length=0);for(let n=0;n<e.getWeeksPerMonth();n++){let m=i.weeks[n];m||=i.weeks[n]={number:0,days:[],collapsed:!0};let h=m.days;for(let c=0;c<e.getDaysPerWeek();c++){n===0&&f&&(i.weekdays[c]=r.getWeekdayLabel(e.getWeekday(t),d));let u=new eh(t.year,t.month,t.day),m=e.getNext(u),g=r.getDayAriaLabel(u),_=!!(o&&u.before(o)||s&&u.after(s));!_&&l&&(_=l(u,{month:i.number,year:i.year}));let v=u.equals(p),y=a?a(u,{month:i.number,year:i.year}):void 0;i.firstDate===null&&u.month===i.number&&(i.firstDate=u),u.month===i.number&&m.month!==i.number&&(i.lastDate=u);let b=h[c];b||=h[c]={},b.date=u,b.context=Object.assign(b.context||{},{$implicit:u,date:u,data:y,currentMonth:i.number,currentYear:i.year,disabled:_,focused:!1,selected:!1,today:v}),b.tabindex=-1,b.ariaLabel=g,b.hidden=!1,t=m}m.number=e.getWeekNumber(h.map(e=>e.date),c),m.collapsed=u===`collapsed`&&h[0].date.month!==i.number&&h[h.length-1].date.month!==i.number}return i}function bh(e,t,n){let r=e.getDaysPerWeek(),i=new eh(t.year,t.month,1),a=e.getWeekday(i)%r;return e.getPrev(i,`d`,(r+a-n)%r)}var xh=class{constructor(e,t,n=new ih,r){this._calendar=n,this._VALIDATORS={dayTemplateData:e=>{if(this._state.dayTemplateData!==e)return{dayTemplateData:e??null}},displayMonths:e=>{if(e=cd(e),Q(e)&&e>0&&this._state.displayMonths!==e)return{displayMonths:e}},disabled:e=>{if(this._state.disabled!==e)return{disabled:e}},firstDayOfWeek:e=>{if(e=cd(e),Q(e)&&e>=0&&this._state.firstDayOfWeek!==e)return{firstDayOfWeek:e}},focusVisible:e=>{if(this._state.focusVisible!==e&&!this._state.disabled)return{focusVisible:e}},markDisabled:e=>{if(this._state.markDisabled!==e)return{markDisabled:e??null}},maxDate:e=>{let t=this.toValidDate(e,null);if(ch(this._state.maxDate,t))return{maxDate:t}},minDate:e=>{let t=this.toValidDate(e,null);if(ch(this._state.minDate,t))return{minDate:t}},navigation:e=>{if(this._state.navigation!==e)return{navigation:e}},outsideDays:e=>{if(this._state.outsideDays!==e)return{outsideDays:e}},weekdays:e=>{let t=e===!0||e===!1?`narrow`:e,n=e===!0||e===!1?e:!0;if(this._state.weekdayWidth!==t||this._state.weekdaysVisible!==n)return{weekdayWidth:t,weekdaysVisible:n}}},this._model$=new Y,this._dateSelect$=new Y,this._state={dayTemplateData:null,markDisabled:null,maxDate:null,minDate:null,disabled:!1,displayMonths:1,firstDate:null,firstDayOfWeek:1,lastDate:null,focusDate:null,focusVisible:!1,months:[],navigation:`select`,outsideDays:`visible`,prevDisabled:!1,nextDisabled:!1,selectedDate:null,selectBoxes:{years:[],months:[]},weekdayWidth:`narrow`,weekdaysVisible:!0},this._i18n=r??new sh(e,t)}get model$(){return this._model$.pipe(ns(e=>e.months.length>0))}get dateSelect$(){return this._dateSelect$.pipe(ns(e=>e!==null))}set(e){let t=Object.keys(e).map(t=>{let n=this._VALIDATORS[t];return n(e[t])??{}}).reduce((e,t)=>({...e,...t}),{});Object.keys(t).length>0&&this._nextState(t)}focus(e){let t=this.toValidDate(e,null);t!=null&&!this._state.disabled&&ch(this._state.focusDate,t)&&this._nextState({focusDate:e})}focusSelect(){ph(this._state.focusDate,this._state)&&this.select(this._state.focusDate,{emitEvent:!0})}open(e){let t=this.toValidDate(e,this._calendar.getToday());t!=null&&!this._state.disabled&&(!this._state.firstDate||lh(this._state.firstDate,t))&&this._nextState({firstDate:t})}select(e,t={}){let n=this.toValidDate(e,null);n!=null&&!this._state.disabled&&(ch(this._state.selectedDate,n)&&this._nextState({selectedDate:n}),t.emitEvent&&ph(n,this._state)&&this._dateSelect$.next(n))}toValidDate(e,t){let n=eh.from(e);return t===void 0&&(t=this._calendar.getToday()),this._calendar.isValid(n)?n:t}getMonth(e){for(let t of this._state.months)if(e.month===t.number&&e.year===t.year)return t;throw Error(`month ${e.month} of year ${e.year} not found`)}_nextState(e){let t=this._updateState(e);this._patchContexts(t),this._state=t,this._model$.next(this._state)}_patchContexts(e){let{months:t,displayMonths:n,selectedDate:r,focusDate:i,focusVisible:a,disabled:o,outsideDays:s}=e;e.months.forEach(e=>{e.weeks.forEach(c=>{c.days.forEach(c=>{i&&(c.context.focused=i.equals(c.date)&&a),c.tabindex=!o&&i&&c.date.equals(i)&&i.month===e.number?0:-1,o===!0&&(c.context.disabled=!0),r!==void 0&&(c.context.selected=r!==null&&r.equals(c.date)),e.number!==c.date.month&&(c.hidden=s===`hidden`||s===`collapsed`||n>1&&c.date.after(t[0].firstDate)&&c.date.before(t[n-1].lastDate))})})})}_updateState(e){let t=Object.assign({},this._state,e),{firstDate:n}=t;if((`minDate`in e||`maxDate`in e)&&(dh(t.minDate,t.maxDate),t.focusDate=fh(t.focusDate,t.minDate,t.maxDate),t.firstDate=fh(t.firstDate,t.minDate,t.maxDate),n=t.focusDate),`disabled`in e&&(t.focusVisible=!1),`selectedDate`in e&&this._state.months.length===0&&(n=t.selectedDate),`focusVisible`in e||`focusDate`in e&&(t.focusDate=fh(t.focusDate,t.minDate,t.maxDate),n=t.focusDate,t.months.length!==0&&t.focusDate&&!t.focusDate.before(t.firstDate)&&!t.focusDate.after(t.lastDate))||(`firstDate`in e&&(t.firstDate=fh(t.firstDate,t.minDate,t.maxDate),n=t.firstDate),!n))return t;let r=`dayTemplateData`in e||`firstDayOfWeek`in e||`markDisabled`in e||`minDate`in e||`maxDate`in e||`disabled`in e||`outsideDays`in e||`weekdaysVisible`in e,i=vh(this._calendar,n,t,this._i18n,r);t.months=i,t.firstDate=i[0].firstDate,t.lastDate=i[i.length-1].lastDate,`selectedDate`in e&&!ph(t.selectedDate,t)&&(t.selectedDate=null),`firstDate`in e&&(!t.focusDate||t.focusDate.before(t.firstDate)||t.focusDate.after(t.lastDate))&&(t.focusDate=n);let a=!this._state.firstDate||this._state.firstDate.year!==t.firstDate.year,o=!this._state.firstDate||this._state.firstDate.month!==t.firstDate.month;return t.navigation===`select`?((`minDate`in e||`maxDate`in e||t.selectBoxes.years.length===0||a)&&(t.selectBoxes.years=hh(t.firstDate,t.minDate,t.maxDate)),(`minDate`in e||`maxDate`in e||t.selectBoxes.months.length===0||a)&&(t.selectBoxes.months=mh(this._calendar,t.firstDate,t.minDate,t.maxDate))):t.selectBoxes={years:[],months:[]},(t.navigation===`arrows`||t.navigation===`select`)&&(o||a||`minDate`in e||`maxDate`in e||`disabled`in e)&&(t.prevDisabled=t.disabled||_h(this._calendar,t.firstDate,t.minDate),t.nextDisabled=t.disabled||gh(this._calendar,t.lastDate,t.maxDate)),t}},Sh=class{constructor(){this.displayMonths=1,this.firstDayOfWeek=1,this.navigation=`select`,this.outsideDays=`visible`,this.showWeekNumbers=!1,this.weekdays=`narrow`}static get $name(){return`ngb.datepicker-config.service`}},Ch=class e{static get $name(){return`ngbDatepickerContent`}static $factory(){return{controller:e,bindToController:!0,restrict:`A`,require:{templateRef:`ngTemplate`}}}},wh=class{processKey(e,t){let{state:n,calendar:r}=t;switch(e.key){case`PageUp`:t.focusDate(r.getPrev(n.focusedDate,e.shiftKey?`y`:`m`,1));break;case`PageDown`:t.focusDate(r.getNext(n.focusedDate,e.shiftKey?`y`:`m`,1));break;case`End`:t.focusDate(e.shiftKey?n.maxDate:n.lastDate);break;case`Home`:t.focusDate(e.shiftKey?n.minDate:n.firstDate);break;case`ArrowLeft`:t.focusDate(r.getPrev(n.focusedDate,`d`,1));break;case`ArrowUp`:t.focusDate(r.getPrev(n.focusedDate,`d`,r.getDaysPerWeek()));break;case`ArrowRight`:t.focusDate(r.getNext(n.focusedDate,`d`,1));break;case`ArrowDown`:t.focusDate(r.getNext(n.focusedDate,`d`,r.getDaysPerWeek()));break;case`Enter`:case` `:t.focusSelect();break;default:return}e.preventDefault(),e.stopPropagation()}static get $name(){return`ngb.datepicker.keyboard.service`}},Th=(e=>(e[e.PREV=0]=`PREV`,e[e.NEXT=1]=`NEXT`,e))(Th||{}),Eh=[`dayTemplateData`,`displayMonths`,`markDisabled`,`firstDayOfWeek`,`navigation`,`minDate`,`maxDate`,`outsideDays`,`weekdays`],Dh=class e{constructor(e,t,n,r,i,a){this.$element=e,this.$scope=t,this.$locale=n,this.$filter=r,this._config=i,this._changeDetector=a,this._keyboardService=new wh,this._controlValue=null,this._initialized=!1,this.onChange=()=>void 0,this.onTouched=()=>void 0,this._handleFocusChange=e=>{let t=e.target,n=e.relatedTarget;t?.classList.contains(`ngb-dp-day`)&&n?.classList.contains(`ngb-dp-day`)&&this.$element[0].contains(t)&&this.$element[0].contains(n)||this.$scope.$evalAsync(()=>this._service.set({focusVisible:e.type===`focusin`}))}}_subscribeToService(){this._dateSelectSubscription=this._service.dateSelect$.subscribe(e=>{this.$scope.$evalAsync(()=>this.dateSelect?.({$event:e}))}),this._modelSubscription=this._service.model$.subscribe(e=>{this.$scope.$evalAsync(()=>this._applyModel(e))})}$onInit(){this.calendar=this.calendar??new ih,this.dateAdapter=this.dateAdapter??new $m,this.i18n=this.i18n??new sh(this.$locale,this.$filter),this._createService(),this.dayTemplate=this.dayTemplate??this._config.dayTemplate,this.dayTemplateData=this.dayTemplateData??this._config.dayTemplateData,this.displayMonths=this.displayMonths??this._config.displayMonths,this.firstDayOfWeek=this.firstDayOfWeek??this._config.firstDayOfWeek,this.footerTemplate=this.footerTemplate??this._config.footerTemplate,this.markDisabled=this.markDisabled??this._config.markDisabled,this.maxDate=this.maxDate??this._config.maxDate,this.minDate=this.minDate??this._config.minDate,this.navigation=this.navigation??this._config.navigation,this.outsideDays=this.outsideDays??this._config.outsideDays,this.showWeekNumbers=this.showWeekNumbers??this._config.showWeekNumbers,this.startDate=this.startDate??this._config.startDate,this.weekdays=this.weekdays??this._config.weekdays,this._service.set(this._collectInputs()),this.ngModelCtrl&&(this.registerOnChange(e=>this.ngModelCtrl?.$setViewValue(e)),this.registerOnTouched(()=>this.ngModelCtrl?.$setTouched()),this.ngModelCtrl.$render=()=>this.writeValue(this.ngModelCtrl?.$viewValue),this.ngModelCtrl.$render()),this.navigateTo(this.startDate??this._controlValue),this._initialized=!0}$postLink(){this.dayTemplate=this.dayTemplate??this._defaultDayTemplate,this.$element.addClass(`d-inline-block border rounded-1`),this.$element.toggleClass(`disabled`,!!this.model?.disabled),this.$element.on(`focusin focusout`,this._handleFocusChange),this._removeDisabledListener=this.ngDisabled?.onChange(e=>this.setDisabledState(e)),this.ngDisabled&&this.setDisabledState(this.ngDisabled.disabled)}$onChanges(e){if(!this._initialized)return;if(e.calendar||e.i18n){this.calendar=this.calendar??new ih,this.i18n=this.i18n??new sh(this.$locale,this.$filter),this._createService(),this._service.set(this._collectInputs()),this._service.select(this._controlValue),this.navigateTo(this.startDate??this._controlValue);return}let t=this._collectInputs(Eh.filter(t=>t in e));this._service.set(t);let n=e.startDate;n&&lh(n.previousValue,n.currentValue)&&this.navigateTo(this.startDate)}$onDestroy(){this.$element.off(`focusin focusout`,this._handleFocusChange),this._removeDisabledListener?.(),this._modelSubscription?.unsubscribe(),this._dateSelectSubscription?.unsubscribe()}get state(){return this._publicState}getMonth(e){return this._service.getMonth(e)}processKey(e){this._keyboardService.processKey(e,this)}focusDate(e){this._service.focus(eh.from(e))}focusSelect(){this._service.focusSelect()}focus(){queueMicrotask(()=>{this.$element[0].querySelector(`div.ngb-dp-day[tabindex="0"]`)?.focus()})}navigateTo(e){let t=e?eh.from(e.day?e:{...e,day:1}):null;this._service.open(t)}onDateSelect(e){this._service.focus(e),this._service.select(e,{emitEvent:!0})}onNavigateDateSelect(e){this._service.open(e)}onNavigateEvent(e){let t=this.model.firstDate;t&&(e===0?this._service.open(this.calendar.getPrev(t,`m`,1)):e===1&&this._service.open(this.calendar.getNext(t,`m`,1)))}setDisabledState(e){this._service.set({disabled:e})}registerOnChange(e){this.onChange=e}registerOnTouched(e){this.onTouched=e}writeValue(e){this.dateAdapter&&(this._controlValue=eh.from(this.dateAdapter.fromModel(e)),this._service.select(this._controlValue))}_collectInputs(e=Eh){let t={};for(let n of e)t[n]=this[n];return t}_createService(){this._modelSubscription?.unsubscribe(),this._dateSelectSubscription?.unsubscribe(),this._service=new xh(this.$locale,this.$filter,this.calendar,this.i18n),this._subscribeToService()}_applyModel(e){let t=e.firstDate,n=e.lastDate,r=e.focusDate;if(!t||!n||!r)return;let i=this.model?.firstDate??null,a=!1;if(!t.equals(i)&&(this.navigate?.({$event:{current:i?{year:i.year,month:i.month}:null,next:{year:t.year,month:t.month},preventDefault:()=>{a=!0}}}),a&&i)){this._service.open(i);return}let o=this.model?.focusDate??null;this.model=e,this._publicState={maxDate:e.maxDate,minDate:e.minDate,firstDate:t,lastDate:n,focusedDate:r,months:e.months.map(e=>e.firstDate)},ch(e.selectedDate,this._controlValue)&&(this._controlValue=e.selectedDate,this.onTouched(),this.onChange(this.dateAdapter?.toModel(e.selectedDate))),ch(e.focusDate,o)&&o&&e.focusVisible&&this.focus(),this.$element.toggleClass(`disabled`,e.disabled),this._changeDetector.markForCheck()}static get $name(){return`ngbDatepicker`}static get $inject(){return[`$element`,`$scope`,`$locale`,`$filter`,Sh.$name,ks.$name]}static get $factory(){return{bindings:{contentTemplate:`<?`,calendar:`<?`,dateAdapter:`<?`,dayTemplate:`<?`,dayTemplateData:`<?`,displayMonths:`<?`,firstDayOfWeek:`<?`,footerTemplate:`<?`,i18n:`<?`,markDisabled:`<?`,maxDate:`<?`,minDate:`<?`,navigation:`@?`,outsideDays:`@?`,showWeekNumbers:`<?`,startDate:`<?`,weekdays:`<?`,dateSelect:`&?`,navigate:`&?`},controller:e,controllerAs:`$`,require:{ngModelCtrl:`?ngModel`,ngDisabled:`?ngDisabled`},transclude:!0,template:ah}}};X([fc(`defaultDayTemplate`,{read:void 0,static:!0})],Dh.prototype,`_defaultDayTemplate`,2),X([qs(Ch,{static:!0})],Dh.prototype,`contentTemplateFromContent`,2);var Oh=Dh,kh=class e{constructor(e,t,n){this.$element=e,this.$locale=t,this.$filter=n}$onInit(){this.i18n=this.i18n??new sh(this.$locale,this.$filter),this.$element.addClass(`btn btn-light border-0 p-0 text-center rounded-1`),this.$element.css({width:`2rem`,height:`2rem`,lineHeight:`2rem`,background:`transparent`})}$postLink(){this._renderClasses()}$onChanges(e){this._renderClasses()}isMuted(){return!this.selected&&(this.date.month!==this.currentMonth||this.disabled)}_renderClasses(){this.date&&(this.$element.toggleClass(`bg-primary`,!!this.selected),this.$element.toggleClass(`text-white`,!!this.selected),this.$element.toggleClass(`text-muted`,this.isMuted()),this.$element.toggleClass(`outside`,this.isMuted()),this.$element.toggleClass(`opacity-50`,this.isMuted()),this.$element.toggleClass(`active`,!!this.focused))}static get $name(){return`ngbDatepickerDayView`}static get $inject(){return[`$element`,`$locale`,`$filter`]}static $factory(){return{bindToController:{currentMonth:`<`,date:`<`,disabled:`<`,focused:`<`,i18n:`<`,selected:`<`},controller:e,controllerAs:`$day`,restrict:`A`,scope:!0,template:`{{ $day.i18n && $day.i18n.getDayNumerals($day.date) }}`}}},Ah=`<div
+  ng-if="$.viewModel.weekdays.length"
+  class="ngb-dp-week ngb-dp-weekdays d-flex rounded-0 border-bottom bg-body-tertiary"
+  role="row">
+  <div
+    ng-if="$.datepicker.showWeekNumbers"
+    class="ngb-dp-weekday ngb-dp-showweek small fst-italic text-center"
+    ng-class="{ 'text-muted': $.datepicker.model.disabled }"
+    style="width: 2rem; height: 2rem; line-height: 2rem">
+    {{ $.datepicker.i18n.getWeekLabel() }}
+  </div>
+  <div
+    ng-repeat="weekday in $.viewModel.weekdays track by $index"
+    class="ngb-dp-weekday small fst-italic text-center text-info"
+    ng-class="{ 'text-muted': $.datepicker.model.disabled }"
+    style="width: 2rem; height: 2rem; line-height: 2rem"
+    role="columnheader">
+    {{ weekday }}
+  </div>
+</div>
+
+<div
+  ng-repeat="week in $.viewModel.weeks track by $index"
+  ng-if="!week.collapsed"
+  class="ngb-dp-week d-flex rounded-1"
+  ng-class="{ 'pb-1': $last }"
+  role="row">
+  <div
+    ng-if="$.datepicker.showWeekNumbers"
+    class="ngb-dp-week-number small text-muted fst-italic text-center"
+    style="width: 2rem; height: 2rem; line-height: 2rem">
+    {{ $.datepicker.i18n.getWeekNumerals(week.number) }}
+  </div>
+  <div
+    ng-repeat="day in week.days track by day.date.year + '-' + day.date.month + '-' + day.date.day"
+    ng-click="$.doSelect(day); $event.preventDefault()"
+    class="ngb-dp-day"
+    style="width: 2rem; height: 2rem; cursor: pointer"
+    ng-style="{ cursor: day.context.disabled || day.hidden ? 'default' : 'pointer' }"
+    ng-class="{ disabled: day.context.disabled, hidden: day.hidden, invisible: day.hidden, 'pe-none': day.context.disabled || day.hidden, 'z-1': day.tabindex === 0, 'ngb-dp-today': day.context.today }"
+    role="gridcell"
+    ng-attr-tabindex="{{ day.tabindex }}"
+    ng-attr-aria-label="{{ day.ariaLabel }}"
+    ng-attr-aria-disabled="{{ day.context.disabled }}"
+    ng-attr-aria-selected="{{ day.context.selected }}">
+    <ng-template
+      ng-if="!day.hidden"
+      ng-template-outlet="$.datepicker.dayTemplate"
+      ng-template-outlet-context="day.context">
+    </ng-template>
+  </div>
+</div>
+`,jh=class e{constructor(e,t){this.$element=e,this.$scope=t,this._handleKeyDown=e=>{this.datepicker?.processKey(e)}}set month(e){this._month=e,this.datepicker&&e&&(this.viewModel=this.datepicker.getMonth(e))}get month(){return this._month}$onInit(){if(this.datepicker=this.datepicker??this._parentDatepicker??this._findDatepickerInTemplateScope(),!this.datepicker)throw Error(`ngb-datepicker-month must be used inside an ngb-datepicker.`);this._month&&(this.viewModel=this.datepicker.getMonth(this._month))}$postLink(){this.$element.addClass(`d-block pe-auto`),this.$element.attr(`role`,`grid`),this.$element.on(`keydown`,this._handleKeyDown)}$onDestroy(){this.$element.off(`keydown`,this._handleKeyDown)}doSelect(e){!e.context.disabled&&!e.hidden&&this.datepicker?.onDateSelect(e.date)}_findDatepickerInTemplateScope(){let e=this.$scope.$parent;for(;e;){for(let t of Object.keys(e)){if(t.startsWith(`$`))continue;let n=e[t];if(n&&typeof n==`object`&&typeof n.getMonth==`function`&&typeof n.onDateSelect==`function`)return n}e=e.$parent}}static get $name(){return`ngbDatepickerMonth`}static get $inject(){return[`$element`,`$scope`]}static get $factory(){return{bindings:{datepicker:`<?`,month:`<`},controller:e,controllerAs:`$`,require:{_parentDatepicker:`?^^ngbDatepicker`},template:Ah}}},Mh=`<div class="ngb-dp-arrow ngb-dp-arrow-prev d-flex flex-grow-1 p-0 m-0" style="width: 2rem; height: 2rem">
+  <button
+    type="button"
+    class="btn btn-link ngb-dp-arrow-btn z-1 py-0 px-1 mx-2 my-0 bg-transparent border-0"
+    ng-click="$.onClickPrev($event)"
+    ng-disabled="$.prevDisabled"
+    i18n-aria-label="@@ngb.datepicker.previous-month"
+    aria-label="Previous month"
+    i18n-title="@@ngb.datepicker.previous-month"
+    title="Previous month">
+    <span
+      class="ngb-dp-navigation-chevron d-inline-block"
+      style="width: .75em; height: .75em; margin-right: .15em; margin-left: .25em; border-style: solid; border-width: .2em .2em 0 0; transform: rotate(-135deg)">
+    </span>
+  </button>
+</div>
+
+<ngb-datepicker-navigation-select
+  ng-if="$.showSelect"
+  class="ngb-dp-navigation-select d-flex flex-grow-1"
+  style="flex-basis: 9rem"
+  date="$.date"
+  i18n="$.i18n"
+  disabled="$.disabled"
+  months="$.selectBoxes.months"
+  years="$.selectBoxes.years"
+  select="$.select({ $event: $event })">
+</ngb-datepicker-navigation-select>
+
+<ng-container ng-if="!$.showSelect">
+  <ng-container ng-repeat="month in $.months track by $index">
+    <div ng-if="$index > 0" class="ngb-dp-arrow d-flex flex-grow-1 p-0 m-0" style="width: 2rem; height: 2rem"></div>
+    <div
+      class="ngb-dp-month-name fs-5 text-center"
+      ng-class="{ 'text-muted': $.disabled }"
+      style="height: 2rem; line-height: 2rem">
+      {{ $.i18n.getMonthLabel(month.firstDate) }}
+    </div>
+    <div
+      ng-if="$index !== $.months.length - 1"
+      class="ngb-dp-arrow d-flex flex-grow-1 p-0 m-0"
+      style="width: 2rem; height: 2rem">
+    </div>
+  </ng-container>
+</ng-container>
+
+<div class="visually-hidden" aria-live="polite">
+  <span ng-repeat="month in $.months track by $index">{{ $.i18n.getMonthLabel(month.firstDate) }}</span>
+</div>
+
+<div
+  class="ngb-dp-arrow ngb-dp-arrow-next d-flex flex-grow-1 justify-content-end p-0 m-0"
+  style="width: 2rem; height: 2rem">
+  <button
+    type="button"
+    class="btn btn-link ngb-dp-arrow-btn z-1 py-0 px-1 mx-2 my-0 bg-transparent border-0"
+    ng-click="$.onClickNext($event)"
+    ng-disabled="$.nextDisabled"
+    i18n-aria-label="@@ngb.datepicker.next-month"
+    aria-label="Next month"
+    i18n-title="@@ngb.datepicker.next-month"
+    title="Next month">
+    <span
+      class="ngb-dp-navigation-chevron d-inline-block"
+      style="width: .75em; height: .75em; margin-right: .25em; margin-left: .15em; border-style: solid; border-width: .2em .2em 0 0; transform: rotate(45deg)">
+    </span>
+  </button>
+</div>
+`,Nh=class e{constructor(e,t,n){this.$element=e,this.$locale=t,this.$filter=n,this.navigation=Th,this.months=[]}$onInit(){this.i18n=this.i18n??new sh(this.$locale,this.$filter),this.$element.addClass(`d-flex align-items-center`)}onClickPrev(e){e.currentTarget?.focus(),this.navigate?.({$event:0})}onClickNext(e){e.currentTarget?.focus(),this.navigate?.({$event:1})}static get $name(){return`ngbDatepickerNavigation`}static get $inject(){return[`$element`,`$locale`,`$filter`]}static get $factory(){return{bindings:{date:`<`,disabled:`<`,i18n:`<?`,months:`<`,showSelect:`<`,prevDisabled:`<`,nextDisabled:`<`,selectBoxes:`<`,navigate:`&?`,select:`&?`},controller:e,controllerAs:`$`,template:Mh}}},Ph=`<select
+  ng-disabled="$.disabled"
+  ng-model="$.selectedMonth"
+  ng-change="$.changeMonth($.selectedMonth)"
+  class="form-select flex-grow-1 py-0 px-2 small"
+  style="height: 1.85rem"
+  i18n-aria-label="@@ngb.datepicker.select-month"
+  aria-label="Select month"
+  i18n-title="@@ngb.datepicker.select-month"
+  title="Select month">
+  <option
+    ng-repeat="month in $.months track by month"
+    ng-value="month"
+    ng-attr-aria-label="{{ $.i18n.getMonthFullName(month, $.date.year) }}">
+    {{ $.i18n.getMonthShortName(month, $.date.year) }}
+  </option>
+</select>
+<select
+  ng-disabled="$.disabled"
+  ng-model="$.selectedYear"
+  ng-change="$.changeYear($.selectedYear)"
+  class="form-select flex-grow-1 py-0 px-2 small"
+  style="height: 1.85rem"
+  i18n-aria-label="@@ngb.datepicker.select-year"
+  aria-label="Select year"
+  i18n-title="@@ngb.datepicker.select-year"
+  title="Select year">
+  <option ng-repeat="year in $.years track by year" ng-value="year">
+    {{ $.i18n.getYearNumerals(year) }}
+  </option>
+</select>
+`,Fh=class e{constructor(e,t,n){this.$element=e,this.$locale=t,this.$filter=n,this.months=[],this.years=[],this.selectedMonth=0,this.selectedYear=0}$onInit(){this.i18n=this.i18n??new sh(this.$locale,this.$filter),this.$element.addClass(`d-flex flex-grow-1`),this.$element.css(`flex-basis`,`9rem`),this._syncSelection()}$onChanges(e){this._syncSelection()}changeMonth(e){this.select?.({$event:new eh(this.date.year,cd(e),1)})}changeYear(e){this.select?.({$event:new eh(cd(e),this.date.month,1)})}_syncSelection(){this.date&&(this.selectedMonth=this.date.month,this.selectedYear=this.date.year)}static get $name(){return`ngbDatepickerNavigationSelect`}static get $inject(){return[`$element`,`$locale`,`$filter`]}static get $factory(){return{bindings:{date:`<`,disabled:`<`,i18n:`<?`,months:`<`,years:`<`,select:`&?`},controller:e,controllerAs:`$`,template:Ph}}},Ih=class{},Lh=class extends Ih{parse(e){if(e!=null){let t=e.trim().split(`-`);if(t.length===1&&ld(t[0]))return{year:cd(t[0]),month:null,day:null};if(t.length===2&&ld(t[0])&&ld(t[1]))return{year:cd(t[0]),month:cd(t[1]),day:null};if(t.length===3&&ld(t[0])&&ld(t[1])&&ld(t[2]))return{year:cd(t[0]),month:cd(t[1]),day:cd(t[2])}}return null}format(e){return e?`${e.year}-${ld(e.month)?id(e.month):``}-${ld(e.day)?id(e.day):``}`:``}},Rh=class extends Sh{constructor(){super(...arguments),this.autoClose=!0,this.container=null,this.placement=[`bottom-start`,`bottom-end`,`top-start`,`top-end`],this.popperOptions=e=>e,this.restoreFocus=!0}static get $name(){return`ngb.input-datepicker-config.service`}},zh=[`contentTemplate`,`dayTemplate`,`dayTemplateData`,`displayMonths`,`firstDayOfWeek`,`footerTemplate`,`markDisabled`,`minDate`,`maxDate`,`navigation`,`outsideDays`,`showWeekNumbers`,`weekdays`],Bh=class e{constructor(e,t,n,r,i,a,o,s){this.$element=e,this.$scope=t,this._config=n,this._ngZone=r,this._changeDetector=i,this._closed$=new Y,this._windowRef=null,this._model=null,this._inputValue=``,this._disabled=!1,this._elementWithFocus=null,this._onChange=()=>void 0,this._onTouched=()=>void 0,this._validatorChange=()=>void 0,this._handleChange=()=>this.manualDateChange(this._nativeElement.value,!0),this._handleFocus=()=>this.onFocus(),this._handleBlur=()=>this.onBlur(),this._nativeElement=Z(e);let c=new kf(a,r,o);this._popupService=c.$create(Oh.$name),this._positioning=mf(s)}get disabled(){return this._disabled}set disabled(e){this._disabled=e===``||e===void 0&&!!this._nativeElement?.hasAttribute(`disabled`)||!!(e&&e!==`false`),this._nativeElement?.toggleAttribute(`disabled`,this._disabled),this._windowRef?.componentInstance?.setDisabledState(this._disabled)}$onInit(){if(this.calendar=this.calendar??new ih,this.dateAdapter=this.dateAdapter??new $m,this.parserFormatter=this.parserFormatter??new Lh,this.autoClose=this.autoClose??this._config.autoClose,this.container=this.container??this._config.container,this.dayTemplate=this.dayTemplate??this._config.dayTemplate,this.dayTemplateData=this.dayTemplateData??this._config.dayTemplateData,this.displayMonths=this.displayMonths??this._config.displayMonths,this.firstDayOfWeek=this.firstDayOfWeek??this._config.firstDayOfWeek,this.footerTemplate=this.footerTemplate??this._config.footerTemplate,this.markDisabled=this.markDisabled??this._config.markDisabled,this.maxDate=this.maxDate??this._config.maxDate,this.minDate=this.minDate??this._config.minDate,this.navigation=this.navigation??this._config.navigation,this.outsideDays=this.outsideDays??this._config.outsideDays,this.placement=this.placement??this._config.placement,this.popperOptions=this.popperOptions??this._config.popperOptions,this.positionTarget=this.positionTarget??this._config.positionTarget,this.restoreFocus=this.restoreFocus??this._config.restoreFocus,this.showWeekNumbers=this.showWeekNumbers??this._config.showWeekNumbers,this.startDate=this.startDate??this._config.startDate,this.weekdays=this.weekdays??this._config.weekdays,this.ngModelCtrl){let e=this.ngModelCtrl;this.registerOnChange(t=>e.$setViewValue(t)),this.registerOnTouched(()=>e.$setTouched()),this.registerOnValidatorChange(()=>e.$validate()),e.$parsers.unshift(e=>this._parseViewValue(e)),e.$validators.ngbDate=e=>this.validate({value:e})===null,e.$render=()=>this.writeValue(e.$modelValue),e.$render()}}$postLink(){this.$element.on(`change`,this._handleChange),this.$element.on(`focus`,this._handleFocus),this.$element.on(`blur`,this._handleBlur),this._removeDisabledListener=this.ngDisabled?.onChange(e=>this.setDisabledState(e||this._nativeElement.disabled)),this.setDisabledState(!!this.ngDisabled?.disabled||this.disabled||this._nativeElement.disabled)}$onChanges(e){if((e.minDate||e.maxDate)&&this._validatorChange(),e.datepickerClass&&this._windowRef){let{currentValue:t,previousValue:n}=e.datepickerClass;n&&this._windowRef.$element.removeClass(n),t&&this._windowRef.$element.addClass(t)}if(e.autoClose&&this.isOpen()&&this._setCloseHandlers(),this._windowRef){for(let t of zh)t in e&&this._windowRef.setInput(t,this[t]);e.startDate&&this._windowRef.componentInstance?.navigateTo(this.startDate)}}$onDestroy(){this.$element.off(`change`,this._handleChange),this.$element.off(`focus`,this._handleFocus),this.$element.off(`blur`,this._handleBlur),this._removeDisabledListener?.(),this.close(!1),this._closed$.complete()}writeValue(e){this.dateAdapter&&(this._model=this._fromDateStruct(this.dateAdapter.fromModel(e)),this._writeModelValue(this._model))}registerOnChange(e){this._onChange=e}registerOnTouched(e){this._onTouched=e}registerOnValidatorChange(e){this._validatorChange=e}validate(e){let t=e.value;if(t!=null){let e=this.dateAdapter?this._fromDateStruct(this.dateAdapter.fromModel(t)):null;if(!e)return{ngbDate:{invalid:t}};if(this.minDate&&e.before(eh.from(this.minDate)))return{ngbDate:{minDate:{minDate:this.minDate,actual:t}}};if(this.maxDate&&e.after(eh.from(this.maxDate)))return{ngbDate:{maxDate:{maxDate:this.maxDate,actual:t}}}}return null}manualDateChange(e,t=!1){let n=e!==this._inputValue;n&&(this._inputValue=e,this._model=this._fromDateStruct(this.parserFormatter?.parse(e)??null)),(n||!t)&&this._onChange(this._model&&this.dateAdapter?this.dateAdapter.toModel(this._model):e===``?null:e),t&&this._model&&this._writeModelValue(this._model)}setDisabledState(e){this.disabled=e,this._windowRef?.$element.toggleClass(`disabled`,e),this._windowRef&&this.$scope.$evalAsync(()=>this._windowRef?.$element.toggleClass(`disabled`,this.disabled))}isOpen(){return this._windowRef!==null}open(){if(this.isOpen())return;let{windowRef:e}=this._popupService.open();this._windowRef=e;let t=e.componentInstance;if(!t)throw Error(`Unable to create the datepicker popup component.`);e.$element.addClass(`dropdown-menu show p-0`),this.datepickerClass&&e.$element.addClass(this.datepickerClass),this.container===`body`&&(e.$element.addClass(`ngb-dp-body`),e.$element.css(`z-index`,`1055`)),this._applyDatepickerInputs(e),e.setInput(`dateSelect`,({$event:e})=>this._selectDate(e)),e.setInput(`navigate`,({$event:e})=>this.navigate?.({$event:e})),e.setInput(`startDate`,this.startDate??this._model),t.writeValue(this.dateAdapter?.toModel(this._model)),t.setDisabledState(!!this.disabled),e.$element.toggleClass(`disabled`,!!this.disabled),this.$scope.$evalAsync(()=>this._windowRef?.$element.toggleClass(`disabled`,this.disabled));let n=Z(e.$element);this.container===`body`?document.body.appendChild(n):this._nativeElement.parentNode?.insertBefore(n,this._nativeElement.nextSibling),this._elementWithFocus=document.activeElement,Gu(this._ngZone,n,this._closed$,!0),queueMicrotask(()=>t.focus());let r=this._resolvePositionTarget();this._ngZone.runOutsideAngular(()=>{this._positioning.createPopper({hostElement:r,targetElement:n,placement:this.placement,updatePopperOptions:e=>this.popperOptions(hf([0,2])(e))})}),this._unwatchPositioning=this.$scope.$watch(()=>this._positioning.update()),this._setCloseHandlers(),this._changeDetector.markForCheck()}close(e=!0){this._windowRef&&(this._windowRef=null,this._closed$.next(),this._positioning.destroy(),this._unwatchPositioning?.(),this._unwatchPositioning=void 0,this._popupService.close().subscribe(()=>{this.closed?.(),this._changeDetector.markForCheck()}),e&&this._restoreFocus())}toggle(){this.isOpen()?this.close():this.open()}navigateTo(e){this._windowRef?.componentInstance?.navigateTo(e)}_parseViewValue(e){return typeof e!=`string`||!this.parserFormatter||!this.dateAdapter?e:(this._inputValue=e,this._model=this._fromDateStruct(this.parserFormatter.parse(e)),this._model?this.dateAdapter.toModel(this._model):e===``?null:e)}_selectDate(e){if(!this.dateAdapter)return;this._model=e;let t=this.dateAdapter.toModel(e);this._writeModelValue(e),this._onChange(t),this._onTouched(),this.dateSelect?.({$event:e}),(this.autoClose===!0||this.autoClose===`inside`)&&this.close()}_writeModelValue(e){if(!this.parserFormatter||!this.dateAdapter)return;let t=this.parserFormatter.format(e);this._inputValue=t,this._nativeElement.value=t,this._windowRef?.componentInstance?.writeValue(this.dateAdapter.toModel(e))}_fromDateStruct(e){let t=e?new eh(e.year,e.month,e.day):null;return this.calendar?.isValid(t)?t:null}_applyDatepickerInputs(e){e.setInput(`calendar`,this.calendar),e.setInput(`dateAdapter`,this.dateAdapter),this.i18n&&e.setInput(`i18n`,this.i18n);for(let t of zh){let n=this[t];n!==void 0&&e.setInput(t,n)}}_resolvePositionTarget(){if(typeof this.positionTarget==`string`){let e=document.querySelector(this.positionTarget);if(!e)throw Error(`ngbDatepicker could not find positionTarget "${this.positionTarget}".`);return e}return this.positionTarget instanceof HTMLElement?this.positionTarget:this._nativeElement}_setCloseHandlers(){this._closed$.next();let e=this._windowRef?Z(this._windowRef.$element):null;e&&tf(this._ngZone,this.autoClose,this._closed$,()=>this.close(),[e],[this._nativeElement])}_restoreFocus(){let e=this._elementWithFocus;typeof this.restoreFocus==`string`?e=document.querySelector(this.restoreFocus):this.restoreFocus instanceof HTMLElement&&(e=this.restoreFocus),(e??document.body).focus?.()}onFocus(){this._elementWithFocus=this._nativeElement}onBlur(){this._onTouched()}static get $name(){return`ngbDatepicker`}static get $inject(){return[`$element`,`$scope`,Rh.$name,Fc.$name,ks.$name,`$compile`,`$rootScope`,gf.$name]}static get $factory(){return()=>({bindToController:{autoClose:`<?`,calendar:`<?`,contentTemplate:`<?`,datepickerClass:`@?`,dateAdapter:`<?`,dayTemplate:`<?`,dayTemplateData:`<?`,displayMonths:`<?`,firstDayOfWeek:`<?`,footerTemplate:`<?`,markDisabled:`<?`,i18n:`<?`,minDate:`<?`,maxDate:`<?`,navigation:`@?`,outsideDays:`@?`,placement:`<?`,parserFormatter:`<?`,popperOptions:`<?`,restoreFocus:`<?`,showWeekNumbers:`<?`,startDate:`<?`,container:`@?`,positionTarget:`<?`,weekdays:`<?`,disabled:`<?`,dateSelect:`&?`,navigate:`&?`,closed:`&?`},controller:e,controllerAs:`$datepicker`,require:{ngModelCtrl:`?ngModel`,ngDisabled:`?ngDisabled`},restrict:`A`,scope:!1})}},Vh=u.default.module(`ngb.datepicker`,[Wc.name]);Vh.service(gf.$name,gf),Vh.service(Sh.$name,Sh),Vh.service(Rh.$name,Rh),Vh.component(Oh.$name,Oh.$factory),Vh.component(jh.$name,jh.$factory),Vh.component(Nh.$name,Nh.$factory),Vh.component(Fh.$name,Fh.$factory),Vh.directive(Ch.$name,Ch.$factory),Vh.directive(kh.$name,kh.$factory),Vh.directive(Bh.$name,Bh.$factory);var Hh=u.default.module(`ngb`,[Ad.name,Bp.name,wd.name,Wd.name,Sm.name,Td.name,Wf.name,xf.name,Om.name,dp.name,Tp.name,Pp.name,im.name,Gp.name,mm.name,zm.name,Zm.name,Vh.name]);Hh.service(Lu.$name,Lu),Hh.service(Tf.$name,Tf),Hh.factory(kf.$name,kf),Hh.service(Im.$name,Im),Hh.service(gf.$name,gf),Hh.constant(Pm.$name,Pm.$value);function Uh(e){return new Date(e.year-543,e.month-1,e.day)}function Wh(e){return new eh(e.getFullYear()+543,e.getMonth()+1,e.getDate())}var Gh=class extends ih{getToday(){return Wh(new Date)}getNext(e,t=`d`,n=1){let r=Uh(e),i=!0,a=r.getMonth();switch(t){case`y`:r.setFullYear(r.getFullYear()+n);break;case`m`:a+=n,r.setMonth(a),a%=12,a<0&&(a+=12);break;case`d`:r.setDate(r.getDate()+n),i=!1;break;default:return e}return i&&r.getMonth()!==a&&r.setDate(0),Wh(r)}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Uh(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=Uh(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime();return r.setMonth(0),r.setDate(1),Math.floor(Math.round((i-r.getTime())/864e5)/7)+1}isValid(e){if(!e||!Q(e.year)||!Q(e.month)||!Q(e.day)||e.year===0)return!1;let t=Uh(e);return!isNaN(t.getTime())&&t.getFullYear()===e.year-543&&t.getMonth()+1===e.month&&t.getDate()===e.day}},Kh=[`እሑድ`,`ሰኞ`,`ማክሰኞ`,`ረቡዕ`,`ሓሙስ`,`ዓርብ`,`ቅዳሜ`],qh=[`መስከረም`,`ጥቅምት`,`ኅዳር`,`ታህሣሥ`,`ጥር`,`የካቲት`,`መጋቢት`,`ሚያዝያ`,`ግንቦት`,`ሰኔ`,`ሐምሌ`,`ነሐሴ`,`ጳጉሜ`],Jh=class extends oh{getMonthShortName(e,t){return this.getMonthFullName(e,t)}getMonthFullName(e,t){return qh[e-1]??``}getWeekdayLabel(e){return Kh[e-1]??``}getDayAriaLabel(e){return`${e.day} ${this.getMonthFullName(e.month,e.year)} ${e.year}`}},Yh=1724220.5,Xh=[30,30,30,30,30,30,30,30,30,30,30,30,5];function Zh(e){return e==null?!1:e%4==3||e%4==-1}function Qh(e,t){return e.year=+t,e}function $h(e,t){return t=+t,e.year+=Math.floor((t-1)/13),e.month=Math.floor(((t-1)%13+13)%13)+1,e}function eg(e,t){let n=tg(e.month,e.year);if(t<=0)for(;t<=0;)e=$h(e,e.month-1),n=tg(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=$h(e,e.month+1),n=tg(e.month,e.year);return e.day=t,e}function tg(e,t){let n=Zh(t);return Xh[e-1]+(e===13&&n?1:0)}function ng(e){let t=og(ig(e.year,e.month,e.day));return t.setHours(6,30,3,200),t}function rg(e){return ag(sg(e.getFullYear(),e.getMonth()+1,e.getDate()))}function ig(e,t,n){return e<0&&e++,n+(t-1)*30+(e-1)*365+Math.floor(e/4)+Yh-1}function ag(e){let t=Math.floor(e)+.5-Yh,n=Math.floor((t-Math.floor((t+366)/1461))/365)+1;n<=0&&n--,t=Math.floor(e)+.5-ig(n,1,1);let r=Math.floor(t/30)+1,i=t-(r-1)*30+1;return new eh(n,r,i)}function og(e){let t=Math.floor(e+.5),n=Math.floor((t-1867216.25)/36524.25);n=t+1+n-Math.floor(n/4);let r=n+1524,i=Math.floor((r-122.1)/365.25),a=Math.floor(365.25*i),o=Math.floor((r-a)/30.6001),s=r-a-Math.floor(o*30.6001),c=o-(o>13.5?13:1),l=i-(c>2.5?4716:4715);return l<=0&&l--,new Date(l,c,s)}function sg(e,t,n){e<0&&e++,t<3&&(t+=12,e--);let r=Math.floor(e/100),i=2-r+Math.floor(r/4);return Math.floor(365.25*(e+4716))+Math.floor(30.6001*(t+1))+n+i-1524.5}var cg=class extends rh{getDaysPerWeek(){return 7}getMonths(e){return[1,2,3,4,5,6,7,8,9,10,11,12,13]}getNext(e,t=`d`,n=1){switch(e=new eh(e.year,e.month,e.day),t){case`y`:return e=Qh(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=$h(e,e.month+n),e.day=1,e;case`d`:return eg(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Math.floor(ig(e.year,e.month,e.day)+3)%7;return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=ng(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=ng(new eh(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getWeeksPerMonth(){return 6}getToday(){return rg(new Date)}isValid(e){return e&&Q(e.year)&&Q(e.month)&&Q(e.day)&&!isNaN(ng(e).getTime())}},lg=1080,ug=24*lg,dg=12*lg+793,fg=29*ug+dg,pg=11*lg+204,mg=2092591,hg=1721425.5;function gg(e){return e%4==0&&e%100!=0||e%400==0}function _g(e){let t=Math.floor((235*e-234)/19),n=t*dg+pg,r=t*29+Math.floor(n/ug),i=n%ug,a=r%7;return(a===2||a===4||a===6)&&(r++,a=r%7),a===1&&i>15*lg+204&&!xg(e)?r+=2:a===0&&i>21*lg+589&&xg(e-1)&&r++,r}function vg(e,t){let n=[31,28,31,30,31,30,31,31,30,31,30,31];return gg(t)&&n[1]++,n[e-1]}function yg(e){return xg(e)?13:12}function bg(e){return _g(e+1)-_g(e)}function xg(e){if(e!=null){let t=(e*12+17)%19;return t>=(t<0?-7:12)}return!1}function Sg(e,t){let n=_g(t+1)-_g(t),r=(n<=380?n:n-30)-353,i=xg(t)?[30,29,29,29,30,30,29,30,29,30,29,30,29]:[30,29,29,29,30,29,30,29,30,29,30,29];return r>0&&i[2]++,r>1&&i[1]++,i[e-1]}function Cg(e){let t=0;for(let n=1;n<e.month;n++)t+=Sg(n,e.year);return t+e.day}function wg(e,t){let n=t>=0;for(n||(t=-t);t>0;)n?t>yg(e.year)-e.month?(t-=yg(e.year)-e.month+1,e.year++,e.month=1):(e.month+=t,t=0):t>=e.month?(e.year--,t-=e.month,e.month=yg(e.year)):(e.month-=t,t=0);return e}function Tg(e,t){let n=t>=0;for(n||(t=-t);t>0;)n?t>bg(e.year)-Cg(e)?(t-=bg(e.year)-Cg(e)+1,e.year++,e.month=1,e.day=1):t>Sg(e.month,e.year)-e.day?(t-=Sg(e.month,e.year)-e.day+1,e.month++,e.day=1):(e.day+=t,t=0):t>=e.day?(t-=e.day,e.month--,e.month===0&&(e.year--,e.month=yg(e.year)),e.day=Sg(e.month,e.year)):(e.day-=t,t=0);return e}function Eg(e){let t=new Date(e),n=t.getFullYear(),r=t.getMonth(),i=t.getDate(),a=hg-1+365*(n-1)+Math.floor((n-1)/4)-Math.floor((n-1)/100)+Math.floor((n-1)/400)+Math.floor((367*(r+1)-362)/12+(r+1<=2?0:gg(n)?-1:-2)+i);a=Math.floor(a+.5);let o=a-347997,s=Math.floor(o*ug/fg),c=Math.floor((s*19+234)/235)+1,l=_g(c),u=o-l;for(;u<1;)c--,l=_g(c),u=o-l;let d=1,f=u;for(;f>Sg(d,c);)f-=Sg(d,c),d++;return new eh(c,d,f)}function Dg(e){let t=e.year,n=e.month,r=e.day,i=_g(t);for(let e=1;e<n;e++)i+=Sg(e,t);i+=r;let a=i-mg,o=a>=0;o||(a=-a);let s=1970,c=1,l=1;for(;a>0;)o?a>=(gg(s)?366:365)?(a-=gg(s)?366:365,s++):a>=vg(c,s)?(a-=vg(c,s),c++):(l+=a,a=0):a>=(gg(s-1)?366:365)?(a-=gg(s-1)?366:365,s--):(c>1?c--:(c=12,s--),a>=vg(c,s)?a-=vg(c,s):(l=vg(c,s)-a+1,a=0));return new Date(s,c-1,l)}function Og(e){if(!e)return``;let t=[``,`א`,`ב`,`ג`,`ד`,`ה`,`ו`,`ז`,`ח`,`ט`],n=[`י`,`יא`,`יב`,`יג`,`יד`,`טו`,`טז`,`יז`,`יח`,`יט`],r=[``,``,`כ`,`ל`,`מ`,`נ`,`ס`,`ע`,`פ`,`צ`],i=[``,`ק`,`ר`,`ש`,`ת`,`תק`,`תר`,`תש`,`תת`,`תתק`],a=[``,`א`,`ב`,`בא`,`בב`,`ה`,`הא`,`הב`,`הבא`,`הבב`],o=0,s=[],c=0;for(;e>0;){let l=e%10;if(c===0)o=l;else if(c===1)l===1?s.unshift(n[o]):s.unshift(r[l],t[o]);else if(c===2)s.unshift(i[l]);else{l!==5&&s.unshift(a[l],`׳`,` `);break}e=Math.floor(e/10),c===0&&e===0&&s.unshift(t[l]),c++}return s=s.join(``).split(``),s.length===1?s.push(`׳`):s.length>1&&s.splice(s.length-1,0,`״`),s.join(``)}var kg=[`שני`,`שלישי`,`רביעי`,`חמישי`,`שישי`,`שבת`,`ראשון`],Ag=[`תשרי`,`חשון`,`כסלו`,`טבת`,`שבט`,`אדר`,`ניסן`,`אייר`,`סיון`,`תמוז`,`אב`,`אלול`],jg=[`תשרי`,`חשון`,`כסלו`,`טבת`,`שבט`,`אדר א׳`,`אדר ב׳`,`ניסן`,`אייר`,`סיון`,`תמוז`,`אב`,`אלול`],Mg=class extends oh{getMonthShortName(e,t){return this.getMonthFullName(e,t)}getMonthFullName(e,t){return xg(t)?jg[e-1]??``:Ag[e-1]??``}getWeekdayLabel(e){return kg[e-1]??``}getDayAriaLabel(e){return`${Og(e.day)} ${this.getMonthFullName(e.month,e.year)} ${Og(e.year)}`}getDayNumerals(e){return Og(e.day)}getWeekNumerals(e){return Og(e)}getYearNumerals(e){return Og(e)}},Ng=class extends rh{getDaysPerWeek(){return 7}getMonths(e){return e&&xg(e)?[1,2,3,4,5,6,7,8,9,10,11,12,13]:[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}isValid(e){if(e!=null){let t=ld(e.year)&&ld(e.month)&&ld(e.day);return t=t&&e.month>0&&e.month<=(xg(e.year)?13:12),t=t&&e.day>0&&e.day<=Sg(e.month,e.year),t&&!isNaN(Dg(e).getTime())}return!1}getNext(e,t=`d`,n=1){switch(e=new eh(e.year,e.month,e.day),t){case`y`:return e.year+=n,e.month=1,e.day=1,e;case`m`:return e=wg(e,n),e.day=1,e;case`d`:return Tg(e,n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Dg(e).getDay();return t===0?7:t}getWeekNumber(e,t){let n=e[e.length-1];return Math.ceil(Cg(n)/7)}getToday(){return Eg(new Date)}toGregorian(e){return th(Dg(e))}fromGregorian(e){return Eg(nh(e))}},Pg=class extends rh{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){switch(e=new eh(e.year,e.month,e.day),t){case`y`:return e=this._setYear(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=this._setMonth(e,e.month+n),e.day=1,e;case`d`:return this._setDay(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=this.toGregorian(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=this.toGregorian(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=this.toGregorian(new eh(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getToday(){return this.fromGregorian(new Date)}isValid(e){return e!=null&&ld(e.year)&&ld(e.month)&&ld(e.day)&&!isNaN(this.toGregorian(e).getTime())}_setDay(e,t){t=+t;let n=this.getDaysPerMonth(e.month,e.year);if(t<=0)for(;t<=0;)e=this._setMonth(e,e.month-1),n=this.getDaysPerMonth(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=this._setMonth(e,e.month+1),n=this.getDaysPerMonth(e.month,e.year);return e.day=t,e}_setMonth(e,t){return t=+t,e.year+=Math.floor((t-1)/12),e.month=Math.floor(((t-1)%12+12)%12)+1,e}_setYear(e,t){return e.year=+t,e}};function Fg(e){return(14+11*e)%30<11}function Ig(e){let t=e.getFullYear();return t%4==0&&t%100!=0||t%400==0}function Lg(e,t){return Math.ceil(29.5*t)+(e-1)*354+Math.floor((3+11*e)/30)}function Rg(e){return(e-1)*354+Math.floor((3+11*e)/30)}function zg(e,t){return e-t*Math.floor(e/t)}var Bg=1721425.5,Vg=1948439.5,Hg=class extends Pg{fromGregorian(e){let t=e.getFullYear(),n=e.getMonth(),r=e.getDate(),i=Bg-1+365*(t-1)+Math.floor((t-1)/4)+-Math.floor((t-1)/100)+Math.floor((t-1)/400)+Math.floor((367*(n+1)-362)/12+(n+1<=2?0:Ig(e)?-1:-2)+r);i=Math.floor(i)+.5;let a=i-Vg,o=Math.floor((30*a+10646)/10631),s=Math.ceil((a-29-Rg(o))/29.5);s=Math.min(s,11);let c=Math.ceil(a-Lg(o,s))+1;return new eh(o,s+1,c)}toGregorian(e){let t=e.year,n=e.month-1,r=e.day+Math.ceil(29.5*n)+(t-1)*354+Math.floor((3+11*t)/30)+Vg-1,i=Math.floor(r-.5)+.5,a=i-Bg,o=Math.floor(a/146097),s=zg(a,146097),c=Math.floor(s/36524),l=zg(s,36524),u=Math.floor(l/1461),d=zg(l,1461),f=Math.floor(d/365),p=o*400+c*100+u*4+f;c!==4&&f!==4&&p++;let m=i-(Bg+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)),h=i<Bg-1+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)+Math.floor(739/12+(Ig(new Date(p,3,1))?-1:-2)+1)?0:Ig(new Date(p,3,1))?1:2,g=Math.floor(((m+h)*12+373)/367),_=i-(Bg-1+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)+Math.floor((367*g-362)/12+(g<=2?0:Ig(new Date(p,g-1,1))?-1:-2)+1))+1;return new Date(p,g-1,_)}getDaysPerMonth(e,t){t+=Math.floor(e/13),e=(e-1)%12+1;let n=29+e%2;return e===12&&Fg(t)&&n++,n}},Ug=new Date(1882,10,12),Wg=new Date(2174,10,25),Gg=1300,Kg=1600,qg=864e5,Jg=`101010101010.110101010100.111011001001.011011010100.011011101010.001101101100.101010101101.010101010101.011010101001.011110010010.101110101001.010111010100.101011011010.010101011100.110100101101.011010010101.011101001010.101101010100.101101101010.010110101101.010010101110.101001001111.010100010111.011010001011.011010100101.101011010101.001011010110.100101011011.010010011101.101001001101.110100100110.110110010101.010110101100.100110110110.001010111010.101001011011.010100101011.101010010101.011011001010.101011101001.001011110100.100101110110.001010110110.100101010110.101011001010.101110100100.101111010010.010111011001.001011011100.100101101101.010101001101.101010100101.101101010010.101110100101.010110110100.100110110110.010101010111.001010010111.010101001011.011010100011.011101010010.101101100101.010101101010.101010101011.010100101011.110010010101.110101001010.110110100101.010111001010.101011010110.100101010111.010010101011.100101001011.101010100101.101101010010.101101101010.010101110101.001001110110.100010110111.010001011011.010101010101.010110101001.010110110100.100111011010.010011011101.001001101110.100100110110.101010101010.110101010100.110110110010.010111010101.001011011010.100101011011.010010101011.101001010101.101101001001.101101100100.101101110001.010110110100.101010110101.101001010101.110100100101.111010010010.111011001001.011011010100.101011101001.100101101011.010010101011.101010010011.110101001001.110110100100.110110110010.101010111001.010010111010.101001011011.010100101011.101010010101.101100101010.101101010101.010101011100.010010111101.001000111101.100100011101.101010010101.101101001010.101101011010.010101101101.001010110110.100100111011.010010011011.011001010101.011010101001.011101010100.101101101010.010101101100.101010101101.010101010101.101100101001.101110010010.101110101001.010111010100.101011011010.010101011010.101010101011.010110010101.011101001001.011101100100.101110101010.010110110101.001010110110.101001010110.111001001101.101100100101.101101010010.101101101010.010110101101.001010101110.100100101111.010010010111.011001001011.011010100101.011010101100.101011010110.010101011101.010010011101.101001001101.110100010110.110110010101.010110101010.010110110101.001011011010.100101011011.010010101101.010110010101.011011001010.011011100100.101011101010.010011110101.001010110110.100101010110.101010101010.101101010100.101111010010.010111011001.001011101010.100101101101.010010101101.101010010101.101101001010.101110100101.010110110010.100110110101.010011010110.101010010111.010101000111.011010010011.011101001001.101101010101.010101101010.101001101011.010100101011.101010001011.110101000110.110110100011.010111001010.101011010110.010011011011.001001101011.100101001011.101010100101.101101010010.101101101001.010101110101.000101110110.100010110111.001001011011.010100101011.010101100101.010110110100.100111011010.010011101101.000101101101.100010110110.101010100110.110101010010.110110101001.010111010100.101011011010.100101011011.010010101011.011001010011.011100101001.011101100010.101110101001.010110110010.101010110101.010101010101.101100100101.110110010010.111011001001.011011010010.101011101001.010101101011.010010101011.101001010101.110100101001.110101010100.110110101010.100110110101.010010111010.101000111011.010010011011.101001001101.101010101010.101011010101.001011011010.100101011101.010001011110.101000101110.110010011010.110101010101.011010110010.011010111001.010010111010.101001011101.010100101101.101010010101.101101010010.101110101000.101110110100.010110111001.001011011010.100101011010.101101001010.110110100100.111011010001.011011101000.101101101010.010101101101.010100110101.011010010101.110101001010.110110101000.110111010100.011011011010.010101011011.001010011101.011000101011.101100010101.101101001010.101110010101.010110101010.101010101110.100100101110.110010001111.010100100111.011010010101.011010101010.101011010110.010101011101.001010011101`.split(`.`);function Yg(e,t){let n=Date.UTC(e.getFullYear(),e.getMonth(),e.getDate()),r=Date.UTC(t.getFullYear(),t.getMonth(),t.getDate()),i=Math.abs(n-r);return Math.round(i/qg)}var Xg=class extends Hg{fromGregorian(e){let t=1,n=0,r=1300,i=Yg(e,Ug);if(e.getTime()-Ug.getTime()>=0&&e.getTime()-Wg.getTime()<=0){let e=1300;for(let a=0;a<Jg.length;a++,e++)for(let o=0;o<12;o++){let s=+Jg[a][o]+29;if(i<=s)return t=i+1,t>s&&(t=1,o++),o>11&&(o=0,e++),n=o,r=e,new eh(r,n+1,t);i-=s}return null}return super.fromGregorian(e)}toGregorian(e){let t=e.year,n=e.month-1,r=e.day,i=new Date(Ug),a=r-1;if(t>=Gg&&t<=Kg){for(let e=0;e<t-Gg;e++)for(let t=0;t<12;t++)a+=+Jg[e][t]+29;for(let e=0;e<n;e++)a+=+Jg[t-Gg][e]+29;i.setDate(Ug.getDate()+a)}else i=super.toGregorian(e);return i}getDaysPerMonth(e,t){return t>=Gg&&t<=Kg?+Jg[t-Gg][e-1]+29:super.getDaysPerMonth(e,t)}};function Zg(e){let t=a_(c_(e.year,e.month,e.day));return t.setHours(6,30,3,200),t}function Qg(e){return s_(o_(e.getFullYear(),e.getMonth()+1,e.getDate()))}function $g(e,t){return e.year=+t,e}function e_(e,t){return t=+t,e.year+=Math.floor((t-1)/12),e.month=Math.floor(((t-1)%12+12)%12)+1,e}function t_(e,t){let n=l_(e.month,e.year);if(t<=0)for(;t<=0;)e=e_(e,e.month-1),n=l_(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=e_(e,e.month+1),n=l_(e.month,e.year);return e.day=t,e}function n_(e,t){return e-t*Math.floor(e/t)}function r_(e,t){return Math.trunc(e/t)}function i_(e){let t=[-61,9,38,199,426,686,756,818,1111,1181,1210,1635,2060,2097,2192,2262,2324,2394,2456,3178],n=t.length,r=e+621,i=-14,a=t[0];if(e<a||e>=t[n-1])throw Error(`Invalid Jalali year `+e);let o=0;for(let r=1;r<n;r+=1){let n=t[r];if(o=n-a,e<n)break;i=i+r_(o,33)*8+r_(n_(o,33),4),a=n}let s=e-a;i=i+r_(s,33)*8+r_(n_(s,33)+3,4),n_(o,33)===4&&o-s===4&&(i+=1);let c=r_(r,4)-r_((r_(r,100)+1)*3,4)-150,l=20+i-c;o-s<6&&(s=s-o+r_(o+4,33)*33);let u=n_(n_(s+1,33)-1,4);return u===-1&&(u=4),{leap:u,gy:r,march:l}}function a_(e){let t=4*e+139361631;t=t+r_(r_(4*e+183187720,146097)*3,4)*4-3908;let n=r_(n_(t,1461),4)*5+308,r=r_(n_(n,153),5)+1,i=n_(r_(n,153),12)+1,a=r_(t,1461)-100100+r_(8-i,6);return new Date(a,i-1,r)}function o_(e,t,n){let r=r_((e+r_(t-8,6)+100100)*1461,4)+r_(153*n_(t+9,12)+2,5)+n-34840408;return r=r-r_(r_(e+100100+r_(t-8,6),100)*3,4)+752,r}function s_(e){let t=a_(e).getFullYear(),n=t-621,r=i_(n),i=o_(t,3,r.march),a,o,s;if(s=e-i,s>=0){if(s<=185)return o=1+r_(s,31),a=n_(s,31)+1,new eh(n,o,a);s-=186}else--n,s+=179,r.leap===1&&(s+=1);return o=7+r_(s,30),a=n_(s,30)+1,new eh(n,o,a)}function c_(e,t,n){let r=i_(e);return o_(r.gy,3,r.march)+(t-1)*31-r_(t,7)*(t-7)+n-1}function l_(e,t){return e<=6?31:e<=11||i_(t).leap===0?30:29}var u_=class extends rh{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){switch(e=new eh(e.year,e.month,e.day),t){case`y`:return e=$g(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=e_(e,e.month+n),e.day=1,e;case`d`:return t_(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Zg(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=Zg(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=Zg(new eh(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getToday(){return Qg(new Date)}isValid(e){return e!=null&&Q(e.year)&&Q(e.month)&&Q(e.day)&&!isNaN(Zg(e).getTime())}},d_=class e{static get $factory(){return{controllerAs:`$`,controller:e,template:`<ui-view></ui-view>`}}static get $name(){return`docsApp`}},f_=(e,t)=>{e.state(`docs`,{abstract:!0,component:d_.$name}),t.otherwise(`/`)};f_.$inject=[`$stateProvider`,`$urlRouterProvider`];var p_=class{url;$config(e){this.url=e}$get(){return this.url}static get $name(){return`bootstrapUrl`}static get $configName(){return`bootstrapUrlProvider`}};function m_(e){let t=t=>{t.$config(`${e.url}/docs/${e.version}/`)};return t.$inject=[p_.$configName],t}var h_=class{url;$config(e){this.url=e}$get(){return this.url}static get $name(){return`ngBootstrapUrl`}static get $configName(){return`ngBootstrapUrlProvider`}};function g_(e){let t=t=>{t.$config(`${e.url}/#/`)};return t.$inject=[h_.$configName],t}var __=function(e){return e.light=`light`,e.dark=`dark`,e}({}),v_=class{static $key=`theme_key`;static $value=`theme`},y_=class{static $key=`theme.enum`;static $value=__};function b_(e){return e in __}var x_=class{themeStoredKey;theme;constructor(e){this.themeStoredKey=e}getThemeInLocalStorage(){return localStorage.getItem(this.themeStoredKey)}_getPreferredColorScheme(){return matchMedia(`(prefers-color-scheme: dark)`).matches?__.dark:__.light}$config(){let e=this.getThemeInLocalStorage();if(!e){this.theme=this._getPreferredColorScheme();return}if(!b_(e))throw Error(`this theme is not valid`);this.theme=e}$get(){return this.theme}static get $name(){return`theme`}static get $inject(){return[v_.$key]}static get $configName(){return`themeProvider`}};function S_(){let e=e=>{e.$config()};return e.$inject=[x_.$configName],e}var C_=function(e){return e.ES_MX=`es_mx`,e.EN_US=`en_US`,e}({}),w_=class{static $key=`language_key`;static $value=`language`};function T_(e){return e.toUpperCase()in C_}var E_=class{languageKey;_lang;constructor(e){this.languageKey=e}$config(){let e=this._readFromLocalStorage();if(!e){this._lang=C_.EN_US;return}if(!T_(e)){this._lang=C_.EN_US;return}this._lang=e}$get(){return this._lang}_readFromLocalStorage(){return localStorage.getItem(this.languageKey)}static get $name(){return`language`}static get $configName(){return`languageProvider`}static get $inject(){return[w_.$key]}};function D_(){let e=e=>{e.$config()};return e.$inject=[E_.$configName],e}var O_=class{_currentTheme;themeStorageKey;_element=u.default.element(document.documentElement);constructor(e,t){this._currentTheme=e,this.themeStorageKey=t,this._applyTheme(this._currentTheme)}static get $inject(){return[x_.$name,v_.$key]}get activeTheme(){return this._currentTheme}toggle(){this._currentTheme=this._currentTheme===__.light?__.dark:__.light,this._applyTheme(this._currentTheme)}setActive(e){this._applyTheme(e)}_applyTheme(e){this._currentTheme=e,this._element.attr(`data-bs-theme`,this._currentTheme),this.saveInLocalStorage(this._currentTheme)}saveInLocalStorage(e){localStorage.setItem(this.themeStorageKey,e)}static get $name(){return`docs.theme.service`}},k_=class{language;_changeLang;changeLang$;constructor(e){this.language=e,this._changeLang=new ja(this.language),this.changeLang$=this._changeLang.asObservable()}selectLanguage(e){this._changeLang.next(e)}static get $name(){return`docs.language.service`}static get $inject(){return[E_.$name]}},A_=class e{mode=`desktop`;ngbActiveOffcanvas;static get $factory(){return{bindings:{mode:`@`,ngbActiveOffcanvas:`<?`},controllerAs:`$`,controller:e,templateUrl:`templates/menu.component-318df0b6.html`}}static get $inject(){return[]}static get $name(){return`docsMenu`}},j_=class{offCanvasService;_isOpen=!1;_change=new Y;onChange$=this._change.asObservable();constructor(e){this.offCanvasService=e}toggleMenu(){this._isOpen||this.offCanvasService.hasOpenOffcanvas()||(this._setOpenState(!0),this.offCanvasService.open(A_.$name,{bindings:{mode:`mobile`},ariaLabelledBy:`docs-mobile-menu-title`,animation:!0,backdrop:!0,keyboard:!0,panelClass:`border-0 shadow`,position:`start`,scroll:!1}).then(e=>{e.result?.finally(()=>this._setOpenState(!1))},()=>{this._setOpenState(!1)}))}_setOpenState(e){this._isOpen=e,this._change.next(this._isOpen)}static get $inject(){return[wp.$name]}static get $name(){return`core.menu.service`}},M_=class{transitionService;_transition=new Na(void 0);transition$=this._transition.asObservable();_currentTab;get currentTab(){return this._currentTab}set currentTab(e){this._currentTab=e}constructor(e){this.transitionService=e}observeRoute(){this.transitionService.onEnter({},e=>{let t=e.to(),n={title:t.data?.title,tabs:t.data?.tabs,sections:t.data?.sections,externalLinks:t.data?.externalLinks,header:t.data?.header??!0};this._currentTab=t.name,this._transition.next(n)})}static get $name(){return`docs.title.service`}static get $inject(){return[`$transitions`]}};function N_(){let e=e=>{e.observeRoute()};return e.$inject=[M_.$name],e}var P_=class{$transitionService;constructor(e){this.$transitionService=e}observeScroll(){this.$transitionService.onSuccess({},()=>{window.requestAnimationFrame(()=>{document.getElementById(`docs-content-scroll`)?.scrollTo({top:0,left:0,behavior:`auto`})})})}static get $name(){return`docs.scroll.service`}static get $inject(){return[`$transitions`]}};function F_(){let e=e=>{e.observeScroll()};return e.$inject=[P_.$name],e}var I_=class e{static get $name(){return`docsFooter`}static get $factory(){return{controller:e,templateUrl:`templates/footer.component-04ec2991.html`}}};function L_(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a}var R_=class e{modalService;themeService;themes;menuService;searchTemplate;constructor(e,t,n,r){this.modalService=e,this.themeService=t,this.themes=n,this.menuService=r}openModal(){this.modalService.open(this.searchTemplate,{fullscreen:`md`,animation:!1}).then(u.default.noop)}static get $name(){return`docsHeader`}static get $inject(){return[jf.$name,O_.$name,y_.$key,j_.$name]}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`templates/header.component-f4e4ac7a.html`}}};L_([fc(`searchModal`,{static:!0})],R_.prototype,`searchTemplate`,void 0);var z_=class e{static get $name(){return`docsMenuAbstractPageComponent`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`templates/menu-abstract-page.component-86715d5a.html`}}},B_=e=>{e.state(`docs.dashboard`,{abstract:!0,component:z_.$name})};B_.$inject=[`$stateProvider`];var V_=u.default.module(`docs.layout`,[]);V_.component(I_.$name,I_.$factory),V_.component(R_.$name,R_.$factory),V_.component(A_.$name,A_.$factory),V_.component(z_.$name,z_.$factory),V_.config(B_);var H_=u.default.module(`docs.core`,[V_.name]);H_.provider(p_.$name,p_),H_.provider(h_.$name,h_),H_.constant(v_.$key,v_.$value),H_.constant(y_.$key,y_.$value),H_.provider(x_.$name,x_),H_.service(O_.$name,O_),H_.constant(w_.$key,w_.$value),H_.provider(E_.$name,E_),H_.service(k_.$name,k_),H_.service(j_.$name,j_),H_.service(M_.$name,M_),H_.service(P_.$name,P_),H_.config(m_({url:`https://getbootstrap.com`,version:5.3})),H_.config(D_()),H_.config(S_()),H_.config(g_({url:`https://ng-bootstrap.github.io`})),H_.run(F_()),H_.run(N_());var U_=class e{$window;$timeout;value;ariaLabel;buttonClass;copied=!1;constructor(e,t){this.$window=e,this.$timeout=t}copy(){this.$window.navigator.clipboard.writeText(this.value).then(()=>{this.$timeout(()=>{this.copied=!0}),this.$timeout(()=>{this.copied=!1},2e3)})}static get $name(){return`docsCopyButton`}static get $inject(){return[`$window`,`$timeout`]}static get $factory(){return{bindings:{value:`<`,ariaLabel:`@?`,buttonClass:`@?`},controller:e,controllerAs:`copyButton`,templateUrl:`templates/copy-button.component-d1bb3cf6.html`}}},W_=class e{templateRequest;fragment;title;description;htmlCode=``;htmlCodeUrl;tsCode;cssCode;codeCollapsed=!0;activeTab=`html`;static $inject=[`$templateRequest`];constructor(e){this.templateRequest=e}$onInit(){if(!this.htmlCodeUrl)return;let e=Array.isArray(this.htmlCodeUrl)?this.htmlCodeUrl:[this.htmlCodeUrl];Promise.all(e.map(e=>{let t=typeof e==`string`?e:e.url;return this.templateRequest(t).then(t=>typeof e==`string`||!e.label?t:`<!-- ${e.label} -->\n${t}`)})).then(e=>{this.htmlCode=e.join(`
+
+`)})}toggleCode(){this.codeCollapsed=!this.codeCollapsed}get hasAdditionalCode(){return!!(this.tsCode||this.cssCode)}get activeCode(){return this.activeTab===`typescript`?this.tsCode??``:this.activeTab===`css`?this.cssCode??``:this.htmlCode}static get $name(){return`docsExampleSection`}static get $factory(){return{bindings:{fragment:`@`,title:`@`,description:`@`,htmlCode:`<`,htmlCodeUrl:`<?`,tsCode:`<?`,cssCode:`<?`},controller:e,controllerAs:`example`,transclude:!0,templateUrl:`templates/example-section.component-fd29220f.html`}}},G_=class e{titleService;bootstrapUrl;ngBootstrapUrl;destroyRef=new Y;externalLinks;title;sections=[];constructor(e,t,n){this.titleService=e,this.bootstrapUrl=t,this.ngBootstrapUrl=n}get bootstrapHref(){return this.externalLinks?.bootstrap?`${this.bootstrapUrl}${this.externalLinks.bootstrap}`:void 0}get ngBootstrapHref(){return this.externalLinks?.ngBootstrap?`${this.ngBootstrapUrl}${this.externalLinks.ngBootstrap}`:void 0}$postLink(){this.titleService.transition$.pipe(bs(this.destroyRef)).subscribe(e=>{this.title=e.title,this.sections=e.sections??[],this.externalLinks=e.externalLinks})}$onDestroy(){this.destroyRef.next(),this.destroyRef.complete()}static get $inject(){return[M_.$name,p_.$name,h_.$name]}static get $name(){return`docsPageOutline`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`templates/page-outline.component-76fd675a.html`}}},K_=class e{titleService;destroyRef=new Y;title;tabs;visible=!1;constructor(e){this.titleService=e}$postLink(){this.titleService.transition$.pipe(bs(this.destroyRef)).subscribe(e=>{this.title=e.title,this.tabs=e.tabs,this.visible=e.header})}$onDestroy(){this.destroyRef.next(),this.destroyRef.complete()}static get $inject(){return[M_.$name]}static get $name(){return`docsTitleHeading`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`templates/title-heading.component-54b0b4d3.html`}}},q_=u.default.module(`docs.shared`,[]);q_.component(U_.$name,U_.$factory),q_.component(W_.$name,W_.$factory),q_.component(G_.$name,G_.$factory),q_.component(K_.$name,K_.$factory);var J_=class e{activePackageManager=`npm`;packageManagers=[{id:`npm`,name:`npm`,command:`npm install ngb-js`},{id:`pnpm`,name:`pnpm`,command:`pnpm add ngb-js`},{id:`yarn`,name:`Yarn`,command:`yarn add ngb-js`},{id:`bun`,name:`Bun`,command:`bun add ngb-js`}];static get $name(){return`docsIntroductionPage`}static get $factory(){return{controller:e,templateUrl:`templates/introduction-page.component-35f4d9d2.html`,controllerAs:`$`}}},Y_=class e{static get $name(){return`docsPhilosophyPage`}static get $factory(){return{controller:e,templateUrl:`templates/philosophy-page.component-28b6d924.html`,controllerAs:`$`}}},X_=class e{static get $name(){return`docsWhyNgbJsPage`}static get $factory(){return{controller:e,templateUrl:`templates/why-ngbjs-page.component-feee76ba.html`,controllerAs:`$`}}},Z_=e=>{e.state(`docs.dashboard.introduction`,{url:`/guide/introduction`,component:J_.$name,data:{header:!1,title:`Introduction`,sections:[{id:`origin`,name:`Origin`},{id:`what-is-ngbjs`,name:`What is NgbJS?`},{id:`who-is-it-for`,name:`Who is it for?`},{id:`project-status`,name:`Project status`},{id:`installation`,name:`Installation`},{id:`acknowledgements`,name:`Acknowledgements`}]}}),e.state(`docs.dashboard.philosophy`,{url:`/guide/philosophy`,component:Y_.$name,data:{header:!1,title:`Philosophy`,sections:[{id:`parity-is-priority`,name:`Parity is Priority`},{id:`what-parity-means`,name:`What parity means`},{id:`familiar-by-design`,name:`Familiar by design`},{id:`a-migration-bridge`,name:`A migration bridge`},{id:`when-parity-is-hard`,name:`When parity is hard`}]}}),e.state(`docs.dashboard.whyNgbJs`,{url:`/guide/why-ngbjs`,component:X_.$name,data:{header:!1,title:`Why NgbJS?`,sections:[{id:`the-legacy-reality`,name:`The legacy reality`},{id:`before-and-after`,name:`Before and after`},{id:`what-it-unlocks`,name:`What NgbJS unlocks`},{id:`when-to-use-ngbjs`,name:`When to use NgbJS`},{id:`a-bridge-not-a-destination`,name:`A bridge, not a destination`}]}})};Z_.$inject=[`$stateProvider`];var Q_=u.default.module(`docs.guide`,[]);Q_.component(J_.$name,J_.$factory),Q_.component(Y_.$name,Y_.$factory),Q_.component(X_.$name,X_.$factory),Q_.config(Z_);var $_=class e{static get $name(){return`docsHomeHero`}static get $factory(){return{controller:e,templateUrl:`templates/home-hero.component-37426584.html`}}},ev=class e{installCommand=`npm install ngb-js`;static get $name(){return`docsHomePage`}static get $factory(){return{controller:e,templateUrl:`templates/home-page.component-5aa43b6c.html`,controllerAs:`$`}}},tv=e=>{e.state(`docs.home`,{url:`/`,component:ev.$name})};tv.$inject=[`$stateProvider`];var nv=u.default.module(`docs.home`,[]);nv.component($_.$name,$_.$factory),nv.component(ev.$name,ev.$factory),nv.config(tv);var rv=()=>[{id:1,type:`success`,message:`Your changes were saved successfully.`,animation:!0},{id:2,type:`danger`,message:`Something needs your attention.`,animation:!0},{id:3,type:`warning`,message:`This alert closes without animation.`,animation:!1},{id:4,type:`info`,message:`This one also closes immediately.`,animation:!1}],iv=class e{alerts=rv();close(e){this.alerts=this.alerts.filter(t=>t.id!==e)}reset(){this.alerts=rv()}static get $name(){return`docsAlertCloseable`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/alert-closeable.component-913d93a9.html`}}},av=class e{static get $name(){return`docsAlertCustom`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/alert-custom.component-c8121d56.html`}}},ov=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,dismissible:e.dismissible,type:e.type},e.animation=!1,e.dismissible=!1,e.type=`success`}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.dismissible=this.initialConfig.dismissible,this.config.type=this.initialConfig.type}static get $name(){return`docsAlertGlobal`}static get $inject(){return[Dd.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/alert-global.component-38075daa.html`}}},sv=class e{draft=`This value remains after collapsing the panel.`;static get $name(){return`docsAccordionContent`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-content.component-17c56d87.html`}}},cv=class e{static get $name(){return`docsAccordionCustomHeader`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-custom-header.component-b416bfe1.html`}}},lv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,closeOthers:e.closeOthers,destroyOnHide:e.destroyOnHide},e.animation=!1,e.closeOthers=!0,e.destroyOnHide=!1}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.closeOthers=this.initialConfig.closeOthers,this.config.destroyOnHide=this.initialConfig.destroyOnHide}static get $name(){return`docsAccordionGlobal`}static get $inject(){return[Ru.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-global.component-2b91d8e0.html`}}},uv=class e{static get $name(){return`docsAccordionSimple`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-simple.component-b7f97512.html`}}},dv=class e{accordion;expandAll(){this.accordion.expandAll()}collapseAll(){this.accordion.collapseAll()}toggle(e){this.accordion.toggle(e)}static get $name(){return`docsAccordionTogglePanels`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/accordion-toggle-panels.component-5695d59f.html`}}};L_([fc(`accordion`,{static:!0})],dv.prototype,`accordion`,void 0);var fv=class e{static get $name(){return`docsOnePanelAccordion`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/one-panel-accordion.component-742e60a7.html`}}},pv=class e{$timeout;initialSeconds=5;timer;alert;remaining=this.initialSeconds;visible=!0;constructor(e){this.$timeout=e}$onInit(){this.startTimer()}$onDestroy(){this.cancelTimer()}restart(){this.cancelTimer(),this.remaining=this.initialSeconds,this.visible=!0,this.startTimer()}onClosed(){this.visible=!1,this.cancelTimer()}startTimer(){this.timer=this.$timeout(()=>{if(this.remaining--,this.remaining<=0){this.alert?this.alert.close():this.visible=!1;return}this.startTimer()},1e3)}cancelTimer(){this.timer&&=(this.$timeout.cancel(this.timer),void 0)}static get $name(){return`docsSelfClosingAlert`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/self-closing-alert.component-d049277d.html`}}};L_([fc(`alert`)],pv.prototype,`alert`,void 0);var mv=class e{static get $name(){return`docsSimpleAlert`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-alert.component-4b71799e.html`}}},hv=class e{$element;$timeout;pauseOnHover=!0;pauseOnFocus=!0;unpauseOnArrow=!1;pauseOnIndicator=!1;paused=!1;carousel;constructor(e,t){this.$element=e,this.$timeout=t}$postLink(){this.$timeout(()=>{this.carousel=this.$element.find(`ngb-carousel`).controller(`ngbCarousel`)},0,!1)}onSlide(e){(e.source===`arrowLeft`||e.source===`arrowRight`)&&this.unpauseOnArrow&&(this.carousel?.cycle(),this.paused=!1),e.source===`indicator`&&this.pauseOnIndicator&&(this.carousel?.pause(),this.paused=!0)}toggleCycle(){this.paused?this.carousel?.cycle():this.carousel?.pause(),this.paused=!this.paused}static get $name(){return`docsCarouselControls`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/carousel-controls.component-b868a8d3.html`}}static get $inject(){return[`$element`,`$timeout`]}},gv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,interval:e.interval,wrap:e.wrap,pauseOnFocus:e.pauseOnFocus,pauseOnHover:e.pauseOnHover,showNavigationArrows:e.showNavigationArrows},e.animation=!1,e.interval=2500,e.wrap=!1,e.pauseOnFocus=!1,e.pauseOnHover=!1,e.showNavigationArrows=!1}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.interval=this.initialConfig.interval,this.config.wrap=this.initialConfig.wrap,this.config.pauseOnFocus=this.initialConfig.pauseOnFocus,this.config.pauseOnHover=this.initialConfig.pauseOnHover,this.config.showNavigationArrows=this.initialConfig.showNavigationArrows}static get $name(){return`docsCarouselGlobal`}static get $inject(){return[Md.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/carousel-global.component-a20e9aa0.html`}}},_v=class e{static get $name(){return`docsCarouselKeyboard`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/carousel-keyboard.component-b6251de3.html`}}},vv=class e{static get $name(){return`docsCarouselSimple`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/carousel-simple.component-5959ec9e.html`}}},yv=class e{collapsed=!0;toggle(){this.collapsed=!this.collapsed}static get $name(){return`docsHorizontalCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/horizontal-collapse.component-4b73db45.html`}}},bv=class e{menuCollapsed=!0;toggleMenu(){this.menuCollapsed=!this.menuCollapsed}closeMenu(){this.menuCollapsed=!0}static get $name(){return`docsNavbarCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/navbar-collapse.component-19f68cfc.html`}}},xv=class e{collapse;collapsed=!0;toggleWithController(){this.collapse.toggle()}toggleWithBinding(){this.collapsed=!this.collapsed}static get $name(){return`docsSimpleCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-collapse.component-44d27814.html`}}};L_([fc(`collapse`,{static:!0})],xv.prototype,`collapse`,void 0);var Sv=class e{static get $name(){return`docsDropdownBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-body.component-1e3954ac.html`}}},Cv=class e{static get $name(){return`docsDropdownButtonGroups`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-button-groups.component-d4fe7542.html`}}},wv=class e{restricted=!0;static get $name(){return`docsDropdownDisabledItems`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-disabled-items.component-48667c33.html`}}},Tv=class e{email=``;remember=!1;submitted=!1;submit(){this.submitted=!0}static get $name(){return`docsDropdownForm`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-form.component-d213e1ce.html`}}},Ev=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={autoClose:e.autoClose,container:e.container,placement:e.placement},e.autoClose=`outside`,e.container=`body`,e.placement=[`top-start`,`bottom-start`]}$onDestroy(){this.config.autoClose=this.initialConfig.autoClose,this.config.container=this.initialConfig.container,this.config.placement=this.initialConfig.placement}static get $name(){return`docsDropdownGlobal`}static get $inject(){return[Kd.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-global.component-165a343d.html`}}},Dv=class e{static get $name(){return`docsDropdownNavbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dropdown-navbar.component-802b581f.html`}}},Ov=class e{dropdown;opened=!1;open(){this.dropdown.open()}close(){this.dropdown.close()}toggle(){this.dropdown.toggle()}static get $name(){return`docsManualDropdown`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/manual-dropdown.component-c5126309.html`}}};L_([fc(`dropdown`,{read:vf,static:!0})],Ov.prototype,`dropdown`,void 0);var kv=class e{static get $name(){return`docsSimpleDropdown`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-dropdown.component-44aea468.html`}}},Av=class e{ngbActiveModal;title=`Component modal`;description=`This modal receives a component as its content.`;longContent=!1;items=Array.from({length:24},(e,t)=>`Scrollable content row ${t+1}`);static get $name(){return`docsModalDemoContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`,title:`<?`,description:`<?`,longContent:`<?`},controller:e,controllerAs:`$`,templateUrl:`templates/modal-demo-content.component-2c7c8be6.html`}}},jv=class e{modal;lastResult=`No result yet`;constructor(e){this.modal=e}async open(){let e=await this.modal.open(Av.$name,{bindings:{title:`Component as content`,description:`NgbActiveModal is provided directly to the content component.`}});e.closed.subscribe(e=>{this.lastResult=`Closed with: ${e}`}),e.dismissed.subscribe(e=>{this.lastResult=`Dismissed with: ${e}`})}static get $name(){return`docsModalComponentContent`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-component-content.component-9ebf2605.html`}}},Mv=class e{modal;content;constructor(e){this.modal=e}open(){this.modal.open(this.content)}static get $name(){return`docsModalDefault`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-default.component-8569b31a.html`}}};L_([fc(`content`,{read:kc,static:!0})],Mv.prototype,`content`,void 0);var Nv=class e{ngbActiveModal;autofocus=!1;static get $name(){return`docsModalFocusContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`,autofocus:`<?`},controller:e,controllerAs:`$`,templateUrl:`templates/modal-focus-content.component-fb67acd6.html`}}},Pv=class e{modal;constructor(e){this.modal=e}openDefaultFocus(){this.modal.open(Nv.$name,{ariaLabelledBy:`modal-focus-title`,bindings:{autofocus:!1}})}openCustomFocus(){this.modal.open(Nv.$name,{ariaLabelledBy:`modal-focus-title`,bindings:{autofocus:!0}})}static get $name(){return`docsModalFocus`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-focus.component-df166600.html`}}},Fv=class e{modal;config;initialConfig;constructor(e,t){this.modal=e,this.config=t,this.initialConfig={backdrop:t.backdrop,centered:t.centered,keyboard:t.keyboard,size:t.size}}async open(){this.applyConfig();try{await this.modal.open(Av.$name,{bindings:{title:`Globally configured modal`,description:`This modal is centered, large and cannot be dismissed with Escape or a backdrop click.`}})}finally{this.restoreConfig()}}$onDestroy(){this.restoreConfig()}applyConfig(){this.config.backdrop=`static`,this.config.centered=!0,this.config.keyboard=!1,this.config.size=`lg`}restoreConfig(){this.config.backdrop=this.initialConfig.backdrop,this.config.centered=this.initialConfig.centered,this.config.keyboard=this.initialConfig.keyboard,this.config.size=this.initialConfig.size}static get $name(){return`docsModalGlobal`}static get $inject(){return[jf.$name,Sf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-global.component-4801e4b3.html`}}},Iv=class e{modal;constructor(e){this.modal=e}openCustomWindow(){this.open(`Custom window class`,{windowClass:`modal-window-custom`})}openStaticBackdrop(){this.open(`Static custom backdrop`,{backdrop:`static`,backdropClass:`modal-static-backdrop`,keyboard:!1})}openSmall(){this.open(`Small modal`,{size:`sm`})}openLarge(){this.open(`Large modal`,{size:`lg`})}openExtraLarge(){this.open(`Extra large modal`,{size:`xl`})}openFullscreen(){this.open(`Fullscreen modal`,{fullscreen:!0})}openCentered(){this.open(`Vertically centered modal`,{centered:!0})}openScrollable(){this.open(`Scrollable modal`,{scrollable:!0,size:`lg`},!0)}openCustomDialog(){this.open(`Custom dialog class`,{modalDialogClass:`modal-dialog-custom`})}open(e,t,n=!1){this.modal.open(Av.$name,{...t,bindings:{title:e,description:`These values are applied only to this modal instance.`,longContent:n}})}static get $name(){return`docsModalOptions`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-options.component-3492165f.html`}}},Lv=class e{modal;ngbActiveModal;level=1;constructor(e){this.modal=e}dismissAll(){this.modal.dismissAll(`Dismiss all`)}static get $name(){return`docsModalStackedContent`}static get $inject(){return[jf.$name]}static get $factory(){return{bindings:{ngbActiveModal:`<`,level:`<?`},controller:e,controllerAs:`$`,templateUrl:`templates/modal-stacked-content.component-a018d8f7.html`}}},Rv=class e{modal;constructor(e){this.modal=e}async openStack(){for(let e=1;e<=3;e++)await this.modal.open(Lv.$name,{bindings:{level:e}})}static get $name(){return`docsModalStacked`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-stacked.component-c6e041f1.html`}}},zv=class e{ngbActiveModal;ariaReferences=!0;centered=!1;fullscreen=!1;customBackdrop=!1;size=`sm`;customWindow=!1;customDialog=!1;toggleAriaReferences(){this.ariaReferences=!this.ariaReferences,this.ngbActiveModal.update({ariaLabelledBy:this.ariaReferences?`updatable-modal-title`:``,ariaDescribedBy:this.ariaReferences?`updatable-modal-description`:``})}toggleCentered(){this.centered=!this.centered,this.ngbActiveModal.update({centered:this.centered})}toggleFullscreen(){this.fullscreen=!this.fullscreen,this.ngbActiveModal.update({fullscreen:this.fullscreen})}toggleBackdropClass(){this.customBackdrop=!this.customBackdrop,this.ngbActiveModal.update({backdropClass:this.customBackdrop?`modal-updated-backdrop`:``})}cycleSize(){let e=[`sm`,`lg`,`xl`];this.size=e[(e.indexOf(this.size)+1)%e.length],this.ngbActiveModal.update({size:this.size})}toggleWindowClass(){this.customWindow=!this.customWindow,this.ngbActiveModal.update({windowClass:this.customWindow?`modal-updated-window`:``})}toggleDialogClass(){this.customDialog=!this.customDialog,this.ngbActiveModal.update({modalDialogClass:this.customDialog?`modal-updated-dialog`:``})}static get $name(){return`docsModalUpdatableContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`},controller:e,controllerAs:`$`,templateUrl:`templates/modal-updatable-content.component-ef48c6fe.html`}}},Bv=class e{modal;constructor(e){this.modal=e}open(){this.modal.open(zv.$name,{ariaLabelledBy:`updatable-modal-title`,ariaDescribedBy:`updatable-modal-description`,size:`sm`})}static get $name(){return`docsModalUpdatable`}static get $inject(){return[jf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/modal-updatable.component-60b4aa8c.html`}}},Vv=class e{activeId=`alternative-home`;static get $name(){return`docsAlternativeNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/alternative-nav.component-91ca65c7.html`}}},Hv=class e{activeId=`custom-weekly`;static get $name(){return`docsCustomNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/custom-nav.component-1b5ce3ef.html`}}},Uv=class e{items=[{id:`dynamic-1`,title:`Tab 1`},{id:`dynamic-2`,title:`Tab 2`},{id:`dynamic-3`,title:`Tab 3`}];activeId=`dynamic-1`;nextId=4;add(){let e={id:`dynamic-${this.nextId}`,title:`Tab ${this.nextId}`};this.nextId++,this.items.push(e),this.activeId=e.id}removeActive(){if(this.items.length===1)return;let e=this.items.findIndex(({id:e})=>e===this.activeId),t=this.items[e===0?1:e-1];this.activeId=t.id,this.items=this.items.filter(({id:t})=>t!==this.items[e].id)}static get $name(){return`docsDynamicNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/dynamic-nav.component-8f99c980.html`}}},Wv=class e{activeId=`keep-editor`;draft=`This value survives tab changes.`;static get $name(){return`docsKeepContentNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/keep-content-nav.component-91bc7f5b.html`}}},Gv=class e{config;activeId=`global-account`;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,destroyOnHide:e.destroyOnHide,keyboard:e.keyboard,orientation:e.orientation,roles:e.roles},e.animation=!1,e.destroyOnHide=!1,e.keyboard=`changeWithArrows`,e.orientation=`vertical`,e.roles=`tablist`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.animation=this.initialConfig.animation,this.config.destroyOnHide=this.initialConfig.destroyOnHide,this.config.keyboard=this.initialConfig.keyboard,this.config.orientation=this.initialConfig.orientation,this.config.roles=this.initialConfig.roles}static get $name(){return`docsNavGlobal`}static get $inject(){return[Gf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/nav-global.component-5dc15900.html`}}},Kv=class e{nav;activeId=`selecting-first`;select(e){this.nav.select(e)}static get $name(){return`docsSelectingNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/selecting-nav.component-702ddbdc.html`}}};L_([fc(`nav`,{read:ep,static:!0})],Kv.prototype,`nav`,void 0);var qv=class e{activeId=`simple-overview`;static get $name(){return`docsSimpleNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-nav.component-40c58366.html`}}},Jv=class e{activeId=`vertical-profile`;static get $name(){return`docsVerticalNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/vertical-nav.component-d0d8cb20.html`}}},Yv=class e{ngbActiveOffcanvas;static get $name(){return`docsOffcanvasDemoContent`}static get $factory(){return{bindings:{ngbActiveOffcanvas:`<`},controller:e,controllerAs:`$`,templateUrl:`templates/offcanvas-demo-content.component-af9094a0.html`}}},Xv=class e{offcanvas;lastResult=`No result yet`;constructor(e){this.offcanvas=e}async open(){let e=await this.offcanvas.open(Yv.$name);e.closed.subscribe(e=>{this.lastResult=`Closed with: ${e}`}),e.dismissed.subscribe(e=>{this.lastResult=`Dismissed with: ${e}`})}static get $name(){return`docsOffcanvasComponentContent`}static get $inject(){return[wp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-component-content.component-d7bce0b7.html`}}},Zv=class e{offcanvas;content;constructor(e){this.offcanvas=e}open(){this.offcanvas.open(this.content)}static get $name(){return`docsOffcanvasDefault`}static get $inject(){return[wp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-default.component-47eca0d9.html`}}};L_([fc(`content`,{read:kc,static:!0})],Zv.prototype,`content`,void 0);var Qv=class e{ngbActiveOffcanvas;autofocus=!1;static get $name(){return`docsOffcanvasFocusContent`}static get $factory(){return{bindings:{ngbActiveOffcanvas:`<`,autofocus:`<?`},controller:e,controllerAs:`$`,templateUrl:`templates/offcanvas-focus-content.component-f73aba4b.html`}}},$v=class e{offcanvas;constructor(e){this.offcanvas=e}openDefaultFocus(){this.offcanvas.open(Qv.$name,{ariaLabelledBy:`offcanvas-focus-title`,bindings:{autofocus:!1}})}openCustomFocus(){this.offcanvas.open(Qv.$name,{ariaLabelledBy:`offcanvas-focus-title`,bindings:{autofocus:!0}})}static get $name(){return`docsOffcanvasFocus`}static get $inject(){return[wp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-focus.component-7bd7b87f.html`}}},ey=class e{offcanvas;config;initialConfig;constructor(e,t){this.offcanvas=e,this.config=t,this.initialConfig={backdrop:t.backdrop,keyboard:t.keyboard,position:t.position,scroll:t.scroll}}async open(){this.applyConfig();try{await this.offcanvas.open(Yv.$name)}finally{this.restoreConfig()}}$onDestroy(){this.restoreConfig()}applyConfig(){this.config.backdrop=`static`,this.config.keyboard=!1,this.config.position=`end`,this.config.scroll=!0}restoreConfig(){this.config.backdrop=this.initialConfig.backdrop,this.config.keyboard=this.initialConfig.keyboard,this.config.position=this.initialConfig.position,this.config.scroll=this.initialConfig.scroll}static get $name(){return`docsOffcanvasGlobal`}static get $inject(){return[wp.$name,fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-global.component-ed858907.html`}}},ty=class e{offcanvas;constructor(e){this.offcanvas=e}openCustomPanel(){this.open({panelClass:`offcanvas-panel-custom`})}openStaticBackdrop(){this.open({backdrop:`static`,backdropClass:`offcanvas-static-backdrop`,keyboard:!1})}openStart(){this.open({position:`start`})}openEnd(){this.open({position:`end`})}openTop(){this.open({position:`top`})}openBottom(){this.open({position:`bottom`})}openScrollableBody(){this.open({scroll:!0,backdrop:!1})}open(e){this.offcanvas.open(Yv.$name,e)}static get $name(){return`docsOffcanvasOptions`}static get $inject(){return[wp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/offcanvas-options.component-e9370ca4.html`}}},ny=class e{paginatedPage=7;rotatedPage=12;compactPage=12;selectPaginatedPage(e){this.paginatedPage=e}selectRotatedPage(e){this.rotatedPage=e}selectCompactPage(e){this.compactPage=e}static get $name(){return`docsAdvancedPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/advanced-pagination.component-079f4ff0.html`}}},ry=class e{page=4;selectPage(e){this.page=e}static get $name(){return`docsBasicPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-pagination.component-f7c759d2.html`}}},iy=class e{page=3;selectPage(e){this.page=e}static get $name(){return`docsCustomPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/custom-pagination.component-fd14d01b.html`}}},ay=class e{page=3;disabled=!0;selectPage(e){this.page=e}static get $name(){return`docsDisabledPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/disabled-pagination.component-20ce8751.html`}}},oy=class e{startPage=2;centerPage=2;endPage=2;selectStartPage(e){this.startPage=e}selectCenterPage(e){this.centerPage=e}selectEndPage(e){this.endPage=e}static get $name(){return`docsPaginationAlignment`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/pagination-alignment.component-66250bb4.html`}}},sy=class e{config;page=8;initialConfig;constructor(e){this.config=e,this.initialConfig={boundaryLinks:e.boundaryLinks,directionLinks:e.directionLinks,maxSize:e.maxSize,rotate:e.rotate,size:e.size},e.boundaryLinks=!0,e.directionLinks=!1,e.maxSize=5,e.rotate=!0,e.size=`sm`}selectPage(e){this.page=e}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.boundaryLinks=this.initialConfig.boundaryLinks,this.config.directionLinks=this.initialConfig.directionLinks,this.config.maxSize=this.initialConfig.maxSize,this.config.rotate=this.initialConfig.rotate,this.config.size=this.initialConfig.size}static get $name(){return`docsPaginationGlobal`}static get $inject(){return[Jm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/pagination-global.component-a9a8a9dd.html`}}},cy=class e{smallPage=2;defaultPage=2;largePage=2;selectSmallPage(e){this.smallPage=e}selectDefaultPage(e){this.defaultPage=e}selectLargePage(e){this.largePage=e}static get $name(){return`docsPaginationSize`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/pagination-size.component-9ec857c7.html`}}},ly=class e{date={year:2026,month:8,day:24};static get $name(){return`docsBasicDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-datepicker.component-291fe3e5.html`}}},uy=class extends Qm{fromModel(e){if(!e)return null;let[t,n,r]=e.split(`/`).map(Number);return t&&n&&r?{year:t,month:n,day:r}:null}toModel(e){return e?`${e.year}/${e.month}/${e.day}`:null}},dy=class extends Ih{parse(e){let[t,n,r]=e.split(`.`).map(Number);return t&&n&&r?{year:r,month:n,day:t}:null}format(e){return e?`${String(e.day).padStart(2,`0`)}.${String(e.month).padStart(2,`0`)}.${e.year}`:``}},fy=class e{adapter=new uy;formatter=new dy;date=`2026/8/24`;static get $name(){return`docsDatepickerCustomAdapter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-custom-adapter.component-26601229.html`}}},py=class e{date={year:2026,month:8,day:24};dayData(e){let t=new Date(e.year,e.month-1,e.day).getDay();return{weekend:t===0||t===6}}static get $name(){return`docsDatepickerCustomDay`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-custom-day.component-2e030512.html`}}},my=class e{previous(e){e.navigateTo(e.calendar.getPrev(e.state.firstDate,`m`,1))}next(e){e.navigateTo(e.calendar.getNext(e.state.firstDate,`m`,1))}today(e){e.navigateTo(e.calendar.getToday())}static get $name(){return`docsDatepickerCustomMonth`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-custom-month.component-3688ecff.html`}}},hy=class e{date=null;datepicker;today(){this.datepicker&&(this.date=this.datepicker.calendar.getToday())}clear(){this.date=null}static get $name(){return`docsDatepickerFooter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-footer.component-5aba752a.html`}}},gy=class e{config;inputConfig;inlineDefaults;inputDefaults;inlineDate={year:2026,month:8,day:24};popupDate={year:2026,month:8,day:24};constructor(e,t){this.config=e,this.inputConfig=t,this.inlineDefaults=this.capture(e),this.inputDefaults=this.capture(t),Object.assign(e,{displayMonths:2,navigation:`arrows`,outsideDays:`hidden`,showWeekNumbers:!0,weekdays:`short`}),Object.assign(t,{displayMonths:2,navigation:`arrows`,outsideDays:`hidden`,showWeekNumbers:!0,weekdays:`short`})}$postLink(){this.restore()}$onDestroy(){this.restore()}capture(e){return{displayMonths:e.displayMonths,navigation:e.navigation,outsideDays:e.outsideDays,showWeekNumbers:e.showWeekNumbers,weekdays:e.weekdays}}restore(){Object.assign(this.config,this.inlineDefaults),Object.assign(this.inputConfig,this.inputDefaults)}static get $name(){return`docsDatepickerGlobal`}static get $inject(){return[Sh.$name,Rh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-global.component-51fbff38.html`}}},_y=class extends oh{months=[`enero`,`febrero`,`marzo`,`abril`,`mayo`,`junio`,`julio`,`agosto`,`septiembre`,`octubre`,`noviembre`,`diciembre`];weekdays=[`L`,`M`,`X`,`J`,`V`,`S`,`D`];getWeekdayLabel(e){return this.weekdays[e-1]??``}getMonthShortName(e){return this.months[e-1]?.slice(0,3)??``}getMonthFullName(e){return this.months[e-1]??``}getDayAriaLabel(e){return`${e.day} de ${this.getMonthFullName(e.month)} de ${e.year}`}},vy=class e{i18n=new _y;date={year:2026,month:8,day:24};static get $name(){return`docsDatepickerI18n`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-i18n.component-bebaa61c.html`}}},yy=class e{date={year:2026,month:8,day:24};datepicker;onKeydown(e){if(!this.datepicker||e.key!==`[`&&e.key!==`]`)return;let t=(e.key===`[`?-1:1)<0?this.datepicker.calendar.getPrev(this.datepicker.state.firstDate,`m`,1):this.datepicker.calendar.getNext(this.datepicker.state.firstDate,`m`,1);this.datepicker.navigateTo(t),e.preventDefault(),e.stopPropagation()}static get $name(){return`docsDatepickerKeyboard`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-keyboard.component-1d9b30db.html`}}},by=class e{date=null;target=`#datepicker-custom-position-target`;static get $name(){return`docsDatepickerPositionTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/datepicker-position-target.component-44f3c7eb.html`}}},xy=class e{disabled=!0;date={year:2026,month:8,day:24};static get $name(){return`docsDisabledDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/disabled-datepicker.component-2bc90747.html`}}},Sy=class e{date={year:2026,month:8,day:24};static get $name(){return`docsMultipleMonthsDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/multiple-months-datepicker.component-d7a13227.html`}}},Cy=class e{date={year:2026,month:8,day:24};static get $name(){return`docsPopupDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popup-datepicker.component-6b3da4e4.html`}}},wy=class e{calendar=new ih;hoveredDate=null;fromDate=this.calendar.getToday();toDate=this.calendar.getNext(this.fromDate,`d`,10);select(e){!this.fromDate||this.toDate?(this.fromDate=e,this.toDate=null):e.after(this.fromDate)?this.toDate=e:this.fromDate=e}isHovered(e){return!!this.fromDate&&!this.toDate&&!!this.hoveredDate&&e.after(this.fromDate)&&e.before(this.hoveredDate)}isInside(e){return!!this.toDate&&e.after(this.fromDate)&&e.before(this.toDate)}isRange(e){return e.equals(this.fromDate)||!!this.toDate&&e.equals(this.toDate)||this.isInside(e)||this.isHovered(e)}static get $name(){return`docsRangeDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/range-datepicker.component-d0d2c1c7.html`}}},Ty=class e{calendar=new ih;hoveredDate=null;fromDate=this.calendar.getToday();toDate=this.calendar.getNext(this.fromDate,`d`,7);model=this.fromDate;select(e){!this.fromDate||this.toDate?(this.fromDate=e,this.toDate=null):e.after(this.fromDate)?this.toDate=e:this.fromDate=e,this.model=e}isHovered(e){return!!this.fromDate&&!this.toDate&&!!this.hoveredDate&&e.after(this.fromDate)&&e.before(this.hoveredDate)}isInside(e){return!!this.toDate&&e.after(this.fromDate)&&e.before(this.toDate)}isRange(e){return e.equals(this.fromDate)||!!this.toDate&&e.equals(this.toDate)||this.isInside(e)||this.isHovered(e)}static get $name(){return`docsRangePopupDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/range-popup-datepicker.component-669a3d6e.html`}}},Ey=class e{popover;static get $name(){return`docsPopoverAutoclose`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-autoclose.component-57b25eb2.html`}}},Dy=class e{static get $name(){return`docsPopoverBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-body.component-6a796f42.html`}}},Oy=class e{name=`World`;contentTemplate;titleTemplate;french;german;english;toggleWithGreeting(e,t,n){e.isOpen()?e.close():e.open({greeting:t,language:n})}static get $name(){return`docsPopoverContext`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-context.component-9821acd5.html`}}},ky=class e{static get $name(){return`docsPopoverCustomClass`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-custom-class.component-14003348.html`}}},Ay=class e{static get $name(){return`docsPopoverCustomTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-custom-target.component-40238e11.html`}}},jy=class e{static get $name(){return`docsPopoverDelays`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-delays.component-3b7810fd.html`}}},My=class e{popover;events=[];record(e){this.events.unshift({name:e,time:new Date})}static get $name(){return`docsPopoverEvents`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-events.component-14c8f6c5.html`}}},Ny=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,openDelay:e.openDelay,placement:e.placement,triggers:e.triggers},e.container=`body`,e.openDelay=300,e.placement=`end`,e.triggers=`mouseenter:mouseleave`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.openDelay=this.initialConfig.openDelay,this.config.placement=this.initialConfig.placement,this.config.triggers=this.initialConfig.triggers}static get $name(){return`docsPopoverGlobal`}static get $inject(){return[Ep.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-global.component-c0490f4c.html`}}},Py=class e{popover;static get $name(){return`docsPopoverManualControl`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-manual-control.component-92b9fe1e.html`}}},Fy=class e{static get $name(){return`docsPopoverPlacements`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-placements.component-bc233f48.html`}}},Iy=class e{name=`NgbJS`;contentTemplate;titleTemplate;static get $name(){return`docsPopoverTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-template.component-0fc1b6bd.html`}}},Ly=class e{manual;static get $name(){return`docsPopoverTriggers`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/popover-triggers.component-495aec08.html`}}},Ry=class e{static get $name(){return`docsContextualTextProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/contextual-text-progressbar.component-739ebb23.html`}}},zy=class e{static get $name(){return`docsCustomLabelsProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/custom-labels-progressbar.component-4a835ccd.html`}}},By=class e{static get $name(){return`docsProgressBarsStacked`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/progress-bars-stacked.component-0b11e30b.html`}}},Vy=class e{static get $name(){return`docsProgressHeight`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/progress-height.component-fcb23284.html`}}},Hy=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animated:e.animated,height:e.height,max:e.max,showValue:e.showValue,striped:e.striped,textType:e.textType,type:e.type},e.animated=!0,e.height=`1.5rem`,e.max=200,e.showValue=!0,e.striped=!0,e.textType=`light`,e.type=`primary`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){Object.assign(this.config,this.initialConfig)}static get $name(){return`docsProgressbarGlobal`}static get $inject(){return[Ip.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/progressbar-global.component-2e5191d6.html`}}},Uy=class e{static get $name(){return`docsSimpleProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-progressbar.component-95b1d976.html`}}},Wy=class e{static get $name(){return`docsStripedProgressBar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/striped-progress-bar.component-3510717f.html`}}},Gy=class e{rating=3;setRating(e){this.rating=e}static get $name(){return`docsBasicRating`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-rating.component-7502f0fd.html`}}},Ky=class e{rating=6;setRating(e){this.rating=e}static get $name(){return`docsRatingCustomTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-custom-template.component-85b6ae07.html`}}},qy=class e{rating=3.14;heartTemplate;ariaValueText=(e,t)=>`${e} out of ${t} hearts`;static get $name(){return`docsRatingDecimal`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-decimal.component-1bf29008.html`}}},Jy=class e{selected=0;hovered=0;readonly=!1;setSelected(e){this.selected=e}setHovered(e){this.hovered=e}static get $name(){return`docsRatingEvents`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-events.component-1f7dffda.html`}}},Yy=class e{rating=null;disabled=!1;form;setRating(e){this.rating=e}clear(){this.rating=null}static get $name(){return`docsRatingForm`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-form.component-a03ea6b0.html`}}},Xy=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={max:e.max,readonly:e.readonly,resettable:e.resettable,tabindex:e.tabindex},e.max=5,e.readonly=!0,e.resettable=!0,e.tabindex=-1}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){Object.assign(this.config,this.initialConfig)}static get $name(){return`docsRatingGlobal`}static get $inject(){return[Hp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/rating-global.component-75a12e36.html`}}},Zy=class e{static get $name(){return`docsBasicScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-scrollspy.component-d1d8bd1e.html`}}},Qy=class e{static get $name(){return`docsNavbarScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/navbar-scrollspy.component-dc21d43f.html`}}},$y=class e{static get $name(){return`docsNestedScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/nested-scrollspy.component-e26dd5c3.html`}}},eb=class e{static get $name(){return`docsScrollspyMenuItems`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/scrollspy-menu-items.component-64827aa2.html`}}},tb=class e{$element;scrollSpy;fragments=[`service-introduction`,`service-options`,`service-finish`];running=!1;observingFinish=!0;root;constructor(e,t){this.$element=e,this.scrollSpy=t}$postLink(){this.root=this.$element[0].querySelector(`[data-service-scrollspy]`)??void 0,this.start()}$onDestroy(){this.scrollSpy.stop()}start(){this.root&&(this.scrollSpy.start({root:this.root,fragments:this.fragments,rootMargin:`0px 0px -45%`}),this.running=!0,this.observingFinish=!0)}stop(){this.scrollSpy.stop(),this.running=!1}toggleFinish(){this.observingFinish?this.scrollSpy.unobserve(`service-finish`):this.scrollSpy.observe(`service-finish`),this.observingFinish=!this.observingFinish}static get $name(){return`docsScrollspyServiceDemo`}static get $inject(){return[`$element`,$p.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/scrollspy-service-demo.component-b0f47f90.html`}}},nb=class e{time={hour:13,minute:30,second:0};static get $name(){return`docsBasicTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/basic-timepicker.component-422d95dc.html`}}},rb=class e{time={hour:13,minute:30,second:0};meridian=!0;static get $name(){return`docsMeridianTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/meridian-timepicker.component-032418eb.html`}}},ib=class e{time={hour:13,minute:30,second:25};seconds=!0;static get $name(){return`docsSecondsTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/seconds-timepicker.component-9ae3ed3f.html`}}},ab=class e{time={hour:13,minute:30,second:0};spinners=!0;static get $name(){return`docsSpinnersTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/spinners-timepicker.component-11b82947.html`}}},ob=e=>e.toString().padStart(2,`0`),sb=class extends cm{fromModel(e){if(!e)return null;let[t,n,r]=e.split(`:`).map(Number);return{hour:t,minute:n,second:r}}toModel(e){return e?`${ob(e.hour)}:${ob(e.minute)}:${ob(e.second??0)}`:null}},cb=class e{adapter=new sb;time=this.adapter.fromModel(`13:30:00`);model=`13:30:00`;$doCheck(){this.model=this.adapter.toModel(this.time)??``}static get $name(){return`docsTimepickerCustomAdapter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/timepicker-custom-adapter.component-441dd446.html`}}},lb=class e{time={hour:13,minute:30,second:0};hourStep=1;minuteStep=15;secondStep=30;static get $name(){return`docsTimepickerCustomSteps`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/timepicker-custom-steps.component-aef982a9.html`}}},ub=class extends um{getMorningPeriod(){return`π.μ.`}getAfternoonPeriod(){return`μ.μ.`}},db=class e{i18n;time={hour:13,minute:30,second:0};constructor(e){this.i18n=e}static get $name(){return`docsTimepickerI18n`}static get $inject(){return[um.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/timepicker-i18n.component-de9cc3cd.html`}}},fb=class e{time=null;static get $name(){return`docsTimepickerValidation`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/timepicker-validation.component-531f8b4a.html`}}},pb=()=>({restrict:`A`,require:`ngModel`,link:(e,t,n,r)=>{let i=r;i.$validators.lunchtime=e=>!e||e.hour>=12&&e.hour<=13}}),mb=class e{$timeout;visible=!0;reopenTimer;constructor(e){this.$timeout=e}close(){this.visible=!1,this.reopenTimer=this.$timeout(()=>{this.visible=!0},3e3)}$onDestroy(){this.reopenTimer&&this.$timeout.cancel(this.reopenTimer)}static get $name(){return`docsCloseableToast`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/closeable-toast.component-689e4435.html`}}},hb=class e{showHeaderToast=!0;static get $name(){return`docsInlineToast`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/inline-toast.component-78d4484e.html`}}},gb=class e{$timeout;visible=!1;autohide=!0;constructor(e){this.$timeout=e}show(){this.visible=!1,this.autohide=!0,this.$timeout(()=>this.visible=!0)}hide(){this.visible=!1,this.autohide=!0}static get $name(){return`docsPreventAutohideToast`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/prevent-autohide-toast.component-e3a1c0d5.html`}}},_b=class e{visible=!0;static get $name(){return`docsTemplateHeaderToast`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/template-header-toast.component-0b21385b.html`}}},vb=class{toasts=[];nextId=0;show(e,t={}){this.toasts.push({id:++this.nextId,body:e,...t})}remove(e){let t=this.toasts.indexOf(e);t>=0&&this.toasts.splice(t,1)}clear(){this.toasts.length=0}static get $name(){return`docs.toast.service`}},yb=class e{toastService;constructor(e){this.toastService=e}showStandard(){this.toastService.show(`I am a standard toast.`)}showSuccess(){this.toastService.show(`Your changes were saved.`,{className:`bg-success text-white`,delay:8e3})}showDanger(){this.toastService.show(`The operation could not be completed.`,{className:`bg-danger text-white`,delay:1e4})}$onDestroy(){this.toastService.clear()}static get $name(){return`docsToastManagement`}static get $inject(){return[vb.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/toast-management.component-6f223e5d.html`}}},bb=class e{contentTemplate;static get $name(){return`docsTooltipAutoclose`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-autoclose.component-11319bb3.html`}}},xb=class e{static get $name(){return`docsTooltipBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-body.component-0f3295f1.html`}}},Sb=class e{name=`World`;contentTemplate;french;german;english;toggleWithGreeting(e,t){e.isOpen()?e.close():e.open({greeting:t})}static get $name(){return`docsTooltipContext`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-context.component-1e6cc7b7.html`}}},Cb=class e{static get $name(){return`docsTooltipCustomClass`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-custom-class.component-38bd6d66.html`}}},wb=class e{static get $name(){return`docsTooltipCustomTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-custom-target.component-f49db172.html`}}},Tb=class e{static get $name(){return`docsTooltipDelays`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-delays.component-799fa7c5.html`}}},Eb=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,openDelay:e.openDelay,placement:e.placement,triggers:e.triggers},e.container=`body`,e.openDelay=300,e.placement=`end`,e.triggers=`mouseenter:mouseleave`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.openDelay=this.initialConfig.openDelay,this.config.placement=this.initialConfig.placement,this.config.triggers=this.initialConfig.triggers}static get $name(){return`docsTooltipGlobal`}static get $inject(){return[Cm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-global.component-71535039.html`}}},Db=class e{static get $name(){return`docsTooltipPlacements`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-placements.component-8dab839d.html`}}},Ob=class e{name=`NgbJS`;contentTemplate;static get $name(){return`docsTooltipTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-template.component-1ffd56db.html`}}},kb=class e{manual;static get $name(){return`docsTooltipTriggers`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/tooltip-triggers.component-d00f22ca.html`}}},Ab=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`].map(e=>({name:e})),jb=class e{model;formatter=e=>e.name;search=e=>e.pipe(ss(200),wo(e=>e?Ab.filter(t=>t.name.toLowerCase().includes(e.toLowerCase())):[]));static get $name(){return`docsExactTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/exact-typeahead.component-531520d8.html`}}},Mb=`Alabama.Alaska.Arizona.Arkansas.California.Colorado.Connecticut.Delaware.Florida.Georgia.Hawaii.Idaho.Illinois.Indiana.Iowa.Kansas.Kentucky.Louisiana.Maine.Maryland.Massachusetts.Michigan.Minnesota.Mississippi.Missouri.Montana.Nebraska.Nevada.New Hampshire.New Jersey.New Mexico.New York.North Carolina.North Dakota.Ohio.Oklahoma.Oregon.Pennsylvania.Rhode Island.South Carolina.South Dakota.Tennessee.Texas.Utah.Vermont.Virginia.Washington.West Virginia.Wisconsin.Wyoming`.split(`.`),Nb=class e{model=``;focus$=new Y;search=e=>Qo(e.pipe(ss(200),ms()),this.focus$).pipe(wo(e=>(e?Mb.filter(t=>t.toLowerCase().includes(e.toLowerCase())):Mb).slice(0,10)));$onDestroy(){this.focus$.complete()}static get $name(){return`docsFocusTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/focus-typeahead.component-a7175f57.html`}}},Pb=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`],Fb=class e{model=``;formatter=e=>e.toUpperCase();search=e=>e.pipe(ss(200),ms(),wo(e=>e?Pb.filter(t=>t.toLowerCase().includes(e.toLowerCase())):[]));static get $name(){return`docsFormattedTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/formatted-typeahead.component-4c4a5bfe.html`}}},Ib=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`].map((e,t)=>({id:t,name:e})),Lb=class e{model=null;formatter=e=>e.name;search=e=>e.pipe(ss(200),ms(),wo(e=>e.length<2?[]:Ib.filter(t=>t.name.toLowerCase().includes(e.toLowerCase()))));static get $name(){return`docsNonEditableTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/non-editable-typeahead.component-0b818c64.html`}}},Rb=`Alabama.Alaska.Arizona.Arkansas.California.Colorado.Connecticut.Delaware.Florida.Georgia.Hawaii.Idaho.Illinois.Indiana.Iowa.Kansas.Kentucky.Louisiana.Maine.Maryland.Massachusetts.Michigan.Minnesota.Mississippi.Missouri.Montana.Nebraska.Nevada.New Hampshire.New Jersey.New Mexico.New York.North Carolina.North Dakota.Ohio.Oklahoma.Oregon.Pennsylvania.Rhode Island.South Carolina.South Dakota.Tennessee.Texas.Utah.Vermont.Virginia.Washington.West Virginia.Wisconsin.Wyoming`.split(`.`),zb=class e{model=``;search=e=>e.pipe(ss(200),ms(),wo(e=>e.length<2?[]:Rb.filter(t=>t.toLowerCase().includes(e.toLowerCase())).slice(0,10)));static get $name(){return`docsSimpleTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/simple-typeahead.component-08584e4b.html`}}},Bb=[{name:`Mexico`,flag:`🇲🇽`,region:`North America`},{name:`Argentina`,flag:`🇦🇷`,region:`South America`},{name:`Brazil`,flag:`🇧🇷`,region:`South America`},{name:`Canada`,flag:`🇨🇦`,region:`North America`},{name:`Colombia`,flag:`🇨🇴`,region:`South America`},{name:`Germany`,flag:`🇩🇪`,region:`Europe`},{name:`Japan`,flag:`🇯🇵`,region:`Asia`},{name:`Spain`,flag:`🇪🇸`,region:`Europe`}],Vb=class e{model;resultTemplate;formatter=e=>e.name;search=e=>e.pipe(ss(200),wo(e=>e?Bb.filter(t=>t.name.toLowerCase().includes(e.toLowerCase())).slice(0,8):[]));static get $name(){return`docsTemplateResultsTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/template-results-typeahead.component-98bb257f.html`}}},Hb=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`],Ub=class e{config;model=``;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,selectOnExact:e.selectOnExact,showHint:e.showHint},e.container=`body`,e.selectOnExact=!0,e.showHint=!0}search=e=>e.pipe(ss(200),ms(),wo(e=>e.length<2?[]:Hb.filter(t=>t.toLowerCase().startsWith(e.toLowerCase()))));$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.selectOnExact=this.initialConfig.selectOnExact,this.config.showHint=this.initialConfig.showHint}static get $name(){return`docsTypeaheadGlobal`}static get $inject(){return[jm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/typeahead-global.component-ecaea59a.html`}}},Wb=`https://en.wikipedia.org/w/api.php`,Gb=class{$http;constructor(e){this.$http=e}search(e){return e?xo(this.$http.get(Wb,{params:{action:`opensearch`,format:`json`,origin:`*`,search:e}})).pipe(wo(e=>e.data[1])):So([])}static get $name(){return`docs.wikipedia.search.service`}static get $inject(){return[`$http`]}},Kb=class e{wikipedia;model=``;searching=!1;searchFailed=!1;constructor(e){this.wikipedia=e}search=e=>e.pipe(ss(300),ms(),xs(()=>this.searching=!0),ys(e=>this.wikipedia.search(e).pipe(xs(()=>this.searchFailed=!1),os(()=>(this.searchFailed=!0,So([]))))),xs(()=>this.searching=!1));static get $name(){return`docsWikipediaTypeahead`}static get $inject(){return[Gb.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`templates/wikipedia-typeahead.component-7bf7d051.html`}}},qb=class e{static get $name(){return`docsAlertApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/alert-api-page.component-af477f75.html`,controllerAs:`$`}}},Jb=`import type { IComponentController, IComponentOptions } from "angular";
+
+interface AlertExample {
+    id: number;
+    type: string;
+    message: string;
+    animation: boolean;
+}
+
+const createAlerts = (): AlertExample[] => [
+    { id: 1, type: "success", message: "Your changes were saved successfully.", animation: true },
+    { id: 2, type: "danger", message: "Something needs your attention.", animation: true },
+    { id: 3, type: "warning", message: "This alert closes without animation.", animation: false },
+    { id: 4, type: "info", message: "This one also closes immediately.", animation: false },
+];
+
+export class AlertCloseableComponent implements IComponentController {
+    public alerts = createAlerts();
+
+    public close(id: number) {
+        this.alerts = this.alerts.filter((alert) => alert.id !== id);
+    }
+
+    public reset() {
+        this.alerts = createAlerts();
+    }
+
+    static get $name() {
+        return "docsAlertCloseable"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: AlertCloseableComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/alert-closeable/alert-closeable.component.html",
+        }
+    }
+}
+`,Yb=`.alert-custom {
+    --bs-alert-color: var(--bs-emphasis-color);
+    --bs-alert-bg: var(--bs-tertiary-bg);
+    --bs-alert-border-color: var(--bs-primary-border-subtle);
+    --bs-alert-link-color: var(--bs-primary-text-emphasis);
+
+    border-left: 0.25rem solid var(--bs-primary);
+}
+`,Xb=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbAlertConfig } from "ngb-js";
+
+export class AlertGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<NgbAlertConfig, "animation" | "dismissible" | "type">;
+
+    constructor(private readonly config: NgbAlertConfig) {
+        this.initialConfig = {
+            animation: config.animation,
+            dismissible: config.dismissible,
+            type: config.type,
+        };
+
+        config.animation = false;
+        config.dismissible = false;
+        config.type = "success";
+    }
+
+    $onDestroy() {
+        this.config.animation = this.initialConfig.animation;
+        this.config.dismissible = this.initialConfig.dismissible;
+        this.config.type = this.initialConfig.type;
+    }
+
+    static get $name() {
+        return "docsAlertGlobal"
+    }
+
+    static get $inject() {
+        return [NgbAlertConfig.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: AlertGlobalComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/alert-global/alert-global.component.html",
+        }
+    }
+}
+`,Zb=`import type { INgbAlert } from "ngb-js";
+import type { IComponentController, IComponentOptions, IPromise, ITimeoutService } from "angular";
+import { ViewChild } from "ngjs-core";
+
+export class SelfClosingAlertComponent implements IComponentController {
+    private readonly initialSeconds = 5;
+    private timer?: IPromise<void>;
+
+    @ViewChild("alert")
+    private alert?: INgbAlert;
+
+    public remaining = this.initialSeconds;
+    public visible = true;
+
+    constructor(private readonly $timeout: ITimeoutService) {}
+
+    $onInit() {
+        this.startTimer();
+    }
+
+    $onDestroy() {
+        this.cancelTimer();
+    }
+
+    public restart() {
+        this.cancelTimer();
+        this.remaining = this.initialSeconds;
+        this.visible = true;
+        this.startTimer();
+    }
+
+    public onClosed() {
+        this.visible = false;
+        this.cancelTimer();
+    }
+
+    private startTimer() {
+        this.timer = this.$timeout(() => {
+            this.remaining--;
+
+            if (this.remaining <= 0) {
+                if (this.alert) {
+                    this.alert.close();
+                } else {
+                    this.visible = false;
+                }
+                return;
+            }
+
+            this.startTimer();
+        }, 1000);
+    }
+
+    private cancelTimer() {
+        if (this.timer) {
+            this.$timeout.cancel(this.timer);
+            this.timer = undefined;
+        }
+    }
+
+    static get $name() {
+        return "docsSelfClosingAlert"
+    }
+
+    static get $inject() {
+        return ["$timeout"]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: SelfClosingAlertComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/self-closing-alert/self-closing-alert.component.html",
+        }
+    }
+}
+`,Qb=class e{examples={simple:{html:mv.$factory.templateUrl},closeable:{html:iv.$factory.templateUrl,typescript:Jb},selfClosing:{html:pv.$factory.templateUrl,typescript:Zb},custom:{html:av.$factory.templateUrl,css:Yb},global:{html:ov.$factory.templateUrl,typescript:Xb}};static get $name(){return`docsAlertExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/alert-examples-page.component-58a0e458.html`,controllerAs:`$`}}},$b=class e{static get $name(){return`docsAccordionApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/accordion-api-page.component-a8be89e6.html`,controllerAs:`$`}}},ex=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class AccordionContentComponent implements IComponentController {
+    public draft = "This value remains after collapsing the panel.";
+
+    static get $name() {
+        return "docsAccordionContent"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: AccordionContentComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/accordion-content/accordion-content.component.html",
+        }
+    }
+}
+`,tx=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbAccordionConfig } from "ngb-js";
+
+export class AccordionGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<NgbAccordionConfig, "animation" | "closeOthers" | "destroyOnHide">;
+
+    constructor(private readonly config: NgbAccordionConfig) {
+        this.initialConfig = {
+            animation: config.animation,
+            closeOthers: config.closeOthers,
+            destroyOnHide: config.destroyOnHide,
+        };
+
+        config.animation = false;
+        config.closeOthers = true;
+        config.destroyOnHide = false;
+    }
+
+    $onDestroy() {
+        this.config.animation = this.initialConfig.animation;
+        this.config.closeOthers = this.initialConfig.closeOthers;
+        this.config.destroyOnHide = this.initialConfig.destroyOnHide;
+    }
+
+    static get $name() {
+        return "docsAccordionGlobal"
+    }
+
+    static get $inject() {
+        return [NgbAccordionConfig.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: AccordionGlobalComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/accordion-global/accordion-global.component.html",
+        }
+    }
+}
+`,nx=`import type { IComponentController, IComponentOptions } from "angular";
+import { ViewChild } from "ngjs-core";
+
+interface AccordionController {
+    expandAll(): void;
+    collapseAll(): void;
+    toggle(itemId: string): void;
+}
+
+export class AccordionTogglePanelsComponent implements IComponentController {
+    @ViewChild("accordion", { static: true })
+    private accordion!: AccordionController;
+
+    public expandAll() {
+        this.accordion.expandAll();
+    }
+
+    public collapseAll() {
+        this.accordion.collapseAll();
+    }
+
+    public toggle(itemId: string) {
+        this.accordion.toggle(itemId);
+    }
+
+    static get $name() {
+        return "docsAccordionTogglePanels"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: AccordionTogglePanelsComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component.html",
+        }
+    }
+}
+`,rx=class e{examples={simple:{html:uv.$factory.templateUrl},onePanel:{html:fv.$factory.templateUrl},togglePanels:{html:dv.$factory.templateUrl,typescript:nx},customHeader:{html:cv.$factory.templateUrl},content:{html:sv.$factory.templateUrl,typescript:ex},global:{html:lv.$factory.templateUrl,typescript:tx}};static get $name(){return`docsAccordionExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/accordion-examples-page.component-4963b03d.html`,controllerAs:`$`}}},ix=class e{static get $name(){return`docsCarouselApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/carousel-api-page.component-e3203157.html`,controllerAs:`$`}}},ax=`import type { IAugmentedJQuery, IComponentController, IComponentOptions, ITimeoutService } from "angular";
+
+interface CarouselController {
+    cycle(): void;
+    pause(): void;
+}
+
+interface CarouselSlideEvent {
+    source?: "timer" | "arrowLeft" | "arrowRight" | "indicator";
+}
+
+export class CarouselControlsComponent implements IComponentController {
+    public pauseOnHover = true;
+    public pauseOnFocus = true;
+    public unpauseOnArrow = false;
+    public pauseOnIndicator = false;
+    public paused = false;
+
+    private carousel?: CarouselController;
+
+    constructor(
+        private readonly $element: IAugmentedJQuery,
+        private readonly $timeout: ITimeoutService,
+    ) {}
+
+    public $postLink() {
+        this.$timeout(
+            () => {
+                this.carousel = this.$element.find("ngb-carousel").controller("ngbCarousel") as CarouselController;
+            },
+            0,
+            false,
+        );
+    }
+
+    public onSlide(event: CarouselSlideEvent) {
+        const isArrow = event.source === "arrowLeft" || event.source === "arrowRight";
+
+        if (isArrow && this.unpauseOnArrow) {
+            this.carousel?.cycle();
+            this.paused = false;
+        }
+
+        if (event.source === "indicator" && this.pauseOnIndicator) {
+            this.carousel?.pause();
+            this.paused = true;
+        }
+    }
+
+    public toggleCycle() {
+        if (this.paused) {
+            this.carousel?.cycle();
+        } else {
+            this.carousel?.pause();
+        }
+
+        this.paused = !this.paused;
+    }
+
+    static get $name() {
+        return "docsCarouselControls"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: CarouselControlsComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/carousel-controls/carousel-controls.component.html",
+        }
+    }
+
+    static get $inject() {
+        return ["$element", "$timeout"]
+    }
+}
+`,ox=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbCarouselConfig } from "ngb-js";
+
+export class CarouselGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<
+        NgbCarouselConfig,
+        "animation" | "interval" | "wrap" | "pauseOnFocus" | "pauseOnHover" | "showNavigationArrows"
+    >;
+
+    constructor(private readonly config: NgbCarouselConfig) {
+        this.initialConfig = {
+            animation: config.animation,
+            interval: config.interval,
+            wrap: config.wrap,
+            pauseOnFocus: config.pauseOnFocus,
+            pauseOnHover: config.pauseOnHover,
+            showNavigationArrows: config.showNavigationArrows,
+        };
+
+        config.animation = false;
+        config.interval = 2500;
+        config.wrap = false;
+        config.pauseOnFocus = false;
+        config.pauseOnHover = false;
+        config.showNavigationArrows = false;
+    }
+
+    public $onDestroy() {
+        this.config.animation = this.initialConfig.animation;
+        this.config.interval = this.initialConfig.interval;
+        this.config.wrap = this.initialConfig.wrap;
+        this.config.pauseOnFocus = this.initialConfig.pauseOnFocus;
+        this.config.pauseOnHover = this.initialConfig.pauseOnHover;
+        this.config.showNavigationArrows = this.initialConfig.showNavigationArrows;
+    }
+
+    static get $name() {
+        return "docsCarouselGlobal"
+    }
+
+    static get $inject() {
+        return [NgbCarouselConfig.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: CarouselGlobalComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/carousel-global/carousel-global.component.html",
+        }
+    }
+}
+`,sx=class e{examples={simple:{html:vv.$factory.templateUrl},keyboard:{html:_v.$factory.templateUrl},controls:{html:hv.$factory.templateUrl,typescript:ax},global:{html:gv.$factory.templateUrl,typescript:ox}};static get $name(){return`docsCarouselExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/carousel-examples-page.component-dccf0e02.html`,controllerAs:`$`}}},cx=class e{static get $name(){return`docsCollapseApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/collapse-api-page.component-92ab9579.html`,controllerAs:`$`}}},lx=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class HorizontalCollapseComponent implements IComponentController {
+    public collapsed = true;
+
+    public toggle() {
+        this.collapsed = !this.collapsed;
+    }
+
+    static get $name() {
+        return "docsHorizontalCollapse"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: HorizontalCollapseComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/horizontal-collapse/horizontal-collapse.component.html",
+        }
+    }
+}
+`,ux=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class NavbarCollapseComponent implements IComponentController {
+    public menuCollapsed = true;
+
+    public toggleMenu() {
+        this.menuCollapsed = !this.menuCollapsed;
+    }
+
+    public closeMenu() {
+        this.menuCollapsed = true;
+    }
+
+    static get $name() {
+        return "docsNavbarCollapse"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: NavbarCollapseComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/navbar-collapse/navbar-collapse.component.html",
+        }
+    }
+}
+`,dx=`import type { IComponentController, IComponentOptions } from "angular";
+import type { INgbCollapse } from "ngb-js";
+import { ViewChild } from "ngjs-core";
+
+export class SimpleCollapseComponent implements IComponentController {
+    @ViewChild("collapse", { static: true })
+    private collapse!: INgbCollapse;
+
+    public collapsed = true;
+
+    public toggleWithController() {
+        this.collapse.toggle();
+    }
+
+    public toggleWithBinding() {
+        this.collapsed = !this.collapsed;
+    }
+
+    static get $name() {
+        return "docsSimpleCollapse"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: SimpleCollapseComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/simple-collapse/simple-collapse.component.html",
+        }
+    }
+}
+`,fx=class e{examples={simple:{html:xv.$factory.templateUrl,typescript:dx},horizontal:{html:yv.$factory.templateUrl,typescript:lx},navbar:{html:bv.$factory.templateUrl,typescript:ux}};static get $name(){return`docsCollapseExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/collapse-examples-page.component-acb6de4b.html`,controllerAs:`$`}}},px=class e{static get $name(){return`docsDatepickerApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/datepicker-api-page.component-084f99e7.html`,controllerAs:`$`}}},mx=class extends oh{months;weekdays;localeName;constructor(e,t,n){super(),this.months=e,this.weekdays=t,this.localeName=n}getWeekdayLabel(e){return this.weekdays[e-1]??``}getMonthShortName(e){return this.months[e-1]?.slice(0,3)??``}getMonthFullName(e){return this.months[e-1]??``}getDayAriaLabel(e){return`${this.localeName}: ${e.day} ${this.getMonthFullName(e.month)} ${e.year}`}},hx=[`د`,`س`,`چ`,`پ`,`ج`,`ش`,`ی`],gx=[`فروردین`,`اردیبهشت`,`خرداد`,`تیر`,`مرداد`,`شهریور`,`مهر`,`آبان`,`آذر`,`دی`,`بهمن`,`اسفند`],_x=[`ن`,`ث`,`ر`,`خ`,`ج`,`س`,`ح`],vx=[`محرّم`,`صفر`,`ربيع الأول`,`ربيع الآخر`,`جمادى الأولى`,`جمادى الآخرة`,`رجب`,`شعبان`,`رمضان`,`شوّال`,`ذو القعدة`,`ذو الحجة`],yx=[`จ`,`อ`,`พ`,`พฤ`,`ศ`,`ส`,`อา`],bx=[`มกราคม`,`กุมภาพันธ์`,`มีนาคม`,`เมษายน`,`พฤษภาคม`,`มิถุนายน`,`กรกฎาคม`,`สิงหาคม`,`กันยายน`,`ตุลาคม`,`พฤศจิกายน`,`ธันวาคม`],xx=[`ᔑリ⊣⚍ᔑ∷||`,`⎓ᒷʖ∷⚍ᔑ∷||`,`ᒲᔑ∷ᓵ⍑`,`ᔑ!¡∷╎ꖎ`,`ᒲᔑ||`,`⋮⚍リᒷ`,`⋮⚍ꖎ||`,`ᔑ⚍⊣⚍ᓭℸ̣`,`ᓭᒷ!¡ℸ̣ᒷᒲʖᒷ∷`,`𝙹ᓵℸ̣𝙹ʖᒷ∷`,`リ𝙹⍊ᒷᒲʖᒷ∷`,`↸ᒷᓵᒷᒲʖᒷ∷`],Sx=[`ᒲ`,`ℸ̣`,`∴`,`ℸ̣`,`⎓`,`ᓭ`,`ᓭ`],Cx=class e{calendars={hebrew:this.create(new Ng,new Mg),jalali:this.create(new u_,new mx(gx,hx,`Jalali`)),islamicCivil:this.create(new Hg,new mx(vx,_x,`Islamic Civil`)),islamicUmalqura:this.create(new Xg,new mx(vx,_x,`Islamic Umm al-Qura`)),buddhist:this.create(new Gh,new mx(bx,yx,`Buddhist`)),ethiopian:this.create(new cg,new Jh),intergalactic:this.create(new ih,new mx(xx,Sx,`Intergalactic Standard`))};create(e,t){return{calendar:e,i18n:t,date:e.getToday()}}static get $name(){return`docsDatepickerCalendarsPage`}static get $factory(){return{controller:e,controllerAs:`$`,templateUrl:`templates/datepicker-calendars-page.component-2bfd561f.html`}}},wx=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbDateAdapter, NgbDateParserFormatter, type NgbDateStruct } from "ngb-js";
+
+class StringDateAdapter extends NgbDateAdapter<string> {
+    fromModel(value: string | null): NgbDateStruct | null {
+        if (!value) return null;
+        const [year, month, day] = value.split("/").map(Number);
+        return year && month && day ? { year, month, day } : null;
+    }
+    toModel(date: NgbDateStruct | null): string | null { return date ? \`\${date.year}/\${date.month}/\${date.day}\` : null; }
+}
+
+class DotDateParserFormatter extends NgbDateParserFormatter {
+    parse(value: string): NgbDateStruct | null {
+        const [day, month, year] = value.split(".").map(Number);
+        return day && month && year ? { year, month, day } : null;
+    }
+    format(date: NgbDateStruct | null): string { return date ? \`\${String(date.day).padStart(2, "0")}.\${String(date.month).padStart(2, "0")}.\${date.year}\` : ""; }
+}
+
+export class DatepickerCustomAdapterComponent implements IComponentController {
+    public readonly adapter = new StringDateAdapter();
+    public readonly formatter = new DotDateParserFormatter();
+    public date = "2026/8/24";
+    static get $name() { return "docsDatepickerCustomAdapter" }
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-adapter/datepicker-custom-adapter.component.html" } }
+}
+`,Tx=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDateStruct } from "ngb-js";
+
+export class BasicDatepickerComponent implements IComponentController {
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+    static get $name() { return "docsBasicDatepicker" }
+    static get $factory(): IComponentOptions {
+        return { controller: BasicDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-datepicker/basic-datepicker.component.html" }
+    }
+}
+`,Ex=`.docs-custom-day { position: relative; display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
+.docs-custom-day.weekend { color: var(--bs-danger); }
+.docs-custom-day.today { font-weight: 700; box-shadow: inset 0 0 0 1px var(--bs-primary); }
+.docs-custom-day.selected { color: var(--bs-white); background: var(--bs-primary); }
+.docs-custom-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .4); outline-offset: 1px; }
+.docs-custom-day .bi-dot { position: absolute; bottom: -.35rem; font-size: 1.25rem; }
+`,Dx=`import "@/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDateStruct } from "ngb-js";
+
+export class DatepickerCustomDayComponent implements IComponentController {
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+    public dayData(date: NgbDateStruct) {
+        const weekday = new Date(date.year, date.month - 1, date.day).getDay();
+        return { weekend: weekday === 0 || weekday === 6 };
+    }
+    static get $name() { return "docsDatepickerCustomDay" }
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomDayComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.html" } }
+}
+`,Ox=`.docs-month-layout { display: grid; grid-template-columns: repeat(2, max-content); gap: 1rem; }
+@media (max-width: 575.98px) { .docs-month-layout { grid-template-columns: max-content; } }
+`,kx=`import "@/features/lib/components/datepicker-custom-month/datepicker-custom-month.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDatepicker } from "ngb-js";
+
+export class DatepickerCustomMonthComponent implements IComponentController {
+    public previous(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getPrev(datepicker.state.firstDate, "m", 1)); }
+    public next(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getNext(datepicker.state.firstDate, "m", 1)); }
+    public today(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getToday()); }
+    static get $name() { return "docsDatepickerCustomMonth" }
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomMonthComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-month/datepicker-custom-month.component.html" } }
+}
+`,Ax=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDateStruct } from "ngb-js";
+
+export class DisabledDatepickerComponent implements IComponentController {
+    public disabled = true;
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+    static get $name() { return "docsDisabledDatepicker" }
+    static get $factory(): IComponentOptions { return { controller: DisabledDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/disabled-datepicker/disabled-datepicker.component.html" } }
+}
+`,jx=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDatepicker, NgbDateStruct } from "ngb-js";
+
+export class DatepickerFooterComponent implements IComponentController {
+    public date: NgbDateStruct | null = null;
+    public datepicker?: NgbDatepicker;
+    public today() { if (this.datepicker) this.date = this.datepicker.calendar.getToday(); }
+    public clear() { this.date = null; }
+    static get $name() { return "docsDatepickerFooter" }
+    static get $factory(): IComponentOptions { return { controller: DatepickerFooterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-footer/datepicker-footer.component.html" } }
+}
+`,Mx=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbDatepickerConfig, NgbInputDatepickerConfig, type NgbDateStruct } from "ngb-js";
+
+type DatepickerDefaults = Pick<NgbDatepickerConfig, "displayMonths" | "navigation" | "outsideDays" | "showWeekNumbers" | "weekdays">;
+
+export class DatepickerGlobalComponent implements IComponentController {
+    private readonly inlineDefaults: DatepickerDefaults;
+    private readonly inputDefaults: DatepickerDefaults;
+    public inlineDate: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+    public popupDate: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+
+    constructor(private readonly config: NgbDatepickerConfig, private readonly inputConfig: NgbInputDatepickerConfig) {
+        this.inlineDefaults = this.capture(config);
+        this.inputDefaults = this.capture(inputConfig);
+        Object.assign(config, { displayMonths: 2, navigation: "arrows", outsideDays: "hidden", showWeekNumbers: true, weekdays: "short" });
+        Object.assign(inputConfig, { displayMonths: 2, navigation: "arrows", outsideDays: "hidden", showWeekNumbers: true, weekdays: "short" });
+    }
+    public $postLink() { this.restore(); }
+    public $onDestroy() { this.restore(); }
+    private capture(config: NgbDatepickerConfig): DatepickerDefaults { return { displayMonths: config.displayMonths, navigation: config.navigation, outsideDays: config.outsideDays, showWeekNumbers: config.showWeekNumbers, weekdays: config.weekdays }; }
+    private restore() { Object.assign(this.config, this.inlineDefaults); Object.assign(this.inputConfig, this.inputDefaults); }
+    static get $name() { return "docsDatepickerGlobal" }
+    static get $inject() { return [NgbDatepickerConfig.$name, NgbInputDatepickerConfig.$name] }
+    static get $factory(): IComponentOptions { return { controller: DatepickerGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-global/datepicker-global.component.html" } }
+}
+`,Nx=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbDatepickerI18n, type NgbDateStruct } from "ngb-js";
+
+class SpanishDatepickerI18n extends NgbDatepickerI18n {
+    private readonly months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+    private readonly weekdays = ["L", "M", "X", "J", "V", "S", "D"];
+    getWeekdayLabel(weekday: number) { return this.weekdays[weekday - 1] ?? ""; }
+    getMonthShortName(month: number) { return this.months[month - 1]?.slice(0, 3) ?? ""; }
+    getMonthFullName(month: number) { return this.months[month - 1] ?? ""; }
+    getDayAriaLabel(date: NgbDateStruct) { return \`\${date.day} de \${this.getMonthFullName(date.month)} de \${date.year}\`; }
+}
+
+export class DatepickerI18nComponent implements IComponentController {
+    public readonly i18n = new SpanishDatepickerI18n();
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+    static get $name() { return "docsDatepickerI18n" }
+    static get $factory(): IComponentOptions { return { controller: DatepickerI18nComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-i18n/datepicker-i18n.component.html" } }
+}
+`,Px=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDatepicker, NgbDateStruct } from "ngb-js";
+
+export class DatepickerKeyboardComponent implements IComponentController {
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+    public datepicker?: NgbDatepicker;
+    public onKeydown(event: KeyboardEvent | JQueryEventObject) {
+        if (!this.datepicker || (event.key !== "[" && event.key !== "]")) return;
+        const direction = event.key === "[" ? -1 : 1;
+        const target = direction < 0
+            ? this.datepicker.calendar.getPrev(this.datepicker.state.firstDate, "m", 1)
+            : this.datepicker.calendar.getNext(this.datepicker.state.firstDate, "m", 1);
+        this.datepicker.navigateTo(target);
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    static get $name() { return "docsDatepickerKeyboard" }
+    static get $factory(): IComponentOptions { return { controller: DatepickerKeyboardComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-keyboard/datepicker-keyboard.component.html" } }
+}
+`,Fx=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDateStruct } from "ngb-js";
+
+export class MultipleMonthsDatepickerComponent implements IComponentController {
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+    static get $name() { return "docsMultipleMonthsDatepicker" }
+    static get $factory(): IComponentOptions {
+        return { controller: MultipleMonthsDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/multiple-months-datepicker/multiple-months-datepicker.component.html" }
+    }
+}
+`,Ix=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDateStruct } from "ngb-js";
+
+export class PopupDatepickerComponent implements IComponentController {
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
+    static get $name() { return "docsPopupDatepicker" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopupDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popup-datepicker/popup-datepicker.component.html" }
+    }
+}
+`,Lx=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbDateStruct } from "ngb-js";
+
+export class DatepickerPositionTargetComponent implements IComponentController {
+    public date: NgbDateStruct | null = null;
+    public readonly target = "#datepicker-custom-position-target";
+    static get $name() { return "docsDatepickerPositionTarget" }
+    static get $factory(): IComponentOptions { return { controller: DatepickerPositionTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-position-target/datepicker-position-target.component.html" } }
+}
+`,Rx=`.docs-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
+.docs-range-day.range { background: var(--bs-primary); color: var(--bs-white); }
+.docs-range-day.faded { background: rgba(var(--bs-primary-rgb), .2); color: var(--bs-body-color); }
+.docs-range-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 1px; }
+`,zx=`import "@/features/lib/components/range-datepicker/range-datepicker.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+import { NgbCalendarGregorian, NgbDate } from "ngb-js";
+
+export class RangeDatepickerComponent implements IComponentController {
+    private readonly calendar = new NgbCalendarGregorian();
+    public hoveredDate: NgbDate | null = null;
+    public fromDate = this.calendar.getToday();
+    public toDate: NgbDate | null = this.calendar.getNext(this.fromDate, "d", 10);
+
+    public select(date: NgbDate) {
+        if (!this.fromDate || this.toDate) {
+            this.fromDate = date;
+            this.toDate = null;
+        } else if (date.after(this.fromDate)) {
+            this.toDate = date;
+        } else {
+            this.fromDate = date;
+        }
+    }
+    public isHovered(date: NgbDate) { return !!this.fromDate && !this.toDate && !!this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate); }
+    public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }
+    public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }
+
+    static get $name() { return "docsRangeDatepicker" }
+    static get $factory(): IComponentOptions {
+        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-datepicker/range-datepicker.component.html" }
+    }
+}
+`,Bx=`.docs-popup-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
+.docs-popup-range-day.range { background: var(--bs-primary); color: var(--bs-white); }
+.docs-popup-range-day.faded { background: rgba(var(--bs-primary-rgb), .2); color: var(--bs-body-color); }
+.docs-popup-range-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 1px; }
+`,Vx=`import "@/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+import { NgbCalendarGregorian, NgbDate } from "ngb-js";
+
+export class RangePopupDatepickerComponent implements IComponentController {
+    private readonly calendar = new NgbCalendarGregorian();
+    public hoveredDate: NgbDate | null = null;
+    public fromDate = this.calendar.getToday();
+    public toDate: NgbDate | null = this.calendar.getNext(this.fromDate, "d", 7);
+    public model: NgbDate | null = this.fromDate;
+    public select(date: NgbDate) {
+        if (!this.fromDate || this.toDate) { this.fromDate = date; this.toDate = null; }
+        else if (date.after(this.fromDate)) { this.toDate = date; }
+        else { this.fromDate = date; }
+        this.model = date;
+    }
+    public isHovered(date: NgbDate) { return !!this.fromDate && !this.toDate && !!this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate); }
+    public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }
+    public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }
+    static get $name() { return "docsRangePopupDatepicker" }
+    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.html" } }
+}
+`,Hx=class e{examples={basic:{html:ly.$factory.templateUrl,typescript:Tx},popup:{html:Cy.$factory.templateUrl,typescript:Ix},multiple:{html:Sy.$factory.templateUrl,typescript:Fx},range:{html:wy.$factory.templateUrl,typescript:zx,css:Rx},rangePopup:{html:Ty.$factory.templateUrl,typescript:Vx,css:Bx},disabled:{html:xy.$factory.templateUrl,typescript:Ax},adapter:{html:fy.$factory.templateUrl,typescript:wx},i18n:{html:vy.$factory.templateUrl,typescript:Nx},customDay:{html:py.$factory.templateUrl,typescript:Dx,css:Ex},customMonth:{html:my.$factory.templateUrl,typescript:kx,css:Ox},footer:{html:hy.$factory.templateUrl,typescript:jx},position:{html:by.$factory.templateUrl,typescript:Lx},keyboard:{html:yy.$factory.templateUrl,typescript:Px},global:{html:gy.$factory.templateUrl,typescript:Mx}};static get $name(){return`docsDatepickerExamplesPage`}static get $factory(){return{controller:e,controllerAs:`$`,templateUrl:`templates/datepicker-examples-page.component-b64f21ef.html`}}},Ux=class e{static get $name(){return`docsDropdownApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/dropdown-api-page.component-6a7f04d0.html`,controllerAs:`$`}}},Wx=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class DropdownDisabledItemsComponent implements IComponentController {
+    public restricted = true;
+
+    static get $name() {
+        return "docsDropdownDisabledItems"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: DropdownDisabledItemsComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/dropdown-disabled-items/dropdown-disabled-items.component.html",
+        }
+    }
+}
+`,Gx=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class DropdownFormComponent implements IComponentController {
+    public email = "";
+    public remember = false;
+    public submitted = false;
+
+    public submit() {
+        this.submitted = true;
+    }
+
+    static get $name() {
+        return "docsDropdownForm"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: DropdownFormComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/dropdown-form/dropdown-form.component.html",
+        }
+    }
+}
+`,Kx=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbDropdownConfig } from "ngb-js";
+
+export class DropdownGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<NgbDropdownConfig, "autoClose" | "container" | "placement">;
+
+    constructor(private readonly config: NgbDropdownConfig) {
+        this.initialConfig = {
+            autoClose: config.autoClose,
+            container: config.container,
+            placement: config.placement,
+        };
+
+        config.autoClose = "outside";
+        config.container = "body";
+        config.placement = ["top-start", "bottom-start"];
+    }
+
+    public $onDestroy() {
+        this.config.autoClose = this.initialConfig.autoClose;
+        this.config.container = this.initialConfig.container;
+        this.config.placement = this.initialConfig.placement;
+    }
+
+    static get $name() {
+        return "docsDropdownGlobal"
+    }
+
+    static get $inject() {
+        return [NgbDropdownConfig.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: DropdownGlobalComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/dropdown-global/dropdown-global.component.html",
+        }
+    }
+}
+`,qx=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbDropdown } from "ngb-js";
+import { ViewChild } from "ngjs-core";
+
+export class ManualDropdownComponent implements IComponentController {
+    @ViewChild("dropdown", { read: NgbDropdown, static: true })
+    private dropdown!: NgbDropdown;
+
+    public opened = false;
+
+    public open() {
+        this.dropdown.open();
+    }
+
+    public close() {
+        this.dropdown.close();
+    }
+
+    public toggle() {
+        this.dropdown.toggle();
+    }
+
+    static get $name() {
+        return "docsManualDropdown"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ManualDropdownComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/manual-dropdown/manual-dropdown.component.html",
+        }
+    }
+}
+`,Jx=class e{examples={simple:{html:kv.$factory.templateUrl},manual:{html:Ov.$factory.templateUrl,typescript:qx},buttonGroups:{html:Cv.$factory.templateUrl},disabledItems:{html:wv.$factory.templateUrl,typescript:Wx},form:{html:Tv.$factory.templateUrl,typescript:Gx},body:{html:Sv.$factory.templateUrl},navbar:{html:Dv.$factory.templateUrl},global:{html:Ev.$factory.templateUrl,typescript:Kx}};static get $name(){return`docsDropdownExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/dropdown-examples-page.component-fefe9aa4.html`,controllerAs:`$`}}},Yx=class e{static get $name(){return`docsModalApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/modal-api-page.component-bdfcc96e.html`,controllerAs:`$`}}},Xx=`import type { IComponentController, IComponentOptions } from "angular";
+import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"
+import { NgbModal } from "ngb-js";
+
+export class ModalComponentContentComponent implements IComponentController {
+    public lastResult = "No result yet";
+
+    constructor(private readonly modal: NgbModal) {}
+
+    public async open() {
+        const modalRef = await this.modal.open(ModalDemoContentComponent.$name, {
+            bindings: {
+                title: "Component as content",
+                description: "NgbActiveModal is provided directly to the content component.",
+            },
+        });
+
+        modalRef.closed.subscribe((result) => {
+            this.lastResult = \`Closed with: \${result}\`;
+        });
+
+        modalRef.dismissed.subscribe((reason) => {
+            this.lastResult = \`Dismissed with: \${reason}\`;
+        });
+    }
+
+    static get $name() {
+        return "docsModalComponentContent"
+    }
+
+    static get $inject() {
+        return [NgbModal.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ModalComponentContentComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/modal-component-content/modal-component-content.component.html",
+        }
+    }
+}
+`,Zx=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbModal } from "ngb-js";
+import { TemplateRef, ViewChild } from "ngjs-core";
+
+export class ModalDefaultComponent implements IComponentController {
+    @ViewChild("content", { read: TemplateRef, static: true })
+    private content!: TemplateRef<unknown>;
+
+    constructor(private readonly modal: NgbModal) {}
+
+    public open() {
+        this.modal.open(this.content);
+    }
+
+    static get $name() {
+        return "docsModalDefault"
+    }
+
+    static get $inject() {
+        return [NgbModal.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ModalDefaultComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/modal-default/modal-default.component.html",
+        }
+    }
+}
+`,Qx=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbActiveModal } from "ngb-js";
+
+export class ModalDemoContentComponent implements IComponentController {
+    public ngbActiveModal!: NgbActiveModal;
+    public title = "Component modal";
+    public description = "This modal receives a component as its content.";
+    public longContent = false;
+    public readonly items = Array.from({ length: 24 }, (_, index) => \`Scrollable content row \${index + 1}\`);
+
+    static get $name() {
+        return "docsModalDemoContent"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            bindings: {
+                ngbActiveModal: "<",
+                title: "<?",
+                description: "<?",
+                longContent: "<?",
+            },
+            controller: ModalDemoContentComponent,
+            controllerAs: "$",
+            templateUrl: "src/app/features/lib/components/modal-demo-content/modal-demo-content.component.html",
+        }
+    }
+}
+`,$x=`import type { IComponentController, IComponentOptions } from "angular";
+import { ModalFocusContentComponent } from "@/features/lib/components/modal-focus-content/modal-focus-content.component"
+import { NgbModal } from "ngb-js";
+
+export class ModalFocusComponent implements IComponentController {
+    constructor(private readonly modal: NgbModal) {}
+
+    public openDefaultFocus() {
+        this.modal.open(ModalFocusContentComponent.$name, {
+            ariaLabelledBy: "modal-focus-title",
+            bindings: { autofocus: false },
+        });
+    }
+
+    public openCustomFocus() {
+        this.modal.open(ModalFocusContentComponent.$name, {
+            ariaLabelledBy: "modal-focus-title",
+            bindings: { autofocus: true },
+        });
+    }
+
+    static get $name() {
+        return "docsModalFocus"
+    }
+
+    static get $inject() {
+        return [NgbModal.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ModalFocusComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/modal-focus/modal-focus.component.html",
+        }
+    }
+}
+`,eS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbActiveModal } from "ngb-js";
+
+export class ModalFocusContentComponent implements IComponentController {
+    public ngbActiveModal!: NgbActiveModal;
+    public autofocus = false;
+
+    static get $name() {
+        return "docsModalFocusContent"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            bindings: {
+                ngbActiveModal: "<",
+                autofocus: "<?",
+            },
+            controller: ModalFocusContentComponent,
+            controllerAs: "$",
+            templateUrl: "src/app/features/lib/components/modal-focus-content/modal-focus-content.component.html",
+        }
+    }
+}
+`,tS=`import type { IComponentController, IComponentOptions } from "angular";
+import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"
+import { NgbModal, NgbModalConfig } from "ngb-js";
+
+export class ModalGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<NgbModalConfig, "backdrop" | "centered" | "keyboard" | "size">;
+
+    constructor(
+        private readonly modal: NgbModal,
+        private readonly config: NgbModalConfig,
+    ) {
+        this.initialConfig = {
+            backdrop: config.backdrop,
+            centered: config.centered,
+            keyboard: config.keyboard,
+            size: config.size,
+        };
+
+    }
+
+    public async open() {
+        this.applyConfig();
+
+        try {
+            await this.modal.open(ModalDemoContentComponent.$name, {
+                bindings: {
+                    title: "Globally configured modal",
+                    description: "This modal is centered, large and cannot be dismissed with Escape or a backdrop click.",
+                },
+            });
+        } finally {
+            this.restoreConfig();
+        }
+    }
+
+    public $onDestroy() {
+        this.restoreConfig();
+    }
+
+    private applyConfig() {
+        this.config.backdrop = "static";
+        this.config.centered = true;
+        this.config.keyboard = false;
+        this.config.size = "lg";
+    }
+
+    private restoreConfig() {
+        this.config.backdrop = this.initialConfig.backdrop;
+        this.config.centered = this.initialConfig.centered;
+        this.config.keyboard = this.initialConfig.keyboard;
+        this.config.size = this.initialConfig.size;
+    }
+
+    static get $name() {
+        return "docsModalGlobal"
+    }
+
+    static get $inject() {
+        return [NgbModal.$name, NgbModalConfig.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ModalGlobalComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/modal-global/modal-global.component.html",
+        }
+    }
+}
+`,nS=`.modal-window-custom .modal-content {
+    border-top: 0.3rem solid var(--bs-primary);
+}
+
+.modal-static-backdrop,
+.modal-updated-backdrop {
+    --bs-backdrop-bg: var(--bs-danger);
+    --bs-backdrop-opacity: 0.35;
+}
+
+.modal-dialog-custom .modal-content,
+.modal-updated-dialog .modal-content {
+    border-radius: 1.5rem;
+    box-shadow: var(--bs-box-shadow-lg);
+}
+
+.modal-updated-window .modal-content {
+    border-color: var(--bs-success);
+}
+`,rS=`import "@/features/lib/components/modal-options/modal-options.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"
+import { NgbModal, type NgbModalOptions } from "ngb-js";
+
+export class ModalOptionsComponent implements IComponentController {
+    constructor(private readonly modal: NgbModal) {}
+
+    public openCustomWindow() {
+        this.open("Custom window class", { windowClass: "modal-window-custom" });
+    }
+
+    public openStaticBackdrop() {
+        this.open("Static custom backdrop", {
+            backdrop: "static",
+            backdropClass: "modal-static-backdrop",
+            keyboard: false,
+        });
+    }
+
+    public openSmall() {
+        this.open("Small modal", { size: "sm" });
+    }
+
+    public openLarge() {
+        this.open("Large modal", { size: "lg" });
+    }
+
+    public openExtraLarge() {
+        this.open("Extra large modal", { size: "xl" });
+    }
+
+    public openFullscreen() {
+        this.open("Fullscreen modal", { fullscreen: true });
+    }
+
+    public openCentered() {
+        this.open("Vertically centered modal", { centered: true });
+    }
+
+    public openScrollable() {
+        this.open("Scrollable modal", { scrollable: true, size: "lg" }, true);
+    }
+
+    public openCustomDialog() {
+        this.open("Custom dialog class", { modalDialogClass: "modal-dialog-custom" });
+    }
+
+    private open(title: string, options: NgbModalOptions, longContent = false) {
+        this.modal.open(ModalDemoContentComponent.$name, {
+            ...options,
+            bindings: {
+                title,
+                description: "These values are applied only to this modal instance.",
+                longContent,
+            },
+        });
+    }
+
+    static get $name() {
+        return "docsModalOptions"
+    }
+
+    static get $inject() {
+        return [NgbModal.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ModalOptionsComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/modal-options/modal-options.component.html",
+        }
+    }
+}
+`,iS=`import type { IComponentController, IComponentOptions } from "angular";
+import { ModalStackedContentComponent } from "@/features/lib/components/modal-stacked-content/modal-stacked-content.component"
+import { NgbModal } from "ngb-js";
+
+export class ModalStackedComponent implements IComponentController {
+    constructor(private readonly modal: NgbModal) {}
+
+    public async openStack() {
+        for (let level = 1; level <= 3; level++) {
+            await this.modal.open(ModalStackedContentComponent.$name, {
+                bindings: {
+                    level,
+                },
+            });
+        }
+    }
+
+    static get $name() {
+        return "docsModalStacked"
+    }
+
+    static get $inject() {
+        return [NgbModal.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ModalStackedComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/modal-stacked/modal-stacked.component.html",
+        }
+    }
+}
+`,aS=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbModal, type NgbActiveModal } from "ngb-js";
+
+export class ModalStackedContentComponent implements IComponentController {
+    public ngbActiveModal!: NgbActiveModal;
+    public level = 1;
+
+    constructor(private readonly modal: NgbModal) {}
+
+    public dismissAll() {
+        this.modal.dismissAll("Dismiss all");
+    }
+
+    static get $name() {
+        return "docsModalStackedContent"
+    }
+
+    static get $inject() {
+        return [NgbModal.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            bindings: {
+                ngbActiveModal: "<",
+                level: "<?",
+            },
+            controller: ModalStackedContentComponent,
+            controllerAs: "$",
+            templateUrl: "src/app/features/lib/components/modal-stacked-content/modal-stacked-content.component.html",
+        }
+    }
+}
+`,oS=`import type { IComponentController, IComponentOptions } from "angular";
+import { ModalUpdatableContentComponent } from "@/features/lib/components/modal-updatable-content/modal-updatable-content.component"
+import { NgbModal } from "ngb-js";
+
+export class ModalUpdatableComponent implements IComponentController {
+    constructor(private readonly modal: NgbModal) {}
+
+    public open() {
+        this.modal.open(ModalUpdatableContentComponent.$name, {
+            ariaLabelledBy: "updatable-modal-title",
+            ariaDescribedBy: "updatable-modal-description",
+            size: "sm",
+        });
+    }
+
+    static get $name() {
+        return "docsModalUpdatable"
+    }
+
+    static get $inject() {
+        return [NgbModal.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ModalUpdatableComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/modal-updatable/modal-updatable.component.html",
+        }
+    }
+}
+`,sS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbActiveModal, NgbModalUpdatableOptions } from "ngb-js";
+
+export class ModalUpdatableContentComponent implements IComponentController {
+    public ngbActiveModal!: NgbActiveModal;
+    public ariaReferences = true;
+    public centered = false;
+    public fullscreen = false;
+    public customBackdrop = false;
+    public size: NgbModalUpdatableOptions["size"] = "sm";
+    public customWindow = false;
+    public customDialog = false;
+
+    public toggleAriaReferences() {
+        this.ariaReferences = !this.ariaReferences;
+        this.ngbActiveModal.update({
+            ariaLabelledBy: this.ariaReferences ? "updatable-modal-title" : "",
+            ariaDescribedBy: this.ariaReferences ? "updatable-modal-description" : "",
+        });
+    }
+
+    public toggleCentered() {
+        this.centered = !this.centered;
+        this.ngbActiveModal.update({ centered: this.centered });
+    }
+
+    public toggleFullscreen() {
+        this.fullscreen = !this.fullscreen;
+        this.ngbActiveModal.update({ fullscreen: this.fullscreen });
+    }
+
+    public toggleBackdropClass() {
+        this.customBackdrop = !this.customBackdrop;
+        this.ngbActiveModal.update({ backdropClass: this.customBackdrop ? "modal-updated-backdrop" : "" });
+    }
+
+    public cycleSize() {
+        const sizes: Array<NgbModalUpdatableOptions["size"]> = ["sm", "lg", "xl"];
+        this.size = sizes[(sizes.indexOf(this.size) + 1) % sizes.length];
+        this.ngbActiveModal.update({ size: this.size });
+    }
+
+    public toggleWindowClass() {
+        this.customWindow = !this.customWindow;
+        this.ngbActiveModal.update({ windowClass: this.customWindow ? "modal-updated-window" : "" });
+    }
+
+    public toggleDialogClass() {
+        this.customDialog = !this.customDialog;
+        this.ngbActiveModal.update({ modalDialogClass: this.customDialog ? "modal-updated-dialog" : "" });
+    }
+
+    static get $name() {
+        return "docsModalUpdatableContent"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            bindings: {
+                ngbActiveModal: "<",
+            },
+            controller: ModalUpdatableContentComponent,
+            controllerAs: "$",
+            templateUrl: "src/app/features/lib/components/modal-updatable-content/modal-updatable-content.component.html",
+        }
+    }
+}
+`,cS=class e{examples={defaults:{html:Mv.$factory.templateUrl,typescript:Zx},componentContent:{html:[{label:`modal-component-content.component.html`,url:jv.$factory.templateUrl},{label:`modal-demo-content.component.html`,url:Av.$factory.templateUrl}],typescript:`${Xx}\n\n// modal-demo-content.component.ts\n${Qx}`},focus:{html:[{label:`modal-focus.component.html`,url:Pv.$factory.templateUrl},{label:`modal-focus-content.component.html`,url:Nv.$factory.templateUrl}],typescript:`${$x}\n\n// modal-focus-content.component.ts\n${eS}`},options:{html:Iv.$factory.templateUrl,typescript:rS,css:nS},updatable:{html:[{label:`modal-updatable.component.html`,url:Bv.$factory.templateUrl},{label:`modal-updatable-content.component.html`,url:zv.$factory.templateUrl}],typescript:`${oS}\n\n// modal-updatable-content.component.ts\n${sS}`,css:nS},stacked:{html:[{label:`modal-stacked.component.html`,url:Rv.$factory.templateUrl},{label:`modal-stacked-content.component.html`,url:Lv.$factory.templateUrl}],typescript:`${iS}\n\n// modal-stacked-content.component.ts\n${aS}`},global:{html:Fv.$factory.templateUrl,typescript:tS}};static get $name(){return`docsModalExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/modal-examples-page.component-f5099726.html`,controllerAs:`$`}}},lS=class e{static get $name(){return`docsNavApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/nav-api-page.component-5627eb97.html`,controllerAs:`$`}}},uS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class AlternativeNavComponent implements IComponentController {
+    public activeId = "alternative-home";
+
+    static get $name() {
+        return "docsAlternativeNav"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: AlternativeNavComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/alternative-nav/alternative-nav.component.html",
+        }
+    }
+}
+`,dS=`.nav-custom {
+    gap: 0.5rem;
+    padding: 0.35rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-pill);
+    background: var(--bs-tertiary-bg);
+}
+
+.nav-custom .nav-link {
+    border-radius: var(--bs-border-radius-pill);
+    color: var(--bs-secondary-color);
+}
+
+.nav-custom .nav-link.active {
+    color: var(--bs-primary-text-emphasis);
+    background: var(--bs-primary-bg-subtle);
+    box-shadow: var(--bs-box-shadow-sm);
+}
+`,fS=`import "@/features/lib/components/custom-nav/custom-nav.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+
+export class CustomNavComponent implements IComponentController {
+    public activeId = "custom-weekly";
+
+    static get $name() {
+        return "docsCustomNav"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: CustomNavComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/custom-nav/custom-nav.component.html",
+        }
+    }
+}
+`,pS=`import type { IComponentController, IComponentOptions } from "angular";
+
+interface DynamicNavItem {
+    id: string;
+    title: string;
+}
+
+export class DynamicNavComponent implements IComponentController {
+    public items: DynamicNavItem[] = [
+        { id: "dynamic-1", title: "Tab 1" },
+        { id: "dynamic-2", title: "Tab 2" },
+        { id: "dynamic-3", title: "Tab 3" },
+    ];
+    public activeId = "dynamic-1";
+    private nextId = 4;
+
+    public add() {
+        const item = {
+            id: \`dynamic-\${this.nextId}\`,
+            title: \`Tab \${this.nextId}\`,
+        };
+
+        this.nextId++;
+        this.items.push(item);
+        this.activeId = item.id;
+    }
+
+    public removeActive() {
+        if (this.items.length === 1) return;
+
+        const activeIndex = this.items.findIndex(({ id }) => id === this.activeId);
+        const replacement = this.items[activeIndex === 0 ? 1 : activeIndex - 1];
+
+        this.activeId = replacement.id;
+        this.items = this.items.filter(({ id }) => id !== this.items[activeIndex].id);
+    }
+
+    static get $name() {
+        return "docsDynamicNav"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: DynamicNavComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/dynamic-nav/dynamic-nav.component.html",
+        }
+    }
+}
+`,mS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class KeepContentNavComponent implements IComponentController {
+    public activeId = "keep-editor";
+    public draft = "This value survives tab changes.";
+
+    static get $name() {
+        return "docsKeepContentNav"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: KeepContentNavComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/keep-content-nav/keep-content-nav.component.html",
+        }
+    }
+}
+`,hS=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbNavConfig } from "ngb-js";
+
+export class NavGlobalComponent implements IComponentController {
+    public activeId = "global-account";
+
+    private readonly initialConfig: Pick<
+        NgbNavConfig,
+        "animation" | "destroyOnHide" | "keyboard" | "orientation" | "roles"
+    >;
+
+    constructor(private readonly config: NgbNavConfig) {
+        this.initialConfig = {
+            animation: config.animation,
+            destroyOnHide: config.destroyOnHide,
+            keyboard: config.keyboard,
+            orientation: config.orientation,
+            roles: config.roles,
+        };
+
+        config.animation = false;
+        config.destroyOnHide = false;
+        config.keyboard = "changeWithArrows";
+        config.orientation = "vertical";
+        config.roles = "tablist";
+    }
+
+    public $postLink() {
+        this.restoreConfig();
+    }
+
+    public $onDestroy() {
+        this.restoreConfig();
+    }
+
+    private restoreConfig() {
+        this.config.animation = this.initialConfig.animation;
+        this.config.destroyOnHide = this.initialConfig.destroyOnHide;
+        this.config.keyboard = this.initialConfig.keyboard;
+        this.config.orientation = this.initialConfig.orientation;
+        this.config.roles = this.initialConfig.roles;
+    }
+
+    static get $name() {
+        return "docsNavGlobal"
+    }
+
+    static get $inject() {
+        return [NgbNavConfig.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: NavGlobalComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/nav-global/nav-global.component.html",
+        }
+    }
+}
+`,gS=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbNav } from "ngb-js";
+import { ViewChild } from "ngjs-core";
+
+export class SelectingNavComponent implements IComponentController {
+    @ViewChild("nav", { read: NgbNav, static: true })
+    public nav!: NgbNav;
+
+    public activeId = "selecting-first";
+
+    public select(id: string) {
+        this.nav.select(id);
+    }
+
+    static get $name() {
+        return "docsSelectingNav"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: SelectingNavComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/selecting-nav/selecting-nav.component.html",
+        }
+    }
+}
+`,_S=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class SimpleNavComponent implements IComponentController {
+    public activeId = "simple-overview";
+
+    static get $name() {
+        return "docsSimpleNav"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: SimpleNavComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/simple-nav/simple-nav.component.html",
+        }
+    }
+}
+`,vS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class VerticalNavComponent implements IComponentController {
+    public activeId = "vertical-profile";
+
+    static get $name() {
+        return "docsVerticalNav"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: VerticalNavComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/vertical-nav/vertical-nav.component.html",
+        }
+    }
+}
+`,yS=class e{examples={simple:{html:qv.$factory.templateUrl,typescript:_S},alternative:{html:Vv.$factory.templateUrl,typescript:uS},vertical:{html:Jv.$factory.templateUrl,typescript:vS},selecting:{html:Kv.$factory.templateUrl,typescript:gS},keepContent:{html:Wv.$factory.templateUrl,typescript:mS},dynamic:{html:Uv.$factory.templateUrl,typescript:pS},custom:{html:Hv.$factory.templateUrl,typescript:fS,css:dS},global:{html:Gv.$factory.templateUrl,typescript:hS}};static get $name(){return`docsNavExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/nav-examples-page.component-c8820cd5.html`,controllerAs:`$`}}},bS=class e{static get $name(){return`docsOffcanvasApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/offcanvas-api-page.component-c4bf3ad6.html`,controllerAs:`$`}}},xS=`import type { IComponentController, IComponentOptions } from "angular";
+import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"
+import { NgbOffcanvas } from "ngb-js";
+
+export class OffcanvasComponentContentComponent implements IComponentController {
+    public lastResult = "No result yet";
+
+    constructor(private readonly offcanvas: NgbOffcanvas) {}
+
+    public async open() {
+        const offcanvasRef = await this.offcanvas.open(OffcanvasDemoContentComponent.$name);
+
+        offcanvasRef.closed.subscribe((result) => {
+            this.lastResult = \`Closed with: \${result}\`;
+        });
+
+        offcanvasRef.dismissed.subscribe((reason) => {
+            this.lastResult = \`Dismissed with: \${reason}\`;
+        });
+    }
+
+    static get $name() {
+        return "docsOffcanvasComponentContent"
+    }
+
+    static get $inject() {
+        return [NgbOffcanvas.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: OffcanvasComponentContentComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/offcanvas-component-content/offcanvas-component-content.component.html",
+        }
+    }
+}
+`,SS=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbOffcanvas } from "ngb-js";
+import { TemplateRef, ViewChild } from "ngjs-core";
+
+export class OffcanvasDefaultComponent implements IComponentController {
+    @ViewChild("content", { read: TemplateRef, static: true })
+    private content!: TemplateRef<unknown>;
+
+    constructor(private readonly offcanvas: NgbOffcanvas) {}
+
+    public open() {
+        this.offcanvas.open(this.content);
+    }
+
+    static get $name() {
+        return "docsOffcanvasDefault"
+    }
+
+    static get $inject() {
+        return [NgbOffcanvas.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: OffcanvasDefaultComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/offcanvas-default/offcanvas-default.component.html",
+        }
+    }
+}
+`,CS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbActiveOffcanvas } from "ngb-js";
+
+export class OffcanvasDemoContentComponent implements IComponentController {
+    public ngbActiveOffcanvas!: NgbActiveOffcanvas;
+
+    static get $name() {
+        return "docsOffcanvasDemoContent"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            bindings: {
+                ngbActiveOffcanvas: "<",
+            },
+            controller: OffcanvasDemoContentComponent,
+            controllerAs: "$",
+            templateUrl: "src/app/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component.html",
+        }
+    }
+}
+`,wS=`import type { IComponentController, IComponentOptions } from "angular";
+import { OffcanvasFocusContentComponent } from "@/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component"
+import { NgbOffcanvas } from "ngb-js";
+
+export class OffcanvasFocusComponent implements IComponentController {
+    constructor(private readonly offcanvas: NgbOffcanvas) {}
+
+    public openDefaultFocus() {
+        this.offcanvas.open(OffcanvasFocusContentComponent.$name, {
+            ariaLabelledBy: "offcanvas-focus-title",
+            bindings: { autofocus: false },
+        });
+    }
+
+    public openCustomFocus() {
+        this.offcanvas.open(OffcanvasFocusContentComponent.$name, {
+            ariaLabelledBy: "offcanvas-focus-title",
+            bindings: { autofocus: true },
+        });
+    }
+
+    static get $name() {
+        return "docsOffcanvasFocus"
+    }
+
+    static get $inject() {
+        return [NgbOffcanvas.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: OffcanvasFocusComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/offcanvas-focus/offcanvas-focus.component.html",
+        }
+    }
+}
+`,TS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbActiveOffcanvas } from "ngb-js";
+
+export class OffcanvasFocusContentComponent implements IComponentController {
+    public ngbActiveOffcanvas!: NgbActiveOffcanvas;
+    public autofocus = false;
+
+    static get $name() {
+        return "docsOffcanvasFocusContent"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            bindings: {
+                ngbActiveOffcanvas: "<",
+                autofocus: "<?",
+            },
+            controller: OffcanvasFocusContentComponent,
+            controllerAs: "$",
+            templateUrl: "src/app/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.html",
+        }
+    }
+}
+`,ES=`import type { IComponentController, IComponentOptions } from "angular";
+import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"
+import { NgbOffcanvas, NgbOffcanvasConfig } from "ngb-js";
+
+export class OffcanvasGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<
+        NgbOffcanvasConfig,
+        "backdrop" | "keyboard" | "position" | "scroll"
+    >;
+
+    constructor(
+        private readonly offcanvas: NgbOffcanvas,
+        private readonly config: NgbOffcanvasConfig,
+    ) {
+        this.initialConfig = {
+            backdrop: config.backdrop,
+            keyboard: config.keyboard,
+            position: config.position,
+            scroll: config.scroll,
+        };
+    }
+
+    public async open() {
+        this.applyConfig();
+
+        try {
+            await this.offcanvas.open(OffcanvasDemoContentComponent.$name);
+        } finally {
+            this.restoreConfig();
+        }
+    }
+
+    public $onDestroy() {
+        this.restoreConfig();
+    }
+
+    private applyConfig() {
+        this.config.backdrop = "static";
+        this.config.keyboard = false;
+        this.config.position = "end";
+        this.config.scroll = true;
+    }
+
+    private restoreConfig() {
+        this.config.backdrop = this.initialConfig.backdrop;
+        this.config.keyboard = this.initialConfig.keyboard;
+        this.config.position = this.initialConfig.position;
+        this.config.scroll = this.initialConfig.scroll;
+    }
+
+    static get $name() {
+        return "docsOffcanvasGlobal"
+    }
+
+    static get $inject() {
+        return [NgbOffcanvas.$name, NgbOffcanvasConfig.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: OffcanvasGlobalComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/offcanvas-global/offcanvas-global.component.html",
+        }
+    }
+}
+`,DS=`.offcanvas-panel-custom {
+    --bs-offcanvas-width: 28rem;
+    border-color: var(--bs-primary-border-subtle);
+}
+
+.offcanvas-static-backdrop {
+    --bs-backdrop-bg: var(--bs-danger);
+    --bs-backdrop-opacity: 0.35;
+}
+`,OS=`import "@/features/lib/components/offcanvas-options/offcanvas-options.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"
+import { NgbOffcanvas, type NgbOffcanvasOptions } from "ngb-js";
+
+export class OffcanvasOptionsComponent implements IComponentController {
+    constructor(private readonly offcanvas: NgbOffcanvas) {}
+
+    public openCustomPanel() {
+        this.open({ panelClass: "offcanvas-panel-custom" });
+    }
+
+    public openStaticBackdrop() {
+        this.open({
+            backdrop: "static",
+            backdropClass: "offcanvas-static-backdrop",
+            keyboard: false,
+        });
+    }
+
+    public openStart() {
+        this.open({ position: "start" });
+    }
+
+    public openEnd() {
+        this.open({ position: "end" });
+    }
+
+    public openTop() {
+        this.open({ position: "top" });
+    }
+
+    public openBottom() {
+        this.open({ position: "bottom" });
+    }
+
+    public openScrollableBody() {
+        this.open({ scroll: true, backdrop: false });
+    }
+
+    private open(options: NgbOffcanvasOptions) {
+        this.offcanvas.open(OffcanvasDemoContentComponent.$name, options);
+    }
+
+    static get $name() {
+        return "docsOffcanvasOptions"
+    }
+
+    static get $inject() {
+        return [NgbOffcanvas.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: OffcanvasOptionsComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/offcanvas-options/offcanvas-options.component.html",
+        }
+    }
+}
+`,kS=class e{examples={defaults:{html:Zv.$factory.templateUrl,typescript:SS},componentContent:{html:[{label:`offcanvas-component-content.component.html`,url:Xv.$factory.templateUrl},{label:`offcanvas-demo-content.component.html`,url:Yv.$factory.templateUrl}],typescript:`${xS}\n\n// offcanvas-demo-content.component.ts\n${CS}`},focus:{html:[{label:`offcanvas-focus.component.html`,url:$v.$factory.templateUrl},{label:`offcanvas-focus-content.component.html`,url:Qv.$factory.templateUrl}],typescript:`${wS}\n\n// offcanvas-focus-content.component.ts\n${TS}`},options:{html:ty.$factory.templateUrl,typescript:OS,css:DS},global:{html:ey.$factory.templateUrl,typescript:ES}};static get $name(){return`docsOffcanvasExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/offcanvas-examples-page.component-56d37205.html`,controllerAs:`$`}}},AS=class e{static get $name(){return`docsPaginationApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/pagination-api-page.component-4cec99be.html`,controllerAs:`$`}}},jS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class AdvancedPaginationComponent implements IComponentController {
+    public paginatedPage = 7;
+    public rotatedPage = 12;
+    public compactPage = 12;
+
+    public selectPaginatedPage(page: number) { this.paginatedPage = page; }
+    public selectRotatedPage(page: number) { this.rotatedPage = page; }
+    public selectCompactPage(page: number) { this.compactPage = page; }
+
+    static get $name() {
+        return "docsAdvancedPagination"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: AdvancedPaginationComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/advanced-pagination/advanced-pagination.component.html",
+        }
+    }
+}
+`,MS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class BasicPaginationComponent implements IComponentController {
+    public page = 4;
+
+    public selectPage(page: number) {
+        this.page = page;
+    }
+
+    static get $name() {
+        return "docsBasicPagination"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: BasicPaginationComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/basic-pagination/basic-pagination.component.html",
+        }
+    }
+}
+`,NS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class CustomPaginationComponent implements IComponentController {
+    public page = 3;
+
+    public selectPage(page: number) {
+        this.page = page;
+    }
+
+    static get $name() {
+        return "docsCustomPagination"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: CustomPaginationComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/custom-pagination/custom-pagination.component.html",
+        }
+    }
+}
+`,PS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class DisabledPaginationComponent implements IComponentController {
+    public page = 3;
+    public disabled = true;
+
+    public selectPage(page: number) {
+        this.page = page;
+    }
+
+    static get $name() {
+        return "docsDisabledPagination"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: DisabledPaginationComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/disabled-pagination/disabled-pagination.component.html",
+        }
+    }
+}
+`,FS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class PaginationAlignmentComponent implements IComponentController {
+    public startPage = 2;
+    public centerPage = 2;
+    public endPage = 2;
+
+    public selectStartPage(page: number) { this.startPage = page; }
+    public selectCenterPage(page: number) { this.centerPage = page; }
+    public selectEndPage(page: number) { this.endPage = page; }
+
+    static get $name() {
+        return "docsPaginationAlignment"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: PaginationAlignmentComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/pagination-alignment/pagination-alignment.component.html",
+        }
+    }
+}
+`,IS=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbPaginationConfig } from "ngb-js";
+
+export class PaginationGlobalComponent implements IComponentController {
+    public page = 8;
+
+    private readonly initialConfig: Pick<
+        NgbPaginationConfig,
+        "boundaryLinks" | "directionLinks" | "maxSize" | "rotate" | "size"
+    >;
+
+    constructor(private readonly config: NgbPaginationConfig) {
+        this.initialConfig = {
+            boundaryLinks: config.boundaryLinks,
+            directionLinks: config.directionLinks,
+            maxSize: config.maxSize,
+            rotate: config.rotate,
+            size: config.size,
+        };
+
+        config.boundaryLinks = true;
+        config.directionLinks = false;
+        config.maxSize = 5;
+        config.rotate = true;
+        config.size = "sm";
+    }
+
+    public selectPage(page: number) {
+        this.page = page;
+    }
+
+    public $postLink() {
+        this.restoreConfig();
+    }
+
+    public $onDestroy() {
+        this.restoreConfig();
+    }
+
+    private restoreConfig() {
+        this.config.boundaryLinks = this.initialConfig.boundaryLinks;
+        this.config.directionLinks = this.initialConfig.directionLinks;
+        this.config.maxSize = this.initialConfig.maxSize;
+        this.config.rotate = this.initialConfig.rotate;
+        this.config.size = this.initialConfig.size;
+    }
+
+    static get $name() {
+        return "docsPaginationGlobal"
+    }
+
+    static get $inject() {
+        return [NgbPaginationConfig.$name]
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: PaginationGlobalComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/pagination-global/pagination-global.component.html",
+        }
+    }
+}
+`,LS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class PaginationSizeComponent implements IComponentController {
+    public smallPage = 2;
+    public defaultPage = 2;
+    public largePage = 2;
+
+    public selectSmallPage(page: number) { this.smallPage = page; }
+    public selectDefaultPage(page: number) { this.defaultPage = page; }
+    public selectLargePage(page: number) { this.largePage = page; }
+
+    static get $name() {
+        return "docsPaginationSize"
+    }
+
+    static get $factory(): IComponentOptions {
+        return {
+            controller: PaginationSizeComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/pagination-size/pagination-size.component.html",
+        }
+    }
+}
+`,RS=class e{examples={basic:{html:ry.$factory.templateUrl,typescript:MS},advanced:{html:ny.$factory.templateUrl,typescript:jS},custom:{html:iy.$factory.templateUrl,typescript:NS},size:{html:cy.$factory.templateUrl,typescript:LS},alignment:{html:oy.$factory.templateUrl,typescript:FS},disabled:{html:ay.$factory.templateUrl,typescript:PS},global:{html:sy.$factory.templateUrl,typescript:IS}};static get $name(){return`docsPaginationExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/pagination-examples-page.component-098ceb3f.html`,controllerAs:`$`}}},zS=class e{static get $name(){return`docsPopoverApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/popover-api-page.component-39fc787c.html`,controllerAs:`$`}}},BS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbPopover } from "ngb-js";
+
+export class PopoverAutocloseComponent implements IComponentController {
+    public popover?: NgbPopover;
+    static get $name() { return "docsPopoverAutoclose" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverAutocloseComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-autoclose/popover-autoclose.component.html" }
+    }
+}
+`,VS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class PopoverBodyComponent implements IComponentController {
+    static get $name() { return "docsPopoverBody" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverBodyComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-body/popover-body.component.html" }
+    }
+}
+`,HS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbPopover } from "ngb-js";
+import type { TemplateRef } from "ngjs-core";
+
+export class PopoverContextComponent implements IComponentController {
+    public name = "World";
+    public contentTemplate?: TemplateRef<unknown>;
+    public titleTemplate?: TemplateRef<unknown>;
+    public french?: NgbPopover;
+    public german?: NgbPopover;
+    public english?: NgbPopover;
+
+    public toggleWithGreeting(popover: NgbPopover, greeting: string, language: string) {
+        popover.isOpen() ? popover.close() : popover.open({ greeting, language });
+    }
+
+    static get $name() { return "docsPopoverContext" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverContextComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-context/popover-context.component.html" }
+    }
+}
+`,US=`.docs-popover-custom {
+    --bs-popover-border-color: var(--bs-primary-border-subtle);
+    --bs-popover-header-bg: var(--bs-primary-bg-subtle);
+    --bs-popover-header-color: var(--bs-primary-text-emphasis);
+
+    box-shadow: var(--bs-box-shadow-sm);
+}
+`,WS=`import "@/features/lib/components/popover-custom-class/popover-custom-class.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+
+export class PopoverCustomClassComponent implements IComponentController {
+    static get $name() { return "docsPopoverCustomClass" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverCustomClassComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-custom-class/popover-custom-class.component.html" }
+    }
+}
+`,GS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class PopoverCustomTargetComponent implements IComponentController {
+    static get $name() { return "docsPopoverCustomTarget" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverCustomTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-custom-target/popover-custom-target.component.html" }
+    }
+}
+`,KS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class PopoverDelaysComponent implements IComponentController {
+    static get $name() { return "docsPopoverDelays" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverDelaysComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-delays/popover-delays.component.html" }
+    }
+}
+`,qS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbPopover } from "ngb-js";
+
+export class PopoverEventsComponent implements IComponentController {
+    public popover?: NgbPopover;
+    public events: { name: string; time: Date }[] = [];
+    public record(name: string) { this.events.unshift({ name, time: new Date() }); }
+    static get $name() { return "docsPopoverEvents" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverEventsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-events/popover-events.component.html" }
+    }
+}
+`,JS=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbPopoverConfig } from "ngb-js";
+
+export class PopoverGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<NgbPopoverConfig, "container" | "openDelay" | "placement" | "triggers">;
+
+    constructor(private readonly config: NgbPopoverConfig) {
+        this.initialConfig = {
+            container: config.container,
+            openDelay: config.openDelay,
+            placement: config.placement,
+            triggers: config.triggers,
+        };
+        config.container = "body";
+        config.openDelay = 300;
+        config.placement = "end";
+        config.triggers = "mouseenter:mouseleave";
+    }
+
+    public $postLink() { this.restoreConfig(); }
+    public $onDestroy() { this.restoreConfig(); }
+    private restoreConfig() {
+        this.config.container = this.initialConfig.container;
+        this.config.openDelay = this.initialConfig.openDelay;
+        this.config.placement = this.initialConfig.placement;
+        this.config.triggers = this.initialConfig.triggers;
+    }
+
+    static get $name() { return "docsPopoverGlobal" }
+    static get $inject() { return [NgbPopoverConfig.$name] }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-global/popover-global.component.html" }
+    }
+}
+`,YS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbPopover } from "ngb-js";
+
+export class PopoverManualControlComponent implements IComponentController {
+    public popover?: NgbPopover;
+    static get $name() { return "docsPopoverManualControl" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverManualControlComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-manual-control/popover-manual-control.component.html" }
+    }
+}
+`,XS=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class PopoverPlacementsComponent implements IComponentController {
+    static get $name() { return "docsPopoverPlacements" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverPlacementsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-placements/popover-placements.component.html" }
+    }
+}
+`,ZS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { TemplateRef } from "ngjs-core";
+
+export class PopoverTemplateComponent implements IComponentController {
+    public name = "NgbJS";
+    public contentTemplate?: TemplateRef<unknown>;
+    public titleTemplate?: TemplateRef<unknown>;
+    static get $name() { return "docsPopoverTemplate" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-template/popover-template.component.html" }
+    }
+}
+`,QS=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbPopover } from "ngb-js";
+
+export class PopoverTriggersComponent implements IComponentController {
+    public manual?: NgbPopover;
+    static get $name() { return "docsPopoverTriggers" }
+    static get $factory(): IComponentOptions {
+        return { controller: PopoverTriggersComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-triggers/popover-triggers.component.html" }
+    }
+}
+`,$S=class e{examples={placements:{html:Fy.$factory.templateUrl,typescript:XS},template:{html:Iy.$factory.templateUrl,typescript:ZS},triggers:{html:Ly.$factory.templateUrl,typescript:QS},manual:{html:Py.$factory.templateUrl,typescript:YS},autoclose:{html:Ey.$factory.templateUrl,typescript:BS},context:{html:Oy.$factory.templateUrl,typescript:HS},customTarget:{html:Ay.$factory.templateUrl,typescript:GS},delays:{html:jy.$factory.templateUrl,typescript:KS},events:{html:My.$factory.templateUrl,typescript:qS},body:{html:Dy.$factory.templateUrl,typescript:VS},customClass:{html:ky.$factory.templateUrl,typescript:WS,css:US},global:{html:Ny.$factory.templateUrl,typescript:JS}};static get $name(){return`docsPopoverExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/popover-examples-page.component-1d0efb30.html`,controllerAs:`$`}}},eC=class e{static get $name(){return`docsProgressbarApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/progressbar-api-page.component-3de69aa8.html`,controllerAs:`$`}}},tC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class ContextualTextProgressbarComponent implements IComponentController {
+    static get $name() { return "docsContextualTextProgressbar" }
+    static get $factory(): IComponentOptions {
+        return { controller: ContextualTextProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/contextual-text-progressbar/contextual-text-progressbar.component.html" }
+    }
+}
+`,nC=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbProgressbarConfig } from "ngb-js";
+
+export class ProgressbarGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<NgbProgressbarConfig, "animated" | "height" | "max" | "showValue" | "striped" | "textType" | "type">;
+
+    constructor(private readonly config: NgbProgressbarConfig) {
+        this.initialConfig = {
+            animated: config.animated,
+            height: config.height,
+            max: config.max,
+            showValue: config.showValue,
+            striped: config.striped,
+            textType: config.textType,
+            type: config.type,
+        };
+        config.animated = true;
+        config.height = "1.5rem";
+        config.max = 200;
+        config.showValue = true;
+        config.striped = true;
+        config.textType = "light";
+        config.type = "primary";
+    }
+
+    public $postLink() { this.restoreConfig(); }
+    public $onDestroy() { this.restoreConfig(); }
+    private restoreConfig() { Object.assign(this.config, this.initialConfig); }
+
+    static get $name() { return "docsProgressbarGlobal" }
+    static get $inject() { return [NgbProgressbarConfig.$name] }
+    static get $factory(): IComponentOptions {
+        return { controller: ProgressbarGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progressbar-global/progressbar-global.component.html" }
+    }
+}
+`,rC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class ProgressHeightComponent implements IComponentController {
+    static get $name() { return "docsProgressHeight" }
+    static get $factory(): IComponentOptions {
+        return { controller: ProgressHeightComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progress-height/progress-height.component.html" }
+    }
+}
+`,iC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class CustomLabelsProgressbarComponent implements IComponentController {
+    static get $name() { return "docsCustomLabelsProgressbar" }
+    static get $factory(): IComponentOptions {
+        return { controller: CustomLabelsProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/custom-labels-progressbar/custom-labels-progressbar.component.html" }
+    }
+}
+`,aC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class SimpleProgressbarComponent implements IComponentController {
+    static get $name() { return "docsSimpleProgressbar" }
+    static get $factory(): IComponentOptions {
+        return { controller: SimpleProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/simple-progressbar/simple-progressbar.component.html" }
+    }
+}
+`,oC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class ProgressBarsStackedComponent implements IComponentController {
+    static get $name() { return "docsProgressBarsStacked" }
+    static get $factory(): IComponentOptions {
+        return { controller: ProgressBarsStackedComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progress-bars-stacked/progress-bars-stacked.component.html" }
+    }
+}
+`,sC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class StripedProgressBarComponent implements IComponentController {
+    static get $name() { return "docsStripedProgressBar" }
+    static get $factory(): IComponentOptions {
+        return { controller: StripedProgressBarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/striped-progress-bar/striped-progress-bar.component.html" }
+    }
+}
+`,cC=class e{examples={simple:{html:Uy.$factory.templateUrl,typescript:aC},contextual:{html:Ry.$factory.templateUrl,typescript:tC},striped:{html:Wy.$factory.templateUrl,typescript:sC},labels:{html:zy.$factory.templateUrl,typescript:iC},height:{html:Vy.$factory.templateUrl,typescript:rC},stacked:{html:By.$factory.templateUrl,typescript:oC},global:{html:Hy.$factory.templateUrl,typescript:nC}};static get $name(){return`docsProgressbarExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/progressbar-examples-page.component-c518dfee.html`,controllerAs:`$`}}},lC=class e{static get $name(){return`docsRatingApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/rating-api-page.component-2eaf6c48.html`,controllerAs:`$`}}},uC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class BasicRatingComponent implements IComponentController {
+    public rating = 3;
+    public setRating(rating: number) { this.rating = rating; }
+    static get $name() { return "docsBasicRating" }
+    static get $factory(): IComponentOptions {
+        return { controller: BasicRatingComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-rating/basic-rating.component.html" }
+    }
+}
+`,dC=`.rating-demo-star {
+    color: var(--bs-secondary-color);
+    font-size: 2rem;
+    padding-right: 0.15rem;
+}
+
+.rating-demo-star.filled {
+    color: var(--bs-warning);
+}
+
+.rating-demo-star.filled.low {
+    color: var(--bs-danger);
+}
+`,fC=`import "@/features/lib/components/rating-custom-template/rating-custom-template.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+
+export class RatingCustomTemplateComponent implements IComponentController {
+    public rating = 6;
+    public setRating(rating: number) { this.rating = rating; }
+    static get $name() { return "docsRatingCustomTemplate" }
+    static get $factory(): IComponentOptions {
+        return { controller: RatingCustomTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-custom-template/rating-custom-template.component.html" }
+    }
+}
+`,pC=`.rating-demo-heart {
+    color: var(--bs-secondary-bg);
+    display: inline-block;
+    font-size: 2.25rem;
+    margin-right: 0.15rem;
+    position: relative;
+}
+
+.rating-demo-heart-fill {
+    color: var(--bs-danger);
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+}
+`,mC=`import "@/features/lib/components/rating-decimal/rating-decimal.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+import type { TemplateRef } from "ngjs-core";
+
+export class RatingDecimalComponent implements IComponentController {
+    public rating = 3.14;
+    public heartTemplate?: TemplateRef<unknown>;
+    public readonly ariaValueText = (current: number, max: number) => \`\${current} out of \${max} hearts\`;
+    static get $name() { return "docsRatingDecimal" }
+    static get $factory(): IComponentOptions {
+        return { controller: RatingDecimalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-decimal/rating-decimal.component.html" }
+    }
+}
+`,hC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class RatingEventsComponent implements IComponentController {
+    public selected = 0;
+    public hovered = 0;
+    public readonly = false;
+    public setSelected(value: number) { this.selected = value; }
+    public setHovered(value: number) { this.hovered = value; }
+    static get $name() { return "docsRatingEvents" }
+    static get $factory(): IComponentOptions {
+        return { controller: RatingEventsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-events/rating-events.component.html" }
+    }
+}
+`,gC=`import type { IComponentController, IComponentOptions, IFormController } from "angular";
+
+export class RatingFormComponent implements IComponentController {
+    public rating: number | null = null;
+    public disabled = false;
+    public form?: IFormController;
+
+    public setRating(rating: number) { this.rating = rating; }
+    public clear() { this.rating = null; }
+
+    static get $name() { return "docsRatingForm" }
+    static get $factory(): IComponentOptions {
+        return { controller: RatingFormComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-form/rating-form.component.html" }
+    }
+}
+`,_C=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbRatingConfig } from "ngb-js";
+
+export class RatingGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<NgbRatingConfig, "max" | "readonly" | "resettable" | "tabindex">;
+
+    constructor(private readonly config: NgbRatingConfig) {
+        this.initialConfig = {
+            max: config.max,
+            readonly: config.readonly,
+            resettable: config.resettable,
+            tabindex: config.tabindex,
+        };
+        config.max = 5;
+        config.readonly = true;
+        config.resettable = true;
+        config.tabindex = -1;
+    }
+
+    public $postLink() { this.restoreConfig(); }
+    public $onDestroy() { this.restoreConfig(); }
+    private restoreConfig() { Object.assign(this.config, this.initialConfig); }
+
+    static get $name() { return "docsRatingGlobal" }
+    static get $inject() { return [NgbRatingConfig.$name] }
+    static get $factory(): IComponentOptions {
+        return { controller: RatingGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-global/rating-global.component.html" }
+    }
+}
+`,vC=class e{examples={basic:{html:Gy.$factory.templateUrl,typescript:uC},events:{html:Jy.$factory.templateUrl,typescript:hC},customTemplate:{html:Ky.$factory.templateUrl,typescript:fC,css:dC},decimal:{html:qy.$factory.templateUrl,typescript:mC,css:pC},form:{html:Yy.$factory.templateUrl,typescript:gC},global:{html:Xy.$factory.templateUrl,typescript:_C}};static get $name(){return`docsRatingExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/rating-examples-page.component-a2a18aa5.html`,controllerAs:`$`}}},yC=class e{static get $name(){return`docsScrollspyApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/scrollspy-api-page.component-db1cf090.html`,controllerAs:`$`}}},bC=`import type { IAugmentedJQuery, IComponentController, IComponentOptions } from "angular";
+import { NgbScrollSpyService } from "ngb-js";
+
+export class ScrollspyServiceDemoComponent implements IComponentController {
+    public readonly fragments = ["service-introduction", "service-options", "service-finish"];
+    public running = false;
+    public observingFinish = true;
+    private root?: HTMLElement;
+
+    constructor(
+        private readonly $element: IAugmentedJQuery,
+        public readonly scrollSpy: NgbScrollSpyService,
+    ) {}
+
+    public $postLink(): void {
+        this.root = this.$element[0].querySelector<HTMLElement>("[data-service-scrollspy]") ?? undefined;
+        this.start();
+    }
+
+    public $onDestroy(): void {
+        this.scrollSpy.stop();
+    }
+
+    public start(): void {
+        if (!this.root) return;
+        this.scrollSpy.start({
+            root: this.root,
+            fragments: this.fragments,
+            rootMargin: "0px 0px -45%",
+        });
+        this.running = true;
+        this.observingFinish = true;
+    }
+
+    public stop(): void {
+        this.scrollSpy.stop();
+        this.running = false;
+    }
+
+    public toggleFinish(): void {
+        if (this.observingFinish) {
+            this.scrollSpy.unobserve("service-finish");
+        } else {
+            this.scrollSpy.observe("service-finish");
+        }
+        this.observingFinish = !this.observingFinish;
+    }
+
+    static get $name() { return "docsScrollspyServiceDemo" }
+    static get $inject() { return ["$element", NgbScrollSpyService.$name] }
+    static get $factory(): IComponentOptions {
+        return {
+            controller: ScrollspyServiceDemoComponent,
+            controllerAs: "example",
+            templateUrl: "src/app/features/lib/components/scrollspy-service-demo/scrollspy-service-demo.component.html",
+        }
+    }
+}
+`,xC=class e{examples={basic:{html:Zy.$factory.templateUrl},menuItems:{html:eb.$factory.templateUrl},nested:{html:$y.$factory.templateUrl},navbar:{html:Qy.$factory.templateUrl},service:{html:tb.$factory.templateUrl,typescript:bC}};static get $name(){return`docsScrollspyExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/scrollspy-examples-page.component-b266f3a2.html`,controllerAs:`$`}}},SC=class e{static get $name(){return`docsTimepickerApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/timepicker-api-page.component-8975b89c.html`,controllerAs:`$`}}},CC=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbTimeAdapter, type NgbTimeStruct } from "ngb-js";
+
+const pad = (value: number): string => value.toString().padStart(2, "0");
+
+export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {
+    public fromModel(value: string | null): NgbTimeStruct | null {
+        if (!value) return null;
+        const [hour, minute, second] = value.split(":").map(Number);
+        return { hour, minute, second };
+    }
+
+    public toModel(time: NgbTimeStruct | null): string | null {
+        return time ? \`\${pad(time.hour)}:\${pad(time.minute)}:\${pad(time.second ?? 0)}\` : null;
+    }
+}
+
+// Register once in your application module:
+// AppModule.service(NgbTimeAdapter.$name, NgbTimeStringAdapter);
+
+export class TimepickerCustomAdapterComponent implements IComponentController {
+    public readonly adapter = new NgbTimeStringAdapter();
+    public time = this.adapter.fromModel("13:30:00");
+    public model = "13:30:00";
+
+    public $doCheck(): void {
+        this.model = this.adapter.toModel(this.time) ?? "";
+    }
+
+    static get $name() { return "docsTimepickerCustomAdapter" }
+    static get $factory(): IComponentOptions {
+        return { controller: TimepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-custom-adapter/timepicker-custom-adapter.component.html" }
+    }
+}
+`,wC=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbTimeStruct } from "ngb-js";
+
+export class BasicTimepickerComponent implements IComponentController {
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
+    static get $name() { return "docsBasicTimepicker" }
+    static get $factory(): IComponentOptions {
+        return { controller: BasicTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-timepicker/basic-timepicker.component.html" }
+    }
+}
+`,TC=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbTimepickerI18n, type NgbTimeStruct } from "ngb-js";
+
+export class GreekTimepickerI18n extends NgbTimepickerI18n {
+    public getMorningPeriod(): string { return "π.μ."; }
+    public getAfternoonPeriod(): string { return "μ.μ."; }
+}
+
+// Register once in your application module:
+// AppModule.service(NgbTimepickerI18n.$name, GreekTimepickerI18n);
+
+export class TimepickerI18nComponent implements IComponentController {
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
+    constructor(public readonly i18n: NgbTimepickerI18n) {}
+    static get $name() { return "docsTimepickerI18n" }
+    static get $inject() { return [NgbTimepickerI18n.$name] }
+    static get $factory(): IComponentOptions {
+        return { controller: TimepickerI18nComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-i18n/timepicker-i18n.component.html" }
+    }
+}
+`,EC=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbTimeStruct } from "ngb-js";
+
+export class MeridianTimepickerComponent implements IComponentController {
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
+    public meridian = true;
+    static get $name() { return "docsMeridianTimepicker" }
+    static get $factory(): IComponentOptions {
+        return { controller: MeridianTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/meridian-timepicker/meridian-timepicker.component.html" }
+    }
+}
+`,DC=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbTimeStruct } from "ngb-js";
+
+export class SecondsTimepickerComponent implements IComponentController {
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 25 };
+    public seconds = true;
+    static get $name() { return "docsSecondsTimepicker" }
+    static get $factory(): IComponentOptions {
+        return { controller: SecondsTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/seconds-timepicker/seconds-timepicker.component.html" }
+    }
+}
+`,OC=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbTimeStruct } from "ngb-js";
+
+export class SpinnersTimepickerComponent implements IComponentController {
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
+    public spinners = true;
+    static get $name() { return "docsSpinnersTimepicker" }
+    static get $factory(): IComponentOptions {
+        return { controller: SpinnersTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/spinners-timepicker/spinners-timepicker.component.html" }
+    }
+}
+`,kC=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbTimeStruct } from "ngb-js";
+
+export class TimepickerCustomStepsComponent implements IComponentController {
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
+    public hourStep = 1;
+    public minuteStep = 15;
+    public secondStep = 30;
+    static get $name() { return "docsTimepickerCustomSteps" }
+    static get $factory(): IComponentOptions {
+        return { controller: TimepickerCustomStepsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-custom-steps/timepicker-custom-steps.component.html" }
+    }
+}
+`,AC=`import type { IComponentController, IComponentOptions, IDirective, INgModelController } from "angular";
+import type { NgbTimeStruct } from "ngb-js";
+
+export class TimepickerValidationComponent implements IComponentController {
+    public time: NgbTimeStruct | null = null;
+    static get $name() { return "docsTimepickerValidation" }
+    static get $factory(): IComponentOptions {
+        return { controller: TimepickerValidationComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-validation/timepicker-validation.component.html" }
+    }
+}
+
+export const timepickerLunchValidator = (): IDirective => ({
+    restrict: "A",
+    require: "ngModel",
+    link: (_scope, _element, _attributes, controller) => {
+        const ngModel = controller as INgModelController;
+        ngModel.$validators.lunchtime = (modelValue: NgbTimeStruct | null) =>
+            !modelValue || (modelValue.hour >= 12 && modelValue.hour <= 13);
+    },
+});
+`,jC=class e{examples={basic:{html:nb.$factory.templateUrl,typescript:wC},meridian:{html:rb.$factory.templateUrl,typescript:EC},seconds:{html:ib.$factory.templateUrl,typescript:DC},spinners:{html:ab.$factory.templateUrl,typescript:OC},steps:{html:lb.$factory.templateUrl,typescript:kC},validation:{html:fb.$factory.templateUrl,typescript:AC},adapter:{html:cb.$factory.templateUrl,typescript:CC},i18n:{html:db.$factory.templateUrl,typescript:TC}};static get $name(){return`docsTimepickerExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/timepicker-examples-page.component-94a32713.html`,controllerAs:`$`}}},MC=class e{static get $name(){return`docsToastApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/toast-api-page.component-e6f59b57.html`,controllerAs:`$`}}},NC=`import type { IComponentController, IComponentOptions, IPromise, ITimeoutService } from "angular";
+
+export class CloseableToastComponent implements IComponentController {
+    public visible = true;
+    private reopenTimer?: IPromise<void>;
+
+    constructor(private readonly $timeout: ITimeoutService) {}
+
+    public close(): void {
+        this.visible = false;
+        this.reopenTimer = this.$timeout(() => {
+            this.visible = true;
+        }, 3000);
+    }
+
+    public $onDestroy(): void {
+        if (this.reopenTimer) this.$timeout.cancel(this.reopenTimer);
+    }
+
+    static get $name() { return "docsCloseableToast" }
+    static get $inject() { return ["$timeout"] }
+    static get $factory(): IComponentOptions {
+        return { controller: CloseableToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/closeable-toast/closeable-toast.component.html" }
+    }
+}
+`,PC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class InlineToastComponent implements IComponentController {
+    public showHeaderToast = true;
+    static get $name() { return "docsInlineToast" }
+    static get $factory(): IComponentOptions {
+        return { controller: InlineToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/inline-toast/inline-toast.component.html" }
+    }
+}
+`,FC=`import type { IComponentController, IComponentOptions } from "angular";
+
+interface ManagedToast {
+    id: number;
+    body: string;
+    className?: string;
+    delay?: number;
+}
+
+export class DocsToastService {
+    public readonly toasts: ManagedToast[] = [];
+    private nextId = 0;
+
+    public show(body: string, options: Omit<ManagedToast, "id" | "body"> = {}): void {
+        this.toasts.push({ id: ++this.nextId, body, ...options });
+    }
+
+    public remove(toast: ManagedToast): void {
+        const index = this.toasts.indexOf(toast);
+        if (index >= 0) this.toasts.splice(index, 1);
+    }
+
+    public clear(): void {
+        this.toasts.length = 0;
+    }
+
+    static get $name() { return "docs.toast.service" }
+}
+
+export class ToastManagementComponent implements IComponentController {
+    constructor(public readonly toastService: DocsToastService) {}
+
+    public showStandard(): void {
+        this.toastService.show("I am a standard toast.");
+    }
+
+    public showSuccess(): void {
+        this.toastService.show("Your changes were saved.", { className: "bg-success text-white", delay: 8000 });
+    }
+
+    public showDanger(): void {
+        this.toastService.show("The operation could not be completed.", { className: "bg-danger text-white", delay: 10000 });
+    }
+
+    public $onDestroy(): void {
+        this.toastService.clear();
+    }
+
+    static get $name() { return "docsToastManagement" }
+    static get $inject() { return [DocsToastService.$name] }
+    static get $factory(): IComponentOptions {
+        return { controller: ToastManagementComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/toast-management/toast-management.component.html" }
+    }
+}
+`,IC=`import type { IComponentController, IComponentOptions, ITimeoutService } from "angular";
+
+export class PreventAutohideToastComponent implements IComponentController {
+    public visible = false;
+    public autohide = true;
+
+    constructor(private readonly $timeout: ITimeoutService) {}
+
+    public show(): void {
+        this.visible = false;
+        this.autohide = true;
+        this.$timeout(() => this.visible = true);
+    }
+
+    public hide(): void {
+        this.visible = false;
+        this.autohide = true;
+    }
+
+    static get $name() { return "docsPreventAutohideToast" }
+    static get $inject() { return ["$timeout"] }
+    static get $factory(): IComponentOptions {
+        return { controller: PreventAutohideToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/prevent-autohide-toast/prevent-autohide-toast.component.html" }
+    }
+}
+`,LC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class TemplateHeaderToastComponent implements IComponentController {
+    public visible = true;
+    static get $name() { return "docsTemplateHeaderToast" }
+    static get $factory(): IComponentOptions {
+        return { controller: TemplateHeaderToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/template-header-toast/template-header-toast.component.html" }
+    }
+}
+`,RC=class e{examples={inline:{html:hb.$factory.templateUrl,typescript:PC},templateHeader:{html:_b.$factory.templateUrl,typescript:LC},closeable:{html:mb.$factory.templateUrl,typescript:NC},preventAutohide:{html:gb.$factory.templateUrl,typescript:IC},management:{html:yb.$factory.templateUrl,typescript:FC}};static get $name(){return`docsToastExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/toast-examples-page.component-af744c3d.html`,controllerAs:`$`}}},zC=class e{static get $name(){return`docsTooltipApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/tooltip-api-page.component-46f4f15c.html`,controllerAs:`$`}}},BC=`import type { IComponentController, IComponentOptions } from "angular";
+import type { TemplateRef } from "ngjs-core";
+
+export class TooltipAutocloseComponent implements IComponentController {
+    public contentTemplate?: TemplateRef<unknown>;
+    static get $name() { return "docsTooltipAutoclose" }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipAutocloseComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-autoclose/tooltip-autoclose.component.html" }
+    }
+}
+`,VC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class TooltipBodyComponent implements IComponentController {
+    static get $name() { return "docsTooltipBody" }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipBodyComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-body/tooltip-body.component.html" }
+    }
+}
+`,HC=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbTooltip } from "ngb-js";
+import type { TemplateRef } from "ngjs-core";
+
+export class TooltipContextComponent implements IComponentController {
+    public name = "World";
+    public contentTemplate?: TemplateRef<unknown>;
+    public french?: NgbTooltip;
+    public german?: NgbTooltip;
+    public english?: NgbTooltip;
+
+    public toggleWithGreeting(tooltip: NgbTooltip, greeting: string): void {
+        tooltip.isOpen() ? tooltip.close() : tooltip.open({ greeting });
+    }
+
+    static get $name() { return "docsTooltipContext" }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipContextComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-context/tooltip-context.component.html" }
+    }
+}
+`,UC=`.docs-tooltip-custom {
+    --bs-tooltip-bg: var(--bs-primary-bg-subtle);
+    --bs-tooltip-color: var(--bs-primary-text-emphasis);
+    --bs-tooltip-opacity: 1;
+
+    filter: drop-shadow(0 .25rem .5rem rgba(var(--bs-body-color-rgb), .15));
+}
+`,WC=`import "@/features/lib/components/tooltip-custom-class/tooltip-custom-class.component.css";
+import type { IComponentController, IComponentOptions } from "angular";
+
+export class TooltipCustomClassComponent implements IComponentController {
+    static get $name() { return "docsTooltipCustomClass" }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipCustomClassComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-custom-class/tooltip-custom-class.component.html" }
+    }
+}
+`,GC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class TooltipCustomTargetComponent implements IComponentController {
+    static get $name() { return "docsTooltipCustomTarget" }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipCustomTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-custom-target/tooltip-custom-target.component.html" }
+    }
+}
+`,KC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class TooltipDelaysComponent implements IComponentController {
+    static get $name() { return "docsTooltipDelays" }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipDelaysComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-delays/tooltip-delays.component.html" }
+    }
+}
+`,qC=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbTooltipConfig } from "ngb-js";
+
+export class TooltipGlobalComponent implements IComponentController {
+    private readonly initialConfig: Pick<NgbTooltipConfig, "container" | "openDelay" | "placement" | "triggers">;
+
+    constructor(private readonly config: NgbTooltipConfig) {
+        this.initialConfig = {
+            container: config.container,
+            openDelay: config.openDelay,
+            placement: config.placement,
+            triggers: config.triggers,
+        };
+        config.container = "body";
+        config.openDelay = 300;
+        config.placement = "end";
+        config.triggers = "mouseenter:mouseleave";
+    }
+
+    public $postLink(): void { this.restoreConfig(); }
+    public $onDestroy(): void { this.restoreConfig(); }
+
+    private restoreConfig(): void {
+        this.config.container = this.initialConfig.container;
+        this.config.openDelay = this.initialConfig.openDelay;
+        this.config.placement = this.initialConfig.placement;
+        this.config.triggers = this.initialConfig.triggers;
+    }
+
+    static get $name() { return "docsTooltipGlobal" }
+    static get $inject() { return [NgbTooltipConfig.$name] }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-global/tooltip-global.component.html" }
+    }
+}
+`,JC=`import type { IComponentController, IComponentOptions } from "angular";
+
+export class TooltipPlacementsComponent implements IComponentController {
+    static get $name() { return "docsTooltipPlacements" }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipPlacementsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-placements/tooltip-placements.component.html" }
+    }
+}
+`,YC=`import type { IComponentController, IComponentOptions } from "angular";
+import type { TemplateRef } from "ngjs-core";
+
+export class TooltipTemplateComponent implements IComponentController {
+    public name = "NgbJS";
+    public contentTemplate?: TemplateRef<unknown>;
+    static get $name() { return "docsTooltipTemplate" }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-template/tooltip-template.component.html" }
+    }
+}
+`,XC=`import type { IComponentController, IComponentOptions } from "angular";
+import type { NgbTooltip } from "ngb-js";
+
+export class TooltipTriggersComponent implements IComponentController {
+    public manual?: NgbTooltip;
+    static get $name() { return "docsTooltipTriggers" }
+    static get $factory(): IComponentOptions {
+        return { controller: TooltipTriggersComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-triggers/tooltip-triggers.component.html" }
+    }
+}
+`,ZC=class e{examples={placements:{html:Db.$factory.templateUrl,typescript:JC},template:{html:Ob.$factory.templateUrl,typescript:YC},triggers:{html:kb.$factory.templateUrl,typescript:XC},autoclose:{html:bb.$factory.templateUrl,typescript:BC},context:{html:Sb.$factory.templateUrl,typescript:HC},customTarget:{html:wb.$factory.templateUrl,typescript:GC},delays:{html:Tb.$factory.templateUrl,typescript:KC},body:{html:xb.$factory.templateUrl,typescript:VC},customClass:{html:Cb.$factory.templateUrl,typescript:WC,css:UC},global:{html:Eb.$factory.templateUrl,typescript:qC}};static get $name(){return`docsTooltipExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/tooltip-examples-page.component-55fec424.html`,controllerAs:`$`}}},QC=class e{static get $name(){return`docsTypeaheadApiPage`}static get $factory(){return{controller:e,templateUrl:`templates/typeahead-api-page.component-c48a3a27.html`,controllerAs:`$`}}},$C=`import type { IComponentController, IComponentOptions } from "angular";
+import { debounceTime, map, type OperatorFunction } from "rxjs";
+
+interface State { name: string }
+const STATES: State[] = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"].map(name => ({ name }));
+
+export class ExactTypeaheadComponent implements IComponentController {
+    public model?: State;
+    public readonly formatter = (state: State): string => state.name;
+    public readonly search: OperatorFunction<string, State[]> = text$ => text$.pipe(
+        debounceTime(200),
+        map(term => term ? STATES.filter(state => state.name.toLowerCase().includes(term.toLowerCase())) : []),
+    );
+    static get $name() { return "docsExactTypeahead" }
+    static get $factory(): IComponentOptions {
+        return { controller: ExactTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/exact-typeahead/exact-typeahead.component.html" }
+    }
+}
+`,ew=`import type { IComponentController, IComponentOptions } from "angular";
+import { debounceTime, distinctUntilChanged, map, merge, type OperatorFunction, Subject } from "rxjs";
+
+const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+
+export class FocusTypeaheadComponent implements IComponentController {
+    public model = "";
+    public readonly focus$ = new Subject<string>();
+    public readonly search: OperatorFunction<string, string[]> = text$ => merge(
+        text$.pipe(debounceTime(200), distinctUntilChanged()),
+        this.focus$,
+    ).pipe(
+        map(term => (term ? STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())) : STATES).slice(0, 10)),
+    );
+    public $onDestroy(): void { this.focus$.complete(); }
+    static get $name() { return "docsFocusTypeahead" }
+    static get $factory(): IComponentOptions {
+        return { controller: FocusTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/focus-typeahead/focus-typeahead.component.html" }
+    }
+}
+`,tw=`import type { IComponentController, IComponentOptions } from "angular";
+import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";
+
+const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"];
+
+export class FormattedTypeaheadComponent implements IComponentController {
+    public model = "";
+    public readonly formatter = (result: string): string => result.toUpperCase();
+    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        map(term => term ? STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())) : []),
+    );
+    static get $name() { return "docsFormattedTypeahead" }
+    static get $factory(): IComponentOptions {
+        return { controller: FormattedTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/formatted-typeahead/formatted-typeahead.component.html" }
+    }
+}
+`,nw=`import type { IComponentController, IComponentOptions } from "angular";
+import { NgbTypeaheadConfig } from "ngb-js";
+import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";
+
+const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"];
+
+export class TypeaheadGlobalComponent implements IComponentController {
+    public model = "";
+    private readonly initialConfig: Pick<NgbTypeaheadConfig, "container" | "selectOnExact" | "showHint">;
+
+    constructor(private readonly config: NgbTypeaheadConfig) {
+        this.initialConfig = {
+            container: config.container,
+            selectOnExact: config.selectOnExact,
+            showHint: config.showHint,
+        };
+        config.container = "body";
+        config.selectOnExact = true;
+        config.showHint = true;
+    }
+
+    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        map(term => term.length < 2 ? [] : STATES.filter(state => state.toLowerCase().startsWith(term.toLowerCase()))),
+    );
+
+    public $postLink(): void { this.restoreConfig(); }
+    public $onDestroy(): void { this.restoreConfig(); }
+    private restoreConfig(): void {
+        this.config.container = this.initialConfig.container;
+        this.config.selectOnExact = this.initialConfig.selectOnExact;
+        this.config.showHint = this.initialConfig.showHint;
+    }
+
+    static get $name() { return "docsTypeaheadGlobal" }
+    static get $inject() { return [NgbTypeaheadConfig.$name] }
+    static get $factory(): IComponentOptions {
+        return { controller: TypeaheadGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/typeahead-global/typeahead-global.component.html" }
+    }
+}
+`,rw=`import type { IComponentController, IComponentOptions } from "angular";
+import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";
+
+interface State { id: number; name: string }
+const STATES: State[] = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"].map((name, id) => ({ id, name }));
+
+export class NonEditableTypeaheadComponent implements IComponentController {
+    public model: State | null = null;
+    public readonly formatter = (state: State): string => state.name;
+    public readonly search: OperatorFunction<string, State[]> = text$ => text$.pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        map(term => term.length < 2 ? [] : STATES.filter(state => state.name.toLowerCase().includes(term.toLowerCase()))),
+    );
+    static get $name() { return "docsNonEditableTypeahead" }
+    static get $factory(): IComponentOptions {
+        return { controller: NonEditableTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/non-editable-typeahead/non-editable-typeahead.component.html" }
+    }
+}
+`,iw=`import type { IComponentController, IComponentOptions } from "angular";
+import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";
+
+const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+
+export class SimpleTypeaheadComponent implements IComponentController {
+    public model = "";
+    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        map(term => term.length < 2 ? [] : STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())).slice(0, 10)),
+    );
+    static get $name() { return "docsSimpleTypeahead" }
+    static get $factory(): IComponentOptions {
+        return { controller: SimpleTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/simple-typeahead/simple-typeahead.component.html" }
+    }
+}
+`,aw=`import type { IComponentController, IComponentOptions } from "angular";
+import type { TemplateRef } from "ngjs-core";
+import { debounceTime, map, type OperatorFunction } from "rxjs";
+
+interface Country { name: string; flag: string; region: string }
+const COUNTRIES: Country[] = [
+    { name: "Mexico", flag: "🇲🇽", region: "North America" },
+    { name: "Argentina", flag: "🇦🇷", region: "South America" },
+    { name: "Brazil", flag: "🇧🇷", region: "South America" },
+    { name: "Canada", flag: "🇨🇦", region: "North America" },
+    { name: "Colombia", flag: "🇨🇴", region: "South America" },
+    { name: "Germany", flag: "🇩🇪", region: "Europe" },
+    { name: "Japan", flag: "🇯🇵", region: "Asia" },
+    { name: "Spain", flag: "🇪🇸", region: "Europe" },
+];
+
+export class TemplateResultsTypeaheadComponent implements IComponentController {
+    public model?: Country;
+    public resultTemplate?: TemplateRef<unknown>;
+    public readonly formatter = (country: Country): string => country.name;
+    public readonly search: OperatorFunction<string, Country[]> = text$ => text$.pipe(
+        debounceTime(200),
+        map(term => term ? COUNTRIES.filter(country => country.name.toLowerCase().includes(term.toLowerCase())).slice(0, 8) : []),
+    );
+    static get $name() { return "docsTemplateResultsTypeahead" }
+    static get $factory(): IComponentOptions {
+        return { controller: TemplateResultsTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/template-results-typeahead/template-results-typeahead.component.html" }
+    }
+}
+`,ow=`import type { IComponentController, IComponentOptions, IHttpService } from "angular";
+import { catchError, debounceTime, distinctUntilChanged, from, map, of, type OperatorFunction, switchMap, tap } from "rxjs";
+
+const WIKI_URL = "https://en.wikipedia.org/w/api.php";
+type WikiResponse = [string, string[], string[], string[]];
+
+export class WikipediaSearchService {
+    constructor(private readonly $http: IHttpService) {}
+
+    public search(term: string) {
+        if (!term) return of([] as string[]);
+        return from(this.$http.get<WikiResponse>(WIKI_URL, {
+            params: { action: "opensearch", format: "json", origin: "*", search: term },
+        })).pipe(map(response => response.data[1]));
+    }
+
+    static get $name() { return "docs.wikipedia.search.service" }
+    static get $inject() { return ["$http"] }
+}
+
+export class WikipediaTypeaheadComponent implements IComponentController {
+    public model = "";
+    public searching = false;
+    public searchFailed = false;
+
+    constructor(private readonly wikipedia: WikipediaSearchService) {}
+
+    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(() => this.searching = true),
+        switchMap(term => this.wikipedia.search(term).pipe(
+            tap(() => this.searchFailed = false),
+            catchError(() => {
+                this.searchFailed = true;
+                return of([] as string[]);
+            }),
+        )),
+        tap(() => this.searching = false),
+    );
+
+    static get $name() { return "docsWikipediaTypeahead" }
+    static get $inject() { return [WikipediaSearchService.$name] }
+    static get $factory(): IComponentOptions {
+        return { controller: WikipediaTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/wikipedia-typeahead/wikipedia-typeahead.component.html" }
+    }
+}
 `,sw=class e{examples={simple:{html:zb.$factory.templateUrl,typescript:iw},focus:{html:Nb.$factory.templateUrl,typescript:ew},formatted:{html:Fb.$factory.templateUrl,typescript:tw},exact:{html:jb.$factory.templateUrl,typescript:$C},wikipedia:{html:Kb.$factory.templateUrl,typescript:ow},templateResults:{html:Vb.$factory.templateUrl,typescript:aw},nonEditable:{html:Lb.$factory.templateUrl,typescript:rw},global:{html:Ub.$factory.templateUrl,typescript:nw}};static get $name(){return`docsTypeaheadExamplesPage`}static get $factory(){return{controller:e,templateUrl:`templates/typeahead-examples-page.component-888ed233.html`,controllerAs:`$`}}},cw=e=>{e.state(`docs.dashboard.alert`,{url:`/components/alert`,redirectTo:`docs.dashboard.alert.examples`,data:{title:`Alert`,tabs:[{name:`Examples`,to:`docs.dashboard.alert.examples`},{name:`Api`,to:`docs.dashboard.alert.api`}],externalLinks:{bootstrap:`components/alerts/`,ngBootstrap:`components/alert/overview`}}}),e.state(`docs.dashboard.alert.examples`,{url:`/examples`,data:{sections:[{id:`simple-alert`,name:`Simple alert`},{id:`alert-closeable`,name:`Closeable alerts`},{id:`self-closing-alert`,name:`Self-closing alert`},{id:`alert-custom`,name:`Custom alert`},{id:`alert-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Qb.$name}}}),e.state(`docs.dashboard.alert.api`,{url:`/api`,data:{sections:[{id:`ngb-alert`,name:`NgbAlert`},{id:`ngb-alert-config`,name:`NgbAlertConfig`}]},views:{"$default@docs.dashboard":{component:qb.$name}}}),e.state(`docs.dashboard.accordion`,{url:`/components/accordion`,redirectTo:`docs.dashboard.accordion.examples`,data:{title:`Accordion`,tabs:[{name:`Examples`,to:`docs.dashboard.accordion.examples`},{name:`Api`,to:`docs.dashboard.accordion.api`}],externalLinks:{bootstrap:`components/accordion/`,ngBootstrap:`components/accordion/overview`}}}),e.state(`docs.dashboard.accordion.examples`,{url:`/examples`,data:{sections:[{id:`accordion-simple`,name:`Basic accordion`},{id:`one-panel-accordion`,name:`One panel at a time`},{id:`accordion-toggle-panels`,name:`Programmatic controls`},{id:`accordion-custom-header`,name:`Custom headers`},{id:`accordion-content`,name:`Preserve content`},{id:`accordion-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:rx.$name}}}),e.state(`docs.dashboard.accordion.api`,{url:`/api`,data:{sections:[{id:`ngb-accordion`,name:`NgbAccordion`},{id:`ngb-accordion-item`,name:`NgbAccordionItem`},{id:`ngb-accordion-header`,name:`NgbAccordionHeader`},{id:`ngb-accordion-button`,name:`NgbAccordionButton`},{id:`ngb-accordion-toggle`,name:`NgbAccordionToggle`},{id:`ngb-accordion-body`,name:`NgbAccordionBody`},{id:`ngb-accordion-config`,name:`NgbAccordionConfig`}]},views:{"$default@docs.dashboard":{component:$b.$name}}}),e.state(`docs.dashboard.carousel`,{url:`/components/carousel`,redirectTo:`docs.dashboard.carousel.examples`,data:{title:`Carousel`,tabs:[{name:`Examples`,to:`docs.dashboard.carousel.examples`},{name:`Api`,to:`docs.dashboard.carousel.api`}],externalLinks:{bootstrap:`components/carousel/`,ngBootstrap:`components/carousel/overview`}}}),e.state(`docs.dashboard.carousel.examples`,{url:`/examples`,data:{sections:[{id:`carousel-simple`,name:`Simple carousel`},{id:`carousel-keyboard`,name:`Keyboard navigation`},{id:`carousel-controls`,name:`Pause controls`},{id:`carousel-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:sx.$name}}}),e.state(`docs.dashboard.carousel.api`,{url:`/api`,data:{sections:[{id:`ngb-carousel`,name:`NgbCarousel`},{id:`ngb-slide`,name:`NgbSlide`},{id:`ngb-carousel-config`,name:`NgbCarouselConfig`}]},views:{"$default@docs.dashboard":{component:ix.$name}}}),e.state(`docs.dashboard.collapse`,{url:`/components/collapse`,redirectTo:`docs.dashboard.collapse.examples`,data:{title:`Collapse`,tabs:[{name:`Examples`,to:`docs.dashboard.collapse.examples`},{name:`Api`,to:`docs.dashboard.collapse.api`}],externalLinks:{bootstrap:`components/collapse/`,ngBootstrap:`components/collapse/overview`}}}),e.state(`docs.dashboard.collapse.examples`,{url:`/examples`,data:{sections:[{id:`simple-collapse`,name:`Simple collapse`},{id:`horizontal-collapse`,name:`Horizontal collapse`},{id:`navbar-collapse`,name:`Responsive navbar`}]},views:{"$default@docs.dashboard":{component:fx.$name}}}),e.state(`docs.dashboard.collapse.api`,{url:`/api`,data:{sections:[{id:`ngb-collapse`,name:`NgbCollapse`},{id:`ngb-collapse-config`,name:`NgbCollapseConfig`}]},views:{"$default@docs.dashboard":{component:cx.$name}}}),e.state(`docs.dashboard.datepicker`,{url:`/components/datepicker`,redirectTo:`docs.dashboard.datepicker.examples`,data:{title:`Datepicker`,tabs:[{name:`Examples`,to:`docs.dashboard.datepicker.examples`},{name:`Api`,to:`docs.dashboard.datepicker.api`},{name:`Calendars`,to:`docs.dashboard.datepicker.calendars`}],externalLinks:{ngBootstrap:`components/datepicker/overview`}}}),e.state(`docs.dashboard.datepicker.examples`,{url:`/examples`,data:{sections:[{id:`basic-datepicker`,name:`Basic`},{id:`popup-datepicker`,name:`Popup`},{id:`multiple-months-datepicker`,name:`Multiple months`},{id:`range-datepicker`,name:`Range selection`},{id:`range-popup-datepicker`,name:`Range in a popup`},{id:`disabled-datepicker`,name:`Disabled`},{id:`datepicker-custom-adapter`,name:`Adapter and formatter`},{id:`datepicker-i18n`,name:`Internationalization`},{id:`datepicker-custom-day`,name:`Custom day`},{id:`datepicker-custom-month`,name:`Custom month layout`},{id:`datepicker-footer`,name:`Footer template`},{id:`datepicker-position-target`,name:`Position target`},{id:`datepicker-keyboard`,name:`Keyboard navigation`},{id:`datepicker-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Hx.$name}}}),e.state(`docs.dashboard.datepicker.api`,{url:`/api`,data:{sections:[{id:`ngb-datepicker`,name:`NgbDatepicker`},{id:`ngb-input-datepicker`,name:`NgbInputDatepicker`},{id:`ngb-datepicker-config`,name:`NgbDatepickerConfig`},{id:`ngb-input-datepicker-config`,name:`NgbInputDatepickerConfig`},{id:`ngb-datepicker-extension-contracts`,name:`Extension contracts`}]},views:{"$default@docs.dashboard":{component:px.$name}}}),e.state(`docs.dashboard.datepicker.calendars`,{url:`/calendars`,data:{sections:[{id:`calendar-hebrew`,name:`Hebrew`},{id:`calendar-jalali`,name:`Jalali`},{id:`calendar-islamic-civil`,name:`Islamic Civil`},{id:`calendar-islamic-umalqura`,name:`Islamic Umm al-Qura`},{id:`calendar-buddhist`,name:`Buddhist`},{id:`calendar-ethiopian`,name:`Ethiopian`},{id:`calendar-intergalactic`,name:`Intergalactic Standard`}]},views:{"$default@docs.dashboard":{component:Cx.$name}}}),e.state(`docs.dashboard.dropdown`,{url:`/components/dropdown`,redirectTo:`docs.dashboard.dropdown.examples`,data:{title:`Dropdown`,tabs:[{name:`Examples`,to:`docs.dashboard.dropdown.examples`},{name:`Api`,to:`docs.dashboard.dropdown.api`}],externalLinks:{bootstrap:`components/dropdowns/`,ngBootstrap:`components/dropdown/overview`}}}),e.state(`docs.dashboard.dropdown.examples`,{url:`/examples`,data:{sections:[{id:`simple-dropdown`,name:`Simple dropdown`},{id:`manual-dropdown`,name:`Manual triggers`},{id:`dropdown-button-groups`,name:`Button groups`},{id:`dropdown-disabled-items`,name:`Disabled items`},{id:`dropdown-form`,name:`Dropdown form`},{id:`dropdown-body`,name:`Body container`},{id:`dropdown-navbar`,name:`Navbar positioning`},{id:`dropdown-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Jx.$name}}}),e.state(`docs.dashboard.dropdown.api`,{url:`/api`,data:{sections:[{id:`ngb-dropdown`,name:`NgbDropdown`},{id:`ngb-dropdown-anchor`,name:`NgbDropdownAnchor`},{id:`ngb-dropdown-toggle`,name:`NgbDropdownToggle`},{id:`ngb-dropdown-menu`,name:`NgbDropdownMenu`},{id:`ngb-dropdown-item`,name:`NgbDropdownItem`},{id:`ngb-dropdown-config`,name:`NgbDropdownConfig`}]},views:{"$default@docs.dashboard":{component:Ux.$name}}}),e.state(`docs.dashboard.modal`,{url:`/components/modal`,redirectTo:`docs.dashboard.modal.examples`,data:{title:`Modal`,tabs:[{name:`Examples`,to:`docs.dashboard.modal.examples`},{name:`Api`,to:`docs.dashboard.modal.api`}],externalLinks:{bootstrap:`components/modal/`,ngBootstrap:`components/modal/overview`}}}),e.state(`docs.dashboard.modal.examples`,{url:`/examples`,data:{sections:[{id:`modal-default`,name:`Default options`},{id:`modal-component-content`,name:`Component content`},{id:`modal-focus`,name:`Focus management`},{id:`modal-options`,name:`Modal options`},{id:`modal-updatable`,name:`Updatable options`},{id:`modal-stacked`,name:`Stacked modals`},{id:`modal-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:cS.$name}}}),e.state(`docs.dashboard.modal.api`,{url:`/api`,data:{sections:[{id:`ngb-modal`,name:`NgbModal`},{id:`ngb-modal-ref`,name:`NgbModalRef`},{id:`ngb-active-modal`,name:`NgbActiveModal`},{id:`ngb-modal-config`,name:`NgbModalConfig`}]},views:{"$default@docs.dashboard":{component:Yx.$name}}}),e.state(`docs.dashboard.nav`,{url:`/components/nav`,redirectTo:`docs.dashboard.nav.examples`,data:{title:`Nav`,tabs:[{name:`Examples`,to:`docs.dashboard.nav.examples`},{name:`Api`,to:`docs.dashboard.nav.api`}],externalLinks:{bootstrap:`components/navs-tabs/`,ngBootstrap:`components/nav/overview`}}}),e.state(`docs.dashboard.nav.examples`,{url:`/examples`,data:{sections:[{id:`simple-nav`,name:`Simple nav`},{id:`alternative-nav`,name:`Alternative markup`},{id:`vertical-nav`,name:`Vertical pills`},{id:`selecting-nav`,name:`Selecting navs`},{id:`keep-content-nav`,name:`Keep content`},{id:`dynamic-nav`,name:`Dynamic navs`},{id:`custom-nav`,name:`Custom style`},{id:`nav-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:yS.$name}}}),e.state(`docs.dashboard.nav.api`,{url:`/api`,data:{sections:[{id:`ngb-nav`,name:`NgbNav`},{id:`ngb-nav-item`,name:`NgbNavItem`},{id:`ngb-nav-link`,name:`NgbNavLink`},{id:`ngb-nav-content`,name:`NgbNavContent`},{id:`ngb-nav-outlet`,name:`NgbNavOutlet`},{id:`ngb-nav-config`,name:`NgbNavConfig`}]},views:{"$default@docs.dashboard":{component:lS.$name}}}),e.state(`docs.dashboard.offcanvas`,{url:`/components/offcanvas`,redirectTo:`docs.dashboard.offcanvas.examples`,data:{title:`Offcanvas`,tabs:[{name:`Examples`,to:`docs.dashboard.offcanvas.examples`},{name:`Api`,to:`docs.dashboard.offcanvas.api`}],externalLinks:{bootstrap:`components/offcanvas/`,ngBootstrap:`components/offcanvas/overview`}}}),e.state(`docs.dashboard.offcanvas.examples`,{url:`/examples`,data:{sections:[{id:`offcanvas-default`,name:`Default options`},{id:`offcanvas-component-content`,name:`Component content`},{id:`offcanvas-focus`,name:`Focus management`},{id:`offcanvas-options`,name:`Offcanvas options`},{id:`offcanvas-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:kS.$name}}}),e.state(`docs.dashboard.offcanvas.api`,{url:`/api`,data:{sections:[{id:`ngb-offcanvas`,name:`NgbOffcanvas`},{id:`ngb-offcanvas-ref`,name:`NgbOffcanvasRef`},{id:`ngb-active-offcanvas`,name:`NgbActiveOffcanvas`},{id:`ngb-offcanvas-config`,name:`NgbOffcanvasConfig`}]},views:{"$default@docs.dashboard":{component:bS.$name}}}),e.state(`docs.dashboard.pagination`,{url:`/components/pagination`,redirectTo:`docs.dashboard.pagination.examples`,data:{title:`Pagination`,tabs:[{name:`Examples`,to:`docs.dashboard.pagination.examples`},{name:`Api`,to:`docs.dashboard.pagination.api`}],externalLinks:{bootstrap:`components/pagination/`,ngBootstrap:`components/pagination/overview`}}}),e.state(`docs.dashboard.pagination.examples`,{url:`/examples`,data:{sections:[{id:`basic-pagination`,name:`Basic pagination`},{id:`advanced-pagination`,name:`Advanced pagination`},{id:`custom-pagination`,name:`Custom links and pages`},{id:`pagination-size`,name:`Pagination size`},{id:`pagination-alignment`,name:`Pagination alignment`},{id:`disabled-pagination`,name:`Disabled pagination`},{id:`pagination-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:RS.$name}}}),e.state(`docs.dashboard.pagination.api`,{url:`/api`,data:{sections:[{id:`ngb-pagination`,name:`NgbPagination`},{id:`ngb-pagination-config`,name:`NgbPaginationConfig`}]},views:{"$default@docs.dashboard":{component:AS.$name}}}),e.state(`docs.dashboard.popover`,{url:`/components/popover`,redirectTo:`docs.dashboard.popover.examples`,data:{title:`Popover`,tabs:[{name:`Examples`,to:`docs.dashboard.popover.examples`},{name:`Api`,to:`docs.dashboard.popover.api`}],externalLinks:{bootstrap:`components/popovers/`,ngBootstrap:`components/popover/overview`}}}),e.state(`docs.dashboard.popover.examples`,{url:`/examples`,data:{sections:[{id:`popover-placements`,name:`Quick popovers`},{id:`popover-template`,name:`HTML and bindings`},{id:`popover-triggers`,name:`Custom triggers`},{id:`popover-manual-control`,name:`External controls`},{id:`popover-autoclose`,name:`Automatic closing`},{id:`popover-context`,name:`Template context`},{id:`popover-custom-target`,name:`Custom target`},{id:`popover-delays`,name:`Open and close delays`},{id:`popover-events`,name:`Visibility events`},{id:`popover-body`,name:`Body container`},{id:`popover-custom-class`,name:`Custom class`},{id:`popover-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:$S.$name}}}),e.state(`docs.dashboard.popover.api`,{url:`/api`,data:{sections:[{id:`ngb-popover`,name:`NgbPopover`},{id:`ngb-popover-config`,name:`NgbPopoverConfig`}]},views:{"$default@docs.dashboard":{component:zS.$name}}}),e.state(`docs.dashboard.progressbar`,{url:`/components/progressbar`,redirectTo:`docs.dashboard.progressbar.examples`,data:{title:`Progress bar`,tabs:[{name:`Examples`,to:`docs.dashboard.progressbar.examples`},{name:`Api`,to:`docs.dashboard.progressbar.api`}],externalLinks:{bootstrap:`components/progress/`,ngBootstrap:`components/progressbar/overview`}}}),e.state(`docs.dashboard.progressbar.examples`,{url:`/examples`,data:{sections:[{id:`simple-progressbar`,name:`Simple progress bars`},{id:`contextual-text-progressbar`,name:`Contextual text`},{id:`striped-progress-bar`,name:`Striped bars`},{id:`custom-labels-progressbar`,name:`Custom labels`},{id:`progress-height`,name:`Custom height`},{id:`progress-bars-stacked`,name:`Stacked bars`},{id:`progressbar-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:cC.$name}}}),e.state(`docs.dashboard.progressbar.api`,{url:`/api`,data:{sections:[{id:`ngb-progressbar`,name:`NgbProgressbar`},{id:`ngb-progressbar-stacked`,name:`NgbProgressbarStacked`},{id:`ngb-progressbar-config`,name:`NgbProgressbarConfig`}]},views:{"$default@docs.dashboard":{component:eC.$name}}}),e.state(`docs.dashboard.rating`,{url:`/components/rating`,redirectTo:`docs.dashboard.rating.examples`,data:{title:`Rating`,tabs:[{name:`Examples`,to:`docs.dashboard.rating.examples`},{name:`Api`,to:`docs.dashboard.rating.api`}],externalLinks:{ngBootstrap:`components/rating/overview`}}}),e.state(`docs.dashboard.rating.examples`,{url:`/examples`,data:{sections:[{id:`basic-rating`,name:`Basic demo`},{id:`rating-events`,name:`Events and readonly`},{id:`rating-custom-template`,name:`Custom star template`},{id:`rating-decimal`,name:`Decimal rating`},{id:`rating-form`,name:`Form integration`},{id:`rating-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:vC.$name}}}),e.state(`docs.dashboard.rating.api`,{url:`/api`,data:{sections:[{id:`ngb-rating`,name:`NgbRating`},{id:`ngb-rating-config`,name:`NgbRatingConfig`}]},views:{"$default@docs.dashboard":{component:lC.$name}}}),e.state(`docs.dashboard.scrollspy`,{url:`/components/scrollspy`,redirectTo:`docs.dashboard.scrollspy.examples`,data:{title:`Scrollspy`,tabs:[{name:`Examples`,to:`docs.dashboard.scrollspy.examples`},{name:`Api`,to:`docs.dashboard.scrollspy.api`}],externalLinks:{bootstrap:`components/scrollspy/`,ngBootstrap:`components/scrollspy/overview`}}}),e.state(`docs.dashboard.scrollspy.examples`,{url:`/examples`,data:{sections:[{id:`basic-scrollspy`,name:`Basic`},{id:`scrollspy-menu-items`,name:`Menu items`},{id:`nested-scrollspy`,name:`Nested items`},{id:`navbar-scrollspy`,name:`Navbar`},{id:`scrollspy-service`,name:`Using the service`}]},views:{"$default@docs.dashboard":{component:xC.$name}}}),e.state(`docs.dashboard.scrollspy.api`,{url:`/api`,data:{sections:[{id:`ngb-scrollspy`,name:`NgbScrollSpy`},{id:`ngb-scrollspy-fragment`,name:`NgbScrollSpyFragment`},{id:`ngb-scrollspy-menu`,name:`NgbScrollSpyMenu`},{id:`ngb-scrollspy-item`,name:`NgbScrollSpyItem`},{id:`ngb-scrollspy-service`,name:`NgbScrollSpyService`},{id:`ngb-scrollspy-config`,name:`NgbScrollSpyConfig`}]},views:{"$default@docs.dashboard":{component:yC.$name}}}),e.state(`docs.dashboard.timepicker`,{url:`/components/timepicker`,redirectTo:`docs.dashboard.timepicker.examples`,data:{title:`Timepicker`,tabs:[{name:`Examples`,to:`docs.dashboard.timepicker.examples`},{name:`Api`,to:`docs.dashboard.timepicker.api`}],externalLinks:{ngBootstrap:`components/timepicker/overview`}}}),e.state(`docs.dashboard.timepicker.examples`,{url:`/examples`,data:{sections:[{id:`basic-timepicker`,name:`Basic timepicker`},{id:`meridian-timepicker`,name:`Meridian`},{id:`seconds-timepicker`,name:`Seconds`},{id:`spinners-timepicker`,name:`Spinners`},{id:`timepicker-custom-steps`,name:`Custom steps`},{id:`timepicker-validation`,name:`Custom validation`},{id:`timepicker-custom-adapter`,name:`Custom time adapter`},{id:`timepicker-i18n`,name:`Internationalization`}]},views:{"$default@docs.dashboard":{component:jC.$name}}}),e.state(`docs.dashboard.timepicker.api`,{url:`/api`,data:{sections:[{id:`ngb-timepicker`,name:`NgbTimepicker`},{id:`ngb-timepicker-config`,name:`NgbTimepickerConfig`},{id:`ngb-time-adapter`,name:`NgbTimeAdapter`},{id:`ngb-timepicker-i18n`,name:`NgbTimepickerI18n`}]},views:{"$default@docs.dashboard":{component:SC.$name}}}),e.state(`docs.dashboard.toast`,{url:`/components/toast`,redirectTo:`docs.dashboard.toast.examples`,data:{title:`Toast`,tabs:[{name:`Examples`,to:`docs.dashboard.toast.examples`},{name:`Api`,to:`docs.dashboard.toast.api`}],externalLinks:{bootstrap:`components/toasts/`,ngBootstrap:`components/toast/overview`}}}),e.state(`docs.dashboard.toast.examples`,{url:`/examples`,data:{sections:[{id:`inline-toast`,name:`Declarative inline usage`},{id:`template-header-toast`,name:`Template header`},{id:`closeable-toast`,name:`Closeable toast`},{id:`prevent-autohide-toast`,name:`Prevent autohide`},{id:`toast-management`,name:`Management service`}]},views:{"$default@docs.dashboard":{component:RC.$name}}}),e.state(`docs.dashboard.toast.api`,{url:`/api`,data:{sections:[{id:`ngb-toast`,name:`NgbToast`},{id:`ngb-toast-header`,name:`NgbToastHeader`},{id:`ngb-toast-config`,name:`NgbToastConfig`}]},views:{"$default@docs.dashboard":{component:MC.$name}}}),e.state(`docs.dashboard.tooltip`,{url:`/components/tooltip`,redirectTo:`docs.dashboard.tooltip.examples`,data:{title:`Tooltip`,tabs:[{name:`Examples`,to:`docs.dashboard.tooltip.examples`},{name:`Api`,to:`docs.dashboard.tooltip.api`}],externalLinks:{bootstrap:`components/tooltips/`,ngBootstrap:`components/tooltip/overview`}}}),e.state(`docs.dashboard.tooltip.examples`,{url:`/examples`,data:{sections:[{id:`tooltip-placements`,name:`Quick and easy tooltips`},{id:`tooltip-template`,name:`HTML and bindings`},{id:`tooltip-triggers`,name:`Custom and manual triggers`},{id:`tooltip-autoclose`,name:`Automatic closing`},{id:`tooltip-context`,name:`Context and manual triggers`},{id:`tooltip-custom-target`,name:`Custom target`},{id:`tooltip-delays`,name:`Open and close delays`},{id:`tooltip-body`,name:`Append to body`},{id:`tooltip-custom-class`,name:`Custom class`},{id:`tooltip-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:ZC.$name}}}),e.state(`docs.dashboard.tooltip.api`,{url:`/api`,data:{sections:[{id:`ngb-tooltip`,name:`NgbTooltip`},{id:`ngb-tooltip-config`,name:`NgbTooltipConfig`}]},views:{"$default@docs.dashboard":{component:zC.$name}}}),e.state(`docs.dashboard.typeahead`,{url:`/components/typeahead`,redirectTo:`docs.dashboard.typeahead.examples`,data:{title:`Typeahead`,tabs:[{name:`Examples`,to:`docs.dashboard.typeahead.examples`},{name:`Api`,to:`docs.dashboard.typeahead.api`}],externalLinks:{ngBootstrap:`components/typeahead/overview`}}}),e.state(`docs.dashboard.typeahead.examples`,{url:`/examples`,data:{sections:[{id:`simple-typeahead`,name:`Simple Typeahead`},{id:`focus-typeahead`,name:`Open on focus`},{id:`formatted-typeahead`,name:`Formatted results`},{id:`exact-typeahead`,name:`Select on exact`},{id:`wikipedia-typeahead`,name:`Wikipedia search`},{id:`template-results-typeahead`,name:`Template for results`},{id:`non-editable-typeahead`,name:`Prevent manual entry`},{id:`typeahead-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:sw.$name}}}),e.state(`docs.dashboard.typeahead.api`,{url:`/api`,data:{sections:[{id:`ngb-typeahead`,name:`NgbTypeahead`},{id:`ngb-highlight`,name:`NgbHighlight`},{id:`ngb-typeahead-config`,name:`NgbTypeaheadConfig`}]},views:{"$default@docs.dashboard":{component:QC.$name}}})};cw.$inject=[`$stateProvider`];var $=u.default.module(`docs.lib`,[]);$.component(iv.$name,iv.$factory),$.component(av.$name,av.$factory),$.component(ov.$name,ov.$factory),$.component(sv.$name,sv.$factory),$.component(cv.$name,cv.$factory),$.component(lv.$name,lv.$factory),$.component(uv.$name,uv.$factory),$.component(dv.$name,dv.$factory),$.component(fv.$name,fv.$factory),$.component(pv.$name,pv.$factory),$.component(mv.$name,mv.$factory),$.component(hv.$name,hv.$factory),$.component(gv.$name,gv.$factory),$.component(_v.$name,_v.$factory),$.component(vv.$name,vv.$factory),$.component(yv.$name,yv.$factory),$.component(bv.$name,bv.$factory),$.component(xv.$name,xv.$factory),$.component(Sv.$name,Sv.$factory),$.component(Cv.$name,Cv.$factory),$.component(wv.$name,wv.$factory),$.component(Tv.$name,Tv.$factory),$.component(Ev.$name,Ev.$factory),$.component(Dv.$name,Dv.$factory),$.component(Ov.$name,Ov.$factory),$.component(kv.$name,kv.$factory),$.component(jv.$name,jv.$factory),$.component(Mv.$name,Mv.$factory),$.component(Av.$name,Av.$factory),$.component(Pv.$name,Pv.$factory),$.component(Nv.$name,Nv.$factory),$.component(Fv.$name,Fv.$factory),$.component(Iv.$name,Iv.$factory),$.component(Rv.$name,Rv.$factory),$.component(Lv.$name,Lv.$factory),$.component(Bv.$name,Bv.$factory),$.component(zv.$name,zv.$factory),$.component(Vv.$name,Vv.$factory),$.component(Hv.$name,Hv.$factory),$.component(Uv.$name,Uv.$factory),$.component(Wv.$name,Wv.$factory),$.component(Gv.$name,Gv.$factory),$.component(Kv.$name,Kv.$factory),$.component(qv.$name,qv.$factory),$.component(Jv.$name,Jv.$factory),$.component(Xv.$name,Xv.$factory),$.component(Zv.$name,Zv.$factory),$.component(Yv.$name,Yv.$factory),$.component($v.$name,$v.$factory),$.component(Qv.$name,Qv.$factory),$.component(ey.$name,ey.$factory),$.component(ty.$name,ty.$factory),$.component(ny.$name,ny.$factory),$.component(ry.$name,ry.$factory),$.component(iy.$name,iy.$factory),$.component(ay.$name,ay.$factory),$.component(oy.$name,oy.$factory),$.component(sy.$name,sy.$factory),$.component(cy.$name,cy.$factory),$.component(ly.$name,ly.$factory),$.component(fy.$name,fy.$factory),$.component(py.$name,py.$factory),$.component(my.$name,my.$factory),$.component(hy.$name,hy.$factory),$.component(gy.$name,gy.$factory),$.component(vy.$name,vy.$factory),$.component(yy.$name,yy.$factory),$.component(by.$name,by.$factory),$.component(xy.$name,xy.$factory),$.component(Sy.$name,Sy.$factory),$.component(Cy.$name,Cy.$factory),$.component(wy.$name,wy.$factory),$.component(Ty.$name,Ty.$factory),$.component(Ey.$name,Ey.$factory),$.component(Dy.$name,Dy.$factory),$.component(Oy.$name,Oy.$factory),$.component(ky.$name,ky.$factory),$.component(Ay.$name,Ay.$factory),$.component(jy.$name,jy.$factory),$.component(My.$name,My.$factory),$.component(Ny.$name,Ny.$factory),$.component(Py.$name,Py.$factory),$.component(Fy.$name,Fy.$factory),$.component(Iy.$name,Iy.$factory),$.component(Ly.$name,Ly.$factory),$.component(Ry.$name,Ry.$factory),$.component(zy.$name,zy.$factory),$.component(By.$name,By.$factory),$.component(Vy.$name,Vy.$factory),$.component(Hy.$name,Hy.$factory),$.component(Uy.$name,Uy.$factory),$.component(Wy.$name,Wy.$factory),$.component(Gy.$name,Gy.$factory),$.component(Ky.$name,Ky.$factory),$.component(qy.$name,qy.$factory),$.component(Jy.$name,Jy.$factory),$.component(Yy.$name,Yy.$factory),$.component(Xy.$name,Xy.$factory),$.component(Zy.$name,Zy.$factory),$.component(Qy.$name,Qy.$factory),$.component($y.$name,$y.$factory),$.component(eb.$name,eb.$factory),$.component(tb.$name,tb.$factory),$.component(nb.$name,nb.$factory),$.component(rb.$name,rb.$factory),$.component(ib.$name,ib.$factory),$.component(ab.$name,ab.$factory),$.component(cb.$name,cb.$factory),$.component(lb.$name,lb.$factory),$.service(ub.$name,ub),$.component(db.$name,db.$factory),$.component(fb.$name,fb.$factory),$.directive(`docsTimepickerLunchValidator`,pb),$.component(mb.$name,mb.$factory),$.component(hb.$name,hb.$factory),$.component(gb.$name,gb.$factory),$.component(_b.$name,_b.$factory),$.service(vb.$name,vb),$.component(yb.$name,yb.$factory),$.component(bb.$name,bb.$factory),$.component(xb.$name,xb.$factory),$.component(Sb.$name,Sb.$factory),$.component(Cb.$name,Cb.$factory),$.component(wb.$name,wb.$factory),$.component(Tb.$name,Tb.$factory),$.component(Eb.$name,Eb.$factory),$.component(Db.$name,Db.$factory),$.component(Ob.$name,Ob.$factory),$.component(kb.$name,kb.$factory),$.component(jb.$name,jb.$factory),$.component(Nb.$name,Nb.$factory),$.component(Fb.$name,Fb.$factory),$.component(Lb.$name,Lb.$factory),$.component(zb.$name,zb.$factory),$.component(Vb.$name,Vb.$factory),$.component(Ub.$name,Ub.$factory),$.service(Gb.$name,Gb),$.component(Kb.$name,Kb.$factory),$.component(qb.$name,qb.$factory),$.component(Qb.$name,Qb.$factory),$.component($b.$name,$b.$factory),$.component(rx.$name,rx.$factory),$.component(ix.$name,ix.$factory),$.component(sx.$name,sx.$factory),$.component(cx.$name,cx.$factory),$.component(fx.$name,fx.$factory),$.component(px.$name,px.$factory),$.component(Cx.$name,Cx.$factory),$.component(Hx.$name,Hx.$factory),$.component(Ux.$name,Ux.$factory),$.component(Jx.$name,Jx.$factory),$.component(Yx.$name,Yx.$factory),$.component(cS.$name,cS.$factory),$.component(lS.$name,lS.$factory),$.component(yS.$name,yS.$factory),$.component(bS.$name,bS.$factory),$.component(kS.$name,kS.$factory),$.component(AS.$name,AS.$factory),$.component(RS.$name,RS.$factory),$.component(zS.$name,zS.$factory),$.component($S.$name,$S.$factory),$.component(eC.$name,eC.$factory),$.component(cC.$name,cC.$factory),$.component(lC.$name,lC.$factory),$.component(vC.$name,vC.$factory),$.component(yC.$name,yC.$factory),$.component(xC.$name,xC.$factory),$.component(SC.$name,SC.$factory),$.component(jC.$name,jC.$factory),$.component(MC.$name,MC.$factory),$.component(RC.$name,RC.$factory),$.component(zC.$name,zC.$factory),$.component(ZC.$name,ZC.$factory),$.component(QC.$name,QC.$factory),$.component(sw.$name,sw.$factory),$.config(cw);var lw=u.default.module(`docs.features`,[Q_.name,nv.name,$.name]),uw=u.default.module(`docs`,[Pi,H_.name,zc.name,Hh.name,q_.name,lw.name]);uw.component(d_.$name,d_.$factory),uw.config(f_);
