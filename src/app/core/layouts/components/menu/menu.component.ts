@@ -1,4 +1,4 @@
-import {type IComponentController, type IComponentOptions} from "angular";
+import {type IAugmentedJQuery, type IComponentController, type IComponentOptions} from "angular";
 import { NgbOffcanvasRef } from "ngb-js"
 
 type MenuModes = "desktop" | "mobile";
@@ -6,6 +6,14 @@ type MenuModes = "desktop" | "mobile";
 export class MenuComponent implements IComponentController {
     public mode: MenuModes = "desktop";
     public ngbActiveOffcanvas?: NgbOffcanvasRef;
+
+    constructor(private $element: IAugmentedJQuery) {}
+
+    $postLink() {
+        if (this.mode === "mobile") {
+            this.$element.addClass("h-100 d-flex flex-column");
+        }
+    }
 
     static get $factory(): IComponentOptions {
         return {
@@ -20,7 +28,7 @@ export class MenuComponent implements IComponentController {
     }
 
     static get $inject() {
-        return []
+        return ["$element"]
     }
 
     static get $name() {
