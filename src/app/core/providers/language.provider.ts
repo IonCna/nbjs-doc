@@ -12,6 +12,10 @@ export class LanguageProvider implements IServiceProvider {
         private readonly languageKey: string
     ) {}
 
+    get lang(): Language {
+        return this._lang ?? Language.EN_US
+    }
+
     $config() {
         const saved = this._readFromLocalStorage()
 
