@@ -3,6 +3,7 @@
     {
       "id": "guide.introduction.origin",
       "url": "docs.dashboard.introduction",
+      "fragment": "origin",
       "translations": {
         "en_us": {
           "title": "Born from a real legacy application",
@@ -17,6 +18,7 @@
     {
       "id": "guide.introduction.what-is-ngbjs",
       "url": "docs.dashboard.introduction",
+      "fragment": "what-is-ngbjs",
       "translations": {
         "en_us": {
           "title": "What is NgbJS?",
@@ -31,6 +33,7 @@
     {
       "id": "guide.introduction.who-is-it-for",
       "url": "docs.dashboard.introduction",
+      "fragment": "who-is-it-for",
       "translations": {
         "en_us": {
           "title": "Who is it for?",
@@ -45,6 +48,7 @@
     {
       "id": "guide.introduction.project-status",
       "url": "docs.dashboard.introduction",
+      "fragment": "project-status",
       "translations": {
         "en_us": {
           "title": "Project status",
@@ -59,6 +63,7 @@
     {
       "id": "guide.introduction.installation",
       "url": "docs.dashboard.introduction",
+      "fragment": "installation",
       "translations": {
         "en_us": {
           "title": "Installation",
@@ -73,6 +78,7 @@
     {
       "id": "guide.introduction.acknowledgements",
       "url": "docs.dashboard.introduction",
+      "fragment": "acknowledgements",
       "translations": {
         "en_us": {
           "title": "Built on the work of ng-bootstrap",
@@ -87,6 +93,7 @@
     {
       "id": "guide.philosophy.parity-is-priority",
       "url": "docs.dashboard.philosophy",
+      "fragment": "parity-is-priority",
       "translations": {
         "en_us": {
           "title": "Parity is Priority.",
@@ -101,6 +108,7 @@
     {
       "id": "guide.philosophy.what-parity-means",
       "url": "docs.dashboard.philosophy",
+      "fragment": "what-parity-means",
       "translations": {
         "en_us": {
           "title": "What parity means",
@@ -115,6 +123,7 @@
     {
       "id": "guide.philosophy.familiar-by-design",
       "url": "docs.dashboard.philosophy",
+      "fragment": "familiar-by-design",
       "translations": {
         "en_us": {
           "title": "Familiar by design",
@@ -129,6 +138,7 @@
     {
       "id": "guide.philosophy.a-migration-bridge",
       "url": "docs.dashboard.philosophy",
+      "fragment": "a-migration-bridge",
       "translations": {
         "en_us": {
           "title": "A bridge between codebases",
@@ -143,6 +153,7 @@
     {
       "id": "guide.philosophy.when-parity-is-hard",
       "url": "docs.dashboard.philosophy",
+      "fragment": "when-parity-is-hard",
       "translations": {
         "en_us": {
           "title": "When exact parity is difficult",
@@ -157,6 +168,7 @@
     {
       "id": "guide.why-ngbjs.the-legacy-reality",
       "url": "docs.dashboard.whyNgbJs",
+      "fragment": "the-legacy-reality",
       "translations": {
         "en_us": {
           "title": "The legacy reality",
@@ -171,6 +183,7 @@
     {
       "id": "guide.why-ngbjs.before-and-after",
       "url": "docs.dashboard.whyNgbJs",
+      "fragment": "before-and-after",
       "translations": {
         "en_us": {
           "title": "From repeated adaptation to a shared model",
@@ -185,6 +198,7 @@
     {
       "id": "guide.why-ngbjs.what-it-unlocks",
       "url": "docs.dashboard.whyNgbJs",
+      "fragment": "what-it-unlocks",
       "translations": {
         "en_us": {
           "title": "What NgbJS unlocks",
@@ -199,6 +213,7 @@
     {
       "id": "guide.why-ngbjs.when-to-use-ngbjs",
       "url": "docs.dashboard.whyNgbJs",
+      "fragment": "when-to-use-ngbjs",
       "translations": {
         "en_us": {
           "title": "When should you use NgbJS?",
@@ -213,6 +228,7 @@
     {
       "id": "guide.why-ngbjs.a-bridge-not-a-destination",
       "url": "docs.dashboard.whyNgbJs",
+      "fragment": "a-bridge-not-a-destination",
       "translations": {
         "en_us": {
           "title": "A bridge, not a destination",
@@ -227,6 +243,7 @@
     {
       "id": "components.accordion.api.ngb-accordion",
       "url": "docs.dashboard.accordion.api",
+      "fragment": "ngb-accordion",
       "translations": {
         "en_us": {
           "title": "NgbAccordion",
@@ -241,6 +258,7 @@
     {
       "id": "components.accordion.api.ngb-accordion-item",
       "url": "docs.dashboard.accordion.api",
+      "fragment": "ngb-accordion-item",
       "translations": {
         "en_us": {
           "title": "NgbAccordionItem",
@@ -255,6 +273,7 @@
     {
       "id": "components.accordion.api.ngb-accordion-header",
       "url": "docs.dashboard.accordion.api",
+      "fragment": "ngb-accordion-header",
       "translations": {
         "en_us": {
           "title": "NgbAccordionHeader",
@@ -269,6 +288,7 @@
     {
       "id": "components.accordion.api.ngb-accordion-button",
       "url": "docs.dashboard.accordion.api",
+      "fragment": "ngb-accordion-button",
       "translations": {
         "en_us": {
           "title": "NgbAccordionButton",
@@ -283,6 +303,7 @@
     {
       "id": "components.accordion.api.ngb-accordion-toggle",
       "url": "docs.dashboard.accordion.api",
+      "fragment": "ngb-accordion-toggle",
       "translations": {
         "en_us": {
           "title": "NgbAccordionToggle",
@@ -297,6 +318,7 @@
     {
       "id": "components.accordion.api.ngb-accordion-body",
       "url": "docs.dashboard.accordion.api",
+      "fragment": "ngb-accordion-body",
       "translations": {
         "en_us": {
           "title": "NgbAccordionBody",
@@ -311,6 +333,7 @@
     {
       "id": "components.accordion.api.ngb-accordion-config",
       "url": "docs.dashboard.accordion.api",
+      "fragment": "ngb-accordion-config",
       "translations": {
         "en_us": {
           "title": "NgbAccordionConfig",
@@ -325,6 +348,7 @@
     {
       "id": "components.alert.api.ngb-alert",
       "url": "docs.dashboard.alert.api",
+      "fragment": "ngb-alert",
       "translations": {
         "en_us": {
           "title": "NgbAlert",
@@ -339,6 +363,7 @@
     {
       "id": "components.alert.api.ngb-alert-config",
       "url": "docs.dashboard.alert.api",
+      "fragment": "ngb-alert-config",
       "translations": {
         "en_us": {
           "title": "NgbAlertConfig",
@@ -353,6 +378,7 @@
     {
       "id": "components.carousel.api.ngb-carousel",
       "url": "docs.dashboard.carousel.api",
+      "fragment": "ngb-carousel",
       "translations": {
         "en_us": {
           "title": "NgbCarousel",
@@ -367,6 +393,7 @@
     {
       "id": "components.carousel.api.ngb-slide",
       "url": "docs.dashboard.carousel.api",
+      "fragment": "ngb-slide",
       "translations": {
         "en_us": {
           "title": "NgbSlide",
@@ -381,6 +408,7 @@
     {
       "id": "components.carousel.api.ngb-carousel-config",
       "url": "docs.dashboard.carousel.api",
+      "fragment": "ngb-carousel-config",
       "translations": {
         "en_us": {
           "title": "NgbCarouselConfig",
@@ -395,6 +423,7 @@
     {
       "id": "components.collapse.api.ngb-collapse",
       "url": "docs.dashboard.collapse.api",
+      "fragment": "ngb-collapse",
       "translations": {
         "en_us": {
           "title": "NgbCollapse",
@@ -409,6 +438,7 @@
     {
       "id": "components.collapse.api.ngb-collapse-config",
       "url": "docs.dashboard.collapse.api",
+      "fragment": "ngb-collapse-config",
       "translations": {
         "en_us": {
           "title": "NgbCollapseConfig",
@@ -423,6 +453,7 @@
     {
       "id": "components.datepicker.api.ngb-datepicker",
       "url": "docs.dashboard.datepicker.api",
+      "fragment": "ngb-datepicker",
       "translations": {
         "en_us": {
           "title": "NgbDatepicker",
@@ -437,6 +468,7 @@
     {
       "id": "components.datepicker.api.ngb-input-datepicker",
       "url": "docs.dashboard.datepicker.api",
+      "fragment": "ngb-input-datepicker",
       "translations": {
         "en_us": {
           "title": "NgbInputDatepicker",
@@ -451,6 +483,7 @@
     {
       "id": "components.datepicker.api.ngb-datepicker-config",
       "url": "docs.dashboard.datepicker.api",
+      "fragment": "ngb-datepicker-config",
       "translations": {
         "en_us": {
           "title": "NgbDatepickerConfig",
@@ -465,6 +498,7 @@
     {
       "id": "components.datepicker.api.ngb-input-datepicker-config",
       "url": "docs.dashboard.datepicker.api",
+      "fragment": "ngb-input-datepicker-config",
       "translations": {
         "en_us": {
           "title": "NgbInputDatepickerConfig",
@@ -479,6 +513,7 @@
     {
       "id": "components.datepicker.api.ngb-datepicker-extension-contracts",
       "url": "docs.dashboard.datepicker.api",
+      "fragment": "ngb-datepicker-extension-contracts",
       "translations": {
         "en_us": {
           "title": "Calendar and formatting contracts",
@@ -493,6 +528,7 @@
     {
       "id": "components.datepicker.calendars.calendar-hebrew",
       "url": "docs.dashboard.datepicker.calendars",
+      "fragment": "calendar-hebrew",
       "translations": {
         "en_us": {
           "title": "Hebrew",
@@ -507,6 +543,7 @@
     {
       "id": "components.datepicker.calendars.calendar-jalali",
       "url": "docs.dashboard.datepicker.calendars",
+      "fragment": "calendar-jalali",
       "translations": {
         "en_us": {
           "title": "Jalali",
@@ -521,6 +558,7 @@
     {
       "id": "components.datepicker.calendars.calendar-islamic-civil",
       "url": "docs.dashboard.datepicker.calendars",
+      "fragment": "calendar-islamic-civil",
       "translations": {
         "en_us": {
           "title": "Islamic Civil",
@@ -535,6 +573,7 @@
     {
       "id": "components.datepicker.calendars.calendar-islamic-umalqura",
       "url": "docs.dashboard.datepicker.calendars",
+      "fragment": "calendar-islamic-umalqura",
       "translations": {
         "en_us": {
           "title": "Islamic Umm al-Qura",
@@ -549,6 +588,7 @@
     {
       "id": "components.datepicker.calendars.calendar-buddhist",
       "url": "docs.dashboard.datepicker.calendars",
+      "fragment": "calendar-buddhist",
       "translations": {
         "en_us": {
           "title": "Buddhist",
@@ -563,6 +603,7 @@
     {
       "id": "components.datepicker.calendars.calendar-ethiopian",
       "url": "docs.dashboard.datepicker.calendars",
+      "fragment": "calendar-ethiopian",
       "translations": {
         "en_us": {
           "title": "Ethiopian",
@@ -577,6 +618,7 @@
     {
       "id": "components.datepicker.calendars.calendar-intergalactic",
       "url": "docs.dashboard.datepicker.calendars",
+      "fragment": "calendar-intergalactic",
       "translations": {
         "en_us": {
           "title": "Intergalactic Standard (just for fun)",
@@ -591,6 +633,7 @@
     {
       "id": "components.dropdown.api.ngb-dropdown",
       "url": "docs.dashboard.dropdown.api",
+      "fragment": "ngb-dropdown",
       "translations": {
         "en_us": {
           "title": "NgbDropdown",
@@ -605,6 +648,7 @@
     {
       "id": "components.dropdown.api.ngb-dropdown-anchor",
       "url": "docs.dashboard.dropdown.api",
+      "fragment": "ngb-dropdown-anchor",
       "translations": {
         "en_us": {
           "title": "NgbDropdownAnchor",
@@ -619,6 +663,7 @@
     {
       "id": "components.dropdown.api.ngb-dropdown-toggle",
       "url": "docs.dashboard.dropdown.api",
+      "fragment": "ngb-dropdown-toggle",
       "translations": {
         "en_us": {
           "title": "NgbDropdownToggle",
@@ -633,6 +678,7 @@
     {
       "id": "components.dropdown.api.ngb-dropdown-menu",
       "url": "docs.dashboard.dropdown.api",
+      "fragment": "ngb-dropdown-menu",
       "translations": {
         "en_us": {
           "title": "NgbDropdownMenu",
@@ -647,6 +693,7 @@
     {
       "id": "components.dropdown.api.ngb-dropdown-item",
       "url": "docs.dashboard.dropdown.api",
+      "fragment": "ngb-dropdown-item",
       "translations": {
         "en_us": {
           "title": "NgbDropdownItem",
@@ -661,6 +708,7 @@
     {
       "id": "components.dropdown.api.ngb-dropdown-config",
       "url": "docs.dashboard.dropdown.api",
+      "fragment": "ngb-dropdown-config",
       "translations": {
         "en_us": {
           "title": "NgbDropdownConfig",
@@ -675,6 +723,7 @@
     {
       "id": "components.modal.api.ngb-modal",
       "url": "docs.dashboard.modal.api",
+      "fragment": "ngb-modal",
       "translations": {
         "en_us": {
           "title": "NgbModal",
@@ -689,6 +738,7 @@
     {
       "id": "components.modal.api.ngb-modal-ref",
       "url": "docs.dashboard.modal.api",
+      "fragment": "ngb-modal-ref",
       "translations": {
         "en_us": {
           "title": "NgbModalRef",
@@ -703,6 +753,7 @@
     {
       "id": "components.modal.api.ngb-active-modal",
       "url": "docs.dashboard.modal.api",
+      "fragment": "ngb-active-modal",
       "translations": {
         "en_us": {
           "title": "NgbActiveModal",
@@ -717,6 +768,7 @@
     {
       "id": "components.modal.api.ngb-modal-config",
       "url": "docs.dashboard.modal.api",
+      "fragment": "ngb-modal-config",
       "translations": {
         "en_us": {
           "title": "NgbModalConfig",
@@ -731,6 +783,7 @@
     {
       "id": "components.nav.api.ngb-nav",
       "url": "docs.dashboard.nav.api",
+      "fragment": "ngb-nav",
       "translations": {
         "en_us": {
           "title": "NgbNav",
@@ -745,6 +798,7 @@
     {
       "id": "components.nav.api.ngb-nav-item",
       "url": "docs.dashboard.nav.api",
+      "fragment": "ngb-nav-item",
       "translations": {
         "en_us": {
           "title": "NgbNavItem",
@@ -759,6 +813,7 @@
     {
       "id": "components.nav.api.ngb-nav-link",
       "url": "docs.dashboard.nav.api",
+      "fragment": "ngb-nav-link",
       "translations": {
         "en_us": {
           "title": "NgbNavLink",
@@ -773,6 +828,7 @@
     {
       "id": "components.nav.api.ngb-nav-content",
       "url": "docs.dashboard.nav.api",
+      "fragment": "ngb-nav-content",
       "translations": {
         "en_us": {
           "title": "NgbNavContent",
@@ -787,6 +843,7 @@
     {
       "id": "components.nav.api.ngb-nav-outlet",
       "url": "docs.dashboard.nav.api",
+      "fragment": "ngb-nav-outlet",
       "translations": {
         "en_us": {
           "title": "NgbNavOutlet",
@@ -801,6 +858,7 @@
     {
       "id": "components.nav.api.ngb-nav-config",
       "url": "docs.dashboard.nav.api",
+      "fragment": "ngb-nav-config",
       "translations": {
         "en_us": {
           "title": "NgbNavConfig",
@@ -815,6 +873,7 @@
     {
       "id": "components.offcanvas.api.ngb-offcanvas",
       "url": "docs.dashboard.offcanvas.api",
+      "fragment": "ngb-offcanvas",
       "translations": {
         "en_us": {
           "title": "NgbOffcanvas",
@@ -829,6 +888,7 @@
     {
       "id": "components.offcanvas.api.ngb-offcanvas-ref",
       "url": "docs.dashboard.offcanvas.api",
+      "fragment": "ngb-offcanvas-ref",
       "translations": {
         "en_us": {
           "title": "NgbOffcanvasRef",
@@ -843,6 +903,7 @@
     {
       "id": "components.offcanvas.api.ngb-active-offcanvas",
       "url": "docs.dashboard.offcanvas.api",
+      "fragment": "ngb-active-offcanvas",
       "translations": {
         "en_us": {
           "title": "NgbActiveOffcanvas",
@@ -857,6 +918,7 @@
     {
       "id": "components.offcanvas.api.ngb-offcanvas-config",
       "url": "docs.dashboard.offcanvas.api",
+      "fragment": "ngb-offcanvas-config",
       "translations": {
         "en_us": {
           "title": "NgbOffcanvasConfig",
@@ -871,6 +933,7 @@
     {
       "id": "components.pagination.api.ngb-pagination",
       "url": "docs.dashboard.pagination.api",
+      "fragment": "ngb-pagination",
       "translations": {
         "en_us": {
           "title": "NgbPagination",
@@ -885,6 +948,7 @@
     {
       "id": "components.pagination.api.ngb-pagination-config",
       "url": "docs.dashboard.pagination.api",
+      "fragment": "ngb-pagination-config",
       "translations": {
         "en_us": {
           "title": "NgbPaginationConfig",
@@ -899,6 +963,7 @@
     {
       "id": "components.popover.api.ngb-popover",
       "url": "docs.dashboard.popover.api",
+      "fragment": "ngb-popover",
       "translations": {
         "en_us": {
           "title": "NgbPopover",
@@ -913,6 +978,7 @@
     {
       "id": "components.popover.api.ngb-popover-config",
       "url": "docs.dashboard.popover.api",
+      "fragment": "ngb-popover-config",
       "translations": {
         "en_us": {
           "title": "NgbPopoverConfig",
@@ -927,6 +993,7 @@
     {
       "id": "components.progressbar.api.ngb-progressbar",
       "url": "docs.dashboard.progressbar.api",
+      "fragment": "ngb-progressbar",
       "translations": {
         "en_us": {
           "title": "NgbProgressbar",
@@ -941,6 +1008,7 @@
     {
       "id": "components.progressbar.api.ngb-progressbar-stacked",
       "url": "docs.dashboard.progressbar.api",
+      "fragment": "ngb-progressbar-stacked",
       "translations": {
         "en_us": {
           "title": "NgbProgressbarStacked",
@@ -955,6 +1023,7 @@
     {
       "id": "components.progressbar.api.ngb-progressbar-config",
       "url": "docs.dashboard.progressbar.api",
+      "fragment": "ngb-progressbar-config",
       "translations": {
         "en_us": {
           "title": "NgbProgressbarConfig",
@@ -969,6 +1038,7 @@
     {
       "id": "components.rating.api.ngb-rating",
       "url": "docs.dashboard.rating.api",
+      "fragment": "ngb-rating",
       "translations": {
         "en_us": {
           "title": "NgbRating",
@@ -983,6 +1053,7 @@
     {
       "id": "components.rating.api.ngb-rating-config",
       "url": "docs.dashboard.rating.api",
+      "fragment": "ngb-rating-config",
       "translations": {
         "en_us": {
           "title": "NgbRatingConfig",
@@ -997,6 +1068,7 @@
     {
       "id": "components.scrollspy.api.ngb-scrollspy",
       "url": "docs.dashboard.scrollspy.api",
+      "fragment": "ngb-scrollspy",
       "translations": {
         "en_us": {
           "title": "NgbScrollSpy",
@@ -1011,6 +1083,7 @@
     {
       "id": "components.scrollspy.api.ngb-scrollspy-fragment",
       "url": "docs.dashboard.scrollspy.api",
+      "fragment": "ngb-scrollspy-fragment",
       "translations": {
         "en_us": {
           "title": "NgbScrollSpyFragment",
@@ -1025,6 +1098,7 @@
     {
       "id": "components.scrollspy.api.ngb-scrollspy-menu",
       "url": "docs.dashboard.scrollspy.api",
+      "fragment": "ngb-scrollspy-menu",
       "translations": {
         "en_us": {
           "title": "NgbScrollSpyMenu",
@@ -1039,6 +1113,7 @@
     {
       "id": "components.scrollspy.api.ngb-scrollspy-item",
       "url": "docs.dashboard.scrollspy.api",
+      "fragment": "ngb-scrollspy-item",
       "translations": {
         "en_us": {
           "title": "NgbScrollSpyItem",
@@ -1053,6 +1128,7 @@
     {
       "id": "components.scrollspy.api.ngb-scrollspy-service",
       "url": "docs.dashboard.scrollspy.api",
+      "fragment": "ngb-scrollspy-service",
       "translations": {
         "en_us": {
           "title": "NgbScrollSpyService",
@@ -1067,6 +1143,7 @@
     {
       "id": "components.scrollspy.api.ngb-scrollspy-config",
       "url": "docs.dashboard.scrollspy.api",
+      "fragment": "ngb-scrollspy-config",
       "translations": {
         "en_us": {
           "title": "NgbScrollSpyConfig",
@@ -1081,6 +1158,7 @@
     {
       "id": "components.timepicker.api.ngb-timepicker",
       "url": "docs.dashboard.timepicker.api",
+      "fragment": "ngb-timepicker",
       "translations": {
         "en_us": {
           "title": "NgbTimepicker",
@@ -1095,6 +1173,7 @@
     {
       "id": "components.timepicker.api.ngb-timepicker-config",
       "url": "docs.dashboard.timepicker.api",
+      "fragment": "ngb-timepicker-config",
       "translations": {
         "en_us": {
           "title": "NgbTimepickerConfig",
@@ -1109,6 +1188,7 @@
     {
       "id": "components.timepicker.api.ngb-time-adapter",
       "url": "docs.dashboard.timepicker.api",
+      "fragment": "ngb-time-adapter",
       "translations": {
         "en_us": {
           "title": "NgbTimeAdapter<T>",
@@ -1123,6 +1203,7 @@
     {
       "id": "components.timepicker.api.ngb-timepicker-i18n",
       "url": "docs.dashboard.timepicker.api",
+      "fragment": "ngb-timepicker-i18n",
       "translations": {
         "en_us": {
           "title": "NgbTimepickerI18n",
@@ -1137,6 +1218,7 @@
     {
       "id": "components.toast.api.ngb-toast",
       "url": "docs.dashboard.toast.api",
+      "fragment": "ngb-toast",
       "translations": {
         "en_us": {
           "title": "NgbToast",
@@ -1151,6 +1233,7 @@
     {
       "id": "components.toast.api.ngb-toast-header",
       "url": "docs.dashboard.toast.api",
+      "fragment": "ngb-toast-header",
       "translations": {
         "en_us": {
           "title": "NgbToastHeader",
@@ -1165,6 +1248,7 @@
     {
       "id": "components.toast.api.ngb-toast-config",
       "url": "docs.dashboard.toast.api",
+      "fragment": "ngb-toast-config",
       "translations": {
         "en_us": {
           "title": "NgbToastConfig",
@@ -1179,6 +1263,7 @@
     {
       "id": "components.tooltip.api.ngb-tooltip",
       "url": "docs.dashboard.tooltip.api",
+      "fragment": "ngb-tooltip",
       "translations": {
         "en_us": {
           "title": "NgbTooltip",
@@ -1193,6 +1278,7 @@
     {
       "id": "components.tooltip.api.ngb-tooltip-config",
       "url": "docs.dashboard.tooltip.api",
+      "fragment": "ngb-tooltip-config",
       "translations": {
         "en_us": {
           "title": "NgbTooltipConfig",
@@ -1207,6 +1293,7 @@
     {
       "id": "components.typeahead.api.ngb-typeahead",
       "url": "docs.dashboard.typeahead.api",
+      "fragment": "ngb-typeahead",
       "translations": {
         "en_us": {
           "title": "NgbTypeahead",
@@ -1221,6 +1308,7 @@
     {
       "id": "components.typeahead.api.ngb-highlight",
       "url": "docs.dashboard.typeahead.api",
+      "fragment": "ngb-highlight",
       "translations": {
         "en_us": {
           "title": "NgbHighlight",
@@ -1235,6 +1323,7 @@
     {
       "id": "components.typeahead.api.ngb-typeahead-config",
       "url": "docs.dashboard.typeahead.api",
+      "fragment": "ngb-typeahead-config",
       "translations": {
         "en_us": {
           "title": "NgbTypeaheadConfig",
@@ -1243,6 +1332,1926 @@
         "es_mx": {
           "title": "NgbTypeaheadConfig",
           "content": "Referencia del servicio NgbTypeaheadConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTypeaheadConfig, container, undefined, editable, focusFirst, true, selectOnExact, showHint, false, placement, [\"bottom-start\", \"bottom-end\", \"top-start\", \"top-end\"], popperOptions."
+        }
+      }
+    },
+    {
+      "id": "components.accordion.examples.accordion-simple",
+      "url": "docs.dashboard.accordion.examples",
+      "fragment": "accordion-simple",
+      "translations": {
+        "en_us": {
+          "title": "Basic accordion",
+          "content": "Three items with a regular header, a header rendered from a template and a disabled item."
+        },
+        "es_mx": {
+          "title": "Basic accordion",
+          "content": "Ejemplo de accordion: Three items with a regular header, a header rendered from a template and a disabled item."
+        }
+      }
+    },
+    {
+      "id": "components.accordion.examples.one-panel-accordion",
+      "url": "docs.dashboard.accordion.examples",
+      "fragment": "one-panel-accordion",
+      "translations": {
+        "en_us": {
+          "title": "One panel at a time",
+          "content": "Opening an item automatically closes the previously expanded panel."
+        },
+        "es_mx": {
+          "title": "One panel at a time",
+          "content": "Ejemplo de accordion: Opening an item automatically closes the previously expanded panel."
+        }
+      }
+    },
+    {
+      "id": "components.accordion.examples.accordion-toggle-panels",
+      "url": "docs.dashboard.accordion.examples",
+      "fragment": "accordion-toggle-panels",
+      "translations": {
+        "en_us": {
+          "title": "Programmatic controls",
+          "content": "Use the accordion controller to expand, collapse or toggle panels by id."
+        },
+        "es_mx": {
+          "title": "Programmatic controls",
+          "content": "Ejemplo de accordion: Use the accordion controller to expand, collapse or toggle panels by id."
+        }
+      }
+    },
+    {
+      "id": "components.accordion.examples.accordion-custom-header",
+      "url": "docs.dashboard.accordion.examples",
+      "fragment": "accordion-custom-header",
+      "translations": {
+        "en_us": {
+          "title": "Custom headers",
+          "content": "Build richer triggers with Bootstrap utilities while keeping the accordion behavior and accessibility state."
+        },
+        "es_mx": {
+          "title": "Custom headers",
+          "content": "Ejemplo de accordion: Build richer triggers with Bootstrap utilities while keeping the accordion behavior and accessibility state."
+        }
+      }
+    },
+    {
+      "id": "components.accordion.examples.accordion-content",
+      "url": "docs.dashboard.accordion.examples",
+      "fragment": "accordion-content",
+      "translations": {
+        "en_us": {
+          "title": "Preserve panel content",
+          "content": "Keep collapsed content mounted when its local state must survive closing and reopening the panel."
+        },
+        "es_mx": {
+          "title": "Preserve panel content",
+          "content": "Ejemplo de accordion: Keep collapsed content mounted when its local state must survive closing and reopening the panel."
+        }
+      }
+    },
+    {
+      "id": "components.accordion.examples.accordion-global",
+      "url": "docs.dashboard.accordion.examples",
+      "fragment": "accordion-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration",
+          "content": "Change NgbAccordionConfig once to define defaults for accordions that do not provide local values."
+        },
+        "es_mx": {
+          "title": "Global configuration",
+          "content": "Ejemplo de accordion: Change NgbAccordionConfig once to define defaults for accordions that do not provide local values."
+        }
+      }
+    },
+    {
+      "id": "components.alert.examples.simple-alert",
+      "url": "docs.dashboard.alert.examples",
+      "fragment": "simple-alert",
+      "translations": {
+        "en_us": {
+          "title": "Simple alert",
+          "content": "A basic alert with a fixed type and no dismiss button."
+        },
+        "es_mx": {
+          "title": "Simple alert",
+          "content": "Ejemplo de alert: A basic alert with a fixed type and no dismiss button."
+        }
+      }
+    },
+    {
+      "id": "components.alert.examples.alert-closeable",
+      "url": "docs.dashboard.alert.examples",
+      "fragment": "alert-closeable",
+      "translations": {
+        "en_us": {
+          "title": "Closeable alerts",
+          "content": "Four dismissible alerts: two close with animation and two close immediately."
+        },
+        "es_mx": {
+          "title": "Closeable alerts",
+          "content": "Ejemplo de alert: Four dismissible alerts: two close with animation and two close immediately."
+        }
+      }
+    },
+    {
+      "id": "components.alert.examples.self-closing-alert",
+      "url": "docs.dashboard.alert.examples",
+      "fragment": "self-closing-alert",
+      "translations": {
+        "en_us": {
+          "title": "Self-closing alert",
+          "content": "A timeout updates the countdown and closes the alert when it reaches zero."
+        },
+        "es_mx": {
+          "title": "Self-closing alert",
+          "content": "Ejemplo de alert: A timeout updates the countdown and closes the alert when it reaches zero."
+        }
+      }
+    },
+    {
+      "id": "components.alert.examples.alert-custom",
+      "url": "docs.dashboard.alert.examples",
+      "fragment": "alert-custom",
+      "translations": {
+        "en_us": {
+          "title": "Custom alert",
+          "content": "A custom alert type styled through the alert-custom class and Bootstrap variables."
+        },
+        "es_mx": {
+          "title": "Custom alert",
+          "content": "Ejemplo de alert: A custom alert type styled through the alert-custom class and Bootstrap variables."
+        }
+      }
+    },
+    {
+      "id": "components.alert.examples.alert-global",
+      "url": "docs.dashboard.alert.examples",
+      "fragment": "alert-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration",
+          "content": "Change NgbAlertConfig once to define defaults for alerts without local inputs."
+        },
+        "es_mx": {
+          "title": "Global configuration",
+          "content": "Ejemplo de alert: Change NgbAlertConfig once to define defaults for alerts without local inputs."
+        }
+      }
+    },
+    {
+      "id": "components.carousel.examples.carousel-simple",
+      "url": "docs.dashboard.carousel.examples",
+      "fragment": "carousel-simple",
+      "translations": {
+        "en_us": {
+          "title": "Simple carousel",
+          "content": "A carousel using the default options, including navigation arrows and indicators."
+        },
+        "es_mx": {
+          "title": "Simple carousel",
+          "content": "Ejemplo de carousel: A carousel using the default options, including navigation arrows and indicators."
+        }
+      }
+    },
+    {
+      "id": "components.carousel.examples.carousel-keyboard",
+      "url": "docs.dashboard.carousel.examples",
+      "fragment": "carousel-keyboard",
+      "translations": {
+        "en_us": {
+          "title": "Keyboard navigation",
+          "content": "A carousel without visible controls or indicators that moves only with the left and right arrow keys."
+        },
+        "es_mx": {
+          "title": "Keyboard navigation",
+          "content": "Ejemplo de carousel: A carousel without visible controls or indicators that moves only with the left and right arrow keys."
+        }
+      }
+    },
+    {
+      "id": "components.carousel.examples.carousel-controls",
+      "url": "docs.dashboard.carousel.examples",
+      "fragment": "carousel-controls",
+      "translations": {
+        "en_us": {
+          "title": "Pause controls",
+          "content": "Try the native hover and focus options, then compose navigation behavior from slide events."
+        },
+        "es_mx": {
+          "title": "Pause controls",
+          "content": "Ejemplo de carousel: Try the native hover and focus options, then compose navigation behavior from slide events."
+        }
+      }
+    },
+    {
+      "id": "components.carousel.examples.carousel-global",
+      "url": "docs.dashboard.carousel.examples",
+      "fragment": "carousel-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration",
+          "content": "Change NgbCarouselConfig once to define carousel defaults without adding local inputs."
+        },
+        "es_mx": {
+          "title": "Global configuration",
+          "content": "Ejemplo de carousel: Change NgbCarouselConfig once to define carousel defaults without adding local inputs."
+        }
+      }
+    },
+    {
+      "id": "components.collapse.examples.simple-collapse",
+      "url": "docs.dashboard.collapse.examples",
+      "fragment": "simple-collapse",
+      "translations": {
+        "en_us": {
+          "title": "Simple collapse",
+          "content": "Control the same panel by calling toggle() on its controller or by changing the bound collapsed value."
+        },
+        "es_mx": {
+          "title": "Simple collapse",
+          "content": "Ejemplo de collapse: Control the same panel by calling toggle() on its controller or by changing the bound collapsed value."
+        }
+      }
+    },
+    {
+      "id": "components.collapse.examples.horizontal-collapse",
+      "url": "docs.dashboard.collapse.examples",
+      "fragment": "horizontal-collapse",
+      "translations": {
+        "en_us": {
+          "title": "Horizontal collapse",
+          "content": "Set horizontal to true to animate the element\u0027s width instead of its height."
+        },
+        "es_mx": {
+          "title": "Horizontal collapse",
+          "content": "Ejemplo de collapse: Set horizontal to true to animate the element\u0027s width instead of its height."
+        }
+      }
+    },
+    {
+      "id": "components.collapse.examples.navbar-collapse",
+      "url": "docs.dashboard.collapse.examples",
+      "fragment": "navbar-collapse",
+      "translations": {
+        "en_us": {
+          "title": "Responsive navbar",
+          "content": "Combine NgbCollapse with Bootstrap\u0027s navbar classes to provide compact navigation on smaller viewports."
+        },
+        "es_mx": {
+          "title": "Responsive navbar",
+          "content": "Ejemplo de collapse: Combine NgbCollapse with Bootstrap\u0027s navbar classes to provide compact navigation on smaller viewports."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.basic-datepicker",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "basic-datepicker",
+      "translations": {
+        "en_us": {
+          "title": "Basic datepicker",
+          "content": "Bind an NgbDateStruct model to an inline calendar."
+        },
+        "es_mx": {
+          "title": "Basic datepicker",
+          "content": "Ejemplo de datepicker: Bind an NgbDateStruct model to an inline calendar."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.popup-datepicker",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "popup-datepicker",
+      "translations": {
+        "en_us": {
+          "title": "Datepicker in a popup",
+          "content": "Attach the datepicker to an input and control its popup from a compact calendar button."
+        },
+        "es_mx": {
+          "title": "Datepicker in a popup",
+          "content": "Ejemplo de datepicker: Attach the datepicker to an input and control its popup from a compact calendar button."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.multiple-months-datepicker",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "multiple-months-datepicker",
+      "translations": {
+        "en_us": {
+          "title": "Multiple months",
+          "content": "Display two consecutive months while keeping a single date model."
+        },
+        "es_mx": {
+          "title": "Multiple months",
+          "content": "Ejemplo de datepicker: Display two consecutive months while keeping a single date model."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.range-datepicker",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "range-datepicker",
+      "translations": {
+        "en_us": {
+          "title": "Range selection",
+          "content": "Compose a date range from dateSelect and a custom day template with hover feedback."
+        },
+        "es_mx": {
+          "title": "Range selection",
+          "content": "Ejemplo de datepicker: Compose a date range from dateSelect and a custom day template with hover feedback."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.range-popup-datepicker",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "range-popup-datepicker",
+      "translations": {
+        "en_us": {
+          "title": "Range selection in a popup",
+          "content": "Use the same range state and custom day view inside an input datepicker."
+        },
+        "es_mx": {
+          "title": "Range selection in a popup",
+          "content": "Ejemplo de datepicker: Use the same range state and custom day view inside an input datepicker."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.disabled-datepicker",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "disabled-datepicker",
+      "translations": {
+        "en_us": {
+          "title": "Disabled datepicker",
+          "content": "Drive the disabled state through AngularJS ng-disabled."
+        },
+        "es_mx": {
+          "title": "Disabled datepicker",
+          "content": "Ejemplo de datepicker: Drive the disabled state through AngularJS ng-disabled."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.datepicker-custom-adapter",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "datepicker-custom-adapter",
+      "translations": {
+        "en_us": {
+          "title": "Custom date adapter and formatter",
+          "content": "Keep a string application model while presenting and parsing a different input format."
+        },
+        "es_mx": {
+          "title": "Custom date adapter and formatter",
+          "content": "Ejemplo de datepicker: Keep a string application model while presenting and parsing a different input format."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.datepicker-i18n",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "datepicker-i18n",
+      "translations": {
+        "en_us": {
+          "title": "Internationalization of datepickers",
+          "content": "Supply labels and accessible date descriptions per datepicker instance through NgbDatepickerI18n."
+        },
+        "es_mx": {
+          "title": "Internationalization of datepickers",
+          "content": "Ejemplo de datepicker: Supply labels and accessible date descriptions per datepicker instance through NgbDatepickerI18n."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.datepicker-custom-day",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "datepicker-custom-day",
+      "translations": {
+        "en_us": {
+          "title": "Custom day view",
+          "content": "Render weekends, today, selection and focus states with a custom day template."
+        },
+        "es_mx": {
+          "title": "Custom day view",
+          "content": "Ejemplo de datepicker: Render weekends, today, selection and focus states with a custom day template."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.datepicker-custom-month",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "datepicker-custom-month",
+      "translations": {
+        "en_us": {
+          "title": "Custom month layout",
+          "content": "Replace the datepicker content while reusing its public month view and navigation API."
+        },
+        "es_mx": {
+          "title": "Custom month layout",
+          "content": "Ejemplo de datepicker: Replace the datepicker content while reusing its public month view and navigation API."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.datepicker-footer",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "datepicker-footer",
+      "translations": {
+        "en_us": {
+          "title": "Footer template",
+          "content": "Add Today and Clear actions below the calendar with a footer template."
+        },
+        "es_mx": {
+          "title": "Footer template",
+          "content": "Ejemplo de datepicker: Add Today and Clear actions below the calendar with a footer template."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.datepicker-position-target",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "datepicker-position-target",
+      "translations": {
+        "en_us": {
+          "title": "Position target",
+          "content": "Trigger the popup from an input while positioning it against a separate element."
+        },
+        "es_mx": {
+          "title": "Position target",
+          "content": "Ejemplo de datepicker: Trigger the popup from an input while positioning it against a separate element."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.datepicker-keyboard",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "datepicker-keyboard",
+      "translations": {
+        "en_us": {
+          "title": "Custom keyboard navigation",
+          "content": "Add application-specific month navigation keys without removing the built-in keyboard behavior."
+        },
+        "es_mx": {
+          "title": "Custom keyboard navigation",
+          "content": "Ejemplo de datepicker: Add application-specific month navigation keys without removing the built-in keyboard behavior."
+        }
+      }
+    },
+    {
+      "id": "components.datepicker.examples.datepicker-global",
+      "url": "docs.dashboard.datepicker.examples",
+      "fragment": "datepicker-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration of datepickers",
+          "content": "Change defaults for inline and input datepickers through their configuration services."
+        },
+        "es_mx": {
+          "title": "Global configuration of datepickers",
+          "content": "Ejemplo de datepicker: Change defaults for inline and input datepickers through their configuration services."
+        }
+      }
+    },
+    {
+      "id": "components.dropdown.examples.simple-dropdown",
+      "url": "docs.dashboard.dropdown.examples",
+      "fragment": "simple-dropdown",
+      "translations": {
+        "en_us": {
+          "title": "Simple dropdown",
+          "content": "Two basic menus that prefer bottom and top placement respectively."
+        },
+        "es_mx": {
+          "title": "Simple dropdown",
+          "content": "Ejemplo de dropdown: Two basic menus that prefer bottom and top placement respectively."
+        }
+      }
+    },
+    {
+      "id": "components.dropdown.examples.manual-dropdown",
+      "url": "docs.dashboard.dropdown.examples",
+      "fragment": "manual-dropdown",
+      "translations": {
+        "en_us": {
+          "title": "Manual triggers",
+          "content": "Use the dropdown controller to open, close or toggle a menu without a toggle trigger."
+        },
+        "es_mx": {
+          "title": "Manual triggers",
+          "content": "Ejemplo de dropdown: Use the dropdown controller to open, close or toggle a menu without a toggle trigger."
+        }
+      }
+    },
+    {
+      "id": "components.dropdown.examples.dropdown-button-groups",
+      "url": "docs.dashboard.dropdown.examples",
+      "fragment": "dropdown-button-groups",
+      "translations": {
+        "en_us": {
+          "title": "Button groups and split buttons",
+          "content": "Place dropdown toggles inside Bootstrap button groups, including a split action."
+        },
+        "es_mx": {
+          "title": "Button groups and split buttons",
+          "content": "Ejemplo de dropdown: Place dropdown toggles inside Bootstrap button groups, including a split action."
+        }
+      }
+    },
+    {
+      "id": "components.dropdown.examples.dropdown-disabled-items",
+      "url": "docs.dashboard.dropdown.examples",
+      "fragment": "dropdown-disabled-items",
+      "translations": {
+        "en_us": {
+          "title": "Disabled items",
+          "content": "Use ng-disabled to update disabled dropdown items dynamically."
+        },
+        "es_mx": {
+          "title": "Disabled items",
+          "content": "Ejemplo de dropdown: Use ng-disabled to update disabled dropdown items dynamically."
+        }
+      }
+    },
+    {
+      "id": "components.dropdown.examples.dropdown-form",
+      "url": "docs.dashboard.dropdown.examples",
+      "fragment": "dropdown-form",
+      "translations": {
+        "en_us": {
+          "title": "Dropdown form",
+          "content": "Place an AngularJS form inside the menu and keep it open while interacting with its fields."
+        },
+        "es_mx": {
+          "title": "Dropdown form",
+          "content": "Ejemplo de dropdown: Place an AngularJS form inside the menu and keep it open while interacting with its fields."
+        }
+      }
+    },
+    {
+      "id": "components.dropdown.examples.dropdown-body",
+      "url": "docs.dashboard.dropdown.examples",
+      "fragment": "dropdown-body",
+      "translations": {
+        "en_us": {
+          "title": "Body container",
+          "content": "Append the menu to the document body when an ancestor clips overflowing content."
+        },
+        "es_mx": {
+          "title": "Body container",
+          "content": "Ejemplo de dropdown: Append the menu to the document body when an ancestor clips overflowing content."
+        }
+      }
+    },
+    {
+      "id": "components.dropdown.examples.dropdown-navbar",
+      "url": "docs.dashboard.dropdown.examples",
+      "fragment": "dropdown-navbar",
+      "translations": {
+        "en_us": {
+          "title": "Dynamic positioning in a navbar",
+          "content": "Override the navbar\u0027s static default with dynamic Popper positioning."
+        },
+        "es_mx": {
+          "title": "Dynamic positioning in a navbar",
+          "content": "Ejemplo de dropdown: Override the navbar\u0027s static default with dynamic Popper positioning."
+        }
+      }
+    },
+    {
+      "id": "components.dropdown.examples.dropdown-global",
+      "url": "docs.dashboard.dropdown.examples",
+      "fragment": "dropdown-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration",
+          "content": "Change NgbDropdownConfig once to provide shared defaults without local inputs."
+        },
+        "es_mx": {
+          "title": "Global configuration",
+          "content": "Ejemplo de dropdown: Change NgbDropdownConfig once to provide shared defaults without local inputs."
+        }
+      }
+    },
+    {
+      "id": "components.modal.examples.modal-default",
+      "url": "docs.dashboard.modal.examples",
+      "fragment": "modal-default",
+      "translations": {
+        "en_us": {
+          "title": "Modal with default options",
+          "content": "Open a TemplateRef modal without passing local options."
+        },
+        "es_mx": {
+          "title": "Modal with default options",
+          "content": "Ejemplo de modal: Open a TemplateRef modal without passing local options."
+        }
+      }
+    },
+    {
+      "id": "components.modal.examples.modal-component-content",
+      "url": "docs.dashboard.modal.examples",
+      "fragment": "modal-component-content",
+      "translations": {
+        "en_us": {
+          "title": "Components as content",
+          "content": "Open a registered component, pass bindings to it and close or dismiss through NgbActiveModal."
+        },
+        "es_mx": {
+          "title": "Components as content",
+          "content": "Ejemplo de modal: Open a registered component, pass bindings to it and close or dismiss through NgbActiveModal."
+        }
+      }
+    },
+    {
+      "id": "components.modal.examples.modal-focus",
+      "url": "docs.dashboard.modal.examples",
+      "fragment": "modal-focus",
+      "translations": {
+        "en_us": {
+          "title": "Focus management",
+          "content": "Focus the first interactive element automatically or choose another element with ngbAutofocus."
+        },
+        "es_mx": {
+          "title": "Focus management",
+          "content": "Ejemplo de modal: Focus the first interactive element automatically or choose another element with ngbAutofocus."
+        }
+      }
+    },
+    {
+      "id": "components.modal.examples.modal-options",
+      "url": "docs.dashboard.modal.examples",
+      "fragment": "modal-options",
+      "translations": {
+        "en_us": {
+          "title": "Modal with options",
+          "content": "Open modal variants for custom classes, backdrops, sizes, fullscreen, centering and scrollable content."
+        },
+        "es_mx": {
+          "title": "Modal with options",
+          "content": "Ejemplo de modal: Open modal variants for custom classes, backdrops, sizes, fullscreen, centering and scrollable content."
+        }
+      }
+    },
+    {
+      "id": "components.modal.examples.modal-updatable",
+      "url": "docs.dashboard.modal.examples",
+      "fragment": "modal-updatable",
+      "translations": {
+        "en_us": {
+          "title": "Updatable options",
+          "content": "Change ARIA references, layout, size and custom classes after the modal has opened."
+        },
+        "es_mx": {
+          "title": "Updatable options",
+          "content": "Ejemplo de modal: Change ARIA references, layout, size and custom classes after the modal has opened."
+        }
+      }
+    },
+    {
+      "id": "components.modal.examples.modal-stacked",
+      "url": "docs.dashboard.modal.examples",
+      "fragment": "modal-stacked",
+      "translations": {
+        "en_us": {
+          "title": "Stacked modals",
+          "content": "Open multiple modal layers and dismiss the complete stack from the modal service."
+        },
+        "es_mx": {
+          "title": "Stacked modals",
+          "content": "Ejemplo de modal: Open multiple modal layers and dismiss the complete stack from the modal service."
+        }
+      }
+    },
+    {
+      "id": "components.modal.examples.modal-global",
+      "url": "docs.dashboard.modal.examples",
+      "fragment": "modal-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration",
+          "content": "Change NgbModalConfig once to provide defaults for every modal opened in this example."
+        },
+        "es_mx": {
+          "title": "Global configuration",
+          "content": "Ejemplo de modal: Change NgbModalConfig once to provide defaults for every modal opened in this example."
+        }
+      }
+    },
+    {
+      "id": "components.nav.examples.simple-nav",
+      "url": "docs.dashboard.nav.examples",
+      "fragment": "simple-nav",
+      "translations": {
+        "en_us": {
+          "title": "Simple nav",
+          "content": "A basic tabbed nav with three items and an associated content outlet."
+        },
+        "es_mx": {
+          "title": "Simple nav",
+          "content": "Ejemplo de nav: A basic tabbed nav with three items and an associated content outlet."
+        }
+      }
+    },
+    {
+      "id": "components.nav.examples.alternative-nav",
+      "url": "docs.dashboard.nav.examples",
+      "fragment": "alternative-nav",
+      "translations": {
+        "en_us": {
+          "title": "Alternative markup",
+          "content": "Use div elements instead of lists and interchange buttons and anchors as nav links."
+        },
+        "es_mx": {
+          "title": "Alternative markup",
+          "content": "Ejemplo de nav: Use div elements instead of lists and interchange buttons and anchors as nav links."
+        }
+      }
+    },
+    {
+      "id": "components.nav.examples.vertical-nav",
+      "url": "docs.dashboard.nav.examples",
+      "fragment": "vertical-nav",
+      "translations": {
+        "en_us": {
+          "title": "Vertical pills",
+          "content": "Combine vertical orientation with Bootstrap nav pills and a side-by-side outlet."
+        },
+        "es_mx": {
+          "title": "Vertical pills",
+          "content": "Ejemplo de nav: Combine vertical orientation with Bootstrap nav pills and a side-by-side outlet."
+        }
+      }
+    },
+    {
+      "id": "components.nav.examples.selecting-nav",
+      "url": "docs.dashboard.nav.examples",
+      "fragment": "selecting-nav",
+      "translations": {
+        "en_us": {
+          "title": "Selecting navs",
+          "content": "Select any nav item programmatically through the NgbNav controller."
+        },
+        "es_mx": {
+          "title": "Selecting navs",
+          "content": "Ejemplo de nav: Select any nav item programmatically through the NgbNav controller."
+        }
+      }
+    },
+    {
+      "id": "components.nav.examples.keep-content-nav",
+      "url": "docs.dashboard.nav.examples",
+      "fragment": "keep-content-nav",
+      "translations": {
+        "en_us": {
+          "title": "Keep content",
+          "content": "Disable content destruction so form state remains in the DOM while another tab is active."
+        },
+        "es_mx": {
+          "title": "Keep content",
+          "content": "Ejemplo de nav: Disable content destruction so form state remains in the DOM while another tab is active."
+        }
+      }
+    },
+    {
+      "id": "components.nav.examples.dynamic-nav",
+      "url": "docs.dashboard.nav.examples",
+      "fragment": "dynamic-nav",
+      "translations": {
+        "en_us": {
+          "title": "Dynamic navs",
+          "content": "Add new tabs at runtime and safely remove the currently active item."
+        },
+        "es_mx": {
+          "title": "Dynamic navs",
+          "content": "Ejemplo de nav: Add new tabs at runtime and safely remove the currently active item."
+        }
+      }
+    },
+    {
+      "id": "components.nav.examples.custom-nav",
+      "url": "docs.dashboard.nav.examples",
+      "fragment": "custom-nav",
+      "translations": {
+        "en_us": {
+          "title": "Custom style",
+          "content": "Build a distinct nav appearance with a small custom class layered over NgbJS behavior."
+        },
+        "es_mx": {
+          "title": "Custom style",
+          "content": "Ejemplo de nav: Build a distinct nav appearance with a small custom class layered over NgbJS behavior."
+        }
+      }
+    },
+    {
+      "id": "components.nav.examples.nav-global",
+      "url": "docs.dashboard.nav.examples",
+      "fragment": "nav-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration",
+          "content": "Change NgbNavConfig once to provide orientation, keyboard and content defaults."
+        },
+        "es_mx": {
+          "title": "Global configuration",
+          "content": "Ejemplo de nav: Change NgbNavConfig once to provide orientation, keyboard and content defaults."
+        }
+      }
+    },
+    {
+      "id": "components.offcanvas.examples.offcanvas-default",
+      "url": "docs.dashboard.offcanvas.examples",
+      "fragment": "offcanvas-default",
+      "translations": {
+        "en_us": {
+          "title": "Offcanvas with default options",
+          "content": "Open a TemplateRef panel without passing local options."
+        },
+        "es_mx": {
+          "title": "Offcanvas with default options",
+          "content": "Ejemplo de offcanvas: Open a TemplateRef panel without passing local options."
+        }
+      }
+    },
+    {
+      "id": "components.offcanvas.examples.offcanvas-component-content",
+      "url": "docs.dashboard.offcanvas.examples",
+      "fragment": "offcanvas-component-content",
+      "translations": {
+        "en_us": {
+          "title": "Components as content",
+          "content": "Open a registered component and close or dismiss it through NgbActiveOffcanvas."
+        },
+        "es_mx": {
+          "title": "Components as content",
+          "content": "Ejemplo de offcanvas: Open a registered component and close or dismiss it through NgbActiveOffcanvas."
+        }
+      }
+    },
+    {
+      "id": "components.offcanvas.examples.offcanvas-focus",
+      "url": "docs.dashboard.offcanvas.examples",
+      "fragment": "offcanvas-focus",
+      "translations": {
+        "en_us": {
+          "title": "Focus management",
+          "content": "Focus the first interactive element automatically or choose another element with ngbAutofocus."
+        },
+        "es_mx": {
+          "title": "Focus management",
+          "content": "Ejemplo de offcanvas: Focus the first interactive element automatically or choose another element with ngbAutofocus."
+        }
+      }
+    },
+    {
+      "id": "components.offcanvas.examples.offcanvas-options",
+      "url": "docs.dashboard.offcanvas.examples",
+      "fragment": "offcanvas-options",
+      "translations": {
+        "en_us": {
+          "title": "Offcanvas with options",
+          "content": "Try custom classes, a static backdrop, every panel position and body scrolling."
+        },
+        "es_mx": {
+          "title": "Offcanvas with options",
+          "content": "Ejemplo de offcanvas: Try custom classes, a static backdrop, every panel position and body scrolling."
+        }
+      }
+    },
+    {
+      "id": "components.offcanvas.examples.offcanvas-global",
+      "url": "docs.dashboard.offcanvas.examples",
+      "fragment": "offcanvas-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration",
+          "content": "Change NgbOffcanvasConfig once to provide shared defaults when opening a panel."
+        },
+        "es_mx": {
+          "title": "Global configuration",
+          "content": "Ejemplo de offcanvas: Change NgbOffcanvasConfig once to provide shared defaults when opening a panel."
+        }
+      }
+    },
+    {
+      "id": "components.pagination.examples.basic-pagination",
+      "url": "docs.dashboard.pagination.examples",
+      "fragment": "basic-pagination",
+      "translations": {
+        "en_us": {
+          "title": "Basic pagination",
+          "content": "Navigate a collection with the default pagination options."
+        },
+        "es_mx": {
+          "title": "Basic pagination",
+          "content": "Ejemplo de pagination: Navigate a collection with the default pagination options."
+        }
+      }
+    },
+    {
+      "id": "components.pagination.examples.advanced-pagination",
+      "url": "docs.dashboard.pagination.examples",
+      "fragment": "advanced-pagination",
+      "translations": {
+        "en_us": {
+          "title": "Advanced pagination",
+          "content": "Limit visible pages, rotate the range and control boundary links and ellipses."
+        },
+        "es_mx": {
+          "title": "Advanced pagination",
+          "content": "Ejemplo de pagination: Limit visible pages, rotate the range and control boundary links and ellipses."
+        }
+      }
+    },
+    {
+      "id": "components.pagination.examples.custom-pagination",
+      "url": "docs.dashboard.pagination.examples",
+      "fragment": "custom-pagination",
+      "translations": {
+        "en_us": {
+          "title": "Custom links and pages",
+          "content": "Replace the previous, next and page-number content with ng-template."
+        },
+        "es_mx": {
+          "title": "Custom links and pages",
+          "content": "Ejemplo de pagination: Replace the previous, next and page-number content with ng-template."
+        }
+      }
+    },
+    {
+      "id": "components.pagination.examples.pagination-size",
+      "url": "docs.dashboard.pagination.examples",
+      "fragment": "pagination-size",
+      "translations": {
+        "en_us": {
+          "title": "Pagination size",
+          "content": "Use Bootstrap small, default and large pagination sizes."
+        },
+        "es_mx": {
+          "title": "Pagination size",
+          "content": "Ejemplo de pagination: Use Bootstrap small, default and large pagination sizes."
+        }
+      }
+    },
+    {
+      "id": "components.pagination.examples.pagination-alignment",
+      "url": "docs.dashboard.pagination.examples",
+      "fragment": "pagination-alignment",
+      "translations": {
+        "en_us": {
+          "title": "Pagination alignment",
+          "content": "Align pagination at the start, center or end using Bootstrap flex utilities."
+        },
+        "es_mx": {
+          "title": "Pagination alignment",
+          "content": "Ejemplo de pagination: Align pagination at the start, center or end using Bootstrap flex utilities."
+        }
+      }
+    },
+    {
+      "id": "components.pagination.examples.disabled-pagination",
+      "url": "docs.dashboard.pagination.examples",
+      "fragment": "disabled-pagination",
+      "translations": {
+        "en_us": {
+          "title": "Disabled pagination",
+          "content": "Disable every pagination action through the ng-disabled directive."
+        },
+        "es_mx": {
+          "title": "Disabled pagination",
+          "content": "Ejemplo de pagination: Disable every pagination action through the ng-disabled directive."
+        }
+      }
+    },
+    {
+      "id": "components.pagination.examples.pagination-global",
+      "url": "docs.dashboard.pagination.examples",
+      "fragment": "pagination-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration",
+          "content": "Change NgbPaginationConfig once to provide shared pagination defaults."
+        },
+        "es_mx": {
+          "title": "Global configuration",
+          "content": "Ejemplo de pagination: Change NgbPaginationConfig once to provide shared pagination defaults."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-placements",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-placements",
+      "translations": {
+        "en_us": {
+          "title": "Quick and easy popovers",
+          "content": "Place a popover above, to the right, below or to the left of its trigger."
+        },
+        "es_mx": {
+          "title": "Quick and easy popovers",
+          "content": "Ejemplo de popover: Place a popover above, to the right, below or to the left of its trigger."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-template",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-template",
+      "translations": {
+        "en_us": {
+          "title": "HTML and bindings in popovers",
+          "content": "Use ng-template for rich title and body content with live AngularJS bindings."
+        },
+        "es_mx": {
+          "title": "HTML and bindings in popovers",
+          "content": "Ejemplo de popover: Use ng-template for rich title and body content with live AngularJS bindings."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-triggers",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-triggers",
+      "translations": {
+        "en_us": {
+          "title": "Custom and manual triggers",
+          "content": "Pair custom DOM events or take manual control with two buttons."
+        },
+        "es_mx": {
+          "title": "Custom and manual triggers",
+          "content": "Ejemplo de popover: Pair custom DOM events or take manual control with two buttons."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-manual-control",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-manual-control",
+      "translations": {
+        "en_us": {
+          "title": "External manual controls",
+          "content": "Open, close and toggle a target popover from independent controls."
+        },
+        "es_mx": {
+          "title": "External manual controls",
+          "content": "Ejemplo de popover: Open, close and toggle a target popover from independent controls."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-autoclose",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-autoclose",
+      "translations": {
+        "en_us": {
+          "title": "Automatic closing with keyboard and mouse",
+          "content": "Close on inside clicks, outside clicks, every click or the Escape key."
+        },
+        "es_mx": {
+          "title": "Automatic closing with keyboard and mouse",
+          "content": "Ejemplo de popover: Close on inside clicks, outside clicks, every click or the Escape key."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-context",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-context",
+      "translations": {
+        "en_us": {
+          "title": "Context and manual triggers",
+          "content": "Supply template context while opening manually or through popover-context."
+        },
+        "es_mx": {
+          "title": "Context and manual triggers",
+          "content": "Ejemplo de popover: Supply template context while opening manually or through popover-context."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-custom-target",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-custom-target",
+      "translations": {
+        "en_us": {
+          "title": "Custom target",
+          "content": "Trigger a popover from one element while positioning it against another."
+        },
+        "es_mx": {
+          "title": "Custom target",
+          "content": "Ejemplo de popover: Trigger a popover from one element while positioning it against another."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-delays",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-delays",
+      "translations": {
+        "en_us": {
+          "title": "Open and close delays",
+          "content": "Delay hover opening and keep content available while the pointer moves into it."
+        },
+        "es_mx": {
+          "title": "Open and close delays",
+          "content": "Ejemplo de popover: Delay hover opening and keep content available while the pointer moves into it."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-events",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-events",
+      "translations": {
+        "en_us": {
+          "title": "Popover visibility events",
+          "content": "Observe shown and hidden callbacks and record when each transition completes."
+        },
+        "es_mx": {
+          "title": "Popover visibility events",
+          "content": "Ejemplo de popover: Observe shown and hidden callbacks and record when each transition completes."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-body",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-body",
+      "translations": {
+        "en_us": {
+          "title": "Append popover in the body",
+          "content": "Escape clipping containers by appending the popover window to document.body."
+        },
+        "es_mx": {
+          "title": "Append popover in the body",
+          "content": "Ejemplo de popover: Escape clipping containers by appending the popover window to document.body."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-custom-class",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-custom-class",
+      "translations": {
+        "en_us": {
+          "title": "Popover with custom class",
+          "content": "Layer a focused visual treatment over Bootstrap popover variables."
+        },
+        "es_mx": {
+          "title": "Popover with custom class",
+          "content": "Ejemplo de popover: Layer a focused visual treatment over Bootstrap popover variables."
+        }
+      }
+    },
+    {
+      "id": "components.popover.examples.popover-global",
+      "url": "docs.dashboard.popover.examples",
+      "fragment": "popover-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration of popovers",
+          "content": "Change NgbPopoverConfig once to provide shared trigger, placement, delay and container defaults."
+        },
+        "es_mx": {
+          "title": "Global configuration of popovers",
+          "content": "Ejemplo de popover: Change NgbPopoverConfig once to provide shared trigger, placement, delay and container defaults."
+        }
+      }
+    },
+    {
+      "id": "components.progressbar.examples.simple-progressbar",
+      "url": "docs.dashboard.progressbar.examples",
+      "fragment": "simple-progressbar",
+      "translations": {
+        "en_us": {
+          "title": "Simple progress bars",
+          "content": "Display simple values using Bootstrap contextual types."
+        },
+        "es_mx": {
+          "title": "Simple progress bars",
+          "content": "Ejemplo de progressbar: Display simple values using Bootstrap contextual types."
+        }
+      }
+    },
+    {
+      "id": "components.progressbar.examples.contextual-text-progressbar",
+      "url": "docs.dashboard.progressbar.examples",
+      "fragment": "contextual-text-progressbar",
+      "translations": {
+        "en_us": {
+          "title": "Contextual text progress bars",
+          "content": "Show the calculated percentage and choose a contextual foreground color."
+        },
+        "es_mx": {
+          "title": "Contextual text progress bars",
+          "content": "Ejemplo de progressbar: Show the calculated percentage and choose a contextual foreground color."
+        }
+      }
+    },
+    {
+      "id": "components.progressbar.examples.striped-progress-bar",
+      "url": "docs.dashboard.progressbar.examples",
+      "fragment": "striped-progress-bar",
+      "translations": {
+        "en_us": {
+          "title": "Striped progress bars",
+          "content": "Apply striped styling to contextual variants and optionally animate the stripes."
+        },
+        "es_mx": {
+          "title": "Striped progress bars",
+          "content": "Ejemplo de progressbar: Apply striped styling to contextual variants and optionally animate the stripes."
+        }
+      }
+    },
+    {
+      "id": "components.progressbar.examples.custom-labels-progressbar",
+      "url": "docs.dashboard.progressbar.examples",
+      "fragment": "custom-labels-progressbar",
+      "translations": {
+        "en_us": {
+          "title": "Custom labels",
+          "content": "Project arbitrary HTML labels inside each progress bar."
+        },
+        "es_mx": {
+          "title": "Custom labels",
+          "content": "Ejemplo de progressbar: Project arbitrary HTML labels inside each progress bar."
+        }
+      }
+    },
+    {
+      "id": "components.progressbar.examples.progress-height",
+      "url": "docs.dashboard.progressbar.examples",
+      "fragment": "progress-height",
+      "translations": {
+        "en_us": {
+          "title": "Progress height",
+          "content": "Set the progress container height through the height input."
+        },
+        "es_mx": {
+          "title": "Progress height",
+          "content": "Ejemplo de progressbar: Set the progress container height through the height input."
+        }
+      }
+    },
+    {
+      "id": "components.progressbar.examples.progress-bars-stacked",
+      "url": "docs.dashboard.progressbar.examples",
+      "fragment": "progress-bars-stacked",
+      "translations": {
+        "en_us": {
+          "title": "Stacked progress bars",
+          "content": "Combine multiple contextual segments inside NgbProgressbarStacked."
+        },
+        "es_mx": {
+          "title": "Stacked progress bars",
+          "content": "Ejemplo de progressbar: Combine multiple contextual segments inside NgbProgressbarStacked."
+        }
+      }
+    },
+    {
+      "id": "components.progressbar.examples.progressbar-global",
+      "url": "docs.dashboard.progressbar.examples",
+      "fragment": "progressbar-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration",
+          "content": "Change NgbProgressbarConfig once to provide shared visual and value defaults."
+        },
+        "es_mx": {
+          "title": "Global configuration",
+          "content": "Ejemplo de progressbar: Change NgbProgressbarConfig once to provide shared visual and value defaults."
+        }
+      }
+    },
+    {
+      "id": "components.rating.examples.basic-rating",
+      "url": "docs.dashboard.rating.examples",
+      "fragment": "basic-rating",
+      "translations": {
+        "en_us": {
+          "title": "Basic demo",
+          "content": "Select a rating and synchronize its value through rate-change."
+        },
+        "es_mx": {
+          "title": "Basic demo",
+          "content": "Ejemplo de rating: Select a rating and synchronize its value through rate-change."
+        }
+      }
+    },
+    {
+      "id": "components.rating.examples.rating-events",
+      "url": "docs.dashboard.rating.examples",
+      "fragment": "rating-events",
+      "translations": {
+        "en_us": {
+          "title": "Events and readonly ratings",
+          "content": "Observe hover and leave events and switch the same rating between editable and read-only states."
+        },
+        "es_mx": {
+          "title": "Events and readonly ratings",
+          "content": "Ejemplo de rating: Observe hover and leave events and switch the same rating between editable and read-only states."
+        }
+      }
+    },
+    {
+      "id": "components.rating.examples.rating-custom-template",
+      "url": "docs.dashboard.rating.examples",
+      "fragment": "rating-custom-template",
+      "translations": {
+        "en_us": {
+          "title": "Custom star template",
+          "content": "Replace the default characters with a child ng-template using Bootstrap Icons."
+        },
+        "es_mx": {
+          "title": "Custom star template",
+          "content": "Ejemplo de rating: Replace the default characters with a child ng-template using Bootstrap Icons."
+        }
+      }
+    },
+    {
+      "id": "components.rating.examples.rating-decimal",
+      "url": "docs.dashboard.rating.examples",
+      "fragment": "rating-decimal",
+      "translations": {
+        "en_us": {
+          "title": "Custom decimal rating",
+          "content": "Render fractional heart fills through star-template and provide accessible value text."
+        },
+        "es_mx": {
+          "title": "Custom decimal rating",
+          "content": "Ejemplo de rating: Render fractional heart fills through star-template and provide accessible value text."
+        }
+      }
+    },
+    {
+      "id": "components.rating.examples.rating-form",
+      "url": "docs.dashboard.rating.examples",
+      "fragment": "rating-form",
+      "translations": {
+        "en_us": {
+          "title": "Form integration",
+          "content": "Synchronize rate and rate-change with an AngularJS form model while direct ng-model support remains pending."
+        },
+        "es_mx": {
+          "title": "Form integration",
+          "content": "Ejemplo de rating: Synchronize rate and rate-change with an AngularJS form model while direct ng-model support remains pending."
+        }
+      }
+    },
+    {
+      "id": "components.rating.examples.rating-global",
+      "url": "docs.dashboard.rating.examples",
+      "fragment": "rating-global",
+      "translations": {
+        "en_us": {
+          "title": "Customized default values",
+          "content": "Change NgbRatingConfig once to provide shared maximum, read-only and tabindex defaults."
+        },
+        "es_mx": {
+          "title": "Customized default values",
+          "content": "Ejemplo de rating: Change NgbRatingConfig once to provide shared maximum, read-only and tabindex defaults."
+        }
+      }
+    },
+    {
+      "id": "components.scrollspy.examples.basic-scrollspy",
+      "url": "docs.dashboard.scrollspy.examples",
+      "fragment": "basic-scrollspy",
+      "translations": {
+        "en_us": {
+          "title": "Basic",
+          "content": "Observe fragments inside an independent scroll container and read the currently active id."
+        },
+        "es_mx": {
+          "title": "Basic",
+          "content": "Ejemplo de scrollspy: Observe fragments inside an independent scroll container and read the currently active id."
+        }
+      }
+    },
+    {
+      "id": "components.scrollspy.examples.scrollspy-menu-items",
+      "url": "docs.dashboard.scrollspy.examples",
+      "fragment": "scrollspy-menu-items",
+      "translations": {
+        "en_us": {
+          "title": "Menu items",
+          "content": "Connect Bootstrap list-group items to a scrollspy instance outside the observed container."
+        },
+        "es_mx": {
+          "title": "Menu items",
+          "content": "Ejemplo de scrollspy: Connect Bootstrap list-group items to a scrollspy instance outside the observed container."
+        }
+      }
+    },
+    {
+      "id": "components.scrollspy.examples.nested-scrollspy",
+      "url": "docs.dashboard.scrollspy.examples",
+      "fragment": "nested-scrollspy",
+      "translations": {
+        "en_us": {
+          "title": "Nested items",
+          "content": "Group child fragments under parent menu items and keep both levels synchronized."
+        },
+        "es_mx": {
+          "title": "Nested items",
+          "content": "Ejemplo de scrollspy: Group child fragments under parent menu items and keep both levels synchronized."
+        }
+      }
+    },
+    {
+      "id": "components.scrollspy.examples.navbar-scrollspy",
+      "url": "docs.dashboard.scrollspy.examples",
+      "fragment": "navbar-scrollspy",
+      "translations": {
+        "en_us": {
+          "title": "Navbar",
+          "content": "Use a Bootstrap navbar as an external menu for a separate scroll container."
+        },
+        "es_mx": {
+          "title": "Navbar",
+          "content": "Ejemplo de scrollspy: Use a Bootstrap navbar as an external menu for a separate scroll container."
+        }
+      }
+    },
+    {
+      "id": "components.scrollspy.examples.scrollspy-service",
+      "url": "docs.dashboard.scrollspy.examples",
+      "fragment": "scrollspy-service",
+      "translations": {
+        "en_us": {
+          "title": "Using the service",
+          "content": "Start, stop and control observation programmatically with NgbScrollSpyService and ordinary DOM fragments."
+        },
+        "es_mx": {
+          "title": "Using the service",
+          "content": "Ejemplo de scrollspy: Start, stop and control observation programmatically with NgbScrollSpyService and ordinary DOM fragments."
+        }
+      }
+    },
+    {
+      "id": "components.timepicker.examples.basic-timepicker",
+      "url": "docs.dashboard.timepicker.examples",
+      "fragment": "basic-timepicker",
+      "translations": {
+        "en_us": {
+          "title": "Basic timepicker",
+          "content": "Bind an NgbTimeStruct model to the default timepicker."
+        },
+        "es_mx": {
+          "title": "Basic timepicker",
+          "content": "Ejemplo de timepicker: Bind an NgbTimeStruct model to the default timepicker."
+        }
+      }
+    },
+    {
+      "id": "components.timepicker.examples.meridian-timepicker",
+      "url": "docs.dashboard.timepicker.examples",
+      "fragment": "meridian-timepicker",
+      "translations": {
+        "en_us": {
+          "title": "Meridian",
+          "content": "Switch between 24-hour and 12-hour input with a localized period selector."
+        },
+        "es_mx": {
+          "title": "Meridian",
+          "content": "Ejemplo de timepicker: Switch between 24-hour and 12-hour input with a localized period selector."
+        }
+      }
+    },
+    {
+      "id": "components.timepicker.examples.seconds-timepicker",
+      "url": "docs.dashboard.timepicker.examples",
+      "fragment": "seconds-timepicker",
+      "translations": {
+        "en_us": {
+          "title": "Seconds",
+          "content": "Show or hide the seconds field while preserving the same time model."
+        },
+        "es_mx": {
+          "title": "Seconds",
+          "content": "Ejemplo de timepicker: Show or hide the seconds field while preserving the same time model."
+        }
+      }
+    },
+    {
+      "id": "components.timepicker.examples.spinners-timepicker",
+      "url": "docs.dashboard.timepicker.examples",
+      "fragment": "spinners-timepicker",
+      "translations": {
+        "en_us": {
+          "title": "Spinners",
+          "content": "Toggle the increment and decrement controls without disabling keyboard input."
+        },
+        "es_mx": {
+          "title": "Spinners",
+          "content": "Ejemplo de timepicker: Toggle the increment and decrement controls without disabling keyboard input."
+        }
+      }
+    },
+    {
+      "id": "components.timepicker.examples.timepicker-custom-steps",
+      "url": "docs.dashboard.timepicker.examples",
+      "fragment": "timepicker-custom-steps",
+      "translations": {
+        "en_us": {
+          "title": "Custom steps",
+          "content": "Configure independent increments for hours, minutes and seconds."
+        },
+        "es_mx": {
+          "title": "Custom steps",
+          "content": "Ejemplo de timepicker: Configure independent increments for hours, minutes and seconds."
+        }
+      }
+    },
+    {
+      "id": "components.timepicker.examples.timepicker-validation",
+      "url": "docs.dashboard.timepicker.examples",
+      "fragment": "timepicker-validation",
+      "translations": {
+        "en_us": {
+          "title": "Custom validation",
+          "content": "Add an AngularJS ngModel validator that only accepts times between 12:00 and 13:59."
+        },
+        "es_mx": {
+          "title": "Custom validation",
+          "content": "Ejemplo de timepicker: Add an AngularJS ngModel validator that only accepts times between 12:00 and 13:59."
+        }
+      }
+    },
+    {
+      "id": "components.timepicker.examples.timepicker-custom-adapter",
+      "url": "docs.dashboard.timepicker.examples",
+      "fragment": "timepicker-custom-adapter",
+      "translations": {
+        "en_us": {
+          "title": "Custom time adapter",
+          "content": "Implement NgbTimeAdapter to convert between NgbTimeStruct and an application-level HH:mm:ss string. Adapter providers are application-wide in AngularJS."
+        },
+        "es_mx": {
+          "title": "Custom time adapter",
+          "content": "Ejemplo de timepicker: Implement NgbTimeAdapter to convert between NgbTimeStruct and an application-level HH:mm:ss string. Adapter providers are application-wide in AngularJS."
+        }
+      }
+    },
+    {
+      "id": "components.timepicker.examples.timepicker-i18n",
+      "url": "docs.dashboard.timepicker.examples",
+      "fragment": "timepicker-i18n",
+      "translations": {
+        "en_us": {
+          "title": "Internationalization",
+          "content": "Replace NgbTimepickerI18n application-wide to supply custom Greek morning and afternoon labels."
+        },
+        "es_mx": {
+          "title": "Internationalization",
+          "content": "Ejemplo de timepicker: Replace NgbTimepickerI18n application-wide to supply custom Greek morning and afternoon labels."
+        }
+      }
+    },
+    {
+      "id": "components.toast.examples.inline-toast",
+      "url": "docs.dashboard.toast.examples",
+      "fragment": "inline-toast",
+      "translations": {
+        "en_us": {
+          "title": "Declarative inline usage",
+          "content": "Render static body-only and text-header toasts directly in the page."
+        },
+        "es_mx": {
+          "title": "Declarative inline usage",
+          "content": "Ejemplo de toast: Render static body-only and text-header toasts directly in the page."
+        }
+      }
+    },
+    {
+      "id": "components.toast.examples.template-header-toast",
+      "url": "docs.dashboard.toast.examples",
+      "fragment": "template-header-toast",
+      "translations": {
+        "en_us": {
+          "title": "Using a Template as header",
+          "content": "Project an ng-template to build a richer header with custom markup."
+        },
+        "es_mx": {
+          "title": "Using a Template as header",
+          "content": "Ejemplo de toast: Project an ng-template to build a richer header with custom markup."
+        }
+      }
+    },
+    {
+      "id": "components.toast.examples.closeable-toast",
+      "url": "docs.dashboard.toast.examples",
+      "fragment": "closeable-toast",
+      "translations": {
+        "en_us": {
+          "title": "Closeable toast",
+          "content": "Handle hidden to remove the toast and recreate it after a short delay."
+        },
+        "es_mx": {
+          "title": "Closeable toast",
+          "content": "Ejemplo de toast: Handle hidden to remove the toast and recreate it after a short delay."
+        }
+      }
+    },
+    {
+      "id": "components.toast.examples.prevent-autohide-toast",
+      "url": "docs.dashboard.toast.examples",
+      "fragment": "prevent-autohide-toast",
+      "translations": {
+        "en_us": {
+          "title": "Prevent autohide on mouseover",
+          "content": "Pause the autohide timer while the pointer remains over the toast and restart it on mouseleave."
+        },
+        "es_mx": {
+          "title": "Prevent autohide on mouseover",
+          "content": "Ejemplo de toast: Pause the autohide timer while the pointer remains over the toast and restart it on mouseleave."
+        }
+      }
+    },
+    {
+      "id": "components.toast.examples.toast-management",
+      "url": "docs.dashboard.toast.examples",
+      "fragment": "toast-management",
+      "translations": {
+        "en_us": {
+          "title": "Toast management service",
+          "content": "Create, remove and clear multiple notifications through a reusable AngularJS service."
+        },
+        "es_mx": {
+          "title": "Toast management service",
+          "content": "Ejemplo de toast: Create, remove and clear multiple notifications through a reusable AngularJS service."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-placements",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-placements",
+      "translations": {
+        "en_us": {
+          "title": "Quick and easy tooltips",
+          "content": "Use the four primary Bootstrap placements with the default hover and focus triggers."
+        },
+        "es_mx": {
+          "title": "Quick and easy tooltips",
+          "content": "Ejemplo de tooltip: Use the four primary Bootstrap placements with the default hover and focus triggers."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-template",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-template",
+      "translations": {
+        "en_us": {
+          "title": "HTML and bindings in tooltips",
+          "content": "Render an ng-template as tooltip content and keep its bindings synchronized."
+        },
+        "es_mx": {
+          "title": "HTML and bindings in tooltips",
+          "content": "Ejemplo de tooltip: Render an ng-template as tooltip content and keep its bindings synchronized."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-triggers",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-triggers",
+      "translations": {
+        "en_us": {
+          "title": "Custom and manual triggers",
+          "content": "Pair custom DOM events or control a tooltip directly through its public controller."
+        },
+        "es_mx": {
+          "title": "Custom and manual triggers",
+          "content": "Ejemplo de tooltip: Pair custom DOM events or control a tooltip directly through its public controller."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-autoclose",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-autoclose",
+      "translations": {
+        "en_us": {
+          "title": "Automatic closing with keyboard and mouse",
+          "content": "Compare inside, outside and all-click closing while preserving Escape keyboard support."
+        },
+        "es_mx": {
+          "title": "Automatic closing with keyboard and mouse",
+          "content": "Ejemplo de tooltip: Compare inside, outside and all-click closing while preserving Escape keyboard support."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-context",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-context",
+      "translations": {
+        "en_us": {
+          "title": "Context and manual triggers",
+          "content": "Pass template context at open time or provide a default tooltip-context."
+        },
+        "es_mx": {
+          "title": "Context and manual triggers",
+          "content": "Ejemplo de tooltip: Pass template context at open time or provide a default tooltip-context."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-custom-target",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-custom-target",
+      "translations": {
+        "en_us": {
+          "title": "Custom target",
+          "content": "Trigger the tooltip from one element while positioning it against another."
+        },
+        "es_mx": {
+          "title": "Custom target",
+          "content": "Ejemplo de tooltip: Trigger the tooltip from one element while positioning it against another."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-delays",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-delays",
+      "translations": {
+        "en_us": {
+          "title": "Open and close delays",
+          "content": "Delay opening and closing while allowing the pointer to move safely into the tooltip."
+        },
+        "es_mx": {
+          "title": "Open and close delays",
+          "content": "Ejemplo de tooltip: Delay opening and closing while allowing the pointer to move safely into the tooltip."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-body",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-body",
+      "translations": {
+        "en_us": {
+          "title": "Append tooltip in the body",
+          "content": "Escape a clipping container by appending the tooltip window directly to document.body."
+        },
+        "es_mx": {
+          "title": "Append tooltip in the body",
+          "content": "Ejemplo de tooltip: Escape a clipping container by appending the tooltip window directly to document.body."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-custom-class",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-custom-class",
+      "translations": {
+        "en_us": {
+          "title": "Tooltip with custom class",
+          "content": "Apply a small custom theme through Bootstrap tooltip variables."
+        },
+        "es_mx": {
+          "title": "Tooltip with custom class",
+          "content": "Ejemplo de tooltip: Apply a small custom theme through Bootstrap tooltip variables."
+        }
+      }
+    },
+    {
+      "id": "components.tooltip.examples.tooltip-global",
+      "url": "docs.dashboard.tooltip.examples",
+      "fragment": "tooltip-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration of tooltips",
+          "content": "Set shared container, placement, trigger and delay defaults through NgbTooltipConfig."
+        },
+        "es_mx": {
+          "title": "Global configuration of tooltips",
+          "content": "Ejemplo de tooltip: Set shared container, placement, trigger and delay defaults through NgbTooltipConfig."
+        }
+      }
+    },
+    {
+      "id": "components.typeahead.examples.simple-typeahead",
+      "url": "docs.dashboard.typeahead.examples",
+      "fragment": "simple-typeahead",
+      "translations": {
+        "en_us": {
+          "title": "Simple Typeahead",
+          "content": "Debounce a local string search, require two characters and limit the result set."
+        },
+        "es_mx": {
+          "title": "Simple Typeahead",
+          "content": "Ejemplo de typeahead: Debounce a local string search, require two characters and limit the result set."
+        }
+      }
+    },
+    {
+      "id": "components.typeahead.examples.focus-typeahead",
+      "url": "docs.dashboard.typeahead.examples",
+      "fragment": "focus-typeahead",
+      "translations": {
+        "en_us": {
+          "title": "Open on focus",
+          "content": "Merge an explicit focus stream with user input so an empty field can display suggestions immediately."
+        },
+        "es_mx": {
+          "title": "Open on focus",
+          "content": "Ejemplo de typeahead: Merge an explicit focus stream with user input so an empty field can display suggestions immediately."
+        }
+      }
+    },
+    {
+      "id": "components.typeahead.examples.formatted-typeahead",
+      "url": "docs.dashboard.typeahead.examples",
+      "fragment": "formatted-typeahead",
+      "translations": {
+        "en_us": {
+          "title": "Formatted results",
+          "content": "Transform result labels without changing the selected model value."
+        },
+        "es_mx": {
+          "title": "Formatted results",
+          "content": "Ejemplo de typeahead: Transform result labels without changing the selected model value."
+        }
+      }
+    },
+    {
+      "id": "components.typeahead.examples.exact-typeahead",
+      "url": "docs.dashboard.typeahead.examples",
+      "fragment": "exact-typeahead",
+      "translations": {
+        "en_us": {
+          "title": "Select on exact",
+          "content": "Select an object automatically when its formatted label is the only exact match."
+        },
+        "es_mx": {
+          "title": "Select on exact",
+          "content": "Ejemplo de typeahead: Select an object automatically when its formatted label is the only exact match."
+        }
+      }
+    },
+    {
+      "id": "components.typeahead.examples.wikipedia-typeahead",
+      "url": "docs.dashboard.typeahead.examples",
+      "fragment": "wikipedia-typeahead",
+      "translations": {
+        "en_us": {
+          "title": "Wikipedia search",
+          "content": "Retrieve remote suggestions through AngularJS $http with debounce, stale-response switching and error feedback."
+        },
+        "es_mx": {
+          "title": "Wikipedia search",
+          "content": "Ejemplo de typeahead: Retrieve remote suggestions through AngularJS $http with debounce, stale-response switching and error feedback."
+        }
+      }
+    },
+    {
+      "id": "components.typeahead.examples.template-results-typeahead",
+      "url": "docs.dashboard.typeahead.examples",
+      "fragment": "template-results-typeahead",
+      "translations": {
+        "en_us": {
+          "title": "Template for results",
+          "content": "Render object results with a custom template, contextual term highlighting and additional metadata."
+        },
+        "es_mx": {
+          "title": "Template for results",
+          "content": "Ejemplo de typeahead: Render object results with a custom template, contextual term highlighting and additional metadata."
+        }
+      }
+    },
+    {
+      "id": "components.typeahead.examples.non-editable-typeahead",
+      "url": "docs.dashboard.typeahead.examples",
+      "fragment": "non-editable-typeahead",
+      "translations": {
+        "en_us": {
+          "title": "Prevent manual entry",
+          "content": "Keep the model null until the user chooses a valid object from the suggestion list."
+        },
+        "es_mx": {
+          "title": "Prevent manual entry",
+          "content": "Ejemplo de typeahead: Keep the model null until the user chooses a valid object from the suggestion list."
+        }
+      }
+    },
+    {
+      "id": "components.typeahead.examples.typeahead-global",
+      "url": "docs.dashboard.typeahead.examples",
+      "fragment": "typeahead-global",
+      "translations": {
+        "en_us": {
+          "title": "Global configuration of typeaheads",
+          "content": "Configure hint completion, exact selection and body container defaults through NgbTypeaheadConfig."
+        },
+        "es_mx": {
+          "title": "Global configuration of typeaheads",
+          "content": "Ejemplo de typeahead: Configure hint completion, exact selection and body container defaults through NgbTypeaheadConfig."
         }
       }
     }

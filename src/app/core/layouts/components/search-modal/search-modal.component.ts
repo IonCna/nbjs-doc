@@ -1,6 +1,6 @@
-import type { IAugmentedJQuery, IComponentController, IComponentOptions } from "angular"
+import angular, { type IAugmentedJQuery, type IComponentController, type IComponentOptions } from "angular"
 import type { StateService } from "@uirouter/angularjs"
-import type { NgbActiveModal } from "ngb-js"
+import type { NgbActiveModal, NgbScrollSpy } from "ngb-js"
 import { SearchService, type SearchResult } from "@/core/services/search.service"
 
 export const SEARCH_RECENTS_STORAGE_KEY = "docs.search.recents"
@@ -40,7 +40,6 @@ export class SearchModalComponent implements IComponentController {
             if(!activeDocument) return
 
             event.preventDefault()
-            this.$state.go(activeDocument.url)
             this.selectDocument(activeDocument)
             return
         }
@@ -70,6 +69,16 @@ export class SearchModalComponent implements IComponentController {
 
     public selectDocument(document: SearchResult) {
         this.ngbActiveModal.close(document)
+        this.$state.go(document.url).then(() => {
+            requestAnimationFrame(() => {
+                const scrollContainer = globalThis.document.getElementById("docs-content-scroll")
+
+                if(!scrollContainer) return
+
+                const scrollSpy = angular.element(scrollContainer).controller("ngbScrollSpy") as NgbScrollSpy | undefined
+                scrollSpy?.scrollTo(document.fragment)
+            })
+        })
     }
 
     public clearRecentDocuments() {

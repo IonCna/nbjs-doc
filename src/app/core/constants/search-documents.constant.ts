@@ -9,6 +9,7 @@ export interface SearchDocumentTranslation {
 export interface SearchDocument {
     id: string
     url: string
+    fragment: string
     translations: Record<Language, SearchDocumentTranslation>
 }
 

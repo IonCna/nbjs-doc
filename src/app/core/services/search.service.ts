@@ -11,6 +11,7 @@ const MAX_RESULTS = 8
 export interface SearchResult {
     id: string
     url: string
+    fragment: string
     title: string
     content: string
 }
@@ -52,6 +53,7 @@ export class SearchService {
             return [{
                 id: document.id,
                 url: document.url,
+                fragment: document.fragment,
                 title: translation.title,
                 content: translation.content,
             }]
