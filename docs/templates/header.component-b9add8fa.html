@@ -14,9 +14,11 @@
 <header class="navbar sticky-top container-fluid px-2 px-sm-3 py-2 bg-body-tertiary border-bottom shadow-sm" _content-9e021cca="">
     <section class="row w-100 g-2 align-items-center d-none d-lg-flex" _content-9e021cca="">
         <div class="col-3" _content-9e021cca="">
-            <a class="navbar-brand d-inline-flex align-items-center gap-2 mb-0" ui-sref="docs.home" _content-9e021cca="">
-                <span class="fw-bold" _content-9e021cca="">ngb-js</span>
-                <span class="badge text-bg-primary rounded-pill" _content-9e021cca="">Docs</span>
+            <a class="navbar-brand d-inline-flex align-items-center gap-2 mb-0" ui-sref="docs.home" aria-label="NgbJS documentation home" _content-9e021cca="">
+                <span class="brand-logo" aria-hidden="true" _content-9e021cca="">
+                    <img class="brand-logo-light" ng-src="{{$.brandLogoLightUrl}}" width="106" height="50" alt="" _content-9e021cca="">
+                    <img class="brand-logo-dark" ng-src="{{$.brandLogoDarkUrl}}" width="106" height="50" alt="" _content-9e021cca="">
+                </span>
             </a>
         </div>
 
@@ -45,7 +47,12 @@
                 <i class="bi bi-list" aria-hidden="true" _content-9e021cca=""></i>
         </button>
 
-        <a class="navbar-brand fw-bold ms-1 me-auto mb-0" ui-sref="docs.home" _content-9e021cca="">ngb-js</a>
+        <a class="navbar-brand d-inline-flex align-items-center ms-1 me-auto mb-0" ui-sref="docs.home" aria-label="NgbJS documentation home" _content-9e021cca="">
+            <span class="brand-logo" aria-hidden="true" _content-9e021cca="">
+                <img class="brand-logo-light" ng-src="{{$.brandLogoLightUrl}}" width="106" height="50" alt="" _content-9e021cca="">
+                <img class="brand-logo-dark" ng-src="{{$.brandLogoDarkUrl}}" width="106" height="50" alt="" _content-9e021cca="">
+            </span>
+        </a>
 
         <div class="d-flex align-items-center" _content-9e021cca="">
             <button ng-click="$.openModal()" class="btn btn-link text-body btn-lg d-inline-flex align-items-center justify-content-center" type="button" aria-label="Open search" _content-9e021cca="">

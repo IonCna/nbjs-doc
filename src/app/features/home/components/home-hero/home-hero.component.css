@@ -1,12 +1,13 @@
 .hero {
-    --surface: #f7f8fb;
+    --surface: #f7f4f8;
     --surface-end: rgba(255, 255, 255, 0);
     --accent: var(--bs-primary);
     --line: rgba(var(--bs-primary-rgb), .22);
 
     position: relative;
+    width: 100%;
     overflow: hidden;
-    padding: 7rem 0 5.5rem;
+    padding: clamp(2.5rem, 6vh, 5rem) 0 clamp(2rem, 5vh, 4rem);
     text-align: center;
     background:
         linear-gradient(180deg, var(--surface), var(--surface-end)),
@@ -14,10 +15,10 @@
 }
 
 [data-bs-theme="dark"] .hero {
-    --surface: #151d2a;
-    --surface-end: rgba(16, 23, 34, 0);
+    --surface: #353d4c;
+    --surface-end: rgba(44, 52, 68, 0);
     --accent: var(--bs-primary-text-emphasis);
-    --line: rgba(196, 181, 253, .22);
+    --line: rgba(192, 178, 198, .24);
 }
 
 .hero::after {
@@ -33,24 +34,12 @@
     margin: 0 auto;
 }
 
-.eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: .75rem;
-    margin: 0 0 1.5rem;
-    padding: .4rem .75rem;
-    color: var(--accent);
-    font-size: 1.05rem;
-    font-weight: 750;
-    border: 1px solid var(--bs-primary-border-subtle);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--bs-primary-bg-subtle) 55%, transparent);
+.hero-logo {
+    filter: drop-shadow(0 1rem 1.75rem rgba(76, 67, 81, .2));
 }
 
-.eyebrow small {
-    color: var(--bs-secondary-color);
-    font-size: .9rem;
-    font-weight: 500;
+[data-bs-theme="dark"] .hero-logo {
+    filter: drop-shadow(0 1rem 2rem rgba(0, 0, 0, .32));
 }
 
 .headline {
@@ -100,12 +89,31 @@
         font-size: 1.15rem;
     }
 
-    .eyebrow {
-        flex-direction: column;
-        gap: .15rem;
+    .actions {
+        display: grid;
+    }
+}
+
+@media (min-width: 768px) and (max-height: 850px) {
+    .hero {
+        padding: 2rem 0 1.5rem;
+    }
+
+    docs-home-hero .hero-logo {
+        width: 7.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .headline {
+        margin-bottom: 1rem;
+        font-size: 4.5rem;
+    }
+
+    .summary {
+        font-size: 1.2rem;
     }
 
     .actions {
-        display: grid;
+        margin-top: 2rem;
     }
 }

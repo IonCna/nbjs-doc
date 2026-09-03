@@ -9,11 +9,6 @@
     font-weight: 750;
 }
 
-.badge {
-    border: 1px solid color-mix(in srgb, var(--bs-primary-border-subtle) 70%, transparent);
-    box-shadow: 0 .35rem 1rem rgba(var(--bs-primary-rgb), .14);
-}
-
 .btn-link {
     width: 2.75rem;
     height: 2.75rem;
