@@ -25,7 +25,7 @@ export class ModalUpdatableComponent implements IComponentController {
         return {
             controller: ModalUpdatableComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-updatable/modal-updatable.component.html",
+            templateUrl: "./modal-updatable.component.html",
         }
     }
 }

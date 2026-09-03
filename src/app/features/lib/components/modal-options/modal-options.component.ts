@@ -69,7 +69,7 @@ export class ModalOptionsComponent implements IComponentController {
         return {
             controller: ModalOptionsComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-options/modal-options.component.html",
+            templateUrl: "./modal-options.component.html",
         }
     }
 }

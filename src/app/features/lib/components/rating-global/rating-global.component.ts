@@ -24,6 +24,6 @@ export class RatingGlobalComponent implements IComponentController {
     static get $name() { return "docsRatingGlobal" }
     static get $inject() { return [NgbRatingConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: RatingGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-global/rating-global.component.html" }
+        return { controller: RatingGlobalComponent, controllerAs: "example", templateUrl: "./rating-global.component.html" }
     }
 }

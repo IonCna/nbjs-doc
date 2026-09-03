@@ -14,6 +14,6 @@ export class NonEditableTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsNonEditableTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: NonEditableTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/non-editable-typeahead/non-editable-typeahead.component.html" }
+        return { controller: NonEditableTypeaheadComponent, controllerAs: "example", templateUrl: "./non-editable-typeahead.component.html" }
     }
 }

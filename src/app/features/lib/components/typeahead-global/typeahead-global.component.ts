@@ -36,6 +36,6 @@ export class TypeaheadGlobalComponent implements IComponentController {
     static get $name() { return "docsTypeaheadGlobal" }
     static get $inject() { return [NgbTypeaheadConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: TypeaheadGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/typeahead-global/typeahead-global.component.html" }
+        return { controller: TypeaheadGlobalComponent, controllerAs: "example", templateUrl: "./typeahead-global.component.html" }
     }
 }

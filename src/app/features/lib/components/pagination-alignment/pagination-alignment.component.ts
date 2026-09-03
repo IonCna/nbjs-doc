@@ -17,7 +17,7 @@ export class PaginationAlignmentComponent implements IComponentController {
         return {
             controller: PaginationAlignmentComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/pagination-alignment/pagination-alignment.component.html",
+            templateUrl: "./pagination-alignment.component.html",
         }
     }
 }

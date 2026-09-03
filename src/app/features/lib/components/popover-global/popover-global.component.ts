@@ -29,6 +29,6 @@ export class PopoverGlobalComponent implements IComponentController {
     static get $name() { return "docsPopoverGlobal" }
     static get $inject() { return [NgbPopoverConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-global/popover-global.component.html" }
+        return { controller: PopoverGlobalComponent, controllerAs: "example", templateUrl: "./popover-global.component.html" }
     }
 }

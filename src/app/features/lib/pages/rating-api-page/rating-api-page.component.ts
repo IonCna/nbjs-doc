@@ -8,7 +8,7 @@ export class RatingApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: RatingApiPageComponent,
-            templateUrl: "src/app/features/lib/pages/rating-api-page/rating-api-page.component.html",
+            templateUrl: "./rating-api-page.component.html",
             controllerAs: "$",
         }
     }

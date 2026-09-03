@@ -7,5 +7,5 @@ export class DatepickerFooterComponent implements IComponentController {
     public today() { if (this.datepicker) this.date = this.datepicker.calendar.getToday(); }
     public clear() { this.date = null; }
     static get $name() { return "docsDatepickerFooter" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerFooterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-footer/datepicker-footer.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerFooterComponent, controllerAs: "example", templateUrl: "./datepicker-footer.component.html" } }
 }

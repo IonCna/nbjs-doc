@@ -10,7 +10,7 @@ export class AlertCustomComponent implements IComponentController {
         return {
             controller: AlertCustomComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/alert-custom/alert-custom.component.html",
+            templateUrl: "./alert-custom.component.html",
         }
     }
 }

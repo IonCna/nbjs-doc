@@ -9,7 +9,7 @@ export class DropdownNavbarComponent implements IComponentController {
         return {
             controller: DropdownNavbarComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/dropdown-navbar/dropdown-navbar.component.html",
+            templateUrl: "./dropdown-navbar.component.html",
         }
     }
 }

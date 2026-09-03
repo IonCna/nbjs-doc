@@ -42,6 +42,6 @@ export class WikipediaTypeaheadComponent implements IComponentController {
     static get $name() { return "docsWikipediaTypeahead" }
     static get $inject() { return [WikipediaSearchService.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: WikipediaTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/wikipedia-typeahead/wikipedia-typeahead.component.html" }
+        return { controller: WikipediaTypeaheadComponent, controllerAs: "example", templateUrl: "./wikipedia-typeahead.component.html" }
     }
 }

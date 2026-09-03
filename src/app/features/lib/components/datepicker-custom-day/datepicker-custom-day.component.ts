@@ -9,5 +9,5 @@ export class DatepickerCustomDayComponent implements IComponentController {
         return { weekend: weekday === 0 || weekday === 6 };
     }
     static get $name() { return "docsDatepickerCustomDay" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomDayComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomDayComponent, controllerAs: "example", templateUrl: "./datepicker-custom-day.component.html" } }
 }

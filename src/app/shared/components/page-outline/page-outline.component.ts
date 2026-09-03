@@ -61,7 +61,7 @@ export class PageOutlineComponent implements IComponentController {
         return {
             controllerAs: "$",
             controller: PageOutlineComponent,
-            templateUrl: "src/app/shared/components/page-outline/page-outline.component.html",
+            templateUrl: "./page-outline.component.html",
         }
     }
 }

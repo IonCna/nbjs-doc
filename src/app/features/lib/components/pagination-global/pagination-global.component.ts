@@ -57,7 +57,7 @@ export class PaginationGlobalComponent implements IComponentController {
         return {
             controller: PaginationGlobalComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/pagination-global/pagination-global.component.html",
+            templateUrl: "./pagination-global.component.html",
         }
     }
 }

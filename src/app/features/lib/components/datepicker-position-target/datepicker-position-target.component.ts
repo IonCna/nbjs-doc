@@ -5,5 +5,5 @@ export class DatepickerPositionTargetComponent implements IComponentController {
     public date: NgbDateStruct | null = null;
     public readonly target = "#datepicker-custom-position-target";
     static get $name() { return "docsDatepickerPositionTarget" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerPositionTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-position-target/datepicker-position-target.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerPositionTargetComponent, controllerAs: "example", templateUrl: "./datepicker-position-target.component.html" } }
 }

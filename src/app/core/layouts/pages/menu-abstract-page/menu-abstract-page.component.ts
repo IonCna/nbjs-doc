@@ -9,7 +9,7 @@ export class MenuAbstractPageComponent {
         return {
             controllerAs: "$",
             controller: MenuAbstractPageComponent,
-            templateUrl: "src/app/core/layouts/pages/menu-abstract-page/menu-abstract-page.component.html"
+            templateUrl: "./menu-abstract-page.component.html"
         }
     }
 }

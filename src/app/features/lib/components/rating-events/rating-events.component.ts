@@ -8,6 +8,6 @@ export class RatingEventsComponent implements IComponentController {
     public setHovered(value: number) { this.hovered = value; }
     static get $name() { return "docsRatingEvents" }
     static get $factory(): IComponentOptions {
-        return { controller: RatingEventsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-events/rating-events.component.html" }
+        return { controller: RatingEventsComponent, controllerAs: "example", templateUrl: "./rating-events.component.html" }
     }
 }

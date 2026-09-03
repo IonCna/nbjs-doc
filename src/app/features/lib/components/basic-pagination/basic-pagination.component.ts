@@ -15,7 +15,7 @@ export class BasicPaginationComponent implements IComponentController {
         return {
             controller: BasicPaginationComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/basic-pagination/basic-pagination.component.html",
+            templateUrl: "./basic-pagination.component.html",
         }
     }
 }

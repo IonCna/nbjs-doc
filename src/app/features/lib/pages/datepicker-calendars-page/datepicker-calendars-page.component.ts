@@ -51,6 +51,6 @@ export class DatepickerCalendarsPageComponent implements IComponentController {
     private create(calendar: NgbCalendar, i18n: NgbDatepickerI18n): CalendarDemo { return { calendar, i18n, date: calendar.getToday() }; }
     static get $name() { return "docsDatepickerCalendarsPage" }
     static get $factory(): IComponentOptions {
-        return { controller: DatepickerCalendarsPageComponent, controllerAs: "$", templateUrl: "src/app/features/lib/pages/datepicker-calendars-page/datepicker-calendars-page.component.html" }
+        return { controller: DatepickerCalendarsPageComponent, controllerAs: "$", templateUrl: "./datepicker-calendars-page.component.html" }
     }
 }

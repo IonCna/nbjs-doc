@@ -21,5 +21,5 @@ export class DatepickerGlobalComponent implements IComponentController {
     private restore() { Object.assign(this.config, this.inlineDefaults); Object.assign(this.inputConfig, this.inputDefaults); }
     static get $name() { return "docsDatepickerGlobal" }
     static get $inject() { return [NgbDatepickerConfig.$name, NgbInputDatepickerConfig.$name] }
-    static get $factory(): IComponentOptions { return { controller: DatepickerGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-global/datepicker-global.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerGlobalComponent, controllerAs: "example", templateUrl: "./datepicker-global.component.html" } }
 }

@@ -8,7 +8,7 @@ export class ProgressbarApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: ProgressbarApiPageComponent,
-            templateUrl: "src/app/features/lib/pages/progressbar-api-page/progressbar-api-page.component.html",
+            templateUrl: "./progressbar-api-page.component.html",
             controllerAs: "$",
         }
     }

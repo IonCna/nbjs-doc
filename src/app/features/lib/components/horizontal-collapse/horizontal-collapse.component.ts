@@ -15,7 +15,7 @@ export class HorizontalCollapseComponent implements IComponentController {
         return {
             controller: HorizontalCollapseComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/horizontal-collapse/horizontal-collapse.component.html",
+            templateUrl: "./horizontal-collapse.component.html",
         }
     }
 }

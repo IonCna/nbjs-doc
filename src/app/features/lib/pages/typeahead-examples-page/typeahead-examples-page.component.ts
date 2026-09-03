@@ -34,7 +34,7 @@ export class TypeaheadExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: TypeaheadExamplesPageComponent,
-            templateUrl: "src/app/features/lib/pages/typeahead-examples-page/typeahead-examples-page.component.html",
+            templateUrl: "./typeahead-examples-page.component.html",
             controllerAs: "$",
         }
     }

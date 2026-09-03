@@ -12,6 +12,6 @@ export class SimpleTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsSimpleTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: SimpleTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/simple-typeahead/simple-typeahead.component.html" }
+        return { controller: SimpleTypeaheadComponent, controllerAs: "example", templateUrl: "./simple-typeahead.component.html" }
     }
 }

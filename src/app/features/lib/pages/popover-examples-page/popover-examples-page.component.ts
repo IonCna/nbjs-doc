@@ -47,7 +47,7 @@ export class PopoverExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: PopoverExamplesPageComponent,
-            templateUrl: "src/app/features/lib/pages/popover-examples-page/popover-examples-page.component.html",
+            templateUrl: "./popover-examples-page.component.html",
             controllerAs: "$",
         }
     }

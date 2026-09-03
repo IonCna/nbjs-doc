@@ -54,7 +54,7 @@ export class OffcanvasOptionsComponent implements IComponentController {
         return {
             controller: OffcanvasOptionsComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/offcanvas-options/offcanvas-options.component.html",
+            templateUrl: "./offcanvas-options.component.html",
         }
     }
 }

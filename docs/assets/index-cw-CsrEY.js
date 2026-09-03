@@ -672,3036 +672,3036 @@ Watchers fired in the last 5 iterations: {1}`,e,C)}while(f||m.length);for(y();_<
             ng-template-outlet-context="{ result: result, term: $.term, formatter: $.formatter }"\r
     ></ng-container>\r
 </button>\r
-`,ig=class e{constructor(e){this.$element=e,this.activeIdx=0,this.results=[],this.preventMouseDownDefault=e=>e.preventDefault()}set id(e){if(e){this.$element.attr(`id`,e);return}this.$element.removeAttr(`id`)}get id(){return this.$element.attr(`id`)??``}$onInit(){this.focusFirst=this.focusFirst??!0,this.formatter=this.formatter??Dd,this.resetActive()}$postLink(){this.$element.addClass(`dropdown-menu show`),this.$element.attr(`role`,`listbox`),this.$element.on(`mousedown`,this.preventMouseDownDefault)}$onChanges(e){let t=e.popupClass?.previousValue;typeof t==`string`&&t&&this.$element.removeClass(t),this.popupClass&&this.$element.addClass(this.popupClass)}$onDestroy(){this.$element.off(`mousedown`,this.preventMouseDownDefault)}hasActive(){return this.activeIdx>-1&&this.activeIdx<this.results.length}getActive(){return this.results[this.activeIdx]}markActive(e){this.activeIdx=e,this._activeChanged()}next(){if(this.activeIdx!==this.results.length-1){this.activeIdx++,this._activeChanged();return}this.activeIdx=this.focusFirst?(this.activeIdx+1)%this.results.length:-1,this._activeChanged()}prev(){if(this.activeIdx===0){this.activeIdx=this.focusFirst?this.results.length-1:-1,this._activeChanged();return}if(this.activeIdx>0){this.activeIdx--,this._activeChanged();return}this.activeIdx=this.results.length-1,this._activeChanged()}resetActive(){this.activeIdx=this.focusFirst?0:-1,this._activeChanged()}select(e){this.selectEvent?.({$event:e})}_activeChanged(){this.activeChangeEvent?.({$event:this.activeIdx>=0?this.id+`-`+this.activeIdx:void 0})}static get $name(){return`ngbTypeaheadWindow`}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{focusFirst:`<?`,results:`<?`,term:`<?`,formatter:`<?`,resultTemplate:`<?`,popupClass:`<?`,selectEvent:`&?select`,activeChangeEvent:`&?activeChange`},template:rg}}static get $inject(){return[`$element`]}},ag={$name:`ARIA_LIVE_DELAY`,$value:100};function og(e=!1){let t=document.body,n=u.default.element(t.querySelector(`#ngb-live`));return n==null&&e&&(n=u.default.element(`<div></div>`),n.attr(`id`,`ngb-live`),n.attr(`aria-live`,`polite`),n.attr(`aria-atomic`,`true`),n.addClass(`visually-hidden`),u.default.element(t).append(n)),n}var sg=class{constructor(e,t){this.ariaLiveDelay=e,this.$timeout=t}onDestroy(){let e=og();e&&e.remove()}say(e){let t=og(!0),n=this.ariaLiveDelay;if(!t)return;t.empty();let r=()=>t.append(e);if(!n){r();return}this.$timeout(r,this.ariaLiveDelay)}static get $name(){return`ngb.live.service`}static get $inject(){return[ag.$name,`$timeout`]}},cg=0,lg=class e{constructor(e,t,n,r,i,a,o,s,c){this.$element=e,this.$scope=t,this._config=n,this._live=r,this._ngZone=i,this._changeDetector=a,this._rtl=c,this.activeDescendant=null,this.popupId=`ngb-typeahead-${cg++}`,this._onTouched=()=>{},this._onChange=e=>{},this._resubscribeTypeahead$=new ja(null),this._closed$=new Y,this._inputValueBackup=null,this._inputValueForSelectOnExact=null,this._subscription=null,this._windowRef=null,this._handleBlurEvent=()=>this._ngZone.run(()=>this.handleBlur()),this._handleKeyDownEvent=e=>this._ngZone.run(()=>this.handleKeyDown(e)),this.$q=o.get(`$q`),this._popupService=new up(ig.$name,o,s,this._ngZone)}$onInit(){this._positioning=Lf(this._rtl),this.autocomplete=this.autocomplete??`off`,this.container=this.container??this._config.container,this.editable=this.editable??this._config.editable,this.focusFirst=this.focusFirst??this._config.focusFirst,this.selectOnExact=this.selectOnExact??this._config.selectOnExact,this.showHint=this.showHint??this._config.showHint,this.placement=this.placement??this._config.placement,this.popperOptions=this.popperOptions??this._config.popperOptions;let e=this._nativeElement;if(this._valueChanges$=Yo(e,`input`).pipe(Eo(e=>e.target.value)),this.ngModelCtrl){let e=this.ngModelCtrl;e.$render=()=>this.writeValue(e.$viewValue),this.registerOnChange(t=>e.$setViewValue(t)),this.registerOnTouched(()=>e.$setTouched()),e.$render()}this._subscribeToUserInput()}$postLink(){this.$element.on(`blur`,this._handleBlurEvent),this.$element.on(`keydown`,this._handleKeyDownEvent),this.$element.attr(`autocapitalize`,`off`),this.$element.attr(`autocorrect`,`off`),this.$element.attr(`role`,`combobox`),this._renderHostState()}$onChanges(e){let t=e.ngbTypeahead;t&&!t.isFirstChange()&&(this._unsubscribeFromUserInput(),this._subscribeToUserInput()),this._renderHostState()}$onDestroy(){this.$element.off(`blur`,this._handleBlurEvent),this.$element.off(`keydown`,this._handleKeyDownEvent),this._closePopup(),this._unsubscribeFromUserInput(),this._closed$.complete(),this._resubscribeTypeahead$.complete()}registerOnChange(e){this._onChange=e}registerOnTouched(e){this._onTouched=e}writeValue(e){this._writeInputValue(this._formatItemForInput(e)),this.showHint&&(this._inputValueBackup=e)}setDisabledState(e){this._nativeElement.disabled=e}dismissPopup(){this.isPopupOpen()&&(this._resubscribeTypeahead$.next(null),this._closePopup(),this.showHint&&this._inputValueBackup!==null&&this._writeInputValue(this._inputValueBackup),this._changeDetector.markForCheck())}isPopupOpen(){return this._windowRef!=null}handleBlur(){this._resubscribeTypeahead$.next(null),this._onTouched()}handleKeyDown(e){if(!this.isPopupOpen())return;let t=this._windowRef?.instance;if(t)switch(e.key){case`ArrowDown`:e.preventDefault(),t.next(),this._showHint();break;case`ArrowUp`:e.preventDefault(),t.prev(),this._showHint();break;case`Enter`:case`Tab`:{let n=t.getActive();n!=null&&(e.preventDefault(),e.stopPropagation(),this._selectResult(n)),this._closePopup();break}}}get _nativeElement(){return Z(this.$element)}_openPopup(){return this.isPopupOpen()?this.$q.resolve():this._openingPromise?this._openingPromise:(this._inputValueBackup=this._nativeElement.value,this._openingPromise=this._popupService.open().then(({windowRef:e})=>{this._windowRef=e,e.setInput(`id`,this.popupId),e.setInput(`popupClass`,this.popupClass),e.setInput(`selectEvent`,({$event:e})=>this._selectResultClosePopup(e)),e.setInput(`activeChangeEvent`,({$event:e})=>{this.activeDescendant=e??null,this._renderHostState()});let t=e.location.nativeElement;this.container===`body`&&(t.style.zIndex=`1055`,document.body.appendChild(t)),this._renderHostState(),this._changeDetector.markForCheck(),this._ngZone.runOutsideAngular(()=>{this._windowRef&&(this._positioning.createPopper({hostElement:this._nativeElement,targetElement:t,placement:this.placement??this._config.placement,updatePopperOptions:e=>(this.popperOptions??this._config.popperOptions)(Rf([0,2])(e))}),this._watchPositioning())}),Tf(this._ngZone,`outside`,this._closed$,()=>this.dismissPopup(),[t],[this._nativeElement])}).finally(()=>{this._openingPromise=void 0}),this._openingPromise)}_closePopup(){this._popupService.close().subscribe(()=>{this._positioning.destroy(),this._unwatchPositioning?.(),this._unwatchPositioning=void 0,this._closed$.next(),this._windowRef=null,this.activeDescendant=null,this._renderHostState()})}_selectResult(e){let t=!1;this.selectItem?.({$event:{item:e,preventDefault:()=>{t=!0}}}),this._resubscribeTypeahead$.next(null),t||(this.writeValue(e),this._onChange(e))}_selectResultClosePopup(e){this._selectResult(e),this._closePopup()}_showHint(){let e=this._windowRef?.instance;if(this.showHint&&e?.hasActive()&&this._inputValueBackup!=null){let t=this._inputValueBackup.toLowerCase(),n=this._formatItemForInput(e.getActive());t===n.substring(0,this._inputValueBackup.length).toLowerCase()?(this._writeInputValue(this._inputValueBackup+n.substring(this._inputValueBackup.length)),this._nativeElement.setSelectionRange(this._inputValueBackup.length,n.length)):this._writeInputValue(n)}}_formatItemForInput(e){return e!=null&&this.inputFormatter?this.inputFormatter(e):Dd(e)}_writeInputValue(e){this._nativeElement.value=Dd(e)}_subscribeToUserInput(){let e=this._valueChanges$.pipe(ws(e=>{this._inputValueBackup=this.showHint?e:null,this._inputValueForSelectOnExact=this.selectOnExact?e:null,this._ngZone.run(()=>this._onChange(this.editable?e:null))}),this.ngbTypeahead?this.ngbTypeahead:()=>So([]));this._subscription=this._resubscribeTypeahead$.pipe(Ss(()=>e)).subscribe(async e=>{await this._ngZone.run(async()=>{!e||e.length===0?this._closePopup():this.selectOnExact&&e.length===1&&this._formatItemForInput(e[0])===this._inputValueForSelectOnExact?(this._selectResult(e[0]),this._closePopup()):(await this._openPopup(),this._ngZone.run(()=>{let t=this._windowRef;t&&(t.setInput(`focusFirst`,this.focusFirst),t.setInput(`results`,e),t.setInput(`term`,this._nativeElement.value),this.resultFormatter&&t.setInput(`formatter`,this.resultFormatter),this.resultTemplate&&t.setInput(`resultTemplate`,this.resultTemplate),t.instance?.resetActive(),t.changeDetectorRef.detectChanges(),this._showHint())}));let t=e?e.length:0;this._live.say(t===0?`No results available`:`${t} result${t===1?``:`s`} available`)})})}_unsubscribeFromUserInput(){this._subscription?.unsubscribe(),this._subscription=null}_watchPositioning(){this._unwatchPositioning?.(),this._unwatchPositioning=this.$scope.$watch(()=>{this._windowRef&&this._positioning.update()})}_renderHostState(){this.$element.attr(`autocomplete`,this.autocomplete??`off`),this.$element.attr(`aria-autocomplete`,this.showHint?`both`:`list`),this.$element.attr(`aria-expanded`,`${this.isPopupOpen()}`),this.isPopupOpen()?(this.$element.addClass(`open`),this.$element.attr(`aria-controls`,this.popupId)):(this.$element.removeClass(`open`),this.$element.removeAttr(`aria-controls`)),this.activeDescendant?this.$element.attr(`aria-activedescendant`,this.activeDescendant):this.$element.removeAttr(`aria-activedescendant`)}static get $inject(){return[`$element`,`$scope`,ng.$name,sg.$name,nl.$name,Ps.$name,`$injector`,Ys.$name,zf.$name]}static get $name(){return`ngbTypeahead`}static get $factory(){return()=>({bindToController:{autocomplete:`<?`,container:`<?`,editable:`<?`,focusFirst:`<?`,inputFormatter:`<?`,ngbTypeahead:`<?`,placement:`<?`,popperOptions:`<?`,popupClass:`<?`,resultFormatter:`<?`,resultTemplate:`<?`,selectOnExact:`<?`,showHint:`<?`,selectItem:`&?`},controller:e,require:{ngModelCtrl:`?ngModel`},restrict:`A`,scope:!0})}},ug=u.default.module(`ngb.typeahead`,[ml.name]);ug.constant(ag.$name,ag.$value),ug.service(sg.$name,sg),ug.service(zf.$name,zf),ug.service(ng.$name,ng),ug.component(tg.$name,tg.$factory),ug.component(ig.$name,ig.$factory),ug.directive(lg.$name,lg.$factory);var dg=u.default.module(`ngb`,[$d.name,dh.name,qd.name,mf.name,qh.name,Jd.name,pp.name,Gf.name,$h.name,Pp.name,Rm.name,ah.name,kh.name,gh.name,zh.name,ug.name,Xm.name,wm.name]);dg.service(sd.$name,sd),dg.service(sp.$name,sp),dg.service(sg.$name,sg),dg.service(zf.$name,zf),dg.constant(ag.$name,ag.$value);function fg(e){return new Date(e.year-543,e.month-1,e.day)}function pg(e){return new Lp(e.getFullYear()+543,e.getMonth()+1,e.getDate())}var mg=class extends Vp{getToday(){return pg(new Date)}getNext(e,t=`d`,n=1){let r=fg(e),i=!0,a=r.getMonth();switch(t){case`y`:r.setFullYear(r.getFullYear()+n);break;case`m`:a+=n,r.setMonth(a),a%=12,a<0&&(a+=12);break;case`d`:r.setDate(r.getDate()+n),i=!1;break;default:return e}return i&&r.getMonth()!==a&&r.setDate(0),pg(r)}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=fg(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=fg(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime();return r.setMonth(0),r.setDate(1),Math.floor(Math.round((i-r.getTime())/864e5)/7)+1}isValid(e){if(!e||!Q(e.year)||!Q(e.month)||!Q(e.day)||e.year===0)return!1;let t=fg(e);return!isNaN(t.getTime())&&t.getFullYear()===e.year-543&&t.getMonth()+1===e.month&&t.getDate()===e.day}},hg=[`እሑድ`,`ሰኞ`,`ማክሰኞ`,`ረቡዕ`,`ሓሙስ`,`ዓርብ`,`ቅዳሜ`],gg=[`መስከረም`,`ጥቅምት`,`ኅዳር`,`ታህሣሥ`,`ጥር`,`የካቲት`,`መጋቢት`,`ሚያዝያ`,`ግንቦት`,`ሰኔ`,`ሐምሌ`,`ነሐሴ`,`ጳጉሜ`],_g=class extends Up{getMonthShortName(e,t){return this.getMonthFullName(e,t)}getMonthFullName(e,t){return gg[e-1]??``}getWeekdayLabel(e){return hg[e-1]??``}getDayAriaLabel(e){return`${e.day} ${this.getMonthFullName(e.month,e.year)} ${e.year}`}},vg=1724220.5,yg=[30,30,30,30,30,30,30,30,30,30,30,30,5];function bg(e){return e==null?!1:e%4==3||e%4==-1}function xg(e,t){return e.year=+t,e}function Sg(e,t){return t=+t,e.year+=Math.floor((t-1)/13),e.month=Math.floor(((t-1)%13+13)%13)+1,e}function Cg(e,t){let n=wg(e.month,e.year);if(t<=0)for(;t<=0;)e=Sg(e,e.month-1),n=wg(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=Sg(e,e.month+1),n=wg(e.month,e.year);return e.day=t,e}function wg(e,t){let n=bg(t);return yg[e-1]+(e===13&&n?1:0)}function Tg(e){let t=kg(Dg(e.year,e.month,e.day));return t.setHours(6,30,3,200),t}function Eg(e){return Og(Ag(e.getFullYear(),e.getMonth()+1,e.getDate()))}function Dg(e,t,n){return e<0&&e++,n+(t-1)*30+(e-1)*365+Math.floor(e/4)+vg-1}function Og(e){let t=Math.floor(e)+.5-vg,n=Math.floor((t-Math.floor((t+366)/1461))/365)+1;n<=0&&n--,t=Math.floor(e)+.5-Dg(n,1,1);let r=Math.floor(t/30)+1,i=t-(r-1)*30+1;return new Lp(n,r,i)}function kg(e){let t=Math.floor(e+.5),n=Math.floor((t-1867216.25)/36524.25);n=t+1+n-Math.floor(n/4);let r=n+1524,i=Math.floor((r-122.1)/365.25),a=Math.floor(365.25*i),o=Math.floor((r-a)/30.6001),s=r-a-Math.floor(o*30.6001),c=o-(o>13.5?13:1),l=i-(c>2.5?4716:4715);return l<=0&&l--,new Date(l,c,s)}function Ag(e,t,n){e<0&&e++,t<3&&(t+=12,e--);let r=Math.floor(e/100),i=2-r+Math.floor(r/4);return Math.floor(365.25*(e+4716))+Math.floor(30.6001*(t+1))+n+i-1524.5}var jg=class extends Bp{getDaysPerWeek(){return 7}getMonths(e){return[1,2,3,4,5,6,7,8,9,10,11,12,13]}getNext(e,t=`d`,n=1){switch(e=new Lp(e.year,e.month,e.day),t){case`y`:return e=xg(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=Sg(e,e.month+n),e.day=1,e;case`d`:return Cg(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Math.floor(Dg(e.year,e.month,e.day)+3)%7;return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=Tg(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=Tg(new Lp(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getWeeksPerMonth(){return 6}getToday(){return Eg(new Date)}isValid(e){return e&&Q(e.year)&&Q(e.month)&&Q(e.day)&&!isNaN(Tg(e).getTime())}},Mg=1080,Ng=24*Mg,Pg=12*Mg+793,Fg=29*Ng+Pg,Ig=11*Mg+204,Lg=2092591,Rg=1721425.5;function zg(e){return e%4==0&&e%100!=0||e%400==0}function Bg(e){let t=Math.floor((235*e-234)/19),n=t*Pg+Ig,r=t*29+Math.floor(n/Ng),i=n%Ng,a=r%7;return(a===2||a===4||a===6)&&(r++,a=r%7),a===1&&i>15*Mg+204&&!Wg(e)?r+=2:a===0&&i>21*Mg+589&&Wg(e-1)&&r++,r}function Vg(e,t){let n=[31,28,31,30,31,30,31,31,30,31,30,31];return zg(t)&&n[1]++,n[e-1]}function Hg(e){return Wg(e)?13:12}function Ug(e){return Bg(e+1)-Bg(e)}function Wg(e){if(e!=null){let t=(e*12+17)%19;return t>=(t<0?-7:12)}return!1}function Gg(e,t){let n=Bg(t+1)-Bg(t),r=(n<=380?n:n-30)-353,i=Wg(t)?[30,29,29,29,30,30,29,30,29,30,29,30,29]:[30,29,29,29,30,29,30,29,30,29,30,29];return r>0&&i[2]++,r>1&&i[1]++,i[e-1]}function Kg(e){let t=0;for(let n=1;n<e.month;n++)t+=Gg(n,e.year);return t+e.day}function qg(e,t){let n=t>=0;for(n||(t=-t);t>0;)n?t>Hg(e.year)-e.month?(t-=Hg(e.year)-e.month+1,e.year++,e.month=1):(e.month+=t,t=0):t>=e.month?(e.year--,t-=e.month,e.month=Hg(e.year)):(e.month-=t,t=0);return e}function Jg(e,t){let n=t>=0;for(n||(t=-t);t>0;)n?t>Ug(e.year)-Kg(e)?(t-=Ug(e.year)-Kg(e)+1,e.year++,e.month=1,e.day=1):t>Gg(e.month,e.year)-e.day?(t-=Gg(e.month,e.year)-e.day+1,e.month++,e.day=1):(e.day+=t,t=0):t>=e.day?(t-=e.day,e.month--,e.month===0&&(e.year--,e.month=Hg(e.year)),e.day=Gg(e.month,e.year)):(e.day-=t,t=0);return e}function Yg(e){let t=new Date(e),n=t.getFullYear(),r=t.getMonth(),i=t.getDate(),a=Rg-1+365*(n-1)+Math.floor((n-1)/4)-Math.floor((n-1)/100)+Math.floor((n-1)/400)+Math.floor((367*(r+1)-362)/12+(r+1<=2?0:zg(n)?-1:-2)+i);a=Math.floor(a+.5);let o=a-347997,s=Math.floor(o*Ng/Fg),c=Math.floor((s*19+234)/235)+1,l=Bg(c),u=o-l;for(;u<1;)c--,l=Bg(c),u=o-l;let d=1,f=u;for(;f>Gg(d,c);)f-=Gg(d,c),d++;return new Lp(c,d,f)}function Xg(e){let t=e.year,n=e.month,r=e.day,i=Bg(t);for(let e=1;e<n;e++)i+=Gg(e,t);i+=r;let a=i-Lg,o=a>=0;o||(a=-a);let s=1970,c=1,l=1;for(;a>0;)o?a>=(zg(s)?366:365)?(a-=zg(s)?366:365,s++):a>=Vg(c,s)?(a-=Vg(c,s),c++):(l+=a,a=0):a>=(zg(s-1)?366:365)?(a-=zg(s-1)?366:365,s--):(c>1?c--:(c=12,s--),a>=Vg(c,s)?a-=Vg(c,s):(l=Vg(c,s)-a+1,a=0));return new Date(s,c-1,l)}function Zg(e){if(!e)return``;let t=[``,`א`,`ב`,`ג`,`ד`,`ה`,`ו`,`ז`,`ח`,`ט`],n=[`י`,`יא`,`יב`,`יג`,`יד`,`טו`,`טז`,`יז`,`יח`,`יט`],r=[``,``,`כ`,`ל`,`מ`,`נ`,`ס`,`ע`,`פ`,`צ`],i=[``,`ק`,`ר`,`ש`,`ת`,`תק`,`תר`,`תש`,`תת`,`תתק`],a=[``,`א`,`ב`,`בא`,`בב`,`ה`,`הא`,`הב`,`הבא`,`הבב`],o=0,s=[],c=0;for(;e>0;){let l=e%10;if(c===0)o=l;else if(c===1)l===1?s.unshift(n[o]):s.unshift(r[l],t[o]);else if(c===2)s.unshift(i[l]);else{l!==5&&s.unshift(a[l],`׳`,` `);break}e=Math.floor(e/10),c===0&&e===0&&s.unshift(t[l]),c++}return s=s.join(``).split(``),s.length===1?s.push(`׳`):s.length>1&&s.splice(s.length-1,0,`״`),s.join(``)}var Qg=[`שני`,`שלישי`,`רביעי`,`חמישי`,`שישי`,`שבת`,`ראשון`],$g=[`תשרי`,`חשון`,`כסלו`,`טבת`,`שבט`,`אדר`,`ניסן`,`אייר`,`סיון`,`תמוז`,`אב`,`אלול`],e_=[`תשרי`,`חשון`,`כסלו`,`טבת`,`שבט`,`אדר א׳`,`אדר ב׳`,`ניסן`,`אייר`,`סיון`,`תמוז`,`אב`,`אלול`],t_=class extends Up{getMonthShortName(e,t){return this.getMonthFullName(e,t)}getMonthFullName(e,t){return Wg(t)?e_[e-1]??``:$g[e-1]??``}getWeekdayLabel(e){return Qg[e-1]??``}getDayAriaLabel(e){return`${Zg(e.day)} ${this.getMonthFullName(e.month,e.year)} ${Zg(e.year)}`}getDayNumerals(e){return Zg(e.day)}getWeekNumerals(e){return Zg(e)}getYearNumerals(e){return Zg(e)}},n_=class extends Bp{getDaysPerWeek(){return 7}getMonths(e){return e&&Wg(e)?[1,2,3,4,5,6,7,8,9,10,11,12,13]:[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}isValid(e){if(e!=null){let t=Nd(e.year)&&Nd(e.month)&&Nd(e.day);return t=t&&e.month>0&&e.month<=(Wg(e.year)?13:12),t=t&&e.day>0&&e.day<=Gg(e.month,e.year),t&&!isNaN(Xg(e).getTime())}return!1}getNext(e,t=`d`,n=1){switch(e=new Lp(e.year,e.month,e.day),t){case`y`:return e.year+=n,e.month=1,e.day=1,e;case`m`:return e=qg(e,n),e.day=1,e;case`d`:return Jg(e,n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Xg(e).getDay();return t===0?7:t}getWeekNumber(e,t){let n=e[e.length-1];return Math.ceil(Kg(n)/7)}getToday(){return Yg(new Date)}toGregorian(e){return Rp(Xg(e))}fromGregorian(e){return Yg(zp(e))}},r_=class extends Bp{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){switch(e=new Lp(e.year,e.month,e.day),t){case`y`:return e=this._setYear(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=this._setMonth(e,e.month+n),e.day=1,e;case`d`:return this._setDay(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=this.toGregorian(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=this.toGregorian(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=this.toGregorian(new Lp(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getToday(){return this.fromGregorian(new Date)}isValid(e){return e!=null&&Nd(e.year)&&Nd(e.month)&&Nd(e.day)&&!isNaN(this.toGregorian(e).getTime())}_setDay(e,t){t=+t;let n=this.getDaysPerMonth(e.month,e.year);if(t<=0)for(;t<=0;)e=this._setMonth(e,e.month-1),n=this.getDaysPerMonth(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=this._setMonth(e,e.month+1),n=this.getDaysPerMonth(e.month,e.year);return e.day=t,e}_setMonth(e,t){return t=+t,e.year+=Math.floor((t-1)/12),e.month=Math.floor(((t-1)%12+12)%12)+1,e}_setYear(e,t){return e.year=+t,e}};function i_(e){return(14+11*e)%30<11}function a_(e){let t=e.getFullYear();return t%4==0&&t%100!=0||t%400==0}function o_(e,t){return Math.ceil(29.5*t)+(e-1)*354+Math.floor((3+11*e)/30)}function s_(e){return(e-1)*354+Math.floor((3+11*e)/30)}function c_(e,t){return e-t*Math.floor(e/t)}var l_=1721425.5,u_=1948439.5,d_=class extends r_{fromGregorian(e){let t=e.getFullYear(),n=e.getMonth(),r=e.getDate(),i=l_-1+365*(t-1)+Math.floor((t-1)/4)+-Math.floor((t-1)/100)+Math.floor((t-1)/400)+Math.floor((367*(n+1)-362)/12+(n+1<=2?0:a_(e)?-1:-2)+r);i=Math.floor(i)+.5;let a=i-u_,o=Math.floor((30*a+10646)/10631),s=Math.ceil((a-29-s_(o))/29.5);s=Math.min(s,11);let c=Math.ceil(a-o_(o,s))+1;return new Lp(o,s+1,c)}toGregorian(e){let t=e.year,n=e.month-1,r=e.day+Math.ceil(29.5*n)+(t-1)*354+Math.floor((3+11*t)/30)+u_-1,i=Math.floor(r-.5)+.5,a=i-l_,o=Math.floor(a/146097),s=c_(a,146097),c=Math.floor(s/36524),l=c_(s,36524),u=Math.floor(l/1461),d=c_(l,1461),f=Math.floor(d/365),p=o*400+c*100+u*4+f;c!==4&&f!==4&&p++;let m=i-(l_+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)),h=i<l_-1+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)+Math.floor(739/12+(a_(new Date(p,3,1))?-1:-2)+1)?0:a_(new Date(p,3,1))?1:2,g=Math.floor(((m+h)*12+373)/367),_=i-(l_-1+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)+Math.floor((367*g-362)/12+(g<=2?0:a_(new Date(p,g-1,1))?-1:-2)+1))+1;return new Date(p,g-1,_)}getDaysPerMonth(e,t){t+=Math.floor(e/13),e=(e-1)%12+1;let n=29+e%2;return e===12&&i_(t)&&n++,n}},f_=new Date(1882,10,12),p_=new Date(2174,10,25),m_=1300,h_=1600,g_=864e5,__=`101010101010.110101010100.111011001001.011011010100.011011101010.001101101100.101010101101.010101010101.011010101001.011110010010.101110101001.010111010100.101011011010.010101011100.110100101101.011010010101.011101001010.101101010100.101101101010.010110101101.010010101110.101001001111.010100010111.011010001011.011010100101.101011010101.001011010110.100101011011.010010011101.101001001101.110100100110.110110010101.010110101100.100110110110.001010111010.101001011011.010100101011.101010010101.011011001010.101011101001.001011110100.100101110110.001010110110.100101010110.101011001010.101110100100.101111010010.010111011001.001011011100.100101101101.010101001101.101010100101.101101010010.101110100101.010110110100.100110110110.010101010111.001010010111.010101001011.011010100011.011101010010.101101100101.010101101010.101010101011.010100101011.110010010101.110101001010.110110100101.010111001010.101011010110.100101010111.010010101011.100101001011.101010100101.101101010010.101101101010.010101110101.001001110110.100010110111.010001011011.010101010101.010110101001.010110110100.100111011010.010011011101.001001101110.100100110110.101010101010.110101010100.110110110010.010111010101.001011011010.100101011011.010010101011.101001010101.101101001001.101101100100.101101110001.010110110100.101010110101.101001010101.110100100101.111010010010.111011001001.011011010100.101011101001.100101101011.010010101011.101010010011.110101001001.110110100100.110110110010.101010111001.010010111010.101001011011.010100101011.101010010101.101100101010.101101010101.010101011100.010010111101.001000111101.100100011101.101010010101.101101001010.101101011010.010101101101.001010110110.100100111011.010010011011.011001010101.011010101001.011101010100.101101101010.010101101100.101010101101.010101010101.101100101001.101110010010.101110101001.010111010100.101011011010.010101011010.101010101011.010110010101.011101001001.011101100100.101110101010.010110110101.001010110110.101001010110.111001001101.101100100101.101101010010.101101101010.010110101101.001010101110.100100101111.010010010111.011001001011.011010100101.011010101100.101011010110.010101011101.010010011101.101001001101.110100010110.110110010101.010110101010.010110110101.001011011010.100101011011.010010101101.010110010101.011011001010.011011100100.101011101010.010011110101.001010110110.100101010110.101010101010.101101010100.101111010010.010111011001.001011101010.100101101101.010010101101.101010010101.101101001010.101110100101.010110110010.100110110101.010011010110.101010010111.010101000111.011010010011.011101001001.101101010101.010101101010.101001101011.010100101011.101010001011.110101000110.110110100011.010111001010.101011010110.010011011011.001001101011.100101001011.101010100101.101101010010.101101101001.010101110101.000101110110.100010110111.001001011011.010100101011.010101100101.010110110100.100111011010.010011101101.000101101101.100010110110.101010100110.110101010010.110110101001.010111010100.101011011010.100101011011.010010101011.011001010011.011100101001.011101100010.101110101001.010110110010.101010110101.010101010101.101100100101.110110010010.111011001001.011011010010.101011101001.010101101011.010010101011.101001010101.110100101001.110101010100.110110101010.100110110101.010010111010.101000111011.010010011011.101001001101.101010101010.101011010101.001011011010.100101011101.010001011110.101000101110.110010011010.110101010101.011010110010.011010111001.010010111010.101001011101.010100101101.101010010101.101101010010.101110101000.101110110100.010110111001.001011011010.100101011010.101101001010.110110100100.111011010001.011011101000.101101101010.010101101101.010100110101.011010010101.110101001010.110110101000.110111010100.011011011010.010101011011.001010011101.011000101011.101100010101.101101001010.101110010101.010110101010.101010101110.100100101110.110010001111.010100100111.011010010101.011010101010.101011010110.010101011101.001010011101`.split(`.`);function v_(e,t){let n=Date.UTC(e.getFullYear(),e.getMonth(),e.getDate()),r=Date.UTC(t.getFullYear(),t.getMonth(),t.getDate()),i=Math.abs(n-r);return Math.round(i/g_)}var y_=class extends d_{fromGregorian(e){let t=1,n=0,r=1300,i=v_(e,f_);if(e.getTime()-f_.getTime()>=0&&e.getTime()-p_.getTime()<=0){let e=1300;for(let a=0;a<__.length;a++,e++)for(let o=0;o<12;o++){let s=+__[a][o]+29;if(i<=s)return t=i+1,t>s&&(t=1,o++),o>11&&(o=0,e++),n=o,r=e,new Lp(r,n+1,t);i-=s}return null}return super.fromGregorian(e)}toGregorian(e){let t=e.year,n=e.month-1,r=e.day,i=new Date(f_),a=r-1;if(t>=m_&&t<=h_){for(let e=0;e<t-m_;e++)for(let t=0;t<12;t++)a+=+__[e][t]+29;for(let e=0;e<n;e++)a+=+__[t-m_][e]+29;i.setDate(f_.getDate()+a)}else i=super.toGregorian(e);return i}getDaysPerMonth(e,t){return t>=m_&&t<=h_?+__[t-m_][e-1]+29:super.getDaysPerMonth(e,t)}};function b_(e){let t=O_(j_(e.year,e.month,e.day));return t.setHours(6,30,3,200),t}function x_(e){return A_(k_(e.getFullYear(),e.getMonth()+1,e.getDate()))}function S_(e,t){return e.year=+t,e}function C_(e,t){return t=+t,e.year+=Math.floor((t-1)/12),e.month=Math.floor(((t-1)%12+12)%12)+1,e}function w_(e,t){let n=M_(e.month,e.year);if(t<=0)for(;t<=0;)e=C_(e,e.month-1),n=M_(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=C_(e,e.month+1),n=M_(e.month,e.year);return e.day=t,e}function T_(e,t){return e-t*Math.floor(e/t)}function E_(e,t){return Math.trunc(e/t)}function D_(e){let t=[-61,9,38,199,426,686,756,818,1111,1181,1210,1635,2060,2097,2192,2262,2324,2394,2456,3178],n=t.length,r=e+621,i=-14,a=t[0];if(e<a||e>=t[n-1])throw Error(`Invalid Jalali year `+e);let o=0;for(let r=1;r<n;r+=1){let n=t[r];if(o=n-a,e<n)break;i=i+E_(o,33)*8+E_(T_(o,33),4),a=n}let s=e-a;i=i+E_(s,33)*8+E_(T_(s,33)+3,4),T_(o,33)===4&&o-s===4&&(i+=1);let c=E_(r,4)-E_((E_(r,100)+1)*3,4)-150,l=20+i-c;o-s<6&&(s=s-o+E_(o+4,33)*33);let u=T_(T_(s+1,33)-1,4);return u===-1&&(u=4),{leap:u,gy:r,march:l}}function O_(e){let t=4*e+139361631;t=t+E_(E_(4*e+183187720,146097)*3,4)*4-3908;let n=E_(T_(t,1461),4)*5+308,r=E_(T_(n,153),5)+1,i=T_(E_(n,153),12)+1,a=E_(t,1461)-100100+E_(8-i,6);return new Date(a,i-1,r)}function k_(e,t,n){let r=E_((e+E_(t-8,6)+100100)*1461,4)+E_(153*T_(t+9,12)+2,5)+n-34840408;return r=r-E_(E_(e+100100+E_(t-8,6),100)*3,4)+752,r}function A_(e){let t=O_(e).getFullYear(),n=t-621,r=D_(n),i=k_(t,3,r.march),a,o,s;if(s=e-i,s>=0){if(s<=185)return o=1+E_(s,31),a=T_(s,31)+1,new Lp(n,o,a);s-=186}else--n,s+=179,r.leap===1&&(s+=1);return o=7+E_(s,30),a=T_(s,30)+1,new Lp(n,o,a)}function j_(e,t,n){let r=D_(e);return k_(r.gy,3,r.march)+(t-1)*31-E_(t,7)*(t-7)+n-1}function M_(e,t){return e<=6?31:e<=11||D_(t).leap===0?30:29}var N_=class extends Bp{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){switch(e=new Lp(e.year,e.month,e.day),t){case`y`:return e=S_(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=C_(e,e.month+n),e.day=1,e;case`d`:return w_(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=b_(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=b_(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=b_(new Lp(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getToday(){return x_(new Date)}isValid(e){return e!=null&&Q(e.year)&&Q(e.month)&&Q(e.day)&&!isNaN(b_(e).getTime())}},P_=class e{static get $factory(){return{controllerAs:`$`,controller:e,template:`<ui-view></ui-view>`}}static get $name(){return`docsApp`}},F_=(e,t)=>{e.state(`docs`,{abstract:!0,component:P_.$name}),t.otherwise(`/`)};F_.$inject=[`$stateProvider`,`$urlRouterProvider`];var I_=class{url;$config(e){this.url=e}$get(){return this.url}static get $name(){return`bootstrapUrl`}static get $configName(){return`bootstrapUrlProvider`}};function L_(e){let t=t=>{t.$config(`${e.url}/docs/${e.version}/`)};return t.$inject=[I_.$configName],t}var R_=class{url;$config(e){this.url=e}$get(){return this.url}static get $name(){return`ngBootstrapUrl`}static get $configName(){return`ngBootstrapUrlProvider`}};function z_(e){let t=t=>{t.$config(`${e.url}/#/`)};return t.$inject=[R_.$configName],t}var B_=function(e){return e.light=`light`,e.dark=`dark`,e}({}),V_=class{static $key=`theme_key`;static $value=`theme`},H_=class{static $key=`theme.enum`;static $value=B_};function U_(e){return e in B_}var W_=class{themeStoredKey;theme;constructor(e){this.themeStoredKey=e}getThemeInLocalStorage(){return localStorage.getItem(this.themeStoredKey)}_getPreferredColorScheme(){return matchMedia(`(prefers-color-scheme: dark)`).matches?B_.dark:B_.light}$config(){let e=this.getThemeInLocalStorage();if(!e){this.theme=this._getPreferredColorScheme();return}if(!U_(e))throw Error(`this theme is not valid`);this.theme=e}$get(){return this.theme}static get $name(){return`theme`}static get $inject(){return[V_.$key]}static get $configName(){return`themeProvider`}};function G_(){let e=e=>{e.$config()};return e.$inject=[W_.$configName],e}var K_=function(e){return e.ES_MX=`es_mx`,e.EN_US=`en_us`,e}({}),q_=class{static $key=`language_key`;static $value=`language`};function J_(e){return e.toUpperCase()in K_}var Y_=class{languageKey;_lang;constructor(e){this.languageKey=e}get lang(){return this._lang??K_.EN_US}$config(){let e=this._readFromLocalStorage();if(!e){this._lang=K_.EN_US;return}if(!J_(e)){this._lang=K_.EN_US;return}this._lang=e}$get(){return this._lang}_readFromLocalStorage(){return localStorage.getItem(this.languageKey)}static get $name(){return`language`}static get $configName(){return`languageProvider`}static get $inject(){return[q_.$key]}};function X_(){let e=e=>{e.$config()};return e.$inject=[Y_.$configName],e}var Z_=class{_currentTheme;themeStorageKey;_element=u.default.element(document.documentElement);constructor(e,t){this._currentTheme=e,this.themeStorageKey=t,this._applyTheme(this._currentTheme)}static get $inject(){return[W_.$name,V_.$key]}get activeTheme(){return this._currentTheme}toggle(){this._currentTheme=this._currentTheme===B_.light?B_.dark:B_.light,this._applyTheme(this._currentTheme)}setActive(e){this._applyTheme(e)}_applyTheme(e){this._currentTheme=e,this._element.attr(`data-bs-theme`,this._currentTheme),this.saveInLocalStorage(this._currentTheme)}saveInLocalStorage(e){localStorage.setItem(this.themeStorageKey,e)}static get $name(){return`docs.theme.service`}},Q_=[{id:`guide.introduction.origin`,url:`docs.dashboard.introduction`,fragment:`origin`,translations:{en_us:{title:`Born from a real legacy application`,content:`NgbJS began inside a large AngularJS application that was still essential to the business, but too complex to migrate all at once. The application needed to keep evolving and deliver a modern interface while staying aligned with another product built with modern Angular and ng-bootstrap. A feature created for the modern application, such as a payment flow, also needed an AngularJS counterpart. In the modern codebase, ng-bootstrap provided the components and their behavior. In the legacy application, the same work meant copying markup, adapting it to the older stack, and rebuilding interactions by hand-often only partially. NgbJS grew out of that repeated translation work: bring the ng-bootstrap experience to AngularJS and reduce the distance between both applications. One component model Build familiar experiences across AngularJS and Angular without reinventing every component for the legacy application. Modern Angular + ng-bootstrap Legacy AngularJS + NgbJS`},es_mx:{title:`Nacido de una aplicacion legacy real`,content:`NgbJS comenzo dentro de una gran aplicacion AngularJS que seguia siendo esencial para el negocio, pero era demasiado compleja para migrarla de una sola vez. La aplicacion necesitaba continuar evolucionando y ofrecer una interfaz moderna mientras se mantenia alineada con otro producto construido con Angular moderno y ng-bootstrap. Una funcionalidad creada para la aplicacion moderna, como un flujo de pagos, tambien necesitaba una version equivalente en AngularJS. En el codigo moderno, ng-bootstrap proporcionaba los componentes y su comportamiento. En la aplicacion legacy, el mismo trabajo implicaba copiar el marcado, adaptarlo a la tecnologia anterior y reconstruir las interacciones manualmente, muchas veces solo de forma parcial. NgbJS surgio de ese trabajo repetido de traduccion: llevar la experiencia de ng-bootstrap a AngularJS y reducir la distancia entre ambas aplicaciones. Un solo modelo de componentes. Construye experiencias familiares en AngularJS y Angular sin reinventar cada componente para la aplicacion legacy.`}}},{id:`guide.introduction.what-is-ngbjs`,url:`docs.dashboard.introduction`,fragment:`what-is-ngbjs`,translations:{en_us:{title:`What is NgbJS?`,content:`NgbJS is a port of ng-bootstrap for AngularJS, designed to preserve its API and behavior as closely as the differences between the two frameworks allow. It is more than a collection of visually similar components. NgbJS aims to preserve the same mental model: developers who know ng-bootstrap should recognize its components, services, options, and interaction patterns, then move between AngularJS and Angular with fewer changes. Features that initially appeared difficult to reproduce were not simply discarded. Supporting them also led to complementary infrastructure such as ngjs-core , which brings capabilities required by NgbJS into the AngularJS environment.`},es_mx:{title:`Que es NgbJS?`,content:`NgbJS es una adaptacion de ng-bootstrap para AngularJS, disenada para conservar su API y comportamiento tan fielmente como lo permiten las diferencias entre ambos frameworks. Es mas que una coleccion de componentes visualmente similares. NgbJS busca conservar el mismo modelo mental: los desarrolladores que conocen ng-bootstrap deberian reconocer sus componentes, servicios, opciones y patrones de interaccion, y asi moverse entre AngularJS y Angular con menos cambios. Las funcionalidades que al principio parecian dificiles de reproducir no fueron simplemente descartadas. Darles soporte tambien llevo a crear infraestructura complementaria como ngjs-core, que incorpora al entorno de AngularJS las capacidades que NgbJS necesita.`}}},{id:`guide.introduction.who-is-it-for`,url:`docs.dashboard.introduction`,fragment:`who-is-it-for`,translations:{en_us:{title:`Who is it for?`,content:`NgbJS is intended for teams whose AngularJS applications still need to grow, even when a full migration is not immediately possible. Long-lived applications Critical AngularJS systems that will remain in production and continue receiving features for years. Mixed technology stacks Products where AngularJS and modern Angular applications must provide consistent interfaces and behavior. Gradual migrations Teams preparing for a future migration while working within current time, budget, or architectural constraints. ng-bootstrap developers Developers who want familiar Bootstrap components and APIs when moving between modern Angular and AngularJS codebases. NgbJS is not a reason to choose AngularJS for a new application. It exists to help established AngularJS systems modernize and move forward.`},es_mx:{title:`Para quien es?`,content:`NgbJS esta pensado para equipos cuyas aplicaciones AngularJS todavia necesitan crecer, incluso cuando una migracion completa no es posible de inmediato. Aplicaciones de larga duracion: sistemas criticos en AngularJS que permaneceran en produccion y seguiran recibiendo funcionalidades durante anos. Tecnologias combinadas: productos donde aplicaciones AngularJS y Angular moderno deben ofrecer interfaces y comportamientos consistentes. Migraciones graduales: equipos que se preparan para una migracion futura mientras trabajan con restricciones actuales de tiempo, presupuesto o arquitectura. Desarrolladores de ng-bootstrap: desarrolladores que quieren componentes y APIs de Bootstrap familiares al moverse entre codigo Angular moderno y AngularJS. NgbJS no es una razon para elegir AngularJS en una aplicacion nueva. Existe para ayudar a los sistemas AngularJS establecidos a modernizarse y seguir avanzando.`}}},{id:`guide.introduction.project-status`,url:`docs.dashboard.introduction`,fragment:`project-status`,translations:{en_us:{title:`Project status`,content:`Beta NgbJS is in beta because some components are still under review and may contain known bugs or edge cases that are not yet fully covered. Its syntax and intended behavior follow ng-bootstrap and are not expected to change as part of this review; ongoing work focuses on validation, fixes, and bringing each implementation to full parity.`},es_mx:{title:`Estado del proyecto`,content:`Beta. NgbJS esta en beta porque algunos componentes todavia estan en revision y pueden contener errores conocidos o casos limite que aun no estan completamente cubiertos. Su sintaxis y comportamiento esperado siguen a ng-bootstrap y no se espera que cambien como parte de esta revision; el trabajo actual se concentra en la validacion, las correcciones y en llevar cada implementacion a una paridad completa.`}}},{id:`guide.introduction.installation`,url:`docs.dashboard.introduction`,fragment:`installation`,translations:{en_us:{title:`Installation`,content:`Add NgbJS to your project with your preferred package manager.`},es_mx:{title:`Instalacion`,content:`Agrega NgbJS a tu proyecto con el administrador de paquetes que prefieras. Elige npm, pnpm, yarn o bun y ejecuta el comando de instalacion correspondiente.`}}},{id:`guide.introduction.acknowledgements`,url:`docs.dashboard.introduction`,fragment:`acknowledgements`,translations:{en_us:{title:`Built on the work of ng-bootstrap`,content:`NgbJS exists thanks to the outstanding work of the ng-bootstrap team and community . Its API, architecture, components, and documentation have been the primary reference for this port. Portions of this documentation are adapted from the official ng-bootstrap documentation , licensed under CC BY 3.0 . Changes were made to reflect AngularJS, the NgbJS API, and this project's examples. Parts of NgbJS are derived from and adapted from the ng-bootstrap source code, used under the terms of its MIT License . NgbJS is an independent project and is not part of the official ng-bootstrap project. It is built with deep respect and gratitude for the people who created and continue to maintain the original library.`},es_mx:{title:`Construido sobre el trabajo de ng-bootstrap`,content:`NgbJS existe gracias al extraordinario trabajo del equipo y la comunidad de ng-bootstrap. Su API, arquitectura, componentes y documentacion han sido la referencia principal para esta adaptacion. Algunas partes de esta documentacion estan adaptadas de la documentacion oficial de ng-bootstrap, publicada bajo la licencia CC BY 3.0. Se realizaron cambios para reflejar AngularJS, la API de NgbJS y los ejemplos de este proyecto. Algunas partes de NgbJS derivan y estan adaptadas del codigo fuente de ng-bootstrap, utilizado bajo los terminos de su licencia MIT. NgbJS es un proyecto independiente y no forma parte del proyecto oficial ng-bootstrap. Esta construido con profundo respeto y gratitud hacia las personas que crearon y continuan manteniendo la biblioteca original.`}}},{id:`guide.philosophy.parity-is-priority`,url:`docs.dashboard.philosophy`,fragment:`parity-is-priority`,translations:{en_us:{title:`Parity is Priority.`,content:`The guiding principle The closer NgbJS stays to ng-bootstrap, the less developers need to relearn, rewrite, or reinterpret when moving between AngularJS and Angular.`},es_mx:{title:`La paridad es la prioridad.`,content:`Cuanto mas se acerque NgbJS a ng-bootstrap, menos tendran que reaprender, reescribir o reinterpretar los desarrolladores al moverse entre AngularJS y Angular.`}}},{id:`guide.philosophy.what-parity-means`,url:`docs.dashboard.philosophy`,fragment:`what-parity-means`,translations:{en_us:{title:`What parity means`,content:`Parity is not limited to matching how a component looks. It is pursued across the entire developer experience. API parity Components, services, configuration options, and public names should remain recognizable to developers coming from ng-bootstrap. Syntax parity Templates should express the same intent with as little framework-specific translation as possible. Behavioral parity Interaction, state, defaults, and edge cases should behave consistently across both libraries. Conceptual parity The same mental model should apply, so knowledge gained in one codebase remains useful in the other.`},es_mx:{title:`Que significa la paridad`,content:`La paridad no se limita a igualar la apariencia de un componente. Incluye la API, la sintaxis, el comportamiento y el modelo conceptual para que la experiencia de desarrollo sea consistente.`}}},{id:`guide.philosophy.familiar-by-design`,url:`docs.dashboard.philosophy`,fragment:`familiar-by-design`,translations:{en_us:{title:`Familiar by design`,content:`NgbJS does not introduce a different API simply because it runs on AngularJS. When ng-bootstrap already provides a well-understood solution, reproducing that solution is more valuable than inventing a new abstraction. Familiarity reduces context switching for teams maintaining both generations of an application. Documentation, examples, and previous experience become transferable instead of being tied to only one framework. A simple decision rule If ng-bootstrap users already know how a component should work, NgbJS should make that knowledge useful.`},es_mx:{title:`Familiar por diseno`,content:`NgbJS no introduce una API diferente solo porque funciona sobre AngularJS. Reproducir las soluciones conocidas de ng-bootstrap reduce el cambio de contexto y permite reutilizar documentacion, ejemplos y experiencia.`}}},{id:`guide.philosophy.a-migration-bridge`,url:`docs.dashboard.philosophy`,fragment:`a-migration-bridge`,translations:{en_us:{title:`A bridge between codebases`,content:`Parity makes day-to-day development easier now and makes a future migration more predictable. Legacy AngularJS Existing application and business logic Bridge NgbJS Familiar components, APIs, and behavior Modern Angular ng-bootstrap and the target architecture`},es_mx:{title:`Un puente entre bases de codigo`,content:`La paridad facilita el desarrollo cotidiano y hace mas predecible una migracion futura. AngularJS representa la aplicacion existente, NgbJS aporta componentes y APIs familiares, y Angular con ng-bootstrap representa la arquitectura objetivo.`}}},{id:`guide.philosophy.when-parity-is-hard`,url:`docs.dashboard.philosophy`,fragment:`when-parity-is-hard`,translations:{en_us:{title:`When exact parity is difficult`,content:`AngularJS and Angular have different component models, template syntax, and runtime capabilities. Small differences are sometimes unavoidable, but they should be deliberate, limited, and easy to understand. A feature is not rejected only because AngularJS cannot reproduce it directly. NgbJS first looks for a compatible implementation that preserves the original behavior. Some of those efforts required supporting libraries such as ngjs-core to provide capabilities that AngularJS did not have on its own. Some parts of ng-bootstrap could be reused directly, while others had to be adapted or reimplemented for AngularJS. In every case, the goal is to preserve the closest practical parity in API, intent, and behavior.`},es_mx:{title:`Cuando la paridad exacta es dificil`,content:`AngularJS y Angular tienen modelos de componentes, sintaxis de plantillas y capacidades de ejecucion diferentes. Las diferencias inevitables deben ser deliberadas, limitadas y faciles de comprender. NgbJS busca la implementacion compatible mas cercana antes de descartar una funcionalidad.`}}},{id:`guide.why-ngbjs.the-legacy-reality`,url:`docs.dashboard.whyNgbJs`,fragment:`the-legacy-reality`,translations:{en_us:{title:`The legacy reality`,content:`A full migration is not always the next available step. Large AngularJS applications often contain years of business rules, integrations, and operational knowledge. Replacing them can demand more time, budget, and coordination than a team currently has, even while users continue to expect new features and current interfaces. Without a modern component library, teams must either stop improving the interface or rebuild common interactions themselves. Neither option makes the legacy application easier to maintain or eventually migrate.`},es_mx:{title:`La realidad de los sistemas legacy`,content:`Una migracion completa no siempre es el siguiente paso disponible. Las aplicaciones AngularJS grandes contienen anos de reglas de negocio, integraciones y conocimiento operativo, mientras sus usuarios continuan esperando funciones nuevas e interfaces actuales.`}}},{id:`guide.why-ngbjs.before-and-after`,url:`docs.dashboard.whyNgbJs`,fragment:`before-and-after`,translations:{en_us:{title:`From repeated adaptation to a shared model`,content:`Without NgbJS Copy the modern component markup. Translate it to AngularJS syntax. Rebuild interactions and state by hand. Accept incomplete or inconsistent behavior. Maintain two unrelated implementations over time. With NgbJS Start from a familiar ng-bootstrap API. Reuse the same component model and terminology. Rely on packaged, documented behavior. Reduce differences between both applications. Make later migration work more predictable.`},es_mx:{title:`De adaptaciones repetidas a un modelo compartido`,content:`Sin NgbJS, los equipos copian marcado, lo traducen a AngularJS y reconstruyen manualmente las interacciones. Con NgbJS pueden partir de una API conocida de ng-bootstrap, reutilizar el mismo modelo y reducir las diferencias entre aplicaciones.`}}},{id:`guide.why-ngbjs.what-it-unlocks`,url:`docs.dashboard.whyNgbJs`,fragment:`what-it-unlocks`,translations:{en_us:{title:`What NgbJS unlocks`,content:`The value is not only in the components themselves, but in the consistency they create. Modern interfaces Give active AngularJS products current Bootstrap components and interactions. A familiar API Let ng-bootstrap experience remain useful when developers work in AngularJS. Less divergence Keep parallel applications closer in terminology, behavior, and implementation. Less custom maintenance Replace one-off, partially implemented components with reusable library behavior. Transferable knowledge Share concepts, documentation patterns, and conventions across framework versions. A clearer migration path Reduce the conceptual changes required when a component eventually moves to Angular.`},es_mx:{title:`Lo que NgbJS hace posible`,content:`NgbJS aporta interfaces modernas, una API familiar, menos divergencia entre aplicaciones, menos mantenimiento personalizado, conocimiento transferible y una ruta de migracion mas clara.`}}},{id:`guide.why-ngbjs.when-to-use-ngbjs`,url:`docs.dashboard.whyNgbJs`,fragment:`when-to-use-ngbjs`,translations:{en_us:{title:`When should you use NgbJS?`,content:`A strong fit Your AngularJS application will remain active. A complete migration is not currently realistic. Modern and legacy applications must stay consistent. Your team already knows ng-bootstrap. You want to make a gradual migration less disruptive. Probably not the right fit You are starting a new application. You can use modern Angular and ng-bootstrap directly. Your product does not use Bootstrap. Your legacy application is already close to retirement.`},es_mx:{title:`Cuando deberias usar NgbJS?`,content:`NgbJS encaja cuando una aplicacion AngularJS seguira activa, una migracion completa aun no es realista y el equipo necesita consistencia con Angular moderno. No es la opcion indicada para aplicaciones nuevas que pueden usar Angular y ng-bootstrap directamente.`}}},{id:`guide.why-ngbjs.a-bridge-not-a-destination`,url:`docs.dashboard.whyNgbJs`,fragment:`a-bridge-not-a-destination`,translations:{en_us:{title:`A bridge, not a destination`,content:`NgbJS does not make AngularJS the right choice for new products, and it does not replace a migration strategy. It helps valuable existing applications move forward while that strategy becomes possible. Explore the components`},es_mx:{title:`Un puente, no un destino`,content:`NgbJS no convierte a AngularJS en la eleccion correcta para productos nuevos ni sustituye una estrategia de migracion. Ayuda a que las aplicaciones existentes sigan avanzando mientras esa estrategia se vuelve posible.`}}},{id:`components.accordion.api.ngb-accordion`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion`,translations:{en_us:{title:`NgbAccordion`,content:`Directive Root directive that coordinates all accordion items. It applies the Bootstrap accordion structure, controls whether multiple items may remain open and exposes methods for toggling items by id. Markup <div ngb-accordion> Inputs Input Binding Type Default Description animation <? boolean $config.animation Enables the collapse transition. close-others <? boolean false Closes the currently expanded item before another one opens. destroy-on-hide <? boolean true Removes a collapsed item's body view from the DOM. Outputs Output Binding Payload Emitted when show &? $event: string An item starts expanding; $event is its id. shown &? $event: string An item finishes expanding. hide &? $event: string An item starts collapsing. hidden &? $event: string An item finishes collapsing.`},es_mx:{title:`NgbAccordion`,content:`Referencia del directiva NgbAccordion. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordion, <div ngb-accordion>, animation, <?, boolean, $config.animation, close-others, false, destroy-on-hide, true, show, &?, $event: string, $event, shown, hide, hidden.`}}},{id:`components.accordion.api.ngb-accordion-item`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-item`,translations:{en_us:{title:`NgbAccordionItem`,content:`Directive Represents one collapsible item. It owns the item id and collapsed state, applies per-item destroyOnHide behavior and emits the item lifecycle events. Markup <div ngb-accordion-item="'details'"> Requires An ancestor ngb-accordion ; optionally reads ng-disabled . Inputs Input Binding Type Default Description ngb-accordion-item <? string Generated id Expression that identifies the item in the parent accordion. collapsed <? boolean true Controls the initial and current collapsed state. destroy-on-hide <? boolean Inherited Overrides the parent accordion setting for this item. ng-disabled ngDisabled boolean false Prevents the item's trigger from changing its state. Outputs Output Binding Payload Emitted when show &? None This item starts expanding. shown &? None This item finishes expanding. hide &? None This item starts collapsing. hidden &? None This item finishes collapsing.`},es_mx:{title:`NgbAccordionItem`,content:`Referencia del directiva NgbAccordionItem. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionItem, destroyOnHide, <div ngb-accordion-item="'details'">, ngb-accordion, ng-disabled, ngb-accordion-item, <?, string, collapsed, boolean, true, destroy-on-hide, ngDisabled, false, show, &?, shown, hide, hidden.`}}},{id:`components.accordion.api.ngb-accordion-header`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-header`,translations:{en_us:{title:`NgbAccordionHeader`,content:`Directive Marks an item's heading container. It adds the Bootstrap header class and heading semantics, and mirrors the collapsed state without handling the toggle action itself. Markup <h2 ngb-accordion-header> Requires An ancestor ngb-accordion-item . No public inputs or outputs.`},es_mx:{title:`NgbAccordionHeader`,content:`Referencia del directiva NgbAccordionHeader. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionHeader, <h2 ngb-accordion-header>, ngb-accordion-item.`}}},{id:`components.accordion.api.ngb-accordion-button`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-button`,translations:{en_us:{title:`NgbAccordionButton`,content:`Directive Provides the standard Bootstrap accordion trigger. It configures the button type, classes and ARIA state, respects ng-disabled and toggles its containing item when clicked. Markup <button ngb-accordion-button> Requires Ancestor controllers for ngb-accordion-item and ngb-accordion . No public inputs or outputs.`},es_mx:{title:`NgbAccordionButton`,content:`Referencia del directiva NgbAccordionButton. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionButton, ng-disabled, <button ngb-accordion-button>, ngb-accordion-item, ngb-accordion.`}}},{id:`components.accordion.api.ngb-accordion-toggle`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-toggle`,translations:{en_us:{title:`NgbAccordionToggle`,content:`Directive Adds toggle behavior and accessible state to custom header markup. use it when the trigger should not receive the standard accordion-button presentation supplied by NgbAccordionButton . Markup <span ngb-accordion-toggle> Requires Ancestor controllers for ngb-accordion-item and ngb-accordion . No public inputs or outputs.`},es_mx:{title:`NgbAccordionToggle`,content:`Referencia del directiva NgbAccordionToggle. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionToggle, accordion-button, NgbAccordionButton, <span ngb-accordion-toggle>, ngb-accordion-item, ngb-accordion.`}}},{id:`components.accordion.api.ngb-accordion-body`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-body`,translations:{en_us:{title:`NgbAccordionBody`,content:`Directive Hosts the item's body template. Content is supplied through a child ng-template and its embedded view is created or destroyed according to the item state and destroyOnHide . Markup <div ngb-accordion-body> Requires An ancestor ngb-accordion-item . No public inputs or outputs.`},es_mx:{title:`NgbAccordionBody`,content:`Referencia del directiva NgbAccordionBody. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionBody, ng-template, destroyOnHide, <div ngb-accordion-body>, ngb-accordion-item.`}}},{id:`components.accordion.api.ngb-accordion-config`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-config`,translations:{en_us:{title:`NgbAccordionConfig`,content:`Service Provides application-wide default values for accordions. Configure it once during application setup; values supplied directly to an ngb-accordion instance take precedence. Properties Property Type Default Description animation boolean $config.animation Sets the default animation behavior for every accordion. closeOthers boolean false Sets whether opening an item closes the previously expanded item. destroyOnHide boolean true Sets whether hidden body views are removed from the DOM.`},es_mx:{title:`NgbAccordionConfig`,content:`Referencia del servicio NgbAccordionConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionConfig, ngb-accordion, animation, boolean, $config.animation, closeOthers, false, destroyOnHide, true.`}}},{id:`components.alert.api.ngb-alert`,url:`docs.dashboard.alert.api`,fragment:`ngb-alert`,translations:{en_us:{title:`NgbAlert`,content:`Component Displays contextual feedback and optionally provides a dismiss action with an animated close transition. Markup <ngb-alert> Inputs Input Binding Type Default Description animation <? boolean $config.animation Enables the close transition. dismissible <? boolean true Shows the dismiss button. type @? string "warning" Sets the Bootstrap contextual type. Outputs Output Binding Payload Emitted when closed &? None The close transition finishes.`},es_mx:{title:`NgbAlert`,content:`Referencia del componente NgbAlert. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAlert, <ngb-alert>, animation, <?, boolean, $config.animation, dismissible, true, type, @?, string, "warning", closed, &?.`}}},{id:`components.alert.api.ngb-alert-config`,url:`docs.dashboard.alert.api`,fragment:`ngb-alert-config`,translations:{en_us:{title:`NgbAlertConfig`,content:`Service Provides application-wide defaults for alert instances. Properties Property Type Default Description animation boolean $config.animation Default close animation state. dismissible boolean true Default dismissible state. type string "warning" Default contextual type.`},es_mx:{title:`NgbAlertConfig`,content:`Referencia del servicio NgbAlertConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAlertConfig, animation, boolean, $config.animation, dismissible, true, type, string, "warning".`}}},{id:`components.carousel.api.ngb-carousel`,url:`docs.dashboard.carousel.api`,fragment:`ngb-carousel`,translations:{en_us:{title:`NgbCarousel`,content:`Component Coordinates slides, navigation, cycling, pause behavior and transitions. Markup <ngb-carousel> Inputs Input Binding Type Default Description active-id @? string First slide Identifies the active slide. animation <? boolean $config.animation Enables slide transitions. interval <? number 5000 Delay between automatic slides in milliseconds; 0 disables cycling. keyboard <? boolean true Enables keyboard navigation. pause-on-focus <? boolean true Pauses cycling while focused. pause-on-hover <? boolean true Pauses cycling while hovered. show-navigation-arrows <? boolean true Displays previous and next controls. show-navigation-indicators <? boolean true Displays slide indicators. wrap <? boolean true Wraps navigation at the first and last slide. Outputs Output Binding Payload Emitted when slide &? $event: NgbSlideEvent A slide transition starts. slid &? $event: NgbSlideEvent A slide transition finishes.`},es_mx:{title:`NgbCarousel`,content:`Referencia del componente NgbCarousel. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCarousel, <ngb-carousel>, active-id, @?, string, animation, <?, boolean, $config.animation, interval, number, 5000, 0, keyboard, true, pause-on-focus, pause-on-hover, show-navigation-arrows, show-navigation-indicators, wrap, slide, &?, $event: NgbSlideEvent, slid.`}}},{id:`components.carousel.api.ngb-slide`,url:`docs.dashboard.carousel.api`,fragment:`ngb-slide`,translations:{en_us:{title:`NgbSlide`,content:`Directive Marks projected content as a carousel slide. Markup <ng-template ngb-slide> Requires An ancestor ngb-carousel . Bindings Name Binding Type Default Description id @? string Generated id Identifies the slide. slid &? $event: NgbSingleSlideEvent - Runs when this slide completes a transition.`},es_mx:{title:`NgbSlide`,content:`Referencia del directiva NgbSlide. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbSlide, <ng-template ngb-slide>, ngb-carousel, id, @?, string, slid, &?, $event: NgbSingleSlideEvent.`}}},{id:`components.carousel.api.ngb-carousel-config`,url:`docs.dashboard.carousel.api`,fragment:`ngb-carousel-config`,translations:{en_us:{title:`NgbCarouselConfig`,content:`Service Provides application-wide carousel defaults. Properties Property Type Default animation boolean $config.animation interval number 5000 wrap , keyboard , pauseOnFocus , pauseOnHover boolean true showNavigationArrows , showNavigationIndicators boolean true`},es_mx:{title:`NgbCarouselConfig`,content:`Referencia del servicio NgbCarouselConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCarouselConfig, animation, boolean, $config.animation, interval, number, 5000, wrap, keyboard, pauseOnFocus, pauseOnHover, true, showNavigationArrows, showNavigationIndicators.`}}},{id:`components.collapse.api.ngb-collapse`,url:`docs.dashboard.collapse.api`,fragment:`ngb-collapse`,translations:{en_us:{title:`NgbCollapse`,content:`Directive Controls the visible state of an element and runs vertical or horizontal Bootstrap collapse transitions. Markup <div ngb-collapse="isCollapsed"> Inputs Input Binding Type Default Description ngb-collapse < boolean Required Sets whether the host is collapsed. animation <? boolean $config.animation Enables transition animation. horizontal <? boolean false uses width instead of height for the transition. Outputs Output Binding Payload Emitted when ngb-collapse-change &? $event: boolean toggle() changes the collapsed state. shown &? None The expand transition finishes. ngb-hidden &? None The collapse transition finishes.`},es_mx:{title:`NgbCollapse`,content:`Referencia del directiva NgbCollapse. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCollapse, <div ngb-collapse="isCollapsed">, ngb-collapse, <, boolean, animation, <?, $config.animation, horizontal, false, ngb-collapse-change, &?, $event: boolean, toggle(), shown, ngb-hidden.`}}},{id:`components.collapse.api.ngb-collapse-config`,url:`docs.dashboard.collapse.api`,fragment:`ngb-collapse-config`,translations:{en_us:{title:`NgbCollapseConfig`,content:`Service Provides application-wide defaults for collapse directives. Properties Property Type Default Description animation boolean $config.animation Default transition animation state. horizontal boolean false Default transition orientation.`},es_mx:{title:`NgbCollapseConfig`,content:`Referencia del servicio NgbCollapseConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCollapseConfig, animation, boolean, $config.animation, horizontal, false.`}}},{id:`components.datepicker.api.ngb-datepicker`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-datepicker`,translations:{en_us:{title:`NgbDatepicker`,content:`Component Renders an inline calendar and integrates its selected date with AngularJS forms. Markup <ngb-datepicker ng-model="date"> Integration Optionally reads ng-model and ng-disabled . Inputs Input Binding Default Description calendar <? NgbCalendarGregorian Calendar system used for date arithmetic. date-adapter <? NgbDateStructAdapter Converts between the model and NgbDateStruct . i18n <? NgbDatepickerI18nDefault Supplies localized labels. display-months <? 1 Number of visible months. first-day-of-week <? 1 First weekday, from 1 (Monday) to 7 (Sunday). min-date , max-date <? undefined Selectable date boundaries. start-date <? undefined Initial month displayed when no model is selected. navigation @? "select" Accepts "select" , "arrows" or "none" . outside-days @? "visible" Controls days outside the current month. weekdays <? "narrow" Controls weekday labels and width. show-week-numbers <? false Displays week numbers. mark-disabled <? undefined Function that disables individual dates. day-template , footer-template , content-template <? Built-in templates Customize calendar rendering. day-template-data <? undefined Supplies custom data to day templates. Outputs Output Payload Emitted when date-select $event: NgbDate A date is selected. navigate $event: NgbDatepickerNavigateEvent The visible month changes.`},es_mx:{title:`NgbDatepicker`,content:`Referencia del componente NgbDatepicker. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDatepicker, <ngb-datepicker ng-model="date">, ng-model, ng-disabled, calendar, <?, NgbCalendarGregorian, date-adapter, NgbDateStructAdapter, NgbDateStruct, i18n, NgbDatepickerI18nDefault, display-months, 1, first-day-of-week, min-date, max-date, undefined, start-date, navigation, @?, "select", "arrows", "none", outside-days, "visible", weekdays, "narrow", show-week-numbers, false, mark-disabled, day-template, footer-template, content-template, day-template-data, date-select, $event: NgbDate, navigate, $event: NgbDatepickerNavigateEvent.`}}},{id:`components.datepicker.api.ngb-input-datepicker`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-input-datepicker`,translations:{en_us:{title:`NgbInputDatepicker`,content:`Directive Adds a popup calendar to an input while preserving AngularJS model parsing and validation. Markup <input ng-model="date" ngb-datepicker> Requires ng-model ; optionally reads ng-disabled . Accepts the calendar inputs above plus the popup-specific inputs below. Popup inputs Input Binding Default Description auto-close <? true Controls which selections or outside clicks close the popup. container @? null Accepts "body" to move the popup. placement <? $config.placement Preferred Popper placements. popper-options <? $config.popperOptions Transforms Popper options. position-target <? Input element Overrides the positioning target. restore-focus <? true Restores focus after closing. datepicker-class @? - Adds a class to the popup calendar. parser-formatter <? NgbDateISOParserFormatter Parses and formats the input text. disabled <? false Disables input behavior. Additional output Output Payload Emitted when closed None The popup calendar closes.`},es_mx:{title:`NgbInputDatepicker`,content:`Referencia del directiva NgbInputDatepicker. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbInputDatepicker, <input ng-model="date" ngb-datepicker>, ng-model, ng-disabled, auto-close, <?, true, container, @?, null, "body", placement, $config.placement, popper-options, $config.popperOptions, position-target, restore-focus, datepicker-class, parser-formatter, NgbDateISOParserFormatter, disabled, false, closed.`}}},{id:`components.datepicker.api.ngb-datepicker-config`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-datepicker-config`,translations:{en_us:{title:`NgbDatepickerConfig`,content:`Service Provides defaults for inline and popup calendars. Properties Property Default displayMonths , firstDayOfWeek 1 navigation "select" outsideDays "visible" weekdays "narrow" showWeekNumbers false minDate , maxDate , startDate , templates and callbacks undefined`},es_mx:{title:`NgbDatepickerConfig`,content:`Referencia del servicio NgbDatepickerConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDatepickerConfig, displayMonths, firstDayOfWeek, 1, navigation, "select", outsideDays, "visible", weekdays, "narrow", showWeekNumbers, false, minDate, maxDate, startDate, undefined.`}}},{id:`components.datepicker.api.ngb-input-datepicker-config`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-input-datepicker-config`,translations:{en_us:{title:`NgbInputDatepickerConfig`,content:`Service Extends NgbDatepickerConfig with popup defaults. Additional properties Property Default autoClose true container null placement ["bottom-start", "bottom-end", "top-start", "top-end"] popperOptions Identity transform restoreFocus true positionTarget undefined`},es_mx:{title:`NgbInputDatepickerConfig`,content:`Referencia del servicio NgbInputDatepickerConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbInputDatepickerConfig, NgbDatepickerConfig, autoClose, true, container, null, placement, ["bottom-start", "bottom-end", "top-start", "top-end"], popperOptions, restoreFocus, positionTarget, undefined.`}}},{id:`components.datepicker.api.ngb-datepicker-extension-contracts`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-datepicker-extension-contracts`,translations:{en_us:{title:`Calendar and formatting contracts`,content:`Interfaces Pass custom implementations through the corresponding datepicker inputs. Contract Purpose Core methods NgbCalendar Date arithmetic and calendar rules. getNext() , getPrev() , getToday() , isValid() NgbDateAdapter<D> Application model conversion. fromModel() , toModel() NgbDateParserFormatter Popup input text conversion. parse() , format() NgbDatepickerI18n Localized month, weekday, day and ARIA labels. getWeekdayLabel() , getMonthFullName() , getDayAriaLabel()`},es_mx:{title:`Calendar and formatting contracts`,content:`Referencia del interfaces Calendar and formatting contracts. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCalendar, getNext(), getPrev(), getToday(), isValid(), NgbDateAdapter<D>, fromModel(), toModel(), NgbDateParserFormatter, parse(), format(), NgbDatepickerI18n, getWeekdayLabel(), getMonthFullName(), getDayAriaLabel().`}}},{id:`components.datepicker.calendars.calendar-hebrew`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-hebrew`,translations:{en_us:{title:`Hebrew`,content:`NgbCalendarHebrew with NgbDatepickerI18nHebrew , including Hebrew month names and numerals.`},es_mx:{title:`Hebreo`,content:`NgbCalendarHebrew junto con NgbDatepickerI18nHebrew incluye nombres de meses y numerales hebreos.`}}},{id:`components.datepicker.calendars.calendar-jalali`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-jalali`,translations:{en_us:{title:`Jalali`,content:`NgbCalendarPersian performs Persian calendar calculations; the labels are supplied independently through NgbDatepickerI18n .`},es_mx:{title:`Jalali`,content:`NgbCalendarPersian realiza los calculos del calendario persa; NgbDatepickerI18n proporciona las etiquetas de forma independiente.`}}},{id:`components.datepicker.calendars.calendar-islamic-civil`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-islamic-civil`,translations:{en_us:{title:`Islamic Civil`,content:`NgbCalendarIslamicCivil uses the tabular civil Hijri calculation.`},es_mx:{title:`Islamico civil`,content:`NgbCalendarIslamicCivil utiliza el calculo tabular del calendario civil Hijri.`}}},{id:`components.datepicker.calendars.calendar-islamic-umalqura`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-islamic-umalqura`,translations:{en_us:{title:`Islamic Umm al-Qura`,content:`NgbCalendarIslamicUmalqura uses the Umm al-Qura calendar data while sharing the Hijri presentation layer.`},es_mx:{title:`Islamico Umm al-Qura`,content:`NgbCalendarIslamicUmalqura utiliza los datos del calendario Umm al-Qura y comparte la presentacion Hijri.`}}},{id:`components.datepicker.calendars.calendar-buddhist`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-buddhist`,translations:{en_us:{title:`Buddhist`,content:`NgbCalendarBuddhist keeps Gregorian month rules and presents years in the Buddhist era.`},es_mx:{title:`Budista`,content:`NgbCalendarBuddhist conserva las reglas de los meses gregorianos y presenta los anos segun la era budista.`}}},{id:`components.datepicker.calendars.calendar-ethiopian`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-ethiopian`,translations:{en_us:{title:`Ethiopian`,content:`NgbCalendarEthiopian and NgbDatepickerI18nAmharic include the thirteenth Ethiopian month.`},es_mx:{title:`Etiope`,content:`NgbCalendarEthiopian y NgbDatepickerI18nAmharic incluyen el decimotercer mes etiope.`}}},{id:`components.datepicker.calendars.calendar-intergalactic`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-intergalactic`,translations:{en_us:{title:`Intergalactic Standard (just for fun)`,content:`A custom NgbDatepickerI18n translates Gregorian labels into the Standard Galactic Alphabet. The calendar math stays Gregorian-space-time remains someone else's problem.`},es_mx:{title:`Estandar intergalactico (solo por diversion)`,content:`Una implementacion personalizada de NgbDatepickerI18n traduce las etiquetas gregorianas al alfabeto galactico estandar mientras conserva los calculos gregorianos.`}}},{id:`components.dropdown.api.ngb-dropdown`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown`,translations:{en_us:{title:`NgbDropdown`,content:`Directive Root controller for open state, positioning, focus and auto-close behavior. Markup <div ngb-dropdown> Inputs Input Binding Type Default Description auto-close <? boolean | "inside" | "outside" true Controls which interactions close the menu. animation <? boolean undefined Exposed by the directive factory; it currently has no runtime effect. container @? null | "body" null Moves the menu to the document body. display <? "dynamic" | "static" Contextual Enables or bypasses Popper positioning. dropdown-class <? string - Adds a class to the dropdown container. open <? boolean false Sets the open state. placement <? Placement[] $config.placement Preferred Popper placements. popper-options <? function $config.popperOptions Transforms Popper options. Outputs Output Binding Payload Emitted when open-change &? $event: boolean The dropdown opens or closes.`},es_mx:{title:`NgbDropdown`,content:`Referencia del directiva NgbDropdown. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdown, <div ngb-dropdown>, auto-close, <?, boolean | "inside" | "outside", true, animation, boolean, undefined, container, @?, null | "body", null, display, "dynamic" | "static", dropdown-class, string, open, false, placement, Placement[], $config.placement, popper-options, function, $config.popperOptions, open-change, &?, $event: boolean.`}}},{id:`components.dropdown.api.ngb-dropdown-anchor`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-anchor`,translations:{en_us:{title:`NgbDropdownAnchor`,content:`Directive Marks the element used for positioning without adding click behavior. Markup <button ngb-dropdown-anchor> Requires An ancestor ngb-dropdown . No public inputs or outputs.`},es_mx:{title:`NgbDropdownAnchor`,content:`Referencia del directiva NgbDropdownAnchor. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownAnchor, <button ngb-dropdown-anchor>, ngb-dropdown.`}}},{id:`components.dropdown.api.ngb-dropdown-toggle`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-toggle`,translations:{en_us:{title:`NgbDropdownToggle`,content:`Directive Extends the anchor with click and keyboard toggle behavior. Markup <button ngb-dropdown-toggle> Requires An ancestor ngb-dropdown . No public inputs or outputs.`},es_mx:{title:`NgbDropdownToggle`,content:`Referencia del directiva NgbDropdownToggle. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownToggle, <button ngb-dropdown-toggle>, ngb-dropdown.`}}},{id:`components.dropdown.api.ngb-dropdown-menu`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-menu`,translations:{en_us:{title:`NgbDropdownMenu`,content:`Directive Hosts menu items and coordinates keyboard navigation with the root dropdown. Markup <div ngb-dropdown-menu> Requires An ancestor ngb-dropdown . No public inputs or outputs.`},es_mx:{title:`NgbDropdownMenu`,content:`Referencia del directiva NgbDropdownMenu. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownMenu, <div ngb-dropdown-menu>, ngb-dropdown.`}}},{id:`components.dropdown.api.ngb-dropdown-item`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-item`,translations:{en_us:{title:`NgbDropdownItem`,content:`Directive Marks an interactive menu entry and integrates with ng-disabled . Markup <button ngb-dropdown-item> Inputs Input Binding Type Default Description tabindex <? string | number 0 Sets the enabled tab order. ng-disabled ngDisabled boolean false Disables focus and activation.`},es_mx:{title:`NgbDropdownItem`,content:`Referencia del directiva NgbDropdownItem. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownItem, ng-disabled, <button ngb-dropdown-item>, tabindex, <?, string | number, 0, ngDisabled, boolean, false.`}}},{id:`components.dropdown.api.ngb-dropdown-config`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-config`,translations:{en_us:{title:`NgbDropdownConfig`,content:`Service Provides application-wide dropdown defaults. Properties Property Type Default autoClose boolean | "inside" | "outside" true container null | "body" null placement Placement[] ["bottom-start", "bottom-end", "top-start", "top-end"] popperOptions function Identity transform`},es_mx:{title:`NgbDropdownConfig`,content:`Referencia del servicio NgbDropdownConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownConfig, autoClose, boolean | "inside" | "outside", true, container, null | "body", null, placement, Placement[], ["bottom-start", "bottom-end", "top-start", "top-end"], popperOptions, function.`}}},{id:`components.modal.api.ngb-modal`,url:`docs.dashboard.modal.api`,fragment:`ngb-modal`,translations:{en_us:{title:`NgbModal`,content:`Service Creates and coordinates modal instances from templates or components. Members Member Returns Description open(content, options?) NgbModalRef Opens content with options merged over NgbModalConfig . activeInstances Active modal collection Exposes the currently open modal instances. dismissAll(reason?) void Dismisses every open modal. hasOpenModals() boolean Reports whether a modal is open.`},es_mx:{title:`NgbModal`,content:`Referencia del servicio NgbModal. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbModal, open(content, options?), NgbModalRef, NgbModalConfig, activeInstances, dismissAll(reason?), void, hasOpenModals(), boolean.`}}},{id:`components.modal.api.ngb-modal-ref`,url:`docs.dashboard.modal.api`,fragment:`ngb-modal-ref`,translations:{en_us:{title:`NgbModalRef`,content:`Class Controls one modal and exposes its result and lifecycle streams. Members Member Description close(result?) Resolves result and closes the modal. dismiss(reason?) Rejects result and dismisses the modal. update(options) Updates supported window and backdrop options. result AngularJS promise settled by close or dismiss. closed , dismissed , shown , hidden Observable lifecycle streams. componentInstance Component controller instance when component content is used.`},es_mx:{title:`NgbModalRef`,content:`Referencia del clase NgbModalRef. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbModalRef, close(result?), result, dismiss(reason?), update(options), closed, dismissed, shown, hidden, componentInstance.`}}},{id:`components.modal.api.ngb-active-modal`,url:`docs.dashboard.modal.api`,fragment:`ngb-active-modal`,translations:{en_us:{title:`NgbActiveModal`,content:`Service Allows modal content to control the modal that contains it. Methods Method Description close(result?) Closes with an optional result. dismiss(reason?) Dismisses with an optional reason. update(options) Updates supported modal options.`},es_mx:{title:`NgbActiveModal`,content:`Referencia del servicio NgbActiveModal. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbActiveModal, close(result?), dismiss(reason?), update(options).`}}},{id:`components.modal.api.ngb-modal-config`,url:`docs.dashboard.modal.api`,fragment:`ngb-modal-config`,translations:{en_us:{title:`NgbModalConfig`,content:`Service Provides defaults merged into every open() call. Options Option Default Description animation $config.animation Enables modal and backdrop transitions. backdrop true Accepts true , false or "static" . keyboard true Allows Escape-key dismissal. centered , scrollable undefined Controls dialog layout. fullscreen false Enables full-screen mode at an optional breakpoint. role "dialog" Sets the dialog ARIA role. size undefined Accepts "sm" , "lg" or "xl" . ariaLabelledBy , ariaDescribedBy undefined Connect accessible label and description elements. container , injector , bindings undefined Control content creation and placement. windowClass , modalDialogClass , backdropClass undefined Add custom classes. beforeDismiss undefined Can cancel dismissal synchronously or asynchronously.`},es_mx:{title:`NgbModalConfig`,content:`Referencia del servicio NgbModalConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbModalConfig, open(), animation, $config.animation, backdrop, true, false, "static", keyboard, centered, scrollable, undefined, fullscreen, role, "dialog", size, "sm", "lg", "xl", ariaLabelledBy, ariaDescribedBy, container, injector, bindings, windowClass, modalDialogClass, backdropClass, beforeDismiss.`}}},{id:`components.nav.api.ngb-nav`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav`,translations:{en_us:{title:`NgbNav`,content:`Directive Coordinates nav items, selection, keyboard behavior and panel transitions. Markup <ul ngb-nav active-id="activeId"> Inputs Input Binding Type Default Description active-id =? string First enabled item Two-way active item id. animation <? boolean $config.animation Enables panel transitions. destroy-on-hide <? boolean true Removes inactive panel views. keyboard <? boolean | "changeWithArrows" true Controls arrow-key navigation. orientation <? "horizontal" | "vertical" "horizontal" Sets keyboard orientation. roles <? "tablist" | false "tablist" Enables or disables tab ARIA roles. Outputs Output Payload Emitted when active-id-change $event: string The active id changes. nav-change $event: NgbNavChangeEvent Before selection changes; the event can prevent it. shown $event: string The next panel finishes appearing. hidden $event: string The previous panel finishes hiding.`},es_mx:{title:`NgbNav`,content:`Referencia del directiva NgbNav. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNav, <ul ngb-nav active-id="activeId">, active-id, =?, string, animation, <?, boolean, $config.animation, destroy-on-hide, true, keyboard, boolean | "changeWithArrows", orientation, "horizontal" | "vertical", "horizontal", roles, "tablist" | false, "tablist", active-id-change, $event: string, nav-change, $event: NgbNavChangeEvent, shown, hidden.`}}},{id:`components.nav.api.ngb-nav-item`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-item`,translations:{en_us:{title:`NgbNavItem`,content:`Directive Defines one selectable item and its associated content. Markup <li ngb-nav-item="overview"> Requires An ancestor ngb-nav ; optionally reads ng-disabled . Bindings Name Binding Default Description ngb-nav-item @? Generated id Identifies the item. dom-id @? Generated id Overrides the DOM id. destroy-on-hide <? Inherited Overrides panel lifecycle for this item. shown , hidden &? - Item-level panel lifecycle callbacks.`},es_mx:{title:`NgbNavItem`,content:`Referencia del directiva NgbNavItem. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavItem, <li ngb-nav-item="overview">, ngb-nav, ng-disabled, ngb-nav-item, @?, dom-id, destroy-on-hide, <?, shown, hidden, &?.`}}},{id:`components.nav.api.ngb-nav-link`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-link`,translations:{en_us:{title:`NgbNavLink`,content:`Directive Turns an anchor or button into the interactive trigger for its nav item. Markup <button ngb-nav-link> Requires Ancestor ngb-nav-item and ngb-nav controllers. No public inputs or outputs.`},es_mx:{title:`NgbNavLink`,content:`Referencia del directiva NgbNavLink. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavLink, <button ngb-nav-link>, ngb-nav-item, ngb-nav.`}}},{id:`components.nav.api.ngb-nav-content`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-content`,translations:{en_us:{title:`NgbNavContent`,content:`Directive Marks the template rendered for a nav item. Markup <ng-template ngb-nav-content> No public inputs or outputs.`},es_mx:{title:`NgbNavContent`,content:`Referencia del directiva NgbNavContent. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavContent, <ng-template ngb-nav-content>.`}}},{id:`components.nav.api.ngb-nav-outlet`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-outlet`,translations:{en_us:{title:`NgbNavOutlet`,content:`Directive Renders the active panel for a nav controller. Markup <div ngb-nav-outlet="navController"> Inputs Input Binding Description ngb-nav-outlet < The NgbNav controller to render. pane-role <? Overrides the generated panel role.`},es_mx:{title:`NgbNavOutlet`,content:`Referencia del directiva NgbNavOutlet. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavOutlet, <div ngb-nav-outlet="navController">, ngb-nav-outlet, <, NgbNav, pane-role, <?.`}}},{id:`components.nav.api.ngb-nav-config`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-config`,translations:{en_us:{title:`NgbNavConfig`,content:`Service Provides application-wide nav defaults. Properties Property Default animation $config.animation destroyOnHide true orientation "horizontal" roles "tablist" keyboard true`},es_mx:{title:`NgbNavConfig`,content:`Referencia del servicio NgbNavConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavConfig, animation, $config.animation, destroyOnHide, true, orientation, "horizontal", roles, "tablist", keyboard.`}}},{id:`components.offcanvas.api.ngb-offcanvas`,url:`docs.dashboard.offcanvas.api`,fragment:`ngb-offcanvas`,translations:{en_us:{title:`NgbOffcanvas`,content:`Service Creates and coordinates offcanvas panels from templates or registered AngularJS component names. To open component content, pass its registered name: offcanvas.open(MyContentComponent.$name) . Passing the component class itself is not supported. Members Member Returns Description open(componentName | templateRef, options?) NgbOffcanvasRef Opens a registered Component.$name or a TemplateRef , with options merged over NgbOffcanvasConfig . activeInstance Active instance Exposes the currently open offcanvas instance. dismiss(reason?) void Dismisses the active panel. hasOpenOffcanvas() boolean Reports whether a panel is open.`},es_mx:{title:`NgbOffcanvas`,content:`Referencia del servicio NgbOffcanvas. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbOffcanvas, offcanvas.open(MyContentComponent.$name), open(componentName | templateRef, options?), NgbOffcanvasRef, Component.$name, TemplateRef, NgbOffcanvasConfig, activeInstance, dismiss(reason?), void, hasOpenOffcanvas(), boolean.`}}},{id:`components.offcanvas.api.ngb-offcanvas-ref`,url:`docs.dashboard.offcanvas.api`,fragment:`ngb-offcanvas-ref`,translations:{en_us:{title:`NgbOffcanvasRef`,content:`Class Controls one panel and exposes its result and lifecycle streams. Members Member Description close(result?) Resolves result and closes the panel. dismiss(reason?) Rejects result and dismisses the panel. result AngularJS promise settled by close or dismiss. closed , dismissed , shown , hidden Observable lifecycle streams. componentInstance Component controller instance when component content is used.`},es_mx:{title:`NgbOffcanvasRef`,content:`Referencia del clase NgbOffcanvasRef. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbOffcanvasRef, close(result?), result, dismiss(reason?), closed, dismissed, shown, hidden, componentInstance.`}}},{id:`components.offcanvas.api.ngb-active-offcanvas`,url:`docs.dashboard.offcanvas.api`,fragment:`ngb-active-offcanvas`,translations:{en_us:{title:`NgbActiveOffcanvas`,content:`Service Allows offcanvas content to control the panel that contains it. Methods Method Description close(result?) Closes with an optional result. dismiss(reason?) Dismisses with an optional reason.`},es_mx:{title:`NgbActiveOffcanvas`,content:`Referencia del servicio NgbActiveOffcanvas. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbActiveOffcanvas, close(result?), dismiss(reason?).`}}},{id:`components.offcanvas.api.ngb-offcanvas-config`,url:`docs.dashboard.offcanvas.api`,fragment:`ngb-offcanvas-config`,translations:{en_us:{title:`NgbOffcanvasConfig`,content:`Service Provides defaults merged into every open() call. Options Option Default Description animation $config.animation Enables panel and backdrop transitions. backdrop true Accepts true , false or "static" . keyboard true Allows Escape-key dismissal. position "start" Accepts "start" , "end" , "top" or "bottom" . scroll false Allows body scrolling while open. ariaLabelledBy , ariaDescribedBy undefined Connect accessible label and description elements. container , bindings undefined Control content creation and placement. panelClass , backdropClass undefined Add custom classes. beforeDismiss undefined Can cancel dismissal synchronously or asynchronously.`},es_mx:{title:`NgbOffcanvasConfig`,content:`Referencia del servicio NgbOffcanvasConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbOffcanvasConfig, open(), animation, $config.animation, backdrop, true, false, "static", keyboard, position, "start", "end", "top", "bottom", scroll, ariaLabelledBy, ariaDescribedBy, undefined, container, bindings, panelClass, backdropClass, beforeDismiss.`}}},{id:`components.pagination.api.ngb-pagination`,url:`docs.dashboard.pagination.api`,fragment:`ngb-pagination`,translations:{en_us:{title:`NgbPagination`,content:`Component Builds accessible page navigation for a collection. Markup <ngb-pagination collection-size="total" page="page"> Integration Optionally reads ng-disabled . Inputs Input Binding Type Default Description collection-size < number Required Total number of collection items. page <? number 1 Current page. page-size <? number 10 Items represented by each page. max-size <? number 0 Maximum number of visible page links; zero is unlimited. boundary-links <? boolean false Shows first and last links. direction-links <? boolean true Shows previous and next links. ellipses <? boolean true Shows ellipses for omitted ranges. rotate <? boolean false Centers the current page within the visible range. size <? string | null $config.size Sets the Bootstrap pagination size. ng-disabled ngDisabled boolean false Disables page navigation. Outputs Output Binding Payload Emitted when page-change &? $event: number The user selects a page.`},es_mx:{title:`NgbPagination`,content:`Referencia del componente NgbPagination. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbPagination, <ngb-pagination collection-size="total" page="page">, ng-disabled, collection-size, <, number, page, <?, 1, page-size, 10, max-size, 0, boundary-links, boolean, false, direction-links, true, ellipses, rotate, size, string | null, $config.size, ngDisabled, page-change, &?, $event: number.`}}},{id:`components.pagination.api.ngb-pagination-config`,url:`docs.dashboard.pagination.api`,fragment:`ngb-pagination-config`,translations:{en_us:{title:`NgbPaginationConfig`,content:`Service Provides application-wide pagination defaults. Properties Property Default disabled , boundaryLinks , rotate false directionLinks , ellipses true maxSize 0 pageSize 10 size undefined`},es_mx:{title:`NgbPaginationConfig`,content:`Referencia del servicio NgbPaginationConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbPaginationConfig, disabled, boundaryLinks, rotate, false, directionLinks, ellipses, true, maxSize, 0, pageSize, 10, size, undefined.`}}},{id:`components.popover.api.ngb-popover`,url:`docs.dashboard.popover.api`,fragment:`ngb-popover`,translations:{en_us:{title:`NgbPopover`,content:`Directive Attaches a positioned Bootstrap popover to any host element. Markup <button ngb-popover="'Content'"> Inputs Input Binding Type Default Description ngb-popover <? string | TemplateRef - Popover body content. popover-title <? string | TemplateRef - Optional title content. popover-context <? object - Context supplied to template content. animation <? boolean $config.animation Enables open and close transitions. auto-close <? boolean | "inside" | "outside" true Controls automatic closing. placement <? PlacementArray "auto" Preferred Popper placement. triggers <? string "click" Space-separated open and close triggers. container <? string $config.container Container selector for the popover window. position-target <? HTMLElement | string Host element Overrides the positioning target. popover-class @? string - Adds a class to the popover window. disable-popover <? boolean false Prevents the popover from opening. open-delay <? number 0 Delay before opening in milliseconds. close-delay <? number 0 Delay before closing in milliseconds. popper-options <? function $config.popperOptions Transforms Popper options. Outputs Output Binding Payload Emitted when shown &? None The popover opens. hidden &? None The popover closes.`},es_mx:{title:`NgbPopover`,content:`Referencia del directiva NgbPopover. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbPopover, <button ngb-popover="'Content'">, ngb-popover, <?, string | TemplateRef, popover-title, popover-context, object, animation, boolean, $config.animation, auto-close, boolean | "inside" | "outside", true, placement, PlacementArray, "auto", triggers, string, "click", container, $config.container, position-target, HTMLElement | string, popover-class, @?, disable-popover, false, open-delay, number, 0, close-delay, popper-options, function, $config.popperOptions, shown, &?, hidden.`}}},{id:`components.popover.api.ngb-popover-config`,url:`docs.dashboard.popover.api`,fragment:`ngb-popover-config`,translations:{en_us:{title:`NgbPopoverConfig`,content:`Service Provides application-wide popover defaults. Properties Property Default animation $config.animation autoClose true placement "auto" triggers "click" disablePopover false openDelay , closeDelay 0 container , popoverClass undefined popperOptions Identity transform`},es_mx:{title:`NgbPopoverConfig`,content:`Referencia del servicio NgbPopoverConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbPopoverConfig, animation, $config.animation, autoClose, true, placement, "auto", triggers, "click", disablePopover, false, openDelay, closeDelay, 0, container, popoverClass, undefined, popperOptions.`}}},{id:`components.progressbar.api.ngb-progressbar`,url:`docs.dashboard.progressbar.api`,fragment:`ngb-progressbar`,translations:{en_us:{title:`NgbProgressbar`,content:`Component Renders an accessible Bootstrap progress indicator for a numeric value. Markup <ngb-progressbar value="progress"> Inputs Input Binding Type Default Description value < number Required Current progress value. max <? number 100 Maximum value. animated <? boolean false Animates striped progress. striped <? boolean false uses a striped background. show-value <? boolean false Displays the calculated percentage. type @? string $config.type Sets the bar contextual type. text-type @? string $config.textType Sets the label text color. height @? string $config.height Sets the progress container height. aria-label @? string "progress bar" Accessible label for the bar.`},es_mx:{title:`NgbProgressbar`,content:`Referencia del componente NgbProgressbar. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbProgressbar, <ngb-progressbar value="progress">, value, <, number, max, <?, 100, animated, boolean, false, striped, show-value, type, @?, string, $config.type, text-type, $config.textType, height, $config.height, aria-label, "progress bar".`}}},{id:`components.progressbar.api.ngb-progressbar-stacked`,url:`docs.dashboard.progressbar.api`,fragment:`ngb-progressbar-stacked`,translations:{en_us:{title:`NgbProgressbarStacked`,content:`Component Groups multiple progress bars into a Bootstrap stacked progress container. Markup <ngb-progressbar-stacked> No public inputs or outputs.`},es_mx:{title:`NgbProgressbarStacked`,content:`Referencia del componente NgbProgressbarStacked. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbProgressbarStacked, <ngb-progressbar-stacked>.`}}},{id:`components.progressbar.api.ngb-progressbar-config`,url:`docs.dashboard.progressbar.api`,fragment:`ngb-progressbar-config`,translations:{en_us:{title:`NgbProgressbarConfig`,content:`Service Provides application-wide progress bar defaults. Properties Property Type Default ariaLabel string "progress bar" animated , showValue , striped boolean false max number 100 height , textType , type string | undefined undefined`},es_mx:{title:`NgbProgressbarConfig`,content:`Referencia del servicio NgbProgressbarConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbProgressbarConfig, ariaLabel, string, "progress bar", animated, showValue, striped, boolean, false, max, number, 100, height, textType, type, string | undefined, undefined.`}}},{id:`components.rating.api.ngb-rating`,url:`docs.dashboard.rating.api`,fragment:`ngb-rating`,translations:{en_us:{title:`NgbRating`,content:`Component Provides an accessible keyboard-driven rating control with customizable stars. Markup <ngb-rating rate="rating"> Integration Optionally reads ng-disabled . Inputs Input Binding Type Default Description rate <? number 0 Current rating value. max <? number 10 Maximum number of rating items. readonly <? boolean false Prevents user changes. resettable <? boolean false Allows selecting the current value again to reset to zero. star-template <? TemplateRef Default star Provides custom item markup. tabindex <? number | string 0 Sets keyboard tab order. aria-value-text <? function Built-in formatter Formats the accessible value text. ng-disabled ngDisabled boolean false Disables interaction and focus. Outputs Output Binding Payload Emitted when rate-change &? $event: number The interactive rating changes. hover &? $event: number A rating item is hovered. leave &? $event: number The pointer leaves the rating.`},es_mx:{title:`NgbRating`,content:`Referencia del componente NgbRating. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbRating, <ngb-rating rate="rating">, ng-disabled, rate, <?, number, 0, max, 10, readonly, boolean, false, resettable, star-template, TemplateRef, tabindex, number | string, aria-value-text, function, ngDisabled, rate-change, &?, $event: number, hover, leave.`}}},{id:`components.rating.api.ngb-rating-config`,url:`docs.dashboard.rating.api`,fragment:`ngb-rating-config`,translations:{en_us:{title:`NgbRatingConfig`,content:`Service Provides application-wide rating defaults. Properties Property Type Default max number 10 readonly , resettable boolean false tabindex number | string 0`},es_mx:{title:`NgbRatingConfig`,content:`Referencia del servicio NgbRatingConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbRatingConfig, max, number, 10, readonly, resettable, boolean, false, tabindex, number | string, 0.`}}},{id:`components.scrollspy.api.ngb-scrollspy`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy`,translations:{en_us:{title:`NgbScrollSpy`,content:`Directive Turns a scrollable element into an observed container and tracks its active fragment. Markup <main ngb-scroll-spy> Inputs Input Binding Type Default Description active @? string "" Initial or requested active fragment id. process-changes <? NgbScrollSpyProcessChanges $config.processChanges Determines the active fragment from observer changes. root-margin @? string Browser default IntersectionObserver root margin. scroll-behavior @? "auto" | "smooth" "smooth" Default behavior for programmatic scrolling. threshold <? number | number[] Browser default IntersectionObserver thresholds. Outputs Output Binding Payload Emitted when active-change &? $event: string The active fragment changes.`},es_mx:{title:`NgbScrollSpy`,content:`Referencia del directiva NgbScrollSpy. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpy, <main ngb-scroll-spy>, active, @?, string, "", process-changes, <?, NgbScrollSpyProcessChanges, $config.processChanges, root-margin, scroll-behavior, "auto" | "smooth", "smooth", threshold, number | number[], active-change, &?, $event: string.`}}},{id:`components.scrollspy.api.ngb-scrollspy-fragment`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-fragment`,translations:{en_us:{title:`NgbScrollSpyFragment`,content:`Directive Registers a section with its ancestor scrollspy and assigns its DOM id. Markup <section ngb-scroll-spy-fragment="overview"> Requires An ancestor ngb-scroll-spy . Inputs Input Binding Type Default ngb-scroll-spy-fragment @ string Required`},es_mx:{title:`NgbScrollSpyFragment`,content:`Referencia del directiva NgbScrollSpyFragment. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyFragment, <section ngb-scroll-spy-fragment="overview">, ngb-scroll-spy, ngb-scroll-spy-fragment, @, string.`}}},{id:`components.scrollspy.api.ngb-scrollspy-menu`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-menu`,translations:{en_us:{title:`NgbScrollSpyMenu`,content:`Directive Coordinates nested menu items and applies their active state. Markup <nav ngb-scroll-spy-menu> Inputs Input Binding Description ngb-scroll-spy-menu <? Optional explicit NgbScrollSpy ; otherwise uses an ancestor or injected service.`},es_mx:{title:`NgbScrollSpyMenu`,content:`Referencia del directiva NgbScrollSpyMenu. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyMenu, <nav ngb-scroll-spy-menu>, ngb-scroll-spy-menu, <?, NgbScrollSpy.`}}},{id:`components.scrollspy.api.ngb-scrollspy-item`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-item`,translations:{en_us:{title:`NgbScrollSpyItem`,content:`Directive Links a menu entry to a fragment, applies active and scrolls on click. Markup <a ngb-scroll-spy-item="overview"> Inputs Input Binding Description ngb-scroll-spy-item @? Fragment id or shorthand item data. fragment @? Explicit fragment id. parent @? Parent fragment id for nested menus. scroll-spy <? Explicit NgbScrollSpy controller.`},es_mx:{title:`NgbScrollSpyItem`,content:`Referencia del directiva NgbScrollSpyItem. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyItem, active, <a ngb-scroll-spy-item="overview">, ngb-scroll-spy-item, @?, fragment, parent, scroll-spy, <?, NgbScrollSpy.`}}},{id:`components.scrollspy.api.ngb-scrollspy-service`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-service`,translations:{en_us:{title:`NgbScrollSpyService`,content:`Service Provides programmatic scrollspy control without a directive host. Members Member Description active Current fragment id. active$ Observable of distinct active fragment changes. start(options?) Starts observation with optional root, fragments and IntersectionObserver settings. stop() Stops observation and clears the active fragment. observe(fragment) Adds a fragment to observation. unobserve(fragment) Removes a fragment from observation. scrollTo(fragment, options?) Scrolls to a registered id or element.`},es_mx:{title:`NgbScrollSpyService`,content:`Referencia del servicio NgbScrollSpyService. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyService, active, active$, start(options?), stop(), observe(fragment), unobserve(fragment), scrollTo(fragment, options?).`}}},{id:`components.scrollspy.api.ngb-scrollspy-config`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-config`,translations:{en_us:{title:`NgbScrollSpyConfig`,content:`Service Provides application-wide scrollspy defaults. Properties Property Default scrollBehavior "smooth" processChanges Built-in intersection processing function`},es_mx:{title:`NgbScrollSpyConfig`,content:`Referencia del servicio NgbScrollSpyConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyConfig, scrollBehavior, "smooth", processChanges.`}}},{id:`components.timepicker.api.ngb-timepicker`,url:`docs.dashboard.timepicker.api`,fragment:`ngb-timepicker`,translations:{en_us:{title:`NgbTimepicker`,content:`Component Edits a time value through AngularJS forms with optional spinners, seconds and meridian mode. Markup <ngb-timepicker ng-model="time"> Requires ng-model ; optionally reads ng-disabled . Inputs Input Binding Type Default Description meridian <? boolean false uses a 12-hour clock with period selector. spinners <? boolean true Shows increment and decrement controls. seconds <? boolean false Shows the seconds field. hour-step <? number 1 Hours changed per step. minute-step <? number 1 Minutes changed per step. second-step <? number 1 Seconds changed per step. readonly-inputs <? boolean false Makes text fields readonly while keeping spinner controls active. size <? "small" | "medium" | "large" "medium" Sets the control size. ng-disabled ngDisabled boolean $config.disabled Disables the timepicker.`},es_mx:{title:`NgbTimepicker`,content:`Referencia del componente NgbTimepicker. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTimepicker, <ngb-timepicker ng-model="time">, ng-model, ng-disabled, meridian, <?, boolean, false, spinners, true, seconds, hour-step, number, 1, minute-step, second-step, readonly-inputs, size, "small" | "medium" | "large", "medium", ngDisabled, $config.disabled.`}}},{id:`components.timepicker.api.ngb-timepicker-config`,url:`docs.dashboard.timepicker.api`,fragment:`ngb-timepicker-config`,translations:{en_us:{title:`NgbTimepickerConfig`,content:`Service Provides application-wide timepicker defaults. Properties Property Default meridian , seconds , disabled , readonlyInputs false spinners true hourStep , minuteStep , secondStep 1 size "medium"`},es_mx:{title:`NgbTimepickerConfig`,content:`Referencia del servicio NgbTimepickerConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTimepickerConfig, meridian, seconds, disabled, readonlyInputs, false, spinners, true, hourStep, minuteStep, secondStep, 1, size, "medium".`}}},{id:`components.timepicker.api.ngb-time-adapter`,url:`docs.dashboard.timepicker.api`,fragment:`ngb-time-adapter`,translations:{en_us:{title:`NgbTimeAdapter<T>`,content:`Service Converts between the application model and NgbTimeStruct . Methods Method Returns Description fromModel(value) NgbTimeStruct | null Converts an application value for the timepicker. toModel(time) T | null Converts the timepicker value back to the application model.`},es_mx:{title:`NgbTimeAdapter<T>`,content:`Referencia del servicio NgbTimeAdapter<T>. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTimeAdapter<T>, NgbTimeStruct, fromModel(value), NgbTimeStruct | null, toModel(time), T | null.`}}},{id:`components.timepicker.api.ngb-timepicker-i18n`,url:`docs.dashboard.timepicker.api`,fragment:`ngb-timepicker-i18n`,translations:{en_us:{title:`NgbTimepickerI18n`,content:`Service Supplies localized morning and afternoon period labels. Methods Method Returns getMorningPeriod() string getAfternoonPeriod() string`},es_mx:{title:`NgbTimepickerI18n`,content:`Referencia del servicio NgbTimepickerI18n. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTimepickerI18n, getMorningPeriod(), string, getAfternoonPeriod().`}}},{id:`components.toast.api.ngb-toast`,url:`docs.dashboard.toast.api`,fragment:`ngb-toast`,translations:{en_us:{title:`NgbToast`,content:`Component Displays an accessible notification with optional automatic dismissal. Markup <ngb-toast> Inputs Input Binding Type Default Description animation <? boolean $config.animation Enables show and hide transitions. autohide <? boolean true Automatically hides the toast. delay <? number 5000 Autohide delay in milliseconds. header @? string - Sets the default header text. Outputs Output Binding Payload Emitted when shown &? None The show transition finishes. hidden &? None The hide transition finishes.`},es_mx:{title:`NgbToast`,content:`Referencia del componente NgbToast. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbToast, <ngb-toast>, animation, <?, boolean, $config.animation, autohide, true, delay, number, 5000, header, @?, string, shown, &?, hidden.`}}},{id:`components.toast.api.ngb-toast-header`,url:`docs.dashboard.toast.api`,fragment:`ngb-toast-header`,translations:{en_us:{title:`NgbToastHeader`,content:`Directive Marks a custom template as the toast header. Markup <ng-template ngb-toast-header> No public inputs or outputs.`},es_mx:{title:`NgbToastHeader`,content:`Referencia del directiva NgbToastHeader. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbToastHeader, <ng-template ngb-toast-header>.`}}},{id:`components.toast.api.ngb-toast-config`,url:`docs.dashboard.toast.api`,fragment:`ngb-toast-config`,translations:{en_us:{title:`NgbToastConfig`,content:`Service Provides application-wide toast defaults. Properties Property Type Default animation boolean $config.animation ariaLive "polite" | "assertive" "polite" autohide boolean true delay number 5000`},es_mx:{title:`NgbToastConfig`,content:`Referencia del servicio NgbToastConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbToastConfig, animation, boolean, $config.animation, ariaLive, "polite" | "assertive", "polite", autohide, true, delay, number, 5000.`}}},{id:`components.tooltip.api.ngb-tooltip`,url:`docs.dashboard.tooltip.api`,fragment:`ngb-tooltip`,translations:{en_us:{title:`NgbTooltip`,content:`Directive Attaches a positioned Bootstrap tooltip to any host element. Markup <button ngb-tooltip="'Help text'"> Inputs Input Binding Type Default Description ngb-tooltip <? string | TemplateRef - Tooltip content. tooltip-context <? object - Context supplied to template content. animation <? boolean $config.animation Enables open and close transitions. auto-close <? boolean | "inside" | "outside" true Controls automatic closing. placement <? PlacementArray "auto" Preferred Popper placement. triggers <? string "hover focus" Space-separated open and close triggers. container <? string $config.container Container selector for the tooltip window. position-target @? string Host element Overrides the positioning target. tooltip-class @? string - Adds a class to the tooltip window. disable-tooltip <? boolean false Prevents the tooltip from opening. open-delay <? number 0 Delay before opening in milliseconds. close-delay <? number 0 Delay before closing in milliseconds. popper-options <? function $config.popperOptions Transforms Popper options. Outputs Output Binding Payload Emitted when shown &? None The tooltip opens. hidden &? None The tooltip closes.`},es_mx:{title:`NgbTooltip`,content:`Referencia del directiva NgbTooltip. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTooltip, <button ngb-tooltip="'Help text'">, ngb-tooltip, <?, string | TemplateRef, tooltip-context, object, animation, boolean, $config.animation, auto-close, boolean | "inside" | "outside", true, placement, PlacementArray, "auto", triggers, string, "hover focus", container, $config.container, position-target, @?, tooltip-class, disable-tooltip, false, open-delay, number, 0, close-delay, popper-options, function, $config.popperOptions, shown, &?, hidden.`}}},{id:`components.tooltip.api.ngb-tooltip-config`,url:`docs.dashboard.tooltip.api`,fragment:`ngb-tooltip-config`,translations:{en_us:{title:`NgbTooltipConfig`,content:`Service Provides application-wide tooltip defaults. Properties Property Default animation $config.animation autoClose true placement "auto" triggers "hover focus" disableTooltip false openDelay , closeDelay 0 container , tooltipClass undefined popperOptions Identity transform`},es_mx:{title:`NgbTooltipConfig`,content:`Referencia del servicio NgbTooltipConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTooltipConfig, animation, $config.animation, autoClose, true, placement, "auto", triggers, "hover focus", disableTooltip, false, openDelay, closeDelay, 0, container, tooltipClass, undefined, popperOptions.`}}},{id:`components.typeahead.api.ngb-typeahead`,url:`docs.dashboard.typeahead.api`,fragment:`ngb-typeahead`,translations:{en_us:{title:`NgbTypeahead`,content:`Directive Connects an input to an observable result source and manages the suggestion popup. Markup <input ng-model="value" ngb-typeahead="search"> Requires ng-model . Inputs Input Binding Default Description ngb-typeahead <? Required Function that maps the text stream to an observable result collection. autocomplete <? - Sets the native autocomplete behavior. container <? $config.container Container used for the popup. editable <? true Allows values not present in the results. focus-first <? true Activates the first result when the popup opens. input-formatter <? String conversion Formats the selected model in the input. result-formatter <? String conversion Formats values in the result list. result-template <? Default result Provides custom result markup. placement <? $config.placement Preferred Popper placements. popper-options <? $config.popperOptions Transforms Popper options. popup-class <? - Adds a class to the results popup. select-on-exact <? false Selects automatically when only one exact result exists. show-hint <? false Shows the completion hint. Outputs Output Binding Payload Emitted when select-item &? $event: NgbTypeaheadSelectItemEvent A result is selected.`},es_mx:{title:`NgbTypeahead`,content:`Referencia del directiva NgbTypeahead. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTypeahead, <input ng-model="value" ngb-typeahead="search">, ng-model, ngb-typeahead, <?, autocomplete, container, $config.container, editable, true, focus-first, input-formatter, result-formatter, result-template, placement, $config.placement, popper-options, $config.popperOptions, popup-class, select-on-exact, false, show-hint, select-item, &?, $event: NgbTypeaheadSelectItemEvent.`}}},{id:`components.typeahead.api.ngb-highlight`,url:`docs.dashboard.typeahead.api`,fragment:`ngb-highlight`,translations:{en_us:{title:`NgbHighlight`,content:`Component Highlights matching portions of a result label. Markup <ngb-highlight result="label" term="query"> Inputs Input Binding Type Default result < string Required term < string Required highlight-class <? string "ngb-highlight" accent-sensitive <? boolean true`},es_mx:{title:`NgbHighlight`,content:`Referencia del componente NgbHighlight. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbHighlight, <ngb-highlight result="label" term="query">, result, <, string, term, highlight-class, <?, "ngb-highlight", accent-sensitive, boolean, true.`}}},{id:`components.typeahead.api.ngb-typeahead-config`,url:`docs.dashboard.typeahead.api`,fragment:`ngb-typeahead-config`,translations:{en_us:{title:`NgbTypeaheadConfig`,content:`Service Provides application-wide typeahead defaults. Properties Property Default container undefined editable , focusFirst true selectOnExact , showHint false placement ["bottom-start", "bottom-end", "top-start", "top-end"] popperOptions Identity transform`},es_mx:{title:`NgbTypeaheadConfig`,content:`Referencia del servicio NgbTypeaheadConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTypeaheadConfig, container, undefined, editable, focusFirst, true, selectOnExact, showHint, false, placement, ["bottom-start", "bottom-end", "top-start", "top-end"], popperOptions.`}}},{id:`components.accordion.examples.accordion-simple`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-simple`,translations:{en_us:{title:`Basic accordion`,content:`Three items with a regular header, a header rendered from a template and a disabled item.`},es_mx:{title:`Basic accordion`,content:`Ejemplo de accordion: Three items with a regular header, a header rendered from a template and a disabled item.`}}},{id:`components.accordion.examples.one-panel-accordion`,url:`docs.dashboard.accordion.examples`,fragment:`one-panel-accordion`,translations:{en_us:{title:`One panel at a time`,content:`Opening an item automatically closes the previously expanded panel.`},es_mx:{title:`One panel at a time`,content:`Ejemplo de accordion: Opening an item automatically closes the previously expanded panel.`}}},{id:`components.accordion.examples.accordion-toggle-panels`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-toggle-panels`,translations:{en_us:{title:`Programmatic controls`,content:`Use the accordion controller to expand, collapse or toggle panels by id.`},es_mx:{title:`Programmatic controls`,content:`Ejemplo de accordion: Use the accordion controller to expand, collapse or toggle panels by id.`}}},{id:`components.accordion.examples.accordion-custom-header`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-custom-header`,translations:{en_us:{title:`Custom headers`,content:`Build richer triggers with Bootstrap utilities while keeping the accordion behavior and accessibility state.`},es_mx:{title:`Custom headers`,content:`Ejemplo de accordion: Build richer triggers with Bootstrap utilities while keeping the accordion behavior and accessibility state.`}}},{id:`components.accordion.examples.accordion-content`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-content`,translations:{en_us:{title:`Preserve panel content`,content:`Keep collapsed content mounted when its local state must survive closing and reopening the panel.`},es_mx:{title:`Preserve panel content`,content:`Ejemplo de accordion: Keep collapsed content mounted when its local state must survive closing and reopening the panel.`}}},{id:`components.accordion.examples.accordion-global`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbAccordionConfig once to define defaults for accordions that do not provide local values.`},es_mx:{title:`Global configuration`,content:`Ejemplo de accordion: Change NgbAccordionConfig once to define defaults for accordions that do not provide local values.`}}},{id:`components.alert.examples.simple-alert`,url:`docs.dashboard.alert.examples`,fragment:`simple-alert`,translations:{en_us:{title:`Simple alert`,content:`A basic alert with a fixed type and no dismiss button.`},es_mx:{title:`Simple alert`,content:`Ejemplo de alert: A basic alert with a fixed type and no dismiss button.`}}},{id:`components.alert.examples.alert-closeable`,url:`docs.dashboard.alert.examples`,fragment:`alert-closeable`,translations:{en_us:{title:`Closeable alerts`,content:`Four dismissible alerts: two close with animation and two close immediately.`},es_mx:{title:`Closeable alerts`,content:`Ejemplo de alert: Four dismissible alerts: two close with animation and two close immediately.`}}},{id:`components.alert.examples.self-closing-alert`,url:`docs.dashboard.alert.examples`,fragment:`self-closing-alert`,translations:{en_us:{title:`Self-closing alert`,content:`A timeout updates the countdown and closes the alert when it reaches zero.`},es_mx:{title:`Self-closing alert`,content:`Ejemplo de alert: A timeout updates the countdown and closes the alert when it reaches zero.`}}},{id:`components.alert.examples.alert-custom`,url:`docs.dashboard.alert.examples`,fragment:`alert-custom`,translations:{en_us:{title:`Custom alert`,content:`A custom alert type styled through the alert-custom class and Bootstrap variables.`},es_mx:{title:`Custom alert`,content:`Ejemplo de alert: A custom alert type styled through the alert-custom class and Bootstrap variables.`}}},{id:`components.alert.examples.alert-global`,url:`docs.dashboard.alert.examples`,fragment:`alert-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbAlertConfig once to define defaults for alerts without local inputs.`},es_mx:{title:`Global configuration`,content:`Ejemplo de alert: Change NgbAlertConfig once to define defaults for alerts without local inputs.`}}},{id:`components.carousel.examples.carousel-simple`,url:`docs.dashboard.carousel.examples`,fragment:`carousel-simple`,translations:{en_us:{title:`Simple carousel`,content:`A carousel using the default options, including navigation arrows and indicators.`},es_mx:{title:`Simple carousel`,content:`Ejemplo de carousel: A carousel using the default options, including navigation arrows and indicators.`}}},{id:`components.carousel.examples.carousel-keyboard`,url:`docs.dashboard.carousel.examples`,fragment:`carousel-keyboard`,translations:{en_us:{title:`Keyboard navigation`,content:`A carousel without visible controls or indicators that moves only with the left and right arrow keys.`},es_mx:{title:`Keyboard navigation`,content:`Ejemplo de carousel: A carousel without visible controls or indicators that moves only with the left and right arrow keys.`}}},{id:`components.carousel.examples.carousel-controls`,url:`docs.dashboard.carousel.examples`,fragment:`carousel-controls`,translations:{en_us:{title:`Pause controls`,content:`Try the native hover and focus options, then compose navigation behavior from slide events.`},es_mx:{title:`Pause controls`,content:`Ejemplo de carousel: Try the native hover and focus options, then compose navigation behavior from slide events.`}}},{id:`components.carousel.examples.carousel-global`,url:`docs.dashboard.carousel.examples`,fragment:`carousel-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbCarouselConfig once to define carousel defaults without adding local inputs.`},es_mx:{title:`Global configuration`,content:`Ejemplo de carousel: Change NgbCarouselConfig once to define carousel defaults without adding local inputs.`}}},{id:`components.collapse.examples.simple-collapse`,url:`docs.dashboard.collapse.examples`,fragment:`simple-collapse`,translations:{en_us:{title:`Simple collapse`,content:`Control the same panel by calling toggle() on its controller or by changing the bound collapsed value.`},es_mx:{title:`Simple collapse`,content:`Ejemplo de collapse: Control the same panel by calling toggle() on its controller or by changing the bound collapsed value.`}}},{id:`components.collapse.examples.horizontal-collapse`,url:`docs.dashboard.collapse.examples`,fragment:`horizontal-collapse`,translations:{en_us:{title:`Horizontal collapse`,content:`Set horizontal to true to animate the element's width instead of its height.`},es_mx:{title:`Horizontal collapse`,content:`Ejemplo de collapse: Set horizontal to true to animate the element's width instead of its height.`}}},{id:`components.collapse.examples.navbar-collapse`,url:`docs.dashboard.collapse.examples`,fragment:`navbar-collapse`,translations:{en_us:{title:`Responsive navbar`,content:`Combine NgbCollapse with Bootstrap's navbar classes to provide compact navigation on smaller viewports.`},es_mx:{title:`Responsive navbar`,content:`Ejemplo de collapse: Combine NgbCollapse with Bootstrap's navbar classes to provide compact navigation on smaller viewports.`}}},{id:`components.datepicker.examples.basic-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`basic-datepicker`,translations:{en_us:{title:`Basic datepicker`,content:`Bind an NgbDateStruct model to an inline calendar.`},es_mx:{title:`Basic datepicker`,content:`Ejemplo de datepicker: Bind an NgbDateStruct model to an inline calendar.`}}},{id:`components.datepicker.examples.popup-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`popup-datepicker`,translations:{en_us:{title:`Datepicker in a popup`,content:`Attach the datepicker to an input and control its popup from a compact calendar button.`},es_mx:{title:`Datepicker in a popup`,content:`Ejemplo de datepicker: Attach the datepicker to an input and control its popup from a compact calendar button.`}}},{id:`components.datepicker.examples.multiple-months-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`multiple-months-datepicker`,translations:{en_us:{title:`Multiple months`,content:`Display two consecutive months while keeping a single date model.`},es_mx:{title:`Multiple months`,content:`Ejemplo de datepicker: Display two consecutive months while keeping a single date model.`}}},{id:`components.datepicker.examples.range-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`range-datepicker`,translations:{en_us:{title:`Range selection`,content:`Compose a date range from dateSelect and a custom day template with hover feedback.`},es_mx:{title:`Range selection`,content:`Ejemplo de datepicker: Compose a date range from dateSelect and a custom day template with hover feedback.`}}},{id:`components.datepicker.examples.range-popup-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`range-popup-datepicker`,translations:{en_us:{title:`Range selection in a popup`,content:`Use the same range state and custom day view inside an input datepicker.`},es_mx:{title:`Range selection in a popup`,content:`Ejemplo de datepicker: Use the same range state and custom day view inside an input datepicker.`}}},{id:`components.datepicker.examples.disabled-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`disabled-datepicker`,translations:{en_us:{title:`Disabled datepicker`,content:`Drive the disabled state through AngularJS ng-disabled.`},es_mx:{title:`Disabled datepicker`,content:`Ejemplo de datepicker: Drive the disabled state through AngularJS ng-disabled.`}}},{id:`components.datepicker.examples.datepicker-custom-adapter`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-custom-adapter`,translations:{en_us:{title:`Custom date adapter and formatter`,content:`Keep a string application model while presenting and parsing a different input format.`},es_mx:{title:`Custom date adapter and formatter`,content:`Ejemplo de datepicker: Keep a string application model while presenting and parsing a different input format.`}}},{id:`components.datepicker.examples.datepicker-i18n`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-i18n`,translations:{en_us:{title:`Internationalization of datepickers`,content:`Supply labels and accessible date descriptions per datepicker instance through NgbDatepickerI18n.`},es_mx:{title:`Internationalization of datepickers`,content:`Ejemplo de datepicker: Supply labels and accessible date descriptions per datepicker instance through NgbDatepickerI18n.`}}},{id:`components.datepicker.examples.datepicker-custom-day`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-custom-day`,translations:{en_us:{title:`Custom day view`,content:`Render weekends, today, selection and focus states with a custom day template.`},es_mx:{title:`Custom day view`,content:`Ejemplo de datepicker: Render weekends, today, selection and focus states with a custom day template.`}}},{id:`components.datepicker.examples.datepicker-custom-month`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-custom-month`,translations:{en_us:{title:`Custom month layout`,content:`Replace the datepicker content while reusing its public month view and navigation API.`},es_mx:{title:`Custom month layout`,content:`Ejemplo de datepicker: Replace the datepicker content while reusing its public month view and navigation API.`}}},{id:`components.datepicker.examples.datepicker-footer`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-footer`,translations:{en_us:{title:`Footer template`,content:`Add Today and Clear actions below the calendar with a footer template.`},es_mx:{title:`Footer template`,content:`Ejemplo de datepicker: Add Today and Clear actions below the calendar with a footer template.`}}},{id:`components.datepicker.examples.datepicker-position-target`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-position-target`,translations:{en_us:{title:`Position target`,content:`Trigger the popup from an input while positioning it against a separate element.`},es_mx:{title:`Position target`,content:`Ejemplo de datepicker: Trigger the popup from an input while positioning it against a separate element.`}}},{id:`components.datepicker.examples.datepicker-keyboard`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-keyboard`,translations:{en_us:{title:`Custom keyboard navigation`,content:`Add application-specific month navigation keys without removing the built-in keyboard behavior.`},es_mx:{title:`Custom keyboard navigation`,content:`Ejemplo de datepicker: Add application-specific month navigation keys without removing the built-in keyboard behavior.`}}},{id:`components.datepicker.examples.datepicker-global`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-global`,translations:{en_us:{title:`Global configuration of datepickers`,content:`Change defaults for inline and input datepickers through their configuration services.`},es_mx:{title:`Global configuration of datepickers`,content:`Ejemplo de datepicker: Change defaults for inline and input datepickers through their configuration services.`}}},{id:`components.dropdown.examples.simple-dropdown`,url:`docs.dashboard.dropdown.examples`,fragment:`simple-dropdown`,translations:{en_us:{title:`Simple dropdown`,content:`Two basic menus that prefer bottom and top placement respectively.`},es_mx:{title:`Simple dropdown`,content:`Ejemplo de dropdown: Two basic menus that prefer bottom and top placement respectively.`}}},{id:`components.dropdown.examples.manual-dropdown`,url:`docs.dashboard.dropdown.examples`,fragment:`manual-dropdown`,translations:{en_us:{title:`Manual triggers`,content:`Use the dropdown controller to open, close or toggle a menu without a toggle trigger.`},es_mx:{title:`Manual triggers`,content:`Ejemplo de dropdown: Use the dropdown controller to open, close or toggle a menu without a toggle trigger.`}}},{id:`components.dropdown.examples.dropdown-button-groups`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-button-groups`,translations:{en_us:{title:`Button groups and split buttons`,content:`Place dropdown toggles inside Bootstrap button groups, including a split action.`},es_mx:{title:`Button groups and split buttons`,content:`Ejemplo de dropdown: Place dropdown toggles inside Bootstrap button groups, including a split action.`}}},{id:`components.dropdown.examples.dropdown-disabled-items`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-disabled-items`,translations:{en_us:{title:`Disabled items`,content:`Use ng-disabled to update disabled dropdown items dynamically.`},es_mx:{title:`Disabled items`,content:`Ejemplo de dropdown: Use ng-disabled to update disabled dropdown items dynamically.`}}},{id:`components.dropdown.examples.dropdown-form`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-form`,translations:{en_us:{title:`Dropdown form`,content:`Place an AngularJS form inside the menu and keep it open while interacting with its fields.`},es_mx:{title:`Dropdown form`,content:`Ejemplo de dropdown: Place an AngularJS form inside the menu and keep it open while interacting with its fields.`}}},{id:`components.dropdown.examples.dropdown-body`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-body`,translations:{en_us:{title:`Body container`,content:`Append the menu to the document body when an ancestor clips overflowing content.`},es_mx:{title:`Body container`,content:`Ejemplo de dropdown: Append the menu to the document body when an ancestor clips overflowing content.`}}},{id:`components.dropdown.examples.dropdown-navbar`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-navbar`,translations:{en_us:{title:`Dynamic positioning in a navbar`,content:`Override the navbar's static default with dynamic Popper positioning.`},es_mx:{title:`Dynamic positioning in a navbar`,content:`Ejemplo de dropdown: Override the navbar's static default with dynamic Popper positioning.`}}},{id:`components.dropdown.examples.dropdown-global`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbDropdownConfig once to provide shared defaults without local inputs.`},es_mx:{title:`Global configuration`,content:`Ejemplo de dropdown: Change NgbDropdownConfig once to provide shared defaults without local inputs.`}}},{id:`components.modal.examples.modal-default`,url:`docs.dashboard.modal.examples`,fragment:`modal-default`,translations:{en_us:{title:`Modal with default options`,content:`Open a TemplateRef modal without passing local options.`},es_mx:{title:`Modal with default options`,content:`Ejemplo de modal: Open a TemplateRef modal without passing local options.`}}},{id:`components.modal.examples.modal-component-content`,url:`docs.dashboard.modal.examples`,fragment:`modal-component-content`,translations:{en_us:{title:`Components as content`,content:`Open a registered component, pass bindings to it and close or dismiss through NgbActiveModal.`},es_mx:{title:`Components as content`,content:`Ejemplo de modal: Open a registered component, pass bindings to it and close or dismiss through NgbActiveModal.`}}},{id:`components.modal.examples.modal-focus`,url:`docs.dashboard.modal.examples`,fragment:`modal-focus`,translations:{en_us:{title:`Focus management`,content:`Focus the first interactive element automatically or choose another element with ngbAutofocus.`},es_mx:{title:`Focus management`,content:`Ejemplo de modal: Focus the first interactive element automatically or choose another element with ngbAutofocus.`}}},{id:`components.modal.examples.modal-options`,url:`docs.dashboard.modal.examples`,fragment:`modal-options`,translations:{en_us:{title:`Modal with options`,content:`Open modal variants for custom classes, backdrops, sizes, fullscreen, centering and scrollable content.`},es_mx:{title:`Modal with options`,content:`Ejemplo de modal: Open modal variants for custom classes, backdrops, sizes, fullscreen, centering and scrollable content.`}}},{id:`components.modal.examples.modal-updatable`,url:`docs.dashboard.modal.examples`,fragment:`modal-updatable`,translations:{en_us:{title:`Updatable options`,content:`Change ARIA references, layout, size and custom classes after the modal has opened.`},es_mx:{title:`Updatable options`,content:`Ejemplo de modal: Change ARIA references, layout, size and custom classes after the modal has opened.`}}},{id:`components.modal.examples.modal-stacked`,url:`docs.dashboard.modal.examples`,fragment:`modal-stacked`,translations:{en_us:{title:`Stacked modals`,content:`Open multiple modal layers and dismiss the complete stack from the modal service.`},es_mx:{title:`Stacked modals`,content:`Ejemplo de modal: Open multiple modal layers and dismiss the complete stack from the modal service.`}}},{id:`components.modal.examples.modal-global`,url:`docs.dashboard.modal.examples`,fragment:`modal-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbModalConfig once to provide defaults for every modal opened in this example.`},es_mx:{title:`Global configuration`,content:`Ejemplo de modal: Change NgbModalConfig once to provide defaults for every modal opened in this example.`}}},{id:`components.nav.examples.simple-nav`,url:`docs.dashboard.nav.examples`,fragment:`simple-nav`,translations:{en_us:{title:`Simple nav`,content:`A basic tabbed nav with three items and an associated content outlet.`},es_mx:{title:`Simple nav`,content:`Ejemplo de nav: A basic tabbed nav with three items and an associated content outlet.`}}},{id:`components.nav.examples.alternative-nav`,url:`docs.dashboard.nav.examples`,fragment:`alternative-nav`,translations:{en_us:{title:`Alternative markup`,content:`Use div elements instead of lists and interchange buttons and anchors as nav links.`},es_mx:{title:`Alternative markup`,content:`Ejemplo de nav: Use div elements instead of lists and interchange buttons and anchors as nav links.`}}},{id:`components.nav.examples.vertical-nav`,url:`docs.dashboard.nav.examples`,fragment:`vertical-nav`,translations:{en_us:{title:`Vertical pills`,content:`Combine vertical orientation with Bootstrap nav pills and a side-by-side outlet.`},es_mx:{title:`Vertical pills`,content:`Ejemplo de nav: Combine vertical orientation with Bootstrap nav pills and a side-by-side outlet.`}}},{id:`components.nav.examples.selecting-nav`,url:`docs.dashboard.nav.examples`,fragment:`selecting-nav`,translations:{en_us:{title:`Selecting navs`,content:`Select any nav item programmatically through the NgbNav controller.`},es_mx:{title:`Selecting navs`,content:`Ejemplo de nav: Select any nav item programmatically through the NgbNav controller.`}}},{id:`components.nav.examples.keep-content-nav`,url:`docs.dashboard.nav.examples`,fragment:`keep-content-nav`,translations:{en_us:{title:`Keep content`,content:`Disable content destruction so form state remains in the DOM while another tab is active.`},es_mx:{title:`Keep content`,content:`Ejemplo de nav: Disable content destruction so form state remains in the DOM while another tab is active.`}}},{id:`components.nav.examples.dynamic-nav`,url:`docs.dashboard.nav.examples`,fragment:`dynamic-nav`,translations:{en_us:{title:`Dynamic navs`,content:`Add new tabs at runtime and safely remove the currently active item.`},es_mx:{title:`Dynamic navs`,content:`Ejemplo de nav: Add new tabs at runtime and safely remove the currently active item.`}}},{id:`components.nav.examples.custom-nav`,url:`docs.dashboard.nav.examples`,fragment:`custom-nav`,translations:{en_us:{title:`Custom style`,content:`Build a distinct nav appearance with a small custom class layered over NgbJS behavior.`},es_mx:{title:`Custom style`,content:`Ejemplo de nav: Build a distinct nav appearance with a small custom class layered over NgbJS behavior.`}}},{id:`components.nav.examples.nav-global`,url:`docs.dashboard.nav.examples`,fragment:`nav-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbNavConfig once to provide orientation, keyboard and content defaults.`},es_mx:{title:`Global configuration`,content:`Ejemplo de nav: Change NgbNavConfig once to provide orientation, keyboard and content defaults.`}}},{id:`components.offcanvas.examples.offcanvas-default`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-default`,translations:{en_us:{title:`Offcanvas with default options`,content:`Open a TemplateRef panel without passing local options.`},es_mx:{title:`Offcanvas with default options`,content:`Ejemplo de offcanvas: Open a TemplateRef panel without passing local options.`}}},{id:`components.offcanvas.examples.offcanvas-component-content`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-component-content`,translations:{en_us:{title:`Components as content`,content:`Open a registered component and close or dismiss it through NgbActiveOffcanvas.`},es_mx:{title:`Components as content`,content:`Ejemplo de offcanvas: Open a registered component and close or dismiss it through NgbActiveOffcanvas.`}}},{id:`components.offcanvas.examples.offcanvas-focus`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-focus`,translations:{en_us:{title:`Focus management`,content:`Focus the first interactive element automatically or choose another element with ngbAutofocus.`},es_mx:{title:`Focus management`,content:`Ejemplo de offcanvas: Focus the first interactive element automatically or choose another element with ngbAutofocus.`}}},{id:`components.offcanvas.examples.offcanvas-options`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-options`,translations:{en_us:{title:`Offcanvas with options`,content:`Try custom classes, a static backdrop, every panel position and body scrolling.`},es_mx:{title:`Offcanvas with options`,content:`Ejemplo de offcanvas: Try custom classes, a static backdrop, every panel position and body scrolling.`}}},{id:`components.offcanvas.examples.offcanvas-global`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbOffcanvasConfig once to provide shared defaults when opening a panel.`},es_mx:{title:`Global configuration`,content:`Ejemplo de offcanvas: Change NgbOffcanvasConfig once to provide shared defaults when opening a panel.`}}},{id:`components.pagination.examples.basic-pagination`,url:`docs.dashboard.pagination.examples`,fragment:`basic-pagination`,translations:{en_us:{title:`Basic pagination`,content:`Navigate a collection with the default pagination options.`},es_mx:{title:`Basic pagination`,content:`Ejemplo de pagination: Navigate a collection with the default pagination options.`}}},{id:`components.pagination.examples.advanced-pagination`,url:`docs.dashboard.pagination.examples`,fragment:`advanced-pagination`,translations:{en_us:{title:`Advanced pagination`,content:`Limit visible pages, rotate the range and control boundary links and ellipses.`},es_mx:{title:`Advanced pagination`,content:`Ejemplo de pagination: Limit visible pages, rotate the range and control boundary links and ellipses.`}}},{id:`components.pagination.examples.custom-pagination`,url:`docs.dashboard.pagination.examples`,fragment:`custom-pagination`,translations:{en_us:{title:`Custom links and pages`,content:`Replace the previous, next and page-number content with ng-template.`},es_mx:{title:`Custom links and pages`,content:`Ejemplo de pagination: Replace the previous, next and page-number content with ng-template.`}}},{id:`components.pagination.examples.pagination-size`,url:`docs.dashboard.pagination.examples`,fragment:`pagination-size`,translations:{en_us:{title:`Pagination size`,content:`Use Bootstrap small, default and large pagination sizes.`},es_mx:{title:`Pagination size`,content:`Ejemplo de pagination: Use Bootstrap small, default and large pagination sizes.`}}},{id:`components.pagination.examples.pagination-alignment`,url:`docs.dashboard.pagination.examples`,fragment:`pagination-alignment`,translations:{en_us:{title:`Pagination alignment`,content:`Align pagination at the start, center or end using Bootstrap flex utilities.`},es_mx:{title:`Pagination alignment`,content:`Ejemplo de pagination: Align pagination at the start, center or end using Bootstrap flex utilities.`}}},{id:`components.pagination.examples.disabled-pagination`,url:`docs.dashboard.pagination.examples`,fragment:`disabled-pagination`,translations:{en_us:{title:`Disabled pagination`,content:`Disable every pagination action through the ng-disabled directive.`},es_mx:{title:`Disabled pagination`,content:`Ejemplo de pagination: Disable every pagination action through the ng-disabled directive.`}}},{id:`components.pagination.examples.pagination-global`,url:`docs.dashboard.pagination.examples`,fragment:`pagination-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbPaginationConfig once to provide shared pagination defaults.`},es_mx:{title:`Global configuration`,content:`Ejemplo de pagination: Change NgbPaginationConfig once to provide shared pagination defaults.`}}},{id:`components.popover.examples.popover-placements`,url:`docs.dashboard.popover.examples`,fragment:`popover-placements`,translations:{en_us:{title:`Quick and easy popovers`,content:`Place a popover above, to the right, below or to the left of its trigger.`},es_mx:{title:`Quick and easy popovers`,content:`Ejemplo de popover: Place a popover above, to the right, below or to the left of its trigger.`}}},{id:`components.popover.examples.popover-template`,url:`docs.dashboard.popover.examples`,fragment:`popover-template`,translations:{en_us:{title:`HTML and bindings in popovers`,content:`Use ng-template for rich title and body content with live AngularJS bindings.`},es_mx:{title:`HTML and bindings in popovers`,content:`Ejemplo de popover: Use ng-template for rich title and body content with live AngularJS bindings.`}}},{id:`components.popover.examples.popover-triggers`,url:`docs.dashboard.popover.examples`,fragment:`popover-triggers`,translations:{en_us:{title:`Custom and manual triggers`,content:`Pair custom DOM events or take manual control with two buttons.`},es_mx:{title:`Custom and manual triggers`,content:`Ejemplo de popover: Pair custom DOM events or take manual control with two buttons.`}}},{id:`components.popover.examples.popover-manual-control`,url:`docs.dashboard.popover.examples`,fragment:`popover-manual-control`,translations:{en_us:{title:`External manual controls`,content:`Open, close and toggle a target popover from independent controls.`},es_mx:{title:`External manual controls`,content:`Ejemplo de popover: Open, close and toggle a target popover from independent controls.`}}},{id:`components.popover.examples.popover-autoclose`,url:`docs.dashboard.popover.examples`,fragment:`popover-autoclose`,translations:{en_us:{title:`Automatic closing with keyboard and mouse`,content:`Close on inside clicks, outside clicks, every click or the Escape key.`},es_mx:{title:`Automatic closing with keyboard and mouse`,content:`Ejemplo de popover: Close on inside clicks, outside clicks, every click or the Escape key.`}}},{id:`components.popover.examples.popover-context`,url:`docs.dashboard.popover.examples`,fragment:`popover-context`,translations:{en_us:{title:`Context and manual triggers`,content:`Supply template context while opening manually or through popover-context.`},es_mx:{title:`Context and manual triggers`,content:`Ejemplo de popover: Supply template context while opening manually or through popover-context.`}}},{id:`components.popover.examples.popover-custom-target`,url:`docs.dashboard.popover.examples`,fragment:`popover-custom-target`,translations:{en_us:{title:`Custom target`,content:`Trigger a popover from one element while positioning it against another.`},es_mx:{title:`Custom target`,content:`Ejemplo de popover: Trigger a popover from one element while positioning it against another.`}}},{id:`components.popover.examples.popover-delays`,url:`docs.dashboard.popover.examples`,fragment:`popover-delays`,translations:{en_us:{title:`Open and close delays`,content:`Delay hover opening and keep content available while the pointer moves into it.`},es_mx:{title:`Open and close delays`,content:`Ejemplo de popover: Delay hover opening and keep content available while the pointer moves into it.`}}},{id:`components.popover.examples.popover-events`,url:`docs.dashboard.popover.examples`,fragment:`popover-events`,translations:{en_us:{title:`Popover visibility events`,content:`Observe shown and hidden callbacks and record when each transition completes.`},es_mx:{title:`Popover visibility events`,content:`Ejemplo de popover: Observe shown and hidden callbacks and record when each transition completes.`}}},{id:`components.popover.examples.popover-body`,url:`docs.dashboard.popover.examples`,fragment:`popover-body`,translations:{en_us:{title:`Append popover in the body`,content:`Escape clipping containers by appending the popover window to document.body.`},es_mx:{title:`Append popover in the body`,content:`Ejemplo de popover: Escape clipping containers by appending the popover window to document.body.`}}},{id:`components.popover.examples.popover-custom-class`,url:`docs.dashboard.popover.examples`,fragment:`popover-custom-class`,translations:{en_us:{title:`Popover with custom class`,content:`Layer a focused visual treatment over Bootstrap popover variables.`},es_mx:{title:`Popover with custom class`,content:`Ejemplo de popover: Layer a focused visual treatment over Bootstrap popover variables.`}}},{id:`components.popover.examples.popover-global`,url:`docs.dashboard.popover.examples`,fragment:`popover-global`,translations:{en_us:{title:`Global configuration of popovers`,content:`Change NgbPopoverConfig once to provide shared trigger, placement, delay and container defaults.`},es_mx:{title:`Global configuration of popovers`,content:`Ejemplo de popover: Change NgbPopoverConfig once to provide shared trigger, placement, delay and container defaults.`}}},{id:`components.progressbar.examples.simple-progressbar`,url:`docs.dashboard.progressbar.examples`,fragment:`simple-progressbar`,translations:{en_us:{title:`Simple progress bars`,content:`Display simple values using Bootstrap contextual types.`},es_mx:{title:`Simple progress bars`,content:`Ejemplo de progressbar: Display simple values using Bootstrap contextual types.`}}},{id:`components.progressbar.examples.contextual-text-progressbar`,url:`docs.dashboard.progressbar.examples`,fragment:`contextual-text-progressbar`,translations:{en_us:{title:`Contextual text progress bars`,content:`Show the calculated percentage and choose a contextual foreground color.`},es_mx:{title:`Contextual text progress bars`,content:`Ejemplo de progressbar: Show the calculated percentage and choose a contextual foreground color.`}}},{id:`components.progressbar.examples.striped-progress-bar`,url:`docs.dashboard.progressbar.examples`,fragment:`striped-progress-bar`,translations:{en_us:{title:`Striped progress bars`,content:`Apply striped styling to contextual variants and optionally animate the stripes.`},es_mx:{title:`Striped progress bars`,content:`Ejemplo de progressbar: Apply striped styling to contextual variants and optionally animate the stripes.`}}},{id:`components.progressbar.examples.custom-labels-progressbar`,url:`docs.dashboard.progressbar.examples`,fragment:`custom-labels-progressbar`,translations:{en_us:{title:`Custom labels`,content:`Project arbitrary HTML labels inside each progress bar.`},es_mx:{title:`Custom labels`,content:`Ejemplo de progressbar: Project arbitrary HTML labels inside each progress bar.`}}},{id:`components.progressbar.examples.progress-height`,url:`docs.dashboard.progressbar.examples`,fragment:`progress-height`,translations:{en_us:{title:`Progress height`,content:`Set the progress container height through the height input.`},es_mx:{title:`Progress height`,content:`Ejemplo de progressbar: Set the progress container height through the height input.`}}},{id:`components.progressbar.examples.progress-bars-stacked`,url:`docs.dashboard.progressbar.examples`,fragment:`progress-bars-stacked`,translations:{en_us:{title:`Stacked progress bars`,content:`Combine multiple contextual segments inside NgbProgressbarStacked.`},es_mx:{title:`Stacked progress bars`,content:`Ejemplo de progressbar: Combine multiple contextual segments inside NgbProgressbarStacked.`}}},{id:`components.progressbar.examples.progressbar-global`,url:`docs.dashboard.progressbar.examples`,fragment:`progressbar-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbProgressbarConfig once to provide shared visual and value defaults.`},es_mx:{title:`Global configuration`,content:`Ejemplo de progressbar: Change NgbProgressbarConfig once to provide shared visual and value defaults.`}}},{id:`components.rating.examples.basic-rating`,url:`docs.dashboard.rating.examples`,fragment:`basic-rating`,translations:{en_us:{title:`Basic demo`,content:`Select a rating and synchronize its value through rate-change.`},es_mx:{title:`Basic demo`,content:`Ejemplo de rating: Select a rating and synchronize its value through rate-change.`}}},{id:`components.rating.examples.rating-events`,url:`docs.dashboard.rating.examples`,fragment:`rating-events`,translations:{en_us:{title:`Events and readonly ratings`,content:`Observe hover and leave events and switch the same rating between editable and read-only states.`},es_mx:{title:`Events and readonly ratings`,content:`Ejemplo de rating: Observe hover and leave events and switch the same rating between editable and read-only states.`}}},{id:`components.rating.examples.rating-custom-template`,url:`docs.dashboard.rating.examples`,fragment:`rating-custom-template`,translations:{en_us:{title:`Custom star template`,content:`Replace the default characters with a child ng-template using Bootstrap Icons.`},es_mx:{title:`Custom star template`,content:`Ejemplo de rating: Replace the default characters with a child ng-template using Bootstrap Icons.`}}},{id:`components.rating.examples.rating-decimal`,url:`docs.dashboard.rating.examples`,fragment:`rating-decimal`,translations:{en_us:{title:`Custom decimal rating`,content:`Render fractional heart fills through star-template and provide accessible value text.`},es_mx:{title:`Custom decimal rating`,content:`Ejemplo de rating: Render fractional heart fills through star-template and provide accessible value text.`}}},{id:`components.rating.examples.rating-form`,url:`docs.dashboard.rating.examples`,fragment:`rating-form`,translations:{en_us:{title:`Form integration`,content:`Synchronize rate and rate-change with an AngularJS form model while direct ng-model support remains pending.`},es_mx:{title:`Form integration`,content:`Ejemplo de rating: Synchronize rate and rate-change with an AngularJS form model while direct ng-model support remains pending.`}}},{id:`components.rating.examples.rating-global`,url:`docs.dashboard.rating.examples`,fragment:`rating-global`,translations:{en_us:{title:`Customized default values`,content:`Change NgbRatingConfig once to provide shared maximum, read-only and tabindex defaults.`},es_mx:{title:`Customized default values`,content:`Ejemplo de rating: Change NgbRatingConfig once to provide shared maximum, read-only and tabindex defaults.`}}},{id:`components.scrollspy.examples.basic-scrollspy`,url:`docs.dashboard.scrollspy.examples`,fragment:`basic-scrollspy`,translations:{en_us:{title:`Basic`,content:`Observe fragments inside an independent scroll container and read the currently active id.`},es_mx:{title:`Basic`,content:`Ejemplo de scrollspy: Observe fragments inside an independent scroll container and read the currently active id.`}}},{id:`components.scrollspy.examples.scrollspy-menu-items`,url:`docs.dashboard.scrollspy.examples`,fragment:`scrollspy-menu-items`,translations:{en_us:{title:`Menu items`,content:`Connect Bootstrap list-group items to a scrollspy instance outside the observed container.`},es_mx:{title:`Menu items`,content:`Ejemplo de scrollspy: Connect Bootstrap list-group items to a scrollspy instance outside the observed container.`}}},{id:`components.scrollspy.examples.nested-scrollspy`,url:`docs.dashboard.scrollspy.examples`,fragment:`nested-scrollspy`,translations:{en_us:{title:`Nested items`,content:`Group child fragments under parent menu items and keep both levels synchronized.`},es_mx:{title:`Nested items`,content:`Ejemplo de scrollspy: Group child fragments under parent menu items and keep both levels synchronized.`}}},{id:`components.scrollspy.examples.navbar-scrollspy`,url:`docs.dashboard.scrollspy.examples`,fragment:`navbar-scrollspy`,translations:{en_us:{title:`Navbar`,content:`Use a Bootstrap navbar as an external menu for a separate scroll container.`},es_mx:{title:`Navbar`,content:`Ejemplo de scrollspy: Use a Bootstrap navbar as an external menu for a separate scroll container.`}}},{id:`components.scrollspy.examples.scrollspy-service`,url:`docs.dashboard.scrollspy.examples`,fragment:`scrollspy-service`,translations:{en_us:{title:`Using the service`,content:`Start, stop and control observation programmatically with NgbScrollSpyService and ordinary DOM fragments.`},es_mx:{title:`Using the service`,content:`Ejemplo de scrollspy: Start, stop and control observation programmatically with NgbScrollSpyService and ordinary DOM fragments.`}}},{id:`components.timepicker.examples.basic-timepicker`,url:`docs.dashboard.timepicker.examples`,fragment:`basic-timepicker`,translations:{en_us:{title:`Basic timepicker`,content:`Bind an NgbTimeStruct model to the default timepicker.`},es_mx:{title:`Basic timepicker`,content:`Ejemplo de timepicker: Bind an NgbTimeStruct model to the default timepicker.`}}},{id:`components.timepicker.examples.meridian-timepicker`,url:`docs.dashboard.timepicker.examples`,fragment:`meridian-timepicker`,translations:{en_us:{title:`Meridian`,content:`Switch between 24-hour and 12-hour input with a localized period selector.`},es_mx:{title:`Meridian`,content:`Ejemplo de timepicker: Switch between 24-hour and 12-hour input with a localized period selector.`}}},{id:`components.timepicker.examples.seconds-timepicker`,url:`docs.dashboard.timepicker.examples`,fragment:`seconds-timepicker`,translations:{en_us:{title:`Seconds`,content:`Show or hide the seconds field while preserving the same time model.`},es_mx:{title:`Seconds`,content:`Ejemplo de timepicker: Show or hide the seconds field while preserving the same time model.`}}},{id:`components.timepicker.examples.spinners-timepicker`,url:`docs.dashboard.timepicker.examples`,fragment:`spinners-timepicker`,translations:{en_us:{title:`Spinners`,content:`Toggle the increment and decrement controls without disabling keyboard input.`},es_mx:{title:`Spinners`,content:`Ejemplo de timepicker: Toggle the increment and decrement controls without disabling keyboard input.`}}},{id:`components.timepicker.examples.timepicker-custom-steps`,url:`docs.dashboard.timepicker.examples`,fragment:`timepicker-custom-steps`,translations:{en_us:{title:`Custom steps`,content:`Configure independent increments for hours, minutes and seconds.`},es_mx:{title:`Custom steps`,content:`Ejemplo de timepicker: Configure independent increments for hours, minutes and seconds.`}}},{id:`components.timepicker.examples.timepicker-validation`,url:`docs.dashboard.timepicker.examples`,fragment:`timepicker-validation`,translations:{en_us:{title:`Custom validation`,content:`Add an AngularJS ngModel validator that only accepts times between 12:00 and 13:59.`},es_mx:{title:`Custom validation`,content:`Ejemplo de timepicker: Add an AngularJS ngModel validator that only accepts times between 12:00 and 13:59.`}}},{id:`components.timepicker.examples.timepicker-custom-adapter`,url:`docs.dashboard.timepicker.examples`,fragment:`timepicker-custom-adapter`,translations:{en_us:{title:`Custom time adapter`,content:`Implement NgbTimeAdapter to convert between NgbTimeStruct and an application-level HH:mm:ss string. Adapter providers are application-wide in AngularJS.`},es_mx:{title:`Custom time adapter`,content:`Ejemplo de timepicker: Implement NgbTimeAdapter to convert between NgbTimeStruct and an application-level HH:mm:ss string. Adapter providers are application-wide in AngularJS.`}}},{id:`components.timepicker.examples.timepicker-i18n`,url:`docs.dashboard.timepicker.examples`,fragment:`timepicker-i18n`,translations:{en_us:{title:`Internationalization`,content:`Replace NgbTimepickerI18n application-wide to supply custom Greek morning and afternoon labels.`},es_mx:{title:`Internationalization`,content:`Ejemplo de timepicker: Replace NgbTimepickerI18n application-wide to supply custom Greek morning and afternoon labels.`}}},{id:`components.toast.examples.inline-toast`,url:`docs.dashboard.toast.examples`,fragment:`inline-toast`,translations:{en_us:{title:`Declarative inline usage`,content:`Render static body-only and text-header toasts directly in the page.`},es_mx:{title:`Declarative inline usage`,content:`Ejemplo de toast: Render static body-only and text-header toasts directly in the page.`}}},{id:`components.toast.examples.template-header-toast`,url:`docs.dashboard.toast.examples`,fragment:`template-header-toast`,translations:{en_us:{title:`Using a Template as header`,content:`Project an ng-template to build a richer header with custom markup.`},es_mx:{title:`Using a Template as header`,content:`Ejemplo de toast: Project an ng-template to build a richer header with custom markup.`}}},{id:`components.toast.examples.closeable-toast`,url:`docs.dashboard.toast.examples`,fragment:`closeable-toast`,translations:{en_us:{title:`Closeable toast`,content:`Handle hidden to remove the toast and recreate it after a short delay.`},es_mx:{title:`Closeable toast`,content:`Ejemplo de toast: Handle hidden to remove the toast and recreate it after a short delay.`}}},{id:`components.toast.examples.prevent-autohide-toast`,url:`docs.dashboard.toast.examples`,fragment:`prevent-autohide-toast`,translations:{en_us:{title:`Prevent autohide on mouseover`,content:`Pause the autohide timer while the pointer remains over the toast and restart it on mouseleave.`},es_mx:{title:`Prevent autohide on mouseover`,content:`Ejemplo de toast: Pause the autohide timer while the pointer remains over the toast and restart it on mouseleave.`}}},{id:`components.toast.examples.toast-management`,url:`docs.dashboard.toast.examples`,fragment:`toast-management`,translations:{en_us:{title:`Toast management service`,content:`Create, remove and clear multiple notifications through a reusable AngularJS service.`},es_mx:{title:`Toast management service`,content:`Ejemplo de toast: Create, remove and clear multiple notifications through a reusable AngularJS service.`}}},{id:`components.tooltip.examples.tooltip-placements`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-placements`,translations:{en_us:{title:`Quick and easy tooltips`,content:`Use the four primary Bootstrap placements with the default hover and focus triggers.`},es_mx:{title:`Quick and easy tooltips`,content:`Ejemplo de tooltip: Use the four primary Bootstrap placements with the default hover and focus triggers.`}}},{id:`components.tooltip.examples.tooltip-template`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-template`,translations:{en_us:{title:`HTML and bindings in tooltips`,content:`Render an ng-template as tooltip content and keep its bindings synchronized.`},es_mx:{title:`HTML and bindings in tooltips`,content:`Ejemplo de tooltip: Render an ng-template as tooltip content and keep its bindings synchronized.`}}},{id:`components.tooltip.examples.tooltip-triggers`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-triggers`,translations:{en_us:{title:`Custom and manual triggers`,content:`Pair custom DOM events or control a tooltip directly through its public controller.`},es_mx:{title:`Custom and manual triggers`,content:`Ejemplo de tooltip: Pair custom DOM events or control a tooltip directly through its public controller.`}}},{id:`components.tooltip.examples.tooltip-autoclose`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-autoclose`,translations:{en_us:{title:`Automatic closing with keyboard and mouse`,content:`Compare inside, outside and all-click closing while preserving Escape keyboard support.`},es_mx:{title:`Automatic closing with keyboard and mouse`,content:`Ejemplo de tooltip: Compare inside, outside and all-click closing while preserving Escape keyboard support.`}}},{id:`components.tooltip.examples.tooltip-context`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-context`,translations:{en_us:{title:`Context and manual triggers`,content:`Pass template context at open time or provide a default tooltip-context.`},es_mx:{title:`Context and manual triggers`,content:`Ejemplo de tooltip: Pass template context at open time or provide a default tooltip-context.`}}},{id:`components.tooltip.examples.tooltip-custom-target`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-custom-target`,translations:{en_us:{title:`Custom target`,content:`Trigger the tooltip from one element while positioning it against another.`},es_mx:{title:`Custom target`,content:`Ejemplo de tooltip: Trigger the tooltip from one element while positioning it against another.`}}},{id:`components.tooltip.examples.tooltip-delays`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-delays`,translations:{en_us:{title:`Open and close delays`,content:`Delay opening and closing while allowing the pointer to move safely into the tooltip.`},es_mx:{title:`Open and close delays`,content:`Ejemplo de tooltip: Delay opening and closing while allowing the pointer to move safely into the tooltip.`}}},{id:`components.tooltip.examples.tooltip-body`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-body`,translations:{en_us:{title:`Append tooltip in the body`,content:`Escape a clipping container by appending the tooltip window directly to document.body.`},es_mx:{title:`Append tooltip in the body`,content:`Ejemplo de tooltip: Escape a clipping container by appending the tooltip window directly to document.body.`}}},{id:`components.tooltip.examples.tooltip-custom-class`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-custom-class`,translations:{en_us:{title:`Tooltip with custom class`,content:`Apply a small custom theme through Bootstrap tooltip variables.`},es_mx:{title:`Tooltip with custom class`,content:`Ejemplo de tooltip: Apply a small custom theme through Bootstrap tooltip variables.`}}},{id:`components.tooltip.examples.tooltip-global`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-global`,translations:{en_us:{title:`Global configuration of tooltips`,content:`Set shared container, placement, trigger and delay defaults through NgbTooltipConfig.`},es_mx:{title:`Global configuration of tooltips`,content:`Ejemplo de tooltip: Set shared container, placement, trigger and delay defaults through NgbTooltipConfig.`}}},{id:`components.typeahead.examples.simple-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`simple-typeahead`,translations:{en_us:{title:`Simple Typeahead`,content:`Debounce a local string search, require two characters and limit the result set.`},es_mx:{title:`Simple Typeahead`,content:`Ejemplo de typeahead: Debounce a local string search, require two characters and limit the result set.`}}},{id:`components.typeahead.examples.focus-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`focus-typeahead`,translations:{en_us:{title:`Open on focus`,content:`Merge an explicit focus stream with user input so an empty field can display suggestions immediately.`},es_mx:{title:`Open on focus`,content:`Ejemplo de typeahead: Merge an explicit focus stream with user input so an empty field can display suggestions immediately.`}}},{id:`components.typeahead.examples.formatted-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`formatted-typeahead`,translations:{en_us:{title:`Formatted results`,content:`Transform result labels without changing the selected model value.`},es_mx:{title:`Formatted results`,content:`Ejemplo de typeahead: Transform result labels without changing the selected model value.`}}},{id:`components.typeahead.examples.exact-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`exact-typeahead`,translations:{en_us:{title:`Select on exact`,content:`Select an object automatically when its formatted label is the only exact match.`},es_mx:{title:`Select on exact`,content:`Ejemplo de typeahead: Select an object automatically when its formatted label is the only exact match.`}}},{id:`components.typeahead.examples.wikipedia-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`wikipedia-typeahead`,translations:{en_us:{title:`Wikipedia search`,content:`Retrieve remote suggestions through AngularJS $http with debounce, stale-response switching and error feedback.`},es_mx:{title:`Wikipedia search`,content:`Ejemplo de typeahead: Retrieve remote suggestions through AngularJS $http with debounce, stale-response switching and error feedback.`}}},{id:`components.typeahead.examples.template-results-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`template-results-typeahead`,translations:{en_us:{title:`Template for results`,content:`Render object results with a custom template, contextual term highlighting and additional metadata.`},es_mx:{title:`Template for results`,content:`Ejemplo de typeahead: Render object results with a custom template, contextual term highlighting and additional metadata.`}}},{id:`components.typeahead.examples.non-editable-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`non-editable-typeahead`,translations:{en_us:{title:`Prevent manual entry`,content:`Keep the model null until the user chooses a valid object from the suggestion list.`},es_mx:{title:`Prevent manual entry`,content:`Ejemplo de typeahead: Keep the model null until the user chooses a valid object from the suggestion list.`}}},{id:`components.typeahead.examples.typeahead-global`,url:`docs.dashboard.typeahead.examples`,fragment:`typeahead-global`,translations:{en_us:{title:`Global configuration of typeaheads`,content:`Configure hint completion, exact selection and body container defaults through NgbTypeaheadConfig.`},es_mx:{title:`Global configuration of typeaheads`,content:`Ejemplo de typeahead: Configure hint completion, exact selection and body container defaults through NgbTypeaheadConfig.`}}}],$_=class{static $key=`search.documents`;static $value=Q_},ev=class{language;_changeLang;changeLang$;constructor(e){this.language=e,this._changeLang=new ja(this.language),this.changeLang$=this._changeLang.asObservable()}selectLanguage(e){this._changeLang.next(e)}static get $name(){return`docs.language.service`}static get $inject(){return[Y_.$name]}},tv=class e{$element;mode=`desktop`;ngbActiveOffcanvas;constructor(e){this.$element=e}$postLink(){this.mode===`mobile`&&this.$element.addClass(`h-100 d-flex flex-column`)}static get $factory(){return{bindings:{mode:`@`,ngbActiveOffcanvas:`<?`},controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/menu.component-72d2b576.html`}}static get $inject(){return[`$element`]}static get $name(){return`docsMenu`}},nv=class{offCanvasService;_isOpen=!1;_change=new Y;onChange$=this._change.asObservable();constructor(e){this.offCanvasService=e}toggleMenu(){this._isOpen||this.offCanvasService.hasOpenOffcanvas()||(this._setOpenState(!0),this.offCanvasService.open(tv.$name,{bindings:{mode:`mobile`},ariaLabelledBy:`docs-mobile-menu-title`,animation:!0,backdrop:!0,keyboard:!0,panelClass:`border-0 shadow`,position:`start`,scroll:!1}).then(e=>{e.result?.finally(()=>this._setOpenState(!1))},()=>{this._setOpenState(!1)}))}_setOpenState(e){this._isOpen=e,this._change.next(this._isOpen)}static get $inject(){return[Lm.$name]}static get $name(){return`core.menu.service`}},rv=class{transitionService;_transition=new Na(void 0);transition$=this._transition.asObservable();_currentTab;get currentTab(){return this._currentTab}set currentTab(e){this._currentTab=e}constructor(e){this.transitionService=e}observeRoute(){this.transitionService.onEnter({},e=>{let t=e.to(),n={title:t.data?.title,tabs:t.data?.tabs,sections:t.data?.sections,externalLinks:t.data?.externalLinks,header:t.data?.header??!0};this._currentTab=t.name,this._transition.next(n)})}static get $name(){return`docs.title.service`}static get $inject(){return[`$transitions`]}};function iv(){let e=e=>{e.observeRoute()};return e.$inject=[rv.$name],e}var av=class{$transitionService;constructor(e){this.$transitionService=e}observeScroll(){this.$transitionService.onSuccess({},()=>{window.requestAnimationFrame(()=>{document.getElementById(`docs-content-scroll`)?.scrollTo({top:0,left:0,behavior:`auto`})})})}static get $name(){return`docs.scroll.service`}static get $inject(){return[`$transitions`]}};function ov(){let e=e=>{e.observeScroll()};return e.$inject=[av.$name],e}var sv=class e{languageProvider;documents;data=new Map;constructor(e,t){this.languageProvider=e,this.documents=t}static tokenize(e){return e.replace(/([\p{Ll}\p{N}])(\p{Lu})/gu,`$1 $2`).toLowerCase().replace(/[^\p{L}\s]/gu,` `).trim().split(/\s+/).filter(Boolean)}$config(){this.data=this.documents.reduce((t,n)=>{let r=n.translations[this.languageProvider.lang],i=Object.values(r).join(` `),a=e.tokenize(i);for(let e of a){if(!e)continue;if(t.has(e)){t.get(e).add(n.id);continue}let r=new Set([n.id]);t.set(e,r)}return t},new Map),console.log(this.data)}$get(){return this.data}static get $name(){return`indexing`}static get $configName(){return`indexingProvider`}static get $inject(){return[Y_.$configName,$_.$key]}};function cv(){let e=e=>{e.$config()};return e.$inject=[sv.$configName],e}var lv=8,uv=class{index;language;documentsById;constructor(e,t,n){this.index=e,this.language=n,this.documentsById=new Map(t.map(e=>[e.id,e]))}search(e){let t=sv.tokenize(e);if(t.length!==1)return[];let[n]=t,r=new Set(this.index.get(n));for(let[e,t]of this.index)if(!(e===n||!e.startsWith(n)))for(let e of t)r.add(e);return[...r].flatMap(e=>{let t=this.documentsById.get(e);if(!t)return[];let n=t.translations[this.language];return[{id:t.id,url:t.url,fragment:t.fragment,title:n.title,content:n.content}]}).slice(0,lv)}static get $name(){return`docs.search.service`}static get $inject(){return[sv.$name,$_.$key,Y_.$name]}},dv=class e{static get $name(){return`docsFooter`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/footer.component-04ec2991.html`}}},fv=`docs.search.recents`,pv=class e{searchService;$element;$state;ngbActiveModal;query=``;results=[];recentDocuments=[];activeDocumentId;constructor(e,t,n){this.searchService=e,this.$element=t,this.$state=n}$onInit(){this.recentDocuments=this.getRecentDocuments(),this.activeDocumentId=this.recentDocuments[0]?.id}$postLink(){this.$element.addClass(`h-100 d-flex flex-column overflow-hidden`)}search(){this.results=this.searchService.search(this.query),this.activeDocumentId=this.visibleDocuments[0]?.id}handleKeydown(e){if(e.key===`Enter`){let t=this.visibleDocuments.find(e=>e.id===this.activeDocumentId);if(!t)return;e.preventDefault(),this.selectDocument(t);return}if(e.key!==`ArrowDown`&&e.key!==`ArrowUp`)return;let t=this.visibleDocuments;if(!t.length)return;e.preventDefault();let n=t.findIndex(e=>e.id===this.activeDocumentId),r=e.key===`ArrowDown`?(n+1)%t.length:n<=0?t.length-1:n-1;this.activeDocumentId=t[r].id,requestAnimationFrame(()=>{this.$element[0].querySelector(`.list-group-item.active`)?.scrollIntoView({block:`nearest`})})}activateDocument(e){this.activeDocumentId=e.id}selectDocument(e){this.ngbActiveModal.close(e),this.$state.go(e.url).then(()=>{requestAnimationFrame(()=>{let t=globalThis.document.getElementById(`docs-content-scroll`);t&&u.default.element(t).controller(`ngbScrollSpy`)?.scrollTo(e.fragment)})})}clearRecentDocuments(){localStorage.removeItem(fv),this.recentDocuments=[],this.activeDocumentId=this.results[0]?.id}get visibleDocuments(){let e=this.query?[...this.results,...this.recentDocuments.slice(0,2)]:this.recentDocuments,t=new Set;return e.filter(e=>!t.has(e.id)&&(t.add(e.id),!0))}getRecentDocuments(){let e=localStorage.getItem(fv);if(!e)return[];try{let t=JSON.parse(e);return Array.isArray(t)?t.slice(0,10):[]}catch{return[]}}static get $name(){return`docsSearchModal`}static get $factory(){return{bindings:{ngbActiveModal:`<`},controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/search-modal.component-b38b1ca9.html`}}static get $inject(){return[uv.$name,`$element`,`$state`]}},mv=class e{modalService;themeService;themes;menuService;$document;constructor(e,t,n,r,i){this.modalService=e,this.themeService=t,this.themes=n,this.menuService=r,this.$document=i}handleSearchShortcut=e=>{!e.ctrlKey||e.key.toLowerCase()!==`k`||(e.preventDefault(),this.modalService.hasOpenModals()||this.openModal())};$onInit(){this.$document.on(`keydown`,this.handleSearchShortcut)}$onDestroy(){this.$document.off(`keydown`,this.handleSearchShortcut)}openModal(){this.modalService.open(pv.$name,{fullscreen:`md`,size:`lg`,scrollable:!0,animation:!1}).then(e=>{e.result?.then(e=>{e&&this.saveRecentDocument(e)},u.default.noop)},u.default.noop)}saveRecentDocument(e){let t=localStorage.getItem(fv),n=[];if(t)try{let e=JSON.parse(t);n=Array.isArray(e)?e:[]}catch{n=[]}let r=[e,...n.filter(t=>t.id!==e.id)].slice(0,10);localStorage.setItem(fv,JSON.stringify(r))}static get $name(){return`docsHeader`}static get $inject(){return[fp.$name,Z_.$name,H_.$key,nv.$name,`$document`]}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/header.component-c3e78727.html`}}},hv=class e{static get $name(){return`docsMenuAbstractPageComponent`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/menu-abstract-page.component-921edcdb.html`}}},gv=e=>{e.state(`docs.dashboard`,{abstract:!0,component:hv.$name})};gv.$inject=[`$stateProvider`];var _v=u.default.module(`docs.layout`,[]);_v.component(dv.$name,dv.$factory),_v.component(mv.$name,mv.$factory),_v.component(tv.$name,tv.$factory),_v.component(pv.$name,pv.$factory),_v.component(hv.$name,hv.$factory),_v.config(gv);var vv=u.default.module(`docs.core`,[_v.name]);vv.provider(I_.$name,I_),vv.provider(R_.$name,R_),vv.constant(V_.$key,V_.$value),vv.constant(H_.$key,H_.$value),vv.provider(W_.$name,W_),vv.service(Z_.$name,Z_),vv.constant(q_.$key,q_.$value),vv.provider(Y_.$name,Y_),vv.service(ev.$name,ev),vv.constant($_.$key,$_.$value),vv.service(nv.$name,nv),vv.service(rv.$name,rv),vv.service(av.$name,av),vv.service(uv.$name,uv),vv.provider(sv.$name,sv),vv.config(L_({url:`https://getbootstrap.com`,version:5.3})),vv.config(X_()),vv.config(cv()),vv.config(G_()),vv.config(z_({url:`https://ng-bootstrap.github.io`})),vv.run(ov()),vv.run(iv());var yv=class e{$window;$timeout;value;ariaLabel;buttonClass;copied=!1;constructor(e,t){this.$window=e,this.$timeout=t}copy(){this.$window.navigator.clipboard.writeText(this.value).then(()=>{this.$timeout(()=>{this.copied=!0}),this.$timeout(()=>{this.copied=!1},2e3)})}static get $name(){return`docsCopyButton`}static get $inject(){return[`$window`,`$timeout`]}static get $factory(){return{bindings:{value:`<`,ariaLabel:`@?`,buttonClass:`@?`},controller:e,controllerAs:`copyButton`,templateUrl:`/ngb-js-docs/templates/copy-button.component-d1bb3cf6.html`}}},bv=class e{templateRequest;fragment;title;description;htmlCode=``;htmlCodeUrl;tsCode;cssCode;codeCollapsed=!0;activeTab=`html`;static $inject=[`$templateRequest`];constructor(e){this.templateRequest=e}$onInit(){if(!this.htmlCodeUrl)return;let e=Array.isArray(this.htmlCodeUrl)?this.htmlCodeUrl:[this.htmlCodeUrl];Promise.all(e.map(e=>{let t=typeof e==`string`?e:e.url;return this.templateRequest(t).then(t=>typeof e==`string`||!e.label?t:`<!-- ${e.label} -->\n${t}`)})).then(e=>{this.htmlCode=e.join(`
-
-`)})}toggleCode(){this.codeCollapsed=!this.codeCollapsed}get hasAdditionalCode(){return!!(this.tsCode||this.cssCode)}get activeCode(){return this.activeTab===`typescript`?this.tsCode??``:this.activeTab===`css`?this.cssCode??``:this.htmlCode}static get $name(){return`docsExampleSection`}static get $factory(){return{bindings:{fragment:`@`,title:`@`,description:`@`,htmlCode:`<`,htmlCodeUrl:`<?`,tsCode:`<?`,cssCode:`<?`},controller:e,controllerAs:`example`,transclude:!0,templateUrl:`/ngb-js-docs/templates/example-section.component-fd29220f.html`}}},xv=class e{titleService;bootstrapUrl;ngBootstrapUrl;destroyRef=new Y;externalLinks;title;sections=[];constructor(e,t,n){this.titleService=e,this.bootstrapUrl=t,this.ngBootstrapUrl=n}get bootstrapHref(){return this.externalLinks?.bootstrap?`${this.bootstrapUrl}${this.externalLinks.bootstrap}`:void 0}get ngBootstrapHref(){return this.externalLinks?.ngBootstrap?`${this.ngBootstrapUrl}${this.externalLinks.ngBootstrap}`:void 0}$postLink(){this.titleService.transition$.pipe(Cs(this.destroyRef)).subscribe(e=>{this.title=e.title,this.sections=e.sections??[],this.externalLinks=e.externalLinks})}$onDestroy(){this.destroyRef.next(),this.destroyRef.complete()}static get $inject(){return[rv.$name,I_.$name,R_.$name]}static get $name(){return`docsPageOutline`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/page-outline.component-960dd8ab.html`}}},Sv=class e{titleService;destroyRef=new Y;title;tabs;visible=!1;constructor(e){this.titleService=e}$postLink(){this.titleService.transition$.pipe(Cs(this.destroyRef)).subscribe(e=>{this.title=e.title,this.tabs=e.tabs,this.visible=e.header})}$onDestroy(){this.destroyRef.next(),this.destroyRef.complete()}static get $inject(){return[rv.$name]}static get $name(){return`docsTitleHeading`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/title-heading.component-54b0b4d3.html`}}},Cv=u.default.module(`docs.shared`,[]);Cv.component(yv.$name,yv.$factory),Cv.component(bv.$name,bv.$factory),Cv.component(xv.$name,xv.$factory),Cv.component(Sv.$name,Sv.$factory);var wv=class e{activePackageManager=`npm`;packageManagers=[{id:`npm`,name:`npm`,command:`npm install ngb-js`},{id:`pnpm`,name:`pnpm`,command:`pnpm add ngb-js`},{id:`yarn`,name:`Yarn`,command:`yarn add ngb-js`},{id:`bun`,name:`Bun`,command:`bun add ngb-js`}];static get $name(){return`docsIntroductionPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/introduction-page.component-35f4d9d2.html`,controllerAs:`$`}}},Tv=class e{static get $name(){return`docsPhilosophyPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/philosophy-page.component-28b6d924.html`,controllerAs:`$`}}},Ev=class e{static get $name(){return`docsWhyNgbJsPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/why-ngbjs-page.component-feee76ba.html`,controllerAs:`$`}}},Dv=e=>{e.state(`docs.dashboard.introduction`,{url:`/guide/introduction`,component:wv.$name,data:{header:!1,title:`Introduction`,sections:[{id:`origin`,name:`Origin`},{id:`what-is-ngbjs`,name:`What is NgbJS?`},{id:`who-is-it-for`,name:`Who is it for?`},{id:`project-status`,name:`Project status`},{id:`installation`,name:`Installation`},{id:`acknowledgements`,name:`Acknowledgements`}]}}),e.state(`docs.dashboard.philosophy`,{url:`/guide/philosophy`,component:Tv.$name,data:{header:!1,title:`Philosophy`,sections:[{id:`parity-is-priority`,name:`Parity is Priority`},{id:`what-parity-means`,name:`What parity means`},{id:`familiar-by-design`,name:`Familiar by design`},{id:`a-migration-bridge`,name:`A migration bridge`},{id:`when-parity-is-hard`,name:`When parity is hard`}]}}),e.state(`docs.dashboard.whyNgbJs`,{url:`/guide/why-ngbjs`,component:Ev.$name,data:{header:!1,title:`Why NgbJS?`,sections:[{id:`the-legacy-reality`,name:`The legacy reality`},{id:`before-and-after`,name:`Before and after`},{id:`what-it-unlocks`,name:`What NgbJS unlocks`},{id:`when-to-use-ngbjs`,name:`When to use NgbJS`},{id:`a-bridge-not-a-destination`,name:`A bridge, not a destination`}]}})};Dv.$inject=[`$stateProvider`];var Ov=u.default.module(`docs.guide`,[]);Ov.component(wv.$name,wv.$factory),Ov.component(Tv.$name,Tv.$factory),Ov.component(Ev.$name,Ev.$factory),Ov.config(Dv);var kv=class e{static get $name(){return`docsHomeHero`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/home-hero.component-37426584.html`}}},Av=class e{installCommand=`npm install ngb-js`;static get $name(){return`docsHomePage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/home-page.component-5aa43b6c.html`,controllerAs:`$`}}},jv=e=>{e.state(`docs.home`,{url:`/`,component:Av.$name})};jv.$inject=[`$stateProvider`];var Mv=u.default.module(`docs.home`,[]);Mv.component(kv.$name,kv.$factory),Mv.component(Av.$name,Av.$factory),Mv.config(jv);var Nv=()=>[{id:1,type:`success`,message:`Your changes were saved successfully.`,animation:!0},{id:2,type:`danger`,message:`Something needs your attention.`,animation:!0},{id:3,type:`warning`,message:`This alert closes without animation.`,animation:!1},{id:4,type:`info`,message:`This one also closes immediately.`,animation:!1}],Pv=class e{alerts=Nv();close(e){this.alerts=this.alerts.filter(t=>t.id!==e)}reset(){this.alerts=Nv()}static get $name(){return`docsAlertCloseable`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/alert-closeable.component-913d93a9.html`}}},Fv=class e{static get $name(){return`docsAlertCustom`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/alert-custom.component-c8121d56.html`}}},Iv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,dismissible:e.dismissible,type:e.type},e.animation=!1,e.dismissible=!1,e.type=`success`}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.dismissible=this.initialConfig.dismissible,this.config.type=this.initialConfig.type}static get $name(){return`docsAlertGlobal`}static get $inject(){return[Xd.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/alert-global.component-38075daa.html`}}},Lv=class e{draft=`This value remains after collapsing the panel.`;static get $name(){return`docsAccordionContent`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-content.component-17c56d87.html`}}},Rv=class e{static get $name(){return`docsAccordionCustomHeader`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-custom-header.component-b416bfe1.html`}}},zv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,closeOthers:e.closeOthers,destroyOnHide:e.destroyOnHide},e.animation=!1,e.closeOthers=!0,e.destroyOnHide=!1}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.closeOthers=this.initialConfig.closeOthers,this.config.destroyOnHide=this.initialConfig.destroyOnHide}static get $name(){return`docsAccordionGlobal`}static get $inject(){return[cd.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-global.component-2b91d8e0.html`}}},Bv=class e{static get $name(){return`docsAccordionSimple`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-simple.component-b7f97512.html`}}};function Vv(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a}var Hv=class e{accordion;expandAll(){this.accordion.expandAll()}collapseAll(){this.accordion.collapseAll()}toggle(e){this.accordion.toggle(e)}static get $name(){return`docsAccordionTogglePanels`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-toggle-panels.component-5695d59f.html`}}};Vv([Fc(`accordion`,{static:!0})],Hv.prototype,`accordion`,void 0);var Uv=class e{static get $name(){return`docsOnePanelAccordion`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/one-panel-accordion.component-742e60a7.html`}}},Wv=class e{$timeout;initialSeconds=5;timer;alert;remaining=this.initialSeconds;visible=!0;constructor(e){this.$timeout=e}$onInit(){this.startTimer()}$onDestroy(){this.cancelTimer()}restart(){this.cancelTimer(),this.remaining=this.initialSeconds,this.visible=!0,this.startTimer()}onClosed(){this.visible=!1,this.cancelTimer()}startTimer(){this.timer=this.$timeout(()=>{if(this.remaining--,this.remaining<=0){this.alert?this.alert.close():this.visible=!1;return}this.startTimer()},1e3)}cancelTimer(){this.timer&&=(this.$timeout.cancel(this.timer),void 0)}static get $name(){return`docsSelfClosingAlert`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/self-closing-alert.component-d049277d.html`}}};Vv([Fc(`alert`)],Wv.prototype,`alert`,void 0);var Gv=class e{static get $name(){return`docsSimpleAlert`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-alert.component-4b71799e.html`}}},Kv=class e{$element;$timeout;pauseOnHover=!0;pauseOnFocus=!0;unpauseOnArrow=!1;pauseOnIndicator=!1;paused=!1;carousel;constructor(e,t){this.$element=e,this.$timeout=t}$postLink(){this.$timeout(()=>{this.carousel=this.$element.find(`ngb-carousel`).controller(`ngbCarousel`)},0,!1)}onSlide(e){(e.source===`arrowLeft`||e.source===`arrowRight`)&&this.unpauseOnArrow&&(this.carousel?.cycle(),this.paused=!1),e.source===`indicator`&&this.pauseOnIndicator&&(this.carousel?.pause(),this.paused=!0)}toggleCycle(){this.paused?this.carousel?.cycle():this.carousel?.pause(),this.paused=!this.paused}static get $name(){return`docsCarouselControls`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/carousel-controls.component-b868a8d3.html`}}static get $inject(){return[`$element`,`$timeout`]}},qv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,interval:e.interval,wrap:e.wrap,pauseOnFocus:e.pauseOnFocus,pauseOnHover:e.pauseOnHover,showNavigationArrows:e.showNavigationArrows},e.animation=!1,e.interval=2500,e.wrap=!1,e.pauseOnFocus=!1,e.pauseOnHover=!1,e.showNavigationArrows=!1}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.interval=this.initialConfig.interval,this.config.wrap=this.initialConfig.wrap,this.config.pauseOnFocus=this.initialConfig.pauseOnFocus,this.config.pauseOnHover=this.initialConfig.pauseOnHover,this.config.showNavigationArrows=this.initialConfig.showNavigationArrows}static get $name(){return`docsCarouselGlobal`}static get $inject(){return[tf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/carousel-global.component-a20e9aa0.html`}}},Jv=class e{static get $name(){return`docsCarouselKeyboard`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/carousel-keyboard.component-b6251de3.html`}}},Yv=class e{static get $name(){return`docsCarouselSimple`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/carousel-simple.component-5959ec9e.html`}}},Xv=class e{collapsed=!0;toggle(){this.collapsed=!this.collapsed}static get $name(){return`docsHorizontalCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/horizontal-collapse.component-4b73db45.html`}}},Zv=class e{menuCollapsed=!0;toggleMenu(){this.menuCollapsed=!this.menuCollapsed}closeMenu(){this.menuCollapsed=!0}static get $name(){return`docsNavbarCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/navbar-collapse.component-19f68cfc.html`}}},Qv=class e{collapse;collapsed=!0;toggleWithController(){this.collapse.toggle()}toggleWithBinding(){this.collapsed=!this.collapsed}static get $name(){return`docsSimpleCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-collapse.component-44d27814.html`}}};Vv([Fc(`collapse`,{static:!0})],Qv.prototype,`collapse`,void 0);var $v=class e{static get $name(){return`docsDropdownBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-body.component-1e3954ac.html`}}},ey=class e{static get $name(){return`docsDropdownButtonGroups`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-button-groups.component-d4fe7542.html`}}},ty=class e{restricted=!0;static get $name(){return`docsDropdownDisabledItems`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-disabled-items.component-48667c33.html`}}},ny=class e{email=``;remember=!1;submitted=!1;submit(){this.submitted=!0}static get $name(){return`docsDropdownForm`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-form.component-d213e1ce.html`}}},ry=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={autoClose:e.autoClose,container:e.container,placement:e.placement},e.autoClose=`outside`,e.container=`body`,e.placement=[`top-start`,`bottom-start`]}$onDestroy(){this.config.autoClose=this.initialConfig.autoClose,this.config.container=this.initialConfig.container,this.config.placement=this.initialConfig.placement}static get $name(){return`docsDropdownGlobal`}static get $inject(){return[gf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-global.component-165a343d.html`}}},iy=class e{static get $name(){return`docsDropdownNavbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-navbar.component-802b581f.html`}}},ay=class e{dropdown;opened=!1;open(){this.dropdown.open()}close(){this.dropdown.close()}toggle(){this.dropdown.toggle()}static get $name(){return`docsManualDropdown`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/manual-dropdown.component-c5126309.html`}}};Vv([Fc(`dropdown`,{read:Vf,static:!0})],ay.prototype,`dropdown`,void 0);var oy=class e{static get $name(){return`docsSimpleDropdown`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-dropdown.component-44aea468.html`}}},sy=class e{ngbActiveModal;title=`Component modal`;description=`This modal receives a component as its content.`;longContent=!1;items=Array.from({length:24},(e,t)=>`Scrollable content row ${t+1}`);static get $name(){return`docsModalDemoContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`,title:`<?`,description:`<?`,longContent:`<?`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/modal-demo-content.component-2c7c8be6.html`}}},cy=class e{modal;lastResult=`No result yet`;constructor(e){this.modal=e}async open(){let e=await this.modal.open(sy.$name,{bindings:{title:`Component as content`,description:`NgbActiveModal is provided directly to the content component.`}});e.closed.subscribe(e=>{this.lastResult=`Closed with: ${e}`}),e.dismissed.subscribe(e=>{this.lastResult=`Dismissed with: ${e}`})}static get $name(){return`docsModalComponentContent`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-component-content.component-9ebf2605.html`}}},ly=class e{modal;content;constructor(e){this.modal=e}open(){this.modal.open(this.content)}static get $name(){return`docsModalDefault`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-default.component-8569b31a.html`}}};Vv([Fc(`content`,{read:Qc,static:!0})],ly.prototype,`content`,void 0);var uy=class e{ngbActiveModal;autofocus=!1;static get $name(){return`docsModalFocusContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`,autofocus:`<?`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/modal-focus-content.component-fb67acd6.html`}}},dy=class e{modal;constructor(e){this.modal=e}openDefaultFocus(){this.modal.open(uy.$name,{ariaLabelledBy:`modal-focus-title`,bindings:{autofocus:!1}})}openCustomFocus(){this.modal.open(uy.$name,{ariaLabelledBy:`modal-focus-title`,bindings:{autofocus:!0}})}static get $name(){return`docsModalFocus`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-focus.component-df166600.html`}}},fy=class e{modal;config;initialConfig;constructor(e,t){this.modal=e,this.config=t,this.initialConfig={backdrop:t.backdrop,centered:t.centered,keyboard:t.keyboard,size:t.size}}async open(){this.applyConfig();try{await this.modal.open(sy.$name,{bindings:{title:`Globally configured modal`,description:`This modal is centered, large and cannot be dismissed with Escape or a backdrop click.`}})}finally{this.restoreConfig()}}$onDestroy(){this.restoreConfig()}applyConfig(){this.config.backdrop=`static`,this.config.centered=!0,this.config.keyboard=!1,this.config.size=`lg`}restoreConfig(){this.config.backdrop=this.initialConfig.backdrop,this.config.centered=this.initialConfig.centered,this.config.keyboard=this.initialConfig.keyboard,this.config.size=this.initialConfig.size}static get $name(){return`docsModalGlobal`}static get $inject(){return[fp.$name,Kf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-global.component-4801e4b3.html`}}},py=class e{modal;constructor(e){this.modal=e}openCustomWindow(){this.open(`Custom window class`,{windowClass:`modal-window-custom`})}openStaticBackdrop(){this.open(`Static custom backdrop`,{backdrop:`static`,backdropClass:`modal-static-backdrop`,keyboard:!1})}openSmall(){this.open(`Small modal`,{size:`sm`})}openLarge(){this.open(`Large modal`,{size:`lg`})}openExtraLarge(){this.open(`Extra large modal`,{size:`xl`})}openFullscreen(){this.open(`Fullscreen modal`,{fullscreen:!0})}openCentered(){this.open(`Vertically centered modal`,{centered:!0})}openScrollable(){this.open(`Scrollable modal`,{scrollable:!0,size:`lg`},!0)}openCustomDialog(){this.open(`Custom dialog class`,{modalDialogClass:`modal-dialog-custom`})}open(e,t,n=!1){this.modal.open(sy.$name,{...t,bindings:{title:e,description:`These values are applied only to this modal instance.`,longContent:n}})}static get $name(){return`docsModalOptions`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-options.component-3492165f.html`}}},my=class e{modal;ngbActiveModal;level=1;constructor(e){this.modal=e}dismissAll(){this.modal.dismissAll(`Dismiss all`)}static get $name(){return`docsModalStackedContent`}static get $inject(){return[fp.$name]}static get $factory(){return{bindings:{ngbActiveModal:`<`,level:`<?`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/modal-stacked-content.component-a018d8f7.html`}}},hy=class e{modal;constructor(e){this.modal=e}async openStack(){for(let e=1;e<=3;e++)await this.modal.open(my.$name,{bindings:{level:e}})}static get $name(){return`docsModalStacked`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-stacked.component-c6e041f1.html`}}},gy=class e{ngbActiveModal;ariaReferences=!0;centered=!1;fullscreen=!1;customBackdrop=!1;size=`sm`;customWindow=!1;customDialog=!1;toggleAriaReferences(){this.ariaReferences=!this.ariaReferences,this.ngbActiveModal.update({ariaLabelledBy:this.ariaReferences?`updatable-modal-title`:``,ariaDescribedBy:this.ariaReferences?`updatable-modal-description`:``})}toggleCentered(){this.centered=!this.centered,this.ngbActiveModal.update({centered:this.centered})}toggleFullscreen(){this.fullscreen=!this.fullscreen,this.ngbActiveModal.update({fullscreen:this.fullscreen})}toggleBackdropClass(){this.customBackdrop=!this.customBackdrop,this.ngbActiveModal.update({backdropClass:this.customBackdrop?`modal-updated-backdrop`:``})}cycleSize(){let e=[`sm`,`lg`,`xl`];this.size=e[(e.indexOf(this.size)+1)%e.length],this.ngbActiveModal.update({size:this.size})}toggleWindowClass(){this.customWindow=!this.customWindow,this.ngbActiveModal.update({windowClass:this.customWindow?`modal-updated-window`:``})}toggleDialogClass(){this.customDialog=!this.customDialog,this.ngbActiveModal.update({modalDialogClass:this.customDialog?`modal-updated-dialog`:``})}static get $name(){return`docsModalUpdatableContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/modal-updatable-content.component-ef48c6fe.html`}}},_y=class e{modal;constructor(e){this.modal=e}open(){this.modal.open(gy.$name,{ariaLabelledBy:`updatable-modal-title`,ariaDescribedBy:`updatable-modal-description`,size:`sm`})}static get $name(){return`docsModalUpdatable`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-updatable.component-60b4aa8c.html`}}},vy=class e{activeId=`alternative-home`;static get $name(){return`docsAlternativeNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/alternative-nav.component-91ca65c7.html`}}},yy=class e{activeId=`custom-weekly`;static get $name(){return`docsCustomNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/custom-nav.component-1b5ce3ef.html`}}},by=class e{items=[{id:`dynamic-1`,title:`Tab 1`},{id:`dynamic-2`,title:`Tab 2`},{id:`dynamic-3`,title:`Tab 3`}];activeId=`dynamic-1`;nextId=4;add(){let e={id:`dynamic-${this.nextId}`,title:`Tab ${this.nextId}`};this.nextId++,this.items.push(e),this.activeId=e.id}removeActive(){if(this.items.length===1)return;let e=this.items.findIndex(({id:e})=>e===this.activeId),t=this.items[e===0?1:e-1];this.activeId=t.id,this.items=this.items.filter(({id:t})=>t!==this.items[e].id)}static get $name(){return`docsDynamicNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dynamic-nav.component-8f99c980.html`}}},xy=class e{activeId=`keep-editor`;draft=`This value survives tab changes.`;static get $name(){return`docsKeepContentNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/keep-content-nav.component-91bc7f5b.html`}}},Sy=class e{config;activeId=`global-account`;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,destroyOnHide:e.destroyOnHide,keyboard:e.keyboard,orientation:e.orientation,roles:e.roles},e.animation=!1,e.destroyOnHide=!1,e.keyboard=`changeWithArrows`,e.orientation=`vertical`,e.roles=`tablist`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.animation=this.initialConfig.animation,this.config.destroyOnHide=this.initialConfig.destroyOnHide,this.config.keyboard=this.initialConfig.keyboard,this.config.orientation=this.initialConfig.orientation,this.config.roles=this.initialConfig.roles}static get $name(){return`docsNavGlobal`}static get $inject(){return[mp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/nav-global.component-5dc15900.html`}}},Cy=class e{nav;activeId=`selecting-first`;select(e){this.nav.select(e)}static get $name(){return`docsSelectingNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/selecting-nav.component-702ddbdc.html`}}};Vv([Fc(`nav`,{read:Cp,static:!0})],Cy.prototype,`nav`,void 0);var wy=class e{activeId=`simple-overview`;static get $name(){return`docsSimpleNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-nav.component-40c58366.html`}}},Ty=class e{activeId=`vertical-profile`;static get $name(){return`docsVerticalNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/vertical-nav.component-d0d8cb20.html`}}},Ey=class e{ngbActiveOffcanvas;static get $name(){return`docsOffcanvasDemoContent`}static get $factory(){return{bindings:{ngbActiveOffcanvas:`<`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/offcanvas-demo-content.component-af9094a0.html`}}},Dy=class e{offcanvas;lastResult=`No result yet`;constructor(e){this.offcanvas=e}async open(){let e=await this.offcanvas.open(Ey.$name);e.closed.subscribe(e=>{this.lastResult=`Closed with: ${e}`}),e.dismissed.subscribe(e=>{this.lastResult=`Dismissed with: ${e}`})}static get $name(){return`docsOffcanvasComponentContent`}static get $inject(){return[Lm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-component-content.component-d7bce0b7.html`}}},Oy=class e{offcanvas;content;constructor(e){this.offcanvas=e}open(){this.offcanvas.open(this.content)}static get $name(){return`docsOffcanvasDefault`}static get $inject(){return[Lm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-default.component-47eca0d9.html`}}};Vv([Fc(`content`,{read:Qc,static:!0})],Oy.prototype,`content`,void 0);var ky=class e{ngbActiveOffcanvas;autofocus=!1;static get $name(){return`docsOffcanvasFocusContent`}static get $factory(){return{bindings:{ngbActiveOffcanvas:`<`,autofocus:`<?`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/offcanvas-focus-content.component-f73aba4b.html`}}},Ay=class e{offcanvas;constructor(e){this.offcanvas=e}openDefaultFocus(){this.offcanvas.open(ky.$name,{ariaLabelledBy:`offcanvas-focus-title`,bindings:{autofocus:!1}})}openCustomFocus(){this.offcanvas.open(ky.$name,{ariaLabelledBy:`offcanvas-focus-title`,bindings:{autofocus:!0}})}static get $name(){return`docsOffcanvasFocus`}static get $inject(){return[Lm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-focus.component-7bd7b87f.html`}}},jy=class e{offcanvas;config;initialConfig;constructor(e,t){this.offcanvas=e,this.config=t,this.initialConfig={backdrop:t.backdrop,keyboard:t.keyboard,position:t.position,scroll:t.scroll}}async open(){this.applyConfig();try{await this.offcanvas.open(Ey.$name)}finally{this.restoreConfig()}}$onDestroy(){this.restoreConfig()}applyConfig(){this.config.backdrop=`static`,this.config.keyboard=!1,this.config.position=`end`,this.config.scroll=!0}restoreConfig(){this.config.backdrop=this.initialConfig.backdrop,this.config.keyboard=this.initialConfig.keyboard,this.config.position=this.initialConfig.position,this.config.scroll=this.initialConfig.scroll}static get $name(){return`docsOffcanvasGlobal`}static get $inject(){return[Lm.$name,Tm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-global.component-ed858907.html`}}},My=class e{offcanvas;constructor(e){this.offcanvas=e}openCustomPanel(){this.open({panelClass:`offcanvas-panel-custom`})}openStaticBackdrop(){this.open({backdrop:`static`,backdropClass:`offcanvas-static-backdrop`,keyboard:!1})}openStart(){this.open({position:`start`})}openEnd(){this.open({position:`end`})}openTop(){this.open({position:`top`})}openBottom(){this.open({position:`bottom`})}openScrollableBody(){this.open({scroll:!0,backdrop:!1})}open(e){this.offcanvas.open(Ey.$name,e)}static get $name(){return`docsOffcanvasOptions`}static get $inject(){return[Lm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-options.component-e9370ca4.html`}}},Ny=class e{paginatedPage=7;rotatedPage=12;compactPage=12;selectPaginatedPage(e){this.paginatedPage=e}selectRotatedPage(e){this.rotatedPage=e}selectCompactPage(e){this.compactPage=e}static get $name(){return`docsAdvancedPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/advanced-pagination.component-079f4ff0.html`}}},Py=class e{page=4;selectPage(e){this.page=e}static get $name(){return`docsBasicPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-pagination.component-f7c759d2.html`}}},Fy=class e{page=3;selectPage(e){this.page=e}static get $name(){return`docsCustomPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/custom-pagination.component-fd14d01b.html`}}},Iy=class e{page=3;disabled=!0;selectPage(e){this.page=e}static get $name(){return`docsDisabledPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/disabled-pagination.component-20ce8751.html`}}},Ly=class e{startPage=2;centerPage=2;endPage=2;selectStartPage(e){this.startPage=e}selectCenterPage(e){this.centerPage=e}selectEndPage(e){this.endPage=e}static get $name(){return`docsPaginationAlignment`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/pagination-alignment.component-66250bb4.html`}}},Ry=class e{config;page=8;initialConfig;constructor(e){this.config=e,this.initialConfig={boundaryLinks:e.boundaryLinks,directionLinks:e.directionLinks,maxSize:e.maxSize,rotate:e.rotate,size:e.size},e.boundaryLinks=!0,e.directionLinks=!1,e.maxSize=5,e.rotate=!0,e.size=`sm`}selectPage(e){this.page=e}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.boundaryLinks=this.initialConfig.boundaryLinks,this.config.directionLinks=this.initialConfig.directionLinks,this.config.maxSize=this.initialConfig.maxSize,this.config.rotate=this.initialConfig.rotate,this.config.size=this.initialConfig.size}static get $name(){return`docsPaginationGlobal`}static get $inject(){return[qm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/pagination-global.component-a9a8a9dd.html`}}},zy=class e{smallPage=2;defaultPage=2;largePage=2;selectSmallPage(e){this.smallPage=e}selectDefaultPage(e){this.defaultPage=e}selectLargePage(e){this.largePage=e}static get $name(){return`docsPaginationSize`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/pagination-size.component-9ec857c7.html`}}},By=class e{date={year:2026,month:8,day:24};static get $name(){return`docsBasicDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-datepicker.component-291fe3e5.html`}}},Vy=class extends Fp{fromModel(e){if(!e)return null;let[t,n,r]=e.split(`/`).map(Number);return t&&n&&r?{year:t,month:n,day:r}:null}toModel(e){return e?`${e.year}/${e.month}/${e.day}`:null}},Hy=class extends ym{parse(e){let[t,n,r]=e.split(`.`).map(Number);return t&&n&&r?{year:r,month:n,day:t}:null}format(e){return e?`${String(e.day).padStart(2,`0`)}.${String(e.month).padStart(2,`0`)}.${e.year}`:``}},Uy=class e{adapter=new Vy;formatter=new Hy;date=`2026/8/24`;static get $name(){return`docsDatepickerCustomAdapter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-custom-adapter.component-26601229.html`}}},Wy=class e{date={year:2026,month:8,day:24};dayData(e){let t=new Date(e.year,e.month-1,e.day).getDay();return{weekend:t===0||t===6}}static get $name(){return`docsDatepickerCustomDay`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-custom-day.component-2e030512.html`}}},Gy=class e{previous(e){e.navigateTo(e.calendar.getPrev(e.state.firstDate,`m`,1))}next(e){e.navigateTo(e.calendar.getNext(e.state.firstDate,`m`,1))}today(e){e.navigateTo(e.calendar.getToday())}static get $name(){return`docsDatepickerCustomMonth`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-custom-month.component-3688ecff.html`}}},Ky=class e{date=null;datepicker;today(){this.datepicker&&(this.date=this.datepicker.calendar.getToday())}clear(){this.date=null}static get $name(){return`docsDatepickerFooter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-footer.component-5aba752a.html`}}},qy=class e{config;inputConfig;inlineDefaults;inputDefaults;inlineDate={year:2026,month:8,day:24};popupDate={year:2026,month:8,day:24};constructor(e,t){this.config=e,this.inputConfig=t,this.inlineDefaults=this.capture(e),this.inputDefaults=this.capture(t),Object.assign(e,{displayMonths:2,navigation:`arrows`,outsideDays:`hidden`,showWeekNumbers:!0,weekdays:`short`}),Object.assign(t,{displayMonths:2,navigation:`arrows`,outsideDays:`hidden`,showWeekNumbers:!0,weekdays:`short`})}$postLink(){this.restore()}$onDestroy(){this.restore()}capture(e){return{displayMonths:e.displayMonths,navigation:e.navigation,outsideDays:e.outsideDays,showWeekNumbers:e.showWeekNumbers,weekdays:e.weekdays}}restore(){Object.assign(this.config,this.inlineDefaults),Object.assign(this.inputConfig,this.inputDefaults)}static get $name(){return`docsDatepickerGlobal`}static get $inject(){return[am.$name,xm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-global.component-51fbff38.html`}}},Jy=class extends Up{months=[`enero`,`febrero`,`marzo`,`abril`,`mayo`,`junio`,`julio`,`agosto`,`septiembre`,`octubre`,`noviembre`,`diciembre`];weekdays=[`L`,`M`,`X`,`J`,`V`,`S`,`D`];getWeekdayLabel(e){return this.weekdays[e-1]??``}getMonthShortName(e){return this.months[e-1]?.slice(0,3)??``}getMonthFullName(e){return this.months[e-1]??``}getDayAriaLabel(e){return`${e.day} de ${this.getMonthFullName(e.month)} de ${e.year}`}},Yy=class e{i18n=new Jy;date={year:2026,month:8,day:24};static get $name(){return`docsDatepickerI18n`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-i18n.component-bebaa61c.html`}}},Xy=class e{date={year:2026,month:8,day:24};datepicker;onKeydown(e){if(!this.datepicker||e.key!==`[`&&e.key!==`]`)return;let t=(e.key===`[`?-1:1)<0?this.datepicker.calendar.getPrev(this.datepicker.state.firstDate,`m`,1):this.datepicker.calendar.getNext(this.datepicker.state.firstDate,`m`,1);this.datepicker.navigateTo(t),e.preventDefault(),e.stopPropagation()}static get $name(){return`docsDatepickerKeyboard`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-keyboard.component-1d9b30db.html`}}},Zy=class e{date=null;target=`#datepicker-custom-position-target`;static get $name(){return`docsDatepickerPositionTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-position-target.component-44f3c7eb.html`}}},Qy=class e{disabled=!0;date={year:2026,month:8,day:24};static get $name(){return`docsDisabledDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/disabled-datepicker.component-2bc90747.html`}}},$y=class e{date={year:2026,month:8,day:24};static get $name(){return`docsMultipleMonthsDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/multiple-months-datepicker.component-d7a13227.html`}}},eb=class e{date={year:2026,month:8,day:24};static get $name(){return`docsPopupDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popup-datepicker.component-6b3da4e4.html`}}},tb=class e{calendar=new Vp;hoveredDate=null;fromDate=this.calendar.getToday();toDate=this.calendar.getNext(this.fromDate,`d`,10);select(e){!this.fromDate||this.toDate?(this.fromDate=e,this.toDate=null):e.after(this.fromDate)?this.toDate=e:this.fromDate=e}isHovered(e){return!!this.fromDate&&!this.toDate&&!!this.hoveredDate&&e.after(this.fromDate)&&e.before(this.hoveredDate)}isInside(e){return!!this.toDate&&e.after(this.fromDate)&&e.before(this.toDate)}isRange(e){return e.equals(this.fromDate)||!!this.toDate&&e.equals(this.toDate)||this.isInside(e)||this.isHovered(e)}static get $name(){return`docsRangeDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/range-datepicker.component-d0d2c1c7.html`}}},nb=class e{calendar=new Vp;hoveredDate=null;fromDate=this.calendar.getToday();toDate=this.calendar.getNext(this.fromDate,`d`,7);model=this.fromDate;select(e){!this.fromDate||this.toDate?(this.fromDate=e,this.toDate=null):e.after(this.fromDate)?this.toDate=e:this.fromDate=e,this.model=e}isHovered(e){return!!this.fromDate&&!this.toDate&&!!this.hoveredDate&&e.after(this.fromDate)&&e.before(this.hoveredDate)}isInside(e){return!!this.toDate&&e.after(this.fromDate)&&e.before(this.toDate)}isRange(e){return e.equals(this.fromDate)||!!this.toDate&&e.equals(this.toDate)||this.isInside(e)||this.isHovered(e)}static get $name(){return`docsRangePopupDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/range-popup-datepicker.component-669a3d6e.html`}}},rb=class e{popover;static get $name(){return`docsPopoverAutoclose`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-autoclose.component-57b25eb2.html`}}},ib=class e{static get $name(){return`docsPopoverBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-body.component-6a796f42.html`}}},ab=class e{name=`World`;contentTemplate;titleTemplate;french;german;english;toggleWithGreeting(e,t,n){e.isOpen()?e.close():e.open({greeting:t,language:n})}static get $name(){return`docsPopoverContext`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-context.component-9821acd5.html`}}},ob=class e{static get $name(){return`docsPopoverCustomClass`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-custom-class.component-14003348.html`}}},sb=class e{static get $name(){return`docsPopoverCustomTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-custom-target.component-40238e11.html`}}},cb=class e{static get $name(){return`docsPopoverDelays`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-delays.component-3b7810fd.html`}}},lb=class e{popover;events=[];record(e){this.events.unshift({name:e,time:new Date})}static get $name(){return`docsPopoverEvents`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-events.component-14c8f6c5.html`}}},ub=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,openDelay:e.openDelay,placement:e.placement,triggers:e.triggers},e.container=`body`,e.openDelay=300,e.placement=`end`,e.triggers=`mouseenter:mouseleave`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.openDelay=this.initialConfig.openDelay,this.config.placement=this.initialConfig.placement,this.config.triggers=this.initialConfig.triggers}static get $name(){return`docsPopoverGlobal`}static get $inject(){return[Zm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-global.component-c0490f4c.html`}}},db=class e{popover;static get $name(){return`docsPopoverManualControl`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-manual-control.component-92b9fe1e.html`}}},fb=class e{static get $name(){return`docsPopoverPlacements`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-placements.component-bc233f48.html`}}},pb=class e{name=`NgbJS`;contentTemplate;titleTemplate;static get $name(){return`docsPopoverTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-template.component-0fc1b6bd.html`}}},mb=class e{manual;static get $name(){return`docsPopoverTriggers`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-triggers.component-495aec08.html`}}},hb=class e{static get $name(){return`docsContextualTextProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/contextual-text-progressbar.component-739ebb23.html`}}},gb=class e{static get $name(){return`docsCustomLabelsProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/custom-labels-progressbar.component-4a835ccd.html`}}},_b=class e{static get $name(){return`docsProgressBarsStacked`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/progress-bars-stacked.component-0b11e30b.html`}}},vb=class e{static get $name(){return`docsProgressHeight`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/progress-height.component-fcb23284.html`}}},yb=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animated:e.animated,height:e.height,max:e.max,showValue:e.showValue,striped:e.striped,textType:e.textType,type:e.type},e.animated=!0,e.height=`1.5rem`,e.max=200,e.showValue=!0,e.striped=!0,e.textType=`light`,e.type=`primary`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){Object.assign(this.config,this.initialConfig)}static get $name(){return`docsProgressbarGlobal`}static get $inject(){return[sh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/progressbar-global.component-2e5191d6.html`}}},bb=class e{static get $name(){return`docsSimpleProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-progressbar.component-95b1d976.html`}}},xb=class e{static get $name(){return`docsStripedProgressBar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/striped-progress-bar.component-3510717f.html`}}},Sb=class e{rating=3;setRating(e){this.rating=e}static get $name(){return`docsBasicRating`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-rating.component-7502f0fd.html`}}},Cb=class e{rating=6;setRating(e){this.rating=e}static get $name(){return`docsRatingCustomTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-custom-template.component-85b6ae07.html`}}},wb=class e{rating=3.14;heartTemplate;ariaValueText=(e,t)=>`${e} out of ${t} hearts`;static get $name(){return`docsRatingDecimal`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-decimal.component-1bf29008.html`}}},Tb=class e{selected=0;hovered=0;readonly=!1;setSelected(e){this.selected=e}setHovered(e){this.hovered=e}static get $name(){return`docsRatingEvents`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-events.component-1f7dffda.html`}}},Eb=class e{rating=null;disabled=!1;form;setRating(e){this.rating=e}clear(){this.rating=null}static get $name(){return`docsRatingForm`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-form.component-a03ea6b0.html`}}},Db=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={max:e.max,readonly:e.readonly,resettable:e.resettable,tabindex:e.tabindex},e.max=5,e.readonly=!0,e.resettable=!0,e.tabindex=-1}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){Object.assign(this.config,this.initialConfig)}static get $name(){return`docsRatingGlobal`}static get $inject(){return[ph.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-global.component-75a12e36.html`}}},Ob=class e{static get $name(){return`docsBasicScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-scrollspy.component-d1d8bd1e.html`}}},kb=class e{static get $name(){return`docsNavbarScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/navbar-scrollspy.component-dc21d43f.html`}}},Ab=class e{static get $name(){return`docsNestedScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/nested-scrollspy.component-e26dd5c3.html`}}},jb=class e{static get $name(){return`docsScrollspyMenuItems`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/scrollspy-menu-items.component-64827aa2.html`}}},Mb=class e{$element;scrollSpy;fragments=[`service-introduction`,`service-options`,`service-finish`];running=!1;observingFinish=!0;root;constructor(e,t){this.$element=e,this.scrollSpy=t}$postLink(){this.root=this.$element[0].querySelector(`[data-service-scrollspy]`)??void 0,this.start()}$onDestroy(){this.scrollSpy.stop()}start(){this.root&&(this.scrollSpy.start({root:this.root,fragments:this.fragments,rootMargin:`0px 0px -45%`}),this.running=!0,this.observingFinish=!0)}stop(){this.scrollSpy.stop(),this.running=!1}toggleFinish(){this.observingFinish?this.scrollSpy.unobserve(`service-finish`):this.scrollSpy.observe(`service-finish`),this.observingFinish=!this.observingFinish}static get $name(){return`docsScrollspyServiceDemo`}static get $inject(){return[`$element`,wh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/scrollspy-service-demo.component-b0f47f90.html`}}},Nb=class e{time={hour:13,minute:30,second:0};static get $name(){return`docsBasicTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-timepicker.component-422d95dc.html`}}},Pb=class e{time={hour:13,minute:30,second:0};meridian=!0;static get $name(){return`docsMeridianTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/meridian-timepicker.component-032418eb.html`}}},Fb=class e{time={hour:13,minute:30,second:25};seconds=!0;static get $name(){return`docsSecondsTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/seconds-timepicker.component-9ae3ed3f.html`}}},Ib=class e{time={hour:13,minute:30,second:0};spinners=!0;static get $name(){return`docsSpinnersTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/spinners-timepicker.component-11b82947.html`}}},Lb=e=>e.toString().padStart(2,`0`),Rb=class extends Nh{fromModel(e){if(!e)return null;let[t,n,r]=e.split(`:`).map(Number);return{hour:t,minute:n,second:r}}toModel(e){return e?`${Lb(e.hour)}:${Lb(e.minute)}:${Lb(e.second??0)}`:null}},zb=class e{adapter=new Rb;time=this.adapter.fromModel(`13:30:00`);model=`13:30:00`;$doCheck(){this.model=this.adapter.toModel(this.time)??``}static get $name(){return`docsTimepickerCustomAdapter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/timepicker-custom-adapter.component-441dd446.html`}}},Bb=class e{time={hour:13,minute:30,second:0};hourStep=1;minuteStep=15;secondStep=30;static get $name(){return`docsTimepickerCustomSteps`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/timepicker-custom-steps.component-aef982a9.html`}}},Vb=class extends Fh{getMorningPeriod(){return`π.μ.`}getAfternoonPeriod(){return`μ.μ.`}},Hb=class e{i18n;time={hour:13,minute:30,second:0};constructor(e){this.i18n=e}static get $name(){return`docsTimepickerI18n`}static get $inject(){return[Fh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/timepicker-i18n.component-de9cc3cd.html`}}},Ub=class e{time=null;static get $name(){return`docsTimepickerValidation`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/timepicker-validation.component-531f8b4a.html`}}},Wb=()=>({restrict:`A`,require:`ngModel`,link:(e,t,n,r)=>{let i=r;i.$validators.lunchtime=e=>!e||e.hour>=12&&e.hour<=13}}),Gb=class e{$timeout;visible=!0;reopenTimer;constructor(e){this.$timeout=e}close(){this.visible=!1,this.reopenTimer=this.$timeout(()=>{this.visible=!0},3e3)}$onDestroy(){this.reopenTimer&&this.$timeout.cancel(this.reopenTimer)}static get $name(){return`docsCloseableToast`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/closeable-toast.component-689e4435.html`}}},Kb=class e{showHeaderToast=!0;static get $name(){return`docsInlineToast`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/inline-toast.component-78d4484e.html`}}},qb=class e{$timeout;visible=!1;autohide=!0;constructor(e){this.$timeout=e}show(){this.visible=!1,this.autohide=!0,this.$timeout(()=>this.visible=!0)}hide(){this.visible=!1,this.autohide=!0}static get $name(){return`docsPreventAutohideToast`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/prevent-autohide-toast.component-e3a1c0d5.html`}}},Jb=class e{visible=!0;static get $name(){return`docsTemplateHeaderToast`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/template-header-toast.component-0b21385b.html`}}},Yb=class{toasts=[];nextId=0;show(e,t={}){this.toasts.push({id:++this.nextId,body:e,...t})}remove(e){let t=this.toasts.indexOf(e);t>=0&&this.toasts.splice(t,1)}clear(){this.toasts.length=0}static get $name(){return`docs.toast.service`}},Xb=class e{toastService;constructor(e){this.toastService=e}showStandard(){this.toastService.show(`I am a standard toast.`)}showSuccess(){this.toastService.show(`Your changes were saved.`,{className:`bg-success text-white`,delay:8e3})}showDanger(){this.toastService.show(`The operation could not be completed.`,{className:`bg-danger text-white`,delay:1e4})}$onDestroy(){this.toastService.clear()}static get $name(){return`docsToastManagement`}static get $inject(){return[Yb.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/toast-management.component-6f223e5d.html`}}},Zb=class e{contentTemplate;static get $name(){return`docsTooltipAutoclose`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-autoclose.component-11319bb3.html`}}},Qb=class e{static get $name(){return`docsTooltipBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-body.component-0f3295f1.html`}}},$b=class e{name=`World`;contentTemplate;french;german;english;toggleWithGreeting(e,t){e.isOpen()?e.close():e.open({greeting:t})}static get $name(){return`docsTooltipContext`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-context.component-1e6cc7b7.html`}}},ex=class e{static get $name(){return`docsTooltipCustomClass`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-custom-class.component-38bd6d66.html`}}},tx=class e{static get $name(){return`docsTooltipCustomTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-custom-target.component-f49db172.html`}}},nx=class e{static get $name(){return`docsTooltipDelays`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-delays.component-799fa7c5.html`}}},rx=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,openDelay:e.openDelay,placement:e.placement,triggers:e.triggers},e.container=`body`,e.openDelay=300,e.placement=`end`,e.triggers=`mouseenter:mouseleave`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.openDelay=this.initialConfig.openDelay,this.config.placement=this.initialConfig.placement,this.config.triggers=this.initialConfig.triggers}static get $name(){return`docsTooltipGlobal`}static get $inject(){return[Jh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-global.component-71535039.html`}}},ix=class e{static get $name(){return`docsTooltipPlacements`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-placements.component-8dab839d.html`}}},ax=class e{name=`NgbJS`;contentTemplate;static get $name(){return`docsTooltipTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-template.component-1ffd56db.html`}}},ox=class e{manual;static get $name(){return`docsTooltipTriggers`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-triggers.component-d00f22ca.html`}}},sx=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`].map(e=>({name:e})),cx=class e{model;formatter=e=>e.name;search=e=>e.pipe(us(200),Eo(e=>e?sx.filter(t=>t.name.toLowerCase().includes(e.toLowerCase())):[]));static get $name(){return`docsExactTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/exact-typeahead.component-531520d8.html`}}},lx=`Alabama.Alaska.Arizona.Arkansas.California.Colorado.Connecticut.Delaware.Florida.Georgia.Hawaii.Idaho.Illinois.Indiana.Iowa.Kansas.Kentucky.Louisiana.Maine.Maryland.Massachusetts.Michigan.Minnesota.Mississippi.Missouri.Montana.Nebraska.Nevada.New Hampshire.New Jersey.New Mexico.New York.North Carolina.North Dakota.Ohio.Oklahoma.Oregon.Pennsylvania.Rhode Island.South Carolina.South Dakota.Tennessee.Texas.Utah.Vermont.Virginia.Washington.West Virginia.Wisconsin.Wyoming`.split(`.`),ux=class e{model=``;focus$=new Y;search=e=>ts(e.pipe(us(200),_s()),this.focus$).pipe(Eo(e=>(e?lx.filter(t=>t.toLowerCase().includes(e.toLowerCase())):lx).slice(0,10)));$onDestroy(){this.focus$.complete()}static get $name(){return`docsFocusTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/focus-typeahead.component-a7175f57.html`}}},dx=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`],fx=class e{model=``;formatter=e=>e.toUpperCase();search=e=>e.pipe(us(200),_s(),Eo(e=>e?dx.filter(t=>t.toLowerCase().includes(e.toLowerCase())):[]));static get $name(){return`docsFormattedTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/formatted-typeahead.component-4c4a5bfe.html`}}},px=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`].map((e,t)=>({id:t,name:e})),mx=class e{model=null;formatter=e=>e.name;search=e=>e.pipe(us(200),_s(),Eo(e=>e.length<2?[]:px.filter(t=>t.name.toLowerCase().includes(e.toLowerCase()))));static get $name(){return`docsNonEditableTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/non-editable-typeahead.component-0b818c64.html`}}},hx=`Alabama.Alaska.Arizona.Arkansas.California.Colorado.Connecticut.Delaware.Florida.Georgia.Hawaii.Idaho.Illinois.Indiana.Iowa.Kansas.Kentucky.Louisiana.Maine.Maryland.Massachusetts.Michigan.Minnesota.Mississippi.Missouri.Montana.Nebraska.Nevada.New Hampshire.New Jersey.New Mexico.New York.North Carolina.North Dakota.Ohio.Oklahoma.Oregon.Pennsylvania.Rhode Island.South Carolina.South Dakota.Tennessee.Texas.Utah.Vermont.Virginia.Washington.West Virginia.Wisconsin.Wyoming`.split(`.`),gx=class e{model=``;search=e=>e.pipe(us(200),_s(),Eo(e=>e.length<2?[]:hx.filter(t=>t.toLowerCase().includes(e.toLowerCase())).slice(0,10)));static get $name(){return`docsSimpleTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-typeahead.component-08584e4b.html`}}},_x=[{name:`Mexico`,flag:`🇲🇽`,region:`North America`},{name:`Argentina`,flag:`🇦🇷`,region:`South America`},{name:`Brazil`,flag:`🇧🇷`,region:`South America`},{name:`Canada`,flag:`🇨🇦`,region:`North America`},{name:`Colombia`,flag:`🇨🇴`,region:`South America`},{name:`Germany`,flag:`🇩🇪`,region:`Europe`},{name:`Japan`,flag:`🇯🇵`,region:`Asia`},{name:`Spain`,flag:`🇪🇸`,region:`Europe`}],vx=class e{model;resultTemplate;formatter=e=>e.name;search=e=>e.pipe(us(200),Eo(e=>e?_x.filter(t=>t.name.toLowerCase().includes(e.toLowerCase())).slice(0,8):[]));static get $name(){return`docsTemplateResultsTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/template-results-typeahead.component-98bb257f.html`}}},yx=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`],bx=class e{config;model=``;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,selectOnExact:e.selectOnExact,showHint:e.showHint},e.container=`body`,e.selectOnExact=!0,e.showHint=!0}search=e=>e.pipe(us(200),_s(),Eo(e=>e.length<2?[]:yx.filter(t=>t.toLowerCase().startsWith(e.toLowerCase()))));$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.selectOnExact=this.initialConfig.selectOnExact,this.config.showHint=this.initialConfig.showHint}static get $name(){return`docsTypeaheadGlobal`}static get $inject(){return[ng.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/typeahead-global.component-ecaea59a.html`}}},xx=`https://en.wikipedia.org/w/api.php`,Sx=class{$http;constructor(e){this.$http=e}search(e){return e?xo(this.$http.get(xx,{params:{action:`opensearch`,format:`json`,origin:`*`,search:e}})).pipe(Eo(e=>e.data[1])):So([])}static get $name(){return`docs.wikipedia.search.service`}static get $inject(){return[`$http`]}},Cx=class e{wikipedia;model=``;searching=!1;searchFailed=!1;constructor(e){this.wikipedia=e}search=e=>e.pipe(us(300),_s(),ws(()=>this.searching=!0),Ss(e=>this.wikipedia.search(e).pipe(ws(()=>this.searchFailed=!1),ls(()=>(this.searchFailed=!0,So([]))))),ws(()=>this.searching=!1));static get $name(){return`docsWikipediaTypeahead`}static get $inject(){return[Sx.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/wikipedia-typeahead.component-7bf7d051.html`}}},wx=class e{static get $name(){return`docsAlertApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/alert-api-page.component-af477f75.html`,controllerAs:`$`}}},Tx=`import type { IComponentController, IComponentOptions } from "angular";
-
-interface AlertExample {
-    id: number;
-    type: string;
-    message: string;
-    animation: boolean;
-}
-
-const createAlerts = (): AlertExample[] => [
-    { id: 1, type: "success", message: "Your changes were saved successfully.", animation: true },
-    { id: 2, type: "danger", message: "Something needs your attention.", animation: true },
-    { id: 3, type: "warning", message: "This alert closes without animation.", animation: false },
-    { id: 4, type: "info", message: "This one also closes immediately.", animation: false },
-];
-
-export class AlertCloseableComponent implements IComponentController {
-    public alerts = createAlerts();
-
-    public close(id: number) {
-        this.alerts = this.alerts.filter((alert) => alert.id !== id);
-    }
-
-    public reset() {
-        this.alerts = createAlerts();
-    }
-
-    static get $name() {
-        return "docsAlertCloseable"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: AlertCloseableComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/alert-closeable/alert-closeable.component.html",
-        }
-    }
-}
-`,Ex=`.alert-custom {
-    --bs-alert-color: var(--bs-emphasis-color);
-    --bs-alert-bg: var(--bs-tertiary-bg);
-    --bs-alert-border-color: var(--bs-primary-border-subtle);
-    --bs-alert-link-color: var(--bs-primary-text-emphasis);
-
-    border-left: 0.25rem solid var(--bs-primary);
-}
-`,Dx=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbAlertConfig } from "ngb-js";
-
-export class AlertGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<NgbAlertConfig, "animation" | "dismissible" | "type">;
-
-    constructor(private readonly config: NgbAlertConfig) {
-        this.initialConfig = {
-            animation: config.animation,
-            dismissible: config.dismissible,
-            type: config.type,
-        };
-
-        config.animation = false;
-        config.dismissible = false;
-        config.type = "success";
-    }
-
-    $onDestroy() {
-        this.config.animation = this.initialConfig.animation;
-        this.config.dismissible = this.initialConfig.dismissible;
-        this.config.type = this.initialConfig.type;
-    }
-
-    static get $name() {
-        return "docsAlertGlobal"
-    }
-
-    static get $inject() {
-        return [NgbAlertConfig.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: AlertGlobalComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/alert-global/alert-global.component.html",
-        }
-    }
-}
-`,Ox=`import type { INgbAlert } from "ngb-js";
-import type { IComponentController, IComponentOptions, IPromise, ITimeoutService } from "angular";
-import { ViewChild } from "ngjs-core";
-
-export class SelfClosingAlertComponent implements IComponentController {
-    private readonly initialSeconds = 5;
-    private timer?: IPromise<void>;
-
-    @ViewChild("alert")
-    private alert?: INgbAlert;
-
-    public remaining = this.initialSeconds;
-    public visible = true;
-
-    constructor(private readonly $timeout: ITimeoutService) {}
-
-    $onInit() {
-        this.startTimer();
-    }
-
-    $onDestroy() {
-        this.cancelTimer();
-    }
-
-    public restart() {
-        this.cancelTimer();
-        this.remaining = this.initialSeconds;
-        this.visible = true;
-        this.startTimer();
-    }
-
-    public onClosed() {
-        this.visible = false;
-        this.cancelTimer();
-    }
-
-    private startTimer() {
-        this.timer = this.$timeout(() => {
-            this.remaining--;
-
-            if (this.remaining <= 0) {
-                if (this.alert) {
-                    this.alert.close();
-                } else {
-                    this.visible = false;
-                }
-                return;
-            }
-
-            this.startTimer();
-        }, 1000);
-    }
-
-    private cancelTimer() {
-        if (this.timer) {
-            this.$timeout.cancel(this.timer);
-            this.timer = undefined;
-        }
-    }
-
-    static get $name() {
-        return "docsSelfClosingAlert"
-    }
-
-    static get $inject() {
-        return ["$timeout"]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: SelfClosingAlertComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/self-closing-alert/self-closing-alert.component.html",
-        }
-    }
-}
-`,kx=class e{examples={simple:{html:Gv.$factory.templateUrl},closeable:{html:Pv.$factory.templateUrl,typescript:Tx},selfClosing:{html:Wv.$factory.templateUrl,typescript:Ox},custom:{html:Fv.$factory.templateUrl,css:Ex},global:{html:Iv.$factory.templateUrl,typescript:Dx}};static get $name(){return`docsAlertExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/alert-examples-page.component-58a0e458.html`,controllerAs:`$`}}},Ax=class e{static get $name(){return`docsAccordionApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/accordion-api-page.component-a8be89e6.html`,controllerAs:`$`}}},jx=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class AccordionContentComponent implements IComponentController {
-    public draft = "This value remains after collapsing the panel.";
-
-    static get $name() {
-        return "docsAccordionContent"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: AccordionContentComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/accordion-content/accordion-content.component.html",
-        }
-    }
-}
-`,Mx=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbAccordionConfig } from "ngb-js";
-
-export class AccordionGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<NgbAccordionConfig, "animation" | "closeOthers" | "destroyOnHide">;
-
-    constructor(private readonly config: NgbAccordionConfig) {
-        this.initialConfig = {
-            animation: config.animation,
-            closeOthers: config.closeOthers,
-            destroyOnHide: config.destroyOnHide,
-        };
-
-        config.animation = false;
-        config.closeOthers = true;
-        config.destroyOnHide = false;
-    }
-
-    $onDestroy() {
-        this.config.animation = this.initialConfig.animation;
-        this.config.closeOthers = this.initialConfig.closeOthers;
-        this.config.destroyOnHide = this.initialConfig.destroyOnHide;
-    }
-
-    static get $name() {
-        return "docsAccordionGlobal"
-    }
-
-    static get $inject() {
-        return [NgbAccordionConfig.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: AccordionGlobalComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/accordion-global/accordion-global.component.html",
-        }
-    }
-}
-`,Nx=`import type { IComponentController, IComponentOptions } from "angular";
-import { ViewChild } from "ngjs-core";
-
-interface AccordionController {
-    expandAll(): void;
-    collapseAll(): void;
-    toggle(itemId: string): void;
-}
-
-export class AccordionTogglePanelsComponent implements IComponentController {
-    @ViewChild("accordion", { static: true })
-    private accordion!: AccordionController;
-
-    public expandAll() {
-        this.accordion.expandAll();
-    }
-
-    public collapseAll() {
-        this.accordion.collapseAll();
-    }
-
-    public toggle(itemId: string) {
-        this.accordion.toggle(itemId);
-    }
-
-    static get $name() {
-        return "docsAccordionTogglePanels"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: AccordionTogglePanelsComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component.html",
-        }
-    }
-}
-`,Px=class e{examples={simple:{html:Bv.$factory.templateUrl},onePanel:{html:Uv.$factory.templateUrl},togglePanels:{html:Hv.$factory.templateUrl,typescript:Nx},customHeader:{html:Rv.$factory.templateUrl},content:{html:Lv.$factory.templateUrl,typescript:jx},global:{html:zv.$factory.templateUrl,typescript:Mx}};static get $name(){return`docsAccordionExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/accordion-examples-page.component-4963b03d.html`,controllerAs:`$`}}},Fx=class e{static get $name(){return`docsCarouselApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/carousel-api-page.component-e3203157.html`,controllerAs:`$`}}},Ix=`import type { IAugmentedJQuery, IComponentController, IComponentOptions, ITimeoutService } from "angular";
-
-interface CarouselController {
-    cycle(): void;
-    pause(): void;
-}
-
-interface CarouselSlideEvent {
-    source?: "timer" | "arrowLeft" | "arrowRight" | "indicator";
-}
-
-export class CarouselControlsComponent implements IComponentController {
-    public pauseOnHover = true;
-    public pauseOnFocus = true;
-    public unpauseOnArrow = false;
-    public pauseOnIndicator = false;
-    public paused = false;
-
-    private carousel?: CarouselController;
-
-    constructor(
-        private readonly $element: IAugmentedJQuery,
-        private readonly $timeout: ITimeoutService,
-    ) {}
-
-    public $postLink() {
-        this.$timeout(
-            () => {
-                this.carousel = this.$element.find("ngb-carousel").controller("ngbCarousel") as CarouselController;
-            },
-            0,
-            false,
-        );
-    }
-
-    public onSlide(event: CarouselSlideEvent) {
-        const isArrow = event.source === "arrowLeft" || event.source === "arrowRight";
-
-        if (isArrow && this.unpauseOnArrow) {
-            this.carousel?.cycle();
-            this.paused = false;
-        }
-
-        if (event.source === "indicator" && this.pauseOnIndicator) {
-            this.carousel?.pause();
-            this.paused = true;
-        }
-    }
-
-    public toggleCycle() {
-        if (this.paused) {
-            this.carousel?.cycle();
-        } else {
-            this.carousel?.pause();
-        }
-
-        this.paused = !this.paused;
-    }
-
-    static get $name() {
-        return "docsCarouselControls"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: CarouselControlsComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/carousel-controls/carousel-controls.component.html",
-        }
-    }
-
-    static get $inject() {
-        return ["$element", "$timeout"]
-    }
-}
-`,Lx=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbCarouselConfig } from "ngb-js";
-
-export class CarouselGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<
-        NgbCarouselConfig,
-        "animation" | "interval" | "wrap" | "pauseOnFocus" | "pauseOnHover" | "showNavigationArrows"
-    >;
-
-    constructor(private readonly config: NgbCarouselConfig) {
-        this.initialConfig = {
-            animation: config.animation,
-            interval: config.interval,
-            wrap: config.wrap,
-            pauseOnFocus: config.pauseOnFocus,
-            pauseOnHover: config.pauseOnHover,
-            showNavigationArrows: config.showNavigationArrows,
-        };
-
-        config.animation = false;
-        config.interval = 2500;
-        config.wrap = false;
-        config.pauseOnFocus = false;
-        config.pauseOnHover = false;
-        config.showNavigationArrows = false;
-    }
-
-    public $onDestroy() {
-        this.config.animation = this.initialConfig.animation;
-        this.config.interval = this.initialConfig.interval;
-        this.config.wrap = this.initialConfig.wrap;
-        this.config.pauseOnFocus = this.initialConfig.pauseOnFocus;
-        this.config.pauseOnHover = this.initialConfig.pauseOnHover;
-        this.config.showNavigationArrows = this.initialConfig.showNavigationArrows;
-    }
-
-    static get $name() {
-        return "docsCarouselGlobal"
-    }
-
-    static get $inject() {
-        return [NgbCarouselConfig.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: CarouselGlobalComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/carousel-global/carousel-global.component.html",
-        }
-    }
-}
-`,Rx=class e{examples={simple:{html:Yv.$factory.templateUrl},keyboard:{html:Jv.$factory.templateUrl},controls:{html:Kv.$factory.templateUrl,typescript:Ix},global:{html:qv.$factory.templateUrl,typescript:Lx}};static get $name(){return`docsCarouselExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/carousel-examples-page.component-dccf0e02.html`,controllerAs:`$`}}},zx=class e{static get $name(){return`docsCollapseApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/collapse-api-page.component-92ab9579.html`,controllerAs:`$`}}},Bx=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class HorizontalCollapseComponent implements IComponentController {
-    public collapsed = true;
-
-    public toggle() {
-        this.collapsed = !this.collapsed;
-    }
-
-    static get $name() {
-        return "docsHorizontalCollapse"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: HorizontalCollapseComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/horizontal-collapse/horizontal-collapse.component.html",
-        }
-    }
-}
-`,Vx=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class NavbarCollapseComponent implements IComponentController {
-    public menuCollapsed = true;
-
-    public toggleMenu() {
-        this.menuCollapsed = !this.menuCollapsed;
-    }
-
-    public closeMenu() {
-        this.menuCollapsed = true;
-    }
-
-    static get $name() {
-        return "docsNavbarCollapse"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: NavbarCollapseComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/navbar-collapse/navbar-collapse.component.html",
-        }
-    }
-}
-`,Hx=`import type { IComponentController, IComponentOptions } from "angular";
-import type { INgbCollapse } from "ngb-js";
-import { ViewChild } from "ngjs-core";
-
-export class SimpleCollapseComponent implements IComponentController {
-    @ViewChild("collapse", { static: true })
-    private collapse!: INgbCollapse;
-
-    public collapsed = true;
-
-    public toggleWithController() {
-        this.collapse.toggle();
-    }
-
-    public toggleWithBinding() {
-        this.collapsed = !this.collapsed;
-    }
-
-    static get $name() {
-        return "docsSimpleCollapse"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: SimpleCollapseComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/simple-collapse/simple-collapse.component.html",
-        }
-    }
-}
-`,Ux=class e{examples={simple:{html:Qv.$factory.templateUrl,typescript:Hx},horizontal:{html:Xv.$factory.templateUrl,typescript:Bx},navbar:{html:Zv.$factory.templateUrl,typescript:Vx}};static get $name(){return`docsCollapseExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/collapse-examples-page.component-acb6de4b.html`,controllerAs:`$`}}},Wx=class e{static get $name(){return`docsDatepickerApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/datepicker-api-page.component-084f99e7.html`,controllerAs:`$`}}},Gx=class extends Up{months;weekdays;localeName;constructor(e,t,n){super(),this.months=e,this.weekdays=t,this.localeName=n}getWeekdayLabel(e){return this.weekdays[e-1]??``}getMonthShortName(e){return this.months[e-1]?.slice(0,3)??``}getMonthFullName(e){return this.months[e-1]??``}getDayAriaLabel(e){return`${this.localeName}: ${e.day} ${this.getMonthFullName(e.month)} ${e.year}`}},Kx=[`د`,`س`,`چ`,`پ`,`ج`,`ش`,`ی`],qx=[`فروردین`,`اردیبهشت`,`خرداد`,`تیر`,`مرداد`,`شهریور`,`مهر`,`آبان`,`آذر`,`دی`,`بهمن`,`اسفند`],Jx=[`ن`,`ث`,`ر`,`خ`,`ج`,`س`,`ح`],Yx=[`محرّم`,`صفر`,`ربيع الأول`,`ربيع الآخر`,`جمادى الأولى`,`جمادى الآخرة`,`رجب`,`شعبان`,`رمضان`,`شوّال`,`ذو القعدة`,`ذو الحجة`],Xx=[`จ`,`อ`,`พ`,`พฤ`,`ศ`,`ส`,`อา`],Zx=[`มกราคม`,`กุมภาพันธ์`,`มีนาคม`,`เมษายน`,`พฤษภาคม`,`มิถุนายน`,`กรกฎาคม`,`สิงหาคม`,`กันยายน`,`ตุลาคม`,`พฤศจิกายน`,`ธันวาคม`],Qx=[`ᔑリ⊣⚍ᔑ∷||`,`⎓ᒷʖ∷⚍ᔑ∷||`,`ᒲᔑ∷ᓵ⍑`,`ᔑ!¡∷╎ꖎ`,`ᒲᔑ||`,`⋮⚍リᒷ`,`⋮⚍ꖎ||`,`ᔑ⚍⊣⚍ᓭℸ̣`,`ᓭᒷ!¡ℸ̣ᒷᒲʖᒷ∷`,`𝙹ᓵℸ̣𝙹ʖᒷ∷`,`リ𝙹⍊ᒷᒲʖᒷ∷`,`↸ᒷᓵᒷᒲʖᒷ∷`],$x=[`ᒲ`,`ℸ̣`,`∴`,`ℸ̣`,`⎓`,`ᓭ`,`ᓭ`],eS=class e{calendars={hebrew:this.create(new n_,new t_),jalali:this.create(new N_,new Gx(qx,Kx,`Jalali`)),islamicCivil:this.create(new d_,new Gx(Yx,Jx,`Islamic Civil`)),islamicUmalqura:this.create(new y_,new Gx(Yx,Jx,`Islamic Umm al-Qura`)),buddhist:this.create(new mg,new Gx(Zx,Xx,`Buddhist`)),ethiopian:this.create(new jg,new _g),intergalactic:this.create(new Vp,new Gx(Qx,$x,`Intergalactic Standard`))};create(e,t){return{calendar:e,i18n:t,date:e.getToday()}}static get $name(){return`docsDatepickerCalendarsPage`}static get $factory(){return{controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/datepicker-calendars-page.component-2bfd561f.html`}}},tS=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbDateAdapter, NgbDateParserFormatter, type NgbDateStruct } from "ngb-js";
-
-class StringDateAdapter extends NgbDateAdapter<string> {
-    fromModel(value: string | null): NgbDateStruct | null {
-        if (!value) return null;
-        const [year, month, day] = value.split("/").map(Number);
-        return year && month && day ? { year, month, day } : null;
-    }
-    toModel(date: NgbDateStruct | null): string | null { return date ? \`\${date.year}/\${date.month}/\${date.day}\` : null; }
-}
-
-class DotDateParserFormatter extends NgbDateParserFormatter {
-    parse(value: string): NgbDateStruct | null {
-        const [day, month, year] = value.split(".").map(Number);
-        return day && month && year ? { year, month, day } : null;
-    }
-    format(date: NgbDateStruct | null): string { return date ? \`\${String(date.day).padStart(2, "0")}.\${String(date.month).padStart(2, "0")}.\${date.year}\` : ""; }
-}
-
-export class DatepickerCustomAdapterComponent implements IComponentController {
-    public readonly adapter = new StringDateAdapter();
-    public readonly formatter = new DotDateParserFormatter();
-    public date = "2026/8/24";
-    static get $name() { return "docsDatepickerCustomAdapter" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-adapter/datepicker-custom-adapter.component.html" } }
-}
-`,nS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbDateStruct } from "ngb-js";
-
-export class BasicDatepickerComponent implements IComponentController {
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
-    static get $name() { return "docsBasicDatepicker" }
-    static get $factory(): IComponentOptions {
-        return { controller: BasicDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-datepicker/basic-datepicker.component.html" }
-    }
-}
-`,rS=`.docs-custom-day { position: relative; display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
-.docs-custom-day.weekend { color: var(--bs-danger); }
-.docs-custom-day.today { font-weight: 700; box-shadow: inset 0 0 0 1px var(--bs-primary); }
-.docs-custom-day.selected { color: var(--bs-white); background: var(--bs-primary); }
-.docs-custom-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .4); outline-offset: 1px; }
-.docs-custom-day .bi-dot { position: absolute; bottom: -.35rem; font-size: 1.25rem; }
-`,iS=`import "@/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbDateStruct } from "ngb-js";
-
-export class DatepickerCustomDayComponent implements IComponentController {
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
-    public dayData(date: NgbDateStruct) {
-        const weekday = new Date(date.year, date.month - 1, date.day).getDay();
-        return { weekend: weekday === 0 || weekday === 6 };
-    }
-    static get $name() { return "docsDatepickerCustomDay" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomDayComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.html" } }
-}
-`,aS=`.docs-month-layout { display: grid; grid-template-columns: repeat(2, max-content); gap: 1rem; }
-@media (max-width: 575.98px) { .docs-month-layout { grid-template-columns: max-content; } }
-`,oS=`import "@/features/lib/components/datepicker-custom-month/datepicker-custom-month.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbDatepicker } from "ngb-js";
-
-export class DatepickerCustomMonthComponent implements IComponentController {
-    public previous(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getPrev(datepicker.state.firstDate, "m", 1)); }
-    public next(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getNext(datepicker.state.firstDate, "m", 1)); }
-    public today(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getToday()); }
-    static get $name() { return "docsDatepickerCustomMonth" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomMonthComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-custom-month/datepicker-custom-month.component.html" } }
-}
-`,sS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbDateStruct } from "ngb-js";
-
-export class DisabledDatepickerComponent implements IComponentController {
-    public disabled = true;
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
-    static get $name() { return "docsDisabledDatepicker" }
-    static get $factory(): IComponentOptions { return { controller: DisabledDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/disabled-datepicker/disabled-datepicker.component.html" } }
-}
-`,cS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbDatepicker, NgbDateStruct } from "ngb-js";
-
-export class DatepickerFooterComponent implements IComponentController {
-    public date: NgbDateStruct | null = null;
-    public datepicker?: NgbDatepicker;
-    public today() { if (this.datepicker) this.date = this.datepicker.calendar.getToday(); }
-    public clear() { this.date = null; }
-    static get $name() { return "docsDatepickerFooter" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerFooterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-footer/datepicker-footer.component.html" } }
-}
-`,lS=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbDatepickerConfig, NgbInputDatepickerConfig, type NgbDateStruct } from "ngb-js";
-
-type DatepickerDefaults = Pick<NgbDatepickerConfig, "displayMonths" | "navigation" | "outsideDays" | "showWeekNumbers" | "weekdays">;
-
-export class DatepickerGlobalComponent implements IComponentController {
-    private readonly inlineDefaults: DatepickerDefaults;
-    private readonly inputDefaults: DatepickerDefaults;
-    public inlineDate: NgbDateStruct = { year: 2026, month: 8, day: 24 };
-    public popupDate: NgbDateStruct = { year: 2026, month: 8, day: 24 };
-
-    constructor(private readonly config: NgbDatepickerConfig, private readonly inputConfig: NgbInputDatepickerConfig) {
-        this.inlineDefaults = this.capture(config);
-        this.inputDefaults = this.capture(inputConfig);
-        Object.assign(config, { displayMonths: 2, navigation: "arrows", outsideDays: "hidden", showWeekNumbers: true, weekdays: "short" });
-        Object.assign(inputConfig, { displayMonths: 2, navigation: "arrows", outsideDays: "hidden", showWeekNumbers: true, weekdays: "short" });
-    }
-    public $postLink() { this.restore(); }
-    public $onDestroy() { this.restore(); }
-    private capture(config: NgbDatepickerConfig): DatepickerDefaults { return { displayMonths: config.displayMonths, navigation: config.navigation, outsideDays: config.outsideDays, showWeekNumbers: config.showWeekNumbers, weekdays: config.weekdays }; }
-    private restore() { Object.assign(this.config, this.inlineDefaults); Object.assign(this.inputConfig, this.inputDefaults); }
-    static get $name() { return "docsDatepickerGlobal" }
-    static get $inject() { return [NgbDatepickerConfig.$name, NgbInputDatepickerConfig.$name] }
-    static get $factory(): IComponentOptions { return { controller: DatepickerGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-global/datepicker-global.component.html" } }
-}
-`,uS=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbDatepickerI18n, type NgbDateStruct } from "ngb-js";
-
-class SpanishDatepickerI18n extends NgbDatepickerI18n {
-    private readonly months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
-    private readonly weekdays = ["L", "M", "X", "J", "V", "S", "D"];
-    getWeekdayLabel(weekday: number) { return this.weekdays[weekday - 1] ?? ""; }
-    getMonthShortName(month: number) { return this.months[month - 1]?.slice(0, 3) ?? ""; }
-    getMonthFullName(month: number) { return this.months[month - 1] ?? ""; }
-    getDayAriaLabel(date: NgbDateStruct) { return \`\${date.day} de \${this.getMonthFullName(date.month)} de \${date.year}\`; }
-}
-
-export class DatepickerI18nComponent implements IComponentController {
-    public readonly i18n = new SpanishDatepickerI18n();
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
-    static get $name() { return "docsDatepickerI18n" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerI18nComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-i18n/datepicker-i18n.component.html" } }
-}
-`,dS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbDatepicker, NgbDateStruct } from "ngb-js";
-
-export class DatepickerKeyboardComponent implements IComponentController {
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
-    public datepicker?: NgbDatepicker;
-    public onKeydown(event: KeyboardEvent | JQueryEventObject) {
-        if (!this.datepicker || (event.key !== "[" && event.key !== "]")) return;
-        const direction = event.key === "[" ? -1 : 1;
-        const target = direction < 0
-            ? this.datepicker.calendar.getPrev(this.datepicker.state.firstDate, "m", 1)
-            : this.datepicker.calendar.getNext(this.datepicker.state.firstDate, "m", 1);
-        this.datepicker.navigateTo(target);
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    static get $name() { return "docsDatepickerKeyboard" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerKeyboardComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-keyboard/datepicker-keyboard.component.html" } }
-}
-`,fS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbDateStruct } from "ngb-js";
-
-export class MultipleMonthsDatepickerComponent implements IComponentController {
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
-    static get $name() { return "docsMultipleMonthsDatepicker" }
-    static get $factory(): IComponentOptions {
-        return { controller: MultipleMonthsDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/multiple-months-datepicker/multiple-months-datepicker.component.html" }
-    }
-}
-`,pS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbDateStruct } from "ngb-js";
-
-export class PopupDatepickerComponent implements IComponentController {
-    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
-    static get $name() { return "docsPopupDatepicker" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopupDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popup-datepicker/popup-datepicker.component.html" }
-    }
-}
-`,mS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbDateStruct } from "ngb-js";
-
-export class DatepickerPositionTargetComponent implements IComponentController {
-    public date: NgbDateStruct | null = null;
-    public readonly target = "#datepicker-custom-position-target";
-    static get $name() { return "docsDatepickerPositionTarget" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerPositionTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-position-target/datepicker-position-target.component.html" } }
-}
-`,hS=`.docs-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
-.docs-range-day.range { background: var(--bs-primary); color: var(--bs-white); }
-.docs-range-day.faded { background: rgba(var(--bs-primary-rgb), .2); color: var(--bs-body-color); }
-.docs-range-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 1px; }
-`,gS=`import "@/features/lib/components/range-datepicker/range-datepicker.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-import { NgbCalendarGregorian, NgbDate } from "ngb-js";
-
-export class RangeDatepickerComponent implements IComponentController {
-    private readonly calendar = new NgbCalendarGregorian();
-    public hoveredDate: NgbDate | null = null;
-    public fromDate = this.calendar.getToday();
-    public toDate: NgbDate | null = this.calendar.getNext(this.fromDate, "d", 10);
-
-    public select(date: NgbDate) {
-        if (!this.fromDate || this.toDate) {
-            this.fromDate = date;
-            this.toDate = null;
-        } else if (date.after(this.fromDate)) {
-            this.toDate = date;
-        } else {
-            this.fromDate = date;
-        }
-    }
-    public isHovered(date: NgbDate) { return !!this.fromDate && !this.toDate && !!this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate); }
-    public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }
-    public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }
-
-    static get $name() { return "docsRangeDatepicker" }
-    static get $factory(): IComponentOptions {
-        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-datepicker/range-datepicker.component.html" }
-    }
-}
-`,_S=`.docs-popup-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }
-.docs-popup-range-day.range { background: var(--bs-primary); color: var(--bs-white); }
-.docs-popup-range-day.faded { background: rgba(var(--bs-primary-rgb), .2); color: var(--bs-body-color); }
-.docs-popup-range-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 1px; }
-`,vS=`import "@/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-import { NgbCalendarGregorian, NgbDate } from "ngb-js";
-
-export class RangePopupDatepickerComponent implements IComponentController {
-    private readonly calendar = new NgbCalendarGregorian();
-    public hoveredDate: NgbDate | null = null;
-    public fromDate = this.calendar.getToday();
-    public toDate: NgbDate | null = this.calendar.getNext(this.fromDate, "d", 7);
-    public model: NgbDate | null = this.fromDate;
-    public select(date: NgbDate) {
-        if (!this.fromDate || this.toDate) { this.fromDate = date; this.toDate = null; }
-        else if (date.after(this.fromDate)) { this.toDate = date; }
-        else { this.fromDate = date; }
-        this.model = date;
-    }
-    public isHovered(date: NgbDate) { return !!this.fromDate && !this.toDate && !!this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate); }
-    public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }
-    public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }
-    static get $name() { return "docsRangePopupDatepicker" }
-    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.html" } }
-}
-`,yS=class e{examples={basic:{html:By.$factory.templateUrl,typescript:nS},popup:{html:eb.$factory.templateUrl,typescript:pS},multiple:{html:$y.$factory.templateUrl,typescript:fS},range:{html:tb.$factory.templateUrl,typescript:gS,css:hS},rangePopup:{html:nb.$factory.templateUrl,typescript:vS,css:_S},disabled:{html:Qy.$factory.templateUrl,typescript:sS},adapter:{html:Uy.$factory.templateUrl,typescript:tS},i18n:{html:Yy.$factory.templateUrl,typescript:uS},customDay:{html:Wy.$factory.templateUrl,typescript:iS,css:rS},customMonth:{html:Gy.$factory.templateUrl,typescript:oS,css:aS},footer:{html:Ky.$factory.templateUrl,typescript:cS},position:{html:Zy.$factory.templateUrl,typescript:mS},keyboard:{html:Xy.$factory.templateUrl,typescript:dS},global:{html:qy.$factory.templateUrl,typescript:lS}};static get $name(){return`docsDatepickerExamplesPage`}static get $factory(){return{controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/datepicker-examples-page.component-b64f21ef.html`}}},bS=class e{static get $name(){return`docsDropdownApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/dropdown-api-page.component-6a7f04d0.html`,controllerAs:`$`}}},xS=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class DropdownDisabledItemsComponent implements IComponentController {
-    public restricted = true;
-
-    static get $name() {
-        return "docsDropdownDisabledItems"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: DropdownDisabledItemsComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/dropdown-disabled-items/dropdown-disabled-items.component.html",
-        }
-    }
-}
-`,SS=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class DropdownFormComponent implements IComponentController {
-    public email = "";
-    public remember = false;
-    public submitted = false;
-
-    public submit() {
-        this.submitted = true;
-    }
-
-    static get $name() {
-        return "docsDropdownForm"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: DropdownFormComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/dropdown-form/dropdown-form.component.html",
-        }
-    }
-}
-`,CS=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbDropdownConfig } from "ngb-js";
-
-export class DropdownGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<NgbDropdownConfig, "autoClose" | "container" | "placement">;
-
-    constructor(private readonly config: NgbDropdownConfig) {
-        this.initialConfig = {
-            autoClose: config.autoClose,
-            container: config.container,
-            placement: config.placement,
-        };
-
-        config.autoClose = "outside";
-        config.container = "body";
-        config.placement = ["top-start", "bottom-start"];
-    }
-
-    public $onDestroy() {
-        this.config.autoClose = this.initialConfig.autoClose;
-        this.config.container = this.initialConfig.container;
-        this.config.placement = this.initialConfig.placement;
-    }
-
-    static get $name() {
-        return "docsDropdownGlobal"
-    }
-
-    static get $inject() {
-        return [NgbDropdownConfig.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: DropdownGlobalComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/dropdown-global/dropdown-global.component.html",
-        }
-    }
-}
-`,wS=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbDropdown } from "ngb-js";
-import { ViewChild } from "ngjs-core";
-
-export class ManualDropdownComponent implements IComponentController {
-    @ViewChild("dropdown", { read: NgbDropdown, static: true })
-    private dropdown!: NgbDropdown;
-
-    public opened = false;
-
-    public open() {
-        this.dropdown.open();
-    }
-
-    public close() {
-        this.dropdown.close();
-    }
-
-    public toggle() {
-        this.dropdown.toggle();
-    }
-
-    static get $name() {
-        return "docsManualDropdown"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: ManualDropdownComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/manual-dropdown/manual-dropdown.component.html",
-        }
-    }
-}
-`,TS=class e{examples={simple:{html:oy.$factory.templateUrl},manual:{html:ay.$factory.templateUrl,typescript:wS},buttonGroups:{html:ey.$factory.templateUrl},disabledItems:{html:ty.$factory.templateUrl,typescript:xS},form:{html:ny.$factory.templateUrl,typescript:SS},body:{html:$v.$factory.templateUrl},navbar:{html:iy.$factory.templateUrl},global:{html:ry.$factory.templateUrl,typescript:CS}};static get $name(){return`docsDropdownExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/dropdown-examples-page.component-fefe9aa4.html`,controllerAs:`$`}}},ES=class e{static get $name(){return`docsModalApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/modal-api-page.component-bdfcc96e.html`,controllerAs:`$`}}},DS=`import type { IComponentController, IComponentOptions } from "angular";
-import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"
-import { NgbModal } from "ngb-js";
-
-export class ModalComponentContentComponent implements IComponentController {
-    public lastResult = "No result yet";
-
-    constructor(private readonly modal: NgbModal) {}
-
-    public async open() {
-        const modalRef = await this.modal.open(ModalDemoContentComponent.$name, {
-            bindings: {
-                title: "Component as content",
-                description: "NgbActiveModal is provided directly to the content component.",
-            },
-        });
-
-        modalRef.closed.subscribe((result) => {
-            this.lastResult = \`Closed with: \${result}\`;
-        });
-
-        modalRef.dismissed.subscribe((reason) => {
-            this.lastResult = \`Dismissed with: \${reason}\`;
-        });
-    }
-
-    static get $name() {
-        return "docsModalComponentContent"
-    }
-
-    static get $inject() {
-        return [NgbModal.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: ModalComponentContentComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-component-content/modal-component-content.component.html",
-        }
-    }
-}
-`,OS=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbModal } from "ngb-js";
-import { TemplateRef, ViewChild } from "ngjs-core";
-
-export class ModalDefaultComponent implements IComponentController {
-    @ViewChild("content", { read: TemplateRef, static: true })
-    private content!: TemplateRef<unknown>;
-
-    constructor(private readonly modal: NgbModal) {}
-
-    public open() {
-        this.modal.open(this.content);
-    }
-
-    static get $name() {
-        return "docsModalDefault"
-    }
-
-    static get $inject() {
-        return [NgbModal.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: ModalDefaultComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-default/modal-default.component.html",
-        }
-    }
-}
-`,kS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbActiveModal } from "ngb-js";
-
-export class ModalDemoContentComponent implements IComponentController {
-    public ngbActiveModal!: NgbActiveModal;
-    public title = "Component modal";
-    public description = "This modal receives a component as its content.";
-    public longContent = false;
-    public readonly items = Array.from({ length: 24 }, (_, index) => \`Scrollable content row \${index + 1}\`);
-
-    static get $name() {
-        return "docsModalDemoContent"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            bindings: {
-                ngbActiveModal: "<",
-                title: "<?",
-                description: "<?",
-                longContent: "<?",
-            },
-            controller: ModalDemoContentComponent,
-            controllerAs: "$",
-            templateUrl: "src/app/features/lib/components/modal-demo-content/modal-demo-content.component.html",
-        }
-    }
-}
-`,AS=`import type { IComponentController, IComponentOptions } from "angular";
-import { ModalFocusContentComponent } from "@/features/lib/components/modal-focus-content/modal-focus-content.component"
-import { NgbModal } from "ngb-js";
-
-export class ModalFocusComponent implements IComponentController {
-    constructor(private readonly modal: NgbModal) {}
-
-    public openDefaultFocus() {
-        this.modal.open(ModalFocusContentComponent.$name, {
-            ariaLabelledBy: "modal-focus-title",
-            bindings: { autofocus: false },
-        });
-    }
-
-    public openCustomFocus() {
-        this.modal.open(ModalFocusContentComponent.$name, {
-            ariaLabelledBy: "modal-focus-title",
-            bindings: { autofocus: true },
-        });
-    }
-
-    static get $name() {
-        return "docsModalFocus"
-    }
-
-    static get $inject() {
-        return [NgbModal.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: ModalFocusComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-focus/modal-focus.component.html",
-        }
-    }
-}
-`,jS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbActiveModal } from "ngb-js";
-
-export class ModalFocusContentComponent implements IComponentController {
-    public ngbActiveModal!: NgbActiveModal;
-    public autofocus = false;
-
-    static get $name() {
-        return "docsModalFocusContent"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            bindings: {
-                ngbActiveModal: "<",
-                autofocus: "<?",
-            },
-            controller: ModalFocusContentComponent,
-            controllerAs: "$",
-            templateUrl: "src/app/features/lib/components/modal-focus-content/modal-focus-content.component.html",
-        }
-    }
-}
-`,MS=`import type { IComponentController, IComponentOptions } from "angular";
-import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"
-import { NgbModal, NgbModalConfig } from "ngb-js";
-
-export class ModalGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<NgbModalConfig, "backdrop" | "centered" | "keyboard" | "size">;
-
-    constructor(
-        private readonly modal: NgbModal,
-        private readonly config: NgbModalConfig,
-    ) {
-        this.initialConfig = {
-            backdrop: config.backdrop,
-            centered: config.centered,
-            keyboard: config.keyboard,
-            size: config.size,
-        };
-
-    }
-
-    public async open() {
-        this.applyConfig();
-
-        try {
-            await this.modal.open(ModalDemoContentComponent.$name, {
-                bindings: {
-                    title: "Globally configured modal",
-                    description: "This modal is centered, large and cannot be dismissed with Escape or a backdrop click.",
-                },
-            });
-        } finally {
-            this.restoreConfig();
-        }
-    }
-
-    public $onDestroy() {
-        this.restoreConfig();
-    }
-
-    private applyConfig() {
-        this.config.backdrop = "static";
-        this.config.centered = true;
-        this.config.keyboard = false;
-        this.config.size = "lg";
-    }
-
-    private restoreConfig() {
-        this.config.backdrop = this.initialConfig.backdrop;
-        this.config.centered = this.initialConfig.centered;
-        this.config.keyboard = this.initialConfig.keyboard;
-        this.config.size = this.initialConfig.size;
-    }
-
-    static get $name() {
-        return "docsModalGlobal"
-    }
-
-    static get $inject() {
-        return [NgbModal.$name, NgbModalConfig.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: ModalGlobalComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-global/modal-global.component.html",
-        }
-    }
-}
-`,NS=`.modal-window-custom .modal-content {
-    border-top: 0.3rem solid var(--bs-primary);
-}
-
-.modal-static-backdrop,
-.modal-updated-backdrop {
-    --bs-backdrop-bg: var(--bs-danger);
-    --bs-backdrop-opacity: 0.35;
-}
-
-.modal-dialog-custom .modal-content,
-.modal-updated-dialog .modal-content {
-    border-radius: 1.5rem;
-    box-shadow: var(--bs-box-shadow-lg);
-}
-
-.modal-updated-window .modal-content {
-    border-color: var(--bs-success);
-}
-`,PS=`import "@/features/lib/components/modal-options/modal-options.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"
-import { NgbModal, type NgbModalOptions } from "ngb-js";
-
-export class ModalOptionsComponent implements IComponentController {
-    constructor(private readonly modal: NgbModal) {}
-
-    public openCustomWindow() {
-        this.open("Custom window class", { windowClass: "modal-window-custom" });
-    }
-
-    public openStaticBackdrop() {
-        this.open("Static custom backdrop", {
-            backdrop: "static",
-            backdropClass: "modal-static-backdrop",
-            keyboard: false,
-        });
-    }
-
-    public openSmall() {
-        this.open("Small modal", { size: "sm" });
-    }
-
-    public openLarge() {
-        this.open("Large modal", { size: "lg" });
-    }
-
-    public openExtraLarge() {
-        this.open("Extra large modal", { size: "xl" });
-    }
-
-    public openFullscreen() {
-        this.open("Fullscreen modal", { fullscreen: true });
-    }
-
-    public openCentered() {
-        this.open("Vertically centered modal", { centered: true });
-    }
-
-    public openScrollable() {
-        this.open("Scrollable modal", { scrollable: true, size: "lg" }, true);
-    }
-
-    public openCustomDialog() {
-        this.open("Custom dialog class", { modalDialogClass: "modal-dialog-custom" });
-    }
-
-    private open(title: string, options: NgbModalOptions, longContent = false) {
-        this.modal.open(ModalDemoContentComponent.$name, {
-            ...options,
-            bindings: {
-                title,
-                description: "These values are applied only to this modal instance.",
-                longContent,
-            },
-        });
-    }
-
-    static get $name() {
-        return "docsModalOptions"
-    }
-
-    static get $inject() {
-        return [NgbModal.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: ModalOptionsComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-options/modal-options.component.html",
-        }
-    }
-}
-`,FS=`import type { IComponentController, IComponentOptions } from "angular";
-import { ModalStackedContentComponent } from "@/features/lib/components/modal-stacked-content/modal-stacked-content.component"
-import { NgbModal } from "ngb-js";
-
-export class ModalStackedComponent implements IComponentController {
-    constructor(private readonly modal: NgbModal) {}
-
-    public async openStack() {
-        for (let level = 1; level <= 3; level++) {
-            await this.modal.open(ModalStackedContentComponent.$name, {
-                bindings: {
-                    level,
-                },
-            });
-        }
-    }
-
-    static get $name() {
-        return "docsModalStacked"
-    }
-
-    static get $inject() {
-        return [NgbModal.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: ModalStackedComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-stacked/modal-stacked.component.html",
-        }
-    }
-}
-`,IS=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbModal, type NgbActiveModal } from "ngb-js";
-
-export class ModalStackedContentComponent implements IComponentController {
-    public ngbActiveModal!: NgbActiveModal;
-    public level = 1;
-
-    constructor(private readonly modal: NgbModal) {}
-
-    public dismissAll() {
-        this.modal.dismissAll("Dismiss all");
-    }
-
-    static get $name() {
-        return "docsModalStackedContent"
-    }
-
-    static get $inject() {
-        return [NgbModal.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            bindings: {
-                ngbActiveModal: "<",
-                level: "<?",
-            },
-            controller: ModalStackedContentComponent,
-            controllerAs: "$",
-            templateUrl: "src/app/features/lib/components/modal-stacked-content/modal-stacked-content.component.html",
-        }
-    }
-}
-`,LS=`import type { IComponentController, IComponentOptions } from "angular";
-import { ModalUpdatableContentComponent } from "@/features/lib/components/modal-updatable-content/modal-updatable-content.component"
-import { NgbModal } from "ngb-js";
-
-export class ModalUpdatableComponent implements IComponentController {
-    constructor(private readonly modal: NgbModal) {}
-
-    public open() {
-        this.modal.open(ModalUpdatableContentComponent.$name, {
-            ariaLabelledBy: "updatable-modal-title",
-            ariaDescribedBy: "updatable-modal-description",
-            size: "sm",
-        });
-    }
-
-    static get $name() {
-        return "docsModalUpdatable"
-    }
-
-    static get $inject() {
-        return [NgbModal.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: ModalUpdatableComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-updatable/modal-updatable.component.html",
-        }
-    }
-}
-`,RS=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbActiveModal, NgbModalUpdatableOptions } from "ngb-js";
-
-export class ModalUpdatableContentComponent implements IComponentController {
-    public ngbActiveModal!: NgbActiveModal;
-    public ariaReferences = true;
-    public centered = false;
-    public fullscreen = false;
-    public customBackdrop = false;
-    public size: NgbModalUpdatableOptions["size"] = "sm";
-    public customWindow = false;
-    public customDialog = false;
-
-    public toggleAriaReferences() {
-        this.ariaReferences = !this.ariaReferences;
-        this.ngbActiveModal.update({
-            ariaLabelledBy: this.ariaReferences ? "updatable-modal-title" : "",
-            ariaDescribedBy: this.ariaReferences ? "updatable-modal-description" : "",
-        });
-    }
-
-    public toggleCentered() {
-        this.centered = !this.centered;
-        this.ngbActiveModal.update({ centered: this.centered });
-    }
-
-    public toggleFullscreen() {
-        this.fullscreen = !this.fullscreen;
-        this.ngbActiveModal.update({ fullscreen: this.fullscreen });
-    }
-
-    public toggleBackdropClass() {
-        this.customBackdrop = !this.customBackdrop;
-        this.ngbActiveModal.update({ backdropClass: this.customBackdrop ? "modal-updated-backdrop" : "" });
-    }
-
-    public cycleSize() {
-        const sizes: Array<NgbModalUpdatableOptions["size"]> = ["sm", "lg", "xl"];
-        this.size = sizes[(sizes.indexOf(this.size) + 1) % sizes.length];
-        this.ngbActiveModal.update({ size: this.size });
-    }
-
-    public toggleWindowClass() {
-        this.customWindow = !this.customWindow;
-        this.ngbActiveModal.update({ windowClass: this.customWindow ? "modal-updated-window" : "" });
-    }
-
-    public toggleDialogClass() {
-        this.customDialog = !this.customDialog;
-        this.ngbActiveModal.update({ modalDialogClass: this.customDialog ? "modal-updated-dialog" : "" });
-    }
-
-    static get $name() {
-        return "docsModalUpdatableContent"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            bindings: {
-                ngbActiveModal: "<",
-            },
-            controller: ModalUpdatableContentComponent,
-            controllerAs: "$",
-            templateUrl: "src/app/features/lib/components/modal-updatable-content/modal-updatable-content.component.html",
-        }
-    }
-}
-`,zS=class e{examples={defaults:{html:ly.$factory.templateUrl,typescript:OS},componentContent:{html:[{label:`modal-component-content.component.html`,url:cy.$factory.templateUrl},{label:`modal-demo-content.component.html`,url:sy.$factory.templateUrl}],typescript:`${DS}\n\n// modal-demo-content.component.ts\n${kS}`},focus:{html:[{label:`modal-focus.component.html`,url:dy.$factory.templateUrl},{label:`modal-focus-content.component.html`,url:uy.$factory.templateUrl}],typescript:`${AS}\n\n// modal-focus-content.component.ts\n${jS}`},options:{html:py.$factory.templateUrl,typescript:PS,css:NS},updatable:{html:[{label:`modal-updatable.component.html`,url:_y.$factory.templateUrl},{label:`modal-updatable-content.component.html`,url:gy.$factory.templateUrl}],typescript:`${LS}\n\n// modal-updatable-content.component.ts\n${RS}`,css:NS},stacked:{html:[{label:`modal-stacked.component.html`,url:hy.$factory.templateUrl},{label:`modal-stacked-content.component.html`,url:my.$factory.templateUrl}],typescript:`${FS}\n\n// modal-stacked-content.component.ts\n${IS}`},global:{html:fy.$factory.templateUrl,typescript:MS}};static get $name(){return`docsModalExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/modal-examples-page.component-f5099726.html`,controllerAs:`$`}}},BS=class e{static get $name(){return`docsNavApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/nav-api-page.component-5627eb97.html`,controllerAs:`$`}}},VS=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class AlternativeNavComponent implements IComponentController {
-    public activeId = "alternative-home";
-
-    static get $name() {
-        return "docsAlternativeNav"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: AlternativeNavComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/alternative-nav/alternative-nav.component.html",
-        }
-    }
-}
-`,HS=`.nav-custom {
-    gap: 0.5rem;
-    padding: 0.35rem;
-    border: 1px solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius-pill);
-    background: var(--bs-tertiary-bg);
-}
-
-.nav-custom .nav-link {
-    border-radius: var(--bs-border-radius-pill);
-    color: var(--bs-secondary-color);
-}
-
-.nav-custom .nav-link.active {
-    color: var(--bs-primary-text-emphasis);
-    background: var(--bs-primary-bg-subtle);
-    box-shadow: var(--bs-box-shadow-sm);
-}
-`,US=`import "@/features/lib/components/custom-nav/custom-nav.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-
-export class CustomNavComponent implements IComponentController {
-    public activeId = "custom-weekly";
-
-    static get $name() {
-        return "docsCustomNav"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: CustomNavComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/custom-nav/custom-nav.component.html",
-        }
-    }
-}
-`,WS=`import type { IComponentController, IComponentOptions } from "angular";
-
-interface DynamicNavItem {
-    id: string;
-    title: string;
-}
-
-export class DynamicNavComponent implements IComponentController {
-    public items: DynamicNavItem[] = [
-        { id: "dynamic-1", title: "Tab 1" },
-        { id: "dynamic-2", title: "Tab 2" },
-        { id: "dynamic-3", title: "Tab 3" },
-    ];
-    public activeId = "dynamic-1";
-    private nextId = 4;
-
-    public add() {
-        const item = {
-            id: \`dynamic-\${this.nextId}\`,
-            title: \`Tab \${this.nextId}\`,
-        };
-
-        this.nextId++;
-        this.items.push(item);
-        this.activeId = item.id;
-    }
-
-    public removeActive() {
-        if (this.items.length === 1) return;
-
-        const activeIndex = this.items.findIndex(({ id }) => id === this.activeId);
-        const replacement = this.items[activeIndex === 0 ? 1 : activeIndex - 1];
-
-        this.activeId = replacement.id;
-        this.items = this.items.filter(({ id }) => id !== this.items[activeIndex].id);
-    }
-
-    static get $name() {
-        return "docsDynamicNav"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: DynamicNavComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/dynamic-nav/dynamic-nav.component.html",
-        }
-    }
-}
-`,GS=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class KeepContentNavComponent implements IComponentController {
-    public activeId = "keep-editor";
-    public draft = "This value survives tab changes.";
-
-    static get $name() {
-        return "docsKeepContentNav"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: KeepContentNavComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/keep-content-nav/keep-content-nav.component.html",
-        }
-    }
-}
-`,KS=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbNavConfig } from "ngb-js";
-
-export class NavGlobalComponent implements IComponentController {
-    public activeId = "global-account";
-
-    private readonly initialConfig: Pick<
-        NgbNavConfig,
-        "animation" | "destroyOnHide" | "keyboard" | "orientation" | "roles"
-    >;
-
-    constructor(private readonly config: NgbNavConfig) {
-        this.initialConfig = {
-            animation: config.animation,
-            destroyOnHide: config.destroyOnHide,
-            keyboard: config.keyboard,
-            orientation: config.orientation,
-            roles: config.roles,
-        };
-
-        config.animation = false;
-        config.destroyOnHide = false;
-        config.keyboard = "changeWithArrows";
-        config.orientation = "vertical";
-        config.roles = "tablist";
-    }
-
-    public $postLink() {
-        this.restoreConfig();
-    }
-
-    public $onDestroy() {
-        this.restoreConfig();
-    }
-
-    private restoreConfig() {
-        this.config.animation = this.initialConfig.animation;
-        this.config.destroyOnHide = this.initialConfig.destroyOnHide;
-        this.config.keyboard = this.initialConfig.keyboard;
-        this.config.orientation = this.initialConfig.orientation;
-        this.config.roles = this.initialConfig.roles;
-    }
-
-    static get $name() {
-        return "docsNavGlobal"
-    }
-
-    static get $inject() {
-        return [NgbNavConfig.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: NavGlobalComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/nav-global/nav-global.component.html",
-        }
-    }
-}
-`,qS=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbNav } from "ngb-js";
-import { ViewChild } from "ngjs-core";
-
-export class SelectingNavComponent implements IComponentController {
-    @ViewChild("nav", { read: NgbNav, static: true })
-    public nav!: NgbNav;
-
-    public activeId = "selecting-first";
-
-    public select(id: string) {
-        this.nav.select(id);
-    }
-
-    static get $name() {
-        return "docsSelectingNav"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: SelectingNavComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/selecting-nav/selecting-nav.component.html",
-        }
-    }
-}
-`,JS=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class SimpleNavComponent implements IComponentController {
-    public activeId = "simple-overview";
-
-    static get $name() {
-        return "docsSimpleNav"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: SimpleNavComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/simple-nav/simple-nav.component.html",
-        }
-    }
-}
-`,YS=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class VerticalNavComponent implements IComponentController {
-    public activeId = "vertical-profile";
-
-    static get $name() {
-        return "docsVerticalNav"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: VerticalNavComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/vertical-nav/vertical-nav.component.html",
-        }
-    }
-}
-`,XS=class e{examples={simple:{html:wy.$factory.templateUrl,typescript:JS},alternative:{html:vy.$factory.templateUrl,typescript:VS},vertical:{html:Ty.$factory.templateUrl,typescript:YS},selecting:{html:Cy.$factory.templateUrl,typescript:qS},keepContent:{html:xy.$factory.templateUrl,typescript:GS},dynamic:{html:by.$factory.templateUrl,typescript:WS},custom:{html:yy.$factory.templateUrl,typescript:US,css:HS},global:{html:Sy.$factory.templateUrl,typescript:KS}};static get $name(){return`docsNavExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/nav-examples-page.component-c8820cd5.html`,controllerAs:`$`}}},ZS=class e{static get $name(){return`docsOffcanvasApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/offcanvas-api-page.component-da77275b.html`,controllerAs:`$`}}},QS=`import type { IComponentController, IComponentOptions } from "angular";
-import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"
-import { NgbOffcanvas } from "ngb-js";
-
-export class OffcanvasComponentContentComponent implements IComponentController {
-    public lastResult = "No result yet";
-
-    constructor(private readonly offcanvas: NgbOffcanvas) {}
-
-    public async open() {
-        const offcanvasRef = await this.offcanvas.open(OffcanvasDemoContentComponent.$name);
-
-        offcanvasRef.closed.subscribe((result) => {
-            this.lastResult = \`Closed with: \${result}\`;
-        });
-
-        offcanvasRef.dismissed.subscribe((reason) => {
-            this.lastResult = \`Dismissed with: \${reason}\`;
-        });
-    }
-
-    static get $name() {
-        return "docsOffcanvasComponentContent"
-    }
-
-    static get $inject() {
-        return [NgbOffcanvas.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: OffcanvasComponentContentComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/offcanvas-component-content/offcanvas-component-content.component.html",
-        }
-    }
-}
-`,$S=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbOffcanvas } from "ngb-js";
-import { TemplateRef, ViewChild } from "ngjs-core";
-
-export class OffcanvasDefaultComponent implements IComponentController {
-    @ViewChild("content", { read: TemplateRef, static: true })
-    private content!: TemplateRef<unknown>;
-
-    constructor(private readonly offcanvas: NgbOffcanvas) {}
-
-    public open() {
-        this.offcanvas.open(this.content);
-    }
-
-    static get $name() {
-        return "docsOffcanvasDefault"
-    }
-
-    static get $inject() {
-        return [NgbOffcanvas.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: OffcanvasDefaultComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/offcanvas-default/offcanvas-default.component.html",
-        }
-    }
-}
-`,eC=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbActiveOffcanvas } from "ngb-js";
-
-export class OffcanvasDemoContentComponent implements IComponentController {
-    public ngbActiveOffcanvas!: NgbActiveOffcanvas;
-
-    static get $name() {
-        return "docsOffcanvasDemoContent"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            bindings: {
-                ngbActiveOffcanvas: "<",
-            },
-            controller: OffcanvasDemoContentComponent,
-            controllerAs: "$",
-            templateUrl: "src/app/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component.html",
-        }
-    }
-}
-`,tC=`import type { IComponentController, IComponentOptions } from "angular";
-import { OffcanvasFocusContentComponent } from "@/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component"
-import { NgbOffcanvas } from "ngb-js";
-
-export class OffcanvasFocusComponent implements IComponentController {
-    constructor(private readonly offcanvas: NgbOffcanvas) {}
-
-    public openDefaultFocus() {
-        this.offcanvas.open(OffcanvasFocusContentComponent.$name, {
-            ariaLabelledBy: "offcanvas-focus-title",
-            bindings: { autofocus: false },
-        });
-    }
-
-    public openCustomFocus() {
-        this.offcanvas.open(OffcanvasFocusContentComponent.$name, {
-            ariaLabelledBy: "offcanvas-focus-title",
-            bindings: { autofocus: true },
-        });
-    }
-
-    static get $name() {
-        return "docsOffcanvasFocus"
-    }
-
-    static get $inject() {
-        return [NgbOffcanvas.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: OffcanvasFocusComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/offcanvas-focus/offcanvas-focus.component.html",
-        }
-    }
-}
-`,nC=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbActiveOffcanvas } from "ngb-js";
-
-export class OffcanvasFocusContentComponent implements IComponentController {
-    public ngbActiveOffcanvas!: NgbActiveOffcanvas;
-    public autofocus = false;
-
-    static get $name() {
-        return "docsOffcanvasFocusContent"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            bindings: {
-                ngbActiveOffcanvas: "<",
-                autofocus: "<?",
-            },
-            controller: OffcanvasFocusContentComponent,
-            controllerAs: "$",
-            templateUrl: "src/app/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component.html",
-        }
-    }
-}
-`,rC=`import type { IComponentController, IComponentOptions } from "angular";
-import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"
-import { NgbOffcanvas, NgbOffcanvasConfig } from "ngb-js";
-
-export class OffcanvasGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<
-        NgbOffcanvasConfig,
-        "backdrop" | "keyboard" | "position" | "scroll"
-    >;
-
-    constructor(
-        private readonly offcanvas: NgbOffcanvas,
-        private readonly config: NgbOffcanvasConfig,
-    ) {
-        this.initialConfig = {
-            backdrop: config.backdrop,
-            keyboard: config.keyboard,
-            position: config.position,
-            scroll: config.scroll,
-        };
-    }
-
-    public async open() {
-        this.applyConfig();
-
-        try {
-            await this.offcanvas.open(OffcanvasDemoContentComponent.$name);
-        } finally {
-            this.restoreConfig();
-        }
-    }
-
-    public $onDestroy() {
-        this.restoreConfig();
-    }
-
-    private applyConfig() {
-        this.config.backdrop = "static";
-        this.config.keyboard = false;
-        this.config.position = "end";
-        this.config.scroll = true;
-    }
-
-    private restoreConfig() {
-        this.config.backdrop = this.initialConfig.backdrop;
-        this.config.keyboard = this.initialConfig.keyboard;
-        this.config.position = this.initialConfig.position;
-        this.config.scroll = this.initialConfig.scroll;
-    }
-
-    static get $name() {
-        return "docsOffcanvasGlobal"
-    }
-
-    static get $inject() {
-        return [NgbOffcanvas.$name, NgbOffcanvasConfig.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: OffcanvasGlobalComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/offcanvas-global/offcanvas-global.component.html",
-        }
-    }
-}
-`,iC=`.offcanvas-panel-custom {
-    --bs-offcanvas-width: 28rem;
-    border-color: var(--bs-primary-border-subtle);
-}
-
-.offcanvas-static-backdrop {
-    --bs-backdrop-bg: var(--bs-danger);
-    --bs-backdrop-opacity: 0.35;
-}
-`,aC=`import "@/features/lib/components/offcanvas-options/offcanvas-options.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"
-import { NgbOffcanvas, type NgbOffcanvasOptions } from "ngb-js";
-
-export class OffcanvasOptionsComponent implements IComponentController {
-    constructor(private readonly offcanvas: NgbOffcanvas) {}
-
-    public openCustomPanel() {
-        this.open({ panelClass: "offcanvas-panel-custom" });
-    }
-
-    public openStaticBackdrop() {
-        this.open({
-            backdrop: "static",
-            backdropClass: "offcanvas-static-backdrop",
-            keyboard: false,
-        });
-    }
-
-    public openStart() {
-        this.open({ position: "start" });
-    }
-
-    public openEnd() {
-        this.open({ position: "end" });
-    }
-
-    public openTop() {
-        this.open({ position: "top" });
-    }
-
-    public openBottom() {
-        this.open({ position: "bottom" });
-    }
-
-    public openScrollableBody() {
-        this.open({ scroll: true, backdrop: false });
-    }
-
-    private open(options: NgbOffcanvasOptions) {
-        this.offcanvas.open(OffcanvasDemoContentComponent.$name, options);
-    }
-
-    static get $name() {
-        return "docsOffcanvasOptions"
-    }
-
-    static get $inject() {
-        return [NgbOffcanvas.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: OffcanvasOptionsComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/offcanvas-options/offcanvas-options.component.html",
-        }
-    }
-}
-`,oC=class e{examples={defaults:{html:Oy.$factory.templateUrl,typescript:$S},componentContent:{html:[{label:`offcanvas-component-content.component.html`,url:Dy.$factory.templateUrl},{label:`offcanvas-demo-content.component.html`,url:Ey.$factory.templateUrl}],typescript:`${QS}\n\n// offcanvas-demo-content.component.ts\n${eC}`},focus:{html:[{label:`offcanvas-focus.component.html`,url:Ay.$factory.templateUrl},{label:`offcanvas-focus-content.component.html`,url:ky.$factory.templateUrl}],typescript:`${tC}\n\n// offcanvas-focus-content.component.ts\n${nC}`},options:{html:My.$factory.templateUrl,typescript:aC,css:iC},global:{html:jy.$factory.templateUrl,typescript:rC}};static get $name(){return`docsOffcanvasExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/offcanvas-examples-page.component-56d37205.html`,controllerAs:`$`}}},sC=class e{static get $name(){return`docsPaginationApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/pagination-api-page.component-4cec99be.html`,controllerAs:`$`}}},cC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class AdvancedPaginationComponent implements IComponentController {
-    public paginatedPage = 7;
-    public rotatedPage = 12;
-    public compactPage = 12;
-
-    public selectPaginatedPage(page: number) { this.paginatedPage = page; }
-    public selectRotatedPage(page: number) { this.rotatedPage = page; }
-    public selectCompactPage(page: number) { this.compactPage = page; }
-
-    static get $name() {
-        return "docsAdvancedPagination"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: AdvancedPaginationComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/advanced-pagination/advanced-pagination.component.html",
-        }
-    }
-}
-`,lC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class BasicPaginationComponent implements IComponentController {
-    public page = 4;
-
-    public selectPage(page: number) {
-        this.page = page;
-    }
-
-    static get $name() {
-        return "docsBasicPagination"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: BasicPaginationComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/basic-pagination/basic-pagination.component.html",
-        }
-    }
-}
-`,uC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class CustomPaginationComponent implements IComponentController {
-    public page = 3;
-
-    public selectPage(page: number) {
-        this.page = page;
-    }
-
-    static get $name() {
-        return "docsCustomPagination"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: CustomPaginationComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/custom-pagination/custom-pagination.component.html",
-        }
-    }
-}
-`,dC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class DisabledPaginationComponent implements IComponentController {
-    public page = 3;
-    public disabled = true;
-
-    public selectPage(page: number) {
-        this.page = page;
-    }
-
-    static get $name() {
-        return "docsDisabledPagination"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: DisabledPaginationComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/disabled-pagination/disabled-pagination.component.html",
-        }
-    }
-}
-`,fC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class PaginationAlignmentComponent implements IComponentController {
-    public startPage = 2;
-    public centerPage = 2;
-    public endPage = 2;
-
-    public selectStartPage(page: number) { this.startPage = page; }
-    public selectCenterPage(page: number) { this.centerPage = page; }
-    public selectEndPage(page: number) { this.endPage = page; }
-
-    static get $name() {
-        return "docsPaginationAlignment"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: PaginationAlignmentComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/pagination-alignment/pagination-alignment.component.html",
-        }
-    }
-}
-`,pC=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbPaginationConfig } from "ngb-js";
-
-export class PaginationGlobalComponent implements IComponentController {
-    public page = 8;
-
-    private readonly initialConfig: Pick<
-        NgbPaginationConfig,
-        "boundaryLinks" | "directionLinks" | "maxSize" | "rotate" | "size"
-    >;
-
-    constructor(private readonly config: NgbPaginationConfig) {
-        this.initialConfig = {
-            boundaryLinks: config.boundaryLinks,
-            directionLinks: config.directionLinks,
-            maxSize: config.maxSize,
-            rotate: config.rotate,
-            size: config.size,
-        };
-
-        config.boundaryLinks = true;
-        config.directionLinks = false;
-        config.maxSize = 5;
-        config.rotate = true;
-        config.size = "sm";
-    }
-
-    public selectPage(page: number) {
-        this.page = page;
-    }
-
-    public $postLink() {
-        this.restoreConfig();
-    }
-
-    public $onDestroy() {
-        this.restoreConfig();
-    }
-
-    private restoreConfig() {
-        this.config.boundaryLinks = this.initialConfig.boundaryLinks;
-        this.config.directionLinks = this.initialConfig.directionLinks;
-        this.config.maxSize = this.initialConfig.maxSize;
-        this.config.rotate = this.initialConfig.rotate;
-        this.config.size = this.initialConfig.size;
-    }
-
-    static get $name() {
-        return "docsPaginationGlobal"
-    }
-
-    static get $inject() {
-        return [NgbPaginationConfig.$name]
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: PaginationGlobalComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/pagination-global/pagination-global.component.html",
-        }
-    }
-}
-`,mC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class PaginationSizeComponent implements IComponentController {
-    public smallPage = 2;
-    public defaultPage = 2;
-    public largePage = 2;
-
-    public selectSmallPage(page: number) { this.smallPage = page; }
-    public selectDefaultPage(page: number) { this.defaultPage = page; }
-    public selectLargePage(page: number) { this.largePage = page; }
-
-    static get $name() {
-        return "docsPaginationSize"
-    }
-
-    static get $factory(): IComponentOptions {
-        return {
-            controller: PaginationSizeComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/pagination-size/pagination-size.component.html",
-        }
-    }
-}
-`,hC=class e{examples={basic:{html:Py.$factory.templateUrl,typescript:lC},advanced:{html:Ny.$factory.templateUrl,typescript:cC},custom:{html:Fy.$factory.templateUrl,typescript:uC},size:{html:zy.$factory.templateUrl,typescript:mC},alignment:{html:Ly.$factory.templateUrl,typescript:fC},disabled:{html:Iy.$factory.templateUrl,typescript:dC},global:{html:Ry.$factory.templateUrl,typescript:pC}};static get $name(){return`docsPaginationExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/pagination-examples-page.component-098ceb3f.html`,controllerAs:`$`}}},gC=class e{static get $name(){return`docsPopoverApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/popover-api-page.component-39fc787c.html`,controllerAs:`$`}}},_C=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbPopover } from "ngb-js";
-
-export class PopoverAutocloseComponent implements IComponentController {
-    public popover?: NgbPopover;
-    static get $name() { return "docsPopoverAutoclose" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverAutocloseComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-autoclose/popover-autoclose.component.html" }
-    }
-}
-`,vC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class PopoverBodyComponent implements IComponentController {
-    static get $name() { return "docsPopoverBody" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverBodyComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-body/popover-body.component.html" }
-    }
-}
-`,yC=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbPopover } from "ngb-js";
-import type { TemplateRef } from "ngjs-core";
-
-export class PopoverContextComponent implements IComponentController {
-    public name = "World";
-    public contentTemplate?: TemplateRef<unknown>;
-    public titleTemplate?: TemplateRef<unknown>;
-    public french?: NgbPopover;
-    public german?: NgbPopover;
-    public english?: NgbPopover;
-
-    public toggleWithGreeting(popover: NgbPopover, greeting: string, language: string) {
-        popover.isOpen() ? popover.close() : popover.open({ greeting, language });
-    }
-
-    static get $name() { return "docsPopoverContext" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverContextComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-context/popover-context.component.html" }
-    }
-}
-`,bC=`.docs-popover-custom {
-    --bs-popover-border-color: var(--bs-primary-border-subtle);
-    --bs-popover-header-bg: var(--bs-primary-bg-subtle);
-    --bs-popover-header-color: var(--bs-primary-text-emphasis);
-
-    box-shadow: var(--bs-box-shadow-sm);
-}
-`,xC=`import "@/features/lib/components/popover-custom-class/popover-custom-class.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-
-export class PopoverCustomClassComponent implements IComponentController {
-    static get $name() { return "docsPopoverCustomClass" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverCustomClassComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-custom-class/popover-custom-class.component.html" }
-    }
-}
-`,SC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class PopoverCustomTargetComponent implements IComponentController {
-    static get $name() { return "docsPopoverCustomTarget" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverCustomTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-custom-target/popover-custom-target.component.html" }
-    }
-}
-`,CC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class PopoverDelaysComponent implements IComponentController {
-    static get $name() { return "docsPopoverDelays" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverDelaysComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-delays/popover-delays.component.html" }
-    }
-}
-`,wC=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbPopover } from "ngb-js";
-
-export class PopoverEventsComponent implements IComponentController {
-    public popover?: NgbPopover;
-    public events: { name: string; time: Date }[] = [];
-    public record(name: string) { this.events.unshift({ name, time: new Date() }); }
-    static get $name() { return "docsPopoverEvents" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverEventsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-events/popover-events.component.html" }
-    }
-}
-`,TC=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbPopoverConfig } from "ngb-js";
-
-export class PopoverGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<NgbPopoverConfig, "container" | "openDelay" | "placement" | "triggers">;
-
-    constructor(private readonly config: NgbPopoverConfig) {
-        this.initialConfig = {
-            container: config.container,
-            openDelay: config.openDelay,
-            placement: config.placement,
-            triggers: config.triggers,
-        };
-        config.container = "body";
-        config.openDelay = 300;
-        config.placement = "end";
-        config.triggers = "mouseenter:mouseleave";
-    }
-
-    public $postLink() { this.restoreConfig(); }
-    public $onDestroy() { this.restoreConfig(); }
-    private restoreConfig() {
-        this.config.container = this.initialConfig.container;
-        this.config.openDelay = this.initialConfig.openDelay;
-        this.config.placement = this.initialConfig.placement;
-        this.config.triggers = this.initialConfig.triggers;
-    }
-
-    static get $name() { return "docsPopoverGlobal" }
-    static get $inject() { return [NgbPopoverConfig.$name] }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-global/popover-global.component.html" }
-    }
-}
-`,EC=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbPopover } from "ngb-js";
-
-export class PopoverManualControlComponent implements IComponentController {
-    public popover?: NgbPopover;
-    static get $name() { return "docsPopoverManualControl" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverManualControlComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-manual-control/popover-manual-control.component.html" }
-    }
-}
-`,DC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class PopoverPlacementsComponent implements IComponentController {
-    static get $name() { return "docsPopoverPlacements" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverPlacementsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-placements/popover-placements.component.html" }
-    }
-}
-`,OC=`import type { IComponentController, IComponentOptions } from "angular";
-import type { TemplateRef } from "ngjs-core";
-
-export class PopoverTemplateComponent implements IComponentController {
-    public name = "NgbJS";
-    public contentTemplate?: TemplateRef<unknown>;
-    public titleTemplate?: TemplateRef<unknown>;
-    static get $name() { return "docsPopoverTemplate" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-template/popover-template.component.html" }
-    }
-}
-`,kC=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbPopover } from "ngb-js";
-
-export class PopoverTriggersComponent implements IComponentController {
-    public manual?: NgbPopover;
-    static get $name() { return "docsPopoverTriggers" }
-    static get $factory(): IComponentOptions {
-        return { controller: PopoverTriggersComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/popover-triggers/popover-triggers.component.html" }
-    }
-}
-`,AC=class e{examples={placements:{html:fb.$factory.templateUrl,typescript:DC},template:{html:pb.$factory.templateUrl,typescript:OC},triggers:{html:mb.$factory.templateUrl,typescript:kC},manual:{html:db.$factory.templateUrl,typescript:EC},autoclose:{html:rb.$factory.templateUrl,typescript:_C},context:{html:ab.$factory.templateUrl,typescript:yC},customTarget:{html:sb.$factory.templateUrl,typescript:SC},delays:{html:cb.$factory.templateUrl,typescript:CC},events:{html:lb.$factory.templateUrl,typescript:wC},body:{html:ib.$factory.templateUrl,typescript:vC},customClass:{html:ob.$factory.templateUrl,typescript:xC,css:bC},global:{html:ub.$factory.templateUrl,typescript:TC}};static get $name(){return`docsPopoverExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/popover-examples-page.component-1d0efb30.html`,controllerAs:`$`}}},jC=class e{static get $name(){return`docsProgressbarApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/progressbar-api-page.component-3de69aa8.html`,controllerAs:`$`}}},MC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class ContextualTextProgressbarComponent implements IComponentController {
-    static get $name() { return "docsContextualTextProgressbar" }
-    static get $factory(): IComponentOptions {
-        return { controller: ContextualTextProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/contextual-text-progressbar/contextual-text-progressbar.component.html" }
-    }
-}
-`,NC=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbProgressbarConfig } from "ngb-js";
-
-export class ProgressbarGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<NgbProgressbarConfig, "animated" | "height" | "max" | "showValue" | "striped" | "textType" | "type">;
-
-    constructor(private readonly config: NgbProgressbarConfig) {
-        this.initialConfig = {
-            animated: config.animated,
-            height: config.height,
-            max: config.max,
-            showValue: config.showValue,
-            striped: config.striped,
-            textType: config.textType,
-            type: config.type,
-        };
-        config.animated = true;
-        config.height = "1.5rem";
-        config.max = 200;
-        config.showValue = true;
-        config.striped = true;
-        config.textType = "light";
-        config.type = "primary";
-    }
-
-    public $postLink() { this.restoreConfig(); }
-    public $onDestroy() { this.restoreConfig(); }
-    private restoreConfig() { Object.assign(this.config, this.initialConfig); }
-
-    static get $name() { return "docsProgressbarGlobal" }
-    static get $inject() { return [NgbProgressbarConfig.$name] }
-    static get $factory(): IComponentOptions {
-        return { controller: ProgressbarGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progressbar-global/progressbar-global.component.html" }
-    }
-}
-`,PC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class ProgressHeightComponent implements IComponentController {
-    static get $name() { return "docsProgressHeight" }
-    static get $factory(): IComponentOptions {
-        return { controller: ProgressHeightComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progress-height/progress-height.component.html" }
-    }
-}
-`,FC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class CustomLabelsProgressbarComponent implements IComponentController {
-    static get $name() { return "docsCustomLabelsProgressbar" }
-    static get $factory(): IComponentOptions {
-        return { controller: CustomLabelsProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/custom-labels-progressbar/custom-labels-progressbar.component.html" }
-    }
-}
-`,IC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class SimpleProgressbarComponent implements IComponentController {
-    static get $name() { return "docsSimpleProgressbar" }
-    static get $factory(): IComponentOptions {
-        return { controller: SimpleProgressbarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/simple-progressbar/simple-progressbar.component.html" }
-    }
-}
-`,LC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class ProgressBarsStackedComponent implements IComponentController {
-    static get $name() { return "docsProgressBarsStacked" }
-    static get $factory(): IComponentOptions {
-        return { controller: ProgressBarsStackedComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/progress-bars-stacked/progress-bars-stacked.component.html" }
-    }
-}
-`,RC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class StripedProgressBarComponent implements IComponentController {
-    static get $name() { return "docsStripedProgressBar" }
-    static get $factory(): IComponentOptions {
-        return { controller: StripedProgressBarComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/striped-progress-bar/striped-progress-bar.component.html" }
-    }
-}
-`,zC=class e{examples={simple:{html:bb.$factory.templateUrl,typescript:IC},contextual:{html:hb.$factory.templateUrl,typescript:MC},striped:{html:xb.$factory.templateUrl,typescript:RC},labels:{html:gb.$factory.templateUrl,typescript:FC},height:{html:vb.$factory.templateUrl,typescript:PC},stacked:{html:_b.$factory.templateUrl,typescript:LC},global:{html:yb.$factory.templateUrl,typescript:NC}};static get $name(){return`docsProgressbarExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/progressbar-examples-page.component-c518dfee.html`,controllerAs:`$`}}},BC=class e{static get $name(){return`docsRatingApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/rating-api-page.component-2eaf6c48.html`,controllerAs:`$`}}},VC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class BasicRatingComponent implements IComponentController {
-    public rating = 3;
-    public setRating(rating: number) { this.rating = rating; }
-    static get $name() { return "docsBasicRating" }
-    static get $factory(): IComponentOptions {
-        return { controller: BasicRatingComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-rating/basic-rating.component.html" }
-    }
-}
-`,HC=`.rating-demo-star {
-    color: var(--bs-secondary-color);
-    font-size: 2rem;
-    padding-right: 0.15rem;
-}
-
-.rating-demo-star.filled {
-    color: var(--bs-warning);
-}
-
-.rating-demo-star.filled.low {
-    color: var(--bs-danger);
-}
-`,UC=`import "@/features/lib/components/rating-custom-template/rating-custom-template.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-
-export class RatingCustomTemplateComponent implements IComponentController {
-    public rating = 6;
-    public setRating(rating: number) { this.rating = rating; }
-    static get $name() { return "docsRatingCustomTemplate" }
-    static get $factory(): IComponentOptions {
-        return { controller: RatingCustomTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-custom-template/rating-custom-template.component.html" }
-    }
-}
-`,WC=`.rating-demo-heart {
-    color: var(--bs-secondary-bg);
-    display: inline-block;
-    font-size: 2.25rem;
-    margin-right: 0.15rem;
-    position: relative;
-}
-
-.rating-demo-heart-fill {
-    color: var(--bs-danger);
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-}
-`,GC=`import "@/features/lib/components/rating-decimal/rating-decimal.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-import type { TemplateRef } from "ngjs-core";
-
-export class RatingDecimalComponent implements IComponentController {
-    public rating = 3.14;
-    public heartTemplate?: TemplateRef<unknown>;
-    public readonly ariaValueText = (current: number, max: number) => \`\${current} out of \${max} hearts\`;
-    static get $name() { return "docsRatingDecimal" }
-    static get $factory(): IComponentOptions {
-        return { controller: RatingDecimalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-decimal/rating-decimal.component.html" }
-    }
-}
-`,KC=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class RatingEventsComponent implements IComponentController {
-    public selected = 0;
-    public hovered = 0;
-    public readonly = false;
-    public setSelected(value: number) { this.selected = value; }
-    public setHovered(value: number) { this.hovered = value; }
-    static get $name() { return "docsRatingEvents" }
-    static get $factory(): IComponentOptions {
-        return { controller: RatingEventsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-events/rating-events.component.html" }
-    }
-}
-`,qC=`import type { IComponentController, IComponentOptions, IFormController } from "angular";
-
-export class RatingFormComponent implements IComponentController {
-    public rating: number | null = null;
-    public disabled = false;
-    public form?: IFormController;
-
-    public setRating(rating: number) { this.rating = rating; }
-    public clear() { this.rating = null; }
-
-    static get $name() { return "docsRatingForm" }
-    static get $factory(): IComponentOptions {
-        return { controller: RatingFormComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-form/rating-form.component.html" }
-    }
-}
-`,JC=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbRatingConfig } from "ngb-js";
-
-export class RatingGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<NgbRatingConfig, "max" | "readonly" | "resettable" | "tabindex">;
-
-    constructor(private readonly config: NgbRatingConfig) {
-        this.initialConfig = {
-            max: config.max,
-            readonly: config.readonly,
-            resettable: config.resettable,
-            tabindex: config.tabindex,
-        };
-        config.max = 5;
-        config.readonly = true;
-        config.resettable = true;
-        config.tabindex = -1;
-    }
-
-    public $postLink() { this.restoreConfig(); }
-    public $onDestroy() { this.restoreConfig(); }
-    private restoreConfig() { Object.assign(this.config, this.initialConfig); }
-
-    static get $name() { return "docsRatingGlobal" }
-    static get $inject() { return [NgbRatingConfig.$name] }
-    static get $factory(): IComponentOptions {
-        return { controller: RatingGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/rating-global/rating-global.component.html" }
-    }
-}
-`,YC=class e{examples={basic:{html:Sb.$factory.templateUrl,typescript:VC},events:{html:Tb.$factory.templateUrl,typescript:KC},customTemplate:{html:Cb.$factory.templateUrl,typescript:UC,css:HC},decimal:{html:wb.$factory.templateUrl,typescript:GC,css:WC},form:{html:Eb.$factory.templateUrl,typescript:qC},global:{html:Db.$factory.templateUrl,typescript:JC}};static get $name(){return`docsRatingExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/rating-examples-page.component-a2a18aa5.html`,controllerAs:`$`}}},XC=class e{static get $name(){return`docsScrollspyApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/scrollspy-api-page.component-db1cf090.html`,controllerAs:`$`}}},ZC=`import type { IAugmentedJQuery, IComponentController, IComponentOptions } from "angular";
-import { NgbScrollSpyService } from "ngb-js";
-
-export class ScrollspyServiceDemoComponent implements IComponentController {
-    public readonly fragments = ["service-introduction", "service-options", "service-finish"];
-    public running = false;
-    public observingFinish = true;
-    private root?: HTMLElement;
-
-    constructor(
-        private readonly $element: IAugmentedJQuery,
-        public readonly scrollSpy: NgbScrollSpyService,
-    ) {}
-
-    public $postLink(): void {
-        this.root = this.$element[0].querySelector<HTMLElement>("[data-service-scrollspy]") ?? undefined;
-        this.start();
-    }
-
-    public $onDestroy(): void {
-        this.scrollSpy.stop();
-    }
-
-    public start(): void {
-        if (!this.root) return;
-        this.scrollSpy.start({
-            root: this.root,
-            fragments: this.fragments,
-            rootMargin: "0px 0px -45%",
-        });
-        this.running = true;
-        this.observingFinish = true;
-    }
-
-    public stop(): void {
-        this.scrollSpy.stop();
-        this.running = false;
-    }
-
-    public toggleFinish(): void {
-        if (this.observingFinish) {
-            this.scrollSpy.unobserve("service-finish");
-        } else {
-            this.scrollSpy.observe("service-finish");
-        }
-        this.observingFinish = !this.observingFinish;
-    }
-
-    static get $name() { return "docsScrollspyServiceDemo" }
-    static get $inject() { return ["$element", NgbScrollSpyService.$name] }
-    static get $factory(): IComponentOptions {
-        return {
-            controller: ScrollspyServiceDemoComponent,
-            controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/scrollspy-service-demo/scrollspy-service-demo.component.html",
-        }
-    }
-}
-`,QC=class e{examples={basic:{html:Ob.$factory.templateUrl},menuItems:{html:jb.$factory.templateUrl},nested:{html:Ab.$factory.templateUrl},navbar:{html:kb.$factory.templateUrl},service:{html:Mb.$factory.templateUrl,typescript:ZC}};static get $name(){return`docsScrollspyExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/scrollspy-examples-page.component-b266f3a2.html`,controllerAs:`$`}}},$C=class e{static get $name(){return`docsTimepickerApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/timepicker-api-page.component-8975b89c.html`,controllerAs:`$`}}},ew=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbTimeAdapter, type NgbTimeStruct } from "ngb-js";
-
-const pad = (value: number): string => value.toString().padStart(2, "0");
-
-export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {
-    public fromModel(value: string | null): NgbTimeStruct | null {
-        if (!value) return null;
-        const [hour, minute, second] = value.split(":").map(Number);
-        return { hour, minute, second };
-    }
-
-    public toModel(time: NgbTimeStruct | null): string | null {
-        return time ? \`\${pad(time.hour)}:\${pad(time.minute)}:\${pad(time.second ?? 0)}\` : null;
-    }
-}
-
-// Register once in your application module:
-// AppModule.service(NgbTimeAdapter.$name, NgbTimeStringAdapter);
-
-export class TimepickerCustomAdapterComponent implements IComponentController {
-    public readonly adapter = new NgbTimeStringAdapter();
-    public time = this.adapter.fromModel("13:30:00");
-    public model = "13:30:00";
-
-    public $doCheck(): void {
-        this.model = this.adapter.toModel(this.time) ?? "";
-    }
-
-    static get $name() { return "docsTimepickerCustomAdapter" }
-    static get $factory(): IComponentOptions {
-        return { controller: TimepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-custom-adapter/timepicker-custom-adapter.component.html" }
-    }
-}
-`,tw=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbTimeStruct } from "ngb-js";
-
-export class BasicTimepickerComponent implements IComponentController {
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
-    static get $name() { return "docsBasicTimepicker" }
-    static get $factory(): IComponentOptions {
-        return { controller: BasicTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/basic-timepicker/basic-timepicker.component.html" }
-    }
-}
-`,nw=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbTimepickerI18n, type NgbTimeStruct } from "ngb-js";
-
-export class GreekTimepickerI18n extends NgbTimepickerI18n {
-    public getMorningPeriod(): string { return "π.μ."; }
-    public getAfternoonPeriod(): string { return "μ.μ."; }
-}
-
-// Register once in your application module:
-// AppModule.service(NgbTimepickerI18n.$name, GreekTimepickerI18n);
-
-export class TimepickerI18nComponent implements IComponentController {
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
-    constructor(public readonly i18n: NgbTimepickerI18n) {}
-    static get $name() { return "docsTimepickerI18n" }
-    static get $inject() { return [NgbTimepickerI18n.$name] }
-    static get $factory(): IComponentOptions {
-        return { controller: TimepickerI18nComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-i18n/timepicker-i18n.component.html" }
-    }
-}
-`,rw=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbTimeStruct } from "ngb-js";
-
-export class MeridianTimepickerComponent implements IComponentController {
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
-    public meridian = true;
-    static get $name() { return "docsMeridianTimepicker" }
-    static get $factory(): IComponentOptions {
-        return { controller: MeridianTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/meridian-timepicker/meridian-timepicker.component.html" }
-    }
-}
-`,iw=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbTimeStruct } from "ngb-js";
-
-export class SecondsTimepickerComponent implements IComponentController {
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 25 };
-    public seconds = true;
-    static get $name() { return "docsSecondsTimepicker" }
-    static get $factory(): IComponentOptions {
-        return { controller: SecondsTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/seconds-timepicker/seconds-timepicker.component.html" }
-    }
-}
-`,aw=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbTimeStruct } from "ngb-js";
-
-export class SpinnersTimepickerComponent implements IComponentController {
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
-    public spinners = true;
-    static get $name() { return "docsSpinnersTimepicker" }
-    static get $factory(): IComponentOptions {
-        return { controller: SpinnersTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/spinners-timepicker/spinners-timepicker.component.html" }
-    }
-}
-`,ow=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbTimeStruct } from "ngb-js";
-
-export class TimepickerCustomStepsComponent implements IComponentController {
-    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };
-    public hourStep = 1;
-    public minuteStep = 15;
-    public secondStep = 30;
-    static get $name() { return "docsTimepickerCustomSteps" }
-    static get $factory(): IComponentOptions {
-        return { controller: TimepickerCustomStepsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-custom-steps/timepicker-custom-steps.component.html" }
-    }
-}
-`,sw=`import type { IComponentController, IComponentOptions, IDirective, INgModelController } from "angular";
-import type { NgbTimeStruct } from "ngb-js";
-
-export class TimepickerValidationComponent implements IComponentController {
-    public time: NgbTimeStruct | null = null;
-    static get $name() { return "docsTimepickerValidation" }
-    static get $factory(): IComponentOptions {
-        return { controller: TimepickerValidationComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/timepicker-validation/timepicker-validation.component.html" }
-    }
-}
-
-export const timepickerLunchValidator = (): IDirective => ({
-    restrict: "A",
-    require: "ngModel",
-    link: (_scope, _element, _attributes, controller) => {
-        const ngModel = controller as INgModelController;
-        ngModel.$validators.lunchtime = (modelValue: NgbTimeStruct | null) =>
-            !modelValue || (modelValue.hour >= 12 && modelValue.hour <= 13);
-    },
-});
-`,cw=class e{examples={basic:{html:Nb.$factory.templateUrl,typescript:tw},meridian:{html:Pb.$factory.templateUrl,typescript:rw},seconds:{html:Fb.$factory.templateUrl,typescript:iw},spinners:{html:Ib.$factory.templateUrl,typescript:aw},steps:{html:Bb.$factory.templateUrl,typescript:ow},validation:{html:Ub.$factory.templateUrl,typescript:sw},adapter:{html:zb.$factory.templateUrl,typescript:ew},i18n:{html:Hb.$factory.templateUrl,typescript:nw}};static get $name(){return`docsTimepickerExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/timepicker-examples-page.component-94a32713.html`,controllerAs:`$`}}},lw=class e{static get $name(){return`docsToastApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/toast-api-page.component-e6f59b57.html`,controllerAs:`$`}}},uw=`import type { IComponentController, IComponentOptions, IPromise, ITimeoutService } from "angular";
-
-export class CloseableToastComponent implements IComponentController {
-    public visible = true;
-    private reopenTimer?: IPromise<void>;
-
-    constructor(private readonly $timeout: ITimeoutService) {}
-
-    public close(): void {
-        this.visible = false;
-        this.reopenTimer = this.$timeout(() => {
-            this.visible = true;
-        }, 3000);
-    }
-
-    public $onDestroy(): void {
-        if (this.reopenTimer) this.$timeout.cancel(this.reopenTimer);
-    }
-
-    static get $name() { return "docsCloseableToast" }
-    static get $inject() { return ["$timeout"] }
-    static get $factory(): IComponentOptions {
-        return { controller: CloseableToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/closeable-toast/closeable-toast.component.html" }
-    }
-}
-`,dw=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class InlineToastComponent implements IComponentController {
-    public showHeaderToast = true;
-    static get $name() { return "docsInlineToast" }
-    static get $factory(): IComponentOptions {
-        return { controller: InlineToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/inline-toast/inline-toast.component.html" }
-    }
-}
-`,fw=`import type { IComponentController, IComponentOptions } from "angular";
-
-interface ManagedToast {
-    id: number;
-    body: string;
-    className?: string;
-    delay?: number;
-}
-
-export class DocsToastService {
-    public readonly toasts: ManagedToast[] = [];
-    private nextId = 0;
-
-    public show(body: string, options: Omit<ManagedToast, "id" | "body"> = {}): void {
-        this.toasts.push({ id: ++this.nextId, body, ...options });
-    }
-
-    public remove(toast: ManagedToast): void {
-        const index = this.toasts.indexOf(toast);
-        if (index >= 0) this.toasts.splice(index, 1);
-    }
-
-    public clear(): void {
-        this.toasts.length = 0;
-    }
-
-    static get $name() { return "docs.toast.service" }
-}
-
-export class ToastManagementComponent implements IComponentController {
-    constructor(public readonly toastService: DocsToastService) {}
-
-    public showStandard(): void {
-        this.toastService.show("I am a standard toast.");
-    }
-
-    public showSuccess(): void {
-        this.toastService.show("Your changes were saved.", { className: "bg-success text-white", delay: 8000 });
-    }
-
-    public showDanger(): void {
-        this.toastService.show("The operation could not be completed.", { className: "bg-danger text-white", delay: 10000 });
-    }
-
-    public $onDestroy(): void {
-        this.toastService.clear();
-    }
-
-    static get $name() { return "docsToastManagement" }
-    static get $inject() { return [DocsToastService.$name] }
-    static get $factory(): IComponentOptions {
-        return { controller: ToastManagementComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/toast-management/toast-management.component.html" }
-    }
-}
-`,pw=`import type { IComponentController, IComponentOptions, ITimeoutService } from "angular";
-
-export class PreventAutohideToastComponent implements IComponentController {
-    public visible = false;
-    public autohide = true;
-
-    constructor(private readonly $timeout: ITimeoutService) {}
-
-    public show(): void {
-        this.visible = false;
-        this.autohide = true;
-        this.$timeout(() => this.visible = true);
-    }
-
-    public hide(): void {
-        this.visible = false;
-        this.autohide = true;
-    }
-
-    static get $name() { return "docsPreventAutohideToast" }
-    static get $inject() { return ["$timeout"] }
-    static get $factory(): IComponentOptions {
-        return { controller: PreventAutohideToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/prevent-autohide-toast/prevent-autohide-toast.component.html" }
-    }
-}
-`,mw=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class TemplateHeaderToastComponent implements IComponentController {
-    public visible = true;
-    static get $name() { return "docsTemplateHeaderToast" }
-    static get $factory(): IComponentOptions {
-        return { controller: TemplateHeaderToastComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/template-header-toast/template-header-toast.component.html" }
-    }
-}
-`,hw=class e{examples={inline:{html:Kb.$factory.templateUrl,typescript:dw},templateHeader:{html:Jb.$factory.templateUrl,typescript:mw},closeable:{html:Gb.$factory.templateUrl,typescript:uw},preventAutohide:{html:qb.$factory.templateUrl,typescript:pw},management:{html:Xb.$factory.templateUrl,typescript:fw}};static get $name(){return`docsToastExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/toast-examples-page.component-af744c3d.html`,controllerAs:`$`}}},gw=class e{static get $name(){return`docsTooltipApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/tooltip-api-page.component-46f4f15c.html`,controllerAs:`$`}}},_w=`import type { IComponentController, IComponentOptions } from "angular";
-import type { TemplateRef } from "ngjs-core";
-
-export class TooltipAutocloseComponent implements IComponentController {
-    public contentTemplate?: TemplateRef<unknown>;
-    static get $name() { return "docsTooltipAutoclose" }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipAutocloseComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-autoclose/tooltip-autoclose.component.html" }
-    }
-}
-`,vw=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class TooltipBodyComponent implements IComponentController {
-    static get $name() { return "docsTooltipBody" }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipBodyComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-body/tooltip-body.component.html" }
-    }
-}
-`,yw=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbTooltip } from "ngb-js";
-import type { TemplateRef } from "ngjs-core";
-
-export class TooltipContextComponent implements IComponentController {
-    public name = "World";
-    public contentTemplate?: TemplateRef<unknown>;
-    public french?: NgbTooltip;
-    public german?: NgbTooltip;
-    public english?: NgbTooltip;
-
-    public toggleWithGreeting(tooltip: NgbTooltip, greeting: string): void {
-        tooltip.isOpen() ? tooltip.close() : tooltip.open({ greeting });
-    }
-
-    static get $name() { return "docsTooltipContext" }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipContextComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-context/tooltip-context.component.html" }
-    }
-}
-`,bw=`.docs-tooltip-custom {
-    --bs-tooltip-bg: var(--bs-primary-bg-subtle);
-    --bs-tooltip-color: var(--bs-primary-text-emphasis);
-    --bs-tooltip-opacity: 1;
-
-    filter: drop-shadow(0 .25rem .5rem rgba(var(--bs-body-color-rgb), .15));
-}
-`,xw=`import "@/features/lib/components/tooltip-custom-class/tooltip-custom-class.component.css";
-import type { IComponentController, IComponentOptions } from "angular";
-
-export class TooltipCustomClassComponent implements IComponentController {
-    static get $name() { return "docsTooltipCustomClass" }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipCustomClassComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-custom-class/tooltip-custom-class.component.html" }
-    }
-}
-`,Sw=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class TooltipCustomTargetComponent implements IComponentController {
-    static get $name() { return "docsTooltipCustomTarget" }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipCustomTargetComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-custom-target/tooltip-custom-target.component.html" }
-    }
-}
-`,Cw=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class TooltipDelaysComponent implements IComponentController {
-    static get $name() { return "docsTooltipDelays" }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipDelaysComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-delays/tooltip-delays.component.html" }
-    }
-}
-`,ww=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbTooltipConfig } from "ngb-js";
-
-export class TooltipGlobalComponent implements IComponentController {
-    private readonly initialConfig: Pick<NgbTooltipConfig, "container" | "openDelay" | "placement" | "triggers">;
-
-    constructor(private readonly config: NgbTooltipConfig) {
-        this.initialConfig = {
-            container: config.container,
-            openDelay: config.openDelay,
-            placement: config.placement,
-            triggers: config.triggers,
-        };
-        config.container = "body";
-        config.openDelay = 300;
-        config.placement = "end";
-        config.triggers = "mouseenter:mouseleave";
-    }
-
-    public $postLink(): void { this.restoreConfig(); }
-    public $onDestroy(): void { this.restoreConfig(); }
-
-    private restoreConfig(): void {
-        this.config.container = this.initialConfig.container;
-        this.config.openDelay = this.initialConfig.openDelay;
-        this.config.placement = this.initialConfig.placement;
-        this.config.triggers = this.initialConfig.triggers;
-    }
-
-    static get $name() { return "docsTooltipGlobal" }
-    static get $inject() { return [NgbTooltipConfig.$name] }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-global/tooltip-global.component.html" }
-    }
-}
-`,Tw=`import type { IComponentController, IComponentOptions } from "angular";
-
-export class TooltipPlacementsComponent implements IComponentController {
-    static get $name() { return "docsTooltipPlacements" }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipPlacementsComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-placements/tooltip-placements.component.html" }
-    }
-}
-`,Ew=`import type { IComponentController, IComponentOptions } from "angular";
-import type { TemplateRef } from "ngjs-core";
-
-export class TooltipTemplateComponent implements IComponentController {
-    public name = "NgbJS";
-    public contentTemplate?: TemplateRef<unknown>;
-    static get $name() { return "docsTooltipTemplate" }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipTemplateComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-template/tooltip-template.component.html" }
-    }
-}
-`,Dw=`import type { IComponentController, IComponentOptions } from "angular";
-import type { NgbTooltip } from "ngb-js";
-
-export class TooltipTriggersComponent implements IComponentController {
-    public manual?: NgbTooltip;
-    static get $name() { return "docsTooltipTriggers" }
-    static get $factory(): IComponentOptions {
-        return { controller: TooltipTriggersComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/tooltip-triggers/tooltip-triggers.component.html" }
-    }
-}
-`,Ow=class e{examples={placements:{html:ix.$factory.templateUrl,typescript:Tw},template:{html:ax.$factory.templateUrl,typescript:Ew},triggers:{html:ox.$factory.templateUrl,typescript:Dw},autoclose:{html:Zb.$factory.templateUrl,typescript:_w},context:{html:$b.$factory.templateUrl,typescript:yw},customTarget:{html:tx.$factory.templateUrl,typescript:Sw},delays:{html:nx.$factory.templateUrl,typescript:Cw},body:{html:Qb.$factory.templateUrl,typescript:vw},customClass:{html:ex.$factory.templateUrl,typescript:xw,css:bw},global:{html:rx.$factory.templateUrl,typescript:ww}};static get $name(){return`docsTooltipExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/tooltip-examples-page.component-55fec424.html`,controllerAs:`$`}}},kw=class e{static get $name(){return`docsTypeaheadApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/typeahead-api-page.component-c48a3a27.html`,controllerAs:`$`}}},Aw=`import type { IComponentController, IComponentOptions } from "angular";
-import { debounceTime, map, type OperatorFunction } from "rxjs";
-
-interface State { name: string }
-const STATES: State[] = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"].map(name => ({ name }));
-
-export class ExactTypeaheadComponent implements IComponentController {
-    public model?: State;
-    public readonly formatter = (state: State): string => state.name;
-    public readonly search: OperatorFunction<string, State[]> = text$ => text$.pipe(
-        debounceTime(200),
-        map(term => term ? STATES.filter(state => state.name.toLowerCase().includes(term.toLowerCase())) : []),
-    );
-    static get $name() { return "docsExactTypeahead" }
-    static get $factory(): IComponentOptions {
-        return { controller: ExactTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/exact-typeahead/exact-typeahead.component.html" }
-    }
-}
-`,jw=`import type { IComponentController, IComponentOptions } from "angular";
-import { debounceTime, distinctUntilChanged, map, merge, type OperatorFunction, Subject } from "rxjs";
-
-const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
-
-export class FocusTypeaheadComponent implements IComponentController {
-    public model = "";
-    public readonly focus$ = new Subject<string>();
-    public readonly search: OperatorFunction<string, string[]> = text$ => merge(
-        text$.pipe(debounceTime(200), distinctUntilChanged()),
-        this.focus$,
-    ).pipe(
-        map(term => (term ? STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())) : STATES).slice(0, 10)),
-    );
-    public $onDestroy(): void { this.focus$.complete(); }
-    static get $name() { return "docsFocusTypeahead" }
-    static get $factory(): IComponentOptions {
-        return { controller: FocusTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/focus-typeahead/focus-typeahead.component.html" }
-    }
-}
-`,Mw=`import type { IComponentController, IComponentOptions } from "angular";
-import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";
-
-const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"];
-
-export class FormattedTypeaheadComponent implements IComponentController {
-    public model = "";
-    public readonly formatter = (result: string): string => result.toUpperCase();
-    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
-        map(term => term ? STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())) : []),
-    );
-    static get $name() { return "docsFormattedTypeahead" }
-    static get $factory(): IComponentOptions {
-        return { controller: FormattedTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/formatted-typeahead/formatted-typeahead.component.html" }
-    }
-}
-`,Nw=`import type { IComponentController, IComponentOptions } from "angular";
-import { NgbTypeaheadConfig } from "ngb-js";
-import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";
-
-const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"];
-
-export class TypeaheadGlobalComponent implements IComponentController {
-    public model = "";
-    private readonly initialConfig: Pick<NgbTypeaheadConfig, "container" | "selectOnExact" | "showHint">;
-
-    constructor(private readonly config: NgbTypeaheadConfig) {
-        this.initialConfig = {
-            container: config.container,
-            selectOnExact: config.selectOnExact,
-            showHint: config.showHint,
-        };
-        config.container = "body";
-        config.selectOnExact = true;
-        config.showHint = true;
-    }
-
-    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
-        map(term => term.length < 2 ? [] : STATES.filter(state => state.toLowerCase().startsWith(term.toLowerCase()))),
-    );
-
-    public $postLink(): void { this.restoreConfig(); }
-    public $onDestroy(): void { this.restoreConfig(); }
-    private restoreConfig(): void {
-        this.config.container = this.initialConfig.container;
-        this.config.selectOnExact = this.initialConfig.selectOnExact;
-        this.config.showHint = this.initialConfig.showHint;
-    }
-
-    static get $name() { return "docsTypeaheadGlobal" }
-    static get $inject() { return [NgbTypeaheadConfig.$name] }
-    static get $factory(): IComponentOptions {
-        return { controller: TypeaheadGlobalComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/typeahead-global/typeahead-global.component.html" }
-    }
-}
-`,Pw=`import type { IComponentController, IComponentOptions } from "angular";
-import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";
-
-interface State { id: number; name: string }
-const STATES: State[] = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"].map((name, id) => ({ id, name }));
-
-export class NonEditableTypeaheadComponent implements IComponentController {
-    public model: State | null = null;
-    public readonly formatter = (state: State): string => state.name;
-    public readonly search: OperatorFunction<string, State[]> = text$ => text$.pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
-        map(term => term.length < 2 ? [] : STATES.filter(state => state.name.toLowerCase().includes(term.toLowerCase()))),
-    );
-    static get $name() { return "docsNonEditableTypeahead" }
-    static get $factory(): IComponentOptions {
-        return { controller: NonEditableTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/non-editable-typeahead/non-editable-typeahead.component.html" }
-    }
-}
-`,Fw=`import type { IComponentController, IComponentOptions } from "angular";
-import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";
-
-const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
-
-export class SimpleTypeaheadComponent implements IComponentController {
-    public model = "";
-    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
-        map(term => term.length < 2 ? [] : STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())).slice(0, 10)),
-    );
-    static get $name() { return "docsSimpleTypeahead" }
-    static get $factory(): IComponentOptions {
-        return { controller: SimpleTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/simple-typeahead/simple-typeahead.component.html" }
-    }
-}
-`,Iw=`import type { IComponentController, IComponentOptions } from "angular";
-import type { TemplateRef } from "ngjs-core";
-import { debounceTime, map, type OperatorFunction } from "rxjs";
-
-interface Country { name: string; flag: string; region: string }
-const COUNTRIES: Country[] = [
-    { name: "Mexico", flag: "🇲🇽", region: "North America" },
-    { name: "Argentina", flag: "🇦🇷", region: "South America" },
-    { name: "Brazil", flag: "🇧🇷", region: "South America" },
-    { name: "Canada", flag: "🇨🇦", region: "North America" },
-    { name: "Colombia", flag: "🇨🇴", region: "South America" },
-    { name: "Germany", flag: "🇩🇪", region: "Europe" },
-    { name: "Japan", flag: "🇯🇵", region: "Asia" },
-    { name: "Spain", flag: "🇪🇸", region: "Europe" },
-];
-
-export class TemplateResultsTypeaheadComponent implements IComponentController {
-    public model?: Country;
-    public resultTemplate?: TemplateRef<unknown>;
-    public readonly formatter = (country: Country): string => country.name;
-    public readonly search: OperatorFunction<string, Country[]> = text$ => text$.pipe(
-        debounceTime(200),
-        map(term => term ? COUNTRIES.filter(country => country.name.toLowerCase().includes(term.toLowerCase())).slice(0, 8) : []),
-    );
-    static get $name() { return "docsTemplateResultsTypeahead" }
-    static get $factory(): IComponentOptions {
-        return { controller: TemplateResultsTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/template-results-typeahead/template-results-typeahead.component.html" }
-    }
-}
-`,Lw=`import type { IComponentController, IComponentOptions, IHttpService } from "angular";
-import { catchError, debounceTime, distinctUntilChanged, from, map, of, type OperatorFunction, switchMap, tap } from "rxjs";
-
-const WIKI_URL = "https://en.wikipedia.org/w/api.php";
-type WikiResponse = [string, string[], string[], string[]];
-
-export class WikipediaSearchService {
-    constructor(private readonly $http: IHttpService) {}
-
-    public search(term: string) {
-        if (!term) return of([] as string[]);
-        return from(this.$http.get<WikiResponse>(WIKI_URL, {
-            params: { action: "opensearch", format: "json", origin: "*", search: term },
-        })).pipe(map(response => response.data[1]));
-    }
-
-    static get $name() { return "docs.wikipedia.search.service" }
-    static get $inject() { return ["$http"] }
-}
-
-export class WikipediaTypeaheadComponent implements IComponentController {
-    public model = "";
-    public searching = false;
-    public searchFailed = false;
-
-    constructor(private readonly wikipedia: WikipediaSearchService) {}
-
-    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        tap(() => this.searching = true),
-        switchMap(term => this.wikipedia.search(term).pipe(
-            tap(() => this.searchFailed = false),
-            catchError(() => {
-                this.searchFailed = true;
-                return of([] as string[]);
-            }),
-        )),
-        tap(() => this.searching = false),
-    );
-
-    static get $name() { return "docsWikipediaTypeahead" }
-    static get $inject() { return [WikipediaSearchService.$name] }
-    static get $factory(): IComponentOptions {
-        return { controller: WikipediaTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/wikipedia-typeahead/wikipedia-typeahead.component.html" }
-    }
-}
+`,ig=class e{constructor(e){this.$element=e,this.activeIdx=0,this.results=[],this.preventMouseDownDefault=e=>e.preventDefault()}set id(e){if(e){this.$element.attr(`id`,e);return}this.$element.removeAttr(`id`)}get id(){return this.$element.attr(`id`)??``}$onInit(){this.focusFirst=this.focusFirst??!0,this.formatter=this.formatter??Dd,this.resetActive()}$postLink(){this.$element.addClass(`dropdown-menu show`),this.$element.attr(`role`,`listbox`),this.$element.on(`mousedown`,this.preventMouseDownDefault)}$onChanges(e){let t=e.popupClass?.previousValue;typeof t==`string`&&t&&this.$element.removeClass(t),this.popupClass&&this.$element.addClass(this.popupClass)}$onDestroy(){this.$element.off(`mousedown`,this.preventMouseDownDefault)}hasActive(){return this.activeIdx>-1&&this.activeIdx<this.results.length}getActive(){return this.results[this.activeIdx]}markActive(e){this.activeIdx=e,this._activeChanged()}next(){if(this.activeIdx!==this.results.length-1){this.activeIdx++,this._activeChanged();return}this.activeIdx=this.focusFirst?(this.activeIdx+1)%this.results.length:-1,this._activeChanged()}prev(){if(this.activeIdx===0){this.activeIdx=this.focusFirst?this.results.length-1:-1,this._activeChanged();return}if(this.activeIdx>0){this.activeIdx--,this._activeChanged();return}this.activeIdx=this.results.length-1,this._activeChanged()}resetActive(){this.activeIdx=this.focusFirst?0:-1,this._activeChanged()}select(e){this.selectEvent?.({$event:e})}_activeChanged(){this.activeChangeEvent?.({$event:this.activeIdx>=0?this.id+`-`+this.activeIdx:void 0})}static get $name(){return`ngbTypeaheadWindow`}static get $factory(){return{controller:e,controllerAs:`$`,bindings:{focusFirst:`<?`,results:`<?`,term:`<?`,formatter:`<?`,resultTemplate:`<?`,popupClass:`<?`,selectEvent:`&?select`,activeChangeEvent:`&?activeChange`},template:rg}}static get $inject(){return[`$element`]}},ag={$name:`ARIA_LIVE_DELAY`,$value:100};function og(e=!1){let t=document.body,n=u.default.element(t.querySelector(`#ngb-live`));return n==null&&e&&(n=u.default.element(`<div></div>`),n.attr(`id`,`ngb-live`),n.attr(`aria-live`,`polite`),n.attr(`aria-atomic`,`true`),n.addClass(`visually-hidden`),u.default.element(t).append(n)),n}var sg=class{constructor(e,t){this.ariaLiveDelay=e,this.$timeout=t}onDestroy(){let e=og();e&&e.remove()}say(e){let t=og(!0),n=this.ariaLiveDelay;if(!t)return;t.empty();let r=()=>t.append(e);if(!n){r();return}this.$timeout(r,this.ariaLiveDelay)}static get $name(){return`ngb.live.service`}static get $inject(){return[ag.$name,`$timeout`]}},cg=0,lg=class e{constructor(e,t,n,r,i,a,o,s,c){this.$element=e,this.$scope=t,this._config=n,this._live=r,this._ngZone=i,this._changeDetector=a,this._rtl=c,this.activeDescendant=null,this.popupId=`ngb-typeahead-${cg++}`,this._onTouched=()=>{},this._onChange=e=>{},this._resubscribeTypeahead$=new ja(null),this._closed$=new Y,this._inputValueBackup=null,this._inputValueForSelectOnExact=null,this._subscription=null,this._windowRef=null,this._handleBlurEvent=()=>this._ngZone.run(()=>this.handleBlur()),this._handleKeyDownEvent=e=>this._ngZone.run(()=>this.handleKeyDown(e)),this.$q=o.get(`$q`),this._popupService=new up(ig.$name,o,s,this._ngZone)}$onInit(){this._positioning=Lf(this._rtl),this.autocomplete=this.autocomplete??`off`,this.container=this.container??this._config.container,this.editable=this.editable??this._config.editable,this.focusFirst=this.focusFirst??this._config.focusFirst,this.selectOnExact=this.selectOnExact??this._config.selectOnExact,this.showHint=this.showHint??this._config.showHint,this.placement=this.placement??this._config.placement,this.popperOptions=this.popperOptions??this._config.popperOptions;let e=this._nativeElement;if(this._valueChanges$=Yo(e,`input`).pipe(Eo(e=>e.target.value)),this.ngModelCtrl){let e=this.ngModelCtrl;e.$render=()=>this.writeValue(e.$viewValue),this.registerOnChange(t=>e.$setViewValue(t)),this.registerOnTouched(()=>e.$setTouched()),e.$render()}this._subscribeToUserInput()}$postLink(){this.$element.on(`blur`,this._handleBlurEvent),this.$element.on(`keydown`,this._handleKeyDownEvent),this.$element.attr(`autocapitalize`,`off`),this.$element.attr(`autocorrect`,`off`),this.$element.attr(`role`,`combobox`),this._renderHostState()}$onChanges(e){let t=e.ngbTypeahead;t&&!t.isFirstChange()&&(this._unsubscribeFromUserInput(),this._subscribeToUserInput()),this._renderHostState()}$onDestroy(){this.$element.off(`blur`,this._handleBlurEvent),this.$element.off(`keydown`,this._handleKeyDownEvent),this._closePopup(),this._unsubscribeFromUserInput(),this._closed$.complete(),this._resubscribeTypeahead$.complete()}registerOnChange(e){this._onChange=e}registerOnTouched(e){this._onTouched=e}writeValue(e){this._writeInputValue(this._formatItemForInput(e)),this.showHint&&(this._inputValueBackup=e)}setDisabledState(e){this._nativeElement.disabled=e}dismissPopup(){this.isPopupOpen()&&(this._resubscribeTypeahead$.next(null),this._closePopup(),this.showHint&&this._inputValueBackup!==null&&this._writeInputValue(this._inputValueBackup),this._changeDetector.markForCheck())}isPopupOpen(){return this._windowRef!=null}handleBlur(){this._resubscribeTypeahead$.next(null),this._onTouched()}handleKeyDown(e){if(!this.isPopupOpen())return;let t=this._windowRef?.instance;if(t)switch(e.key){case`ArrowDown`:e.preventDefault(),t.next(),this._showHint();break;case`ArrowUp`:e.preventDefault(),t.prev(),this._showHint();break;case`Enter`:case`Tab`:{let n=t.getActive();n!=null&&(e.preventDefault(),e.stopPropagation(),this._selectResult(n)),this._closePopup();break}}}get _nativeElement(){return Z(this.$element)}_openPopup(){return this.isPopupOpen()?this.$q.resolve():this._openingPromise?this._openingPromise:(this._inputValueBackup=this._nativeElement.value,this._openingPromise=this._popupService.open().then(({windowRef:e})=>{this._windowRef=e,e.setInput(`id`,this.popupId),e.setInput(`popupClass`,this.popupClass),e.setInput(`selectEvent`,({$event:e})=>this._selectResultClosePopup(e)),e.setInput(`activeChangeEvent`,({$event:e})=>{this.activeDescendant=e??null,this._renderHostState()});let t=e.location.nativeElement;this.container===`body`&&(t.style.zIndex=`1055`,document.body.appendChild(t)),this._renderHostState(),this._changeDetector.markForCheck(),this._ngZone.runOutsideAngular(()=>{this._windowRef&&(this._positioning.createPopper({hostElement:this._nativeElement,targetElement:t,placement:this.placement??this._config.placement,updatePopperOptions:e=>(this.popperOptions??this._config.popperOptions)(Rf([0,2])(e))}),this._watchPositioning())}),Tf(this._ngZone,`outside`,this._closed$,()=>this.dismissPopup(),[t],[this._nativeElement])}).finally(()=>{this._openingPromise=void 0}),this._openingPromise)}_closePopup(){this._popupService.close().subscribe(()=>{this._positioning.destroy(),this._unwatchPositioning?.(),this._unwatchPositioning=void 0,this._closed$.next(),this._windowRef=null,this.activeDescendant=null,this._renderHostState()})}_selectResult(e){let t=!1;this.selectItem?.({$event:{item:e,preventDefault:()=>{t=!0}}}),this._resubscribeTypeahead$.next(null),t||(this.writeValue(e),this._onChange(e))}_selectResultClosePopup(e){this._selectResult(e),this._closePopup()}_showHint(){let e=this._windowRef?.instance;if(this.showHint&&e?.hasActive()&&this._inputValueBackup!=null){let t=this._inputValueBackup.toLowerCase(),n=this._formatItemForInput(e.getActive());t===n.substring(0,this._inputValueBackup.length).toLowerCase()?(this._writeInputValue(this._inputValueBackup+n.substring(this._inputValueBackup.length)),this._nativeElement.setSelectionRange(this._inputValueBackup.length,n.length)):this._writeInputValue(n)}}_formatItemForInput(e){return e!=null&&this.inputFormatter?this.inputFormatter(e):Dd(e)}_writeInputValue(e){this._nativeElement.value=Dd(e)}_subscribeToUserInput(){let e=this._valueChanges$.pipe(ws(e=>{this._inputValueBackup=this.showHint?e:null,this._inputValueForSelectOnExact=this.selectOnExact?e:null,this._ngZone.run(()=>this._onChange(this.editable?e:null))}),this.ngbTypeahead?this.ngbTypeahead:()=>So([]));this._subscription=this._resubscribeTypeahead$.pipe(Ss(()=>e)).subscribe(async e=>{await this._ngZone.run(async()=>{!e||e.length===0?this._closePopup():this.selectOnExact&&e.length===1&&this._formatItemForInput(e[0])===this._inputValueForSelectOnExact?(this._selectResult(e[0]),this._closePopup()):(await this._openPopup(),this._ngZone.run(()=>{let t=this._windowRef;t&&(t.setInput(`focusFirst`,this.focusFirst),t.setInput(`results`,e),t.setInput(`term`,this._nativeElement.value),this.resultFormatter&&t.setInput(`formatter`,this.resultFormatter),this.resultTemplate&&t.setInput(`resultTemplate`,this.resultTemplate),t.instance?.resetActive(),t.changeDetectorRef.detectChanges(),this._showHint())}));let t=e?e.length:0;this._live.say(t===0?`No results available`:`${t} result${t===1?``:`s`} available`)})})}_unsubscribeFromUserInput(){this._subscription?.unsubscribe(),this._subscription=null}_watchPositioning(){this._unwatchPositioning?.(),this._unwatchPositioning=this.$scope.$watch(()=>{this._windowRef&&this._positioning.update()})}_renderHostState(){this.$element.attr(`autocomplete`,this.autocomplete??`off`),this.$element.attr(`aria-autocomplete`,this.showHint?`both`:`list`),this.$element.attr(`aria-expanded`,`${this.isPopupOpen()}`),this.isPopupOpen()?(this.$element.addClass(`open`),this.$element.attr(`aria-controls`,this.popupId)):(this.$element.removeClass(`open`),this.$element.removeAttr(`aria-controls`)),this.activeDescendant?this.$element.attr(`aria-activedescendant`,this.activeDescendant):this.$element.removeAttr(`aria-activedescendant`)}static get $inject(){return[`$element`,`$scope`,ng.$name,sg.$name,nl.$name,Ps.$name,`$injector`,Ys.$name,zf.$name]}static get $name(){return`ngbTypeahead`}static get $factory(){return()=>({bindToController:{autocomplete:`<?`,container:`<?`,editable:`<?`,focusFirst:`<?`,inputFormatter:`<?`,ngbTypeahead:`<?`,placement:`<?`,popperOptions:`<?`,popupClass:`<?`,resultFormatter:`<?`,resultTemplate:`<?`,selectOnExact:`<?`,showHint:`<?`,selectItem:`&?`},controller:e,require:{ngModelCtrl:`?ngModel`},restrict:`A`,scope:!0})}},ug=u.default.module(`ngb.typeahead`,[ml.name]);ug.constant(ag.$name,ag.$value),ug.service(sg.$name,sg),ug.service(zf.$name,zf),ug.service(ng.$name,ng),ug.component(tg.$name,tg.$factory),ug.component(ig.$name,ig.$factory),ug.directive(lg.$name,lg.$factory);var dg=u.default.module(`ngb`,[$d.name,dh.name,qd.name,mf.name,qh.name,Jd.name,pp.name,Gf.name,$h.name,Pp.name,Rm.name,ah.name,kh.name,gh.name,zh.name,ug.name,Xm.name,wm.name]);dg.service(sd.$name,sd),dg.service(sp.$name,sp),dg.service(sg.$name,sg),dg.service(zf.$name,zf),dg.constant(ag.$name,ag.$value);function fg(e){return new Date(e.year-543,e.month-1,e.day)}function pg(e){return new Lp(e.getFullYear()+543,e.getMonth()+1,e.getDate())}var mg=class extends Vp{getToday(){return pg(new Date)}getNext(e,t=`d`,n=1){let r=fg(e),i=!0,a=r.getMonth();switch(t){case`y`:r.setFullYear(r.getFullYear()+n);break;case`m`:a+=n,r.setMonth(a),a%=12,a<0&&(a+=12);break;case`d`:r.setDate(r.getDate()+n),i=!1;break;default:return e}return i&&r.getMonth()!==a&&r.setDate(0),pg(r)}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=fg(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=fg(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime();return r.setMonth(0),r.setDate(1),Math.floor(Math.round((i-r.getTime())/864e5)/7)+1}isValid(e){if(!e||!Q(e.year)||!Q(e.month)||!Q(e.day)||e.year===0)return!1;let t=fg(e);return!isNaN(t.getTime())&&t.getFullYear()===e.year-543&&t.getMonth()+1===e.month&&t.getDate()===e.day}},hg=[`እሑድ`,`ሰኞ`,`ማክሰኞ`,`ረቡዕ`,`ሓሙስ`,`ዓርብ`,`ቅዳሜ`],gg=[`መስከረም`,`ጥቅምት`,`ኅዳር`,`ታህሣሥ`,`ጥር`,`የካቲት`,`መጋቢት`,`ሚያዝያ`,`ግንቦት`,`ሰኔ`,`ሐምሌ`,`ነሐሴ`,`ጳጉሜ`],_g=class extends Up{getMonthShortName(e,t){return this.getMonthFullName(e,t)}getMonthFullName(e,t){return gg[e-1]??``}getWeekdayLabel(e){return hg[e-1]??``}getDayAriaLabel(e){return`${e.day} ${this.getMonthFullName(e.month,e.year)} ${e.year}`}},vg=1724220.5,yg=[30,30,30,30,30,30,30,30,30,30,30,30,5];function bg(e){return e==null?!1:e%4==3||e%4==-1}function xg(e,t){return e.year=+t,e}function Sg(e,t){return t=+t,e.year+=Math.floor((t-1)/13),e.month=Math.floor(((t-1)%13+13)%13)+1,e}function Cg(e,t){let n=wg(e.month,e.year);if(t<=0)for(;t<=0;)e=Sg(e,e.month-1),n=wg(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=Sg(e,e.month+1),n=wg(e.month,e.year);return e.day=t,e}function wg(e,t){let n=bg(t);return yg[e-1]+(e===13&&n?1:0)}function Tg(e){let t=kg(Dg(e.year,e.month,e.day));return t.setHours(6,30,3,200),t}function Eg(e){return Og(Ag(e.getFullYear(),e.getMonth()+1,e.getDate()))}function Dg(e,t,n){return e<0&&e++,n+(t-1)*30+(e-1)*365+Math.floor(e/4)+vg-1}function Og(e){let t=Math.floor(e)+.5-vg,n=Math.floor((t-Math.floor((t+366)/1461))/365)+1;n<=0&&n--,t=Math.floor(e)+.5-Dg(n,1,1);let r=Math.floor(t/30)+1,i=t-(r-1)*30+1;return new Lp(n,r,i)}function kg(e){let t=Math.floor(e+.5),n=Math.floor((t-1867216.25)/36524.25);n=t+1+n-Math.floor(n/4);let r=n+1524,i=Math.floor((r-122.1)/365.25),a=Math.floor(365.25*i),o=Math.floor((r-a)/30.6001),s=r-a-Math.floor(o*30.6001),c=o-(o>13.5?13:1),l=i-(c>2.5?4716:4715);return l<=0&&l--,new Date(l,c,s)}function Ag(e,t,n){e<0&&e++,t<3&&(t+=12,e--);let r=Math.floor(e/100),i=2-r+Math.floor(r/4);return Math.floor(365.25*(e+4716))+Math.floor(30.6001*(t+1))+n+i-1524.5}var jg=class extends Bp{getDaysPerWeek(){return 7}getMonths(e){return[1,2,3,4,5,6,7,8,9,10,11,12,13]}getNext(e,t=`d`,n=1){switch(e=new Lp(e.year,e.month,e.day),t){case`y`:return e=xg(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=Sg(e,e.month+n),e.day=1,e;case`d`:return Cg(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Math.floor(Dg(e.year,e.month,e.day)+3)%7;return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=Tg(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=Tg(new Lp(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getWeeksPerMonth(){return 6}getToday(){return Eg(new Date)}isValid(e){return e&&Q(e.year)&&Q(e.month)&&Q(e.day)&&!isNaN(Tg(e).getTime())}},Mg=1080,Ng=24*Mg,Pg=12*Mg+793,Fg=29*Ng+Pg,Ig=11*Mg+204,Lg=2092591,Rg=1721425.5;function zg(e){return e%4==0&&e%100!=0||e%400==0}function Bg(e){let t=Math.floor((235*e-234)/19),n=t*Pg+Ig,r=t*29+Math.floor(n/Ng),i=n%Ng,a=r%7;return(a===2||a===4||a===6)&&(r++,a=r%7),a===1&&i>15*Mg+204&&!Wg(e)?r+=2:a===0&&i>21*Mg+589&&Wg(e-1)&&r++,r}function Vg(e,t){let n=[31,28,31,30,31,30,31,31,30,31,30,31];return zg(t)&&n[1]++,n[e-1]}function Hg(e){return Wg(e)?13:12}function Ug(e){return Bg(e+1)-Bg(e)}function Wg(e){if(e!=null){let t=(e*12+17)%19;return t>=(t<0?-7:12)}return!1}function Gg(e,t){let n=Bg(t+1)-Bg(t),r=(n<=380?n:n-30)-353,i=Wg(t)?[30,29,29,29,30,30,29,30,29,30,29,30,29]:[30,29,29,29,30,29,30,29,30,29,30,29];return r>0&&i[2]++,r>1&&i[1]++,i[e-1]}function Kg(e){let t=0;for(let n=1;n<e.month;n++)t+=Gg(n,e.year);return t+e.day}function qg(e,t){let n=t>=0;for(n||(t=-t);t>0;)n?t>Hg(e.year)-e.month?(t-=Hg(e.year)-e.month+1,e.year++,e.month=1):(e.month+=t,t=0):t>=e.month?(e.year--,t-=e.month,e.month=Hg(e.year)):(e.month-=t,t=0);return e}function Jg(e,t){let n=t>=0;for(n||(t=-t);t>0;)n?t>Ug(e.year)-Kg(e)?(t-=Ug(e.year)-Kg(e)+1,e.year++,e.month=1,e.day=1):t>Gg(e.month,e.year)-e.day?(t-=Gg(e.month,e.year)-e.day+1,e.month++,e.day=1):(e.day+=t,t=0):t>=e.day?(t-=e.day,e.month--,e.month===0&&(e.year--,e.month=Hg(e.year)),e.day=Gg(e.month,e.year)):(e.day-=t,t=0);return e}function Yg(e){let t=new Date(e),n=t.getFullYear(),r=t.getMonth(),i=t.getDate(),a=Rg-1+365*(n-1)+Math.floor((n-1)/4)-Math.floor((n-1)/100)+Math.floor((n-1)/400)+Math.floor((367*(r+1)-362)/12+(r+1<=2?0:zg(n)?-1:-2)+i);a=Math.floor(a+.5);let o=a-347997,s=Math.floor(o*Ng/Fg),c=Math.floor((s*19+234)/235)+1,l=Bg(c),u=o-l;for(;u<1;)c--,l=Bg(c),u=o-l;let d=1,f=u;for(;f>Gg(d,c);)f-=Gg(d,c),d++;return new Lp(c,d,f)}function Xg(e){let t=e.year,n=e.month,r=e.day,i=Bg(t);for(let e=1;e<n;e++)i+=Gg(e,t);i+=r;let a=i-Lg,o=a>=0;o||(a=-a);let s=1970,c=1,l=1;for(;a>0;)o?a>=(zg(s)?366:365)?(a-=zg(s)?366:365,s++):a>=Vg(c,s)?(a-=Vg(c,s),c++):(l+=a,a=0):a>=(zg(s-1)?366:365)?(a-=zg(s-1)?366:365,s--):(c>1?c--:(c=12,s--),a>=Vg(c,s)?a-=Vg(c,s):(l=Vg(c,s)-a+1,a=0));return new Date(s,c-1,l)}function Zg(e){if(!e)return``;let t=[``,`א`,`ב`,`ג`,`ד`,`ה`,`ו`,`ז`,`ח`,`ט`],n=[`י`,`יא`,`יב`,`יג`,`יד`,`טו`,`טז`,`יז`,`יח`,`יט`],r=[``,``,`כ`,`ל`,`מ`,`נ`,`ס`,`ע`,`פ`,`צ`],i=[``,`ק`,`ר`,`ש`,`ת`,`תק`,`תר`,`תש`,`תת`,`תתק`],a=[``,`א`,`ב`,`בא`,`בב`,`ה`,`הא`,`הב`,`הבא`,`הבב`],o=0,s=[],c=0;for(;e>0;){let l=e%10;if(c===0)o=l;else if(c===1)l===1?s.unshift(n[o]):s.unshift(r[l],t[o]);else if(c===2)s.unshift(i[l]);else{l!==5&&s.unshift(a[l],`׳`,` `);break}e=Math.floor(e/10),c===0&&e===0&&s.unshift(t[l]),c++}return s=s.join(``).split(``),s.length===1?s.push(`׳`):s.length>1&&s.splice(s.length-1,0,`״`),s.join(``)}var Qg=[`שני`,`שלישי`,`רביעי`,`חמישי`,`שישי`,`שבת`,`ראשון`],$g=[`תשרי`,`חשון`,`כסלו`,`טבת`,`שבט`,`אדר`,`ניסן`,`אייר`,`סיון`,`תמוז`,`אב`,`אלול`],e_=[`תשרי`,`חשון`,`כסלו`,`טבת`,`שבט`,`אדר א׳`,`אדר ב׳`,`ניסן`,`אייר`,`סיון`,`תמוז`,`אב`,`אלול`],t_=class extends Up{getMonthShortName(e,t){return this.getMonthFullName(e,t)}getMonthFullName(e,t){return Wg(t)?e_[e-1]??``:$g[e-1]??``}getWeekdayLabel(e){return Qg[e-1]??``}getDayAriaLabel(e){return`${Zg(e.day)} ${this.getMonthFullName(e.month,e.year)} ${Zg(e.year)}`}getDayNumerals(e){return Zg(e.day)}getWeekNumerals(e){return Zg(e)}getYearNumerals(e){return Zg(e)}},n_=class extends Bp{getDaysPerWeek(){return 7}getMonths(e){return e&&Wg(e)?[1,2,3,4,5,6,7,8,9,10,11,12,13]:[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}isValid(e){if(e!=null){let t=Nd(e.year)&&Nd(e.month)&&Nd(e.day);return t=t&&e.month>0&&e.month<=(Wg(e.year)?13:12),t=t&&e.day>0&&e.day<=Gg(e.month,e.year),t&&!isNaN(Xg(e).getTime())}return!1}getNext(e,t=`d`,n=1){switch(e=new Lp(e.year,e.month,e.day),t){case`y`:return e.year+=n,e.month=1,e.day=1,e;case`m`:return e=qg(e,n),e.day=1,e;case`d`:return Jg(e,n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=Xg(e).getDay();return t===0?7:t}getWeekNumber(e,t){let n=e[e.length-1];return Math.ceil(Kg(n)/7)}getToday(){return Yg(new Date)}toGregorian(e){return Rp(Xg(e))}fromGregorian(e){return Yg(zp(e))}},r_=class extends Bp{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){switch(e=new Lp(e.year,e.month,e.day),t){case`y`:return e=this._setYear(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=this._setMonth(e,e.month+n),e.day=1,e;case`d`:return this._setDay(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=this.toGregorian(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=this.toGregorian(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=this.toGregorian(new Lp(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getToday(){return this.fromGregorian(new Date)}isValid(e){return e!=null&&Nd(e.year)&&Nd(e.month)&&Nd(e.day)&&!isNaN(this.toGregorian(e).getTime())}_setDay(e,t){t=+t;let n=this.getDaysPerMonth(e.month,e.year);if(t<=0)for(;t<=0;)e=this._setMonth(e,e.month-1),n=this.getDaysPerMonth(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=this._setMonth(e,e.month+1),n=this.getDaysPerMonth(e.month,e.year);return e.day=t,e}_setMonth(e,t){return t=+t,e.year+=Math.floor((t-1)/12),e.month=Math.floor(((t-1)%12+12)%12)+1,e}_setYear(e,t){return e.year=+t,e}};function i_(e){return(14+11*e)%30<11}function a_(e){let t=e.getFullYear();return t%4==0&&t%100!=0||t%400==0}function o_(e,t){return Math.ceil(29.5*t)+(e-1)*354+Math.floor((3+11*e)/30)}function s_(e){return(e-1)*354+Math.floor((3+11*e)/30)}function c_(e,t){return e-t*Math.floor(e/t)}var l_=1721425.5,u_=1948439.5,d_=class extends r_{fromGregorian(e){let t=e.getFullYear(),n=e.getMonth(),r=e.getDate(),i=l_-1+365*(t-1)+Math.floor((t-1)/4)+-Math.floor((t-1)/100)+Math.floor((t-1)/400)+Math.floor((367*(n+1)-362)/12+(n+1<=2?0:a_(e)?-1:-2)+r);i=Math.floor(i)+.5;let a=i-u_,o=Math.floor((30*a+10646)/10631),s=Math.ceil((a-29-s_(o))/29.5);s=Math.min(s,11);let c=Math.ceil(a-o_(o,s))+1;return new Lp(o,s+1,c)}toGregorian(e){let t=e.year,n=e.month-1,r=e.day+Math.ceil(29.5*n)+(t-1)*354+Math.floor((3+11*t)/30)+u_-1,i=Math.floor(r-.5)+.5,a=i-l_,o=Math.floor(a/146097),s=c_(a,146097),c=Math.floor(s/36524),l=c_(s,36524),u=Math.floor(l/1461),d=c_(l,1461),f=Math.floor(d/365),p=o*400+c*100+u*4+f;c!==4&&f!==4&&p++;let m=i-(l_+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)),h=i<l_-1+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)+Math.floor(739/12+(a_(new Date(p,3,1))?-1:-2)+1)?0:a_(new Date(p,3,1))?1:2,g=Math.floor(((m+h)*12+373)/367),_=i-(l_-1+365*(p-1)+Math.floor((p-1)/4)-Math.floor((p-1)/100)+Math.floor((p-1)/400)+Math.floor((367*g-362)/12+(g<=2?0:a_(new Date(p,g-1,1))?-1:-2)+1))+1;return new Date(p,g-1,_)}getDaysPerMonth(e,t){t+=Math.floor(e/13),e=(e-1)%12+1;let n=29+e%2;return e===12&&i_(t)&&n++,n}},f_=new Date(1882,10,12),p_=new Date(2174,10,25),m_=1300,h_=1600,g_=864e5,__=`101010101010.110101010100.111011001001.011011010100.011011101010.001101101100.101010101101.010101010101.011010101001.011110010010.101110101001.010111010100.101011011010.010101011100.110100101101.011010010101.011101001010.101101010100.101101101010.010110101101.010010101110.101001001111.010100010111.011010001011.011010100101.101011010101.001011010110.100101011011.010010011101.101001001101.110100100110.110110010101.010110101100.100110110110.001010111010.101001011011.010100101011.101010010101.011011001010.101011101001.001011110100.100101110110.001010110110.100101010110.101011001010.101110100100.101111010010.010111011001.001011011100.100101101101.010101001101.101010100101.101101010010.101110100101.010110110100.100110110110.010101010111.001010010111.010101001011.011010100011.011101010010.101101100101.010101101010.101010101011.010100101011.110010010101.110101001010.110110100101.010111001010.101011010110.100101010111.010010101011.100101001011.101010100101.101101010010.101101101010.010101110101.001001110110.100010110111.010001011011.010101010101.010110101001.010110110100.100111011010.010011011101.001001101110.100100110110.101010101010.110101010100.110110110010.010111010101.001011011010.100101011011.010010101011.101001010101.101101001001.101101100100.101101110001.010110110100.101010110101.101001010101.110100100101.111010010010.111011001001.011011010100.101011101001.100101101011.010010101011.101010010011.110101001001.110110100100.110110110010.101010111001.010010111010.101001011011.010100101011.101010010101.101100101010.101101010101.010101011100.010010111101.001000111101.100100011101.101010010101.101101001010.101101011010.010101101101.001010110110.100100111011.010010011011.011001010101.011010101001.011101010100.101101101010.010101101100.101010101101.010101010101.101100101001.101110010010.101110101001.010111010100.101011011010.010101011010.101010101011.010110010101.011101001001.011101100100.101110101010.010110110101.001010110110.101001010110.111001001101.101100100101.101101010010.101101101010.010110101101.001010101110.100100101111.010010010111.011001001011.011010100101.011010101100.101011010110.010101011101.010010011101.101001001101.110100010110.110110010101.010110101010.010110110101.001011011010.100101011011.010010101101.010110010101.011011001010.011011100100.101011101010.010011110101.001010110110.100101010110.101010101010.101101010100.101111010010.010111011001.001011101010.100101101101.010010101101.101010010101.101101001010.101110100101.010110110010.100110110101.010011010110.101010010111.010101000111.011010010011.011101001001.101101010101.010101101010.101001101011.010100101011.101010001011.110101000110.110110100011.010111001010.101011010110.010011011011.001001101011.100101001011.101010100101.101101010010.101101101001.010101110101.000101110110.100010110111.001001011011.010100101011.010101100101.010110110100.100111011010.010011101101.000101101101.100010110110.101010100110.110101010010.110110101001.010111010100.101011011010.100101011011.010010101011.011001010011.011100101001.011101100010.101110101001.010110110010.101010110101.010101010101.101100100101.110110010010.111011001001.011011010010.101011101001.010101101011.010010101011.101001010101.110100101001.110101010100.110110101010.100110110101.010010111010.101000111011.010010011011.101001001101.101010101010.101011010101.001011011010.100101011101.010001011110.101000101110.110010011010.110101010101.011010110010.011010111001.010010111010.101001011101.010100101101.101010010101.101101010010.101110101000.101110110100.010110111001.001011011010.100101011010.101101001010.110110100100.111011010001.011011101000.101101101010.010101101101.010100110101.011010010101.110101001010.110110101000.110111010100.011011011010.010101011011.001010011101.011000101011.101100010101.101101001010.101110010101.010110101010.101010101110.100100101110.110010001111.010100100111.011010010101.011010101010.101011010110.010101011101.001010011101`.split(`.`);function v_(e,t){let n=Date.UTC(e.getFullYear(),e.getMonth(),e.getDate()),r=Date.UTC(t.getFullYear(),t.getMonth(),t.getDate()),i=Math.abs(n-r);return Math.round(i/g_)}var y_=class extends d_{fromGregorian(e){let t=1,n=0,r=1300,i=v_(e,f_);if(e.getTime()-f_.getTime()>=0&&e.getTime()-p_.getTime()<=0){let e=1300;for(let a=0;a<__.length;a++,e++)for(let o=0;o<12;o++){let s=+__[a][o]+29;if(i<=s)return t=i+1,t>s&&(t=1,o++),o>11&&(o=0,e++),n=o,r=e,new Lp(r,n+1,t);i-=s}return null}return super.fromGregorian(e)}toGregorian(e){let t=e.year,n=e.month-1,r=e.day,i=new Date(f_),a=r-1;if(t>=m_&&t<=h_){for(let e=0;e<t-m_;e++)for(let t=0;t<12;t++)a+=+__[e][t]+29;for(let e=0;e<n;e++)a+=+__[t-m_][e]+29;i.setDate(f_.getDate()+a)}else i=super.toGregorian(e);return i}getDaysPerMonth(e,t){return t>=m_&&t<=h_?+__[t-m_][e-1]+29:super.getDaysPerMonth(e,t)}};function b_(e){let t=O_(j_(e.year,e.month,e.day));return t.setHours(6,30,3,200),t}function x_(e){return A_(k_(e.getFullYear(),e.getMonth()+1,e.getDate()))}function S_(e,t){return e.year=+t,e}function C_(e,t){return t=+t,e.year+=Math.floor((t-1)/12),e.month=Math.floor(((t-1)%12+12)%12)+1,e}function w_(e,t){let n=M_(e.month,e.year);if(t<=0)for(;t<=0;)e=C_(e,e.month-1),n=M_(e.month,e.year),t+=n;else if(t>n)for(;t>n;)t-=n,e=C_(e,e.month+1),n=M_(e.month,e.year);return e.day=t,e}function T_(e,t){return e-t*Math.floor(e/t)}function E_(e,t){return Math.trunc(e/t)}function D_(e){let t=[-61,9,38,199,426,686,756,818,1111,1181,1210,1635,2060,2097,2192,2262,2324,2394,2456,3178],n=t.length,r=e+621,i=-14,a=t[0];if(e<a||e>=t[n-1])throw Error(`Invalid Jalali year `+e);let o=0;for(let r=1;r<n;r+=1){let n=t[r];if(o=n-a,e<n)break;i=i+E_(o,33)*8+E_(T_(o,33),4),a=n}let s=e-a;i=i+E_(s,33)*8+E_(T_(s,33)+3,4),T_(o,33)===4&&o-s===4&&(i+=1);let c=E_(r,4)-E_((E_(r,100)+1)*3,4)-150,l=20+i-c;o-s<6&&(s=s-o+E_(o+4,33)*33);let u=T_(T_(s+1,33)-1,4);return u===-1&&(u=4),{leap:u,gy:r,march:l}}function O_(e){let t=4*e+139361631;t=t+E_(E_(4*e+183187720,146097)*3,4)*4-3908;let n=E_(T_(t,1461),4)*5+308,r=E_(T_(n,153),5)+1,i=T_(E_(n,153),12)+1,a=E_(t,1461)-100100+E_(8-i,6);return new Date(a,i-1,r)}function k_(e,t,n){let r=E_((e+E_(t-8,6)+100100)*1461,4)+E_(153*T_(t+9,12)+2,5)+n-34840408;return r=r-E_(E_(e+100100+E_(t-8,6),100)*3,4)+752,r}function A_(e){let t=O_(e).getFullYear(),n=t-621,r=D_(n),i=k_(t,3,r.march),a,o,s;if(s=e-i,s>=0){if(s<=185)return o=1+E_(s,31),a=T_(s,31)+1,new Lp(n,o,a);s-=186}else--n,s+=179,r.leap===1&&(s+=1);return o=7+E_(s,30),a=T_(s,30)+1,new Lp(n,o,a)}function j_(e,t,n){let r=D_(e);return k_(r.gy,3,r.march)+(t-1)*31-E_(t,7)*(t-7)+n-1}function M_(e,t){return e<=6?31:e<=11||D_(t).leap===0?30:29}var N_=class extends Bp{getDaysPerWeek(){return 7}getMonths(){return[1,2,3,4,5,6,7,8,9,10,11,12]}getWeeksPerMonth(){return 6}getNext(e,t=`d`,n=1){switch(e=new Lp(e.year,e.month,e.day),t){case`y`:return e=S_(e,e.year+n),e.month=1,e.day=1,e;case`m`:return e=C_(e,e.month+n),e.day=1,e;case`d`:return w_(e,e.day+n);default:return e}}getPrev(e,t=`d`,n=1){return this.getNext(e,t,-n)}getWeekday(e){let t=b_(e).getDay();return t===0?7:t}getWeekNumber(e,t){t===7&&(t=0);let n=e[(11-t)%7],r=b_(n);r.setDate(r.getDate()+4-(r.getDay()||7));let i=r.getTime(),a=b_(new Lp(n.year,1,1));return Math.floor(Math.round((i-a.getTime())/864e5)/7)+1}getToday(){return x_(new Date)}isValid(e){return e!=null&&Q(e.year)&&Q(e.month)&&Q(e.day)&&!isNaN(b_(e).getTime())}},P_=class e{static get $factory(){return{controllerAs:`$`,controller:e,template:`<ui-view></ui-view>`}}static get $name(){return`docsApp`}},F_=(e,t)=>{e.state(`docs`,{abstract:!0,component:P_.$name}),t.otherwise(`/`)};F_.$inject=[`$stateProvider`,`$urlRouterProvider`];var I_=class{url;$config(e){this.url=e}$get(){return this.url}static get $name(){return`bootstrapUrl`}static get $configName(){return`bootstrapUrlProvider`}};function L_(e){let t=t=>{t.$config(`${e.url}/docs/${e.version}/`)};return t.$inject=[I_.$configName],t}var R_=class{url;$config(e){this.url=e}$get(){return this.url}static get $name(){return`ngBootstrapUrl`}static get $configName(){return`ngBootstrapUrlProvider`}};function z_(e){let t=t=>{t.$config(`${e.url}/#/`)};return t.$inject=[R_.$configName],t}var B_=function(e){return e.light=`light`,e.dark=`dark`,e}({}),V_=class{static $key=`theme_key`;static $value=`theme`},H_=class{static $key=`theme.enum`;static $value=B_};function U_(e){return e in B_}var W_=class{themeStoredKey;theme;constructor(e){this.themeStoredKey=e}getThemeInLocalStorage(){return localStorage.getItem(this.themeStoredKey)}_getPreferredColorScheme(){return matchMedia(`(prefers-color-scheme: dark)`).matches?B_.dark:B_.light}$config(){let e=this.getThemeInLocalStorage();if(!e){this.theme=this._getPreferredColorScheme();return}if(!U_(e))throw Error(`this theme is not valid`);this.theme=e}$get(){return this.theme}static get $name(){return`theme`}static get $inject(){return[V_.$key]}static get $configName(){return`themeProvider`}};function G_(){let e=e=>{e.$config()};return e.$inject=[W_.$configName],e}var K_=function(e){return e.ES_MX=`es_mx`,e.EN_US=`en_us`,e}({}),q_=class{static $key=`language_key`;static $value=`language`};function J_(e){return e.toUpperCase()in K_}var Y_=class{languageKey;_lang;constructor(e){this.languageKey=e}get lang(){return this._lang??K_.EN_US}$config(){let e=this._readFromLocalStorage();if(!e){this._lang=K_.EN_US;return}if(!J_(e)){this._lang=K_.EN_US;return}this._lang=e}$get(){return this._lang}_readFromLocalStorage(){return localStorage.getItem(this.languageKey)}static get $name(){return`language`}static get $configName(){return`languageProvider`}static get $inject(){return[q_.$key]}};function X_(){let e=e=>{e.$config()};return e.$inject=[Y_.$configName],e}var Z_=class{_currentTheme;themeStorageKey;_element=u.default.element(document.documentElement);constructor(e,t){this._currentTheme=e,this.themeStorageKey=t,this._applyTheme(this._currentTheme)}static get $inject(){return[W_.$name,V_.$key]}get activeTheme(){return this._currentTheme}toggle(){this._currentTheme=this._currentTheme===B_.light?B_.dark:B_.light,this._applyTheme(this._currentTheme)}setActive(e){this._applyTheme(e)}_applyTheme(e){this._currentTheme=e,this._element.attr(`data-bs-theme`,this._currentTheme),this.saveInLocalStorage(this._currentTheme)}saveInLocalStorage(e){localStorage.setItem(this.themeStorageKey,e)}static get $name(){return`docs.theme.service`}},Q_=[{id:`guide.introduction.origin`,url:`docs.dashboard.introduction`,fragment:`origin`,translations:{en_us:{title:`Born from a real legacy application`,content:`NgbJS began inside a large AngularJS application that was still essential to the business, but too complex to migrate all at once. The application needed to keep evolving and deliver a modern interface while staying aligned with another product built with modern Angular and ng-bootstrap. A feature created for the modern application, such as a payment flow, also needed an AngularJS counterpart. In the modern codebase, ng-bootstrap provided the components and their behavior. In the legacy application, the same work meant copying markup, adapting it to the older stack, and rebuilding interactions by hand-often only partially. NgbJS grew out of that repeated translation work: bring the ng-bootstrap experience to AngularJS and reduce the distance between both applications. One component model Build familiar experiences across AngularJS and Angular without reinventing every component for the legacy application. Modern Angular + ng-bootstrap Legacy AngularJS + NgbJS`},es_mx:{title:`Nacido de una aplicacion legacy real`,content:`NgbJS comenzo dentro de una gran aplicacion AngularJS que seguia siendo esencial para el negocio, pero era demasiado compleja para migrarla de una sola vez. La aplicacion necesitaba continuar evolucionando y ofrecer una interfaz moderna mientras se mantenia alineada con otro producto construido con Angular moderno y ng-bootstrap. Una funcionalidad creada para la aplicacion moderna, como un flujo de pagos, tambien necesitaba una version equivalente en AngularJS. En el codigo moderno, ng-bootstrap proporcionaba los componentes y su comportamiento. En la aplicacion legacy, el mismo trabajo implicaba copiar el marcado, adaptarlo a la tecnologia anterior y reconstruir las interacciones manualmente, muchas veces solo de forma parcial. NgbJS surgio de ese trabajo repetido de traduccion: llevar la experiencia de ng-bootstrap a AngularJS y reducir la distancia entre ambas aplicaciones. Un solo modelo de componentes. Construye experiencias familiares en AngularJS y Angular sin reinventar cada componente para la aplicacion legacy.`}}},{id:`guide.introduction.what-is-ngbjs`,url:`docs.dashboard.introduction`,fragment:`what-is-ngbjs`,translations:{en_us:{title:`What is NgbJS?`,content:`NgbJS is a port of ng-bootstrap for AngularJS, designed to preserve its API and behavior as closely as the differences between the two frameworks allow. It is more than a collection of visually similar components. NgbJS aims to preserve the same mental model: developers who know ng-bootstrap should recognize its components, services, options, and interaction patterns, then move between AngularJS and Angular with fewer changes. Features that initially appeared difficult to reproduce were not simply discarded. Supporting them also led to complementary infrastructure such as ngjs-core , which brings capabilities required by NgbJS into the AngularJS environment.`},es_mx:{title:`Que es NgbJS?`,content:`NgbJS es una adaptacion de ng-bootstrap para AngularJS, disenada para conservar su API y comportamiento tan fielmente como lo permiten las diferencias entre ambos frameworks. Es mas que una coleccion de componentes visualmente similares. NgbJS busca conservar el mismo modelo mental: los desarrolladores que conocen ng-bootstrap deberian reconocer sus componentes, servicios, opciones y patrones de interaccion, y asi moverse entre AngularJS y Angular con menos cambios. Las funcionalidades que al principio parecian dificiles de reproducir no fueron simplemente descartadas. Darles soporte tambien llevo a crear infraestructura complementaria como ngjs-core, que incorpora al entorno de AngularJS las capacidades que NgbJS necesita.`}}},{id:`guide.introduction.who-is-it-for`,url:`docs.dashboard.introduction`,fragment:`who-is-it-for`,translations:{en_us:{title:`Who is it for?`,content:`NgbJS is intended for teams whose AngularJS applications still need to grow, even when a full migration is not immediately possible. Long-lived applications Critical AngularJS systems that will remain in production and continue receiving features for years. Mixed technology stacks Products where AngularJS and modern Angular applications must provide consistent interfaces and behavior. Gradual migrations Teams preparing for a future migration while working within current time, budget, or architectural constraints. ng-bootstrap developers Developers who want familiar Bootstrap components and APIs when moving between modern Angular and AngularJS codebases. NgbJS is not a reason to choose AngularJS for a new application. It exists to help established AngularJS systems modernize and move forward.`},es_mx:{title:`Para quien es?`,content:`NgbJS esta pensado para equipos cuyas aplicaciones AngularJS todavia necesitan crecer, incluso cuando una migracion completa no es posible de inmediato. Aplicaciones de larga duracion: sistemas criticos en AngularJS que permaneceran en produccion y seguiran recibiendo funcionalidades durante anos. Tecnologias combinadas: productos donde aplicaciones AngularJS y Angular moderno deben ofrecer interfaces y comportamientos consistentes. Migraciones graduales: equipos que se preparan para una migracion futura mientras trabajan con restricciones actuales de tiempo, presupuesto o arquitectura. Desarrolladores de ng-bootstrap: desarrolladores que quieren componentes y APIs de Bootstrap familiares al moverse entre codigo Angular moderno y AngularJS. NgbJS no es una razon para elegir AngularJS en una aplicacion nueva. Existe para ayudar a los sistemas AngularJS establecidos a modernizarse y seguir avanzando.`}}},{id:`guide.introduction.project-status`,url:`docs.dashboard.introduction`,fragment:`project-status`,translations:{en_us:{title:`Project status`,content:`Beta NgbJS is in beta because some components are still under review and may contain known bugs or edge cases that are not yet fully covered. Its syntax and intended behavior follow ng-bootstrap and are not expected to change as part of this review; ongoing work focuses on validation, fixes, and bringing each implementation to full parity.`},es_mx:{title:`Estado del proyecto`,content:`Beta. NgbJS esta en beta porque algunos componentes todavia estan en revision y pueden contener errores conocidos o casos limite que aun no estan completamente cubiertos. Su sintaxis y comportamiento esperado siguen a ng-bootstrap y no se espera que cambien como parte de esta revision; el trabajo actual se concentra en la validacion, las correcciones y en llevar cada implementacion a una paridad completa.`}}},{id:`guide.introduction.installation`,url:`docs.dashboard.introduction`,fragment:`installation`,translations:{en_us:{title:`Installation`,content:`Add NgbJS to your project with your preferred package manager.`},es_mx:{title:`Instalacion`,content:`Agrega NgbJS a tu proyecto con el administrador de paquetes que prefieras. Elige npm, pnpm, yarn o bun y ejecuta el comando de instalacion correspondiente.`}}},{id:`guide.introduction.acknowledgements`,url:`docs.dashboard.introduction`,fragment:`acknowledgements`,translations:{en_us:{title:`Built on the work of ng-bootstrap`,content:`NgbJS exists thanks to the outstanding work of the ng-bootstrap team and community . Its API, architecture, components, and documentation have been the primary reference for this port. Portions of this documentation are adapted from the official ng-bootstrap documentation , licensed under CC BY 3.0 . Changes were made to reflect AngularJS, the NgbJS API, and this project's examples. Parts of NgbJS are derived from and adapted from the ng-bootstrap source code, used under the terms of its MIT License . NgbJS is an independent project and is not part of the official ng-bootstrap project. It is built with deep respect and gratitude for the people who created and continue to maintain the original library.`},es_mx:{title:`Construido sobre el trabajo de ng-bootstrap`,content:`NgbJS existe gracias al extraordinario trabajo del equipo y la comunidad de ng-bootstrap. Su API, arquitectura, componentes y documentacion han sido la referencia principal para esta adaptacion. Algunas partes de esta documentacion estan adaptadas de la documentacion oficial de ng-bootstrap, publicada bajo la licencia CC BY 3.0. Se realizaron cambios para reflejar AngularJS, la API de NgbJS y los ejemplos de este proyecto. Algunas partes de NgbJS derivan y estan adaptadas del codigo fuente de ng-bootstrap, utilizado bajo los terminos de su licencia MIT. NgbJS es un proyecto independiente y no forma parte del proyecto oficial ng-bootstrap. Esta construido con profundo respeto y gratitud hacia las personas que crearon y continuan manteniendo la biblioteca original.`}}},{id:`guide.philosophy.parity-is-priority`,url:`docs.dashboard.philosophy`,fragment:`parity-is-priority`,translations:{en_us:{title:`Parity is Priority.`,content:`The guiding principle The closer NgbJS stays to ng-bootstrap, the less developers need to relearn, rewrite, or reinterpret when moving between AngularJS and Angular.`},es_mx:{title:`La paridad es la prioridad.`,content:`Cuanto mas se acerque NgbJS a ng-bootstrap, menos tendran que reaprender, reescribir o reinterpretar los desarrolladores al moverse entre AngularJS y Angular.`}}},{id:`guide.philosophy.what-parity-means`,url:`docs.dashboard.philosophy`,fragment:`what-parity-means`,translations:{en_us:{title:`What parity means`,content:`Parity is not limited to matching how a component looks. It is pursued across the entire developer experience. API parity Components, services, configuration options, and public names should remain recognizable to developers coming from ng-bootstrap. Syntax parity Templates should express the same intent with as little framework-specific translation as possible. Behavioral parity Interaction, state, defaults, and edge cases should behave consistently across both libraries. Conceptual parity The same mental model should apply, so knowledge gained in one codebase remains useful in the other.`},es_mx:{title:`Que significa la paridad`,content:`La paridad no se limita a igualar la apariencia de un componente. Incluye la API, la sintaxis, el comportamiento y el modelo conceptual para que la experiencia de desarrollo sea consistente.`}}},{id:`guide.philosophy.familiar-by-design`,url:`docs.dashboard.philosophy`,fragment:`familiar-by-design`,translations:{en_us:{title:`Familiar by design`,content:`NgbJS does not introduce a different API simply because it runs on AngularJS. When ng-bootstrap already provides a well-understood solution, reproducing that solution is more valuable than inventing a new abstraction. Familiarity reduces context switching for teams maintaining both generations of an application. Documentation, examples, and previous experience become transferable instead of being tied to only one framework. A simple decision rule If ng-bootstrap users already know how a component should work, NgbJS should make that knowledge useful.`},es_mx:{title:`Familiar por diseno`,content:`NgbJS no introduce una API diferente solo porque funciona sobre AngularJS. Reproducir las soluciones conocidas de ng-bootstrap reduce el cambio de contexto y permite reutilizar documentacion, ejemplos y experiencia.`}}},{id:`guide.philosophy.a-migration-bridge`,url:`docs.dashboard.philosophy`,fragment:`a-migration-bridge`,translations:{en_us:{title:`A bridge between codebases`,content:`Parity makes day-to-day development easier now and makes a future migration more predictable. Legacy AngularJS Existing application and business logic Bridge NgbJS Familiar components, APIs, and behavior Modern Angular ng-bootstrap and the target architecture`},es_mx:{title:`Un puente entre bases de codigo`,content:`La paridad facilita el desarrollo cotidiano y hace mas predecible una migracion futura. AngularJS representa la aplicacion existente, NgbJS aporta componentes y APIs familiares, y Angular con ng-bootstrap representa la arquitectura objetivo.`}}},{id:`guide.philosophy.when-parity-is-hard`,url:`docs.dashboard.philosophy`,fragment:`when-parity-is-hard`,translations:{en_us:{title:`When exact parity is difficult`,content:`AngularJS and Angular have different component models, template syntax, and runtime capabilities. Small differences are sometimes unavoidable, but they should be deliberate, limited, and easy to understand. A feature is not rejected only because AngularJS cannot reproduce it directly. NgbJS first looks for a compatible implementation that preserves the original behavior. Some of those efforts required supporting libraries such as ngjs-core to provide capabilities that AngularJS did not have on its own. Some parts of ng-bootstrap could be reused directly, while others had to be adapted or reimplemented for AngularJS. In every case, the goal is to preserve the closest practical parity in API, intent, and behavior.`},es_mx:{title:`Cuando la paridad exacta es dificil`,content:`AngularJS y Angular tienen modelos de componentes, sintaxis de plantillas y capacidades de ejecucion diferentes. Las diferencias inevitables deben ser deliberadas, limitadas y faciles de comprender. NgbJS busca la implementacion compatible mas cercana antes de descartar una funcionalidad.`}}},{id:`guide.why-ngbjs.the-legacy-reality`,url:`docs.dashboard.whyNgbJs`,fragment:`the-legacy-reality`,translations:{en_us:{title:`The legacy reality`,content:`A full migration is not always the next available step. Large AngularJS applications often contain years of business rules, integrations, and operational knowledge. Replacing them can demand more time, budget, and coordination than a team currently has, even while users continue to expect new features and current interfaces. Without a modern component library, teams must either stop improving the interface or rebuild common interactions themselves. Neither option makes the legacy application easier to maintain or eventually migrate.`},es_mx:{title:`La realidad de los sistemas legacy`,content:`Una migracion completa no siempre es el siguiente paso disponible. Las aplicaciones AngularJS grandes contienen anos de reglas de negocio, integraciones y conocimiento operativo, mientras sus usuarios continuan esperando funciones nuevas e interfaces actuales.`}}},{id:`guide.why-ngbjs.before-and-after`,url:`docs.dashboard.whyNgbJs`,fragment:`before-and-after`,translations:{en_us:{title:`From repeated adaptation to a shared model`,content:`Without NgbJS Copy the modern component markup. Translate it to AngularJS syntax. Rebuild interactions and state by hand. Accept incomplete or inconsistent behavior. Maintain two unrelated implementations over time. With NgbJS Start from a familiar ng-bootstrap API. Reuse the same component model and terminology. Rely on packaged, documented behavior. Reduce differences between both applications. Make later migration work more predictable.`},es_mx:{title:`De adaptaciones repetidas a un modelo compartido`,content:`Sin NgbJS, los equipos copian marcado, lo traducen a AngularJS y reconstruyen manualmente las interacciones. Con NgbJS pueden partir de una API conocida de ng-bootstrap, reutilizar el mismo modelo y reducir las diferencias entre aplicaciones.`}}},{id:`guide.why-ngbjs.what-it-unlocks`,url:`docs.dashboard.whyNgbJs`,fragment:`what-it-unlocks`,translations:{en_us:{title:`What NgbJS unlocks`,content:`The value is not only in the components themselves, but in the consistency they create. Modern interfaces Give active AngularJS products current Bootstrap components and interactions. A familiar API Let ng-bootstrap experience remain useful when developers work in AngularJS. Less divergence Keep parallel applications closer in terminology, behavior, and implementation. Less custom maintenance Replace one-off, partially implemented components with reusable library behavior. Transferable knowledge Share concepts, documentation patterns, and conventions across framework versions. A clearer migration path Reduce the conceptual changes required when a component eventually moves to Angular.`},es_mx:{title:`Lo que NgbJS hace posible`,content:`NgbJS aporta interfaces modernas, una API familiar, menos divergencia entre aplicaciones, menos mantenimiento personalizado, conocimiento transferible y una ruta de migracion mas clara.`}}},{id:`guide.why-ngbjs.when-to-use-ngbjs`,url:`docs.dashboard.whyNgbJs`,fragment:`when-to-use-ngbjs`,translations:{en_us:{title:`When should you use NgbJS?`,content:`A strong fit Your AngularJS application will remain active. A complete migration is not currently realistic. Modern and legacy applications must stay consistent. Your team already knows ng-bootstrap. You want to make a gradual migration less disruptive. Probably not the right fit You are starting a new application. You can use modern Angular and ng-bootstrap directly. Your product does not use Bootstrap. Your legacy application is already close to retirement.`},es_mx:{title:`Cuando deberias usar NgbJS?`,content:`NgbJS encaja cuando una aplicacion AngularJS seguira activa, una migracion completa aun no es realista y el equipo necesita consistencia con Angular moderno. No es la opcion indicada para aplicaciones nuevas que pueden usar Angular y ng-bootstrap directamente.`}}},{id:`guide.why-ngbjs.a-bridge-not-a-destination`,url:`docs.dashboard.whyNgbJs`,fragment:`a-bridge-not-a-destination`,translations:{en_us:{title:`A bridge, not a destination`,content:`NgbJS does not make AngularJS the right choice for new products, and it does not replace a migration strategy. It helps valuable existing applications move forward while that strategy becomes possible. Explore the components`},es_mx:{title:`Un puente, no un destino`,content:`NgbJS no convierte a AngularJS en la eleccion correcta para productos nuevos ni sustituye una estrategia de migracion. Ayuda a que las aplicaciones existentes sigan avanzando mientras esa estrategia se vuelve posible.`}}},{id:`components.accordion.api.ngb-accordion`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion`,translations:{en_us:{title:`NgbAccordion`,content:`Directive Root directive that coordinates all accordion items. It applies the Bootstrap accordion structure, controls whether multiple items may remain open and exposes methods for toggling items by id. Markup <div ngb-accordion> Inputs Input Binding Type Default Description animation <? boolean $config.animation Enables the collapse transition. close-others <? boolean false Closes the currently expanded item before another one opens. destroy-on-hide <? boolean true Removes a collapsed item's body view from the DOM. Outputs Output Binding Payload Emitted when show &? $event: string An item starts expanding; $event is its id. shown &? $event: string An item finishes expanding. hide &? $event: string An item starts collapsing. hidden &? $event: string An item finishes collapsing.`},es_mx:{title:`NgbAccordion`,content:`Referencia del directiva NgbAccordion. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordion, <div ngb-accordion>, animation, <?, boolean, $config.animation, close-others, false, destroy-on-hide, true, show, &?, $event: string, $event, shown, hide, hidden.`}}},{id:`components.accordion.api.ngb-accordion-item`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-item`,translations:{en_us:{title:`NgbAccordionItem`,content:`Directive Represents one collapsible item. It owns the item id and collapsed state, applies per-item destroyOnHide behavior and emits the item lifecycle events. Markup <div ngb-accordion-item="'details'"> Requires An ancestor ngb-accordion ; optionally reads ng-disabled . Inputs Input Binding Type Default Description ngb-accordion-item <? string Generated id Expression that identifies the item in the parent accordion. collapsed <? boolean true Controls the initial and current collapsed state. destroy-on-hide <? boolean Inherited Overrides the parent accordion setting for this item. ng-disabled ngDisabled boolean false Prevents the item's trigger from changing its state. Outputs Output Binding Payload Emitted when show &? None This item starts expanding. shown &? None This item finishes expanding. hide &? None This item starts collapsing. hidden &? None This item finishes collapsing.`},es_mx:{title:`NgbAccordionItem`,content:`Referencia del directiva NgbAccordionItem. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionItem, destroyOnHide, <div ngb-accordion-item="'details'">, ngb-accordion, ng-disabled, ngb-accordion-item, <?, string, collapsed, boolean, true, destroy-on-hide, ngDisabled, false, show, &?, shown, hide, hidden.`}}},{id:`components.accordion.api.ngb-accordion-header`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-header`,translations:{en_us:{title:`NgbAccordionHeader`,content:`Directive Marks an item's heading container. It adds the Bootstrap header class and heading semantics, and mirrors the collapsed state without handling the toggle action itself. Markup <h2 ngb-accordion-header> Requires An ancestor ngb-accordion-item . No public inputs or outputs.`},es_mx:{title:`NgbAccordionHeader`,content:`Referencia del directiva NgbAccordionHeader. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionHeader, <h2 ngb-accordion-header>, ngb-accordion-item.`}}},{id:`components.accordion.api.ngb-accordion-button`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-button`,translations:{en_us:{title:`NgbAccordionButton`,content:`Directive Provides the standard Bootstrap accordion trigger. It configures the button type, classes and ARIA state, respects ng-disabled and toggles its containing item when clicked. Markup <button ngb-accordion-button> Requires Ancestor controllers for ngb-accordion-item and ngb-accordion . No public inputs or outputs.`},es_mx:{title:`NgbAccordionButton`,content:`Referencia del directiva NgbAccordionButton. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionButton, ng-disabled, <button ngb-accordion-button>, ngb-accordion-item, ngb-accordion.`}}},{id:`components.accordion.api.ngb-accordion-toggle`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-toggle`,translations:{en_us:{title:`NgbAccordionToggle`,content:`Directive Adds toggle behavior and accessible state to custom header markup. use it when the trigger should not receive the standard accordion-button presentation supplied by NgbAccordionButton . Markup <span ngb-accordion-toggle> Requires Ancestor controllers for ngb-accordion-item and ngb-accordion . No public inputs or outputs.`},es_mx:{title:`NgbAccordionToggle`,content:`Referencia del directiva NgbAccordionToggle. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionToggle, accordion-button, NgbAccordionButton, <span ngb-accordion-toggle>, ngb-accordion-item, ngb-accordion.`}}},{id:`components.accordion.api.ngb-accordion-body`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-body`,translations:{en_us:{title:`NgbAccordionBody`,content:`Directive Hosts the item's body template. Content is supplied through a child ng-template and its embedded view is created or destroyed according to the item state and destroyOnHide . Markup <div ngb-accordion-body> Requires An ancestor ngb-accordion-item . No public inputs or outputs.`},es_mx:{title:`NgbAccordionBody`,content:`Referencia del directiva NgbAccordionBody. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionBody, ng-template, destroyOnHide, <div ngb-accordion-body>, ngb-accordion-item.`}}},{id:`components.accordion.api.ngb-accordion-config`,url:`docs.dashboard.accordion.api`,fragment:`ngb-accordion-config`,translations:{en_us:{title:`NgbAccordionConfig`,content:`Service Provides application-wide default values for accordions. Configure it once during application setup; values supplied directly to an ngb-accordion instance take precedence. Properties Property Type Default Description animation boolean $config.animation Sets the default animation behavior for every accordion. closeOthers boolean false Sets whether opening an item closes the previously expanded item. destroyOnHide boolean true Sets whether hidden body views are removed from the DOM.`},es_mx:{title:`NgbAccordionConfig`,content:`Referencia del servicio NgbAccordionConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAccordionConfig, ngb-accordion, animation, boolean, $config.animation, closeOthers, false, destroyOnHide, true.`}}},{id:`components.alert.api.ngb-alert`,url:`docs.dashboard.alert.api`,fragment:`ngb-alert`,translations:{en_us:{title:`NgbAlert`,content:`Component Displays contextual feedback and optionally provides a dismiss action with an animated close transition. Markup <ngb-alert> Inputs Input Binding Type Default Description animation <? boolean $config.animation Enables the close transition. dismissible <? boolean true Shows the dismiss button. type @? string "warning" Sets the Bootstrap contextual type. Outputs Output Binding Payload Emitted when closed &? None The close transition finishes.`},es_mx:{title:`NgbAlert`,content:`Referencia del componente NgbAlert. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAlert, <ngb-alert>, animation, <?, boolean, $config.animation, dismissible, true, type, @?, string, "warning", closed, &?.`}}},{id:`components.alert.api.ngb-alert-config`,url:`docs.dashboard.alert.api`,fragment:`ngb-alert-config`,translations:{en_us:{title:`NgbAlertConfig`,content:`Service Provides application-wide defaults for alert instances. Properties Property Type Default Description animation boolean $config.animation Default close animation state. dismissible boolean true Default dismissible state. type string "warning" Default contextual type.`},es_mx:{title:`NgbAlertConfig`,content:`Referencia del servicio NgbAlertConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbAlertConfig, animation, boolean, $config.animation, dismissible, true, type, string, "warning".`}}},{id:`components.carousel.api.ngb-carousel`,url:`docs.dashboard.carousel.api`,fragment:`ngb-carousel`,translations:{en_us:{title:`NgbCarousel`,content:`Component Coordinates slides, navigation, cycling, pause behavior and transitions. Markup <ngb-carousel> Inputs Input Binding Type Default Description active-id @? string First slide Identifies the active slide. animation <? boolean $config.animation Enables slide transitions. interval <? number 5000 Delay between automatic slides in milliseconds; 0 disables cycling. keyboard <? boolean true Enables keyboard navigation. pause-on-focus <? boolean true Pauses cycling while focused. pause-on-hover <? boolean true Pauses cycling while hovered. show-navigation-arrows <? boolean true Displays previous and next controls. show-navigation-indicators <? boolean true Displays slide indicators. wrap <? boolean true Wraps navigation at the first and last slide. Outputs Output Binding Payload Emitted when slide &? $event: NgbSlideEvent A slide transition starts. slid &? $event: NgbSlideEvent A slide transition finishes.`},es_mx:{title:`NgbCarousel`,content:`Referencia del componente NgbCarousel. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCarousel, <ngb-carousel>, active-id, @?, string, animation, <?, boolean, $config.animation, interval, number, 5000, 0, keyboard, true, pause-on-focus, pause-on-hover, show-navigation-arrows, show-navigation-indicators, wrap, slide, &?, $event: NgbSlideEvent, slid.`}}},{id:`components.carousel.api.ngb-slide`,url:`docs.dashboard.carousel.api`,fragment:`ngb-slide`,translations:{en_us:{title:`NgbSlide`,content:`Directive Marks projected content as a carousel slide. Markup <ng-template ngb-slide> Requires An ancestor ngb-carousel . Bindings Name Binding Type Default Description id @? string Generated id Identifies the slide. slid &? $event: NgbSingleSlideEvent - Runs when this slide completes a transition.`},es_mx:{title:`NgbSlide`,content:`Referencia del directiva NgbSlide. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbSlide, <ng-template ngb-slide>, ngb-carousel, id, @?, string, slid, &?, $event: NgbSingleSlideEvent.`}}},{id:`components.carousel.api.ngb-carousel-config`,url:`docs.dashboard.carousel.api`,fragment:`ngb-carousel-config`,translations:{en_us:{title:`NgbCarouselConfig`,content:`Service Provides application-wide carousel defaults. Properties Property Type Default animation boolean $config.animation interval number 5000 wrap , keyboard , pauseOnFocus , pauseOnHover boolean true showNavigationArrows , showNavigationIndicators boolean true`},es_mx:{title:`NgbCarouselConfig`,content:`Referencia del servicio NgbCarouselConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCarouselConfig, animation, boolean, $config.animation, interval, number, 5000, wrap, keyboard, pauseOnFocus, pauseOnHover, true, showNavigationArrows, showNavigationIndicators.`}}},{id:`components.collapse.api.ngb-collapse`,url:`docs.dashboard.collapse.api`,fragment:`ngb-collapse`,translations:{en_us:{title:`NgbCollapse`,content:`Directive Controls the visible state of an element and runs vertical or horizontal Bootstrap collapse transitions. Markup <div ngb-collapse="isCollapsed"> Inputs Input Binding Type Default Description ngb-collapse < boolean Required Sets whether the host is collapsed. animation <? boolean $config.animation Enables transition animation. horizontal <? boolean false uses width instead of height for the transition. Outputs Output Binding Payload Emitted when ngb-collapse-change &? $event: boolean toggle() changes the collapsed state. shown &? None The expand transition finishes. ngb-hidden &? None The collapse transition finishes.`},es_mx:{title:`NgbCollapse`,content:`Referencia del directiva NgbCollapse. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCollapse, <div ngb-collapse="isCollapsed">, ngb-collapse, <, boolean, animation, <?, $config.animation, horizontal, false, ngb-collapse-change, &?, $event: boolean, toggle(), shown, ngb-hidden.`}}},{id:`components.collapse.api.ngb-collapse-config`,url:`docs.dashboard.collapse.api`,fragment:`ngb-collapse-config`,translations:{en_us:{title:`NgbCollapseConfig`,content:`Service Provides application-wide defaults for collapse directives. Properties Property Type Default Description animation boolean $config.animation Default transition animation state. horizontal boolean false Default transition orientation.`},es_mx:{title:`NgbCollapseConfig`,content:`Referencia del servicio NgbCollapseConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCollapseConfig, animation, boolean, $config.animation, horizontal, false.`}}},{id:`components.datepicker.api.ngb-datepicker`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-datepicker`,translations:{en_us:{title:`NgbDatepicker`,content:`Component Renders an inline calendar and integrates its selected date with AngularJS forms. Markup <ngb-datepicker ng-model="date"> Integration Optionally reads ng-model and ng-disabled . Inputs Input Binding Default Description calendar <? NgbCalendarGregorian Calendar system used for date arithmetic. date-adapter <? NgbDateStructAdapter Converts between the model and NgbDateStruct . i18n <? NgbDatepickerI18nDefault Supplies localized labels. display-months <? 1 Number of visible months. first-day-of-week <? 1 First weekday, from 1 (Monday) to 7 (Sunday). min-date , max-date <? undefined Selectable date boundaries. start-date <? undefined Initial month displayed when no model is selected. navigation @? "select" Accepts "select" , "arrows" or "none" . outside-days @? "visible" Controls days outside the current month. weekdays <? "narrow" Controls weekday labels and width. show-week-numbers <? false Displays week numbers. mark-disabled <? undefined Function that disables individual dates. day-template , footer-template , content-template <? Built-in templates Customize calendar rendering. day-template-data <? undefined Supplies custom data to day templates. Outputs Output Payload Emitted when date-select $event: NgbDate A date is selected. navigate $event: NgbDatepickerNavigateEvent The visible month changes.`},es_mx:{title:`NgbDatepicker`,content:`Referencia del componente NgbDatepicker. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDatepicker, <ngb-datepicker ng-model="date">, ng-model, ng-disabled, calendar, <?, NgbCalendarGregorian, date-adapter, NgbDateStructAdapter, NgbDateStruct, i18n, NgbDatepickerI18nDefault, display-months, 1, first-day-of-week, min-date, max-date, undefined, start-date, navigation, @?, "select", "arrows", "none", outside-days, "visible", weekdays, "narrow", show-week-numbers, false, mark-disabled, day-template, footer-template, content-template, day-template-data, date-select, $event: NgbDate, navigate, $event: NgbDatepickerNavigateEvent.`}}},{id:`components.datepicker.api.ngb-input-datepicker`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-input-datepicker`,translations:{en_us:{title:`NgbInputDatepicker`,content:`Directive Adds a popup calendar to an input while preserving AngularJS model parsing and validation. Markup <input ng-model="date" ngb-datepicker> Requires ng-model ; optionally reads ng-disabled . Accepts the calendar inputs above plus the popup-specific inputs below. Popup inputs Input Binding Default Description auto-close <? true Controls which selections or outside clicks close the popup. container @? null Accepts "body" to move the popup. placement <? $config.placement Preferred Popper placements. popper-options <? $config.popperOptions Transforms Popper options. position-target <? Input element Overrides the positioning target. restore-focus <? true Restores focus after closing. datepicker-class @? - Adds a class to the popup calendar. parser-formatter <? NgbDateISOParserFormatter Parses and formats the input text. disabled <? false Disables input behavior. Additional output Output Payload Emitted when closed None The popup calendar closes.`},es_mx:{title:`NgbInputDatepicker`,content:`Referencia del directiva NgbInputDatepicker. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbInputDatepicker, <input ng-model="date" ngb-datepicker>, ng-model, ng-disabled, auto-close, <?, true, container, @?, null, "body", placement, $config.placement, popper-options, $config.popperOptions, position-target, restore-focus, datepicker-class, parser-formatter, NgbDateISOParserFormatter, disabled, false, closed.`}}},{id:`components.datepicker.api.ngb-datepicker-config`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-datepicker-config`,translations:{en_us:{title:`NgbDatepickerConfig`,content:`Service Provides defaults for inline and popup calendars. Properties Property Default displayMonths , firstDayOfWeek 1 navigation "select" outsideDays "visible" weekdays "narrow" showWeekNumbers false minDate , maxDate , startDate , templates and callbacks undefined`},es_mx:{title:`NgbDatepickerConfig`,content:`Referencia del servicio NgbDatepickerConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDatepickerConfig, displayMonths, firstDayOfWeek, 1, navigation, "select", outsideDays, "visible", weekdays, "narrow", showWeekNumbers, false, minDate, maxDate, startDate, undefined.`}}},{id:`components.datepicker.api.ngb-input-datepicker-config`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-input-datepicker-config`,translations:{en_us:{title:`NgbInputDatepickerConfig`,content:`Service Extends NgbDatepickerConfig with popup defaults. Additional properties Property Default autoClose true container null placement ["bottom-start", "bottom-end", "top-start", "top-end"] popperOptions Identity transform restoreFocus true positionTarget undefined`},es_mx:{title:`NgbInputDatepickerConfig`,content:`Referencia del servicio NgbInputDatepickerConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbInputDatepickerConfig, NgbDatepickerConfig, autoClose, true, container, null, placement, ["bottom-start", "bottom-end", "top-start", "top-end"], popperOptions, restoreFocus, positionTarget, undefined.`}}},{id:`components.datepicker.api.ngb-datepicker-extension-contracts`,url:`docs.dashboard.datepicker.api`,fragment:`ngb-datepicker-extension-contracts`,translations:{en_us:{title:`Calendar and formatting contracts`,content:`Interfaces Pass custom implementations through the corresponding datepicker inputs. Contract Purpose Core methods NgbCalendar Date arithmetic and calendar rules. getNext() , getPrev() , getToday() , isValid() NgbDateAdapter<D> Application model conversion. fromModel() , toModel() NgbDateParserFormatter Popup input text conversion. parse() , format() NgbDatepickerI18n Localized month, weekday, day and ARIA labels. getWeekdayLabel() , getMonthFullName() , getDayAriaLabel()`},es_mx:{title:`Calendar and formatting contracts`,content:`Referencia del interfaces Calendar and formatting contracts. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbCalendar, getNext(), getPrev(), getToday(), isValid(), NgbDateAdapter<D>, fromModel(), toModel(), NgbDateParserFormatter, parse(), format(), NgbDatepickerI18n, getWeekdayLabel(), getMonthFullName(), getDayAriaLabel().`}}},{id:`components.datepicker.calendars.calendar-hebrew`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-hebrew`,translations:{en_us:{title:`Hebrew`,content:`NgbCalendarHebrew with NgbDatepickerI18nHebrew , including Hebrew month names and numerals.`},es_mx:{title:`Hebreo`,content:`NgbCalendarHebrew junto con NgbDatepickerI18nHebrew incluye nombres de meses y numerales hebreos.`}}},{id:`components.datepicker.calendars.calendar-jalali`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-jalali`,translations:{en_us:{title:`Jalali`,content:`NgbCalendarPersian performs Persian calendar calculations; the labels are supplied independently through NgbDatepickerI18n .`},es_mx:{title:`Jalali`,content:`NgbCalendarPersian realiza los calculos del calendario persa; NgbDatepickerI18n proporciona las etiquetas de forma independiente.`}}},{id:`components.datepicker.calendars.calendar-islamic-civil`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-islamic-civil`,translations:{en_us:{title:`Islamic Civil`,content:`NgbCalendarIslamicCivil uses the tabular civil Hijri calculation.`},es_mx:{title:`Islamico civil`,content:`NgbCalendarIslamicCivil utiliza el calculo tabular del calendario civil Hijri.`}}},{id:`components.datepicker.calendars.calendar-islamic-umalqura`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-islamic-umalqura`,translations:{en_us:{title:`Islamic Umm al-Qura`,content:`NgbCalendarIslamicUmalqura uses the Umm al-Qura calendar data while sharing the Hijri presentation layer.`},es_mx:{title:`Islamico Umm al-Qura`,content:`NgbCalendarIslamicUmalqura utiliza los datos del calendario Umm al-Qura y comparte la presentacion Hijri.`}}},{id:`components.datepicker.calendars.calendar-buddhist`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-buddhist`,translations:{en_us:{title:`Buddhist`,content:`NgbCalendarBuddhist keeps Gregorian month rules and presents years in the Buddhist era.`},es_mx:{title:`Budista`,content:`NgbCalendarBuddhist conserva las reglas de los meses gregorianos y presenta los anos segun la era budista.`}}},{id:`components.datepicker.calendars.calendar-ethiopian`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-ethiopian`,translations:{en_us:{title:`Ethiopian`,content:`NgbCalendarEthiopian and NgbDatepickerI18nAmharic include the thirteenth Ethiopian month.`},es_mx:{title:`Etiope`,content:`NgbCalendarEthiopian y NgbDatepickerI18nAmharic incluyen el decimotercer mes etiope.`}}},{id:`components.datepicker.calendars.calendar-intergalactic`,url:`docs.dashboard.datepicker.calendars`,fragment:`calendar-intergalactic`,translations:{en_us:{title:`Intergalactic Standard (just for fun)`,content:`A custom NgbDatepickerI18n translates Gregorian labels into the Standard Galactic Alphabet. The calendar math stays Gregorian-space-time remains someone else's problem.`},es_mx:{title:`Estandar intergalactico (solo por diversion)`,content:`Una implementacion personalizada de NgbDatepickerI18n traduce las etiquetas gregorianas al alfabeto galactico estandar mientras conserva los calculos gregorianos.`}}},{id:`components.dropdown.api.ngb-dropdown`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown`,translations:{en_us:{title:`NgbDropdown`,content:`Directive Root controller for open state, positioning, focus and auto-close behavior. Markup <div ngb-dropdown> Inputs Input Binding Type Default Description auto-close <? boolean | "inside" | "outside" true Controls which interactions close the menu. animation <? boolean undefined Exposed by the directive factory; it currently has no runtime effect. container @? null | "body" null Moves the menu to the document body. display <? "dynamic" | "static" Contextual Enables or bypasses Popper positioning. dropdown-class <? string - Adds a class to the dropdown container. open <? boolean false Sets the open state. placement <? Placement[] $config.placement Preferred Popper placements. popper-options <? function $config.popperOptions Transforms Popper options. Outputs Output Binding Payload Emitted when open-change &? $event: boolean The dropdown opens or closes.`},es_mx:{title:`NgbDropdown`,content:`Referencia del directiva NgbDropdown. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdown, <div ngb-dropdown>, auto-close, <?, boolean | "inside" | "outside", true, animation, boolean, undefined, container, @?, null | "body", null, display, "dynamic" | "static", dropdown-class, string, open, false, placement, Placement[], $config.placement, popper-options, function, $config.popperOptions, open-change, &?, $event: boolean.`}}},{id:`components.dropdown.api.ngb-dropdown-anchor`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-anchor`,translations:{en_us:{title:`NgbDropdownAnchor`,content:`Directive Marks the element used for positioning without adding click behavior. Markup <button ngb-dropdown-anchor> Requires An ancestor ngb-dropdown . No public inputs or outputs.`},es_mx:{title:`NgbDropdownAnchor`,content:`Referencia del directiva NgbDropdownAnchor. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownAnchor, <button ngb-dropdown-anchor>, ngb-dropdown.`}}},{id:`components.dropdown.api.ngb-dropdown-toggle`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-toggle`,translations:{en_us:{title:`NgbDropdownToggle`,content:`Directive Extends the anchor with click and keyboard toggle behavior. Markup <button ngb-dropdown-toggle> Requires An ancestor ngb-dropdown . No public inputs or outputs.`},es_mx:{title:`NgbDropdownToggle`,content:`Referencia del directiva NgbDropdownToggle. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownToggle, <button ngb-dropdown-toggle>, ngb-dropdown.`}}},{id:`components.dropdown.api.ngb-dropdown-menu`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-menu`,translations:{en_us:{title:`NgbDropdownMenu`,content:`Directive Hosts menu items and coordinates keyboard navigation with the root dropdown. Markup <div ngb-dropdown-menu> Requires An ancestor ngb-dropdown . No public inputs or outputs.`},es_mx:{title:`NgbDropdownMenu`,content:`Referencia del directiva NgbDropdownMenu. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownMenu, <div ngb-dropdown-menu>, ngb-dropdown.`}}},{id:`components.dropdown.api.ngb-dropdown-item`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-item`,translations:{en_us:{title:`NgbDropdownItem`,content:`Directive Marks an interactive menu entry and integrates with ng-disabled . Markup <button ngb-dropdown-item> Inputs Input Binding Type Default Description tabindex <? string | number 0 Sets the enabled tab order. ng-disabled ngDisabled boolean false Disables focus and activation.`},es_mx:{title:`NgbDropdownItem`,content:`Referencia del directiva NgbDropdownItem. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownItem, ng-disabled, <button ngb-dropdown-item>, tabindex, <?, string | number, 0, ngDisabled, boolean, false.`}}},{id:`components.dropdown.api.ngb-dropdown-config`,url:`docs.dashboard.dropdown.api`,fragment:`ngb-dropdown-config`,translations:{en_us:{title:`NgbDropdownConfig`,content:`Service Provides application-wide dropdown defaults. Properties Property Type Default autoClose boolean | "inside" | "outside" true container null | "body" null placement Placement[] ["bottom-start", "bottom-end", "top-start", "top-end"] popperOptions function Identity transform`},es_mx:{title:`NgbDropdownConfig`,content:`Referencia del servicio NgbDropdownConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbDropdownConfig, autoClose, boolean | "inside" | "outside", true, container, null | "body", null, placement, Placement[], ["bottom-start", "bottom-end", "top-start", "top-end"], popperOptions, function.`}}},{id:`components.modal.api.ngb-modal`,url:`docs.dashboard.modal.api`,fragment:`ngb-modal`,translations:{en_us:{title:`NgbModal`,content:`Service Creates and coordinates modal instances from templates or components. Members Member Returns Description open(content, options?) NgbModalRef Opens content with options merged over NgbModalConfig . activeInstances Active modal collection Exposes the currently open modal instances. dismissAll(reason?) void Dismisses every open modal. hasOpenModals() boolean Reports whether a modal is open.`},es_mx:{title:`NgbModal`,content:`Referencia del servicio NgbModal. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbModal, open(content, options?), NgbModalRef, NgbModalConfig, activeInstances, dismissAll(reason?), void, hasOpenModals(), boolean.`}}},{id:`components.modal.api.ngb-modal-ref`,url:`docs.dashboard.modal.api`,fragment:`ngb-modal-ref`,translations:{en_us:{title:`NgbModalRef`,content:`Class Controls one modal and exposes its result and lifecycle streams. Members Member Description close(result?) Resolves result and closes the modal. dismiss(reason?) Rejects result and dismisses the modal. update(options) Updates supported window and backdrop options. result AngularJS promise settled by close or dismiss. closed , dismissed , shown , hidden Observable lifecycle streams. componentInstance Component controller instance when component content is used.`},es_mx:{title:`NgbModalRef`,content:`Referencia del clase NgbModalRef. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbModalRef, close(result?), result, dismiss(reason?), update(options), closed, dismissed, shown, hidden, componentInstance.`}}},{id:`components.modal.api.ngb-active-modal`,url:`docs.dashboard.modal.api`,fragment:`ngb-active-modal`,translations:{en_us:{title:`NgbActiveModal`,content:`Service Allows modal content to control the modal that contains it. Methods Method Description close(result?) Closes with an optional result. dismiss(reason?) Dismisses with an optional reason. update(options) Updates supported modal options.`},es_mx:{title:`NgbActiveModal`,content:`Referencia del servicio NgbActiveModal. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbActiveModal, close(result?), dismiss(reason?), update(options).`}}},{id:`components.modal.api.ngb-modal-config`,url:`docs.dashboard.modal.api`,fragment:`ngb-modal-config`,translations:{en_us:{title:`NgbModalConfig`,content:`Service Provides defaults merged into every open() call. Options Option Default Description animation $config.animation Enables modal and backdrop transitions. backdrop true Accepts true , false or "static" . keyboard true Allows Escape-key dismissal. centered , scrollable undefined Controls dialog layout. fullscreen false Enables full-screen mode at an optional breakpoint. role "dialog" Sets the dialog ARIA role. size undefined Accepts "sm" , "lg" or "xl" . ariaLabelledBy , ariaDescribedBy undefined Connect accessible label and description elements. container , injector , bindings undefined Control content creation and placement. windowClass , modalDialogClass , backdropClass undefined Add custom classes. beforeDismiss undefined Can cancel dismissal synchronously or asynchronously.`},es_mx:{title:`NgbModalConfig`,content:`Referencia del servicio NgbModalConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbModalConfig, open(), animation, $config.animation, backdrop, true, false, "static", keyboard, centered, scrollable, undefined, fullscreen, role, "dialog", size, "sm", "lg", "xl", ariaLabelledBy, ariaDescribedBy, container, injector, bindings, windowClass, modalDialogClass, backdropClass, beforeDismiss.`}}},{id:`components.nav.api.ngb-nav`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav`,translations:{en_us:{title:`NgbNav`,content:`Directive Coordinates nav items, selection, keyboard behavior and panel transitions. Markup <ul ngb-nav active-id="activeId"> Inputs Input Binding Type Default Description active-id =? string First enabled item Two-way active item id. animation <? boolean $config.animation Enables panel transitions. destroy-on-hide <? boolean true Removes inactive panel views. keyboard <? boolean | "changeWithArrows" true Controls arrow-key navigation. orientation <? "horizontal" | "vertical" "horizontal" Sets keyboard orientation. roles <? "tablist" | false "tablist" Enables or disables tab ARIA roles. Outputs Output Payload Emitted when active-id-change $event: string The active id changes. nav-change $event: NgbNavChangeEvent Before selection changes; the event can prevent it. shown $event: string The next panel finishes appearing. hidden $event: string The previous panel finishes hiding.`},es_mx:{title:`NgbNav`,content:`Referencia del directiva NgbNav. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNav, <ul ngb-nav active-id="activeId">, active-id, =?, string, animation, <?, boolean, $config.animation, destroy-on-hide, true, keyboard, boolean | "changeWithArrows", orientation, "horizontal" | "vertical", "horizontal", roles, "tablist" | false, "tablist", active-id-change, $event: string, nav-change, $event: NgbNavChangeEvent, shown, hidden.`}}},{id:`components.nav.api.ngb-nav-item`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-item`,translations:{en_us:{title:`NgbNavItem`,content:`Directive Defines one selectable item and its associated content. Markup <li ngb-nav-item="overview"> Requires An ancestor ngb-nav ; optionally reads ng-disabled . Bindings Name Binding Default Description ngb-nav-item @? Generated id Identifies the item. dom-id @? Generated id Overrides the DOM id. destroy-on-hide <? Inherited Overrides panel lifecycle for this item. shown , hidden &? - Item-level panel lifecycle callbacks.`},es_mx:{title:`NgbNavItem`,content:`Referencia del directiva NgbNavItem. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavItem, <li ngb-nav-item="overview">, ngb-nav, ng-disabled, ngb-nav-item, @?, dom-id, destroy-on-hide, <?, shown, hidden, &?.`}}},{id:`components.nav.api.ngb-nav-link`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-link`,translations:{en_us:{title:`NgbNavLink`,content:`Directive Turns an anchor or button into the interactive trigger for its nav item. Markup <button ngb-nav-link> Requires Ancestor ngb-nav-item and ngb-nav controllers. No public inputs or outputs.`},es_mx:{title:`NgbNavLink`,content:`Referencia del directiva NgbNavLink. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavLink, <button ngb-nav-link>, ngb-nav-item, ngb-nav.`}}},{id:`components.nav.api.ngb-nav-content`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-content`,translations:{en_us:{title:`NgbNavContent`,content:`Directive Marks the template rendered for a nav item. Markup <ng-template ngb-nav-content> No public inputs or outputs.`},es_mx:{title:`NgbNavContent`,content:`Referencia del directiva NgbNavContent. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavContent, <ng-template ngb-nav-content>.`}}},{id:`components.nav.api.ngb-nav-outlet`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-outlet`,translations:{en_us:{title:`NgbNavOutlet`,content:`Directive Renders the active panel for a nav controller. Markup <div ngb-nav-outlet="navController"> Inputs Input Binding Description ngb-nav-outlet < The NgbNav controller to render. pane-role <? Overrides the generated panel role.`},es_mx:{title:`NgbNavOutlet`,content:`Referencia del directiva NgbNavOutlet. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavOutlet, <div ngb-nav-outlet="navController">, ngb-nav-outlet, <, NgbNav, pane-role, <?.`}}},{id:`components.nav.api.ngb-nav-config`,url:`docs.dashboard.nav.api`,fragment:`ngb-nav-config`,translations:{en_us:{title:`NgbNavConfig`,content:`Service Provides application-wide nav defaults. Properties Property Default animation $config.animation destroyOnHide true orientation "horizontal" roles "tablist" keyboard true`},es_mx:{title:`NgbNavConfig`,content:`Referencia del servicio NgbNavConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbNavConfig, animation, $config.animation, destroyOnHide, true, orientation, "horizontal", roles, "tablist", keyboard.`}}},{id:`components.offcanvas.api.ngb-offcanvas`,url:`docs.dashboard.offcanvas.api`,fragment:`ngb-offcanvas`,translations:{en_us:{title:`NgbOffcanvas`,content:`Service Creates and coordinates offcanvas panels from templates or registered AngularJS component names. To open component content, pass its registered name: offcanvas.open(MyContentComponent.$name) . Passing the component class itself is not supported. Members Member Returns Description open(componentName | templateRef, options?) NgbOffcanvasRef Opens a registered Component.$name or a TemplateRef , with options merged over NgbOffcanvasConfig . activeInstance Active instance Exposes the currently open offcanvas instance. dismiss(reason?) void Dismisses the active panel. hasOpenOffcanvas() boolean Reports whether a panel is open.`},es_mx:{title:`NgbOffcanvas`,content:`Referencia del servicio NgbOffcanvas. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbOffcanvas, offcanvas.open(MyContentComponent.$name), open(componentName | templateRef, options?), NgbOffcanvasRef, Component.$name, TemplateRef, NgbOffcanvasConfig, activeInstance, dismiss(reason?), void, hasOpenOffcanvas(), boolean.`}}},{id:`components.offcanvas.api.ngb-offcanvas-ref`,url:`docs.dashboard.offcanvas.api`,fragment:`ngb-offcanvas-ref`,translations:{en_us:{title:`NgbOffcanvasRef`,content:`Class Controls one panel and exposes its result and lifecycle streams. Members Member Description close(result?) Resolves result and closes the panel. dismiss(reason?) Rejects result and dismisses the panel. result AngularJS promise settled by close or dismiss. closed , dismissed , shown , hidden Observable lifecycle streams. componentInstance Component controller instance when component content is used.`},es_mx:{title:`NgbOffcanvasRef`,content:`Referencia del clase NgbOffcanvasRef. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbOffcanvasRef, close(result?), result, dismiss(reason?), closed, dismissed, shown, hidden, componentInstance.`}}},{id:`components.offcanvas.api.ngb-active-offcanvas`,url:`docs.dashboard.offcanvas.api`,fragment:`ngb-active-offcanvas`,translations:{en_us:{title:`NgbActiveOffcanvas`,content:`Service Allows offcanvas content to control the panel that contains it. Methods Method Description close(result?) Closes with an optional result. dismiss(reason?) Dismisses with an optional reason.`},es_mx:{title:`NgbActiveOffcanvas`,content:`Referencia del servicio NgbActiveOffcanvas. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbActiveOffcanvas, close(result?), dismiss(reason?).`}}},{id:`components.offcanvas.api.ngb-offcanvas-config`,url:`docs.dashboard.offcanvas.api`,fragment:`ngb-offcanvas-config`,translations:{en_us:{title:`NgbOffcanvasConfig`,content:`Service Provides defaults merged into every open() call. Options Option Default Description animation $config.animation Enables panel and backdrop transitions. backdrop true Accepts true , false or "static" . keyboard true Allows Escape-key dismissal. position "start" Accepts "start" , "end" , "top" or "bottom" . scroll false Allows body scrolling while open. ariaLabelledBy , ariaDescribedBy undefined Connect accessible label and description elements. container , bindings undefined Control content creation and placement. panelClass , backdropClass undefined Add custom classes. beforeDismiss undefined Can cancel dismissal synchronously or asynchronously.`},es_mx:{title:`NgbOffcanvasConfig`,content:`Referencia del servicio NgbOffcanvasConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbOffcanvasConfig, open(), animation, $config.animation, backdrop, true, false, "static", keyboard, position, "start", "end", "top", "bottom", scroll, ariaLabelledBy, ariaDescribedBy, undefined, container, bindings, panelClass, backdropClass, beforeDismiss.`}}},{id:`components.pagination.api.ngb-pagination`,url:`docs.dashboard.pagination.api`,fragment:`ngb-pagination`,translations:{en_us:{title:`NgbPagination`,content:`Component Builds accessible page navigation for a collection. Markup <ngb-pagination collection-size="total" page="page"> Integration Optionally reads ng-disabled . Inputs Input Binding Type Default Description collection-size < number Required Total number of collection items. page <? number 1 Current page. page-size <? number 10 Items represented by each page. max-size <? number 0 Maximum number of visible page links; zero is unlimited. boundary-links <? boolean false Shows first and last links. direction-links <? boolean true Shows previous and next links. ellipses <? boolean true Shows ellipses for omitted ranges. rotate <? boolean false Centers the current page within the visible range. size <? string | null $config.size Sets the Bootstrap pagination size. ng-disabled ngDisabled boolean false Disables page navigation. Outputs Output Binding Payload Emitted when page-change &? $event: number The user selects a page.`},es_mx:{title:`NgbPagination`,content:`Referencia del componente NgbPagination. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbPagination, <ngb-pagination collection-size="total" page="page">, ng-disabled, collection-size, <, number, page, <?, 1, page-size, 10, max-size, 0, boundary-links, boolean, false, direction-links, true, ellipses, rotate, size, string | null, $config.size, ngDisabled, page-change, &?, $event: number.`}}},{id:`components.pagination.api.ngb-pagination-config`,url:`docs.dashboard.pagination.api`,fragment:`ngb-pagination-config`,translations:{en_us:{title:`NgbPaginationConfig`,content:`Service Provides application-wide pagination defaults. Properties Property Default disabled , boundaryLinks , rotate false directionLinks , ellipses true maxSize 0 pageSize 10 size undefined`},es_mx:{title:`NgbPaginationConfig`,content:`Referencia del servicio NgbPaginationConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbPaginationConfig, disabled, boundaryLinks, rotate, false, directionLinks, ellipses, true, maxSize, 0, pageSize, 10, size, undefined.`}}},{id:`components.popover.api.ngb-popover`,url:`docs.dashboard.popover.api`,fragment:`ngb-popover`,translations:{en_us:{title:`NgbPopover`,content:`Directive Attaches a positioned Bootstrap popover to any host element. Markup <button ngb-popover="'Content'"> Inputs Input Binding Type Default Description ngb-popover <? string | TemplateRef - Popover body content. popover-title <? string | TemplateRef - Optional title content. popover-context <? object - Context supplied to template content. animation <? boolean $config.animation Enables open and close transitions. auto-close <? boolean | "inside" | "outside" true Controls automatic closing. placement <? PlacementArray "auto" Preferred Popper placement. triggers <? string "click" Space-separated open and close triggers. container <? string $config.container Container selector for the popover window. position-target <? HTMLElement | string Host element Overrides the positioning target. popover-class @? string - Adds a class to the popover window. disable-popover <? boolean false Prevents the popover from opening. open-delay <? number 0 Delay before opening in milliseconds. close-delay <? number 0 Delay before closing in milliseconds. popper-options <? function $config.popperOptions Transforms Popper options. Outputs Output Binding Payload Emitted when shown &? None The popover opens. hidden &? None The popover closes.`},es_mx:{title:`NgbPopover`,content:`Referencia del directiva NgbPopover. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbPopover, <button ngb-popover="'Content'">, ngb-popover, <?, string | TemplateRef, popover-title, popover-context, object, animation, boolean, $config.animation, auto-close, boolean | "inside" | "outside", true, placement, PlacementArray, "auto", triggers, string, "click", container, $config.container, position-target, HTMLElement | string, popover-class, @?, disable-popover, false, open-delay, number, 0, close-delay, popper-options, function, $config.popperOptions, shown, &?, hidden.`}}},{id:`components.popover.api.ngb-popover-config`,url:`docs.dashboard.popover.api`,fragment:`ngb-popover-config`,translations:{en_us:{title:`NgbPopoverConfig`,content:`Service Provides application-wide popover defaults. Properties Property Default animation $config.animation autoClose true placement "auto" triggers "click" disablePopover false openDelay , closeDelay 0 container , popoverClass undefined popperOptions Identity transform`},es_mx:{title:`NgbPopoverConfig`,content:`Referencia del servicio NgbPopoverConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbPopoverConfig, animation, $config.animation, autoClose, true, placement, "auto", triggers, "click", disablePopover, false, openDelay, closeDelay, 0, container, popoverClass, undefined, popperOptions.`}}},{id:`components.progressbar.api.ngb-progressbar`,url:`docs.dashboard.progressbar.api`,fragment:`ngb-progressbar`,translations:{en_us:{title:`NgbProgressbar`,content:`Component Renders an accessible Bootstrap progress indicator for a numeric value. Markup <ngb-progressbar value="progress"> Inputs Input Binding Type Default Description value < number Required Current progress value. max <? number 100 Maximum value. animated <? boolean false Animates striped progress. striped <? boolean false uses a striped background. show-value <? boolean false Displays the calculated percentage. type @? string $config.type Sets the bar contextual type. text-type @? string $config.textType Sets the label text color. height @? string $config.height Sets the progress container height. aria-label @? string "progress bar" Accessible label for the bar.`},es_mx:{title:`NgbProgressbar`,content:`Referencia del componente NgbProgressbar. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbProgressbar, <ngb-progressbar value="progress">, value, <, number, max, <?, 100, animated, boolean, false, striped, show-value, type, @?, string, $config.type, text-type, $config.textType, height, $config.height, aria-label, "progress bar".`}}},{id:`components.progressbar.api.ngb-progressbar-stacked`,url:`docs.dashboard.progressbar.api`,fragment:`ngb-progressbar-stacked`,translations:{en_us:{title:`NgbProgressbarStacked`,content:`Component Groups multiple progress bars into a Bootstrap stacked progress container. Markup <ngb-progressbar-stacked> No public inputs or outputs.`},es_mx:{title:`NgbProgressbarStacked`,content:`Referencia del componente NgbProgressbarStacked. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbProgressbarStacked, <ngb-progressbar-stacked>.`}}},{id:`components.progressbar.api.ngb-progressbar-config`,url:`docs.dashboard.progressbar.api`,fragment:`ngb-progressbar-config`,translations:{en_us:{title:`NgbProgressbarConfig`,content:`Service Provides application-wide progress bar defaults. Properties Property Type Default ariaLabel string "progress bar" animated , showValue , striped boolean false max number 100 height , textType , type string | undefined undefined`},es_mx:{title:`NgbProgressbarConfig`,content:`Referencia del servicio NgbProgressbarConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbProgressbarConfig, ariaLabel, string, "progress bar", animated, showValue, striped, boolean, false, max, number, 100, height, textType, type, string | undefined, undefined.`}}},{id:`components.rating.api.ngb-rating`,url:`docs.dashboard.rating.api`,fragment:`ngb-rating`,translations:{en_us:{title:`NgbRating`,content:`Component Provides an accessible keyboard-driven rating control with customizable stars. Markup <ngb-rating rate="rating"> Integration Optionally reads ng-disabled . Inputs Input Binding Type Default Description rate <? number 0 Current rating value. max <? number 10 Maximum number of rating items. readonly <? boolean false Prevents user changes. resettable <? boolean false Allows selecting the current value again to reset to zero. star-template <? TemplateRef Default star Provides custom item markup. tabindex <? number | string 0 Sets keyboard tab order. aria-value-text <? function Built-in formatter Formats the accessible value text. ng-disabled ngDisabled boolean false Disables interaction and focus. Outputs Output Binding Payload Emitted when rate-change &? $event: number The interactive rating changes. hover &? $event: number A rating item is hovered. leave &? $event: number The pointer leaves the rating.`},es_mx:{title:`NgbRating`,content:`Referencia del componente NgbRating. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbRating, <ngb-rating rate="rating">, ng-disabled, rate, <?, number, 0, max, 10, readonly, boolean, false, resettable, star-template, TemplateRef, tabindex, number | string, aria-value-text, function, ngDisabled, rate-change, &?, $event: number, hover, leave.`}}},{id:`components.rating.api.ngb-rating-config`,url:`docs.dashboard.rating.api`,fragment:`ngb-rating-config`,translations:{en_us:{title:`NgbRatingConfig`,content:`Service Provides application-wide rating defaults. Properties Property Type Default max number 10 readonly , resettable boolean false tabindex number | string 0`},es_mx:{title:`NgbRatingConfig`,content:`Referencia del servicio NgbRatingConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbRatingConfig, max, number, 10, readonly, resettable, boolean, false, tabindex, number | string, 0.`}}},{id:`components.scrollspy.api.ngb-scrollspy`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy`,translations:{en_us:{title:`NgbScrollSpy`,content:`Directive Turns a scrollable element into an observed container and tracks its active fragment. Markup <main ngb-scroll-spy> Inputs Input Binding Type Default Description active @? string "" Initial or requested active fragment id. process-changes <? NgbScrollSpyProcessChanges $config.processChanges Determines the active fragment from observer changes. root-margin @? string Browser default IntersectionObserver root margin. scroll-behavior @? "auto" | "smooth" "smooth" Default behavior for programmatic scrolling. threshold <? number | number[] Browser default IntersectionObserver thresholds. Outputs Output Binding Payload Emitted when active-change &? $event: string The active fragment changes.`},es_mx:{title:`NgbScrollSpy`,content:`Referencia del directiva NgbScrollSpy. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpy, <main ngb-scroll-spy>, active, @?, string, "", process-changes, <?, NgbScrollSpyProcessChanges, $config.processChanges, root-margin, scroll-behavior, "auto" | "smooth", "smooth", threshold, number | number[], active-change, &?, $event: string.`}}},{id:`components.scrollspy.api.ngb-scrollspy-fragment`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-fragment`,translations:{en_us:{title:`NgbScrollSpyFragment`,content:`Directive Registers a section with its ancestor scrollspy and assigns its DOM id. Markup <section ngb-scroll-spy-fragment="overview"> Requires An ancestor ngb-scroll-spy . Inputs Input Binding Type Default ngb-scroll-spy-fragment @ string Required`},es_mx:{title:`NgbScrollSpyFragment`,content:`Referencia del directiva NgbScrollSpyFragment. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyFragment, <section ngb-scroll-spy-fragment="overview">, ngb-scroll-spy, ngb-scroll-spy-fragment, @, string.`}}},{id:`components.scrollspy.api.ngb-scrollspy-menu`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-menu`,translations:{en_us:{title:`NgbScrollSpyMenu`,content:`Directive Coordinates nested menu items and applies their active state. Markup <nav ngb-scroll-spy-menu> Inputs Input Binding Description ngb-scroll-spy-menu <? Optional explicit NgbScrollSpy ; otherwise uses an ancestor or injected service.`},es_mx:{title:`NgbScrollSpyMenu`,content:`Referencia del directiva NgbScrollSpyMenu. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyMenu, <nav ngb-scroll-spy-menu>, ngb-scroll-spy-menu, <?, NgbScrollSpy.`}}},{id:`components.scrollspy.api.ngb-scrollspy-item`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-item`,translations:{en_us:{title:`NgbScrollSpyItem`,content:`Directive Links a menu entry to a fragment, applies active and scrolls on click. Markup <a ngb-scroll-spy-item="overview"> Inputs Input Binding Description ngb-scroll-spy-item @? Fragment id or shorthand item data. fragment @? Explicit fragment id. parent @? Parent fragment id for nested menus. scroll-spy <? Explicit NgbScrollSpy controller.`},es_mx:{title:`NgbScrollSpyItem`,content:`Referencia del directiva NgbScrollSpyItem. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyItem, active, <a ngb-scroll-spy-item="overview">, ngb-scroll-spy-item, @?, fragment, parent, scroll-spy, <?, NgbScrollSpy.`}}},{id:`components.scrollspy.api.ngb-scrollspy-service`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-service`,translations:{en_us:{title:`NgbScrollSpyService`,content:`Service Provides programmatic scrollspy control without a directive host. Members Member Description active Current fragment id. active$ Observable of distinct active fragment changes. start(options?) Starts observation with optional root, fragments and IntersectionObserver settings. stop() Stops observation and clears the active fragment. observe(fragment) Adds a fragment to observation. unobserve(fragment) Removes a fragment from observation. scrollTo(fragment, options?) Scrolls to a registered id or element.`},es_mx:{title:`NgbScrollSpyService`,content:`Referencia del servicio NgbScrollSpyService. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyService, active, active$, start(options?), stop(), observe(fragment), unobserve(fragment), scrollTo(fragment, options?).`}}},{id:`components.scrollspy.api.ngb-scrollspy-config`,url:`docs.dashboard.scrollspy.api`,fragment:`ngb-scrollspy-config`,translations:{en_us:{title:`NgbScrollSpyConfig`,content:`Service Provides application-wide scrollspy defaults. Properties Property Default scrollBehavior "smooth" processChanges Built-in intersection processing function`},es_mx:{title:`NgbScrollSpyConfig`,content:`Referencia del servicio NgbScrollSpyConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbScrollSpyConfig, scrollBehavior, "smooth", processChanges.`}}},{id:`components.timepicker.api.ngb-timepicker`,url:`docs.dashboard.timepicker.api`,fragment:`ngb-timepicker`,translations:{en_us:{title:`NgbTimepicker`,content:`Component Edits a time value through AngularJS forms with optional spinners, seconds and meridian mode. Markup <ngb-timepicker ng-model="time"> Requires ng-model ; optionally reads ng-disabled . Inputs Input Binding Type Default Description meridian <? boolean false uses a 12-hour clock with period selector. spinners <? boolean true Shows increment and decrement controls. seconds <? boolean false Shows the seconds field. hour-step <? number 1 Hours changed per step. minute-step <? number 1 Minutes changed per step. second-step <? number 1 Seconds changed per step. readonly-inputs <? boolean false Makes text fields readonly while keeping spinner controls active. size <? "small" | "medium" | "large" "medium" Sets the control size. ng-disabled ngDisabled boolean $config.disabled Disables the timepicker.`},es_mx:{title:`NgbTimepicker`,content:`Referencia del componente NgbTimepicker. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTimepicker, <ngb-timepicker ng-model="time">, ng-model, ng-disabled, meridian, <?, boolean, false, spinners, true, seconds, hour-step, number, 1, minute-step, second-step, readonly-inputs, size, "small" | "medium" | "large", "medium", ngDisabled, $config.disabled.`}}},{id:`components.timepicker.api.ngb-timepicker-config`,url:`docs.dashboard.timepicker.api`,fragment:`ngb-timepicker-config`,translations:{en_us:{title:`NgbTimepickerConfig`,content:`Service Provides application-wide timepicker defaults. Properties Property Default meridian , seconds , disabled , readonlyInputs false spinners true hourStep , minuteStep , secondStep 1 size "medium"`},es_mx:{title:`NgbTimepickerConfig`,content:`Referencia del servicio NgbTimepickerConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTimepickerConfig, meridian, seconds, disabled, readonlyInputs, false, spinners, true, hourStep, minuteStep, secondStep, 1, size, "medium".`}}},{id:`components.timepicker.api.ngb-time-adapter`,url:`docs.dashboard.timepicker.api`,fragment:`ngb-time-adapter`,translations:{en_us:{title:`NgbTimeAdapter<T>`,content:`Service Converts between the application model and NgbTimeStruct . Methods Method Returns Description fromModel(value) NgbTimeStruct | null Converts an application value for the timepicker. toModel(time) T | null Converts the timepicker value back to the application model.`},es_mx:{title:`NgbTimeAdapter<T>`,content:`Referencia del servicio NgbTimeAdapter<T>. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTimeAdapter<T>, NgbTimeStruct, fromModel(value), NgbTimeStruct | null, toModel(time), T | null.`}}},{id:`components.timepicker.api.ngb-timepicker-i18n`,url:`docs.dashboard.timepicker.api`,fragment:`ngb-timepicker-i18n`,translations:{en_us:{title:`NgbTimepickerI18n`,content:`Service Supplies localized morning and afternoon period labels. Methods Method Returns getMorningPeriod() string getAfternoonPeriod() string`},es_mx:{title:`NgbTimepickerI18n`,content:`Referencia del servicio NgbTimepickerI18n. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTimepickerI18n, getMorningPeriod(), string, getAfternoonPeriod().`}}},{id:`components.toast.api.ngb-toast`,url:`docs.dashboard.toast.api`,fragment:`ngb-toast`,translations:{en_us:{title:`NgbToast`,content:`Component Displays an accessible notification with optional automatic dismissal. Markup <ngb-toast> Inputs Input Binding Type Default Description animation <? boolean $config.animation Enables show and hide transitions. autohide <? boolean true Automatically hides the toast. delay <? number 5000 Autohide delay in milliseconds. header @? string - Sets the default header text. Outputs Output Binding Payload Emitted when shown &? None The show transition finishes. hidden &? None The hide transition finishes.`},es_mx:{title:`NgbToast`,content:`Referencia del componente NgbToast. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbToast, <ngb-toast>, animation, <?, boolean, $config.animation, autohide, true, delay, number, 5000, header, @?, string, shown, &?, hidden.`}}},{id:`components.toast.api.ngb-toast-header`,url:`docs.dashboard.toast.api`,fragment:`ngb-toast-header`,translations:{en_us:{title:`NgbToastHeader`,content:`Directive Marks a custom template as the toast header. Markup <ng-template ngb-toast-header> No public inputs or outputs.`},es_mx:{title:`NgbToastHeader`,content:`Referencia del directiva NgbToastHeader. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbToastHeader, <ng-template ngb-toast-header>.`}}},{id:`components.toast.api.ngb-toast-config`,url:`docs.dashboard.toast.api`,fragment:`ngb-toast-config`,translations:{en_us:{title:`NgbToastConfig`,content:`Service Provides application-wide toast defaults. Properties Property Type Default animation boolean $config.animation ariaLive "polite" | "assertive" "polite" autohide boolean true delay number 5000`},es_mx:{title:`NgbToastConfig`,content:`Referencia del servicio NgbToastConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbToastConfig, animation, boolean, $config.animation, ariaLive, "polite" | "assertive", "polite", autohide, true, delay, number, 5000.`}}},{id:`components.tooltip.api.ngb-tooltip`,url:`docs.dashboard.tooltip.api`,fragment:`ngb-tooltip`,translations:{en_us:{title:`NgbTooltip`,content:`Directive Attaches a positioned Bootstrap tooltip to any host element. Markup <button ngb-tooltip="'Help text'"> Inputs Input Binding Type Default Description ngb-tooltip <? string | TemplateRef - Tooltip content. tooltip-context <? object - Context supplied to template content. animation <? boolean $config.animation Enables open and close transitions. auto-close <? boolean | "inside" | "outside" true Controls automatic closing. placement <? PlacementArray "auto" Preferred Popper placement. triggers <? string "hover focus" Space-separated open and close triggers. container <? string $config.container Container selector for the tooltip window. position-target @? string Host element Overrides the positioning target. tooltip-class @? string - Adds a class to the tooltip window. disable-tooltip <? boolean false Prevents the tooltip from opening. open-delay <? number 0 Delay before opening in milliseconds. close-delay <? number 0 Delay before closing in milliseconds. popper-options <? function $config.popperOptions Transforms Popper options. Outputs Output Binding Payload Emitted when shown &? None The tooltip opens. hidden &? None The tooltip closes.`},es_mx:{title:`NgbTooltip`,content:`Referencia del directiva NgbTooltip. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTooltip, <button ngb-tooltip="'Help text'">, ngb-tooltip, <?, string | TemplateRef, tooltip-context, object, animation, boolean, $config.animation, auto-close, boolean | "inside" | "outside", true, placement, PlacementArray, "auto", triggers, string, "hover focus", container, $config.container, position-target, @?, tooltip-class, disable-tooltip, false, open-delay, number, 0, close-delay, popper-options, function, $config.popperOptions, shown, &?, hidden.`}}},{id:`components.tooltip.api.ngb-tooltip-config`,url:`docs.dashboard.tooltip.api`,fragment:`ngb-tooltip-config`,translations:{en_us:{title:`NgbTooltipConfig`,content:`Service Provides application-wide tooltip defaults. Properties Property Default animation $config.animation autoClose true placement "auto" triggers "hover focus" disableTooltip false openDelay , closeDelay 0 container , tooltipClass undefined popperOptions Identity transform`},es_mx:{title:`NgbTooltipConfig`,content:`Referencia del servicio NgbTooltipConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTooltipConfig, animation, $config.animation, autoClose, true, placement, "auto", triggers, "hover focus", disableTooltip, false, openDelay, closeDelay, 0, container, tooltipClass, undefined, popperOptions.`}}},{id:`components.typeahead.api.ngb-typeahead`,url:`docs.dashboard.typeahead.api`,fragment:`ngb-typeahead`,translations:{en_us:{title:`NgbTypeahead`,content:`Directive Connects an input to an observable result source and manages the suggestion popup. Markup <input ng-model="value" ngb-typeahead="search"> Requires ng-model . Inputs Input Binding Default Description ngb-typeahead <? Required Function that maps the text stream to an observable result collection. autocomplete <? - Sets the native autocomplete behavior. container <? $config.container Container used for the popup. editable <? true Allows values not present in the results. focus-first <? true Activates the first result when the popup opens. input-formatter <? String conversion Formats the selected model in the input. result-formatter <? String conversion Formats values in the result list. result-template <? Default result Provides custom result markup. placement <? $config.placement Preferred Popper placements. popper-options <? $config.popperOptions Transforms Popper options. popup-class <? - Adds a class to the results popup. select-on-exact <? false Selects automatically when only one exact result exists. show-hint <? false Shows the completion hint. Outputs Output Binding Payload Emitted when select-item &? $event: NgbTypeaheadSelectItemEvent A result is selected.`},es_mx:{title:`NgbTypeahead`,content:`Referencia del directiva NgbTypeahead. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTypeahead, <input ng-model="value" ngb-typeahead="search">, ng-model, ngb-typeahead, <?, autocomplete, container, $config.container, editable, true, focus-first, input-formatter, result-formatter, result-template, placement, $config.placement, popper-options, $config.popperOptions, popup-class, select-on-exact, false, show-hint, select-item, &?, $event: NgbTypeaheadSelectItemEvent.`}}},{id:`components.typeahead.api.ngb-highlight`,url:`docs.dashboard.typeahead.api`,fragment:`ngb-highlight`,translations:{en_us:{title:`NgbHighlight`,content:`Component Highlights matching portions of a result label. Markup <ngb-highlight result="label" term="query"> Inputs Input Binding Type Default result < string Required term < string Required highlight-class <? string "ngb-highlight" accent-sensitive <? boolean true`},es_mx:{title:`NgbHighlight`,content:`Referencia del componente NgbHighlight. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbHighlight, <ngb-highlight result="label" term="query">, result, <, string, term, highlight-class, <?, "ngb-highlight", accent-sensitive, boolean, true.`}}},{id:`components.typeahead.api.ngb-typeahead-config`,url:`docs.dashboard.typeahead.api`,fragment:`ngb-typeahead-config`,translations:{en_us:{title:`NgbTypeaheadConfig`,content:`Service Provides application-wide typeahead defaults. Properties Property Default container undefined editable , focusFirst true selectOnExact , showHint false placement ["bottom-start", "bottom-end", "top-start", "top-end"] popperOptions Identity transform`},es_mx:{title:`NgbTypeaheadConfig`,content:`Referencia del servicio NgbTypeaheadConfig. Documenta su marcado, configuracion, entradas, salidas, propiedades, metodos y comportamiento. Terminos de API: NgbTypeaheadConfig, container, undefined, editable, focusFirst, true, selectOnExact, showHint, false, placement, ["bottom-start", "bottom-end", "top-start", "top-end"], popperOptions.`}}},{id:`components.accordion.examples.accordion-simple`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-simple`,translations:{en_us:{title:`Basic accordion`,content:`Three items with a regular header, a header rendered from a template and a disabled item.`},es_mx:{title:`Basic accordion`,content:`Ejemplo de accordion: Three items with a regular header, a header rendered from a template and a disabled item.`}}},{id:`components.accordion.examples.one-panel-accordion`,url:`docs.dashboard.accordion.examples`,fragment:`one-panel-accordion`,translations:{en_us:{title:`One panel at a time`,content:`Opening an item automatically closes the previously expanded panel.`},es_mx:{title:`One panel at a time`,content:`Ejemplo de accordion: Opening an item automatically closes the previously expanded panel.`}}},{id:`components.accordion.examples.accordion-toggle-panels`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-toggle-panels`,translations:{en_us:{title:`Programmatic controls`,content:`Use the accordion controller to expand, collapse or toggle panels by id.`},es_mx:{title:`Programmatic controls`,content:`Ejemplo de accordion: Use the accordion controller to expand, collapse or toggle panels by id.`}}},{id:`components.accordion.examples.accordion-custom-header`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-custom-header`,translations:{en_us:{title:`Custom headers`,content:`Build richer triggers with Bootstrap utilities while keeping the accordion behavior and accessibility state.`},es_mx:{title:`Custom headers`,content:`Ejemplo de accordion: Build richer triggers with Bootstrap utilities while keeping the accordion behavior and accessibility state.`}}},{id:`components.accordion.examples.accordion-content`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-content`,translations:{en_us:{title:`Preserve panel content`,content:`Keep collapsed content mounted when its local state must survive closing and reopening the panel.`},es_mx:{title:`Preserve panel content`,content:`Ejemplo de accordion: Keep collapsed content mounted when its local state must survive closing and reopening the panel.`}}},{id:`components.accordion.examples.accordion-global`,url:`docs.dashboard.accordion.examples`,fragment:`accordion-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbAccordionConfig once to define defaults for accordions that do not provide local values.`},es_mx:{title:`Global configuration`,content:`Ejemplo de accordion: Change NgbAccordionConfig once to define defaults for accordions that do not provide local values.`}}},{id:`components.alert.examples.simple-alert`,url:`docs.dashboard.alert.examples`,fragment:`simple-alert`,translations:{en_us:{title:`Simple alert`,content:`A basic alert with a fixed type and no dismiss button.`},es_mx:{title:`Simple alert`,content:`Ejemplo de alert: A basic alert with a fixed type and no dismiss button.`}}},{id:`components.alert.examples.alert-closeable`,url:`docs.dashboard.alert.examples`,fragment:`alert-closeable`,translations:{en_us:{title:`Closeable alerts`,content:`Four dismissible alerts: two close with animation and two close immediately.`},es_mx:{title:`Closeable alerts`,content:`Ejemplo de alert: Four dismissible alerts: two close with animation and two close immediately.`}}},{id:`components.alert.examples.self-closing-alert`,url:`docs.dashboard.alert.examples`,fragment:`self-closing-alert`,translations:{en_us:{title:`Self-closing alert`,content:`A timeout updates the countdown and closes the alert when it reaches zero.`},es_mx:{title:`Self-closing alert`,content:`Ejemplo de alert: A timeout updates the countdown and closes the alert when it reaches zero.`}}},{id:`components.alert.examples.alert-custom`,url:`docs.dashboard.alert.examples`,fragment:`alert-custom`,translations:{en_us:{title:`Custom alert`,content:`A custom alert type styled through the alert-custom class and Bootstrap variables.`},es_mx:{title:`Custom alert`,content:`Ejemplo de alert: A custom alert type styled through the alert-custom class and Bootstrap variables.`}}},{id:`components.alert.examples.alert-global`,url:`docs.dashboard.alert.examples`,fragment:`alert-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbAlertConfig once to define defaults for alerts without local inputs.`},es_mx:{title:`Global configuration`,content:`Ejemplo de alert: Change NgbAlertConfig once to define defaults for alerts without local inputs.`}}},{id:`components.carousel.examples.carousel-simple`,url:`docs.dashboard.carousel.examples`,fragment:`carousel-simple`,translations:{en_us:{title:`Simple carousel`,content:`A carousel using the default options, including navigation arrows and indicators.`},es_mx:{title:`Simple carousel`,content:`Ejemplo de carousel: A carousel using the default options, including navigation arrows and indicators.`}}},{id:`components.carousel.examples.carousel-keyboard`,url:`docs.dashboard.carousel.examples`,fragment:`carousel-keyboard`,translations:{en_us:{title:`Keyboard navigation`,content:`A carousel without visible controls or indicators that moves only with the left and right arrow keys.`},es_mx:{title:`Keyboard navigation`,content:`Ejemplo de carousel: A carousel without visible controls or indicators that moves only with the left and right arrow keys.`}}},{id:`components.carousel.examples.carousel-controls`,url:`docs.dashboard.carousel.examples`,fragment:`carousel-controls`,translations:{en_us:{title:`Pause controls`,content:`Try the native hover and focus options, then compose navigation behavior from slide events.`},es_mx:{title:`Pause controls`,content:`Ejemplo de carousel: Try the native hover and focus options, then compose navigation behavior from slide events.`}}},{id:`components.carousel.examples.carousel-global`,url:`docs.dashboard.carousel.examples`,fragment:`carousel-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbCarouselConfig once to define carousel defaults without adding local inputs.`},es_mx:{title:`Global configuration`,content:`Ejemplo de carousel: Change NgbCarouselConfig once to define carousel defaults without adding local inputs.`}}},{id:`components.collapse.examples.simple-collapse`,url:`docs.dashboard.collapse.examples`,fragment:`simple-collapse`,translations:{en_us:{title:`Simple collapse`,content:`Control the same panel by calling toggle() on its controller or by changing the bound collapsed value.`},es_mx:{title:`Simple collapse`,content:`Ejemplo de collapse: Control the same panel by calling toggle() on its controller or by changing the bound collapsed value.`}}},{id:`components.collapse.examples.horizontal-collapse`,url:`docs.dashboard.collapse.examples`,fragment:`horizontal-collapse`,translations:{en_us:{title:`Horizontal collapse`,content:`Set horizontal to true to animate the element's width instead of its height.`},es_mx:{title:`Horizontal collapse`,content:`Ejemplo de collapse: Set horizontal to true to animate the element's width instead of its height.`}}},{id:`components.collapse.examples.navbar-collapse`,url:`docs.dashboard.collapse.examples`,fragment:`navbar-collapse`,translations:{en_us:{title:`Responsive navbar`,content:`Combine NgbCollapse with Bootstrap's navbar classes to provide compact navigation on smaller viewports.`},es_mx:{title:`Responsive navbar`,content:`Ejemplo de collapse: Combine NgbCollapse with Bootstrap's navbar classes to provide compact navigation on smaller viewports.`}}},{id:`components.datepicker.examples.basic-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`basic-datepicker`,translations:{en_us:{title:`Basic datepicker`,content:`Bind an NgbDateStruct model to an inline calendar.`},es_mx:{title:`Basic datepicker`,content:`Ejemplo de datepicker: Bind an NgbDateStruct model to an inline calendar.`}}},{id:`components.datepicker.examples.popup-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`popup-datepicker`,translations:{en_us:{title:`Datepicker in a popup`,content:`Attach the datepicker to an input and control its popup from a compact calendar button.`},es_mx:{title:`Datepicker in a popup`,content:`Ejemplo de datepicker: Attach the datepicker to an input and control its popup from a compact calendar button.`}}},{id:`components.datepicker.examples.multiple-months-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`multiple-months-datepicker`,translations:{en_us:{title:`Multiple months`,content:`Display two consecutive months while keeping a single date model.`},es_mx:{title:`Multiple months`,content:`Ejemplo de datepicker: Display two consecutive months while keeping a single date model.`}}},{id:`components.datepicker.examples.range-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`range-datepicker`,translations:{en_us:{title:`Range selection`,content:`Compose a date range from dateSelect and a custom day template with hover feedback.`},es_mx:{title:`Range selection`,content:`Ejemplo de datepicker: Compose a date range from dateSelect and a custom day template with hover feedback.`}}},{id:`components.datepicker.examples.range-popup-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`range-popup-datepicker`,translations:{en_us:{title:`Range selection in a popup`,content:`Use the same range state and custom day view inside an input datepicker.`},es_mx:{title:`Range selection in a popup`,content:`Ejemplo de datepicker: Use the same range state and custom day view inside an input datepicker.`}}},{id:`components.datepicker.examples.disabled-datepicker`,url:`docs.dashboard.datepicker.examples`,fragment:`disabled-datepicker`,translations:{en_us:{title:`Disabled datepicker`,content:`Drive the disabled state through AngularJS ng-disabled.`},es_mx:{title:`Disabled datepicker`,content:`Ejemplo de datepicker: Drive the disabled state through AngularJS ng-disabled.`}}},{id:`components.datepicker.examples.datepicker-custom-adapter`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-custom-adapter`,translations:{en_us:{title:`Custom date adapter and formatter`,content:`Keep a string application model while presenting and parsing a different input format.`},es_mx:{title:`Custom date adapter and formatter`,content:`Ejemplo de datepicker: Keep a string application model while presenting and parsing a different input format.`}}},{id:`components.datepicker.examples.datepicker-i18n`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-i18n`,translations:{en_us:{title:`Internationalization of datepickers`,content:`Supply labels and accessible date descriptions per datepicker instance through NgbDatepickerI18n.`},es_mx:{title:`Internationalization of datepickers`,content:`Ejemplo de datepicker: Supply labels and accessible date descriptions per datepicker instance through NgbDatepickerI18n.`}}},{id:`components.datepicker.examples.datepicker-custom-day`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-custom-day`,translations:{en_us:{title:`Custom day view`,content:`Render weekends, today, selection and focus states with a custom day template.`},es_mx:{title:`Custom day view`,content:`Ejemplo de datepicker: Render weekends, today, selection and focus states with a custom day template.`}}},{id:`components.datepicker.examples.datepicker-custom-month`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-custom-month`,translations:{en_us:{title:`Custom month layout`,content:`Replace the datepicker content while reusing its public month view and navigation API.`},es_mx:{title:`Custom month layout`,content:`Ejemplo de datepicker: Replace the datepicker content while reusing its public month view and navigation API.`}}},{id:`components.datepicker.examples.datepicker-footer`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-footer`,translations:{en_us:{title:`Footer template`,content:`Add Today and Clear actions below the calendar with a footer template.`},es_mx:{title:`Footer template`,content:`Ejemplo de datepicker: Add Today and Clear actions below the calendar with a footer template.`}}},{id:`components.datepicker.examples.datepicker-position-target`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-position-target`,translations:{en_us:{title:`Position target`,content:`Trigger the popup from an input while positioning it against a separate element.`},es_mx:{title:`Position target`,content:`Ejemplo de datepicker: Trigger the popup from an input while positioning it against a separate element.`}}},{id:`components.datepicker.examples.datepicker-keyboard`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-keyboard`,translations:{en_us:{title:`Custom keyboard navigation`,content:`Add application-specific month navigation keys without removing the built-in keyboard behavior.`},es_mx:{title:`Custom keyboard navigation`,content:`Ejemplo de datepicker: Add application-specific month navigation keys without removing the built-in keyboard behavior.`}}},{id:`components.datepicker.examples.datepicker-global`,url:`docs.dashboard.datepicker.examples`,fragment:`datepicker-global`,translations:{en_us:{title:`Global configuration of datepickers`,content:`Change defaults for inline and input datepickers through their configuration services.`},es_mx:{title:`Global configuration of datepickers`,content:`Ejemplo de datepicker: Change defaults for inline and input datepickers through their configuration services.`}}},{id:`components.dropdown.examples.simple-dropdown`,url:`docs.dashboard.dropdown.examples`,fragment:`simple-dropdown`,translations:{en_us:{title:`Simple dropdown`,content:`Two basic menus that prefer bottom and top placement respectively.`},es_mx:{title:`Simple dropdown`,content:`Ejemplo de dropdown: Two basic menus that prefer bottom and top placement respectively.`}}},{id:`components.dropdown.examples.manual-dropdown`,url:`docs.dashboard.dropdown.examples`,fragment:`manual-dropdown`,translations:{en_us:{title:`Manual triggers`,content:`Use the dropdown controller to open, close or toggle a menu without a toggle trigger.`},es_mx:{title:`Manual triggers`,content:`Ejemplo de dropdown: Use the dropdown controller to open, close or toggle a menu without a toggle trigger.`}}},{id:`components.dropdown.examples.dropdown-button-groups`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-button-groups`,translations:{en_us:{title:`Button groups and split buttons`,content:`Place dropdown toggles inside Bootstrap button groups, including a split action.`},es_mx:{title:`Button groups and split buttons`,content:`Ejemplo de dropdown: Place dropdown toggles inside Bootstrap button groups, including a split action.`}}},{id:`components.dropdown.examples.dropdown-disabled-items`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-disabled-items`,translations:{en_us:{title:`Disabled items`,content:`Use ng-disabled to update disabled dropdown items dynamically.`},es_mx:{title:`Disabled items`,content:`Ejemplo de dropdown: Use ng-disabled to update disabled dropdown items dynamically.`}}},{id:`components.dropdown.examples.dropdown-form`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-form`,translations:{en_us:{title:`Dropdown form`,content:`Place an AngularJS form inside the menu and keep it open while interacting with its fields.`},es_mx:{title:`Dropdown form`,content:`Ejemplo de dropdown: Place an AngularJS form inside the menu and keep it open while interacting with its fields.`}}},{id:`components.dropdown.examples.dropdown-body`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-body`,translations:{en_us:{title:`Body container`,content:`Append the menu to the document body when an ancestor clips overflowing content.`},es_mx:{title:`Body container`,content:`Ejemplo de dropdown: Append the menu to the document body when an ancestor clips overflowing content.`}}},{id:`components.dropdown.examples.dropdown-navbar`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-navbar`,translations:{en_us:{title:`Dynamic positioning in a navbar`,content:`Override the navbar's static default with dynamic Popper positioning.`},es_mx:{title:`Dynamic positioning in a navbar`,content:`Ejemplo de dropdown: Override the navbar's static default with dynamic Popper positioning.`}}},{id:`components.dropdown.examples.dropdown-global`,url:`docs.dashboard.dropdown.examples`,fragment:`dropdown-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbDropdownConfig once to provide shared defaults without local inputs.`},es_mx:{title:`Global configuration`,content:`Ejemplo de dropdown: Change NgbDropdownConfig once to provide shared defaults without local inputs.`}}},{id:`components.modal.examples.modal-default`,url:`docs.dashboard.modal.examples`,fragment:`modal-default`,translations:{en_us:{title:`Modal with default options`,content:`Open a TemplateRef modal without passing local options.`},es_mx:{title:`Modal with default options`,content:`Ejemplo de modal: Open a TemplateRef modal without passing local options.`}}},{id:`components.modal.examples.modal-component-content`,url:`docs.dashboard.modal.examples`,fragment:`modal-component-content`,translations:{en_us:{title:`Components as content`,content:`Open a registered component, pass bindings to it and close or dismiss through NgbActiveModal.`},es_mx:{title:`Components as content`,content:`Ejemplo de modal: Open a registered component, pass bindings to it and close or dismiss through NgbActiveModal.`}}},{id:`components.modal.examples.modal-focus`,url:`docs.dashboard.modal.examples`,fragment:`modal-focus`,translations:{en_us:{title:`Focus management`,content:`Focus the first interactive element automatically or choose another element with ngbAutofocus.`},es_mx:{title:`Focus management`,content:`Ejemplo de modal: Focus the first interactive element automatically or choose another element with ngbAutofocus.`}}},{id:`components.modal.examples.modal-options`,url:`docs.dashboard.modal.examples`,fragment:`modal-options`,translations:{en_us:{title:`Modal with options`,content:`Open modal variants for custom classes, backdrops, sizes, fullscreen, centering and scrollable content.`},es_mx:{title:`Modal with options`,content:`Ejemplo de modal: Open modal variants for custom classes, backdrops, sizes, fullscreen, centering and scrollable content.`}}},{id:`components.modal.examples.modal-updatable`,url:`docs.dashboard.modal.examples`,fragment:`modal-updatable`,translations:{en_us:{title:`Updatable options`,content:`Change ARIA references, layout, size and custom classes after the modal has opened.`},es_mx:{title:`Updatable options`,content:`Ejemplo de modal: Change ARIA references, layout, size and custom classes after the modal has opened.`}}},{id:`components.modal.examples.modal-stacked`,url:`docs.dashboard.modal.examples`,fragment:`modal-stacked`,translations:{en_us:{title:`Stacked modals`,content:`Open multiple modal layers and dismiss the complete stack from the modal service.`},es_mx:{title:`Stacked modals`,content:`Ejemplo de modal: Open multiple modal layers and dismiss the complete stack from the modal service.`}}},{id:`components.modal.examples.modal-global`,url:`docs.dashboard.modal.examples`,fragment:`modal-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbModalConfig once to provide defaults for every modal opened in this example.`},es_mx:{title:`Global configuration`,content:`Ejemplo de modal: Change NgbModalConfig once to provide defaults for every modal opened in this example.`}}},{id:`components.nav.examples.simple-nav`,url:`docs.dashboard.nav.examples`,fragment:`simple-nav`,translations:{en_us:{title:`Simple nav`,content:`A basic tabbed nav with three items and an associated content outlet.`},es_mx:{title:`Simple nav`,content:`Ejemplo de nav: A basic tabbed nav with three items and an associated content outlet.`}}},{id:`components.nav.examples.alternative-nav`,url:`docs.dashboard.nav.examples`,fragment:`alternative-nav`,translations:{en_us:{title:`Alternative markup`,content:`Use div elements instead of lists and interchange buttons and anchors as nav links.`},es_mx:{title:`Alternative markup`,content:`Ejemplo de nav: Use div elements instead of lists and interchange buttons and anchors as nav links.`}}},{id:`components.nav.examples.vertical-nav`,url:`docs.dashboard.nav.examples`,fragment:`vertical-nav`,translations:{en_us:{title:`Vertical pills`,content:`Combine vertical orientation with Bootstrap nav pills and a side-by-side outlet.`},es_mx:{title:`Vertical pills`,content:`Ejemplo de nav: Combine vertical orientation with Bootstrap nav pills and a side-by-side outlet.`}}},{id:`components.nav.examples.selecting-nav`,url:`docs.dashboard.nav.examples`,fragment:`selecting-nav`,translations:{en_us:{title:`Selecting navs`,content:`Select any nav item programmatically through the NgbNav controller.`},es_mx:{title:`Selecting navs`,content:`Ejemplo de nav: Select any nav item programmatically through the NgbNav controller.`}}},{id:`components.nav.examples.keep-content-nav`,url:`docs.dashboard.nav.examples`,fragment:`keep-content-nav`,translations:{en_us:{title:`Keep content`,content:`Disable content destruction so form state remains in the DOM while another tab is active.`},es_mx:{title:`Keep content`,content:`Ejemplo de nav: Disable content destruction so form state remains in the DOM while another tab is active.`}}},{id:`components.nav.examples.dynamic-nav`,url:`docs.dashboard.nav.examples`,fragment:`dynamic-nav`,translations:{en_us:{title:`Dynamic navs`,content:`Add new tabs at runtime and safely remove the currently active item.`},es_mx:{title:`Dynamic navs`,content:`Ejemplo de nav: Add new tabs at runtime and safely remove the currently active item.`}}},{id:`components.nav.examples.custom-nav`,url:`docs.dashboard.nav.examples`,fragment:`custom-nav`,translations:{en_us:{title:`Custom style`,content:`Build a distinct nav appearance with a small custom class layered over NgbJS behavior.`},es_mx:{title:`Custom style`,content:`Ejemplo de nav: Build a distinct nav appearance with a small custom class layered over NgbJS behavior.`}}},{id:`components.nav.examples.nav-global`,url:`docs.dashboard.nav.examples`,fragment:`nav-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbNavConfig once to provide orientation, keyboard and content defaults.`},es_mx:{title:`Global configuration`,content:`Ejemplo de nav: Change NgbNavConfig once to provide orientation, keyboard and content defaults.`}}},{id:`components.offcanvas.examples.offcanvas-default`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-default`,translations:{en_us:{title:`Offcanvas with default options`,content:`Open a TemplateRef panel without passing local options.`},es_mx:{title:`Offcanvas with default options`,content:`Ejemplo de offcanvas: Open a TemplateRef panel without passing local options.`}}},{id:`components.offcanvas.examples.offcanvas-component-content`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-component-content`,translations:{en_us:{title:`Components as content`,content:`Open a registered component and close or dismiss it through NgbActiveOffcanvas.`},es_mx:{title:`Components as content`,content:`Ejemplo de offcanvas: Open a registered component and close or dismiss it through NgbActiveOffcanvas.`}}},{id:`components.offcanvas.examples.offcanvas-focus`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-focus`,translations:{en_us:{title:`Focus management`,content:`Focus the first interactive element automatically or choose another element with ngbAutofocus.`},es_mx:{title:`Focus management`,content:`Ejemplo de offcanvas: Focus the first interactive element automatically or choose another element with ngbAutofocus.`}}},{id:`components.offcanvas.examples.offcanvas-options`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-options`,translations:{en_us:{title:`Offcanvas with options`,content:`Try custom classes, a static backdrop, every panel position and body scrolling.`},es_mx:{title:`Offcanvas with options`,content:`Ejemplo de offcanvas: Try custom classes, a static backdrop, every panel position and body scrolling.`}}},{id:`components.offcanvas.examples.offcanvas-global`,url:`docs.dashboard.offcanvas.examples`,fragment:`offcanvas-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbOffcanvasConfig once to provide shared defaults when opening a panel.`},es_mx:{title:`Global configuration`,content:`Ejemplo de offcanvas: Change NgbOffcanvasConfig once to provide shared defaults when opening a panel.`}}},{id:`components.pagination.examples.basic-pagination`,url:`docs.dashboard.pagination.examples`,fragment:`basic-pagination`,translations:{en_us:{title:`Basic pagination`,content:`Navigate a collection with the default pagination options.`},es_mx:{title:`Basic pagination`,content:`Ejemplo de pagination: Navigate a collection with the default pagination options.`}}},{id:`components.pagination.examples.advanced-pagination`,url:`docs.dashboard.pagination.examples`,fragment:`advanced-pagination`,translations:{en_us:{title:`Advanced pagination`,content:`Limit visible pages, rotate the range and control boundary links and ellipses.`},es_mx:{title:`Advanced pagination`,content:`Ejemplo de pagination: Limit visible pages, rotate the range and control boundary links and ellipses.`}}},{id:`components.pagination.examples.custom-pagination`,url:`docs.dashboard.pagination.examples`,fragment:`custom-pagination`,translations:{en_us:{title:`Custom links and pages`,content:`Replace the previous, next and page-number content with ng-template.`},es_mx:{title:`Custom links and pages`,content:`Ejemplo de pagination: Replace the previous, next and page-number content with ng-template.`}}},{id:`components.pagination.examples.pagination-size`,url:`docs.dashboard.pagination.examples`,fragment:`pagination-size`,translations:{en_us:{title:`Pagination size`,content:`Use Bootstrap small, default and large pagination sizes.`},es_mx:{title:`Pagination size`,content:`Ejemplo de pagination: Use Bootstrap small, default and large pagination sizes.`}}},{id:`components.pagination.examples.pagination-alignment`,url:`docs.dashboard.pagination.examples`,fragment:`pagination-alignment`,translations:{en_us:{title:`Pagination alignment`,content:`Align pagination at the start, center or end using Bootstrap flex utilities.`},es_mx:{title:`Pagination alignment`,content:`Ejemplo de pagination: Align pagination at the start, center or end using Bootstrap flex utilities.`}}},{id:`components.pagination.examples.disabled-pagination`,url:`docs.dashboard.pagination.examples`,fragment:`disabled-pagination`,translations:{en_us:{title:`Disabled pagination`,content:`Disable every pagination action through the ng-disabled directive.`},es_mx:{title:`Disabled pagination`,content:`Ejemplo de pagination: Disable every pagination action through the ng-disabled directive.`}}},{id:`components.pagination.examples.pagination-global`,url:`docs.dashboard.pagination.examples`,fragment:`pagination-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbPaginationConfig once to provide shared pagination defaults.`},es_mx:{title:`Global configuration`,content:`Ejemplo de pagination: Change NgbPaginationConfig once to provide shared pagination defaults.`}}},{id:`components.popover.examples.popover-placements`,url:`docs.dashboard.popover.examples`,fragment:`popover-placements`,translations:{en_us:{title:`Quick and easy popovers`,content:`Place a popover above, to the right, below or to the left of its trigger.`},es_mx:{title:`Quick and easy popovers`,content:`Ejemplo de popover: Place a popover above, to the right, below or to the left of its trigger.`}}},{id:`components.popover.examples.popover-template`,url:`docs.dashboard.popover.examples`,fragment:`popover-template`,translations:{en_us:{title:`HTML and bindings in popovers`,content:`Use ng-template for rich title and body content with live AngularJS bindings.`},es_mx:{title:`HTML and bindings in popovers`,content:`Ejemplo de popover: Use ng-template for rich title and body content with live AngularJS bindings.`}}},{id:`components.popover.examples.popover-triggers`,url:`docs.dashboard.popover.examples`,fragment:`popover-triggers`,translations:{en_us:{title:`Custom and manual triggers`,content:`Pair custom DOM events or take manual control with two buttons.`},es_mx:{title:`Custom and manual triggers`,content:`Ejemplo de popover: Pair custom DOM events or take manual control with two buttons.`}}},{id:`components.popover.examples.popover-manual-control`,url:`docs.dashboard.popover.examples`,fragment:`popover-manual-control`,translations:{en_us:{title:`External manual controls`,content:`Open, close and toggle a target popover from independent controls.`},es_mx:{title:`External manual controls`,content:`Ejemplo de popover: Open, close and toggle a target popover from independent controls.`}}},{id:`components.popover.examples.popover-autoclose`,url:`docs.dashboard.popover.examples`,fragment:`popover-autoclose`,translations:{en_us:{title:`Automatic closing with keyboard and mouse`,content:`Close on inside clicks, outside clicks, every click or the Escape key.`},es_mx:{title:`Automatic closing with keyboard and mouse`,content:`Ejemplo de popover: Close on inside clicks, outside clicks, every click or the Escape key.`}}},{id:`components.popover.examples.popover-context`,url:`docs.dashboard.popover.examples`,fragment:`popover-context`,translations:{en_us:{title:`Context and manual triggers`,content:`Supply template context while opening manually or through popover-context.`},es_mx:{title:`Context and manual triggers`,content:`Ejemplo de popover: Supply template context while opening manually or through popover-context.`}}},{id:`components.popover.examples.popover-custom-target`,url:`docs.dashboard.popover.examples`,fragment:`popover-custom-target`,translations:{en_us:{title:`Custom target`,content:`Trigger a popover from one element while positioning it against another.`},es_mx:{title:`Custom target`,content:`Ejemplo de popover: Trigger a popover from one element while positioning it against another.`}}},{id:`components.popover.examples.popover-delays`,url:`docs.dashboard.popover.examples`,fragment:`popover-delays`,translations:{en_us:{title:`Open and close delays`,content:`Delay hover opening and keep content available while the pointer moves into it.`},es_mx:{title:`Open and close delays`,content:`Ejemplo de popover: Delay hover opening and keep content available while the pointer moves into it.`}}},{id:`components.popover.examples.popover-events`,url:`docs.dashboard.popover.examples`,fragment:`popover-events`,translations:{en_us:{title:`Popover visibility events`,content:`Observe shown and hidden callbacks and record when each transition completes.`},es_mx:{title:`Popover visibility events`,content:`Ejemplo de popover: Observe shown and hidden callbacks and record when each transition completes.`}}},{id:`components.popover.examples.popover-body`,url:`docs.dashboard.popover.examples`,fragment:`popover-body`,translations:{en_us:{title:`Append popover in the body`,content:`Escape clipping containers by appending the popover window to document.body.`},es_mx:{title:`Append popover in the body`,content:`Ejemplo de popover: Escape clipping containers by appending the popover window to document.body.`}}},{id:`components.popover.examples.popover-custom-class`,url:`docs.dashboard.popover.examples`,fragment:`popover-custom-class`,translations:{en_us:{title:`Popover with custom class`,content:`Layer a focused visual treatment over Bootstrap popover variables.`},es_mx:{title:`Popover with custom class`,content:`Ejemplo de popover: Layer a focused visual treatment over Bootstrap popover variables.`}}},{id:`components.popover.examples.popover-global`,url:`docs.dashboard.popover.examples`,fragment:`popover-global`,translations:{en_us:{title:`Global configuration of popovers`,content:`Change NgbPopoverConfig once to provide shared trigger, placement, delay and container defaults.`},es_mx:{title:`Global configuration of popovers`,content:`Ejemplo de popover: Change NgbPopoverConfig once to provide shared trigger, placement, delay and container defaults.`}}},{id:`components.progressbar.examples.simple-progressbar`,url:`docs.dashboard.progressbar.examples`,fragment:`simple-progressbar`,translations:{en_us:{title:`Simple progress bars`,content:`Display simple values using Bootstrap contextual types.`},es_mx:{title:`Simple progress bars`,content:`Ejemplo de progressbar: Display simple values using Bootstrap contextual types.`}}},{id:`components.progressbar.examples.contextual-text-progressbar`,url:`docs.dashboard.progressbar.examples`,fragment:`contextual-text-progressbar`,translations:{en_us:{title:`Contextual text progress bars`,content:`Show the calculated percentage and choose a contextual foreground color.`},es_mx:{title:`Contextual text progress bars`,content:`Ejemplo de progressbar: Show the calculated percentage and choose a contextual foreground color.`}}},{id:`components.progressbar.examples.striped-progress-bar`,url:`docs.dashboard.progressbar.examples`,fragment:`striped-progress-bar`,translations:{en_us:{title:`Striped progress bars`,content:`Apply striped styling to contextual variants and optionally animate the stripes.`},es_mx:{title:`Striped progress bars`,content:`Ejemplo de progressbar: Apply striped styling to contextual variants and optionally animate the stripes.`}}},{id:`components.progressbar.examples.custom-labels-progressbar`,url:`docs.dashboard.progressbar.examples`,fragment:`custom-labels-progressbar`,translations:{en_us:{title:`Custom labels`,content:`Project arbitrary HTML labels inside each progress bar.`},es_mx:{title:`Custom labels`,content:`Ejemplo de progressbar: Project arbitrary HTML labels inside each progress bar.`}}},{id:`components.progressbar.examples.progress-height`,url:`docs.dashboard.progressbar.examples`,fragment:`progress-height`,translations:{en_us:{title:`Progress height`,content:`Set the progress container height through the height input.`},es_mx:{title:`Progress height`,content:`Ejemplo de progressbar: Set the progress container height through the height input.`}}},{id:`components.progressbar.examples.progress-bars-stacked`,url:`docs.dashboard.progressbar.examples`,fragment:`progress-bars-stacked`,translations:{en_us:{title:`Stacked progress bars`,content:`Combine multiple contextual segments inside NgbProgressbarStacked.`},es_mx:{title:`Stacked progress bars`,content:`Ejemplo de progressbar: Combine multiple contextual segments inside NgbProgressbarStacked.`}}},{id:`components.progressbar.examples.progressbar-global`,url:`docs.dashboard.progressbar.examples`,fragment:`progressbar-global`,translations:{en_us:{title:`Global configuration`,content:`Change NgbProgressbarConfig once to provide shared visual and value defaults.`},es_mx:{title:`Global configuration`,content:`Ejemplo de progressbar: Change NgbProgressbarConfig once to provide shared visual and value defaults.`}}},{id:`components.rating.examples.basic-rating`,url:`docs.dashboard.rating.examples`,fragment:`basic-rating`,translations:{en_us:{title:`Basic demo`,content:`Select a rating and synchronize its value through rate-change.`},es_mx:{title:`Basic demo`,content:`Ejemplo de rating: Select a rating and synchronize its value through rate-change.`}}},{id:`components.rating.examples.rating-events`,url:`docs.dashboard.rating.examples`,fragment:`rating-events`,translations:{en_us:{title:`Events and readonly ratings`,content:`Observe hover and leave events and switch the same rating between editable and read-only states.`},es_mx:{title:`Events and readonly ratings`,content:`Ejemplo de rating: Observe hover and leave events and switch the same rating between editable and read-only states.`}}},{id:`components.rating.examples.rating-custom-template`,url:`docs.dashboard.rating.examples`,fragment:`rating-custom-template`,translations:{en_us:{title:`Custom star template`,content:`Replace the default characters with a child ng-template using Bootstrap Icons.`},es_mx:{title:`Custom star template`,content:`Ejemplo de rating: Replace the default characters with a child ng-template using Bootstrap Icons.`}}},{id:`components.rating.examples.rating-decimal`,url:`docs.dashboard.rating.examples`,fragment:`rating-decimal`,translations:{en_us:{title:`Custom decimal rating`,content:`Render fractional heart fills through star-template and provide accessible value text.`},es_mx:{title:`Custom decimal rating`,content:`Ejemplo de rating: Render fractional heart fills through star-template and provide accessible value text.`}}},{id:`components.rating.examples.rating-form`,url:`docs.dashboard.rating.examples`,fragment:`rating-form`,translations:{en_us:{title:`Form integration`,content:`Synchronize rate and rate-change with an AngularJS form model while direct ng-model support remains pending.`},es_mx:{title:`Form integration`,content:`Ejemplo de rating: Synchronize rate and rate-change with an AngularJS form model while direct ng-model support remains pending.`}}},{id:`components.rating.examples.rating-global`,url:`docs.dashboard.rating.examples`,fragment:`rating-global`,translations:{en_us:{title:`Customized default values`,content:`Change NgbRatingConfig once to provide shared maximum, read-only and tabindex defaults.`},es_mx:{title:`Customized default values`,content:`Ejemplo de rating: Change NgbRatingConfig once to provide shared maximum, read-only and tabindex defaults.`}}},{id:`components.scrollspy.examples.basic-scrollspy`,url:`docs.dashboard.scrollspy.examples`,fragment:`basic-scrollspy`,translations:{en_us:{title:`Basic`,content:`Observe fragments inside an independent scroll container and read the currently active id.`},es_mx:{title:`Basic`,content:`Ejemplo de scrollspy: Observe fragments inside an independent scroll container and read the currently active id.`}}},{id:`components.scrollspy.examples.scrollspy-menu-items`,url:`docs.dashboard.scrollspy.examples`,fragment:`scrollspy-menu-items`,translations:{en_us:{title:`Menu items`,content:`Connect Bootstrap list-group items to a scrollspy instance outside the observed container.`},es_mx:{title:`Menu items`,content:`Ejemplo de scrollspy: Connect Bootstrap list-group items to a scrollspy instance outside the observed container.`}}},{id:`components.scrollspy.examples.nested-scrollspy`,url:`docs.dashboard.scrollspy.examples`,fragment:`nested-scrollspy`,translations:{en_us:{title:`Nested items`,content:`Group child fragments under parent menu items and keep both levels synchronized.`},es_mx:{title:`Nested items`,content:`Ejemplo de scrollspy: Group child fragments under parent menu items and keep both levels synchronized.`}}},{id:`components.scrollspy.examples.navbar-scrollspy`,url:`docs.dashboard.scrollspy.examples`,fragment:`navbar-scrollspy`,translations:{en_us:{title:`Navbar`,content:`Use a Bootstrap navbar as an external menu for a separate scroll container.`},es_mx:{title:`Navbar`,content:`Ejemplo de scrollspy: Use a Bootstrap navbar as an external menu for a separate scroll container.`}}},{id:`components.scrollspy.examples.scrollspy-service`,url:`docs.dashboard.scrollspy.examples`,fragment:`scrollspy-service`,translations:{en_us:{title:`Using the service`,content:`Start, stop and control observation programmatically with NgbScrollSpyService and ordinary DOM fragments.`},es_mx:{title:`Using the service`,content:`Ejemplo de scrollspy: Start, stop and control observation programmatically with NgbScrollSpyService and ordinary DOM fragments.`}}},{id:`components.timepicker.examples.basic-timepicker`,url:`docs.dashboard.timepicker.examples`,fragment:`basic-timepicker`,translations:{en_us:{title:`Basic timepicker`,content:`Bind an NgbTimeStruct model to the default timepicker.`},es_mx:{title:`Basic timepicker`,content:`Ejemplo de timepicker: Bind an NgbTimeStruct model to the default timepicker.`}}},{id:`components.timepicker.examples.meridian-timepicker`,url:`docs.dashboard.timepicker.examples`,fragment:`meridian-timepicker`,translations:{en_us:{title:`Meridian`,content:`Switch between 24-hour and 12-hour input with a localized period selector.`},es_mx:{title:`Meridian`,content:`Ejemplo de timepicker: Switch between 24-hour and 12-hour input with a localized period selector.`}}},{id:`components.timepicker.examples.seconds-timepicker`,url:`docs.dashboard.timepicker.examples`,fragment:`seconds-timepicker`,translations:{en_us:{title:`Seconds`,content:`Show or hide the seconds field while preserving the same time model.`},es_mx:{title:`Seconds`,content:`Ejemplo de timepicker: Show or hide the seconds field while preserving the same time model.`}}},{id:`components.timepicker.examples.spinners-timepicker`,url:`docs.dashboard.timepicker.examples`,fragment:`spinners-timepicker`,translations:{en_us:{title:`Spinners`,content:`Toggle the increment and decrement controls without disabling keyboard input.`},es_mx:{title:`Spinners`,content:`Ejemplo de timepicker: Toggle the increment and decrement controls without disabling keyboard input.`}}},{id:`components.timepicker.examples.timepicker-custom-steps`,url:`docs.dashboard.timepicker.examples`,fragment:`timepicker-custom-steps`,translations:{en_us:{title:`Custom steps`,content:`Configure independent increments for hours, minutes and seconds.`},es_mx:{title:`Custom steps`,content:`Ejemplo de timepicker: Configure independent increments for hours, minutes and seconds.`}}},{id:`components.timepicker.examples.timepicker-validation`,url:`docs.dashboard.timepicker.examples`,fragment:`timepicker-validation`,translations:{en_us:{title:`Custom validation`,content:`Add an AngularJS ngModel validator that only accepts times between 12:00 and 13:59.`},es_mx:{title:`Custom validation`,content:`Ejemplo de timepicker: Add an AngularJS ngModel validator that only accepts times between 12:00 and 13:59.`}}},{id:`components.timepicker.examples.timepicker-custom-adapter`,url:`docs.dashboard.timepicker.examples`,fragment:`timepicker-custom-adapter`,translations:{en_us:{title:`Custom time adapter`,content:`Implement NgbTimeAdapter to convert between NgbTimeStruct and an application-level HH:mm:ss string. Adapter providers are application-wide in AngularJS.`},es_mx:{title:`Custom time adapter`,content:`Ejemplo de timepicker: Implement NgbTimeAdapter to convert between NgbTimeStruct and an application-level HH:mm:ss string. Adapter providers are application-wide in AngularJS.`}}},{id:`components.timepicker.examples.timepicker-i18n`,url:`docs.dashboard.timepicker.examples`,fragment:`timepicker-i18n`,translations:{en_us:{title:`Internationalization`,content:`Replace NgbTimepickerI18n application-wide to supply custom Greek morning and afternoon labels.`},es_mx:{title:`Internationalization`,content:`Ejemplo de timepicker: Replace NgbTimepickerI18n application-wide to supply custom Greek morning and afternoon labels.`}}},{id:`components.toast.examples.inline-toast`,url:`docs.dashboard.toast.examples`,fragment:`inline-toast`,translations:{en_us:{title:`Declarative inline usage`,content:`Render static body-only and text-header toasts directly in the page.`},es_mx:{title:`Declarative inline usage`,content:`Ejemplo de toast: Render static body-only and text-header toasts directly in the page.`}}},{id:`components.toast.examples.template-header-toast`,url:`docs.dashboard.toast.examples`,fragment:`template-header-toast`,translations:{en_us:{title:`Using a Template as header`,content:`Project an ng-template to build a richer header with custom markup.`},es_mx:{title:`Using a Template as header`,content:`Ejemplo de toast: Project an ng-template to build a richer header with custom markup.`}}},{id:`components.toast.examples.closeable-toast`,url:`docs.dashboard.toast.examples`,fragment:`closeable-toast`,translations:{en_us:{title:`Closeable toast`,content:`Handle hidden to remove the toast and recreate it after a short delay.`},es_mx:{title:`Closeable toast`,content:`Ejemplo de toast: Handle hidden to remove the toast and recreate it after a short delay.`}}},{id:`components.toast.examples.prevent-autohide-toast`,url:`docs.dashboard.toast.examples`,fragment:`prevent-autohide-toast`,translations:{en_us:{title:`Prevent autohide on mouseover`,content:`Pause the autohide timer while the pointer remains over the toast and restart it on mouseleave.`},es_mx:{title:`Prevent autohide on mouseover`,content:`Ejemplo de toast: Pause the autohide timer while the pointer remains over the toast and restart it on mouseleave.`}}},{id:`components.toast.examples.toast-management`,url:`docs.dashboard.toast.examples`,fragment:`toast-management`,translations:{en_us:{title:`Toast management service`,content:`Create, remove and clear multiple notifications through a reusable AngularJS service.`},es_mx:{title:`Toast management service`,content:`Ejemplo de toast: Create, remove and clear multiple notifications through a reusable AngularJS service.`}}},{id:`components.tooltip.examples.tooltip-placements`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-placements`,translations:{en_us:{title:`Quick and easy tooltips`,content:`Use the four primary Bootstrap placements with the default hover and focus triggers.`},es_mx:{title:`Quick and easy tooltips`,content:`Ejemplo de tooltip: Use the four primary Bootstrap placements with the default hover and focus triggers.`}}},{id:`components.tooltip.examples.tooltip-template`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-template`,translations:{en_us:{title:`HTML and bindings in tooltips`,content:`Render an ng-template as tooltip content and keep its bindings synchronized.`},es_mx:{title:`HTML and bindings in tooltips`,content:`Ejemplo de tooltip: Render an ng-template as tooltip content and keep its bindings synchronized.`}}},{id:`components.tooltip.examples.tooltip-triggers`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-triggers`,translations:{en_us:{title:`Custom and manual triggers`,content:`Pair custom DOM events or control a tooltip directly through its public controller.`},es_mx:{title:`Custom and manual triggers`,content:`Ejemplo de tooltip: Pair custom DOM events or control a tooltip directly through its public controller.`}}},{id:`components.tooltip.examples.tooltip-autoclose`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-autoclose`,translations:{en_us:{title:`Automatic closing with keyboard and mouse`,content:`Compare inside, outside and all-click closing while preserving Escape keyboard support.`},es_mx:{title:`Automatic closing with keyboard and mouse`,content:`Ejemplo de tooltip: Compare inside, outside and all-click closing while preserving Escape keyboard support.`}}},{id:`components.tooltip.examples.tooltip-context`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-context`,translations:{en_us:{title:`Context and manual triggers`,content:`Pass template context at open time or provide a default tooltip-context.`},es_mx:{title:`Context and manual triggers`,content:`Ejemplo de tooltip: Pass template context at open time or provide a default tooltip-context.`}}},{id:`components.tooltip.examples.tooltip-custom-target`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-custom-target`,translations:{en_us:{title:`Custom target`,content:`Trigger the tooltip from one element while positioning it against another.`},es_mx:{title:`Custom target`,content:`Ejemplo de tooltip: Trigger the tooltip from one element while positioning it against another.`}}},{id:`components.tooltip.examples.tooltip-delays`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-delays`,translations:{en_us:{title:`Open and close delays`,content:`Delay opening and closing while allowing the pointer to move safely into the tooltip.`},es_mx:{title:`Open and close delays`,content:`Ejemplo de tooltip: Delay opening and closing while allowing the pointer to move safely into the tooltip.`}}},{id:`components.tooltip.examples.tooltip-body`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-body`,translations:{en_us:{title:`Append tooltip in the body`,content:`Escape a clipping container by appending the tooltip window directly to document.body.`},es_mx:{title:`Append tooltip in the body`,content:`Ejemplo de tooltip: Escape a clipping container by appending the tooltip window directly to document.body.`}}},{id:`components.tooltip.examples.tooltip-custom-class`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-custom-class`,translations:{en_us:{title:`Tooltip with custom class`,content:`Apply a small custom theme through Bootstrap tooltip variables.`},es_mx:{title:`Tooltip with custom class`,content:`Ejemplo de tooltip: Apply a small custom theme through Bootstrap tooltip variables.`}}},{id:`components.tooltip.examples.tooltip-global`,url:`docs.dashboard.tooltip.examples`,fragment:`tooltip-global`,translations:{en_us:{title:`Global configuration of tooltips`,content:`Set shared container, placement, trigger and delay defaults through NgbTooltipConfig.`},es_mx:{title:`Global configuration of tooltips`,content:`Ejemplo de tooltip: Set shared container, placement, trigger and delay defaults through NgbTooltipConfig.`}}},{id:`components.typeahead.examples.simple-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`simple-typeahead`,translations:{en_us:{title:`Simple Typeahead`,content:`Debounce a local string search, require two characters and limit the result set.`},es_mx:{title:`Simple Typeahead`,content:`Ejemplo de typeahead: Debounce a local string search, require two characters and limit the result set.`}}},{id:`components.typeahead.examples.focus-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`focus-typeahead`,translations:{en_us:{title:`Open on focus`,content:`Merge an explicit focus stream with user input so an empty field can display suggestions immediately.`},es_mx:{title:`Open on focus`,content:`Ejemplo de typeahead: Merge an explicit focus stream with user input so an empty field can display suggestions immediately.`}}},{id:`components.typeahead.examples.formatted-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`formatted-typeahead`,translations:{en_us:{title:`Formatted results`,content:`Transform result labels without changing the selected model value.`},es_mx:{title:`Formatted results`,content:`Ejemplo de typeahead: Transform result labels without changing the selected model value.`}}},{id:`components.typeahead.examples.exact-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`exact-typeahead`,translations:{en_us:{title:`Select on exact`,content:`Select an object automatically when its formatted label is the only exact match.`},es_mx:{title:`Select on exact`,content:`Ejemplo de typeahead: Select an object automatically when its formatted label is the only exact match.`}}},{id:`components.typeahead.examples.wikipedia-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`wikipedia-typeahead`,translations:{en_us:{title:`Wikipedia search`,content:`Retrieve remote suggestions through AngularJS $http with debounce, stale-response switching and error feedback.`},es_mx:{title:`Wikipedia search`,content:`Ejemplo de typeahead: Retrieve remote suggestions through AngularJS $http with debounce, stale-response switching and error feedback.`}}},{id:`components.typeahead.examples.template-results-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`template-results-typeahead`,translations:{en_us:{title:`Template for results`,content:`Render object results with a custom template, contextual term highlighting and additional metadata.`},es_mx:{title:`Template for results`,content:`Ejemplo de typeahead: Render object results with a custom template, contextual term highlighting and additional metadata.`}}},{id:`components.typeahead.examples.non-editable-typeahead`,url:`docs.dashboard.typeahead.examples`,fragment:`non-editable-typeahead`,translations:{en_us:{title:`Prevent manual entry`,content:`Keep the model null until the user chooses a valid object from the suggestion list.`},es_mx:{title:`Prevent manual entry`,content:`Ejemplo de typeahead: Keep the model null until the user chooses a valid object from the suggestion list.`}}},{id:`components.typeahead.examples.typeahead-global`,url:`docs.dashboard.typeahead.examples`,fragment:`typeahead-global`,translations:{en_us:{title:`Global configuration of typeaheads`,content:`Configure hint completion, exact selection and body container defaults through NgbTypeaheadConfig.`},es_mx:{title:`Global configuration of typeaheads`,content:`Ejemplo de typeahead: Configure hint completion, exact selection and body container defaults through NgbTypeaheadConfig.`}}}],$_=class{static $key=`search.documents`;static $value=Q_},ev=class{language;_changeLang;changeLang$;constructor(e){this.language=e,this._changeLang=new ja(this.language),this.changeLang$=this._changeLang.asObservable()}selectLanguage(e){this._changeLang.next(e)}static get $name(){return`docs.language.service`}static get $inject(){return[Y_.$name]}},tv=class e{$element;mode=`desktop`;ngbActiveOffcanvas;constructor(e){this.$element=e}$postLink(){this.mode===`mobile`&&this.$element.addClass(`h-100 d-flex flex-column`)}static get $factory(){return{bindings:{mode:`@`,ngbActiveOffcanvas:`<?`},controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/menu.component-eca555d5.html`}}static get $inject(){return[`$element`]}static get $name(){return`docsMenu`}},nv=class{offCanvasService;_isOpen=!1;_change=new Y;onChange$=this._change.asObservable();constructor(e){this.offCanvasService=e}toggleMenu(){this._isOpen||this.offCanvasService.hasOpenOffcanvas()||(this._setOpenState(!0),this.offCanvasService.open(tv.$name,{bindings:{mode:`mobile`},ariaLabelledBy:`docs-mobile-menu-title`,animation:!0,backdrop:!0,keyboard:!0,panelClass:`border-0 shadow`,position:`start`,scroll:!1}).then(e=>{e.result?.finally(()=>this._setOpenState(!1))},()=>{this._setOpenState(!1)}))}_setOpenState(e){this._isOpen=e,this._change.next(this._isOpen)}static get $inject(){return[Lm.$name]}static get $name(){return`core.menu.service`}},rv=class{transitionService;_transition=new Na(void 0);transition$=this._transition.asObservable();_currentTab;get currentTab(){return this._currentTab}set currentTab(e){this._currentTab=e}constructor(e){this.transitionService=e}observeRoute(){this.transitionService.onEnter({},e=>{let t=e.to(),n={title:t.data?.title,tabs:t.data?.tabs,sections:t.data?.sections,externalLinks:t.data?.externalLinks,header:t.data?.header??!0};this._currentTab=t.name,this._transition.next(n)})}static get $name(){return`docs.title.service`}static get $inject(){return[`$transitions`]}};function iv(){let e=e=>{e.observeRoute()};return e.$inject=[rv.$name],e}var av=class{$transitionService;constructor(e){this.$transitionService=e}observeScroll(){this.$transitionService.onSuccess({},()=>{window.requestAnimationFrame(()=>{document.getElementById(`docs-content-scroll`)?.scrollTo({top:0,left:0,behavior:`auto`})})})}static get $name(){return`docs.scroll.service`}static get $inject(){return[`$transitions`]}};function ov(){let e=e=>{e.observeScroll()};return e.$inject=[av.$name],e}var sv=class e{languageProvider;documents;data=new Map;constructor(e,t){this.languageProvider=e,this.documents=t}static tokenize(e){return e.replace(/([\p{Ll}\p{N}])(\p{Lu})/gu,`$1 $2`).toLowerCase().replace(/[^\p{L}\s]/gu,` `).trim().split(/\s+/).filter(Boolean)}$config(){this.data=this.documents.reduce((t,n)=>{let r=n.translations[this.languageProvider.lang],i=Object.values(r).join(` `),a=e.tokenize(i);for(let e of a){if(!e)continue;if(t.has(e)){t.get(e).add(n.id);continue}let r=new Set([n.id]);t.set(e,r)}return t},new Map),console.log(this.data)}$get(){return this.data}static get $name(){return`indexing`}static get $configName(){return`indexingProvider`}static get $inject(){return[Y_.$configName,$_.$key]}};function cv(){let e=e=>{e.$config()};return e.$inject=[sv.$configName],e}var lv=8,uv=class{index;language;documentsById;constructor(e,t,n){this.index=e,this.language=n,this.documentsById=new Map(t.map(e=>[e.id,e]))}search(e){let t=sv.tokenize(e);if(t.length!==1)return[];let[n]=t,r=new Set(this.index.get(n));for(let[e,t]of this.index)if(!(e===n||!e.startsWith(n)))for(let e of t)r.add(e);return[...r].flatMap(e=>{let t=this.documentsById.get(e);if(!t)return[];let n=t.translations[this.language];return[{id:t.id,url:t.url,fragment:t.fragment,title:n.title,content:n.content}]}).slice(0,lv)}static get $name(){return`docs.search.service`}static get $inject(){return[sv.$name,$_.$key,Y_.$name]}},dv=class e{static get $name(){return`docsFooter`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/footer.component-67e3fcf5.html`}}},fv=`docs.search.recents`,pv=class e{searchService;$element;$state;ngbActiveModal;query=``;results=[];recentDocuments=[];activeDocumentId;constructor(e,t,n){this.searchService=e,this.$element=t,this.$state=n}$onInit(){this.recentDocuments=this.getRecentDocuments(),this.activeDocumentId=this.recentDocuments[0]?.id}$postLink(){this.$element.addClass(`h-100 d-flex flex-column overflow-hidden`)}search(){this.results=this.searchService.search(this.query),this.activeDocumentId=this.visibleDocuments[0]?.id}handleKeydown(e){if(e.key===`Enter`){let t=this.visibleDocuments.find(e=>e.id===this.activeDocumentId);if(!t)return;e.preventDefault(),this.selectDocument(t);return}if(e.key!==`ArrowDown`&&e.key!==`ArrowUp`)return;let t=this.visibleDocuments;if(!t.length)return;e.preventDefault();let n=t.findIndex(e=>e.id===this.activeDocumentId),r=e.key===`ArrowDown`?(n+1)%t.length:n<=0?t.length-1:n-1;this.activeDocumentId=t[r].id,requestAnimationFrame(()=>{this.$element[0].querySelector(`.list-group-item.active`)?.scrollIntoView({block:`nearest`})})}activateDocument(e){this.activeDocumentId=e.id}selectDocument(e){this.ngbActiveModal.close(e),this.$state.go(e.url).then(()=>{requestAnimationFrame(()=>{let t=globalThis.document.getElementById(`docs-content-scroll`);t&&u.default.element(t).controller(`ngbScrollSpy`)?.scrollTo(e.fragment)})})}clearRecentDocuments(){localStorage.removeItem(fv),this.recentDocuments=[],this.activeDocumentId=this.results[0]?.id}get visibleDocuments(){let e=this.query?[...this.results,...this.recentDocuments.slice(0,2)]:this.recentDocuments,t=new Set;return e.filter(e=>!t.has(e.id)&&(t.add(e.id),!0))}getRecentDocuments(){let e=localStorage.getItem(fv);if(!e)return[];try{let t=JSON.parse(e);return Array.isArray(t)?t.slice(0,10):[]}catch{return[]}}static get $name(){return`docsSearchModal`}static get $factory(){return{bindings:{ngbActiveModal:`<`},controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/search-modal.component-9a1bc215.html`}}static get $inject(){return[uv.$name,`$element`,`$state`]}},mv=class e{modalService;themeService;themes;menuService;$document;constructor(e,t,n,r,i){this.modalService=e,this.themeService=t,this.themes=n,this.menuService=r,this.$document=i}handleSearchShortcut=e=>{!e.ctrlKey||e.key.toLowerCase()!==`k`||(e.preventDefault(),this.modalService.hasOpenModals()||this.openModal())};$onInit(){this.$document.on(`keydown`,this.handleSearchShortcut)}$onDestroy(){this.$document.off(`keydown`,this.handleSearchShortcut)}openModal(){this.modalService.open(pv.$name,{fullscreen:`md`,size:`lg`,scrollable:!0,animation:!1}).then(e=>{e.result?.then(e=>{e&&this.saveRecentDocument(e)},u.default.noop)},u.default.noop)}saveRecentDocument(e){let t=localStorage.getItem(fv),n=[];if(t)try{let e=JSON.parse(t);n=Array.isArray(e)?e:[]}catch{n=[]}let r=[e,...n.filter(t=>t.id!==e.id)].slice(0,10);localStorage.setItem(fv,JSON.stringify(r))}static get $name(){return`docsHeader`}static get $inject(){return[fp.$name,Z_.$name,H_.$key,nv.$name,`$document`]}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/header.component-a9f5e4db.html`}}},hv=class e{static get $name(){return`docsMenuAbstractPageComponent`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/menu-abstract-page.component-921edcdb.html`}}},gv=e=>{e.state(`docs.dashboard`,{abstract:!0,component:hv.$name})};gv.$inject=[`$stateProvider`];var _v=u.default.module(`docs.layout`,[]);_v.component(dv.$name,dv.$factory),_v.component(mv.$name,mv.$factory),_v.component(tv.$name,tv.$factory),_v.component(pv.$name,pv.$factory),_v.component(hv.$name,hv.$factory),_v.config(gv);var vv=u.default.module(`docs.core`,[_v.name]);vv.provider(I_.$name,I_),vv.provider(R_.$name,R_),vv.constant(V_.$key,V_.$value),vv.constant(H_.$key,H_.$value),vv.provider(W_.$name,W_),vv.service(Z_.$name,Z_),vv.constant(q_.$key,q_.$value),vv.provider(Y_.$name,Y_),vv.service(ev.$name,ev),vv.constant($_.$key,$_.$value),vv.service(nv.$name,nv),vv.service(rv.$name,rv),vv.service(av.$name,av),vv.service(uv.$name,uv),vv.provider(sv.$name,sv),vv.config(L_({url:`https://getbootstrap.com`,version:5.3})),vv.config(X_()),vv.config(cv()),vv.config(G_()),vv.config(z_({url:`https://ng-bootstrap.github.io`})),vv.run(ov()),vv.run(iv());var yv=class e{$window;$timeout;value;ariaLabel;buttonClass;copied=!1;constructor(e,t){this.$window=e,this.$timeout=t}copy(){this.$window.navigator.clipboard.writeText(this.value).then(()=>{this.$timeout(()=>{this.copied=!0}),this.$timeout(()=>{this.copied=!1},2e3)})}static get $name(){return`docsCopyButton`}static get $inject(){return[`$window`,`$timeout`]}static get $factory(){return{bindings:{value:`<`,ariaLabel:`@?`,buttonClass:`@?`},controller:e,controllerAs:`copyButton`,templateUrl:`/ngb-js-docs/templates/copy-button.component-1f9e7fbc.html`}}},bv=class e{templateRequest;fragment;title;description;htmlCode=``;htmlCodeUrl;tsCode;cssCode;codeCollapsed=!0;activeTab=`html`;static $inject=[`$templateRequest`];constructor(e){this.templateRequest=e}$onInit(){if(!this.htmlCodeUrl)return;let e=Array.isArray(this.htmlCodeUrl)?this.htmlCodeUrl:[this.htmlCodeUrl];Promise.all(e.map(e=>{let t=typeof e==`string`?e:e.url;return this.templateRequest(t).then(t=>typeof e==`string`||!e.label?t:`<!-- ${e.label} -->\n${t}`)})).then(e=>{this.htmlCode=e.join(`
+
+`)})}toggleCode(){this.codeCollapsed=!this.codeCollapsed}get hasAdditionalCode(){return!!(this.tsCode||this.cssCode)}get activeCode(){return this.activeTab===`typescript`?this.tsCode??``:this.activeTab===`css`?this.cssCode??``:this.htmlCode}static get $name(){return`docsExampleSection`}static get $factory(){return{bindings:{fragment:`@`,title:`@`,description:`@`,htmlCode:`<`,htmlCodeUrl:`<?`,tsCode:`<?`,cssCode:`<?`},controller:e,controllerAs:`example`,transclude:!0,templateUrl:`/ngb-js-docs/templates/example-section.component-32394cad.html`}}},xv=class e{titleService;bootstrapUrl;ngBootstrapUrl;destroyRef=new Y;externalLinks;title;sections=[];constructor(e,t,n){this.titleService=e,this.bootstrapUrl=t,this.ngBootstrapUrl=n}get bootstrapHref(){return this.externalLinks?.bootstrap?`${this.bootstrapUrl}${this.externalLinks.bootstrap}`:void 0}get ngBootstrapHref(){return this.externalLinks?.ngBootstrap?`${this.ngBootstrapUrl}${this.externalLinks.ngBootstrap}`:void 0}$postLink(){this.titleService.transition$.pipe(Cs(this.destroyRef)).subscribe(e=>{this.title=e.title,this.sections=e.sections??[],this.externalLinks=e.externalLinks})}$onDestroy(){this.destroyRef.next(),this.destroyRef.complete()}static get $inject(){return[rv.$name,I_.$name,R_.$name]}static get $name(){return`docsPageOutline`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/page-outline.component-960dd8ab.html`}}},Sv=class e{titleService;destroyRef=new Y;title;tabs;visible=!1;constructor(e){this.titleService=e}$postLink(){this.titleService.transition$.pipe(Cs(this.destroyRef)).subscribe(e=>{this.title=e.title,this.tabs=e.tabs,this.visible=e.header})}$onDestroy(){this.destroyRef.next(),this.destroyRef.complete()}static get $inject(){return[rv.$name]}static get $name(){return`docsTitleHeading`}static get $factory(){return{controllerAs:`$`,controller:e,templateUrl:`/ngb-js-docs/templates/title-heading.component-000851b4.html`}}},Cv=u.default.module(`docs.shared`,[]);Cv.component(yv.$name,yv.$factory),Cv.component(bv.$name,bv.$factory),Cv.component(xv.$name,xv.$factory),Cv.component(Sv.$name,Sv.$factory);var wv=class e{activePackageManager=`npm`;packageManagers=[{id:`npm`,name:`npm`,command:`npm install ngb-js`},{id:`pnpm`,name:`pnpm`,command:`pnpm add ngb-js`},{id:`yarn`,name:`Yarn`,command:`yarn add ngb-js`},{id:`bun`,name:`Bun`,command:`bun add ngb-js`}];static get $name(){return`docsIntroductionPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/introduction-page.component-76719756.html`,controllerAs:`$`}}},Tv=class e{static get $name(){return`docsPhilosophyPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/philosophy-page.component-37bd001a.html`,controllerAs:`$`}}},Ev=class e{static get $name(){return`docsWhyNgbJsPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/why-ngbjs-page.component-ec53a027.html`,controllerAs:`$`}}},Dv=e=>{e.state(`docs.dashboard.introduction`,{url:`/guide/introduction`,component:wv.$name,data:{header:!1,title:`Introduction`,sections:[{id:`origin`,name:`Origin`},{id:`what-is-ngbjs`,name:`What is NgbJS?`},{id:`who-is-it-for`,name:`Who is it for?`},{id:`project-status`,name:`Project status`},{id:`installation`,name:`Installation`},{id:`acknowledgements`,name:`Acknowledgements`}]}}),e.state(`docs.dashboard.philosophy`,{url:`/guide/philosophy`,component:Tv.$name,data:{header:!1,title:`Philosophy`,sections:[{id:`parity-is-priority`,name:`Parity is Priority`},{id:`what-parity-means`,name:`What parity means`},{id:`familiar-by-design`,name:`Familiar by design`},{id:`a-migration-bridge`,name:`A migration bridge`},{id:`when-parity-is-hard`,name:`When parity is hard`}]}}),e.state(`docs.dashboard.whyNgbJs`,{url:`/guide/why-ngbjs`,component:Ev.$name,data:{header:!1,title:`Why NgbJS?`,sections:[{id:`the-legacy-reality`,name:`The legacy reality`},{id:`before-and-after`,name:`Before and after`},{id:`what-it-unlocks`,name:`What NgbJS unlocks`},{id:`when-to-use-ngbjs`,name:`When to use NgbJS`},{id:`a-bridge-not-a-destination`,name:`A bridge, not a destination`}]}})};Dv.$inject=[`$stateProvider`];var Ov=u.default.module(`docs.guide`,[]);Ov.component(wv.$name,wv.$factory),Ov.component(Tv.$name,Tv.$factory),Ov.component(Ev.$name,Ev.$factory),Ov.config(Dv);var kv=class e{static get $name(){return`docsHomeHero`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/home-hero.component-37426584.html`}}},Av=class e{installCommand=`npm install ngb-js`;static get $name(){return`docsHomePage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/home-page.component-2061405c.html`,controllerAs:`$`}}},jv=e=>{e.state(`docs.home`,{url:`/`,component:Av.$name})};jv.$inject=[`$stateProvider`];var Mv=u.default.module(`docs.home`,[]);Mv.component(kv.$name,kv.$factory),Mv.component(Av.$name,Av.$factory),Mv.config(jv);var Nv=()=>[{id:1,type:`success`,message:`Your changes were saved successfully.`,animation:!0},{id:2,type:`danger`,message:`Something needs your attention.`,animation:!0},{id:3,type:`warning`,message:`This alert closes without animation.`,animation:!1},{id:4,type:`info`,message:`This one also closes immediately.`,animation:!1}],Pv=class e{alerts=Nv();close(e){this.alerts=this.alerts.filter(t=>t.id!==e)}reset(){this.alerts=Nv()}static get $name(){return`docsAlertCloseable`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/alert-closeable.component-851255ae.html`}}},Fv=class e{static get $name(){return`docsAlertCustom`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/alert-custom.component-e0d52b22.html`}}},Iv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,dismissible:e.dismissible,type:e.type},e.animation=!1,e.dismissible=!1,e.type=`success`}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.dismissible=this.initialConfig.dismissible,this.config.type=this.initialConfig.type}static get $name(){return`docsAlertGlobal`}static get $inject(){return[Xd.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/alert-global.component-64aef6bd.html`}}},Lv=class e{draft=`This value remains after collapsing the panel.`;static get $name(){return`docsAccordionContent`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-content.component-bdb3154c.html`}}},Rv=class e{static get $name(){return`docsAccordionCustomHeader`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-custom-header.component-6186c74a.html`}}},zv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,closeOthers:e.closeOthers,destroyOnHide:e.destroyOnHide},e.animation=!1,e.closeOthers=!0,e.destroyOnHide=!1}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.closeOthers=this.initialConfig.closeOthers,this.config.destroyOnHide=this.initialConfig.destroyOnHide}static get $name(){return`docsAccordionGlobal`}static get $inject(){return[cd.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-global.component-f295ac94.html`}}},Bv=class e{static get $name(){return`docsAccordionSimple`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-simple.component-581d82cf.html`}}};function Vv(e,t,n,r){var i=arguments.length,a=i<3?t:r===null?r=Object.getOwnPropertyDescriptor(t,n):r,o;if(typeof Reflect==`object`&&typeof Reflect.decorate==`function`)a=Reflect.decorate(e,t,n,r);else for(var s=e.length-1;s>=0;s--)(o=e[s])&&(a=(i<3?o(a):i>3?o(t,n,a):o(t,n))||a);return i>3&&a&&Object.defineProperty(t,n,a),a}var Hv=class e{accordion;expandAll(){this.accordion.expandAll()}collapseAll(){this.accordion.collapseAll()}toggle(e){this.accordion.toggle(e)}static get $name(){return`docsAccordionTogglePanels`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/accordion-toggle-panels.component-20886c84.html`}}};Vv([Fc(`accordion`,{static:!0})],Hv.prototype,`accordion`,void 0);var Uv=class e{static get $name(){return`docsOnePanelAccordion`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/one-panel-accordion.component-d32c7fed.html`}}},Wv=class e{$timeout;initialSeconds=5;timer;alert;remaining=this.initialSeconds;visible=!0;constructor(e){this.$timeout=e}$onInit(){this.startTimer()}$onDestroy(){this.cancelTimer()}restart(){this.cancelTimer(),this.remaining=this.initialSeconds,this.visible=!0,this.startTimer()}onClosed(){this.visible=!1,this.cancelTimer()}startTimer(){this.timer=this.$timeout(()=>{if(this.remaining--,this.remaining<=0){this.alert?this.alert.close():this.visible=!1;return}this.startTimer()},1e3)}cancelTimer(){this.timer&&=(this.$timeout.cancel(this.timer),void 0)}static get $name(){return`docsSelfClosingAlert`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/self-closing-alert.component-3fe084ee.html`}}};Vv([Fc(`alert`)],Wv.prototype,`alert`,void 0);var Gv=class e{static get $name(){return`docsSimpleAlert`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-alert.component-6f539372.html`}}},Kv=class e{$element;$timeout;pauseOnHover=!0;pauseOnFocus=!0;unpauseOnArrow=!1;pauseOnIndicator=!1;paused=!1;carousel;constructor(e,t){this.$element=e,this.$timeout=t}$postLink(){this.$timeout(()=>{this.carousel=this.$element.find(`ngb-carousel`).controller(`ngbCarousel`)},0,!1)}onSlide(e){(e.source===`arrowLeft`||e.source===`arrowRight`)&&this.unpauseOnArrow&&(this.carousel?.cycle(),this.paused=!1),e.source===`indicator`&&this.pauseOnIndicator&&(this.carousel?.pause(),this.paused=!0)}toggleCycle(){this.paused?this.carousel?.cycle():this.carousel?.pause(),this.paused=!this.paused}static get $name(){return`docsCarouselControls`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/carousel-controls.component-e500e796.html`}}static get $inject(){return[`$element`,`$timeout`]}},qv=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,interval:e.interval,wrap:e.wrap,pauseOnFocus:e.pauseOnFocus,pauseOnHover:e.pauseOnHover,showNavigationArrows:e.showNavigationArrows},e.animation=!1,e.interval=2500,e.wrap=!1,e.pauseOnFocus=!1,e.pauseOnHover=!1,e.showNavigationArrows=!1}$onDestroy(){this.config.animation=this.initialConfig.animation,this.config.interval=this.initialConfig.interval,this.config.wrap=this.initialConfig.wrap,this.config.pauseOnFocus=this.initialConfig.pauseOnFocus,this.config.pauseOnHover=this.initialConfig.pauseOnHover,this.config.showNavigationArrows=this.initialConfig.showNavigationArrows}static get $name(){return`docsCarouselGlobal`}static get $inject(){return[tf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/carousel-global.component-9fd19bc3.html`}}},Jv=class e{static get $name(){return`docsCarouselKeyboard`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/carousel-keyboard.component-73150cd9.html`}}},Yv=class e{static get $name(){return`docsCarouselSimple`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/carousel-simple.component-8320cf0f.html`}}},Xv=class e{collapsed=!0;toggle(){this.collapsed=!this.collapsed}static get $name(){return`docsHorizontalCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/horizontal-collapse.component-c27c1b6c.html`}}},Zv=class e{menuCollapsed=!0;toggleMenu(){this.menuCollapsed=!this.menuCollapsed}closeMenu(){this.menuCollapsed=!0}static get $name(){return`docsNavbarCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/navbar-collapse.component-33ec7e2a.html`}}},Qv=class e{collapse;collapsed=!0;toggleWithController(){this.collapse.toggle()}toggleWithBinding(){this.collapsed=!this.collapsed}static get $name(){return`docsSimpleCollapse`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-collapse.component-ecaa8adc.html`}}};Vv([Fc(`collapse`,{static:!0})],Qv.prototype,`collapse`,void 0);var $v=class e{static get $name(){return`docsDropdownBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-body.component-20cb9bf5.html`}}},ey=class e{static get $name(){return`docsDropdownButtonGroups`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-button-groups.component-9d70a7ed.html`}}},ty=class e{restricted=!0;static get $name(){return`docsDropdownDisabledItems`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-disabled-items.component-35b12c9d.html`}}},ny=class e{email=``;remember=!1;submitted=!1;submit(){this.submitted=!0}static get $name(){return`docsDropdownForm`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-form.component-6ee6bce3.html`}}},ry=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={autoClose:e.autoClose,container:e.container,placement:e.placement},e.autoClose=`outside`,e.container=`body`,e.placement=[`top-start`,`bottom-start`]}$onDestroy(){this.config.autoClose=this.initialConfig.autoClose,this.config.container=this.initialConfig.container,this.config.placement=this.initialConfig.placement}static get $name(){return`docsDropdownGlobal`}static get $inject(){return[gf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-global.component-0da80f84.html`}}},iy=class e{static get $name(){return`docsDropdownNavbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dropdown-navbar.component-11e68e40.html`}}},ay=class e{dropdown;opened=!1;open(){this.dropdown.open()}close(){this.dropdown.close()}toggle(){this.dropdown.toggle()}static get $name(){return`docsManualDropdown`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/manual-dropdown.component-8d110592.html`}}};Vv([Fc(`dropdown`,{read:Vf,static:!0})],ay.prototype,`dropdown`,void 0);var oy=class e{static get $name(){return`docsSimpleDropdown`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-dropdown.component-3b0aa7f6.html`}}},sy=class e{ngbActiveModal;title=`Component modal`;description=`This modal receives a component as its content.`;longContent=!1;items=Array.from({length:24},(e,t)=>`Scrollable content row ${t+1}`);static get $name(){return`docsModalDemoContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`,title:`<?`,description:`<?`,longContent:`<?`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/modal-demo-content.component-80507653.html`}}},cy=class e{modal;lastResult=`No result yet`;constructor(e){this.modal=e}async open(){let e=await this.modal.open(sy.$name,{bindings:{title:`Component as content`,description:`NgbActiveModal is provided directly to the content component.`}});e.closed.subscribe(e=>{this.lastResult=`Closed with: ${e}`}),e.dismissed.subscribe(e=>{this.lastResult=`Dismissed with: ${e}`})}static get $name(){return`docsModalComponentContent`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-component-content.component-56893590.html`}}},ly=class e{modal;content;constructor(e){this.modal=e}open(){this.modal.open(this.content)}static get $name(){return`docsModalDefault`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-default.component-e632efa2.html`}}};Vv([Fc(`content`,{read:Qc,static:!0})],ly.prototype,`content`,void 0);var uy=class e{ngbActiveModal;autofocus=!1;static get $name(){return`docsModalFocusContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`,autofocus:`<?`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/modal-focus-content.component-d0d75fbf.html`}}},dy=class e{modal;constructor(e){this.modal=e}openDefaultFocus(){this.modal.open(uy.$name,{ariaLabelledBy:`modal-focus-title`,bindings:{autofocus:!1}})}openCustomFocus(){this.modal.open(uy.$name,{ariaLabelledBy:`modal-focus-title`,bindings:{autofocus:!0}})}static get $name(){return`docsModalFocus`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-focus.component-d7bc4c42.html`}}},fy=class e{modal;config;initialConfig;constructor(e,t){this.modal=e,this.config=t,this.initialConfig={backdrop:t.backdrop,centered:t.centered,keyboard:t.keyboard,size:t.size}}async open(){this.applyConfig();try{await this.modal.open(sy.$name,{bindings:{title:`Globally configured modal`,description:`This modal is centered, large and cannot be dismissed with Escape or a backdrop click.`}})}finally{this.restoreConfig()}}$onDestroy(){this.restoreConfig()}applyConfig(){this.config.backdrop=`static`,this.config.centered=!0,this.config.keyboard=!1,this.config.size=`lg`}restoreConfig(){this.config.backdrop=this.initialConfig.backdrop,this.config.centered=this.initialConfig.centered,this.config.keyboard=this.initialConfig.keyboard,this.config.size=this.initialConfig.size}static get $name(){return`docsModalGlobal`}static get $inject(){return[fp.$name,Kf.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-global.component-18359326.html`}}},py=class e{modal;constructor(e){this.modal=e}openCustomWindow(){this.open(`Custom window class`,{windowClass:`modal-window-custom`})}openStaticBackdrop(){this.open(`Static custom backdrop`,{backdrop:`static`,backdropClass:`modal-static-backdrop`,keyboard:!1})}openSmall(){this.open(`Small modal`,{size:`sm`})}openLarge(){this.open(`Large modal`,{size:`lg`})}openExtraLarge(){this.open(`Extra large modal`,{size:`xl`})}openFullscreen(){this.open(`Fullscreen modal`,{fullscreen:!0})}openCentered(){this.open(`Vertically centered modal`,{centered:!0})}openScrollable(){this.open(`Scrollable modal`,{scrollable:!0,size:`lg`},!0)}openCustomDialog(){this.open(`Custom dialog class`,{modalDialogClass:`modal-dialog-custom`})}open(e,t,n=!1){this.modal.open(sy.$name,{...t,bindings:{title:e,description:`These values are applied only to this modal instance.`,longContent:n}})}static get $name(){return`docsModalOptions`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-options.component-b094d1a4.html`}}},my=class e{modal;ngbActiveModal;level=1;constructor(e){this.modal=e}dismissAll(){this.modal.dismissAll(`Dismiss all`)}static get $name(){return`docsModalStackedContent`}static get $inject(){return[fp.$name]}static get $factory(){return{bindings:{ngbActiveModal:`<`,level:`<?`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/modal-stacked-content.component-704d3092.html`}}},hy=class e{modal;constructor(e){this.modal=e}async openStack(){for(let e=1;e<=3;e++)await this.modal.open(my.$name,{bindings:{level:e}})}static get $name(){return`docsModalStacked`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-stacked.component-cebd5198.html`}}},gy=class e{ngbActiveModal;ariaReferences=!0;centered=!1;fullscreen=!1;customBackdrop=!1;size=`sm`;customWindow=!1;customDialog=!1;toggleAriaReferences(){this.ariaReferences=!this.ariaReferences,this.ngbActiveModal.update({ariaLabelledBy:this.ariaReferences?`updatable-modal-title`:``,ariaDescribedBy:this.ariaReferences?`updatable-modal-description`:``})}toggleCentered(){this.centered=!this.centered,this.ngbActiveModal.update({centered:this.centered})}toggleFullscreen(){this.fullscreen=!this.fullscreen,this.ngbActiveModal.update({fullscreen:this.fullscreen})}toggleBackdropClass(){this.customBackdrop=!this.customBackdrop,this.ngbActiveModal.update({backdropClass:this.customBackdrop?`modal-updated-backdrop`:``})}cycleSize(){let e=[`sm`,`lg`,`xl`];this.size=e[(e.indexOf(this.size)+1)%e.length],this.ngbActiveModal.update({size:this.size})}toggleWindowClass(){this.customWindow=!this.customWindow,this.ngbActiveModal.update({windowClass:this.customWindow?`modal-updated-window`:``})}toggleDialogClass(){this.customDialog=!this.customDialog,this.ngbActiveModal.update({modalDialogClass:this.customDialog?`modal-updated-dialog`:``})}static get $name(){return`docsModalUpdatableContent`}static get $factory(){return{bindings:{ngbActiveModal:`<`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/modal-updatable-content.component-2bdbed55.html`}}},_y=class e{modal;constructor(e){this.modal=e}open(){this.modal.open(gy.$name,{ariaLabelledBy:`updatable-modal-title`,ariaDescribedBy:`updatable-modal-description`,size:`sm`})}static get $name(){return`docsModalUpdatable`}static get $inject(){return[fp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/modal-updatable.component-2610b55b.html`}}},vy=class e{activeId=`alternative-home`;static get $name(){return`docsAlternativeNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/alternative-nav.component-d3f6b279.html`}}},yy=class e{activeId=`custom-weekly`;static get $name(){return`docsCustomNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/custom-nav.component-9d522e7b.html`}}},by=class e{items=[{id:`dynamic-1`,title:`Tab 1`},{id:`dynamic-2`,title:`Tab 2`},{id:`dynamic-3`,title:`Tab 3`}];activeId=`dynamic-1`;nextId=4;add(){let e={id:`dynamic-${this.nextId}`,title:`Tab ${this.nextId}`};this.nextId++,this.items.push(e),this.activeId=e.id}removeActive(){if(this.items.length===1)return;let e=this.items.findIndex(({id:e})=>e===this.activeId),t=this.items[e===0?1:e-1];this.activeId=t.id,this.items=this.items.filter(({id:t})=>t!==this.items[e].id)}static get $name(){return`docsDynamicNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/dynamic-nav.component-46ac5418.html`}}},xy=class e{activeId=`keep-editor`;draft=`This value survives tab changes.`;static get $name(){return`docsKeepContentNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/keep-content-nav.component-be77360d.html`}}},Sy=class e{config;activeId=`global-account`;initialConfig;constructor(e){this.config=e,this.initialConfig={animation:e.animation,destroyOnHide:e.destroyOnHide,keyboard:e.keyboard,orientation:e.orientation,roles:e.roles},e.animation=!1,e.destroyOnHide=!1,e.keyboard=`changeWithArrows`,e.orientation=`vertical`,e.roles=`tablist`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.animation=this.initialConfig.animation,this.config.destroyOnHide=this.initialConfig.destroyOnHide,this.config.keyboard=this.initialConfig.keyboard,this.config.orientation=this.initialConfig.orientation,this.config.roles=this.initialConfig.roles}static get $name(){return`docsNavGlobal`}static get $inject(){return[mp.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/nav-global.component-5017b76b.html`}}},Cy=class e{nav;activeId=`selecting-first`;select(e){this.nav.select(e)}static get $name(){return`docsSelectingNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/selecting-nav.component-be7643a0.html`}}};Vv([Fc(`nav`,{read:Cp,static:!0})],Cy.prototype,`nav`,void 0);var wy=class e{activeId=`simple-overview`;static get $name(){return`docsSimpleNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-nav.component-61640b59.html`}}},Ty=class e{activeId=`vertical-profile`;static get $name(){return`docsVerticalNav`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/vertical-nav.component-0b6458ec.html`}}},Ey=class e{ngbActiveOffcanvas;static get $name(){return`docsOffcanvasDemoContent`}static get $factory(){return{bindings:{ngbActiveOffcanvas:`<`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/offcanvas-demo-content.component-bcbefabe.html`}}},Dy=class e{offcanvas;lastResult=`No result yet`;constructor(e){this.offcanvas=e}async open(){let e=await this.offcanvas.open(Ey.$name);e.closed.subscribe(e=>{this.lastResult=`Closed with: ${e}`}),e.dismissed.subscribe(e=>{this.lastResult=`Dismissed with: ${e}`})}static get $name(){return`docsOffcanvasComponentContent`}static get $inject(){return[Lm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-component-content.component-ad10d95b.html`}}},Oy=class e{offcanvas;content;constructor(e){this.offcanvas=e}open(){this.offcanvas.open(this.content)}static get $name(){return`docsOffcanvasDefault`}static get $inject(){return[Lm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-default.component-420dc640.html`}}};Vv([Fc(`content`,{read:Qc,static:!0})],Oy.prototype,`content`,void 0);var ky=class e{ngbActiveOffcanvas;autofocus=!1;static get $name(){return`docsOffcanvasFocusContent`}static get $factory(){return{bindings:{ngbActiveOffcanvas:`<`,autofocus:`<?`},controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/offcanvas-focus-content.component-ea7e15df.html`}}},Ay=class e{offcanvas;constructor(e){this.offcanvas=e}openDefaultFocus(){this.offcanvas.open(ky.$name,{ariaLabelledBy:`offcanvas-focus-title`,bindings:{autofocus:!1}})}openCustomFocus(){this.offcanvas.open(ky.$name,{ariaLabelledBy:`offcanvas-focus-title`,bindings:{autofocus:!0}})}static get $name(){return`docsOffcanvasFocus`}static get $inject(){return[Lm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-focus.component-203e6da0.html`}}},jy=class e{offcanvas;config;initialConfig;constructor(e,t){this.offcanvas=e,this.config=t,this.initialConfig={backdrop:t.backdrop,keyboard:t.keyboard,position:t.position,scroll:t.scroll}}async open(){this.applyConfig();try{await this.offcanvas.open(Ey.$name)}finally{this.restoreConfig()}}$onDestroy(){this.restoreConfig()}applyConfig(){this.config.backdrop=`static`,this.config.keyboard=!1,this.config.position=`end`,this.config.scroll=!0}restoreConfig(){this.config.backdrop=this.initialConfig.backdrop,this.config.keyboard=this.initialConfig.keyboard,this.config.position=this.initialConfig.position,this.config.scroll=this.initialConfig.scroll}static get $name(){return`docsOffcanvasGlobal`}static get $inject(){return[Lm.$name,Tm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-global.component-f0a6c6c9.html`}}},My=class e{offcanvas;constructor(e){this.offcanvas=e}openCustomPanel(){this.open({panelClass:`offcanvas-panel-custom`})}openStaticBackdrop(){this.open({backdrop:`static`,backdropClass:`offcanvas-static-backdrop`,keyboard:!1})}openStart(){this.open({position:`start`})}openEnd(){this.open({position:`end`})}openTop(){this.open({position:`top`})}openBottom(){this.open({position:`bottom`})}openScrollableBody(){this.open({scroll:!0,backdrop:!1})}open(e){this.offcanvas.open(Ey.$name,e)}static get $name(){return`docsOffcanvasOptions`}static get $inject(){return[Lm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/offcanvas-options.component-c41db20c.html`}}},Ny=class e{paginatedPage=7;rotatedPage=12;compactPage=12;selectPaginatedPage(e){this.paginatedPage=e}selectRotatedPage(e){this.rotatedPage=e}selectCompactPage(e){this.compactPage=e}static get $name(){return`docsAdvancedPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/advanced-pagination.component-4816903b.html`}}},Py=class e{page=4;selectPage(e){this.page=e}static get $name(){return`docsBasicPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-pagination.component-4f74a936.html`}}},Fy=class e{page=3;selectPage(e){this.page=e}static get $name(){return`docsCustomPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/custom-pagination.component-08e82b5d.html`}}},Iy=class e{page=3;disabled=!0;selectPage(e){this.page=e}static get $name(){return`docsDisabledPagination`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/disabled-pagination.component-01ec3032.html`}}},Ly=class e{startPage=2;centerPage=2;endPage=2;selectStartPage(e){this.startPage=e}selectCenterPage(e){this.centerPage=e}selectEndPage(e){this.endPage=e}static get $name(){return`docsPaginationAlignment`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/pagination-alignment.component-f43ac50c.html`}}},Ry=class e{config;page=8;initialConfig;constructor(e){this.config=e,this.initialConfig={boundaryLinks:e.boundaryLinks,directionLinks:e.directionLinks,maxSize:e.maxSize,rotate:e.rotate,size:e.size},e.boundaryLinks=!0,e.directionLinks=!1,e.maxSize=5,e.rotate=!0,e.size=`sm`}selectPage(e){this.page=e}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.boundaryLinks=this.initialConfig.boundaryLinks,this.config.directionLinks=this.initialConfig.directionLinks,this.config.maxSize=this.initialConfig.maxSize,this.config.rotate=this.initialConfig.rotate,this.config.size=this.initialConfig.size}static get $name(){return`docsPaginationGlobal`}static get $inject(){return[qm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/pagination-global.component-2ada8d01.html`}}},zy=class e{smallPage=2;defaultPage=2;largePage=2;selectSmallPage(e){this.smallPage=e}selectDefaultPage(e){this.defaultPage=e}selectLargePage(e){this.largePage=e}static get $name(){return`docsPaginationSize`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/pagination-size.component-07f717cc.html`}}},By=class e{date={year:2026,month:8,day:24};static get $name(){return`docsBasicDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-datepicker.component-596eb4f9.html`}}},Vy=class extends Fp{fromModel(e){if(!e)return null;let[t,n,r]=e.split(`/`).map(Number);return t&&n&&r?{year:t,month:n,day:r}:null}toModel(e){return e?`${e.year}/${e.month}/${e.day}`:null}},Hy=class extends ym{parse(e){let[t,n,r]=e.split(`.`).map(Number);return t&&n&&r?{year:r,month:n,day:t}:null}format(e){return e?`${String(e.day).padStart(2,`0`)}.${String(e.month).padStart(2,`0`)}.${e.year}`:``}},Uy=class e{adapter=new Vy;formatter=new Hy;date=`2026/8/24`;static get $name(){return`docsDatepickerCustomAdapter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-custom-adapter.component-ba1c5554.html`}}},Wy=class e{date={year:2026,month:8,day:24};dayData(e){let t=new Date(e.year,e.month-1,e.day).getDay();return{weekend:t===0||t===6}}static get $name(){return`docsDatepickerCustomDay`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-custom-day.component-5af12ed4.html`}}},Gy=class e{previous(e){e.navigateTo(e.calendar.getPrev(e.state.firstDate,`m`,1))}next(e){e.navigateTo(e.calendar.getNext(e.state.firstDate,`m`,1))}today(e){e.navigateTo(e.calendar.getToday())}static get $name(){return`docsDatepickerCustomMonth`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-custom-month.component-dad56817.html`}}},Ky=class e{date=null;datepicker;today(){this.datepicker&&(this.date=this.datepicker.calendar.getToday())}clear(){this.date=null}static get $name(){return`docsDatepickerFooter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-footer.component-83bf2b39.html`}}},qy=class e{config;inputConfig;inlineDefaults;inputDefaults;inlineDate={year:2026,month:8,day:24};popupDate={year:2026,month:8,day:24};constructor(e,t){this.config=e,this.inputConfig=t,this.inlineDefaults=this.capture(e),this.inputDefaults=this.capture(t),Object.assign(e,{displayMonths:2,navigation:`arrows`,outsideDays:`hidden`,showWeekNumbers:!0,weekdays:`short`}),Object.assign(t,{displayMonths:2,navigation:`arrows`,outsideDays:`hidden`,showWeekNumbers:!0,weekdays:`short`})}$postLink(){this.restore()}$onDestroy(){this.restore()}capture(e){return{displayMonths:e.displayMonths,navigation:e.navigation,outsideDays:e.outsideDays,showWeekNumbers:e.showWeekNumbers,weekdays:e.weekdays}}restore(){Object.assign(this.config,this.inlineDefaults),Object.assign(this.inputConfig,this.inputDefaults)}static get $name(){return`docsDatepickerGlobal`}static get $inject(){return[am.$name,xm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-global.component-07815f76.html`}}},Jy=class extends Up{months=[`enero`,`febrero`,`marzo`,`abril`,`mayo`,`junio`,`julio`,`agosto`,`septiembre`,`octubre`,`noviembre`,`diciembre`];weekdays=[`L`,`M`,`X`,`J`,`V`,`S`,`D`];getWeekdayLabel(e){return this.weekdays[e-1]??``}getMonthShortName(e){return this.months[e-1]?.slice(0,3)??``}getMonthFullName(e){return this.months[e-1]??``}getDayAriaLabel(e){return`${e.day} de ${this.getMonthFullName(e.month)} de ${e.year}`}},Yy=class e{i18n=new Jy;date={year:2026,month:8,day:24};static get $name(){return`docsDatepickerI18n`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-i18n.component-f0017dae.html`}}},Xy=class e{date={year:2026,month:8,day:24};datepicker;onKeydown(e){if(!this.datepicker||e.key!==`[`&&e.key!==`]`)return;let t=(e.key===`[`?-1:1)<0?this.datepicker.calendar.getPrev(this.datepicker.state.firstDate,`m`,1):this.datepicker.calendar.getNext(this.datepicker.state.firstDate,`m`,1);this.datepicker.navigateTo(t),e.preventDefault(),e.stopPropagation()}static get $name(){return`docsDatepickerKeyboard`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-keyboard.component-99c82020.html`}}},Zy=class e{date=null;target=`#datepicker-custom-position-target`;static get $name(){return`docsDatepickerPositionTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/datepicker-position-target.component-fd92d02c.html`}}},Qy=class e{disabled=!0;date={year:2026,month:8,day:24};static get $name(){return`docsDisabledDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/disabled-datepicker.component-260b2562.html`}}},$y=class e{date={year:2026,month:8,day:24};static get $name(){return`docsMultipleMonthsDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/multiple-months-datepicker.component-0ffc523c.html`}}},eb=class e{date={year:2026,month:8,day:24};static get $name(){return`docsPopupDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popup-datepicker.component-26170c6b.html`}}},tb=class e{calendar=new Vp;hoveredDate=null;fromDate=this.calendar.getToday();toDate=this.calendar.getNext(this.fromDate,`d`,10);select(e){!this.fromDate||this.toDate?(this.fromDate=e,this.toDate=null):e.after(this.fromDate)?this.toDate=e:this.fromDate=e}isHovered(e){return!!this.fromDate&&!this.toDate&&!!this.hoveredDate&&e.after(this.fromDate)&&e.before(this.hoveredDate)}isInside(e){return!!this.toDate&&e.after(this.fromDate)&&e.before(this.toDate)}isRange(e){return e.equals(this.fromDate)||!!this.toDate&&e.equals(this.toDate)||this.isInside(e)||this.isHovered(e)}static get $name(){return`docsRangeDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/range-datepicker.component-1e9b78e8.html`}}},nb=class e{calendar=new Vp;hoveredDate=null;fromDate=this.calendar.getToday();toDate=this.calendar.getNext(this.fromDate,`d`,7);model=this.fromDate;select(e){!this.fromDate||this.toDate?(this.fromDate=e,this.toDate=null):e.after(this.fromDate)?this.toDate=e:this.fromDate=e,this.model=e}isHovered(e){return!!this.fromDate&&!this.toDate&&!!this.hoveredDate&&e.after(this.fromDate)&&e.before(this.hoveredDate)}isInside(e){return!!this.toDate&&e.after(this.fromDate)&&e.before(this.toDate)}isRange(e){return e.equals(this.fromDate)||!!this.toDate&&e.equals(this.toDate)||this.isInside(e)||this.isHovered(e)}static get $name(){return`docsRangePopupDatepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/range-popup-datepicker.component-dd7af52f.html`}}},rb=class e{popover;static get $name(){return`docsPopoverAutoclose`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-autoclose.component-5755f907.html`}}},ib=class e{static get $name(){return`docsPopoverBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-body.component-1612ef66.html`}}},ab=class e{name=`World`;contentTemplate;titleTemplate;french;german;english;toggleWithGreeting(e,t,n){e.isOpen()?e.close():e.open({greeting:t,language:n})}static get $name(){return`docsPopoverContext`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-context.component-89ce1950.html`}}},ob=class e{static get $name(){return`docsPopoverCustomClass`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-custom-class.component-f9cfd278.html`}}},sb=class e{static get $name(){return`docsPopoverCustomTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-custom-target.component-41ca47e9.html`}}},cb=class e{static get $name(){return`docsPopoverDelays`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-delays.component-ea6da360.html`}}},lb=class e{popover;events=[];record(e){this.events.unshift({name:e,time:new Date})}static get $name(){return`docsPopoverEvents`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-events.component-43e3cd83.html`}}},ub=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,openDelay:e.openDelay,placement:e.placement,triggers:e.triggers},e.container=`body`,e.openDelay=300,e.placement=`end`,e.triggers=`mouseenter:mouseleave`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.openDelay=this.initialConfig.openDelay,this.config.placement=this.initialConfig.placement,this.config.triggers=this.initialConfig.triggers}static get $name(){return`docsPopoverGlobal`}static get $inject(){return[Zm.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-global.component-e3b32b07.html`}}},db=class e{popover;static get $name(){return`docsPopoverManualControl`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-manual-control.component-e74ce0bd.html`}}},fb=class e{static get $name(){return`docsPopoverPlacements`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-placements.component-f72cde48.html`}}},pb=class e{name=`NgbJS`;contentTemplate;titleTemplate;static get $name(){return`docsPopoverTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-template.component-692fbb3b.html`}}},mb=class e{manual;static get $name(){return`docsPopoverTriggers`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/popover-triggers.component-3db3a04c.html`}}},hb=class e{static get $name(){return`docsContextualTextProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/contextual-text-progressbar.component-cd4e18c2.html`}}},gb=class e{static get $name(){return`docsCustomLabelsProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/custom-labels-progressbar.component-f0b0b608.html`}}},_b=class e{static get $name(){return`docsProgressBarsStacked`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/progress-bars-stacked.component-675c328f.html`}}},vb=class e{static get $name(){return`docsProgressHeight`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/progress-height.component-6abf975d.html`}}},yb=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={animated:e.animated,height:e.height,max:e.max,showValue:e.showValue,striped:e.striped,textType:e.textType,type:e.type},e.animated=!0,e.height=`1.5rem`,e.max=200,e.showValue=!0,e.striped=!0,e.textType=`light`,e.type=`primary`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){Object.assign(this.config,this.initialConfig)}static get $name(){return`docsProgressbarGlobal`}static get $inject(){return[sh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/progressbar-global.component-766d59af.html`}}},bb=class e{static get $name(){return`docsSimpleProgressbar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-progressbar.component-5d0056c3.html`}}},xb=class e{static get $name(){return`docsStripedProgressBar`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/striped-progress-bar.component-4a655617.html`}}},Sb=class e{rating=3;setRating(e){this.rating=e}static get $name(){return`docsBasicRating`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-rating.component-7318952e.html`}}},Cb=class e{rating=6;setRating(e){this.rating=e}static get $name(){return`docsRatingCustomTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-custom-template.component-a32b6c5c.html`}}},wb=class e{rating=3.14;heartTemplate;ariaValueText=(e,t)=>`${e} out of ${t} hearts`;static get $name(){return`docsRatingDecimal`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-decimal.component-b61f8f3d.html`}}},Tb=class e{selected=0;hovered=0;readonly=!1;setSelected(e){this.selected=e}setHovered(e){this.hovered=e}static get $name(){return`docsRatingEvents`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-events.component-553fcc1c.html`}}},Eb=class e{rating=null;disabled=!1;form;setRating(e){this.rating=e}clear(){this.rating=null}static get $name(){return`docsRatingForm`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-form.component-5b2fba1b.html`}}},Db=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={max:e.max,readonly:e.readonly,resettable:e.resettable,tabindex:e.tabindex},e.max=5,e.readonly=!0,e.resettable=!0,e.tabindex=-1}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){Object.assign(this.config,this.initialConfig)}static get $name(){return`docsRatingGlobal`}static get $inject(){return[ph.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/rating-global.component-01f3bde3.html`}}},Ob=class e{static get $name(){return`docsBasicScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-scrollspy.component-65eb855e.html`}}},kb=class e{static get $name(){return`docsNavbarScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/navbar-scrollspy.component-08b656c4.html`}}},Ab=class e{static get $name(){return`docsNestedScrollspy`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/nested-scrollspy.component-090e14ea.html`}}},jb=class e{static get $name(){return`docsScrollspyMenuItems`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/scrollspy-menu-items.component-444ee18e.html`}}},Mb=class e{$element;scrollSpy;fragments=[`service-introduction`,`service-options`,`service-finish`];running=!1;observingFinish=!0;root;constructor(e,t){this.$element=e,this.scrollSpy=t}$postLink(){this.root=this.$element[0].querySelector(`[data-service-scrollspy]`)??void 0,this.start()}$onDestroy(){this.scrollSpy.stop()}start(){this.root&&(this.scrollSpy.start({root:this.root,fragments:this.fragments,rootMargin:`0px 0px -45%`}),this.running=!0,this.observingFinish=!0)}stop(){this.scrollSpy.stop(),this.running=!1}toggleFinish(){this.observingFinish?this.scrollSpy.unobserve(`service-finish`):this.scrollSpy.observe(`service-finish`),this.observingFinish=!this.observingFinish}static get $name(){return`docsScrollspyServiceDemo`}static get $inject(){return[`$element`,wh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/scrollspy-service-demo.component-41481748.html`}}},Nb=class e{time={hour:13,minute:30,second:0};static get $name(){return`docsBasicTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/basic-timepicker.component-0474ad53.html`}}},Pb=class e{time={hour:13,minute:30,second:0};meridian=!0;static get $name(){return`docsMeridianTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/meridian-timepicker.component-75dfa15a.html`}}},Fb=class e{time={hour:13,minute:30,second:25};seconds=!0;static get $name(){return`docsSecondsTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/seconds-timepicker.component-16f61fd8.html`}}},Ib=class e{time={hour:13,minute:30,second:0};spinners=!0;static get $name(){return`docsSpinnersTimepicker`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/spinners-timepicker.component-cbc77dfa.html`}}},Lb=e=>e.toString().padStart(2,`0`),Rb=class extends Nh{fromModel(e){if(!e)return null;let[t,n,r]=e.split(`:`).map(Number);return{hour:t,minute:n,second:r}}toModel(e){return e?`${Lb(e.hour)}:${Lb(e.minute)}:${Lb(e.second??0)}`:null}},zb=class e{adapter=new Rb;time=this.adapter.fromModel(`13:30:00`);model=`13:30:00`;$doCheck(){this.model=this.adapter.toModel(this.time)??``}static get $name(){return`docsTimepickerCustomAdapter`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/timepicker-custom-adapter.component-7d1eccc5.html`}}},Bb=class e{time={hour:13,minute:30,second:0};hourStep=1;minuteStep=15;secondStep=30;static get $name(){return`docsTimepickerCustomSteps`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/timepicker-custom-steps.component-6c55232e.html`}}},Vb=class extends Fh{getMorningPeriod(){return`π.μ.`}getAfternoonPeriod(){return`μ.μ.`}},Hb=class e{i18n;time={hour:13,minute:30,second:0};constructor(e){this.i18n=e}static get $name(){return`docsTimepickerI18n`}static get $inject(){return[Fh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/timepicker-i18n.component-4effa662.html`}}},Ub=class e{time=null;static get $name(){return`docsTimepickerValidation`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/timepicker-validation.component-dbd80649.html`}}},Wb=()=>({restrict:`A`,require:`ngModel`,link:(e,t,n,r)=>{let i=r;i.$validators.lunchtime=e=>!e||e.hour>=12&&e.hour<=13}}),Gb=class e{$timeout;visible=!0;reopenTimer;constructor(e){this.$timeout=e}close(){this.visible=!1,this.reopenTimer=this.$timeout(()=>{this.visible=!0},3e3)}$onDestroy(){this.reopenTimer&&this.$timeout.cancel(this.reopenTimer)}static get $name(){return`docsCloseableToast`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/closeable-toast.component-f73c9946.html`}}},Kb=class e{showHeaderToast=!0;static get $name(){return`docsInlineToast`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/inline-toast.component-f83cd7d5.html`}}},qb=class e{$timeout;visible=!1;autohide=!0;constructor(e){this.$timeout=e}show(){this.visible=!1,this.autohide=!0,this.$timeout(()=>this.visible=!0)}hide(){this.visible=!1,this.autohide=!0}static get $name(){return`docsPreventAutohideToast`}static get $inject(){return[`$timeout`]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/prevent-autohide-toast.component-8b7ffe4e.html`}}},Jb=class e{visible=!0;static get $name(){return`docsTemplateHeaderToast`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/template-header-toast.component-36ddc2d8.html`}}},Yb=class{toasts=[];nextId=0;show(e,t={}){this.toasts.push({id:++this.nextId,body:e,...t})}remove(e){let t=this.toasts.indexOf(e);t>=0&&this.toasts.splice(t,1)}clear(){this.toasts.length=0}static get $name(){return`docs.toast.service`}},Xb=class e{toastService;constructor(e){this.toastService=e}showStandard(){this.toastService.show(`I am a standard toast.`)}showSuccess(){this.toastService.show(`Your changes were saved.`,{className:`bg-success text-white`,delay:8e3})}showDanger(){this.toastService.show(`The operation could not be completed.`,{className:`bg-danger text-white`,delay:1e4})}$onDestroy(){this.toastService.clear()}static get $name(){return`docsToastManagement`}static get $inject(){return[Yb.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/toast-management.component-f1cc52a0.html`}}},Zb=class e{contentTemplate;static get $name(){return`docsTooltipAutoclose`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-autoclose.component-8a84f6c0.html`}}},Qb=class e{static get $name(){return`docsTooltipBody`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-body.component-2defef40.html`}}},$b=class e{name=`World`;contentTemplate;french;german;english;toggleWithGreeting(e,t){e.isOpen()?e.close():e.open({greeting:t})}static get $name(){return`docsTooltipContext`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-context.component-66b9f25a.html`}}},ex=class e{static get $name(){return`docsTooltipCustomClass`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-custom-class.component-3a21e284.html`}}},tx=class e{static get $name(){return`docsTooltipCustomTarget`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-custom-target.component-58862139.html`}}},nx=class e{static get $name(){return`docsTooltipDelays`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-delays.component-722c4ca1.html`}}},rx=class e{config;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,openDelay:e.openDelay,placement:e.placement,triggers:e.triggers},e.container=`body`,e.openDelay=300,e.placement=`end`,e.triggers=`mouseenter:mouseleave`}$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.openDelay=this.initialConfig.openDelay,this.config.placement=this.initialConfig.placement,this.config.triggers=this.initialConfig.triggers}static get $name(){return`docsTooltipGlobal`}static get $inject(){return[Jh.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-global.component-ab32dab0.html`}}},ix=class e{static get $name(){return`docsTooltipPlacements`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-placements.component-cb107f8e.html`}}},ax=class e{name=`NgbJS`;contentTemplate;static get $name(){return`docsTooltipTemplate`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-template.component-769940d5.html`}}},ox=class e{manual;static get $name(){return`docsTooltipTriggers`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/tooltip-triggers.component-2b933fea.html`}}},sx=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`].map(e=>({name:e})),cx=class e{model;formatter=e=>e.name;search=e=>e.pipe(us(200),Eo(e=>e?sx.filter(t=>t.name.toLowerCase().includes(e.toLowerCase())):[]));static get $name(){return`docsExactTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/exact-typeahead.component-bdd7b1ed.html`}}},lx=`Alabama.Alaska.Arizona.Arkansas.California.Colorado.Connecticut.Delaware.Florida.Georgia.Hawaii.Idaho.Illinois.Indiana.Iowa.Kansas.Kentucky.Louisiana.Maine.Maryland.Massachusetts.Michigan.Minnesota.Mississippi.Missouri.Montana.Nebraska.Nevada.New Hampshire.New Jersey.New Mexico.New York.North Carolina.North Dakota.Ohio.Oklahoma.Oregon.Pennsylvania.Rhode Island.South Carolina.South Dakota.Tennessee.Texas.Utah.Vermont.Virginia.Washington.West Virginia.Wisconsin.Wyoming`.split(`.`),ux=class e{model=``;focus$=new Y;search=e=>ts(e.pipe(us(200),_s()),this.focus$).pipe(Eo(e=>(e?lx.filter(t=>t.toLowerCase().includes(e.toLowerCase())):lx).slice(0,10)));$onDestroy(){this.focus$.complete()}static get $name(){return`docsFocusTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/focus-typeahead.component-7fb35bbc.html`}}},dx=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`],fx=class e{model=``;formatter=e=>e.toUpperCase();search=e=>e.pipe(us(200),_s(),Eo(e=>e?dx.filter(t=>t.toLowerCase().includes(e.toLowerCase())):[]));static get $name(){return`docsFormattedTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/formatted-typeahead.component-78c7fbc0.html`}}},px=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`].map((e,t)=>({id:t,name:e})),mx=class e{model=null;formatter=e=>e.name;search=e=>e.pipe(us(200),_s(),Eo(e=>e.length<2?[]:px.filter(t=>t.name.toLowerCase().includes(e.toLowerCase()))));static get $name(){return`docsNonEditableTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/non-editable-typeahead.component-1e639833.html`}}},hx=`Alabama.Alaska.Arizona.Arkansas.California.Colorado.Connecticut.Delaware.Florida.Georgia.Hawaii.Idaho.Illinois.Indiana.Iowa.Kansas.Kentucky.Louisiana.Maine.Maryland.Massachusetts.Michigan.Minnesota.Mississippi.Missouri.Montana.Nebraska.Nevada.New Hampshire.New Jersey.New Mexico.New York.North Carolina.North Dakota.Ohio.Oklahoma.Oregon.Pennsylvania.Rhode Island.South Carolina.South Dakota.Tennessee.Texas.Utah.Vermont.Virginia.Washington.West Virginia.Wisconsin.Wyoming`.split(`.`),gx=class e{model=``;search=e=>e.pipe(us(200),_s(),Eo(e=>e.length<2?[]:hx.filter(t=>t.toLowerCase().includes(e.toLowerCase())).slice(0,10)));static get $name(){return`docsSimpleTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/simple-typeahead.component-b709f397.html`}}},_x=[{name:`Mexico`,flag:`🇲🇽`,region:`North America`},{name:`Argentina`,flag:`🇦🇷`,region:`South America`},{name:`Brazil`,flag:`🇧🇷`,region:`South America`},{name:`Canada`,flag:`🇨🇦`,region:`North America`},{name:`Colombia`,flag:`🇨🇴`,region:`South America`},{name:`Germany`,flag:`🇩🇪`,region:`Europe`},{name:`Japan`,flag:`🇯🇵`,region:`Asia`},{name:`Spain`,flag:`🇪🇸`,region:`Europe`}],vx=class e{model;resultTemplate;formatter=e=>e.name;search=e=>e.pipe(us(200),Eo(e=>e?_x.filter(t=>t.name.toLowerCase().includes(e.toLowerCase())).slice(0,8):[]));static get $name(){return`docsTemplateResultsTypeahead`}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/template-results-typeahead.component-ce6c3b98.html`}}},yx=[`Alabama`,`Alaska`,`Arizona`,`Arkansas`,`California`,`Colorado`,`Connecticut`,`Delaware`,`Florida`,`Georgia`,`Hawaii`],bx=class e{config;model=``;initialConfig;constructor(e){this.config=e,this.initialConfig={container:e.container,selectOnExact:e.selectOnExact,showHint:e.showHint},e.container=`body`,e.selectOnExact=!0,e.showHint=!0}search=e=>e.pipe(us(200),_s(),Eo(e=>e.length<2?[]:yx.filter(t=>t.toLowerCase().startsWith(e.toLowerCase()))));$postLink(){this.restoreConfig()}$onDestroy(){this.restoreConfig()}restoreConfig(){this.config.container=this.initialConfig.container,this.config.selectOnExact=this.initialConfig.selectOnExact,this.config.showHint=this.initialConfig.showHint}static get $name(){return`docsTypeaheadGlobal`}static get $inject(){return[ng.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/typeahead-global.component-734bcf63.html`}}},xx=`https://en.wikipedia.org/w/api.php`,Sx=class{$http;constructor(e){this.$http=e}search(e){return e?xo(this.$http.get(xx,{params:{action:`opensearch`,format:`json`,origin:`*`,search:e}})).pipe(Eo(e=>e.data[1])):So([])}static get $name(){return`docs.wikipedia.search.service`}static get $inject(){return[`$http`]}},Cx=class e{wikipedia;model=``;searching=!1;searchFailed=!1;constructor(e){this.wikipedia=e}search=e=>e.pipe(us(300),_s(),ws(()=>this.searching=!0),Ss(e=>this.wikipedia.search(e).pipe(ws(()=>this.searchFailed=!1),ls(()=>(this.searchFailed=!0,So([]))))),ws(()=>this.searching=!1));static get $name(){return`docsWikipediaTypeahead`}static get $inject(){return[Sx.$name]}static get $factory(){return{controller:e,controllerAs:`example`,templateUrl:`/ngb-js-docs/templates/wikipedia-typeahead.component-8d0beed7.html`}}},wx=class e{static get $name(){return`docsAlertApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/alert-api-page.component-69e5788a.html`,controllerAs:`$`}}},Tx=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+interface AlertExample {\r
+    id: number;\r
+    type: string;\r
+    message: string;\r
+    animation: boolean;\r
+}\r
+\r
+const createAlerts = (): AlertExample[] => [\r
+    { id: 1, type: "success", message: "Your changes were saved successfully.", animation: true },\r
+    { id: 2, type: "danger", message: "Something needs your attention.", animation: true },\r
+    { id: 3, type: "warning", message: "This alert closes without animation.", animation: false },\r
+    { id: 4, type: "info", message: "This one also closes immediately.", animation: false },\r
+];\r
+\r
+export class AlertCloseableComponent implements IComponentController {\r
+    public alerts = createAlerts();\r
+\r
+    public close(id: number) {\r
+        this.alerts = this.alerts.filter((alert) => alert.id !== id);\r
+    }\r
+\r
+    public reset() {\r
+        this.alerts = createAlerts();\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsAlertCloseable"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: AlertCloseableComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./alert-closeable.component.html",\r
+        }\r
+    }\r
+}\r
+`,Ex=`.alert-custom {\r
+    --bs-alert-color: var(--bs-emphasis-color);\r
+    --bs-alert-bg: var(--bs-tertiary-bg);\r
+    --bs-alert-border-color: var(--bs-primary-border-subtle);\r
+    --bs-alert-link-color: var(--bs-primary-text-emphasis);\r
+\r
+    border-left: 0.25rem solid var(--bs-primary);\r
+}\r
+`,Dx=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbAlertConfig } from "ngb-js";\r
+\r
+export class AlertGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<NgbAlertConfig, "animation" | "dismissible" | "type">;\r
+\r
+    constructor(private readonly config: NgbAlertConfig) {\r
+        this.initialConfig = {\r
+            animation: config.animation,\r
+            dismissible: config.dismissible,\r
+            type: config.type,\r
+        };\r
+\r
+        config.animation = false;\r
+        config.dismissible = false;\r
+        config.type = "success";\r
+    }\r
+\r
+    $onDestroy() {\r
+        this.config.animation = this.initialConfig.animation;\r
+        this.config.dismissible = this.initialConfig.dismissible;\r
+        this.config.type = this.initialConfig.type;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsAlertGlobal"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbAlertConfig.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: AlertGlobalComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./alert-global.component.html",\r
+        }\r
+    }\r
+}\r
+`,Ox=`import type { INgbAlert } from "ngb-js";\r
+import type { IComponentController, IComponentOptions, IPromise, ITimeoutService } from "angular";\r
+import { ViewChild } from "ngjs-core";\r
+\r
+export class SelfClosingAlertComponent implements IComponentController {\r
+    private readonly initialSeconds = 5;\r
+    private timer?: IPromise<void>;\r
+\r
+    @ViewChild("alert")\r
+    private alert?: INgbAlert;\r
+\r
+    public remaining = this.initialSeconds;\r
+    public visible = true;\r
+\r
+    constructor(private readonly $timeout: ITimeoutService) {}\r
+\r
+    $onInit() {\r
+        this.startTimer();\r
+    }\r
+\r
+    $onDestroy() {\r
+        this.cancelTimer();\r
+    }\r
+\r
+    public restart() {\r
+        this.cancelTimer();\r
+        this.remaining = this.initialSeconds;\r
+        this.visible = true;\r
+        this.startTimer();\r
+    }\r
+\r
+    public onClosed() {\r
+        this.visible = false;\r
+        this.cancelTimer();\r
+    }\r
+\r
+    private startTimer() {\r
+        this.timer = this.$timeout(() => {\r
+            this.remaining--;\r
+\r
+            if (this.remaining <= 0) {\r
+                if (this.alert) {\r
+                    this.alert.close();\r
+                } else {\r
+                    this.visible = false;\r
+                }\r
+                return;\r
+            }\r
+\r
+            this.startTimer();\r
+        }, 1000);\r
+    }\r
+\r
+    private cancelTimer() {\r
+        if (this.timer) {\r
+            this.$timeout.cancel(this.timer);\r
+            this.timer = undefined;\r
+        }\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsSelfClosingAlert"\r
+    }\r
+\r
+    static get $inject() {\r
+        return ["$timeout"]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: SelfClosingAlertComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./self-closing-alert.component.html",\r
+        }\r
+    }\r
+}\r
+`,kx=class e{examples={simple:{html:Gv.$factory.templateUrl},closeable:{html:Pv.$factory.templateUrl,typescript:Tx},selfClosing:{html:Wv.$factory.templateUrl,typescript:Ox},custom:{html:Fv.$factory.templateUrl,css:Ex},global:{html:Iv.$factory.templateUrl,typescript:Dx}};static get $name(){return`docsAlertExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/alert-examples-page.component-58a0e458.html`,controllerAs:`$`}}},Ax=class e{static get $name(){return`docsAccordionApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/accordion-api-page.component-e864b71b.html`,controllerAs:`$`}}},jx=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class AccordionContentComponent implements IComponentController {\r
+    public draft = "This value remains after collapsing the panel.";\r
+\r
+    static get $name() {\r
+        return "docsAccordionContent"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: AccordionContentComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./accordion-content.component.html",\r
+        }\r
+    }\r
+}\r
+`,Mx=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbAccordionConfig } from "ngb-js";\r
+\r
+export class AccordionGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<NgbAccordionConfig, "animation" | "closeOthers" | "destroyOnHide">;\r
+\r
+    constructor(private readonly config: NgbAccordionConfig) {\r
+        this.initialConfig = {\r
+            animation: config.animation,\r
+            closeOthers: config.closeOthers,\r
+            destroyOnHide: config.destroyOnHide,\r
+        };\r
+\r
+        config.animation = false;\r
+        config.closeOthers = true;\r
+        config.destroyOnHide = false;\r
+    }\r
+\r
+    $onDestroy() {\r
+        this.config.animation = this.initialConfig.animation;\r
+        this.config.closeOthers = this.initialConfig.closeOthers;\r
+        this.config.destroyOnHide = this.initialConfig.destroyOnHide;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsAccordionGlobal"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbAccordionConfig.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: AccordionGlobalComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./accordion-global.component.html",\r
+        }\r
+    }\r
+}\r
+`,Nx=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { ViewChild } from "ngjs-core";\r
+\r
+interface AccordionController {\r
+    expandAll(): void;\r
+    collapseAll(): void;\r
+    toggle(itemId: string): void;\r
+}\r
+\r
+export class AccordionTogglePanelsComponent implements IComponentController {\r
+    @ViewChild("accordion", { static: true })\r
+    private accordion!: AccordionController;\r
+\r
+    public expandAll() {\r
+        this.accordion.expandAll();\r
+    }\r
+\r
+    public collapseAll() {\r
+        this.accordion.collapseAll();\r
+    }\r
+\r
+    public toggle(itemId: string) {\r
+        this.accordion.toggle(itemId);\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsAccordionTogglePanels"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: AccordionTogglePanelsComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./accordion-toggle-panels.component.html",\r
+        }\r
+    }\r
+}\r
+`,Px=class e{examples={simple:{html:Bv.$factory.templateUrl},onePanel:{html:Uv.$factory.templateUrl},togglePanels:{html:Hv.$factory.templateUrl,typescript:Nx},customHeader:{html:Rv.$factory.templateUrl},content:{html:Lv.$factory.templateUrl,typescript:jx},global:{html:zv.$factory.templateUrl,typescript:Mx}};static get $name(){return`docsAccordionExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/accordion-examples-page.component-4963b03d.html`,controllerAs:`$`}}},Fx=class e{static get $name(){return`docsCarouselApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/carousel-api-page.component-5ad79d27.html`,controllerAs:`$`}}},Ix=`import type { IAugmentedJQuery, IComponentController, IComponentOptions, ITimeoutService } from "angular";\r
+\r
+interface CarouselController {\r
+    cycle(): void;\r
+    pause(): void;\r
+}\r
+\r
+interface CarouselSlideEvent {\r
+    source?: "timer" | "arrowLeft" | "arrowRight" | "indicator";\r
+}\r
+\r
+export class CarouselControlsComponent implements IComponentController {\r
+    public pauseOnHover = true;\r
+    public pauseOnFocus = true;\r
+    public unpauseOnArrow = false;\r
+    public pauseOnIndicator = false;\r
+    public paused = false;\r
+\r
+    private carousel?: CarouselController;\r
+\r
+    constructor(\r
+        private readonly $element: IAugmentedJQuery,\r
+        private readonly $timeout: ITimeoutService,\r
+    ) {}\r
+\r
+    public $postLink() {\r
+        this.$timeout(\r
+            () => {\r
+                this.carousel = this.$element.find("ngb-carousel").controller("ngbCarousel") as CarouselController;\r
+            },\r
+            0,\r
+            false,\r
+        );\r
+    }\r
+\r
+    public onSlide(event: CarouselSlideEvent) {\r
+        const isArrow = event.source === "arrowLeft" || event.source === "arrowRight";\r
+\r
+        if (isArrow && this.unpauseOnArrow) {\r
+            this.carousel?.cycle();\r
+            this.paused = false;\r
+        }\r
+\r
+        if (event.source === "indicator" && this.pauseOnIndicator) {\r
+            this.carousel?.pause();\r
+            this.paused = true;\r
+        }\r
+    }\r
+\r
+    public toggleCycle() {\r
+        if (this.paused) {\r
+            this.carousel?.cycle();\r
+        } else {\r
+            this.carousel?.pause();\r
+        }\r
+\r
+        this.paused = !this.paused;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsCarouselControls"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: CarouselControlsComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./carousel-controls.component.html",\r
+        }\r
+    }\r
+\r
+    static get $inject() {\r
+        return ["$element", "$timeout"]\r
+    }\r
+}\r
+`,Lx=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbCarouselConfig } from "ngb-js";\r
+\r
+export class CarouselGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<\r
+        NgbCarouselConfig,\r
+        "animation" | "interval" | "wrap" | "pauseOnFocus" | "pauseOnHover" | "showNavigationArrows"\r
+    >;\r
+\r
+    constructor(private readonly config: NgbCarouselConfig) {\r
+        this.initialConfig = {\r
+            animation: config.animation,\r
+            interval: config.interval,\r
+            wrap: config.wrap,\r
+            pauseOnFocus: config.pauseOnFocus,\r
+            pauseOnHover: config.pauseOnHover,\r
+            showNavigationArrows: config.showNavigationArrows,\r
+        };\r
+\r
+        config.animation = false;\r
+        config.interval = 2500;\r
+        config.wrap = false;\r
+        config.pauseOnFocus = false;\r
+        config.pauseOnHover = false;\r
+        config.showNavigationArrows = false;\r
+    }\r
+\r
+    public $onDestroy() {\r
+        this.config.animation = this.initialConfig.animation;\r
+        this.config.interval = this.initialConfig.interval;\r
+        this.config.wrap = this.initialConfig.wrap;\r
+        this.config.pauseOnFocus = this.initialConfig.pauseOnFocus;\r
+        this.config.pauseOnHover = this.initialConfig.pauseOnHover;\r
+        this.config.showNavigationArrows = this.initialConfig.showNavigationArrows;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsCarouselGlobal"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbCarouselConfig.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: CarouselGlobalComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./carousel-global.component.html",\r
+        }\r
+    }\r
+}\r
+`,Rx=class e{examples={simple:{html:Yv.$factory.templateUrl},keyboard:{html:Jv.$factory.templateUrl},controls:{html:Kv.$factory.templateUrl,typescript:Ix},global:{html:qv.$factory.templateUrl,typescript:Lx}};static get $name(){return`docsCarouselExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/carousel-examples-page.component-dccf0e02.html`,controllerAs:`$`}}},zx=class e{static get $name(){return`docsCollapseApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/collapse-api-page.component-5644fc36.html`,controllerAs:`$`}}},Bx=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class HorizontalCollapseComponent implements IComponentController {\r
+    public collapsed = true;\r
+\r
+    public toggle() {\r
+        this.collapsed = !this.collapsed;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsHorizontalCollapse"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: HorizontalCollapseComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./horizontal-collapse.component.html",\r
+        }\r
+    }\r
+}\r
+`,Vx=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class NavbarCollapseComponent implements IComponentController {\r
+    public menuCollapsed = true;\r
+\r
+    public toggleMenu() {\r
+        this.menuCollapsed = !this.menuCollapsed;\r
+    }\r
+\r
+    public closeMenu() {\r
+        this.menuCollapsed = true;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsNavbarCollapse"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: NavbarCollapseComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./navbar-collapse.component.html",\r
+        }\r
+    }\r
+}\r
+`,Hx=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { INgbCollapse } from "ngb-js";\r
+import { ViewChild } from "ngjs-core";\r
+\r
+export class SimpleCollapseComponent implements IComponentController {\r
+    @ViewChild("collapse", { static: true })\r
+    private collapse!: INgbCollapse;\r
+\r
+    public collapsed = true;\r
+\r
+    public toggleWithController() {\r
+        this.collapse.toggle();\r
+    }\r
+\r
+    public toggleWithBinding() {\r
+        this.collapsed = !this.collapsed;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsSimpleCollapse"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: SimpleCollapseComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./simple-collapse.component.html",\r
+        }\r
+    }\r
+}\r
+`,Ux=class e{examples={simple:{html:Qv.$factory.templateUrl,typescript:Hx},horizontal:{html:Xv.$factory.templateUrl,typescript:Bx},navbar:{html:Zv.$factory.templateUrl,typescript:Vx}};static get $name(){return`docsCollapseExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/collapse-examples-page.component-acb6de4b.html`,controllerAs:`$`}}},Wx=class e{static get $name(){return`docsDatepickerApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/datepicker-api-page.component-1dd9b606.html`,controllerAs:`$`}}},Gx=class extends Up{months;weekdays;localeName;constructor(e,t,n){super(),this.months=e,this.weekdays=t,this.localeName=n}getWeekdayLabel(e){return this.weekdays[e-1]??``}getMonthShortName(e){return this.months[e-1]?.slice(0,3)??``}getMonthFullName(e){return this.months[e-1]??``}getDayAriaLabel(e){return`${this.localeName}: ${e.day} ${this.getMonthFullName(e.month)} ${e.year}`}},Kx=[`د`,`س`,`چ`,`پ`,`ج`,`ش`,`ی`],qx=[`فروردین`,`اردیبهشت`,`خرداد`,`تیر`,`مرداد`,`شهریور`,`مهر`,`آبان`,`آذر`,`دی`,`بهمن`,`اسفند`],Jx=[`ن`,`ث`,`ر`,`خ`,`ج`,`س`,`ح`],Yx=[`محرّم`,`صفر`,`ربيع الأول`,`ربيع الآخر`,`جمادى الأولى`,`جمادى الآخرة`,`رجب`,`شعبان`,`رمضان`,`شوّال`,`ذو القعدة`,`ذو الحجة`],Xx=[`จ`,`อ`,`พ`,`พฤ`,`ศ`,`ส`,`อา`],Zx=[`มกราคม`,`กุมภาพันธ์`,`มีนาคม`,`เมษายน`,`พฤษภาคม`,`มิถุนายน`,`กรกฎาคม`,`สิงหาคม`,`กันยายน`,`ตุลาคม`,`พฤศจิกายน`,`ธันวาคม`],Qx=[`ᔑリ⊣⚍ᔑ∷||`,`⎓ᒷʖ∷⚍ᔑ∷||`,`ᒲᔑ∷ᓵ⍑`,`ᔑ!¡∷╎ꖎ`,`ᒲᔑ||`,`⋮⚍リᒷ`,`⋮⚍ꖎ||`,`ᔑ⚍⊣⚍ᓭℸ̣`,`ᓭᒷ!¡ℸ̣ᒷᒲʖᒷ∷`,`𝙹ᓵℸ̣𝙹ʖᒷ∷`,`リ𝙹⍊ᒷᒲʖᒷ∷`,`↸ᒷᓵᒷᒲʖᒷ∷`],$x=[`ᒲ`,`ℸ̣`,`∴`,`ℸ̣`,`⎓`,`ᓭ`,`ᓭ`],eS=class e{calendars={hebrew:this.create(new n_,new t_),jalali:this.create(new N_,new Gx(qx,Kx,`Jalali`)),islamicCivil:this.create(new d_,new Gx(Yx,Jx,`Islamic Civil`)),islamicUmalqura:this.create(new y_,new Gx(Yx,Jx,`Islamic Umm al-Qura`)),buddhist:this.create(new mg,new Gx(Zx,Xx,`Buddhist`)),ethiopian:this.create(new jg,new _g),intergalactic:this.create(new Vp,new Gx(Qx,$x,`Intergalactic Standard`))};create(e,t){return{calendar:e,i18n:t,date:e.getToday()}}static get $name(){return`docsDatepickerCalendarsPage`}static get $factory(){return{controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/datepicker-calendars-page.component-5e7abf5e.html`}}},tS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbDateAdapter, NgbDateParserFormatter, type NgbDateStruct } from "ngb-js";\r
+\r
+class StringDateAdapter extends NgbDateAdapter<string> {\r
+    fromModel(value: string | null): NgbDateStruct | null {\r
+        if (!value) return null;\r
+        const [year, month, day] = value.split("/").map(Number);\r
+        return year && month && day ? { year, month, day } : null;\r
+    }\r
+    toModel(date: NgbDateStruct | null): string | null { return date ? \`\${date.year}/\${date.month}/\${date.day}\` : null; }\r
+}\r
+\r
+class DotDateParserFormatter extends NgbDateParserFormatter {\r
+    parse(value: string): NgbDateStruct | null {\r
+        const [day, month, year] = value.split(".").map(Number);\r
+        return day && month && year ? { year, month, day } : null;\r
+    }\r
+    format(date: NgbDateStruct | null): string { return date ? \`\${String(date.day).padStart(2, "0")}.\${String(date.month).padStart(2, "0")}.\${date.year}\` : ""; }\r
+}\r
+\r
+export class DatepickerCustomAdapterComponent implements IComponentController {\r
+    public readonly adapter = new StringDateAdapter();\r
+    public readonly formatter = new DotDateParserFormatter();\r
+    public date = "2026/8/24";\r
+    static get $name() { return "docsDatepickerCustomAdapter" }\r
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "./datepicker-custom-adapter.component.html" } }\r
+}\r
+`,nS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbDateStruct } from "ngb-js";\r
+\r
+export class BasicDatepickerComponent implements IComponentController {\r
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
+    static get $name() { return "docsBasicDatepicker" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: BasicDatepickerComponent, controllerAs: "example", templateUrl: "./basic-datepicker.component.html" }\r
+    }\r
+}\r
+`,rS=`.docs-custom-day { position: relative; display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }\r
+.docs-custom-day.weekend { color: var(--bs-danger); }\r
+.docs-custom-day.today { font-weight: 700; box-shadow: inset 0 0 0 1px var(--bs-primary); }\r
+.docs-custom-day.selected { color: var(--bs-white); background: var(--bs-primary); }\r
+.docs-custom-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .4); outline-offset: 1px; }\r
+.docs-custom-day .bi-dot { position: absolute; bottom: -.35rem; font-size: 1.25rem; }\r
+`,iS=`import "@/features/lib/components/datepicker-custom-day/datepicker-custom-day.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbDateStruct } from "ngb-js";\r
+\r
+export class DatepickerCustomDayComponent implements IComponentController {\r
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
+    public dayData(date: NgbDateStruct) {\r
+        const weekday = new Date(date.year, date.month - 1, date.day).getDay();\r
+        return { weekend: weekday === 0 || weekday === 6 };\r
+    }\r
+    static get $name() { return "docsDatepickerCustomDay" }\r
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomDayComponent, controllerAs: "example", templateUrl: "./datepicker-custom-day.component.html" } }\r
+}\r
+`,aS=`.docs-month-layout { display: grid; grid-template-columns: repeat(2, max-content); gap: 1rem; }\r
+@media (max-width: 575.98px) { .docs-month-layout { grid-template-columns: max-content; } }\r
+`,oS=`import "@/features/lib/components/datepicker-custom-month/datepicker-custom-month.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbDatepicker } from "ngb-js";\r
+\r
+export class DatepickerCustomMonthComponent implements IComponentController {\r
+    public previous(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getPrev(datepicker.state.firstDate, "m", 1)); }\r
+    public next(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getNext(datepicker.state.firstDate, "m", 1)); }\r
+    public today(datepicker: NgbDatepicker) { datepicker.navigateTo(datepicker.calendar.getToday()); }\r
+    static get $name() { return "docsDatepickerCustomMonth" }\r
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomMonthComponent, controllerAs: "example", templateUrl: "./datepicker-custom-month.component.html" } }\r
+}\r
+`,sS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbDateStruct } from "ngb-js";\r
+\r
+export class DisabledDatepickerComponent implements IComponentController {\r
+    public disabled = true;\r
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
+    static get $name() { return "docsDisabledDatepicker" }\r
+    static get $factory(): IComponentOptions { return { controller: DisabledDatepickerComponent, controllerAs: "example", templateUrl: "./disabled-datepicker.component.html" } }\r
+}\r
+`,cS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbDatepicker, NgbDateStruct } from "ngb-js";\r
+\r
+export class DatepickerFooterComponent implements IComponentController {\r
+    public date: NgbDateStruct | null = null;\r
+    public datepicker?: NgbDatepicker;\r
+    public today() { if (this.datepicker) this.date = this.datepicker.calendar.getToday(); }\r
+    public clear() { this.date = null; }\r
+    static get $name() { return "docsDatepickerFooter" }\r
+    static get $factory(): IComponentOptions { return { controller: DatepickerFooterComponent, controllerAs: "example", templateUrl: "./datepicker-footer.component.html" } }\r
+}\r
+`,lS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbDatepickerConfig, NgbInputDatepickerConfig, type NgbDateStruct } from "ngb-js";\r
+\r
+type DatepickerDefaults = Pick<NgbDatepickerConfig, "displayMonths" | "navigation" | "outsideDays" | "showWeekNumbers" | "weekdays">;\r
+\r
+export class DatepickerGlobalComponent implements IComponentController {\r
+    private readonly inlineDefaults: DatepickerDefaults;\r
+    private readonly inputDefaults: DatepickerDefaults;\r
+    public inlineDate: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
+    public popupDate: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
+\r
+    constructor(private readonly config: NgbDatepickerConfig, private readonly inputConfig: NgbInputDatepickerConfig) {\r
+        this.inlineDefaults = this.capture(config);\r
+        this.inputDefaults = this.capture(inputConfig);\r
+        Object.assign(config, { displayMonths: 2, navigation: "arrows", outsideDays: "hidden", showWeekNumbers: true, weekdays: "short" });\r
+        Object.assign(inputConfig, { displayMonths: 2, navigation: "arrows", outsideDays: "hidden", showWeekNumbers: true, weekdays: "short" });\r
+    }\r
+    public $postLink() { this.restore(); }\r
+    public $onDestroy() { this.restore(); }\r
+    private capture(config: NgbDatepickerConfig): DatepickerDefaults { return { displayMonths: config.displayMonths, navigation: config.navigation, outsideDays: config.outsideDays, showWeekNumbers: config.showWeekNumbers, weekdays: config.weekdays }; }\r
+    private restore() { Object.assign(this.config, this.inlineDefaults); Object.assign(this.inputConfig, this.inputDefaults); }\r
+    static get $name() { return "docsDatepickerGlobal" }\r
+    static get $inject() { return [NgbDatepickerConfig.$name, NgbInputDatepickerConfig.$name] }\r
+    static get $factory(): IComponentOptions { return { controller: DatepickerGlobalComponent, controllerAs: "example", templateUrl: "./datepicker-global.component.html" } }\r
+}\r
+`,uS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbDatepickerI18n, type NgbDateStruct } from "ngb-js";\r
+\r
+class SpanishDatepickerI18n extends NgbDatepickerI18n {\r
+    private readonly months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];\r
+    private readonly weekdays = ["L", "M", "X", "J", "V", "S", "D"];\r
+    getWeekdayLabel(weekday: number) { return this.weekdays[weekday - 1] ?? ""; }\r
+    getMonthShortName(month: number) { return this.months[month - 1]?.slice(0, 3) ?? ""; }\r
+    getMonthFullName(month: number) { return this.months[month - 1] ?? ""; }\r
+    getDayAriaLabel(date: NgbDateStruct) { return \`\${date.day} de \${this.getMonthFullName(date.month)} de \${date.year}\`; }\r
+}\r
+\r
+export class DatepickerI18nComponent implements IComponentController {\r
+    public readonly i18n = new SpanishDatepickerI18n();\r
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
+    static get $name() { return "docsDatepickerI18n" }\r
+    static get $factory(): IComponentOptions { return { controller: DatepickerI18nComponent, controllerAs: "example", templateUrl: "./datepicker-i18n.component.html" } }\r
+}\r
+`,dS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbDatepicker, NgbDateStruct } from "ngb-js";\r
+\r
+export class DatepickerKeyboardComponent implements IComponentController {\r
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
+    public datepicker?: NgbDatepicker;\r
+    public onKeydown(event: KeyboardEvent | JQueryEventObject) {\r
+        if (!this.datepicker || (event.key !== "[" && event.key !== "]")) return;\r
+        const direction = event.key === "[" ? -1 : 1;\r
+        const target = direction < 0\r
+            ? this.datepicker.calendar.getPrev(this.datepicker.state.firstDate, "m", 1)\r
+            : this.datepicker.calendar.getNext(this.datepicker.state.firstDate, "m", 1);\r
+        this.datepicker.navigateTo(target);\r
+        event.preventDefault();\r
+        event.stopPropagation();\r
+    }\r
+    static get $name() { return "docsDatepickerKeyboard" }\r
+    static get $factory(): IComponentOptions { return { controller: DatepickerKeyboardComponent, controllerAs: "example", templateUrl: "./datepicker-keyboard.component.html" } }\r
+}\r
+`,fS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbDateStruct } from "ngb-js";\r
+\r
+export class MultipleMonthsDatepickerComponent implements IComponentController {\r
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
+    static get $name() { return "docsMultipleMonthsDatepicker" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: MultipleMonthsDatepickerComponent, controllerAs: "example", templateUrl: "./multiple-months-datepicker.component.html" }\r
+    }\r
+}\r
+`,pS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbDateStruct } from "ngb-js";\r
+\r
+export class PopupDatepickerComponent implements IComponentController {\r
+    public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };\r
+    static get $name() { return "docsPopupDatepicker" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopupDatepickerComponent, controllerAs: "example", templateUrl: "./popup-datepicker.component.html" }\r
+    }\r
+}\r
+`,mS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbDateStruct } from "ngb-js";\r
+\r
+export class DatepickerPositionTargetComponent implements IComponentController {\r
+    public date: NgbDateStruct | null = null;\r
+    public readonly target = "#datepicker-custom-position-target";\r
+    static get $name() { return "docsDatepickerPositionTarget" }\r
+    static get $factory(): IComponentOptions { return { controller: DatepickerPositionTargetComponent, controllerAs: "example", templateUrl: "./datepicker-position-target.component.html" } }\r
+}\r
+`,hS=`.docs-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }\r
+.docs-range-day.range { background: var(--bs-primary); color: var(--bs-white); }\r
+.docs-range-day.faded { background: rgba(var(--bs-primary-rgb), .2); color: var(--bs-body-color); }\r
+.docs-range-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 1px; }\r
+`,gS=`import "@/features/lib/components/range-datepicker/range-datepicker.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbCalendarGregorian, NgbDate } from "ngb-js";\r
+\r
+export class RangeDatepickerComponent implements IComponentController {\r
+    private readonly calendar = new NgbCalendarGregorian();\r
+    public hoveredDate: NgbDate | null = null;\r
+    public fromDate = this.calendar.getToday();\r
+    public toDate: NgbDate | null = this.calendar.getNext(this.fromDate, "d", 10);\r
+\r
+    public select(date: NgbDate) {\r
+        if (!this.fromDate || this.toDate) {\r
+            this.fromDate = date;\r
+            this.toDate = null;\r
+        } else if (date.after(this.fromDate)) {\r
+            this.toDate = date;\r
+        } else {\r
+            this.fromDate = date;\r
+        }\r
+    }\r
+    public isHovered(date: NgbDate) { return !!this.fromDate && !this.toDate && !!this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate); }\r
+    public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }\r
+    public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }\r
+\r
+    static get $name() { return "docsRangeDatepicker" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "./range-datepicker.component.html" }\r
+    }\r
+}\r
+`,_S=`.docs-popup-range-day { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: .25rem; }\r
+.docs-popup-range-day.range { background: var(--bs-primary); color: var(--bs-white); }\r
+.docs-popup-range-day.faded { background: rgba(var(--bs-primary-rgb), .2); color: var(--bs-body-color); }\r
+.docs-popup-range-day.focused { outline: 2px solid rgba(var(--bs-primary-rgb), .45); outline-offset: 1px; }\r
+`,vS=`import "@/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbCalendarGregorian, NgbDate } from "ngb-js";\r
+\r
+export class RangePopupDatepickerComponent implements IComponentController {\r
+    private readonly calendar = new NgbCalendarGregorian();\r
+    public hoveredDate: NgbDate | null = null;\r
+    public fromDate = this.calendar.getToday();\r
+    public toDate: NgbDate | null = this.calendar.getNext(this.fromDate, "d", 7);\r
+    public model: NgbDate | null = this.fromDate;\r
+    public select(date: NgbDate) {\r
+        if (!this.fromDate || this.toDate) { this.fromDate = date; this.toDate = null; }\r
+        else if (date.after(this.fromDate)) { this.toDate = date; }\r
+        else { this.fromDate = date; }\r
+        this.model = date;\r
+    }\r
+    public isHovered(date: NgbDate) { return !!this.fromDate && !this.toDate && !!this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate); }\r
+    public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }\r
+    public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }\r
+    static get $name() { return "docsRangePopupDatepicker" }\r
+    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "./range-popup-datepicker.component.html" } }\r
+}\r
+`,yS=class e{examples={basic:{html:By.$factory.templateUrl,typescript:nS},popup:{html:eb.$factory.templateUrl,typescript:pS},multiple:{html:$y.$factory.templateUrl,typescript:fS},range:{html:tb.$factory.templateUrl,typescript:gS,css:hS},rangePopup:{html:nb.$factory.templateUrl,typescript:vS,css:_S},disabled:{html:Qy.$factory.templateUrl,typescript:sS},adapter:{html:Uy.$factory.templateUrl,typescript:tS},i18n:{html:Yy.$factory.templateUrl,typescript:uS},customDay:{html:Wy.$factory.templateUrl,typescript:iS,css:rS},customMonth:{html:Gy.$factory.templateUrl,typescript:oS,css:aS},footer:{html:Ky.$factory.templateUrl,typescript:cS},position:{html:Zy.$factory.templateUrl,typescript:mS},keyboard:{html:Xy.$factory.templateUrl,typescript:dS},global:{html:qy.$factory.templateUrl,typescript:lS}};static get $name(){return`docsDatepickerExamplesPage`}static get $factory(){return{controller:e,controllerAs:`$`,templateUrl:`/ngb-js-docs/templates/datepicker-examples-page.component-b64f21ef.html`}}},bS=class e{static get $name(){return`docsDropdownApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/dropdown-api-page.component-2104f6f4.html`,controllerAs:`$`}}},xS=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class DropdownDisabledItemsComponent implements IComponentController {\r
+    public restricted = true;\r
+\r
+    static get $name() {\r
+        return "docsDropdownDisabledItems"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: DropdownDisabledItemsComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./dropdown-disabled-items.component.html",\r
+        }\r
+    }\r
+}\r
+`,SS=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class DropdownFormComponent implements IComponentController {\r
+    public email = "";\r
+    public remember = false;\r
+    public submitted = false;\r
+\r
+    public submit() {\r
+        this.submitted = true;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsDropdownForm"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: DropdownFormComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./dropdown-form.component.html",\r
+        }\r
+    }\r
+}\r
+`,CS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbDropdownConfig } from "ngb-js";\r
+\r
+export class DropdownGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<NgbDropdownConfig, "autoClose" | "container" | "placement">;\r
+\r
+    constructor(private readonly config: NgbDropdownConfig) {\r
+        this.initialConfig = {\r
+            autoClose: config.autoClose,\r
+            container: config.container,\r
+            placement: config.placement,\r
+        };\r
+\r
+        config.autoClose = "outside";\r
+        config.container = "body";\r
+        config.placement = ["top-start", "bottom-start"];\r
+    }\r
+\r
+    public $onDestroy() {\r
+        this.config.autoClose = this.initialConfig.autoClose;\r
+        this.config.container = this.initialConfig.container;\r
+        this.config.placement = this.initialConfig.placement;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsDropdownGlobal"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbDropdownConfig.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: DropdownGlobalComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./dropdown-global.component.html",\r
+        }\r
+    }\r
+}\r
+`,wS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbDropdown } from "ngb-js";\r
+import { ViewChild } from "ngjs-core";\r
+\r
+export class ManualDropdownComponent implements IComponentController {\r
+    @ViewChild("dropdown", { read: NgbDropdown, static: true })\r
+    private dropdown!: NgbDropdown;\r
+\r
+    public opened = false;\r
+\r
+    public open() {\r
+        this.dropdown.open();\r
+    }\r
+\r
+    public close() {\r
+        this.dropdown.close();\r
+    }\r
+\r
+    public toggle() {\r
+        this.dropdown.toggle();\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsManualDropdown"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: ManualDropdownComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./manual-dropdown.component.html",\r
+        }\r
+    }\r
+}\r
+`,TS=class e{examples={simple:{html:oy.$factory.templateUrl},manual:{html:ay.$factory.templateUrl,typescript:wS},buttonGroups:{html:ey.$factory.templateUrl},disabledItems:{html:ty.$factory.templateUrl,typescript:xS},form:{html:ny.$factory.templateUrl,typescript:SS},body:{html:$v.$factory.templateUrl},navbar:{html:iy.$factory.templateUrl},global:{html:ry.$factory.templateUrl,typescript:CS}};static get $name(){return`docsDropdownExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/dropdown-examples-page.component-fefe9aa4.html`,controllerAs:`$`}}},ES=class e{static get $name(){return`docsModalApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/modal-api-page.component-99ab9b16.html`,controllerAs:`$`}}},DS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"\r
+import { NgbModal } from "ngb-js";\r
+\r
+export class ModalComponentContentComponent implements IComponentController {\r
+    public lastResult = "No result yet";\r
+\r
+    constructor(private readonly modal: NgbModal) {}\r
+\r
+    public async open() {\r
+        const modalRef = await this.modal.open(ModalDemoContentComponent.$name, {\r
+            bindings: {\r
+                title: "Component as content",\r
+                description: "NgbActiveModal is provided directly to the content component.",\r
+            },\r
+        });\r
+\r
+        modalRef.closed.subscribe((result) => {\r
+            this.lastResult = \`Closed with: \${result}\`;\r
+        });\r
+\r
+        modalRef.dismissed.subscribe((reason) => {\r
+            this.lastResult = \`Dismissed with: \${reason}\`;\r
+        });\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsModalComponentContent"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbModal.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: ModalComponentContentComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./modal-component-content.component.html",\r
+        }\r
+    }\r
+}\r
+`,OS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbModal } from "ngb-js";\r
+import { TemplateRef, ViewChild } from "ngjs-core";\r
+\r
+export class ModalDefaultComponent implements IComponentController {\r
+    @ViewChild("content", { read: TemplateRef, static: true })\r
+    private content!: TemplateRef<unknown>;\r
+\r
+    constructor(private readonly modal: NgbModal) {}\r
+\r
+    public open() {\r
+        this.modal.open(this.content);\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsModalDefault"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbModal.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: ModalDefaultComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./modal-default.component.html",\r
+        }\r
+    }\r
+}\r
+`,kS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbActiveModal } from "ngb-js";\r
+\r
+export class ModalDemoContentComponent implements IComponentController {\r
+    public ngbActiveModal!: NgbActiveModal;\r
+    public title = "Component modal";\r
+    public description = "This modal receives a component as its content.";\r
+    public longContent = false;\r
+    public readonly items = Array.from({ length: 24 }, (_, index) => \`Scrollable content row \${index + 1}\`);\r
+\r
+    static get $name() {\r
+        return "docsModalDemoContent"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            bindings: {\r
+                ngbActiveModal: "<",\r
+                title: "<?",\r
+                description: "<?",\r
+                longContent: "<?",\r
+            },\r
+            controller: ModalDemoContentComponent,\r
+            controllerAs: "$",\r
+            templateUrl: "./modal-demo-content.component.html",\r
+        }\r
+    }\r
+}\r
+`,AS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { ModalFocusContentComponent } from "@/features/lib/components/modal-focus-content/modal-focus-content.component"\r
+import { NgbModal } from "ngb-js";\r
+\r
+export class ModalFocusComponent implements IComponentController {\r
+    constructor(private readonly modal: NgbModal) {}\r
+\r
+    public openDefaultFocus() {\r
+        this.modal.open(ModalFocusContentComponent.$name, {\r
+            ariaLabelledBy: "modal-focus-title",\r
+            bindings: { autofocus: false },\r
+        });\r
+    }\r
+\r
+    public openCustomFocus() {\r
+        this.modal.open(ModalFocusContentComponent.$name, {\r
+            ariaLabelledBy: "modal-focus-title",\r
+            bindings: { autofocus: true },\r
+        });\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsModalFocus"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbModal.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: ModalFocusComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./modal-focus.component.html",\r
+        }\r
+    }\r
+}\r
+`,jS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbActiveModal } from "ngb-js";\r
+\r
+export class ModalFocusContentComponent implements IComponentController {\r
+    public ngbActiveModal!: NgbActiveModal;\r
+    public autofocus = false;\r
+\r
+    static get $name() {\r
+        return "docsModalFocusContent"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            bindings: {\r
+                ngbActiveModal: "<",\r
+                autofocus: "<?",\r
+            },\r
+            controller: ModalFocusContentComponent,\r
+            controllerAs: "$",\r
+            templateUrl: "./modal-focus-content.component.html",\r
+        }\r
+    }\r
+}\r
+`,MS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"\r
+import { NgbModal, NgbModalConfig } from "ngb-js";\r
+\r
+export class ModalGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<NgbModalConfig, "backdrop" | "centered" | "keyboard" | "size">;\r
+\r
+    constructor(\r
+        private readonly modal: NgbModal,\r
+        private readonly config: NgbModalConfig,\r
+    ) {\r
+        this.initialConfig = {\r
+            backdrop: config.backdrop,\r
+            centered: config.centered,\r
+            keyboard: config.keyboard,\r
+            size: config.size,\r
+        };\r
+\r
+    }\r
+\r
+    public async open() {\r
+        this.applyConfig();\r
+\r
+        try {\r
+            await this.modal.open(ModalDemoContentComponent.$name, {\r
+                bindings: {\r
+                    title: "Globally configured modal",\r
+                    description: "This modal is centered, large and cannot be dismissed with Escape or a backdrop click.",\r
+                },\r
+            });\r
+        } finally {\r
+            this.restoreConfig();\r
+        }\r
+    }\r
+\r
+    public $onDestroy() {\r
+        this.restoreConfig();\r
+    }\r
+\r
+    private applyConfig() {\r
+        this.config.backdrop = "static";\r
+        this.config.centered = true;\r
+        this.config.keyboard = false;\r
+        this.config.size = "lg";\r
+    }\r
+\r
+    private restoreConfig() {\r
+        this.config.backdrop = this.initialConfig.backdrop;\r
+        this.config.centered = this.initialConfig.centered;\r
+        this.config.keyboard = this.initialConfig.keyboard;\r
+        this.config.size = this.initialConfig.size;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsModalGlobal"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbModal.$name, NgbModalConfig.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: ModalGlobalComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./modal-global.component.html",\r
+        }\r
+    }\r
+}\r
+`,NS=`.modal-window-custom .modal-content {\r
+    border-top: 0.3rem solid var(--bs-primary);\r
+}\r
+\r
+.modal-static-backdrop,\r
+.modal-updated-backdrop {\r
+    --bs-backdrop-bg: var(--bs-danger);\r
+    --bs-backdrop-opacity: 0.35;\r
+}\r
+\r
+.modal-dialog-custom .modal-content,\r
+.modal-updated-dialog .modal-content {\r
+    border-radius: 1.5rem;\r
+    box-shadow: var(--bs-box-shadow-lg);\r
+}\r
+\r
+.modal-updated-window .modal-content {\r
+    border-color: var(--bs-success);\r
+}\r
+`,PS=`import "@/features/lib/components/modal-options/modal-options.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"\r
+import { NgbModal, type NgbModalOptions } from "ngb-js";\r
+\r
+export class ModalOptionsComponent implements IComponentController {\r
+    constructor(private readonly modal: NgbModal) {}\r
+\r
+    public openCustomWindow() {\r
+        this.open("Custom window class", { windowClass: "modal-window-custom" });\r
+    }\r
+\r
+    public openStaticBackdrop() {\r
+        this.open("Static custom backdrop", {\r
+            backdrop: "static",\r
+            backdropClass: "modal-static-backdrop",\r
+            keyboard: false,\r
+        });\r
+    }\r
+\r
+    public openSmall() {\r
+        this.open("Small modal", { size: "sm" });\r
+    }\r
+\r
+    public openLarge() {\r
+        this.open("Large modal", { size: "lg" });\r
+    }\r
+\r
+    public openExtraLarge() {\r
+        this.open("Extra large modal", { size: "xl" });\r
+    }\r
+\r
+    public openFullscreen() {\r
+        this.open("Fullscreen modal", { fullscreen: true });\r
+    }\r
+\r
+    public openCentered() {\r
+        this.open("Vertically centered modal", { centered: true });\r
+    }\r
+\r
+    public openScrollable() {\r
+        this.open("Scrollable modal", { scrollable: true, size: "lg" }, true);\r
+    }\r
+\r
+    public openCustomDialog() {\r
+        this.open("Custom dialog class", { modalDialogClass: "modal-dialog-custom" });\r
+    }\r
+\r
+    private open(title: string, options: NgbModalOptions, longContent = false) {\r
+        this.modal.open(ModalDemoContentComponent.$name, {\r
+            ...options,\r
+            bindings: {\r
+                title,\r
+                description: "These values are applied only to this modal instance.",\r
+                longContent,\r
+            },\r
+        });\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsModalOptions"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbModal.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: ModalOptionsComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./modal-options.component.html",\r
+        }\r
+    }\r
+}\r
+`,FS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { ModalStackedContentComponent } from "@/features/lib/components/modal-stacked-content/modal-stacked-content.component"\r
+import { NgbModal } from "ngb-js";\r
+\r
+export class ModalStackedComponent implements IComponentController {\r
+    constructor(private readonly modal: NgbModal) {}\r
+\r
+    public async openStack() {\r
+        for (let level = 1; level <= 3; level++) {\r
+            await this.modal.open(ModalStackedContentComponent.$name, {\r
+                bindings: {\r
+                    level,\r
+                },\r
+            });\r
+        }\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsModalStacked"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbModal.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: ModalStackedComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./modal-stacked.component.html",\r
+        }\r
+    }\r
+}\r
+`,IS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbModal, type NgbActiveModal } from "ngb-js";\r
+\r
+export class ModalStackedContentComponent implements IComponentController {\r
+    public ngbActiveModal!: NgbActiveModal;\r
+    public level = 1;\r
+\r
+    constructor(private readonly modal: NgbModal) {}\r
+\r
+    public dismissAll() {\r
+        this.modal.dismissAll("Dismiss all");\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsModalStackedContent"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbModal.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            bindings: {\r
+                ngbActiveModal: "<",\r
+                level: "<?",\r
+            },\r
+            controller: ModalStackedContentComponent,\r
+            controllerAs: "$",\r
+            templateUrl: "./modal-stacked-content.component.html",\r
+        }\r
+    }\r
+}\r
+`,LS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { ModalUpdatableContentComponent } from "@/features/lib/components/modal-updatable-content/modal-updatable-content.component"\r
+import { NgbModal } from "ngb-js";\r
+\r
+export class ModalUpdatableComponent implements IComponentController {\r
+    constructor(private readonly modal: NgbModal) {}\r
+\r
+    public open() {\r
+        this.modal.open(ModalUpdatableContentComponent.$name, {\r
+            ariaLabelledBy: "updatable-modal-title",\r
+            ariaDescribedBy: "updatable-modal-description",\r
+            size: "sm",\r
+        });\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsModalUpdatable"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbModal.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: ModalUpdatableComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./modal-updatable.component.html",\r
+        }\r
+    }\r
+}\r
+`,RS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbActiveModal, NgbModalUpdatableOptions } from "ngb-js";\r
+\r
+export class ModalUpdatableContentComponent implements IComponentController {\r
+    public ngbActiveModal!: NgbActiveModal;\r
+    public ariaReferences = true;\r
+    public centered = false;\r
+    public fullscreen = false;\r
+    public customBackdrop = false;\r
+    public size: NgbModalUpdatableOptions["size"] = "sm";\r
+    public customWindow = false;\r
+    public customDialog = false;\r
+\r
+    public toggleAriaReferences() {\r
+        this.ariaReferences = !this.ariaReferences;\r
+        this.ngbActiveModal.update({\r
+            ariaLabelledBy: this.ariaReferences ? "updatable-modal-title" : "",\r
+            ariaDescribedBy: this.ariaReferences ? "updatable-modal-description" : "",\r
+        });\r
+    }\r
+\r
+    public toggleCentered() {\r
+        this.centered = !this.centered;\r
+        this.ngbActiveModal.update({ centered: this.centered });\r
+    }\r
+\r
+    public toggleFullscreen() {\r
+        this.fullscreen = !this.fullscreen;\r
+        this.ngbActiveModal.update({ fullscreen: this.fullscreen });\r
+    }\r
+\r
+    public toggleBackdropClass() {\r
+        this.customBackdrop = !this.customBackdrop;\r
+        this.ngbActiveModal.update({ backdropClass: this.customBackdrop ? "modal-updated-backdrop" : "" });\r
+    }\r
+\r
+    public cycleSize() {\r
+        const sizes: Array<NgbModalUpdatableOptions["size"]> = ["sm", "lg", "xl"];\r
+        this.size = sizes[(sizes.indexOf(this.size) + 1) % sizes.length];\r
+        this.ngbActiveModal.update({ size: this.size });\r
+    }\r
+\r
+    public toggleWindowClass() {\r
+        this.customWindow = !this.customWindow;\r
+        this.ngbActiveModal.update({ windowClass: this.customWindow ? "modal-updated-window" : "" });\r
+    }\r
+\r
+    public toggleDialogClass() {\r
+        this.customDialog = !this.customDialog;\r
+        this.ngbActiveModal.update({ modalDialogClass: this.customDialog ? "modal-updated-dialog" : "" });\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsModalUpdatableContent"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            bindings: {\r
+                ngbActiveModal: "<",\r
+            },\r
+            controller: ModalUpdatableContentComponent,\r
+            controllerAs: "$",\r
+            templateUrl: "./modal-updatable-content.component.html",\r
+        }\r
+    }\r
+}\r
+`,zS=class e{examples={defaults:{html:ly.$factory.templateUrl,typescript:OS},componentContent:{html:[{label:`modal-component-content.component.html`,url:cy.$factory.templateUrl},{label:`modal-demo-content.component.html`,url:sy.$factory.templateUrl}],typescript:`${DS}\n\n// modal-demo-content.component.ts\n${kS}`},focus:{html:[{label:`modal-focus.component.html`,url:dy.$factory.templateUrl},{label:`modal-focus-content.component.html`,url:uy.$factory.templateUrl}],typescript:`${AS}\n\n// modal-focus-content.component.ts\n${jS}`},options:{html:py.$factory.templateUrl,typescript:PS,css:NS},updatable:{html:[{label:`modal-updatable.component.html`,url:_y.$factory.templateUrl},{label:`modal-updatable-content.component.html`,url:gy.$factory.templateUrl}],typescript:`${LS}\n\n// modal-updatable-content.component.ts\n${RS}`,css:NS},stacked:{html:[{label:`modal-stacked.component.html`,url:hy.$factory.templateUrl},{label:`modal-stacked-content.component.html`,url:my.$factory.templateUrl}],typescript:`${FS}\n\n// modal-stacked-content.component.ts\n${IS}`},global:{html:fy.$factory.templateUrl,typescript:MS}};static get $name(){return`docsModalExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/modal-examples-page.component-f5099726.html`,controllerAs:`$`}}},BS=class e{static get $name(){return`docsNavApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/nav-api-page.component-657c6332.html`,controllerAs:`$`}}},VS=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class AlternativeNavComponent implements IComponentController {\r
+    public activeId = "alternative-home";\r
+\r
+    static get $name() {\r
+        return "docsAlternativeNav"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: AlternativeNavComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./alternative-nav.component.html",\r
+        }\r
+    }\r
+}\r
+`,HS=`.nav-custom {\r
+    gap: 0.5rem;\r
+    padding: 0.35rem;\r
+    border: 1px solid var(--bs-border-color);\r
+    border-radius: var(--bs-border-radius-pill);\r
+    background: var(--bs-tertiary-bg);\r
+}\r
+\r
+.nav-custom .nav-link {\r
+    border-radius: var(--bs-border-radius-pill);\r
+    color: var(--bs-secondary-color);\r
+}\r
+\r
+.nav-custom .nav-link.active {\r
+    color: var(--bs-primary-text-emphasis);\r
+    background: var(--bs-primary-bg-subtle);\r
+    box-shadow: var(--bs-box-shadow-sm);\r
+}\r
+`,US=`import "@/features/lib/components/custom-nav/custom-nav.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class CustomNavComponent implements IComponentController {\r
+    public activeId = "custom-weekly";\r
+\r
+    static get $name() {\r
+        return "docsCustomNav"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: CustomNavComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./custom-nav.component.html",\r
+        }\r
+    }\r
+}\r
+`,WS=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+interface DynamicNavItem {\r
+    id: string;\r
+    title: string;\r
+}\r
+\r
+export class DynamicNavComponent implements IComponentController {\r
+    public items: DynamicNavItem[] = [\r
+        { id: "dynamic-1", title: "Tab 1" },\r
+        { id: "dynamic-2", title: "Tab 2" },\r
+        { id: "dynamic-3", title: "Tab 3" },\r
+    ];\r
+    public activeId = "dynamic-1";\r
+    private nextId = 4;\r
+\r
+    public add() {\r
+        const item = {\r
+            id: \`dynamic-\${this.nextId}\`,\r
+            title: \`Tab \${this.nextId}\`,\r
+        };\r
+\r
+        this.nextId++;\r
+        this.items.push(item);\r
+        this.activeId = item.id;\r
+    }\r
+\r
+    public removeActive() {\r
+        if (this.items.length === 1) return;\r
+\r
+        const activeIndex = this.items.findIndex(({ id }) => id === this.activeId);\r
+        const replacement = this.items[activeIndex === 0 ? 1 : activeIndex - 1];\r
+\r
+        this.activeId = replacement.id;\r
+        this.items = this.items.filter(({ id }) => id !== this.items[activeIndex].id);\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsDynamicNav"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: DynamicNavComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./dynamic-nav.component.html",\r
+        }\r
+    }\r
+}\r
+`,GS=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class KeepContentNavComponent implements IComponentController {\r
+    public activeId = "keep-editor";\r
+    public draft = "This value survives tab changes.";\r
+\r
+    static get $name() {\r
+        return "docsKeepContentNav"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: KeepContentNavComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./keep-content-nav.component.html",\r
+        }\r
+    }\r
+}\r
+`,KS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbNavConfig } from "ngb-js";\r
+\r
+export class NavGlobalComponent implements IComponentController {\r
+    public activeId = "global-account";\r
+\r
+    private readonly initialConfig: Pick<\r
+        NgbNavConfig,\r
+        "animation" | "destroyOnHide" | "keyboard" | "orientation" | "roles"\r
+    >;\r
+\r
+    constructor(private readonly config: NgbNavConfig) {\r
+        this.initialConfig = {\r
+            animation: config.animation,\r
+            destroyOnHide: config.destroyOnHide,\r
+            keyboard: config.keyboard,\r
+            orientation: config.orientation,\r
+            roles: config.roles,\r
+        };\r
+\r
+        config.animation = false;\r
+        config.destroyOnHide = false;\r
+        config.keyboard = "changeWithArrows";\r
+        config.orientation = "vertical";\r
+        config.roles = "tablist";\r
+    }\r
+\r
+    public $postLink() {\r
+        this.restoreConfig();\r
+    }\r
+\r
+    public $onDestroy() {\r
+        this.restoreConfig();\r
+    }\r
+\r
+    private restoreConfig() {\r
+        this.config.animation = this.initialConfig.animation;\r
+        this.config.destroyOnHide = this.initialConfig.destroyOnHide;\r
+        this.config.keyboard = this.initialConfig.keyboard;\r
+        this.config.orientation = this.initialConfig.orientation;\r
+        this.config.roles = this.initialConfig.roles;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsNavGlobal"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbNavConfig.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: NavGlobalComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./nav-global.component.html",\r
+        }\r
+    }\r
+}\r
+`,qS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbNav } from "ngb-js";\r
+import { ViewChild } from "ngjs-core";\r
+\r
+export class SelectingNavComponent implements IComponentController {\r
+    @ViewChild("nav", { read: NgbNav, static: true })\r
+    public nav!: NgbNav;\r
+\r
+    public activeId = "selecting-first";\r
+\r
+    public select(id: string) {\r
+        this.nav.select(id);\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsSelectingNav"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: SelectingNavComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./selecting-nav.component.html",\r
+        }\r
+    }\r
+}\r
+`,JS=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class SimpleNavComponent implements IComponentController {\r
+    public activeId = "simple-overview";\r
+\r
+    static get $name() {\r
+        return "docsSimpleNav"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: SimpleNavComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./simple-nav.component.html",\r
+        }\r
+    }\r
+}\r
+`,YS=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class VerticalNavComponent implements IComponentController {\r
+    public activeId = "vertical-profile";\r
+\r
+    static get $name() {\r
+        return "docsVerticalNav"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: VerticalNavComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./vertical-nav.component.html",\r
+        }\r
+    }\r
+}\r
+`,XS=class e{examples={simple:{html:wy.$factory.templateUrl,typescript:JS},alternative:{html:vy.$factory.templateUrl,typescript:VS},vertical:{html:Ty.$factory.templateUrl,typescript:YS},selecting:{html:Cy.$factory.templateUrl,typescript:qS},keepContent:{html:xy.$factory.templateUrl,typescript:GS},dynamic:{html:by.$factory.templateUrl,typescript:WS},custom:{html:yy.$factory.templateUrl,typescript:US,css:HS},global:{html:Sy.$factory.templateUrl,typescript:KS}};static get $name(){return`docsNavExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/nav-examples-page.component-c8820cd5.html`,controllerAs:`$`}}},ZS=class e{static get $name(){return`docsOffcanvasApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/offcanvas-api-page.component-48c4099a.html`,controllerAs:`$`}}},QS=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"\r
+import { NgbOffcanvas } from "ngb-js";\r
+\r
+export class OffcanvasComponentContentComponent implements IComponentController {\r
+    public lastResult = "No result yet";\r
+\r
+    constructor(private readonly offcanvas: NgbOffcanvas) {}\r
+\r
+    public async open() {\r
+        const offcanvasRef = await this.offcanvas.open(OffcanvasDemoContentComponent.$name);\r
+\r
+        offcanvasRef.closed.subscribe((result) => {\r
+            this.lastResult = \`Closed with: \${result}\`;\r
+        });\r
+\r
+        offcanvasRef.dismissed.subscribe((reason) => {\r
+            this.lastResult = \`Dismissed with: \${reason}\`;\r
+        });\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsOffcanvasComponentContent"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbOffcanvas.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: OffcanvasComponentContentComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./offcanvas-component-content.component.html",\r
+        }\r
+    }\r
+}\r
+`,$S=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbOffcanvas } from "ngb-js";\r
+import { TemplateRef, ViewChild } from "ngjs-core";\r
+\r
+export class OffcanvasDefaultComponent implements IComponentController {\r
+    @ViewChild("content", { read: TemplateRef, static: true })\r
+    private content!: TemplateRef<unknown>;\r
+\r
+    constructor(private readonly offcanvas: NgbOffcanvas) {}\r
+\r
+    public open() {\r
+        this.offcanvas.open(this.content);\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsOffcanvasDefault"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbOffcanvas.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: OffcanvasDefaultComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./offcanvas-default.component.html",\r
+        }\r
+    }\r
+}\r
+`,eC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbActiveOffcanvas } from "ngb-js";\r
+\r
+export class OffcanvasDemoContentComponent implements IComponentController {\r
+    public ngbActiveOffcanvas!: NgbActiveOffcanvas;\r
+\r
+    static get $name() {\r
+        return "docsOffcanvasDemoContent"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            bindings: {\r
+                ngbActiveOffcanvas: "<",\r
+            },\r
+            controller: OffcanvasDemoContentComponent,\r
+            controllerAs: "$",\r
+            templateUrl: "./offcanvas-demo-content.component.html",\r
+        }\r
+    }\r
+}\r
+`,tC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { OffcanvasFocusContentComponent } from "@/features/lib/components/offcanvas-focus-content/offcanvas-focus-content.component"\r
+import { NgbOffcanvas } from "ngb-js";\r
+\r
+export class OffcanvasFocusComponent implements IComponentController {\r
+    constructor(private readonly offcanvas: NgbOffcanvas) {}\r
+\r
+    public openDefaultFocus() {\r
+        this.offcanvas.open(OffcanvasFocusContentComponent.$name, {\r
+            ariaLabelledBy: "offcanvas-focus-title",\r
+            bindings: { autofocus: false },\r
+        });\r
+    }\r
+\r
+    public openCustomFocus() {\r
+        this.offcanvas.open(OffcanvasFocusContentComponent.$name, {\r
+            ariaLabelledBy: "offcanvas-focus-title",\r
+            bindings: { autofocus: true },\r
+        });\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsOffcanvasFocus"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbOffcanvas.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: OffcanvasFocusComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./offcanvas-focus.component.html",\r
+        }\r
+    }\r
+}\r
+`,nC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbActiveOffcanvas } from "ngb-js";\r
+\r
+export class OffcanvasFocusContentComponent implements IComponentController {\r
+    public ngbActiveOffcanvas!: NgbActiveOffcanvas;\r
+    public autofocus = false;\r
+\r
+    static get $name() {\r
+        return "docsOffcanvasFocusContent"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            bindings: {\r
+                ngbActiveOffcanvas: "<",\r
+                autofocus: "<?",\r
+            },\r
+            controller: OffcanvasFocusContentComponent,\r
+            controllerAs: "$",\r
+            templateUrl: "./offcanvas-focus-content.component.html",\r
+        }\r
+    }\r
+}\r
+`,rC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"\r
+import { NgbOffcanvas, NgbOffcanvasConfig } from "ngb-js";\r
+\r
+export class OffcanvasGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<\r
+        NgbOffcanvasConfig,\r
+        "backdrop" | "keyboard" | "position" | "scroll"\r
+    >;\r
+\r
+    constructor(\r
+        private readonly offcanvas: NgbOffcanvas,\r
+        private readonly config: NgbOffcanvasConfig,\r
+    ) {\r
+        this.initialConfig = {\r
+            backdrop: config.backdrop,\r
+            keyboard: config.keyboard,\r
+            position: config.position,\r
+            scroll: config.scroll,\r
+        };\r
+    }\r
+\r
+    public async open() {\r
+        this.applyConfig();\r
+\r
+        try {\r
+            await this.offcanvas.open(OffcanvasDemoContentComponent.$name);\r
+        } finally {\r
+            this.restoreConfig();\r
+        }\r
+    }\r
+\r
+    public $onDestroy() {\r
+        this.restoreConfig();\r
+    }\r
+\r
+    private applyConfig() {\r
+        this.config.backdrop = "static";\r
+        this.config.keyboard = false;\r
+        this.config.position = "end";\r
+        this.config.scroll = true;\r
+    }\r
+\r
+    private restoreConfig() {\r
+        this.config.backdrop = this.initialConfig.backdrop;\r
+        this.config.keyboard = this.initialConfig.keyboard;\r
+        this.config.position = this.initialConfig.position;\r
+        this.config.scroll = this.initialConfig.scroll;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsOffcanvasGlobal"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbOffcanvas.$name, NgbOffcanvasConfig.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: OffcanvasGlobalComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./offcanvas-global.component.html",\r
+        }\r
+    }\r
+}\r
+`,iC=`.offcanvas-panel-custom {\r
+    --bs-offcanvas-width: 28rem;\r
+    border-color: var(--bs-primary-border-subtle);\r
+}\r
+\r
+.offcanvas-static-backdrop {\r
+    --bs-backdrop-bg: var(--bs-danger);\r
+    --bs-backdrop-opacity: 0.35;\r
+}\r
+`,aC=`import "@/features/lib/components/offcanvas-options/offcanvas-options.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"\r
+import { NgbOffcanvas, type NgbOffcanvasOptions } from "ngb-js";\r
+\r
+export class OffcanvasOptionsComponent implements IComponentController {\r
+    constructor(private readonly offcanvas: NgbOffcanvas) {}\r
+\r
+    public openCustomPanel() {\r
+        this.open({ panelClass: "offcanvas-panel-custom" });\r
+    }\r
+\r
+    public openStaticBackdrop() {\r
+        this.open({\r
+            backdrop: "static",\r
+            backdropClass: "offcanvas-static-backdrop",\r
+            keyboard: false,\r
+        });\r
+    }\r
+\r
+    public openStart() {\r
+        this.open({ position: "start" });\r
+    }\r
+\r
+    public openEnd() {\r
+        this.open({ position: "end" });\r
+    }\r
+\r
+    public openTop() {\r
+        this.open({ position: "top" });\r
+    }\r
+\r
+    public openBottom() {\r
+        this.open({ position: "bottom" });\r
+    }\r
+\r
+    public openScrollableBody() {\r
+        this.open({ scroll: true, backdrop: false });\r
+    }\r
+\r
+    private open(options: NgbOffcanvasOptions) {\r
+        this.offcanvas.open(OffcanvasDemoContentComponent.$name, options);\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsOffcanvasOptions"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbOffcanvas.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: OffcanvasOptionsComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./offcanvas-options.component.html",\r
+        }\r
+    }\r
+}\r
+`,oC=class e{examples={defaults:{html:Oy.$factory.templateUrl,typescript:$S},componentContent:{html:[{label:`offcanvas-component-content.component.html`,url:Dy.$factory.templateUrl},{label:`offcanvas-demo-content.component.html`,url:Ey.$factory.templateUrl}],typescript:`${QS}\n\n// offcanvas-demo-content.component.ts\n${eC}`},focus:{html:[{label:`offcanvas-focus.component.html`,url:Ay.$factory.templateUrl},{label:`offcanvas-focus-content.component.html`,url:ky.$factory.templateUrl}],typescript:`${tC}\n\n// offcanvas-focus-content.component.ts\n${nC}`},options:{html:My.$factory.templateUrl,typescript:aC,css:iC},global:{html:jy.$factory.templateUrl,typescript:rC}};static get $name(){return`docsOffcanvasExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/offcanvas-examples-page.component-56d37205.html`,controllerAs:`$`}}},sC=class e{static get $name(){return`docsPaginationApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/pagination-api-page.component-c62638bc.html`,controllerAs:`$`}}},cC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class AdvancedPaginationComponent implements IComponentController {\r
+    public paginatedPage = 7;\r
+    public rotatedPage = 12;\r
+    public compactPage = 12;\r
+\r
+    public selectPaginatedPage(page: number) { this.paginatedPage = page; }\r
+    public selectRotatedPage(page: number) { this.rotatedPage = page; }\r
+    public selectCompactPage(page: number) { this.compactPage = page; }\r
+\r
+    static get $name() {\r
+        return "docsAdvancedPagination"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: AdvancedPaginationComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./advanced-pagination.component.html",\r
+        }\r
+    }\r
+}\r
+`,lC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class BasicPaginationComponent implements IComponentController {\r
+    public page = 4;\r
+\r
+    public selectPage(page: number) {\r
+        this.page = page;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsBasicPagination"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: BasicPaginationComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./basic-pagination.component.html",\r
+        }\r
+    }\r
+}\r
+`,uC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class CustomPaginationComponent implements IComponentController {\r
+    public page = 3;\r
+\r
+    public selectPage(page: number) {\r
+        this.page = page;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsCustomPagination"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: CustomPaginationComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./custom-pagination.component.html",\r
+        }\r
+    }\r
+}\r
+`,dC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class DisabledPaginationComponent implements IComponentController {\r
+    public page = 3;\r
+    public disabled = true;\r
+\r
+    public selectPage(page: number) {\r
+        this.page = page;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsDisabledPagination"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: DisabledPaginationComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./disabled-pagination.component.html",\r
+        }\r
+    }\r
+}\r
+`,fC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class PaginationAlignmentComponent implements IComponentController {\r
+    public startPage = 2;\r
+    public centerPage = 2;\r
+    public endPage = 2;\r
+\r
+    public selectStartPage(page: number) { this.startPage = page; }\r
+    public selectCenterPage(page: number) { this.centerPage = page; }\r
+    public selectEndPage(page: number) { this.endPage = page; }\r
+\r
+    static get $name() {\r
+        return "docsPaginationAlignment"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: PaginationAlignmentComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./pagination-alignment.component.html",\r
+        }\r
+    }\r
+}\r
+`,pC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbPaginationConfig } from "ngb-js";\r
+\r
+export class PaginationGlobalComponent implements IComponentController {\r
+    public page = 8;\r
+\r
+    private readonly initialConfig: Pick<\r
+        NgbPaginationConfig,\r
+        "boundaryLinks" | "directionLinks" | "maxSize" | "rotate" | "size"\r
+    >;\r
+\r
+    constructor(private readonly config: NgbPaginationConfig) {\r
+        this.initialConfig = {\r
+            boundaryLinks: config.boundaryLinks,\r
+            directionLinks: config.directionLinks,\r
+            maxSize: config.maxSize,\r
+            rotate: config.rotate,\r
+            size: config.size,\r
+        };\r
+\r
+        config.boundaryLinks = true;\r
+        config.directionLinks = false;\r
+        config.maxSize = 5;\r
+        config.rotate = true;\r
+        config.size = "sm";\r
+    }\r
+\r
+    public selectPage(page: number) {\r
+        this.page = page;\r
+    }\r
+\r
+    public $postLink() {\r
+        this.restoreConfig();\r
+    }\r
+\r
+    public $onDestroy() {\r
+        this.restoreConfig();\r
+    }\r
+\r
+    private restoreConfig() {\r
+        this.config.boundaryLinks = this.initialConfig.boundaryLinks;\r
+        this.config.directionLinks = this.initialConfig.directionLinks;\r
+        this.config.maxSize = this.initialConfig.maxSize;\r
+        this.config.rotate = this.initialConfig.rotate;\r
+        this.config.size = this.initialConfig.size;\r
+    }\r
+\r
+    static get $name() {\r
+        return "docsPaginationGlobal"\r
+    }\r
+\r
+    static get $inject() {\r
+        return [NgbPaginationConfig.$name]\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: PaginationGlobalComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./pagination-global.component.html",\r
+        }\r
+    }\r
+}\r
+`,mC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class PaginationSizeComponent implements IComponentController {\r
+    public smallPage = 2;\r
+    public defaultPage = 2;\r
+    public largePage = 2;\r
+\r
+    public selectSmallPage(page: number) { this.smallPage = page; }\r
+    public selectDefaultPage(page: number) { this.defaultPage = page; }\r
+    public selectLargePage(page: number) { this.largePage = page; }\r
+\r
+    static get $name() {\r
+        return "docsPaginationSize"\r
+    }\r
+\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: PaginationSizeComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./pagination-size.component.html",\r
+        }\r
+    }\r
+}\r
+`,hC=class e{examples={basic:{html:Py.$factory.templateUrl,typescript:lC},advanced:{html:Ny.$factory.templateUrl,typescript:cC},custom:{html:Fy.$factory.templateUrl,typescript:uC},size:{html:zy.$factory.templateUrl,typescript:mC},alignment:{html:Ly.$factory.templateUrl,typescript:fC},disabled:{html:Iy.$factory.templateUrl,typescript:dC},global:{html:Ry.$factory.templateUrl,typescript:pC}};static get $name(){return`docsPaginationExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/pagination-examples-page.component-098ceb3f.html`,controllerAs:`$`}}},gC=class e{static get $name(){return`docsPopoverApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/popover-api-page.component-0453e57b.html`,controllerAs:`$`}}},_C=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbPopover } from "ngb-js";\r
+\r
+export class PopoverAutocloseComponent implements IComponentController {\r
+    public popover?: NgbPopover;\r
+    static get $name() { return "docsPopoverAutoclose" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverAutocloseComponent, controllerAs: "example", templateUrl: "./popover-autoclose.component.html" }\r
+    }\r
+}\r
+`,vC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class PopoverBodyComponent implements IComponentController {\r
+    static get $name() { return "docsPopoverBody" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverBodyComponent, controllerAs: "example", templateUrl: "./popover-body.component.html" }\r
+    }\r
+}\r
+`,yC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbPopover } from "ngb-js";\r
+import type { TemplateRef } from "ngjs-core";\r
+\r
+export class PopoverContextComponent implements IComponentController {\r
+    public name = "World";\r
+    public contentTemplate?: TemplateRef<unknown>;\r
+    public titleTemplate?: TemplateRef<unknown>;\r
+    public french?: NgbPopover;\r
+    public german?: NgbPopover;\r
+    public english?: NgbPopover;\r
+\r
+    public toggleWithGreeting(popover: NgbPopover, greeting: string, language: string) {\r
+        popover.isOpen() ? popover.close() : popover.open({ greeting, language });\r
+    }\r
+\r
+    static get $name() { return "docsPopoverContext" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverContextComponent, controllerAs: "example", templateUrl: "./popover-context.component.html" }\r
+    }\r
+}\r
+`,bC=`.docs-popover-custom {\r
+    --bs-popover-border-color: var(--bs-primary-border-subtle);\r
+    --bs-popover-header-bg: var(--bs-primary-bg-subtle);\r
+    --bs-popover-header-color: var(--bs-primary-text-emphasis);\r
+\r
+    box-shadow: var(--bs-box-shadow-sm);\r
+}\r
+`,xC=`import "@/features/lib/components/popover-custom-class/popover-custom-class.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class PopoverCustomClassComponent implements IComponentController {\r
+    static get $name() { return "docsPopoverCustomClass" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverCustomClassComponent, controllerAs: "example", templateUrl: "./popover-custom-class.component.html" }\r
+    }\r
+}\r
+`,SC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class PopoverCustomTargetComponent implements IComponentController {\r
+    static get $name() { return "docsPopoverCustomTarget" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverCustomTargetComponent, controllerAs: "example", templateUrl: "./popover-custom-target.component.html" }\r
+    }\r
+}\r
+`,CC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class PopoverDelaysComponent implements IComponentController {\r
+    static get $name() { return "docsPopoverDelays" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverDelaysComponent, controllerAs: "example", templateUrl: "./popover-delays.component.html" }\r
+    }\r
+}\r
+`,wC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbPopover } from "ngb-js";\r
+\r
+export class PopoverEventsComponent implements IComponentController {\r
+    public popover?: NgbPopover;\r
+    public events: { name: string; time: Date }[] = [];\r
+    public record(name: string) { this.events.unshift({ name, time: new Date() }); }\r
+    static get $name() { return "docsPopoverEvents" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverEventsComponent, controllerAs: "example", templateUrl: "./popover-events.component.html" }\r
+    }\r
+}\r
+`,TC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbPopoverConfig } from "ngb-js";\r
+\r
+export class PopoverGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<NgbPopoverConfig, "container" | "openDelay" | "placement" | "triggers">;\r
+\r
+    constructor(private readonly config: NgbPopoverConfig) {\r
+        this.initialConfig = {\r
+            container: config.container,\r
+            openDelay: config.openDelay,\r
+            placement: config.placement,\r
+            triggers: config.triggers,\r
+        };\r
+        config.container = "body";\r
+        config.openDelay = 300;\r
+        config.placement = "end";\r
+        config.triggers = "mouseenter:mouseleave";\r
+    }\r
+\r
+    public $postLink() { this.restoreConfig(); }\r
+    public $onDestroy() { this.restoreConfig(); }\r
+    private restoreConfig() {\r
+        this.config.container = this.initialConfig.container;\r
+        this.config.openDelay = this.initialConfig.openDelay;\r
+        this.config.placement = this.initialConfig.placement;\r
+        this.config.triggers = this.initialConfig.triggers;\r
+    }\r
+\r
+    static get $name() { return "docsPopoverGlobal" }\r
+    static get $inject() { return [NgbPopoverConfig.$name] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverGlobalComponent, controllerAs: "example", templateUrl: "./popover-global.component.html" }\r
+    }\r
+}\r
+`,EC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbPopover } from "ngb-js";\r
+\r
+export class PopoverManualControlComponent implements IComponentController {\r
+    public popover?: NgbPopover;\r
+    static get $name() { return "docsPopoverManualControl" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverManualControlComponent, controllerAs: "example", templateUrl: "./popover-manual-control.component.html" }\r
+    }\r
+}\r
+`,DC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class PopoverPlacementsComponent implements IComponentController {\r
+    static get $name() { return "docsPopoverPlacements" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverPlacementsComponent, controllerAs: "example", templateUrl: "./popover-placements.component.html" }\r
+    }\r
+}\r
+`,OC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { TemplateRef } from "ngjs-core";\r
+\r
+export class PopoverTemplateComponent implements IComponentController {\r
+    public name = "NgbJS";\r
+    public contentTemplate?: TemplateRef<unknown>;\r
+    public titleTemplate?: TemplateRef<unknown>;\r
+    static get $name() { return "docsPopoverTemplate" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverTemplateComponent, controllerAs: "example", templateUrl: "./popover-template.component.html" }\r
+    }\r
+}\r
+`,kC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbPopover } from "ngb-js";\r
+\r
+export class PopoverTriggersComponent implements IComponentController {\r
+    public manual?: NgbPopover;\r
+    static get $name() { return "docsPopoverTriggers" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PopoverTriggersComponent, controllerAs: "example", templateUrl: "./popover-triggers.component.html" }\r
+    }\r
+}\r
+`,AC=class e{examples={placements:{html:fb.$factory.templateUrl,typescript:DC},template:{html:pb.$factory.templateUrl,typescript:OC},triggers:{html:mb.$factory.templateUrl,typescript:kC},manual:{html:db.$factory.templateUrl,typescript:EC},autoclose:{html:rb.$factory.templateUrl,typescript:_C},context:{html:ab.$factory.templateUrl,typescript:yC},customTarget:{html:sb.$factory.templateUrl,typescript:SC},delays:{html:cb.$factory.templateUrl,typescript:CC},events:{html:lb.$factory.templateUrl,typescript:wC},body:{html:ib.$factory.templateUrl,typescript:vC},customClass:{html:ob.$factory.templateUrl,typescript:xC,css:bC},global:{html:ub.$factory.templateUrl,typescript:TC}};static get $name(){return`docsPopoverExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/popover-examples-page.component-1d0efb30.html`,controllerAs:`$`}}},jC=class e{static get $name(){return`docsProgressbarApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/progressbar-api-page.component-3c7a802e.html`,controllerAs:`$`}}},MC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class ContextualTextProgressbarComponent implements IComponentController {\r
+    static get $name() { return "docsContextualTextProgressbar" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: ContextualTextProgressbarComponent, controllerAs: "example", templateUrl: "./contextual-text-progressbar.component.html" }\r
+    }\r
+}\r
+`,NC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbProgressbarConfig } from "ngb-js";\r
+\r
+export class ProgressbarGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<NgbProgressbarConfig, "animated" | "height" | "max" | "showValue" | "striped" | "textType" | "type">;\r
+\r
+    constructor(private readonly config: NgbProgressbarConfig) {\r
+        this.initialConfig = {\r
+            animated: config.animated,\r
+            height: config.height,\r
+            max: config.max,\r
+            showValue: config.showValue,\r
+            striped: config.striped,\r
+            textType: config.textType,\r
+            type: config.type,\r
+        };\r
+        config.animated = true;\r
+        config.height = "1.5rem";\r
+        config.max = 200;\r
+        config.showValue = true;\r
+        config.striped = true;\r
+        config.textType = "light";\r
+        config.type = "primary";\r
+    }\r
+\r
+    public $postLink() { this.restoreConfig(); }\r
+    public $onDestroy() { this.restoreConfig(); }\r
+    private restoreConfig() { Object.assign(this.config, this.initialConfig); }\r
+\r
+    static get $name() { return "docsProgressbarGlobal" }\r
+    static get $inject() { return [NgbProgressbarConfig.$name] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: ProgressbarGlobalComponent, controllerAs: "example", templateUrl: "./progressbar-global.component.html" }\r
+    }\r
+}\r
+`,PC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class ProgressHeightComponent implements IComponentController {\r
+    static get $name() { return "docsProgressHeight" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: ProgressHeightComponent, controllerAs: "example", templateUrl: "./progress-height.component.html" }\r
+    }\r
+}\r
+`,FC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class CustomLabelsProgressbarComponent implements IComponentController {\r
+    static get $name() { return "docsCustomLabelsProgressbar" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: CustomLabelsProgressbarComponent, controllerAs: "example", templateUrl: "./custom-labels-progressbar.component.html" }\r
+    }\r
+}\r
+`,IC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class SimpleProgressbarComponent implements IComponentController {\r
+    static get $name() { return "docsSimpleProgressbar" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: SimpleProgressbarComponent, controllerAs: "example", templateUrl: "./simple-progressbar.component.html" }\r
+    }\r
+}\r
+`,LC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class ProgressBarsStackedComponent implements IComponentController {\r
+    static get $name() { return "docsProgressBarsStacked" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: ProgressBarsStackedComponent, controllerAs: "example", templateUrl: "./progress-bars-stacked.component.html" }\r
+    }\r
+}\r
+`,RC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class StripedProgressBarComponent implements IComponentController {\r
+    static get $name() { return "docsStripedProgressBar" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: StripedProgressBarComponent, controllerAs: "example", templateUrl: "./striped-progress-bar.component.html" }\r
+    }\r
+}\r
+`,zC=class e{examples={simple:{html:bb.$factory.templateUrl,typescript:IC},contextual:{html:hb.$factory.templateUrl,typescript:MC},striped:{html:xb.$factory.templateUrl,typescript:RC},labels:{html:gb.$factory.templateUrl,typescript:FC},height:{html:vb.$factory.templateUrl,typescript:PC},stacked:{html:_b.$factory.templateUrl,typescript:LC},global:{html:yb.$factory.templateUrl,typescript:NC}};static get $name(){return`docsProgressbarExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/progressbar-examples-page.component-c518dfee.html`,controllerAs:`$`}}},BC=class e{static get $name(){return`docsRatingApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/rating-api-page.component-d59be42e.html`,controllerAs:`$`}}},VC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class BasicRatingComponent implements IComponentController {\r
+    public rating = 3;\r
+    public setRating(rating: number) { this.rating = rating; }\r
+    static get $name() { return "docsBasicRating" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: BasicRatingComponent, controllerAs: "example", templateUrl: "./basic-rating.component.html" }\r
+    }\r
+}\r
+`,HC=`.rating-demo-star {\r
+    color: var(--bs-secondary-color);\r
+    font-size: 2rem;\r
+    padding-right: 0.15rem;\r
+}\r
+\r
+.rating-demo-star.filled {\r
+    color: var(--bs-warning);\r
+}\r
+\r
+.rating-demo-star.filled.low {\r
+    color: var(--bs-danger);\r
+}\r
+`,UC=`import "@/features/lib/components/rating-custom-template/rating-custom-template.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class RatingCustomTemplateComponent implements IComponentController {\r
+    public rating = 6;\r
+    public setRating(rating: number) { this.rating = rating; }\r
+    static get $name() { return "docsRatingCustomTemplate" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: RatingCustomTemplateComponent, controllerAs: "example", templateUrl: "./rating-custom-template.component.html" }\r
+    }\r
+}\r
+`,WC=`.rating-demo-heart {\r
+    color: var(--bs-secondary-bg);\r
+    display: inline-block;\r
+    font-size: 2.25rem;\r
+    margin-right: 0.15rem;\r
+    position: relative;\r
+}\r
+\r
+.rating-demo-heart-fill {\r
+    color: var(--bs-danger);\r
+    left: 0;\r
+    overflow: hidden;\r
+    position: absolute;\r
+    top: 0;\r
+}\r
+`,GC=`import "@/features/lib/components/rating-decimal/rating-decimal.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+import type { TemplateRef } from "ngjs-core";\r
+\r
+export class RatingDecimalComponent implements IComponentController {\r
+    public rating = 3.14;\r
+    public heartTemplate?: TemplateRef<unknown>;\r
+    public readonly ariaValueText = (current: number, max: number) => \`\${current} out of \${max} hearts\`;\r
+    static get $name() { return "docsRatingDecimal" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: RatingDecimalComponent, controllerAs: "example", templateUrl: "./rating-decimal.component.html" }\r
+    }\r
+}\r
+`,KC=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class RatingEventsComponent implements IComponentController {\r
+    public selected = 0;\r
+    public hovered = 0;\r
+    public readonly = false;\r
+    public setSelected(value: number) { this.selected = value; }\r
+    public setHovered(value: number) { this.hovered = value; }\r
+    static get $name() { return "docsRatingEvents" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: RatingEventsComponent, controllerAs: "example", templateUrl: "./rating-events.component.html" }\r
+    }\r
+}\r
+`,qC=`import type { IComponentController, IComponentOptions, IFormController } from "angular";\r
+\r
+export class RatingFormComponent implements IComponentController {\r
+    public rating: number | null = null;\r
+    public disabled = false;\r
+    public form?: IFormController;\r
+\r
+    public setRating(rating: number) { this.rating = rating; }\r
+    public clear() { this.rating = null; }\r
+\r
+    static get $name() { return "docsRatingForm" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: RatingFormComponent, controllerAs: "example", templateUrl: "./rating-form.component.html" }\r
+    }\r
+}\r
+`,JC=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbRatingConfig } from "ngb-js";\r
+\r
+export class RatingGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<NgbRatingConfig, "max" | "readonly" | "resettable" | "tabindex">;\r
+\r
+    constructor(private readonly config: NgbRatingConfig) {\r
+        this.initialConfig = {\r
+            max: config.max,\r
+            readonly: config.readonly,\r
+            resettable: config.resettable,\r
+            tabindex: config.tabindex,\r
+        };\r
+        config.max = 5;\r
+        config.readonly = true;\r
+        config.resettable = true;\r
+        config.tabindex = -1;\r
+    }\r
+\r
+    public $postLink() { this.restoreConfig(); }\r
+    public $onDestroy() { this.restoreConfig(); }\r
+    private restoreConfig() { Object.assign(this.config, this.initialConfig); }\r
+\r
+    static get $name() { return "docsRatingGlobal" }\r
+    static get $inject() { return [NgbRatingConfig.$name] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: RatingGlobalComponent, controllerAs: "example", templateUrl: "./rating-global.component.html" }\r
+    }\r
+}\r
+`,YC=class e{examples={basic:{html:Sb.$factory.templateUrl,typescript:VC},events:{html:Tb.$factory.templateUrl,typescript:KC},customTemplate:{html:Cb.$factory.templateUrl,typescript:UC,css:HC},decimal:{html:wb.$factory.templateUrl,typescript:GC,css:WC},form:{html:Eb.$factory.templateUrl,typescript:qC},global:{html:Db.$factory.templateUrl,typescript:JC}};static get $name(){return`docsRatingExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/rating-examples-page.component-a2a18aa5.html`,controllerAs:`$`}}},XC=class e{static get $name(){return`docsScrollspyApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/scrollspy-api-page.component-6f0afb2a.html`,controllerAs:`$`}}},ZC=`import type { IAugmentedJQuery, IComponentController, IComponentOptions } from "angular";\r
+import { NgbScrollSpyService } from "ngb-js";\r
+\r
+export class ScrollspyServiceDemoComponent implements IComponentController {\r
+    public readonly fragments = ["service-introduction", "service-options", "service-finish"];\r
+    public running = false;\r
+    public observingFinish = true;\r
+    private root?: HTMLElement;\r
+\r
+    constructor(\r
+        private readonly $element: IAugmentedJQuery,\r
+        public readonly scrollSpy: NgbScrollSpyService,\r
+    ) {}\r
+\r
+    public $postLink(): void {\r
+        this.root = this.$element[0].querySelector<HTMLElement>("[data-service-scrollspy]") ?? undefined;\r
+        this.start();\r
+    }\r
+\r
+    public $onDestroy(): void {\r
+        this.scrollSpy.stop();\r
+    }\r
+\r
+    public start(): void {\r
+        if (!this.root) return;\r
+        this.scrollSpy.start({\r
+            root: this.root,\r
+            fragments: this.fragments,\r
+            rootMargin: "0px 0px -45%",\r
+        });\r
+        this.running = true;\r
+        this.observingFinish = true;\r
+    }\r
+\r
+    public stop(): void {\r
+        this.scrollSpy.stop();\r
+        this.running = false;\r
+    }\r
+\r
+    public toggleFinish(): void {\r
+        if (this.observingFinish) {\r
+            this.scrollSpy.unobserve("service-finish");\r
+        } else {\r
+            this.scrollSpy.observe("service-finish");\r
+        }\r
+        this.observingFinish = !this.observingFinish;\r
+    }\r
+\r
+    static get $name() { return "docsScrollspyServiceDemo" }\r
+    static get $inject() { return ["$element", NgbScrollSpyService.$name] }\r
+    static get $factory(): IComponentOptions {\r
+        return {\r
+            controller: ScrollspyServiceDemoComponent,\r
+            controllerAs: "example",\r
+            templateUrl: "./scrollspy-service-demo.component.html",\r
+        }\r
+    }\r
+}\r
+`,QC=class e{examples={basic:{html:Ob.$factory.templateUrl},menuItems:{html:jb.$factory.templateUrl},nested:{html:Ab.$factory.templateUrl},navbar:{html:kb.$factory.templateUrl},service:{html:Mb.$factory.templateUrl,typescript:ZC}};static get $name(){return`docsScrollspyExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/scrollspy-examples-page.component-b266f3a2.html`,controllerAs:`$`}}},$C=class e{static get $name(){return`docsTimepickerApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/timepicker-api-page.component-28289759.html`,controllerAs:`$`}}},ew=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbTimeAdapter, type NgbTimeStruct } from "ngb-js";\r
+\r
+const pad = (value: number): string => value.toString().padStart(2, "0");\r
+\r
+export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {\r
+    public fromModel(value: string | null): NgbTimeStruct | null {\r
+        if (!value) return null;\r
+        const [hour, minute, second] = value.split(":").map(Number);\r
+        return { hour, minute, second };\r
+    }\r
+\r
+    public toModel(time: NgbTimeStruct | null): string | null {\r
+        return time ? \`\${pad(time.hour)}:\${pad(time.minute)}:\${pad(time.second ?? 0)}\` : null;\r
+    }\r
+}\r
+\r
+// Register once in your application module:\r
+// AppModule.service(NgbTimeAdapter.$name, NgbTimeStringAdapter);\r
+\r
+export class TimepickerCustomAdapterComponent implements IComponentController {\r
+    public readonly adapter = new NgbTimeStringAdapter();\r
+    public time = this.adapter.fromModel("13:30:00");\r
+    public model = "13:30:00";\r
+\r
+    public $doCheck(): void {\r
+        this.model = this.adapter.toModel(this.time) ?? "";\r
+    }\r
+\r
+    static get $name() { return "docsTimepickerCustomAdapter" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TimepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "./timepicker-custom-adapter.component.html" }\r
+    }\r
+}\r
+`,tw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbTimeStruct } from "ngb-js";\r
+\r
+export class BasicTimepickerComponent implements IComponentController {\r
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
+    static get $name() { return "docsBasicTimepicker" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: BasicTimepickerComponent, controllerAs: "example", templateUrl: "./basic-timepicker.component.html" }\r
+    }\r
+}\r
+`,nw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbTimepickerI18n, type NgbTimeStruct } from "ngb-js";\r
+\r
+export class GreekTimepickerI18n extends NgbTimepickerI18n {\r
+    public getMorningPeriod(): string { return "π.μ."; }\r
+    public getAfternoonPeriod(): string { return "μ.μ."; }\r
+}\r
+\r
+// Register once in your application module:\r
+// AppModule.service(NgbTimepickerI18n.$name, GreekTimepickerI18n);\r
+\r
+export class TimepickerI18nComponent implements IComponentController {\r
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
+    constructor(public readonly i18n: NgbTimepickerI18n) {}\r
+    static get $name() { return "docsTimepickerI18n" }\r
+    static get $inject() { return [NgbTimepickerI18n.$name] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TimepickerI18nComponent, controllerAs: "example", templateUrl: "./timepicker-i18n.component.html" }\r
+    }\r
+}\r
+`,rw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbTimeStruct } from "ngb-js";\r
+\r
+export class MeridianTimepickerComponent implements IComponentController {\r
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
+    public meridian = true;\r
+    static get $name() { return "docsMeridianTimepicker" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: MeridianTimepickerComponent, controllerAs: "example", templateUrl: "./meridian-timepicker.component.html" }\r
+    }\r
+}\r
+`,iw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbTimeStruct } from "ngb-js";\r
+\r
+export class SecondsTimepickerComponent implements IComponentController {\r
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 25 };\r
+    public seconds = true;\r
+    static get $name() { return "docsSecondsTimepicker" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: SecondsTimepickerComponent, controllerAs: "example", templateUrl: "./seconds-timepicker.component.html" }\r
+    }\r
+}\r
+`,aw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbTimeStruct } from "ngb-js";\r
+\r
+export class SpinnersTimepickerComponent implements IComponentController {\r
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
+    public spinners = true;\r
+    static get $name() { return "docsSpinnersTimepicker" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: SpinnersTimepickerComponent, controllerAs: "example", templateUrl: "./spinners-timepicker.component.html" }\r
+    }\r
+}\r
+`,ow=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbTimeStruct } from "ngb-js";\r
+\r
+export class TimepickerCustomStepsComponent implements IComponentController {\r
+    public time: NgbTimeStruct = { hour: 13, minute: 30, second: 0 };\r
+    public hourStep = 1;\r
+    public minuteStep = 15;\r
+    public secondStep = 30;\r
+    static get $name() { return "docsTimepickerCustomSteps" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TimepickerCustomStepsComponent, controllerAs: "example", templateUrl: "./timepicker-custom-steps.component.html" }\r
+    }\r
+}\r
+`,sw=`import type { IComponentController, IComponentOptions, IDirective, INgModelController } from "angular";\r
+import type { NgbTimeStruct } from "ngb-js";\r
+\r
+export class TimepickerValidationComponent implements IComponentController {\r
+    public time: NgbTimeStruct | null = null;\r
+    static get $name() { return "docsTimepickerValidation" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TimepickerValidationComponent, controllerAs: "example", templateUrl: "./timepicker-validation.component.html" }\r
+    }\r
+}\r
+\r
+export const timepickerLunchValidator = (): IDirective => ({\r
+    restrict: "A",\r
+    require: "ngModel",\r
+    link: (_scope, _element, _attributes, controller) => {\r
+        const ngModel = controller as INgModelController;\r
+        ngModel.$validators.lunchtime = (modelValue: NgbTimeStruct | null) =>\r
+            !modelValue || (modelValue.hour >= 12 && modelValue.hour <= 13);\r
+    },\r
+});\r
+`,cw=class e{examples={basic:{html:Nb.$factory.templateUrl,typescript:tw},meridian:{html:Pb.$factory.templateUrl,typescript:rw},seconds:{html:Fb.$factory.templateUrl,typescript:iw},spinners:{html:Ib.$factory.templateUrl,typescript:aw},steps:{html:Bb.$factory.templateUrl,typescript:ow},validation:{html:Ub.$factory.templateUrl,typescript:sw},adapter:{html:zb.$factory.templateUrl,typescript:ew},i18n:{html:Hb.$factory.templateUrl,typescript:nw}};static get $name(){return`docsTimepickerExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/timepicker-examples-page.component-94a32713.html`,controllerAs:`$`}}},lw=class e{static get $name(){return`docsToastApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/toast-api-page.component-c9278b80.html`,controllerAs:`$`}}},uw=`import type { IComponentController, IComponentOptions, IPromise, ITimeoutService } from "angular";\r
+\r
+export class CloseableToastComponent implements IComponentController {\r
+    public visible = true;\r
+    private reopenTimer?: IPromise<void>;\r
+\r
+    constructor(private readonly $timeout: ITimeoutService) {}\r
+\r
+    public close(): void {\r
+        this.visible = false;\r
+        this.reopenTimer = this.$timeout(() => {\r
+            this.visible = true;\r
+        }, 3000);\r
+    }\r
+\r
+    public $onDestroy(): void {\r
+        if (this.reopenTimer) this.$timeout.cancel(this.reopenTimer);\r
+    }\r
+\r
+    static get $name() { return "docsCloseableToast" }\r
+    static get $inject() { return ["$timeout"] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: CloseableToastComponent, controllerAs: "example", templateUrl: "./closeable-toast.component.html" }\r
+    }\r
+}\r
+`,dw=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class InlineToastComponent implements IComponentController {\r
+    public showHeaderToast = true;\r
+    static get $name() { return "docsInlineToast" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: InlineToastComponent, controllerAs: "example", templateUrl: "./inline-toast.component.html" }\r
+    }\r
+}\r
+`,fw=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+interface ManagedToast {\r
+    id: number;\r
+    body: string;\r
+    className?: string;\r
+    delay?: number;\r
+}\r
+\r
+export class DocsToastService {\r
+    public readonly toasts: ManagedToast[] = [];\r
+    private nextId = 0;\r
+\r
+    public show(body: string, options: Omit<ManagedToast, "id" | "body"> = {}): void {\r
+        this.toasts.push({ id: ++this.nextId, body, ...options });\r
+    }\r
+\r
+    public remove(toast: ManagedToast): void {\r
+        const index = this.toasts.indexOf(toast);\r
+        if (index >= 0) this.toasts.splice(index, 1);\r
+    }\r
+\r
+    public clear(): void {\r
+        this.toasts.length = 0;\r
+    }\r
+\r
+    static get $name() { return "docs.toast.service" }\r
+}\r
+\r
+export class ToastManagementComponent implements IComponentController {\r
+    constructor(public readonly toastService: DocsToastService) {}\r
+\r
+    public showStandard(): void {\r
+        this.toastService.show("I am a standard toast.");\r
+    }\r
+\r
+    public showSuccess(): void {\r
+        this.toastService.show("Your changes were saved.", { className: "bg-success text-white", delay: 8000 });\r
+    }\r
+\r
+    public showDanger(): void {\r
+        this.toastService.show("The operation could not be completed.", { className: "bg-danger text-white", delay: 10000 });\r
+    }\r
+\r
+    public $onDestroy(): void {\r
+        this.toastService.clear();\r
+    }\r
+\r
+    static get $name() { return "docsToastManagement" }\r
+    static get $inject() { return [DocsToastService.$name] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: ToastManagementComponent, controllerAs: "example", templateUrl: "./toast-management.component.html" }\r
+    }\r
+}\r
+`,pw=`import type { IComponentController, IComponentOptions, ITimeoutService } from "angular";\r
+\r
+export class PreventAutohideToastComponent implements IComponentController {\r
+    public visible = false;\r
+    public autohide = true;\r
+\r
+    constructor(private readonly $timeout: ITimeoutService) {}\r
+\r
+    public show(): void {\r
+        this.visible = false;\r
+        this.autohide = true;\r
+        this.$timeout(() => this.visible = true);\r
+    }\r
+\r
+    public hide(): void {\r
+        this.visible = false;\r
+        this.autohide = true;\r
+    }\r
+\r
+    static get $name() { return "docsPreventAutohideToast" }\r
+    static get $inject() { return ["$timeout"] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: PreventAutohideToastComponent, controllerAs: "example", templateUrl: "./prevent-autohide-toast.component.html" }\r
+    }\r
+}\r
+`,mw=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class TemplateHeaderToastComponent implements IComponentController {\r
+    public visible = true;\r
+    static get $name() { return "docsTemplateHeaderToast" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TemplateHeaderToastComponent, controllerAs: "example", templateUrl: "./template-header-toast.component.html" }\r
+    }\r
+}\r
+`,hw=class e{examples={inline:{html:Kb.$factory.templateUrl,typescript:dw},templateHeader:{html:Jb.$factory.templateUrl,typescript:mw},closeable:{html:Gb.$factory.templateUrl,typescript:uw},preventAutohide:{html:qb.$factory.templateUrl,typescript:pw},management:{html:Xb.$factory.templateUrl,typescript:fw}};static get $name(){return`docsToastExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/toast-examples-page.component-af744c3d.html`,controllerAs:`$`}}},gw=class e{static get $name(){return`docsTooltipApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/tooltip-api-page.component-d6aba518.html`,controllerAs:`$`}}},_w=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { TemplateRef } from "ngjs-core";\r
+\r
+export class TooltipAutocloseComponent implements IComponentController {\r
+    public contentTemplate?: TemplateRef<unknown>;\r
+    static get $name() { return "docsTooltipAutoclose" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipAutocloseComponent, controllerAs: "example", templateUrl: "./tooltip-autoclose.component.html" }\r
+    }\r
+}\r
+`,vw=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class TooltipBodyComponent implements IComponentController {\r
+    static get $name() { return "docsTooltipBody" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipBodyComponent, controllerAs: "example", templateUrl: "./tooltip-body.component.html" }\r
+    }\r
+}\r
+`,yw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbTooltip } from "ngb-js";\r
+import type { TemplateRef } from "ngjs-core";\r
+\r
+export class TooltipContextComponent implements IComponentController {\r
+    public name = "World";\r
+    public contentTemplate?: TemplateRef<unknown>;\r
+    public french?: NgbTooltip;\r
+    public german?: NgbTooltip;\r
+    public english?: NgbTooltip;\r
+\r
+    public toggleWithGreeting(tooltip: NgbTooltip, greeting: string): void {\r
+        tooltip.isOpen() ? tooltip.close() : tooltip.open({ greeting });\r
+    }\r
+\r
+    static get $name() { return "docsTooltipContext" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipContextComponent, controllerAs: "example", templateUrl: "./tooltip-context.component.html" }\r
+    }\r
+}\r
+`,bw=`.docs-tooltip-custom {\r
+    --bs-tooltip-bg: var(--bs-primary-bg-subtle);\r
+    --bs-tooltip-color: var(--bs-primary-text-emphasis);\r
+    --bs-tooltip-opacity: 1;\r
+\r
+    filter: drop-shadow(0 .25rem .5rem rgba(var(--bs-body-color-rgb), .15));\r
+}\r
+`,xw=`import "@/features/lib/components/tooltip-custom-class/tooltip-custom-class.component.css";\r
+import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class TooltipCustomClassComponent implements IComponentController {\r
+    static get $name() { return "docsTooltipCustomClass" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipCustomClassComponent, controllerAs: "example", templateUrl: "./tooltip-custom-class.component.html" }\r
+    }\r
+}\r
+`,Sw=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class TooltipCustomTargetComponent implements IComponentController {\r
+    static get $name() { return "docsTooltipCustomTarget" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipCustomTargetComponent, controllerAs: "example", templateUrl: "./tooltip-custom-target.component.html" }\r
+    }\r
+}\r
+`,Cw=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class TooltipDelaysComponent implements IComponentController {\r
+    static get $name() { return "docsTooltipDelays" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipDelaysComponent, controllerAs: "example", templateUrl: "./tooltip-delays.component.html" }\r
+    }\r
+}\r
+`,ww=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbTooltipConfig } from "ngb-js";\r
+\r
+export class TooltipGlobalComponent implements IComponentController {\r
+    private readonly initialConfig: Pick<NgbTooltipConfig, "container" | "openDelay" | "placement" | "triggers">;\r
+\r
+    constructor(private readonly config: NgbTooltipConfig) {\r
+        this.initialConfig = {\r
+            container: config.container,\r
+            openDelay: config.openDelay,\r
+            placement: config.placement,\r
+            triggers: config.triggers,\r
+        };\r
+        config.container = "body";\r
+        config.openDelay = 300;\r
+        config.placement = "end";\r
+        config.triggers = "mouseenter:mouseleave";\r
+    }\r
+\r
+    public $postLink(): void { this.restoreConfig(); }\r
+    public $onDestroy(): void { this.restoreConfig(); }\r
+\r
+    private restoreConfig(): void {\r
+        this.config.container = this.initialConfig.container;\r
+        this.config.openDelay = this.initialConfig.openDelay;\r
+        this.config.placement = this.initialConfig.placement;\r
+        this.config.triggers = this.initialConfig.triggers;\r
+    }\r
+\r
+    static get $name() { return "docsTooltipGlobal" }\r
+    static get $inject() { return [NgbTooltipConfig.$name] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipGlobalComponent, controllerAs: "example", templateUrl: "./tooltip-global.component.html" }\r
+    }\r
+}\r
+`,Tw=`import type { IComponentController, IComponentOptions } from "angular";\r
+\r
+export class TooltipPlacementsComponent implements IComponentController {\r
+    static get $name() { return "docsTooltipPlacements" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipPlacementsComponent, controllerAs: "example", templateUrl: "./tooltip-placements.component.html" }\r
+    }\r
+}\r
+`,Ew=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { TemplateRef } from "ngjs-core";\r
+\r
+export class TooltipTemplateComponent implements IComponentController {\r
+    public name = "NgbJS";\r
+    public contentTemplate?: TemplateRef<unknown>;\r
+    static get $name() { return "docsTooltipTemplate" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipTemplateComponent, controllerAs: "example", templateUrl: "./tooltip-template.component.html" }\r
+    }\r
+}\r
+`,Dw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { NgbTooltip } from "ngb-js";\r
+\r
+export class TooltipTriggersComponent implements IComponentController {\r
+    public manual?: NgbTooltip;\r
+    static get $name() { return "docsTooltipTriggers" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TooltipTriggersComponent, controllerAs: "example", templateUrl: "./tooltip-triggers.component.html" }\r
+    }\r
+}\r
+`,Ow=class e{examples={placements:{html:ix.$factory.templateUrl,typescript:Tw},template:{html:ax.$factory.templateUrl,typescript:Ew},triggers:{html:ox.$factory.templateUrl,typescript:Dw},autoclose:{html:Zb.$factory.templateUrl,typescript:_w},context:{html:$b.$factory.templateUrl,typescript:yw},customTarget:{html:tx.$factory.templateUrl,typescript:Sw},delays:{html:nx.$factory.templateUrl,typescript:Cw},body:{html:Qb.$factory.templateUrl,typescript:vw},customClass:{html:ex.$factory.templateUrl,typescript:xw,css:bw},global:{html:rx.$factory.templateUrl,typescript:ww}};static get $name(){return`docsTooltipExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/tooltip-examples-page.component-55fec424.html`,controllerAs:`$`}}},kw=class e{static get $name(){return`docsTypeaheadApiPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/typeahead-api-page.component-42060169.html`,controllerAs:`$`}}},Aw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { debounceTime, map, type OperatorFunction } from "rxjs";\r
+\r
+interface State { name: string }\r
+const STATES: State[] = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"].map(name => ({ name }));\r
+\r
+export class ExactTypeaheadComponent implements IComponentController {\r
+    public model?: State;\r
+    public readonly formatter = (state: State): string => state.name;\r
+    public readonly search: OperatorFunction<string, State[]> = text$ => text$.pipe(\r
+        debounceTime(200),\r
+        map(term => term ? STATES.filter(state => state.name.toLowerCase().includes(term.toLowerCase())) : []),\r
+    );\r
+    static get $name() { return "docsExactTypeahead" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: ExactTypeaheadComponent, controllerAs: "example", templateUrl: "./exact-typeahead.component.html" }\r
+    }\r
+}\r
+`,jw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { debounceTime, distinctUntilChanged, map, merge, type OperatorFunction, Subject } from "rxjs";\r
+\r
+const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];\r
+\r
+export class FocusTypeaheadComponent implements IComponentController {\r
+    public model = "";\r
+    public readonly focus$ = new Subject<string>();\r
+    public readonly search: OperatorFunction<string, string[]> = text$ => merge(\r
+        text$.pipe(debounceTime(200), distinctUntilChanged()),\r
+        this.focus$,\r
+    ).pipe(\r
+        map(term => (term ? STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())) : STATES).slice(0, 10)),\r
+    );\r
+    public $onDestroy(): void { this.focus$.complete(); }\r
+    static get $name() { return "docsFocusTypeahead" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: FocusTypeaheadComponent, controllerAs: "example", templateUrl: "./focus-typeahead.component.html" }\r
+    }\r
+}\r
+`,Mw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";\r
+\r
+const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"];\r
+\r
+export class FormattedTypeaheadComponent implements IComponentController {\r
+    public model = "";\r
+    public readonly formatter = (result: string): string => result.toUpperCase();\r
+    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(\r
+        debounceTime(200),\r
+        distinctUntilChanged(),\r
+        map(term => term ? STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())) : []),\r
+    );\r
+    static get $name() { return "docsFormattedTypeahead" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: FormattedTypeaheadComponent, controllerAs: "example", templateUrl: "./formatted-typeahead.component.html" }\r
+    }\r
+}\r
+`,Nw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { NgbTypeaheadConfig } from "ngb-js";\r
+import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";\r
+\r
+const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"];\r
+\r
+export class TypeaheadGlobalComponent implements IComponentController {\r
+    public model = "";\r
+    private readonly initialConfig: Pick<NgbTypeaheadConfig, "container" | "selectOnExact" | "showHint">;\r
+\r
+    constructor(private readonly config: NgbTypeaheadConfig) {\r
+        this.initialConfig = {\r
+            container: config.container,\r
+            selectOnExact: config.selectOnExact,\r
+            showHint: config.showHint,\r
+        };\r
+        config.container = "body";\r
+        config.selectOnExact = true;\r
+        config.showHint = true;\r
+    }\r
+\r
+    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(\r
+        debounceTime(200),\r
+        distinctUntilChanged(),\r
+        map(term => term.length < 2 ? [] : STATES.filter(state => state.toLowerCase().startsWith(term.toLowerCase()))),\r
+    );\r
+\r
+    public $postLink(): void { this.restoreConfig(); }\r
+    public $onDestroy(): void { this.restoreConfig(); }\r
+    private restoreConfig(): void {\r
+        this.config.container = this.initialConfig.container;\r
+        this.config.selectOnExact = this.initialConfig.selectOnExact;\r
+        this.config.showHint = this.initialConfig.showHint;\r
+    }\r
+\r
+    static get $name() { return "docsTypeaheadGlobal" }\r
+    static get $inject() { return [NgbTypeaheadConfig.$name] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TypeaheadGlobalComponent, controllerAs: "example", templateUrl: "./typeahead-global.component.html" }\r
+    }\r
+}\r
+`,Pw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";\r
+\r
+interface State { id: number; name: string }\r
+const STATES: State[] = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii"].map((name, id) => ({ id, name }));\r
+\r
+export class NonEditableTypeaheadComponent implements IComponentController {\r
+    public model: State | null = null;\r
+    public readonly formatter = (state: State): string => state.name;\r
+    public readonly search: OperatorFunction<string, State[]> = text$ => text$.pipe(\r
+        debounceTime(200),\r
+        distinctUntilChanged(),\r
+        map(term => term.length < 2 ? [] : STATES.filter(state => state.name.toLowerCase().includes(term.toLowerCase()))),\r
+    );\r
+    static get $name() { return "docsNonEditableTypeahead" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: NonEditableTypeaheadComponent, controllerAs: "example", templateUrl: "./non-editable-typeahead.component.html" }\r
+    }\r
+}\r
+`,Fw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import { debounceTime, distinctUntilChanged, map, type OperatorFunction } from "rxjs";\r
+\r
+const STATES = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];\r
+\r
+export class SimpleTypeaheadComponent implements IComponentController {\r
+    public model = "";\r
+    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(\r
+        debounceTime(200),\r
+        distinctUntilChanged(),\r
+        map(term => term.length < 2 ? [] : STATES.filter(state => state.toLowerCase().includes(term.toLowerCase())).slice(0, 10)),\r
+    );\r
+    static get $name() { return "docsSimpleTypeahead" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: SimpleTypeaheadComponent, controllerAs: "example", templateUrl: "./simple-typeahead.component.html" }\r
+    }\r
+}\r
+`,Iw=`import type { IComponentController, IComponentOptions } from "angular";\r
+import type { TemplateRef } from "ngjs-core";\r
+import { debounceTime, map, type OperatorFunction } from "rxjs";\r
+\r
+interface Country { name: string; flag: string; region: string }\r
+const COUNTRIES: Country[] = [\r
+    { name: "Mexico", flag: "🇲🇽", region: "North America" },\r
+    { name: "Argentina", flag: "🇦🇷", region: "South America" },\r
+    { name: "Brazil", flag: "🇧🇷", region: "South America" },\r
+    { name: "Canada", flag: "🇨🇦", region: "North America" },\r
+    { name: "Colombia", flag: "🇨🇴", region: "South America" },\r
+    { name: "Germany", flag: "🇩🇪", region: "Europe" },\r
+    { name: "Japan", flag: "🇯🇵", region: "Asia" },\r
+    { name: "Spain", flag: "🇪🇸", region: "Europe" },\r
+];\r
+\r
+export class TemplateResultsTypeaheadComponent implements IComponentController {\r
+    public model?: Country;\r
+    public resultTemplate?: TemplateRef<unknown>;\r
+    public readonly formatter = (country: Country): string => country.name;\r
+    public readonly search: OperatorFunction<string, Country[]> = text$ => text$.pipe(\r
+        debounceTime(200),\r
+        map(term => term ? COUNTRIES.filter(country => country.name.toLowerCase().includes(term.toLowerCase())).slice(0, 8) : []),\r
+    );\r
+    static get $name() { return "docsTemplateResultsTypeahead" }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: TemplateResultsTypeaheadComponent, controllerAs: "example", templateUrl: "./template-results-typeahead.component.html" }\r
+    }\r
+}\r
+`,Lw=`import type { IComponentController, IComponentOptions, IHttpService } from "angular";\r
+import { catchError, debounceTime, distinctUntilChanged, from, map, of, type OperatorFunction, switchMap, tap } from "rxjs";\r
+\r
+const WIKI_URL = "https://en.wikipedia.org/w/api.php";\r
+type WikiResponse = [string, string[], string[], string[]];\r
+\r
+export class WikipediaSearchService {\r
+    constructor(private readonly $http: IHttpService) {}\r
+\r
+    public search(term: string) {\r
+        if (!term) return of([] as string[]);\r
+        return from(this.$http.get<WikiResponse>(WIKI_URL, {\r
+            params: { action: "opensearch", format: "json", origin: "*", search: term },\r
+        })).pipe(map(response => response.data[1]));\r
+    }\r
+\r
+    static get $name() { return "docs.wikipedia.search.service" }\r
+    static get $inject() { return ["$http"] }\r
+}\r
+\r
+export class WikipediaTypeaheadComponent implements IComponentController {\r
+    public model = "";\r
+    public searching = false;\r
+    public searchFailed = false;\r
+\r
+    constructor(private readonly wikipedia: WikipediaSearchService) {}\r
+\r
+    public readonly search: OperatorFunction<string, string[]> = text$ => text$.pipe(\r
+        debounceTime(300),\r
+        distinctUntilChanged(),\r
+        tap(() => this.searching = true),\r
+        switchMap(term => this.wikipedia.search(term).pipe(\r
+            tap(() => this.searchFailed = false),\r
+            catchError(() => {\r
+                this.searchFailed = true;\r
+                return of([] as string[]);\r
+            }),\r
+        )),\r
+        tap(() => this.searching = false),\r
+    );\r
+\r
+    static get $name() { return "docsWikipediaTypeahead" }\r
+    static get $inject() { return [WikipediaSearchService.$name] }\r
+    static get $factory(): IComponentOptions {\r
+        return { controller: WikipediaTypeaheadComponent, controllerAs: "example", templateUrl: "./wikipedia-typeahead.component.html" }\r
+    }\r
+}\r
 `,Rw=class e{examples={simple:{html:gx.$factory.templateUrl,typescript:Fw},focus:{html:ux.$factory.templateUrl,typescript:jw},formatted:{html:fx.$factory.templateUrl,typescript:Mw},exact:{html:cx.$factory.templateUrl,typescript:Aw},wikipedia:{html:Cx.$factory.templateUrl,typescript:Lw},templateResults:{html:vx.$factory.templateUrl,typescript:Iw},nonEditable:{html:mx.$factory.templateUrl,typescript:Pw},global:{html:bx.$factory.templateUrl,typescript:Nw}};static get $name(){return`docsTypeaheadExamplesPage`}static get $factory(){return{controller:e,templateUrl:`/ngb-js-docs/templates/typeahead-examples-page.component-888ed233.html`,controllerAs:`$`}}},zw=e=>{e.state(`docs.dashboard.alert`,{url:`/components/alert`,redirectTo:`docs.dashboard.alert.examples`,data:{title:`Alert`,tabs:[{name:`Examples`,to:`docs.dashboard.alert.examples`},{name:`Api`,to:`docs.dashboard.alert.api`}],externalLinks:{bootstrap:`components/alerts/`,ngBootstrap:`components/alert/overview`}}}),e.state(`docs.dashboard.alert.examples`,{url:`/examples`,data:{sections:[{id:`simple-alert`,name:`Simple alert`},{id:`alert-closeable`,name:`Closeable alerts`},{id:`self-closing-alert`,name:`Self-closing alert`},{id:`alert-custom`,name:`Custom alert`},{id:`alert-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:kx.$name}}}),e.state(`docs.dashboard.alert.api`,{url:`/api`,data:{sections:[{id:`ngb-alert`,name:`NgbAlert`},{id:`ngb-alert-config`,name:`NgbAlertConfig`}]},views:{"$default@docs.dashboard":{component:wx.$name}}}),e.state(`docs.dashboard.accordion`,{url:`/components/accordion`,redirectTo:`docs.dashboard.accordion.examples`,data:{title:`Accordion`,tabs:[{name:`Examples`,to:`docs.dashboard.accordion.examples`},{name:`Api`,to:`docs.dashboard.accordion.api`}],externalLinks:{bootstrap:`components/accordion/`,ngBootstrap:`components/accordion/overview`}}}),e.state(`docs.dashboard.accordion.examples`,{url:`/examples`,data:{sections:[{id:`accordion-simple`,name:`Basic accordion`},{id:`one-panel-accordion`,name:`One panel at a time`},{id:`accordion-toggle-panels`,name:`Programmatic controls`},{id:`accordion-custom-header`,name:`Custom headers`},{id:`accordion-content`,name:`Preserve content`},{id:`accordion-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Px.$name}}}),e.state(`docs.dashboard.accordion.api`,{url:`/api`,data:{sections:[{id:`ngb-accordion`,name:`NgbAccordion`},{id:`ngb-accordion-item`,name:`NgbAccordionItem`},{id:`ngb-accordion-header`,name:`NgbAccordionHeader`},{id:`ngb-accordion-button`,name:`NgbAccordionButton`},{id:`ngb-accordion-toggle`,name:`NgbAccordionToggle`},{id:`ngb-accordion-body`,name:`NgbAccordionBody`},{id:`ngb-accordion-config`,name:`NgbAccordionConfig`}]},views:{"$default@docs.dashboard":{component:Ax.$name}}}),e.state(`docs.dashboard.carousel`,{url:`/components/carousel`,redirectTo:`docs.dashboard.carousel.examples`,data:{title:`Carousel`,tabs:[{name:`Examples`,to:`docs.dashboard.carousel.examples`},{name:`Api`,to:`docs.dashboard.carousel.api`}],externalLinks:{bootstrap:`components/carousel/`,ngBootstrap:`components/carousel/overview`}}}),e.state(`docs.dashboard.carousel.examples`,{url:`/examples`,data:{sections:[{id:`carousel-simple`,name:`Simple carousel`},{id:`carousel-keyboard`,name:`Keyboard navigation`},{id:`carousel-controls`,name:`Pause controls`},{id:`carousel-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Rx.$name}}}),e.state(`docs.dashboard.carousel.api`,{url:`/api`,data:{sections:[{id:`ngb-carousel`,name:`NgbCarousel`},{id:`ngb-slide`,name:`NgbSlide`},{id:`ngb-carousel-config`,name:`NgbCarouselConfig`}]},views:{"$default@docs.dashboard":{component:Fx.$name}}}),e.state(`docs.dashboard.collapse`,{url:`/components/collapse`,redirectTo:`docs.dashboard.collapse.examples`,data:{title:`Collapse`,tabs:[{name:`Examples`,to:`docs.dashboard.collapse.examples`},{name:`Api`,to:`docs.dashboard.collapse.api`}],externalLinks:{bootstrap:`components/collapse/`,ngBootstrap:`components/collapse/overview`}}}),e.state(`docs.dashboard.collapse.examples`,{url:`/examples`,data:{sections:[{id:`simple-collapse`,name:`Simple collapse`},{id:`horizontal-collapse`,name:`Horizontal collapse`},{id:`navbar-collapse`,name:`Responsive navbar`}]},views:{"$default@docs.dashboard":{component:Ux.$name}}}),e.state(`docs.dashboard.collapse.api`,{url:`/api`,data:{sections:[{id:`ngb-collapse`,name:`NgbCollapse`},{id:`ngb-collapse-config`,name:`NgbCollapseConfig`}]},views:{"$default@docs.dashboard":{component:zx.$name}}}),e.state(`docs.dashboard.datepicker`,{url:`/components/datepicker`,redirectTo:`docs.dashboard.datepicker.examples`,data:{title:`Datepicker`,tabs:[{name:`Examples`,to:`docs.dashboard.datepicker.examples`},{name:`Api`,to:`docs.dashboard.datepicker.api`},{name:`Calendars`,to:`docs.dashboard.datepicker.calendars`}],externalLinks:{ngBootstrap:`components/datepicker/overview`}}}),e.state(`docs.dashboard.datepicker.examples`,{url:`/examples`,data:{sections:[{id:`basic-datepicker`,name:`Basic`},{id:`popup-datepicker`,name:`Popup`},{id:`multiple-months-datepicker`,name:`Multiple months`},{id:`range-datepicker`,name:`Range selection`},{id:`range-popup-datepicker`,name:`Range in a popup`},{id:`disabled-datepicker`,name:`Disabled`},{id:`datepicker-custom-adapter`,name:`Adapter and formatter`},{id:`datepicker-i18n`,name:`Internationalization`},{id:`datepicker-custom-day`,name:`Custom day`},{id:`datepicker-custom-month`,name:`Custom month layout`},{id:`datepicker-footer`,name:`Footer template`},{id:`datepicker-position-target`,name:`Position target`},{id:`datepicker-keyboard`,name:`Keyboard navigation`},{id:`datepicker-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:yS.$name}}}),e.state(`docs.dashboard.datepicker.api`,{url:`/api`,data:{sections:[{id:`ngb-datepicker`,name:`NgbDatepicker`},{id:`ngb-input-datepicker`,name:`NgbInputDatepicker`},{id:`ngb-datepicker-config`,name:`NgbDatepickerConfig`},{id:`ngb-input-datepicker-config`,name:`NgbInputDatepickerConfig`},{id:`ngb-datepicker-extension-contracts`,name:`Extension contracts`}]},views:{"$default@docs.dashboard":{component:Wx.$name}}}),e.state(`docs.dashboard.datepicker.calendars`,{url:`/calendars`,data:{sections:[{id:`calendar-hebrew`,name:`Hebrew`},{id:`calendar-jalali`,name:`Jalali`},{id:`calendar-islamic-civil`,name:`Islamic Civil`},{id:`calendar-islamic-umalqura`,name:`Islamic Umm al-Qura`},{id:`calendar-buddhist`,name:`Buddhist`},{id:`calendar-ethiopian`,name:`Ethiopian`},{id:`calendar-intergalactic`,name:`Intergalactic Standard`}]},views:{"$default@docs.dashboard":{component:eS.$name}}}),e.state(`docs.dashboard.dropdown`,{url:`/components/dropdown`,redirectTo:`docs.dashboard.dropdown.examples`,data:{title:`Dropdown`,tabs:[{name:`Examples`,to:`docs.dashboard.dropdown.examples`},{name:`Api`,to:`docs.dashboard.dropdown.api`}],externalLinks:{bootstrap:`components/dropdowns/`,ngBootstrap:`components/dropdown/overview`}}}),e.state(`docs.dashboard.dropdown.examples`,{url:`/examples`,data:{sections:[{id:`simple-dropdown`,name:`Simple dropdown`},{id:`manual-dropdown`,name:`Manual triggers`},{id:`dropdown-button-groups`,name:`Button groups`},{id:`dropdown-disabled-items`,name:`Disabled items`},{id:`dropdown-form`,name:`Dropdown form`},{id:`dropdown-body`,name:`Body container`},{id:`dropdown-navbar`,name:`Navbar positioning`},{id:`dropdown-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:TS.$name}}}),e.state(`docs.dashboard.dropdown.api`,{url:`/api`,data:{sections:[{id:`ngb-dropdown`,name:`NgbDropdown`},{id:`ngb-dropdown-anchor`,name:`NgbDropdownAnchor`},{id:`ngb-dropdown-toggle`,name:`NgbDropdownToggle`},{id:`ngb-dropdown-menu`,name:`NgbDropdownMenu`},{id:`ngb-dropdown-item`,name:`NgbDropdownItem`},{id:`ngb-dropdown-config`,name:`NgbDropdownConfig`}]},views:{"$default@docs.dashboard":{component:bS.$name}}}),e.state(`docs.dashboard.modal`,{url:`/components/modal`,redirectTo:`docs.dashboard.modal.examples`,data:{title:`Modal`,tabs:[{name:`Examples`,to:`docs.dashboard.modal.examples`},{name:`Api`,to:`docs.dashboard.modal.api`}],externalLinks:{bootstrap:`components/modal/`,ngBootstrap:`components/modal/overview`}}}),e.state(`docs.dashboard.modal.examples`,{url:`/examples`,data:{sections:[{id:`modal-default`,name:`Default options`},{id:`modal-component-content`,name:`Component content`},{id:`modal-focus`,name:`Focus management`},{id:`modal-options`,name:`Modal options`},{id:`modal-updatable`,name:`Updatable options`},{id:`modal-stacked`,name:`Stacked modals`},{id:`modal-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:zS.$name}}}),e.state(`docs.dashboard.modal.api`,{url:`/api`,data:{sections:[{id:`ngb-modal`,name:`NgbModal`},{id:`ngb-modal-ref`,name:`NgbModalRef`},{id:`ngb-active-modal`,name:`NgbActiveModal`},{id:`ngb-modal-config`,name:`NgbModalConfig`}]},views:{"$default@docs.dashboard":{component:ES.$name}}}),e.state(`docs.dashboard.nav`,{url:`/components/nav`,redirectTo:`docs.dashboard.nav.examples`,data:{title:`Nav`,tabs:[{name:`Examples`,to:`docs.dashboard.nav.examples`},{name:`Api`,to:`docs.dashboard.nav.api`}],externalLinks:{bootstrap:`components/navs-tabs/`,ngBootstrap:`components/nav/overview`}}}),e.state(`docs.dashboard.nav.examples`,{url:`/examples`,data:{sections:[{id:`simple-nav`,name:`Simple nav`},{id:`alternative-nav`,name:`Alternative markup`},{id:`vertical-nav`,name:`Vertical pills`},{id:`selecting-nav`,name:`Selecting navs`},{id:`keep-content-nav`,name:`Keep content`},{id:`dynamic-nav`,name:`Dynamic navs`},{id:`custom-nav`,name:`Custom style`},{id:`nav-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:XS.$name}}}),e.state(`docs.dashboard.nav.api`,{url:`/api`,data:{sections:[{id:`ngb-nav`,name:`NgbNav`},{id:`ngb-nav-item`,name:`NgbNavItem`},{id:`ngb-nav-link`,name:`NgbNavLink`},{id:`ngb-nav-content`,name:`NgbNavContent`},{id:`ngb-nav-outlet`,name:`NgbNavOutlet`},{id:`ngb-nav-config`,name:`NgbNavConfig`}]},views:{"$default@docs.dashboard":{component:BS.$name}}}),e.state(`docs.dashboard.offcanvas`,{url:`/components/offcanvas`,redirectTo:`docs.dashboard.offcanvas.examples`,data:{title:`Offcanvas`,tabs:[{name:`Examples`,to:`docs.dashboard.offcanvas.examples`},{name:`Api`,to:`docs.dashboard.offcanvas.api`}],externalLinks:{bootstrap:`components/offcanvas/`,ngBootstrap:`components/offcanvas/overview`}}}),e.state(`docs.dashboard.offcanvas.examples`,{url:`/examples`,data:{sections:[{id:`offcanvas-default`,name:`Default options`},{id:`offcanvas-component-content`,name:`Component content`},{id:`offcanvas-focus`,name:`Focus management`},{id:`offcanvas-options`,name:`Offcanvas options`},{id:`offcanvas-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:oC.$name}}}),e.state(`docs.dashboard.offcanvas.api`,{url:`/api`,data:{sections:[{id:`ngb-offcanvas`,name:`NgbOffcanvas`},{id:`ngb-offcanvas-ref`,name:`NgbOffcanvasRef`},{id:`ngb-active-offcanvas`,name:`NgbActiveOffcanvas`},{id:`ngb-offcanvas-config`,name:`NgbOffcanvasConfig`}]},views:{"$default@docs.dashboard":{component:ZS.$name}}}),e.state(`docs.dashboard.pagination`,{url:`/components/pagination`,redirectTo:`docs.dashboard.pagination.examples`,data:{title:`Pagination`,tabs:[{name:`Examples`,to:`docs.dashboard.pagination.examples`},{name:`Api`,to:`docs.dashboard.pagination.api`}],externalLinks:{bootstrap:`components/pagination/`,ngBootstrap:`components/pagination/overview`}}}),e.state(`docs.dashboard.pagination.examples`,{url:`/examples`,data:{sections:[{id:`basic-pagination`,name:`Basic pagination`},{id:`advanced-pagination`,name:`Advanced pagination`},{id:`custom-pagination`,name:`Custom links and pages`},{id:`pagination-size`,name:`Pagination size`},{id:`pagination-alignment`,name:`Pagination alignment`},{id:`disabled-pagination`,name:`Disabled pagination`},{id:`pagination-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:hC.$name}}}),e.state(`docs.dashboard.pagination.api`,{url:`/api`,data:{sections:[{id:`ngb-pagination`,name:`NgbPagination`},{id:`ngb-pagination-config`,name:`NgbPaginationConfig`}]},views:{"$default@docs.dashboard":{component:sC.$name}}}),e.state(`docs.dashboard.popover`,{url:`/components/popover`,redirectTo:`docs.dashboard.popover.examples`,data:{title:`Popover`,tabs:[{name:`Examples`,to:`docs.dashboard.popover.examples`},{name:`Api`,to:`docs.dashboard.popover.api`}],externalLinks:{bootstrap:`components/popovers/`,ngBootstrap:`components/popover/overview`}}}),e.state(`docs.dashboard.popover.examples`,{url:`/examples`,data:{sections:[{id:`popover-placements`,name:`Quick popovers`},{id:`popover-template`,name:`HTML and bindings`},{id:`popover-triggers`,name:`Custom triggers`},{id:`popover-manual-control`,name:`External controls`},{id:`popover-autoclose`,name:`Automatic closing`},{id:`popover-context`,name:`Template context`},{id:`popover-custom-target`,name:`Custom target`},{id:`popover-delays`,name:`Open and close delays`},{id:`popover-events`,name:`Visibility events`},{id:`popover-body`,name:`Body container`},{id:`popover-custom-class`,name:`Custom class`},{id:`popover-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:AC.$name}}}),e.state(`docs.dashboard.popover.api`,{url:`/api`,data:{sections:[{id:`ngb-popover`,name:`NgbPopover`},{id:`ngb-popover-config`,name:`NgbPopoverConfig`}]},views:{"$default@docs.dashboard":{component:gC.$name}}}),e.state(`docs.dashboard.progressbar`,{url:`/components/progressbar`,redirectTo:`docs.dashboard.progressbar.examples`,data:{title:`Progress bar`,tabs:[{name:`Examples`,to:`docs.dashboard.progressbar.examples`},{name:`Api`,to:`docs.dashboard.progressbar.api`}],externalLinks:{bootstrap:`components/progress/`,ngBootstrap:`components/progressbar/overview`}}}),e.state(`docs.dashboard.progressbar.examples`,{url:`/examples`,data:{sections:[{id:`simple-progressbar`,name:`Simple progress bars`},{id:`contextual-text-progressbar`,name:`Contextual text`},{id:`striped-progress-bar`,name:`Striped bars`},{id:`custom-labels-progressbar`,name:`Custom labels`},{id:`progress-height`,name:`Custom height`},{id:`progress-bars-stacked`,name:`Stacked bars`},{id:`progressbar-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:zC.$name}}}),e.state(`docs.dashboard.progressbar.api`,{url:`/api`,data:{sections:[{id:`ngb-progressbar`,name:`NgbProgressbar`},{id:`ngb-progressbar-stacked`,name:`NgbProgressbarStacked`},{id:`ngb-progressbar-config`,name:`NgbProgressbarConfig`}]},views:{"$default@docs.dashboard":{component:jC.$name}}}),e.state(`docs.dashboard.rating`,{url:`/components/rating`,redirectTo:`docs.dashboard.rating.examples`,data:{title:`Rating`,tabs:[{name:`Examples`,to:`docs.dashboard.rating.examples`},{name:`Api`,to:`docs.dashboard.rating.api`}],externalLinks:{ngBootstrap:`components/rating/overview`}}}),e.state(`docs.dashboard.rating.examples`,{url:`/examples`,data:{sections:[{id:`basic-rating`,name:`Basic demo`},{id:`rating-events`,name:`Events and readonly`},{id:`rating-custom-template`,name:`Custom star template`},{id:`rating-decimal`,name:`Decimal rating`},{id:`rating-form`,name:`Form integration`},{id:`rating-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:YC.$name}}}),e.state(`docs.dashboard.rating.api`,{url:`/api`,data:{sections:[{id:`ngb-rating`,name:`NgbRating`},{id:`ngb-rating-config`,name:`NgbRatingConfig`}]},views:{"$default@docs.dashboard":{component:BC.$name}}}),e.state(`docs.dashboard.scrollspy`,{url:`/components/scrollspy`,redirectTo:`docs.dashboard.scrollspy.examples`,data:{title:`Scrollspy`,tabs:[{name:`Examples`,to:`docs.dashboard.scrollspy.examples`},{name:`Api`,to:`docs.dashboard.scrollspy.api`}],externalLinks:{bootstrap:`components/scrollspy/`,ngBootstrap:`components/scrollspy/overview`}}}),e.state(`docs.dashboard.scrollspy.examples`,{url:`/examples`,data:{sections:[{id:`basic-scrollspy`,name:`Basic`},{id:`scrollspy-menu-items`,name:`Menu items`},{id:`nested-scrollspy`,name:`Nested items`},{id:`navbar-scrollspy`,name:`Navbar`},{id:`scrollspy-service`,name:`Using the service`}]},views:{"$default@docs.dashboard":{component:QC.$name}}}),e.state(`docs.dashboard.scrollspy.api`,{url:`/api`,data:{sections:[{id:`ngb-scrollspy`,name:`NgbScrollSpy`},{id:`ngb-scrollspy-fragment`,name:`NgbScrollSpyFragment`},{id:`ngb-scrollspy-menu`,name:`NgbScrollSpyMenu`},{id:`ngb-scrollspy-item`,name:`NgbScrollSpyItem`},{id:`ngb-scrollspy-service`,name:`NgbScrollSpyService`},{id:`ngb-scrollspy-config`,name:`NgbScrollSpyConfig`}]},views:{"$default@docs.dashboard":{component:XC.$name}}}),e.state(`docs.dashboard.timepicker`,{url:`/components/timepicker`,redirectTo:`docs.dashboard.timepicker.examples`,data:{title:`Timepicker`,tabs:[{name:`Examples`,to:`docs.dashboard.timepicker.examples`},{name:`Api`,to:`docs.dashboard.timepicker.api`}],externalLinks:{ngBootstrap:`components/timepicker/overview`}}}),e.state(`docs.dashboard.timepicker.examples`,{url:`/examples`,data:{sections:[{id:`basic-timepicker`,name:`Basic timepicker`},{id:`meridian-timepicker`,name:`Meridian`},{id:`seconds-timepicker`,name:`Seconds`},{id:`spinners-timepicker`,name:`Spinners`},{id:`timepicker-custom-steps`,name:`Custom steps`},{id:`timepicker-validation`,name:`Custom validation`},{id:`timepicker-custom-adapter`,name:`Custom time adapter`},{id:`timepicker-i18n`,name:`Internationalization`}]},views:{"$default@docs.dashboard":{component:cw.$name}}}),e.state(`docs.dashboard.timepicker.api`,{url:`/api`,data:{sections:[{id:`ngb-timepicker`,name:`NgbTimepicker`},{id:`ngb-timepicker-config`,name:`NgbTimepickerConfig`},{id:`ngb-time-adapter`,name:`NgbTimeAdapter`},{id:`ngb-timepicker-i18n`,name:`NgbTimepickerI18n`}]},views:{"$default@docs.dashboard":{component:$C.$name}}}),e.state(`docs.dashboard.toast`,{url:`/components/toast`,redirectTo:`docs.dashboard.toast.examples`,data:{title:`Toast`,tabs:[{name:`Examples`,to:`docs.dashboard.toast.examples`},{name:`Api`,to:`docs.dashboard.toast.api`}],externalLinks:{bootstrap:`components/toasts/`,ngBootstrap:`components/toast/overview`}}}),e.state(`docs.dashboard.toast.examples`,{url:`/examples`,data:{sections:[{id:`inline-toast`,name:`Declarative inline usage`},{id:`template-header-toast`,name:`Template header`},{id:`closeable-toast`,name:`Closeable toast`},{id:`prevent-autohide-toast`,name:`Prevent autohide`},{id:`toast-management`,name:`Management service`}]},views:{"$default@docs.dashboard":{component:hw.$name}}}),e.state(`docs.dashboard.toast.api`,{url:`/api`,data:{sections:[{id:`ngb-toast`,name:`NgbToast`},{id:`ngb-toast-header`,name:`NgbToastHeader`},{id:`ngb-toast-config`,name:`NgbToastConfig`}]},views:{"$default@docs.dashboard":{component:lw.$name}}}),e.state(`docs.dashboard.tooltip`,{url:`/components/tooltip`,redirectTo:`docs.dashboard.tooltip.examples`,data:{title:`Tooltip`,tabs:[{name:`Examples`,to:`docs.dashboard.tooltip.examples`},{name:`Api`,to:`docs.dashboard.tooltip.api`}],externalLinks:{bootstrap:`components/tooltips/`,ngBootstrap:`components/tooltip/overview`}}}),e.state(`docs.dashboard.tooltip.examples`,{url:`/examples`,data:{sections:[{id:`tooltip-placements`,name:`Quick and easy tooltips`},{id:`tooltip-template`,name:`HTML and bindings`},{id:`tooltip-triggers`,name:`Custom and manual triggers`},{id:`tooltip-autoclose`,name:`Automatic closing`},{id:`tooltip-context`,name:`Context and manual triggers`},{id:`tooltip-custom-target`,name:`Custom target`},{id:`tooltip-delays`,name:`Open and close delays`},{id:`tooltip-body`,name:`Append to body`},{id:`tooltip-custom-class`,name:`Custom class`},{id:`tooltip-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Ow.$name}}}),e.state(`docs.dashboard.tooltip.api`,{url:`/api`,data:{sections:[{id:`ngb-tooltip`,name:`NgbTooltip`},{id:`ngb-tooltip-config`,name:`NgbTooltipConfig`}]},views:{"$default@docs.dashboard":{component:gw.$name}}}),e.state(`docs.dashboard.typeahead`,{url:`/components/typeahead`,redirectTo:`docs.dashboard.typeahead.examples`,data:{title:`Typeahead`,tabs:[{name:`Examples`,to:`docs.dashboard.typeahead.examples`},{name:`Api`,to:`docs.dashboard.typeahead.api`}],externalLinks:{ngBootstrap:`components/typeahead/overview`}}}),e.state(`docs.dashboard.typeahead.examples`,{url:`/examples`,data:{sections:[{id:`simple-typeahead`,name:`Simple Typeahead`},{id:`focus-typeahead`,name:`Open on focus`},{id:`formatted-typeahead`,name:`Formatted results`},{id:`exact-typeahead`,name:`Select on exact`},{id:`wikipedia-typeahead`,name:`Wikipedia search`},{id:`template-results-typeahead`,name:`Template for results`},{id:`non-editable-typeahead`,name:`Prevent manual entry`},{id:`typeahead-global`,name:`Global configuration`}]},views:{"$default@docs.dashboard":{component:Rw.$name}}}),e.state(`docs.dashboard.typeahead.api`,{url:`/api`,data:{sections:[{id:`ngb-typeahead`,name:`NgbTypeahead`},{id:`ngb-highlight`,name:`NgbHighlight`},{id:`ngb-typeahead-config`,name:`NgbTypeaheadConfig`}]},views:{"$default@docs.dashboard":{component:kw.$name}}})};zw.$inject=[`$stateProvider`];var $=u.default.module(`docs.lib`,[]);$.component(Pv.$name,Pv.$factory),$.component(Fv.$name,Fv.$factory),$.component(Iv.$name,Iv.$factory),$.component(Lv.$name,Lv.$factory),$.component(Rv.$name,Rv.$factory),$.component(zv.$name,zv.$factory),$.component(Bv.$name,Bv.$factory),$.component(Hv.$name,Hv.$factory),$.component(Uv.$name,Uv.$factory),$.component(Wv.$name,Wv.$factory),$.component(Gv.$name,Gv.$factory),$.component(Kv.$name,Kv.$factory),$.component(qv.$name,qv.$factory),$.component(Jv.$name,Jv.$factory),$.component(Yv.$name,Yv.$factory),$.component(Xv.$name,Xv.$factory),$.component(Zv.$name,Zv.$factory),$.component(Qv.$name,Qv.$factory),$.component($v.$name,$v.$factory),$.component(ey.$name,ey.$factory),$.component(ty.$name,ty.$factory),$.component(ny.$name,ny.$factory),$.component(ry.$name,ry.$factory),$.component(iy.$name,iy.$factory),$.component(ay.$name,ay.$factory),$.component(oy.$name,oy.$factory),$.component(cy.$name,cy.$factory),$.component(ly.$name,ly.$factory),$.component(sy.$name,sy.$factory),$.component(dy.$name,dy.$factory),$.component(uy.$name,uy.$factory),$.component(fy.$name,fy.$factory),$.component(py.$name,py.$factory),$.component(hy.$name,hy.$factory),$.component(my.$name,my.$factory),$.component(_y.$name,_y.$factory),$.component(gy.$name,gy.$factory),$.component(vy.$name,vy.$factory),$.component(yy.$name,yy.$factory),$.component(by.$name,by.$factory),$.component(xy.$name,xy.$factory),$.component(Sy.$name,Sy.$factory),$.component(Cy.$name,Cy.$factory),$.component(wy.$name,wy.$factory),$.component(Ty.$name,Ty.$factory),$.component(Dy.$name,Dy.$factory),$.component(Oy.$name,Oy.$factory),$.component(Ey.$name,Ey.$factory),$.component(Ay.$name,Ay.$factory),$.component(ky.$name,ky.$factory),$.component(jy.$name,jy.$factory),$.component(My.$name,My.$factory),$.component(Ny.$name,Ny.$factory),$.component(Py.$name,Py.$factory),$.component(Fy.$name,Fy.$factory),$.component(Iy.$name,Iy.$factory),$.component(Ly.$name,Ly.$factory),$.component(Ry.$name,Ry.$factory),$.component(zy.$name,zy.$factory),$.component(By.$name,By.$factory),$.component(Uy.$name,Uy.$factory),$.component(Wy.$name,Wy.$factory),$.component(Gy.$name,Gy.$factory),$.component(Ky.$name,Ky.$factory),$.component(qy.$name,qy.$factory),$.component(Yy.$name,Yy.$factory),$.component(Xy.$name,Xy.$factory),$.component(Zy.$name,Zy.$factory),$.component(Qy.$name,Qy.$factory),$.component($y.$name,$y.$factory),$.component(eb.$name,eb.$factory),$.component(tb.$name,tb.$factory),$.component(nb.$name,nb.$factory),$.component(rb.$name,rb.$factory),$.component(ib.$name,ib.$factory),$.component(ab.$name,ab.$factory),$.component(ob.$name,ob.$factory),$.component(sb.$name,sb.$factory),$.component(cb.$name,cb.$factory),$.component(lb.$name,lb.$factory),$.component(ub.$name,ub.$factory),$.component(db.$name,db.$factory),$.component(fb.$name,fb.$factory),$.component(pb.$name,pb.$factory),$.component(mb.$name,mb.$factory),$.component(hb.$name,hb.$factory),$.component(gb.$name,gb.$factory),$.component(_b.$name,_b.$factory),$.component(vb.$name,vb.$factory),$.component(yb.$name,yb.$factory),$.component(bb.$name,bb.$factory),$.component(xb.$name,xb.$factory),$.component(Sb.$name,Sb.$factory),$.component(Cb.$name,Cb.$factory),$.component(wb.$name,wb.$factory),$.component(Tb.$name,Tb.$factory),$.component(Eb.$name,Eb.$factory),$.component(Db.$name,Db.$factory),$.component(Ob.$name,Ob.$factory),$.component(kb.$name,kb.$factory),$.component(Ab.$name,Ab.$factory),$.component(jb.$name,jb.$factory),$.component(Mb.$name,Mb.$factory),$.component(Nb.$name,Nb.$factory),$.component(Pb.$name,Pb.$factory),$.component(Fb.$name,Fb.$factory),$.component(Ib.$name,Ib.$factory),$.component(zb.$name,zb.$factory),$.component(Bb.$name,Bb.$factory),$.service(Vb.$name,Vb),$.component(Hb.$name,Hb.$factory),$.component(Ub.$name,Ub.$factory),$.directive(`docsTimepickerLunchValidator`,Wb),$.component(Gb.$name,Gb.$factory),$.component(Kb.$name,Kb.$factory),$.component(qb.$name,qb.$factory),$.component(Jb.$name,Jb.$factory),$.service(Yb.$name,Yb),$.component(Xb.$name,Xb.$factory),$.component(Zb.$name,Zb.$factory),$.component(Qb.$name,Qb.$factory),$.component($b.$name,$b.$factory),$.component(ex.$name,ex.$factory),$.component(tx.$name,tx.$factory),$.component(nx.$name,nx.$factory),$.component(rx.$name,rx.$factory),$.component(ix.$name,ix.$factory),$.component(ax.$name,ax.$factory),$.component(ox.$name,ox.$factory),$.component(cx.$name,cx.$factory),$.component(ux.$name,ux.$factory),$.component(fx.$name,fx.$factory),$.component(mx.$name,mx.$factory),$.component(gx.$name,gx.$factory),$.component(vx.$name,vx.$factory),$.component(bx.$name,bx.$factory),$.service(Sx.$name,Sx),$.component(Cx.$name,Cx.$factory),$.component(wx.$name,wx.$factory),$.component(kx.$name,kx.$factory),$.component(Ax.$name,Ax.$factory),$.component(Px.$name,Px.$factory),$.component(Fx.$name,Fx.$factory),$.component(Rx.$name,Rx.$factory),$.component(zx.$name,zx.$factory),$.component(Ux.$name,Ux.$factory),$.component(Wx.$name,Wx.$factory),$.component(eS.$name,eS.$factory),$.component(yS.$name,yS.$factory),$.component(bS.$name,bS.$factory),$.component(TS.$name,TS.$factory),$.component(ES.$name,ES.$factory),$.component(zS.$name,zS.$factory),$.component(BS.$name,BS.$factory),$.component(XS.$name,XS.$factory),$.component(ZS.$name,ZS.$factory),$.component(oC.$name,oC.$factory),$.component(sC.$name,sC.$factory),$.component(hC.$name,hC.$factory),$.component(gC.$name,gC.$factory),$.component(AC.$name,AC.$factory),$.component(jC.$name,jC.$factory),$.component(zC.$name,zC.$factory),$.component(BC.$name,BC.$factory),$.component(YC.$name,YC.$factory),$.component(XC.$name,XC.$factory),$.component(QC.$name,QC.$factory),$.component($C.$name,$C.$factory),$.component(cw.$name,cw.$factory),$.component(lw.$name,lw.$factory),$.component(hw.$name,hw.$factory),$.component(gw.$name,gw.$factory),$.component(Ow.$name,Ow.$factory),$.component(kw.$name,kw.$factory),$.component(Rw.$name,Rw.$factory),$.config(zw);var Bw=u.default.module(`docs.features`,[Ov.name,Mv.name,$.name]),Vw=u.default.module(`docs`,[Pi,vv.name,pl.name,dg.name,Cv.name,Bw.name]);Vw.component(P_.$name,P_.$factory),Vw.config(F_);

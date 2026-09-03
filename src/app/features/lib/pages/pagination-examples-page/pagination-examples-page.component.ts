@@ -32,7 +32,7 @@ export class PaginationExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: PaginationExamplesPageComponent,
-            templateUrl: "src/app/features/lib/pages/pagination-examples-page/pagination-examples-page.component.html",
+            templateUrl: "./pagination-examples-page.component.html",
             controllerAs: "$",
         }
     }

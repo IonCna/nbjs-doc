@@ -8,7 +8,7 @@ export class PopoverApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: PopoverApiPageComponent,
-            templateUrl: "src/app/features/lib/pages/popover-api-page/popover-api-page.component.html",
+            templateUrl: "./popover-api-page.component.html",
             controllerAs: "$",
         }
     }

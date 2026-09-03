@@ -17,7 +17,7 @@ export class IntroductionPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: IntroductionPageComponent,
-            templateUrl: "src/app/features/guide/pages/introduction-page/introduction-page.component.html",
+            templateUrl: "./introduction-page.component.html",
             controllerAs: "$",
         }
     }

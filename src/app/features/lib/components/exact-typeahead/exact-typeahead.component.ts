@@ -13,6 +13,6 @@ export class ExactTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsExactTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: ExactTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/exact-typeahead/exact-typeahead.component.html" }
+        return { controller: ExactTypeaheadComponent, controllerAs: "example", templateUrl: "./exact-typeahead.component.html" }
     }
 }

@@ -31,7 +31,7 @@ export class AccordionTogglePanelsComponent implements IComponentController {
         return {
             controller: AccordionTogglePanelsComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/accordion-toggle-panels/accordion-toggle-panels.component.html",
+            templateUrl: "./accordion-toggle-panels.component.html",
         }
     }
 }

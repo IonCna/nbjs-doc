@@ -36,7 +36,7 @@ export class ModalComponentContentComponent implements IComponentController {
         return {
             controller: ModalComponentContentComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/modal-component-content/modal-component-content.component.html",
+            templateUrl: "./modal-component-content.component.html",
         }
     }
 }

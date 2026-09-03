@@ -8,7 +8,7 @@ export class TooltipApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: TooltipApiPageComponent,
-            templateUrl: "src/app/features/lib/pages/tooltip-api-page/tooltip-api-page.component.html",
+            templateUrl: "./tooltip-api-page.component.html",
             controllerAs: "$",
         }
     }

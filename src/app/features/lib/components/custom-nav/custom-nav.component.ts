@@ -12,7 +12,7 @@ export class CustomNavComponent implements IComponentController {
         return {
             controller: CustomNavComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/custom-nav/custom-nav.component.html",
+            templateUrl: "./custom-nav.component.html",
         }
     }
 }

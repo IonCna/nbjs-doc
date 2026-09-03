@@ -6,6 +6,6 @@ export class SecondsTimepickerComponent implements IComponentController {
     public seconds = true;
     static get $name() { return "docsSecondsTimepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: SecondsTimepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/seconds-timepicker/seconds-timepicker.component.html" }
+        return { controller: SecondsTimepickerComponent, controllerAs: "example", templateUrl: "./seconds-timepicker.component.html" }
     }
 }

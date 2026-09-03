@@ -65,7 +65,7 @@ export class CarouselControlsComponent implements IComponentController {
         return {
             controller: CarouselControlsComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/carousel-controls/carousel-controls.component.html",
+            templateUrl: "./carousel-controls.component.html",
         }
     }
 

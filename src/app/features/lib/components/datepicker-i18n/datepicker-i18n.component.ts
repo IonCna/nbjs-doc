@@ -14,5 +14,5 @@ export class DatepickerI18nComponent implements IComponentController {
     public readonly i18n = new SpanishDatepickerI18n();
     public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
     static get $name() { return "docsDatepickerI18n" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerI18nComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/datepicker-i18n/datepicker-i18n.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerI18nComponent, controllerAs: "example", templateUrl: "./datepicker-i18n.component.html" } }
 }

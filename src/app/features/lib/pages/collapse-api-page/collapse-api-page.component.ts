@@ -8,7 +8,7 @@ export class CollapseApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: CollapseApiPageComponent,
-            templateUrl: "src/app/features/lib/pages/collapse-api-page/collapse-api-page.component.html",
+            templateUrl: "./collapse-api-page.component.html",
             controllerAs: "$",
         }
     }

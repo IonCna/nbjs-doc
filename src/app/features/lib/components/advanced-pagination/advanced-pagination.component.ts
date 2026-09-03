@@ -17,7 +17,7 @@ export class AdvancedPaginationComponent implements IComponentController {
         return {
             controller: AdvancedPaginationComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/advanced-pagination/advanced-pagination.component.html",
+            templateUrl: "./advanced-pagination.component.html",
         }
     }
 }

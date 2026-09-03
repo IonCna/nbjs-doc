@@ -124,7 +124,7 @@ export class SearchModalComponent implements IComponentController {
             },
             controllerAs: "$",
             controller: SearchModalComponent,
-            templateUrl: "src/app/core/layouts/components/search-modal/search-modal.component.html",
+            templateUrl: "./search-modal.component.html",
         }
     }
 

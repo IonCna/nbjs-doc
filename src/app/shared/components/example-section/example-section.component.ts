@@ -66,7 +66,7 @@ export class ExampleSectionComponent implements IComponentController {
             controller: ExampleSectionComponent,
             controllerAs: "example",
             transclude: true,
-            templateUrl: "src/app/shared/components/example-section/example-section.component.html",
+            templateUrl: "./example-section.component.html",
         }
     }
 }

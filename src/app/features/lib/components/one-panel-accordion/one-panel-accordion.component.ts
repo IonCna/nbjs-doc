@@ -9,7 +9,7 @@ export class OnePanelAccordionComponent implements IComponentController {
         return {
             controller: OnePanelAccordionComponent,
             controllerAs: "example",
-            templateUrl: "src/app/features/lib/components/one-panel-accordion/one-panel-accordion.component.html",
+            templateUrl: "./one-panel-accordion.component.html",
         }
     }
 }

@@ -21,7 +21,7 @@ export class ScrollspyExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: ScrollspyExamplesPageComponent,
-            templateUrl: "src/app/features/lib/pages/scrollspy-examples-page/scrollspy-examples-page.component.html",
+            templateUrl: "./scrollspy-examples-page.component.html",
             controllerAs: "$",
         }
     }

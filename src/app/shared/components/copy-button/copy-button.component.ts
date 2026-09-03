@@ -40,7 +40,7 @@ export class CopyButtonComponent implements IComponentController {
             },
             controller: CopyButtonComponent,
             controllerAs: "copyButton",
-            templateUrl: "src/app/shared/components/copy-button/copy-button.component.html",
+            templateUrl: "./copy-button.component.html",
         }
     }
 }

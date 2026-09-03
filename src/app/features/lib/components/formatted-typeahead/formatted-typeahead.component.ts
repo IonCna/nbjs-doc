@@ -13,6 +13,6 @@ export class FormattedTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsFormattedTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: FormattedTypeaheadComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/formatted-typeahead/formatted-typeahead.component.html" }
+        return { controller: FormattedTypeaheadComponent, controllerAs: "example", templateUrl: "./formatted-typeahead.component.html" }
     }
 }

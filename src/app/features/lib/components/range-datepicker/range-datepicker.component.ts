@@ -24,6 +24,6 @@ export class RangeDatepickerComponent implements IComponentController {
 
     static get $name() { return "docsRangeDatepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "src/app/features/lib/components/range-datepicker/range-datepicker.component.html" }
+        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "./range-datepicker.component.html" }
     }
 }
