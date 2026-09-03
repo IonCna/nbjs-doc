@@ -8,7 +8,7 @@ export class TimepickerApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: TimepickerApiPageComponent,
-            templateUrl: "./timepicker-api-page.component.html",
+            templateUrl: "./timepicker-api-page.component.html", styleUrl: "./timepicker-api-page.component.css",
             controllerAs: "$",
         }
     }

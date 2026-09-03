@@ -5,6 +5,6 @@ export class PopupDatepickerComponent implements IComponentController {
     public date: NgbDateStruct = { year: 2026, month: 8, day: 24 };
     static get $name() { return "docsPopupDatepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: PopupDatepickerComponent, controllerAs: "example", templateUrl: "./popup-datepicker.component.html" }
+        return { controller: PopupDatepickerComponent, controllerAs: "example", templateUrl: "./popup-datepicker.component.html", styleUrl: "./popup-datepicker.component.css" }
     }
 }

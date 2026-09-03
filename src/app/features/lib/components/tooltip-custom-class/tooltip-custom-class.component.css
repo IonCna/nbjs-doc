@@ -1,7 +1,1 @@
-.docs-tooltip-custom {
-    --bs-tooltip-bg: var(--bs-primary-bg-subtle);
-    --bs-tooltip-color: var(--bs-primary-text-emphasis);
-    --bs-tooltip-opacity: 1;
-
-    filter: drop-shadow(0 .25rem .5rem rgba(var(--bs-body-color-rgb), .15));
-}
+.tooltip-custom { --bs-tooltip-bg: var(--bs-primary-bg-subtle); --bs-tooltip-color: var(--bs-primary-text-emphasis); --bs-tooltip-opacity: 1; filter: drop-shadow(0 .35rem .8rem rgba(var(--bs-body-color-rgb), .18)); }

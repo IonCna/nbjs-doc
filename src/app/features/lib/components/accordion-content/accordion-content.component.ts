@@ -11,7 +11,7 @@ export class AccordionContentComponent implements IComponentController {
         return {
             controller: AccordionContentComponent,
             controllerAs: "example",
-            templateUrl: "./accordion-content.component.html",
+            templateUrl: "./accordion-content.component.html", styleUrl: "./accordion-content.component.css",
         }
     }
 }

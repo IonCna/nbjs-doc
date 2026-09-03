@@ -70,7 +70,7 @@ export class SelfClosingAlertComponent implements IComponentController {
         return {
             controller: SelfClosingAlertComponent,
             controllerAs: "example",
-            templateUrl: "./self-closing-alert.component.html",
+            templateUrl: "./self-closing-alert.component.html", styleUrl: "./self-closing-alert.component.css",
         }
     }
 }

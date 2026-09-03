@@ -34,7 +34,7 @@ export class AccordionGlobalComponent implements IComponentController {
         return {
             controller: AccordionGlobalComponent,
             controllerAs: "example",
-            templateUrl: "./accordion-global.component.html",
+            templateUrl: "./accordion-global.component.html", styleUrl: "./accordion-global.component.css",
         }
     }
 }

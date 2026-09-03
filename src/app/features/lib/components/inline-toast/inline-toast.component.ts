@@ -4,6 +4,6 @@ export class InlineToastComponent implements IComponentController {
     public showHeaderToast = true;
     static get $name() { return "docsInlineToast" }
     static get $factory(): IComponentOptions {
-        return { controller: InlineToastComponent, controllerAs: "example", templateUrl: "./inline-toast.component.html" }
+        return { controller: InlineToastComponent, controllerAs: "example", templateUrl: "./inline-toast.component.html", styleUrl: "./inline-toast.component.css" }
     }
 }

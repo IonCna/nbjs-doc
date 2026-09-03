@@ -1,19 +1,4 @@
-.modal-window-custom .modal-content {
-    border-top: 0.3rem solid var(--bs-primary);
-}
-
-.modal-static-backdrop,
-.modal-updated-backdrop {
-    --bs-backdrop-bg: var(--bs-danger);
-    --bs-backdrop-opacity: 0.35;
-}
-
-.modal-dialog-custom .modal-content,
-.modal-updated-dialog .modal-content {
-    border-radius: 1.5rem;
-    box-shadow: var(--bs-box-shadow-lg);
-}
-
-.modal-updated-window .modal-content {
-    border-color: var(--bs-success);
-}
+.window .modal-content { border-top: .35rem solid var(--bs-primary); box-shadow: 0 1.5rem 4rem rgba(var(--bs-body-color-rgb), .2); }
+.backdrop, .updated-backdrop { --bs-backdrop-bg: var(--bs-danger); --bs-backdrop-opacity: .35; }
+.dialog .modal-content, .updated-dialog .modal-content { border-radius: 1.5rem; border-color: var(--bs-primary-border-subtle); box-shadow: 0 1rem 3rem rgba(var(--bs-primary-rgb), .18); }
+.updated-window .modal-content { border-color: var(--bs-success); box-shadow: 0 1rem 3rem rgba(var(--bs-body-color-rgb), .18); }

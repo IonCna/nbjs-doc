@@ -10,7 +10,7 @@ export class HomePageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: HomePageComponent,
-            templateUrl: "./home-page.component.html",
+            templateUrl: "./home-page.component.html", styleUrl: "./home-page.component.css",
             controllerAs: "$",
         }
     }

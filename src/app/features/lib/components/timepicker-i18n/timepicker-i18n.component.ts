@@ -15,6 +15,6 @@ export class TimepickerI18nComponent implements IComponentController {
     static get $name() { return "docsTimepickerI18n" }
     static get $inject() { return [NgbTimepickerI18n.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: TimepickerI18nComponent, controllerAs: "example", templateUrl: "./timepicker-i18n.component.html" }
+        return { controller: TimepickerI18nComponent, controllerAs: "example", templateUrl: "./timepicker-i18n.component.html", styleUrl: "./timepicker-i18n.component.css" }
     }
 }

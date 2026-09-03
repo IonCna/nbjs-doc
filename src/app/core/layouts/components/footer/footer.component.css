@@ -1,0 +1,14 @@
+footer {
+    color: var(--bs-secondary-color);
+    border-color: color-mix(in srgb, var(--bs-border-color) 75%, transparent) !important;
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, var(--bs-tertiary-bg));
+}
+
+a {
+    color: inherit;
+    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+}
+
+a:hover {
+    color: var(--bs-link-hover-color);
+}

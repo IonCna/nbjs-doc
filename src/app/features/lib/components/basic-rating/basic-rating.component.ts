@@ -5,6 +5,6 @@ export class BasicRatingComponent implements IComponentController {
     public setRating(rating: number) { this.rating = rating; }
     static get $name() { return "docsBasicRating" }
     static get $factory(): IComponentOptions {
-        return { controller: BasicRatingComponent, controllerAs: "example", templateUrl: "./basic-rating.component.html" }
+        return { controller: BasicRatingComponent, controllerAs: "example", templateUrl: "./basic-rating.component.html", styleUrl: "./basic-rating.component.css" }
     }
 }

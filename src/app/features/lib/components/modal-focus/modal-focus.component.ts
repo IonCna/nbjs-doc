@@ -31,7 +31,7 @@ export class ModalFocusComponent implements IComponentController {
         return {
             controller: ModalFocusComponent,
             controllerAs: "example",
-            templateUrl: "./modal-focus.component.html",
+            templateUrl: "./modal-focus.component.html", styleUrl: "./modal-focus.component.css",
         }
     }
 }

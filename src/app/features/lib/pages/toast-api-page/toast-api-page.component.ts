@@ -8,7 +8,7 @@ export class ToastApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: ToastApiPageComponent,
-            templateUrl: "./toast-api-page.component.html",
+            templateUrl: "./toast-api-page.component.html", styleUrl: "./toast-api-page.component.css",
             controllerAs: "$",
         }
     }

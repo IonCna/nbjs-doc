@@ -30,6 +30,6 @@ export class TooltipGlobalComponent implements IComponentController {
     static get $name() { return "docsTooltipGlobal" }
     static get $inject() { return [NgbTooltipConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipGlobalComponent, controllerAs: "example", templateUrl: "./tooltip-global.component.html" }
+        return { controller: TooltipGlobalComponent, controllerAs: "example", templateUrl: "./tooltip-global.component.html", styleUrl: "./tooltip-global.component.css" }
     }
 }

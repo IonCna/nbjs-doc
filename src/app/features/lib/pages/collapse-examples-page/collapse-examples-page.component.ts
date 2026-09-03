@@ -29,7 +29,7 @@ export class CollapseExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: CollapseExamplesPageComponent,
-            templateUrl: "./collapse-examples-page.component.html",
+            templateUrl: "./collapse-examples-page.component.html", styleUrl: "./collapse-examples-page.component.css",
             controllerAs: "$",
         }
     }

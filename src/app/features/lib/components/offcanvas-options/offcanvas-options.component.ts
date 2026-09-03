@@ -1,4 +1,3 @@
-import "@/features/lib/components/offcanvas-options/offcanvas-options.component.css";
 import type { IComponentController, IComponentOptions } from "angular";
 import { OffcanvasDemoContentComponent } from "@/features/lib/components/offcanvas-demo-content/offcanvas-demo-content.component"
 import { NgbOffcanvas, type NgbOffcanvasOptions } from "ngb-js";
@@ -7,13 +6,13 @@ export class OffcanvasOptionsComponent implements IComponentController {
     constructor(private readonly offcanvas: NgbOffcanvas) {}
 
     public openCustomPanel() {
-        this.open({ panelClass: "offcanvas-panel-custom" });
+        this.open({ panelClass: "panel" });
     }
 
     public openStaticBackdrop() {
         this.open({
             backdrop: "static",
-            backdropClass: "offcanvas-static-backdrop",
+            backdropClass: "backdrop",
             keyboard: false,
         });
     }
@@ -55,6 +54,7 @@ export class OffcanvasOptionsComponent implements IComponentController {
             controller: OffcanvasOptionsComponent,
             controllerAs: "example",
             templateUrl: "./offcanvas-options.component.html",
+            styleUrl: "./offcanvas-options.component.css",
         }
     }
 }

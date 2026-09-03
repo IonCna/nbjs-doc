@@ -6,7 +6,7 @@ export class BasicScrollspyComponent implements IComponentController {
         return {
             controller: BasicScrollspyComponent,
             controllerAs: "example",
-            templateUrl: "./basic-scrollspy.component.html",
+            templateUrl: "./basic-scrollspy.component.html", styleUrl: "./basic-scrollspy.component.css",
         }
     }
 }

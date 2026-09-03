@@ -33,7 +33,7 @@ export class AlertCloseableComponent implements IComponentController {
         return {
             controller: AlertCloseableComponent,
             controllerAs: "example",
-            templateUrl: "./alert-closeable.component.html",
+            templateUrl: "./alert-closeable.component.html", styleUrl: "./alert-closeable.component.css",
         }
     }
 }

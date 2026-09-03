@@ -24,6 +24,6 @@ export class TemplateResultsTypeaheadComponent implements IComponentController {
     );
     static get $name() { return "docsTemplateResultsTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: TemplateResultsTypeaheadComponent, controllerAs: "example", templateUrl: "./template-results-typeahead.component.html" }
+        return { controller: TemplateResultsTypeaheadComponent, controllerAs: "example", templateUrl: "./template-results-typeahead.component.html", styleUrl: "./template-results-typeahead.component.css" }
     }
 }

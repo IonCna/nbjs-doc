@@ -17,7 +17,7 @@ export class PaginationSizeComponent implements IComponentController {
         return {
             controller: PaginationSizeComponent,
             controllerAs: "example",
-            templateUrl: "./pagination-size.component.html",
+            templateUrl: "./pagination-size.component.html", styleUrl: "./pagination-size.component.css",
         }
     }
 }

@@ -1,0 +1,15 @@
+section {
+    scroll-margin-top: 5rem;
+}
+
+[ngb-scroll-spy-fragment] {
+    border-color: color-mix(in srgb, var(--bs-border-color) 78%, transparent) !important;
+}
+
+.btn {
+    box-shadow: none;
+}
+
+pre {
+    border-color: var(--bs-border-color);
+}

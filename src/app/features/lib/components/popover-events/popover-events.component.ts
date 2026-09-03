@@ -7,6 +7,6 @@ export class PopoverEventsComponent implements IComponentController {
     public record(name: string) { this.events.unshift({ name, time: new Date() }); }
     static get $name() { return "docsPopoverEvents" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverEventsComponent, controllerAs: "example", templateUrl: "./popover-events.component.html" }
+        return { controller: PopoverEventsComponent, controllerAs: "example", templateUrl: "./popover-events.component.html", styleUrl: "./popover-events.component.css" }
     }
 }

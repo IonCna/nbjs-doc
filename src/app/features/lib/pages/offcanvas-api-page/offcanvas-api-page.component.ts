@@ -8,7 +8,7 @@ export class OffcanvasApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: OffcanvasApiPageComponent,
-            templateUrl: "./offcanvas-api-page.component.html",
+            templateUrl: "./offcanvas-api-page.component.html", styleUrl: "./offcanvas-api-page.component.css",
             controllerAs: "$",
         }
     }

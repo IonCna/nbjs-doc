@@ -51,7 +51,7 @@ export class DropdownExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: DropdownExamplesPageComponent,
-            templateUrl: "./dropdown-examples-page.component.html",
+            templateUrl: "./dropdown-examples-page.component.html", styleUrl: "./dropdown-examples-page.component.css",
             controllerAs: "$",
         }
     }

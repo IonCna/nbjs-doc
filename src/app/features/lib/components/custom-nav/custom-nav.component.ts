@@ -1,4 +1,3 @@
-import "@/features/lib/components/custom-nav/custom-nav.component.css";
 import type { IComponentController, IComponentOptions } from "angular";
 
 export class CustomNavComponent implements IComponentController {
@@ -13,6 +12,7 @@ export class CustomNavComponent implements IComponentController {
             controller: CustomNavComponent,
             controllerAs: "example",
             templateUrl: "./custom-nav.component.html",
+            styleUrl: "./custom-nav.component.css",
         }
     }
 }

@@ -34,7 +34,7 @@ export class DropdownGlobalComponent implements IComponentController {
         return {
             controller: DropdownGlobalComponent,
             controllerAs: "example",
-            templateUrl: "./dropdown-global.component.html",
+            templateUrl: "./dropdown-global.component.html", styleUrl: "./dropdown-global.component.css",
         }
     }
 }

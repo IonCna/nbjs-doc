@@ -53,7 +53,7 @@ export class OffcanvasExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: OffcanvasExamplesPageComponent,
-            templateUrl: "./offcanvas-examples-page.component.html",
+            templateUrl: "./offcanvas-examples-page.component.html", styleUrl: "./offcanvas-examples-page.component.css",
             controllerAs: "$",
         }
     }

@@ -49,6 +49,6 @@ export class ToastManagementComponent implements IComponentController {
     static get $name() { return "docsToastManagement" }
     static get $inject() { return [DocsToastService.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: ToastManagementComponent, controllerAs: "example", templateUrl: "./toast-management.component.html" }
+        return { controller: ToastManagementComponent, controllerAs: "example", templateUrl: "./toast-management.component.html", styleUrl: "./toast-management.component.css" }
     }
 }

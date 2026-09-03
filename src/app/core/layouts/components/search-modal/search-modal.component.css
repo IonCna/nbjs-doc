@@ -1,0 +1,20 @@
+.modal-header {
+    background: color-mix(in srgb, var(--bs-tertiary-bg) 78%, var(--bs-body-bg));
+}
+
+.form-control {
+    border-color: var(--bs-border-color);
+    background: var(--bs-body-bg);
+}
+
+.list-group-item {
+    border-color: var(--bs-border-color);
+}
+
+.list-group-item:hover {
+    background: var(--bs-tertiary-bg);
+}
+
+.badge {
+    font-weight: 650;
+}

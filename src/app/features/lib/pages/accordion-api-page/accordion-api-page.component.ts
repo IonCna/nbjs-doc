@@ -8,7 +8,7 @@ export class AccordionApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: AccordionApiPageComponent,
-            templateUrl: "./accordion-api-page.component.html",
+            templateUrl: "./accordion-api-page.component.html", styleUrl: "./accordion-api-page.component.css",
             controllerAs: "$",
         }
     }

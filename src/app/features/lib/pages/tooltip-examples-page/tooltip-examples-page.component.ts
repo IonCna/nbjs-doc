@@ -41,7 +41,7 @@ export class TooltipExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: TooltipExamplesPageComponent,
-            templateUrl: "./tooltip-examples-page.component.html",
+            templateUrl: "./tooltip-examples-page.component.html", styleUrl: "./tooltip-examples-page.component.css",
             controllerAs: "$",
         }
     }

@@ -6,6 +6,6 @@ export class MeridianTimepickerComponent implements IComponentController {
     public meridian = true;
     static get $name() { return "docsMeridianTimepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: MeridianTimepickerComponent, controllerAs: "example", templateUrl: "./meridian-timepicker.component.html" }
+        return { controller: MeridianTimepickerComponent, controllerAs: "example", templateUrl: "./meridian-timepicker.component.html", styleUrl: "./meridian-timepicker.component.css" }
     }
 }

@@ -63,7 +63,7 @@ export class ModalGlobalComponent implements IComponentController {
         return {
             controller: ModalGlobalComponent,
             controllerAs: "example",
-            templateUrl: "./modal-global.component.html",
+            templateUrl: "./modal-global.component.html", styleUrl: "./modal-global.component.css",
         }
     }
 }

@@ -89,7 +89,7 @@ export class HeaderComponent implements IComponentController{
         return {
             controllerAs: "$",
             controller: HeaderComponent,
-            templateUrl: "./header.component.html"
+            templateUrl: "./header.component.html", styleUrl: "./header.component.css"
         }
     }
 }

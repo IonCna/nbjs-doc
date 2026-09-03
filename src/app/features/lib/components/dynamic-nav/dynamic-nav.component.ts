@@ -43,7 +43,7 @@ export class DynamicNavComponent implements IComponentController {
         return {
             controller: DynamicNavComponent,
             controllerAs: "example",
-            templateUrl: "./dynamic-nav.component.html",
+            templateUrl: "./dynamic-nav.component.html", styleUrl: "./dynamic-nav.component.css",
         }
     }
 }

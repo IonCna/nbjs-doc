@@ -9,7 +9,7 @@ export class AccordionCustomHeaderComponent implements IComponentController {
         return {
             controller: AccordionCustomHeaderComponent,
             controllerAs: "example",
-            templateUrl: "./accordion-custom-header.component.html",
+            templateUrl: "./accordion-custom-header.component.html", styleUrl: "./accordion-custom-header.component.css",
         }
     }
 }

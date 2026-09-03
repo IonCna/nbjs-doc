@@ -20,7 +20,7 @@ export class SelectingNavComponent implements IComponentController {
         return {
             controller: SelectingNavComponent,
             controllerAs: "example",
-            templateUrl: "./selecting-nav.component.html",
+            templateUrl: "./selecting-nav.component.html", styleUrl: "./selecting-nav.component.css",
         }
     }
 }

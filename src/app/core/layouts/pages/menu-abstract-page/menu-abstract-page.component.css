@@ -1,0 +1,16 @@
+.vh-100 {
+    background: var(--bs-body-bg);
+}
+
+.bg-body-tertiary {
+    background: color-mix(in srgb, var(--bs-tertiary-bg) 92%, var(--bs-body-bg)) !important;
+}
+
+.border-end,
+.border-start {
+    border-color: color-mix(in srgb, var(--bs-border-color) 75%, transparent) !important;
+}
+
+#docs-content-scroll {
+    background: linear-gradient(180deg, var(--bs-body-bg), color-mix(in srgb, var(--bs-tertiary-bg) 22%, var(--bs-body-bg)));
+}

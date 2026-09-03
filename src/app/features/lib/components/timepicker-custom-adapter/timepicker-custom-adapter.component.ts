@@ -29,6 +29,6 @@ export class TimepickerCustomAdapterComponent implements IComponentController {
 
     static get $name() { return "docsTimepickerCustomAdapter" }
     static get $factory(): IComponentOptions {
-        return { controller: TimepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "./timepicker-custom-adapter.component.html" }
+        return { controller: TimepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "./timepicker-custom-adapter.component.html", styleUrl: "./timepicker-custom-adapter.component.css" }
     }
 }

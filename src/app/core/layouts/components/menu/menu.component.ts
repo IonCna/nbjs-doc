@@ -23,7 +23,7 @@ export class MenuComponent implements IComponentController {
             },
             controllerAs: "$",
             controller: MenuComponent,
-            templateUrl: "./menu.component.html",
+            templateUrl: "./menu.component.html", styleUrl: "./menu.component.css",
         }
     }
 

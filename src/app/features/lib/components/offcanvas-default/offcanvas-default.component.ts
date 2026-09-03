@@ -24,7 +24,7 @@ export class OffcanvasDefaultComponent implements IComponentController {
         return {
             controller: OffcanvasDefaultComponent,
             controllerAs: "example",
-            templateUrl: "./offcanvas-default.component.html",
+            templateUrl: "./offcanvas-default.component.html", styleUrl: "./offcanvas-default.component.css",
         }
     }
 }

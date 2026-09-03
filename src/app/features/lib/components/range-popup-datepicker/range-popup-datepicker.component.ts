@@ -1,4 +1,3 @@
-import "@/features/lib/components/range-popup-datepicker/range-popup-datepicker.component.css";
 import type { IComponentController, IComponentOptions } from "angular";
 import { NgbCalendarGregorian, NgbDate } from "ngb-js";
 
@@ -18,5 +17,5 @@ export class RangePopupDatepickerComponent implements IComponentController {
     public isInside(date: NgbDate) { return !!this.toDate && date.after(this.fromDate) && date.before(this.toDate); }
     public isRange(date: NgbDate) { return date.equals(this.fromDate) || (!!this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date); }
     static get $name() { return "docsRangePopupDatepicker" }
-    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "./range-popup-datepicker.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: RangePopupDatepickerComponent, controllerAs: "example", templateUrl: "./range-popup-datepicker.component.html", styleUrl: "./range-popup-datepicker.component.css" } }
 }

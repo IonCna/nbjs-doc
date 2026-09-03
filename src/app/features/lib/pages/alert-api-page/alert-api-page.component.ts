@@ -8,7 +8,7 @@ export class AlertApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: AlertApiPageComponent,
-            templateUrl: "./alert-api-page.component.html",
+            templateUrl: "./alert-api-page.component.html", styleUrl: "./alert-api-page.component.css",
             controllerAs: "$",
         }
     }

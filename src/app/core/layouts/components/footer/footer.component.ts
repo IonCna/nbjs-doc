@@ -8,7 +8,7 @@ export class FooterComponent {
     static get $factory(): IComponentOptions {
         return {
             controller: FooterComponent,
-            templateUrl: "./footer.component.html",
+            templateUrl: "./footer.component.html", styleUrl: "./footer.component.css",
         }
     }
 }

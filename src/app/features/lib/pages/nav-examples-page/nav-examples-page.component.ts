@@ -61,7 +61,7 @@ export class NavExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: NavExamplesPageComponent,
-            templateUrl: "./nav-examples-page.component.html",
+            templateUrl: "./nav-examples-page.component.html", styleUrl: "./nav-examples-page.component.css",
             controllerAs: "$",
         }
     }

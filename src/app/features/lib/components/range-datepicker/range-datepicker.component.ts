@@ -1,4 +1,3 @@
-import "@/features/lib/components/range-datepicker/range-datepicker.component.css";
 import type { IComponentController, IComponentOptions } from "angular";
 import { NgbCalendarGregorian, NgbDate } from "ngb-js";
 
@@ -24,6 +23,6 @@ export class RangeDatepickerComponent implements IComponentController {
 
     static get $name() { return "docsRangeDatepicker" }
     static get $factory(): IComponentOptions {
-        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "./range-datepicker.component.html" }
+        return { controller: RangeDatepickerComponent, controllerAs: "example", templateUrl: "./range-datepicker.component.html", styleUrl: "./range-datepicker.component.css" }
     }
 }

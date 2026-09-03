@@ -1,0 +1,17 @@
+.btn {
+    --bs-btn-padding-x: .55rem;
+    --bs-btn-padding-y: .3rem;
+    display: inline-grid;
+    place-items: center;
+    min-width: 2rem;
+    min-height: 2rem;
+    border-radius: 50%;
+}
+
+.btn:hover {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.bi {
+    color: currentColor;
+}

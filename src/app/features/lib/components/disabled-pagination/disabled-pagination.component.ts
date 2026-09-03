@@ -16,7 +16,7 @@ export class DisabledPaginationComponent implements IComponentController {
         return {
             controller: DisabledPaginationComponent,
             controllerAs: "example",
-            templateUrl: "./disabled-pagination.component.html",
+            templateUrl: "./disabled-pagination.component.html", styleUrl: "./disabled-pagination.component.css",
         }
     }
 }

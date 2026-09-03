@@ -8,7 +8,7 @@ export class TypeaheadApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: TypeaheadApiPageComponent,
-            templateUrl: "./typeahead-api-page.component.html",
+            templateUrl: "./typeahead-api-page.component.html", styleUrl: "./typeahead-api-page.component.css",
             controllerAs: "$",
         }
     }

@@ -28,7 +28,7 @@ export class ManualDropdownComponent implements IComponentController {
         return {
             controller: ManualDropdownComponent,
             controllerAs: "example",
-            templateUrl: "./manual-dropdown.component.html",
+            templateUrl: "./manual-dropdown.component.html", styleUrl: "./manual-dropdown.component.css",
         }
     }
 }

@@ -1,9 +1,3 @@
-.offcanvas-panel-custom {
-    --bs-offcanvas-width: 28rem;
-    border-color: var(--bs-primary-border-subtle);
-}
-
-.offcanvas-static-backdrop {
-    --bs-backdrop-bg: var(--bs-danger);
-    --bs-backdrop-opacity: 0.35;
-}
+.panel { --bs-offcanvas-width: 28rem; border-color: var(--bs-primary-border-subtle); box-shadow: 0 1rem 3rem rgba(var(--bs-primary-rgb), .14); }
+.panel .offcanvas-header { background: color-mix(in srgb, var(--bs-primary-bg-subtle) 55%, var(--bs-body-bg)); }
+.backdrop { --bs-backdrop-bg: var(--bs-danger); --bs-backdrop-opacity: .35; }

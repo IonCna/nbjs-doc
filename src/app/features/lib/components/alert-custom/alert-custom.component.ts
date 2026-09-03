@@ -1,4 +1,3 @@
-import "@/features/lib/components/alert-custom/alert-custom.component.css";
 import type { IComponentController, IComponentOptions } from "angular";
 
 export class AlertCustomComponent implements IComponentController {
@@ -11,6 +10,7 @@ export class AlertCustomComponent implements IComponentController {
             controller: AlertCustomComponent,
             controllerAs: "example",
             templateUrl: "./alert-custom.component.html",
+            styleUrl: "./alert-custom.component.css",
         }
     }
 }

@@ -15,6 +15,6 @@ export class FocusTypeaheadComponent implements IComponentController {
     public $onDestroy(): void { this.focus$.complete(); }
     static get $name() { return "docsFocusTypeahead" }
     static get $factory(): IComponentOptions {
-        return { controller: FocusTypeaheadComponent, controllerAs: "example", templateUrl: "./focus-typeahead.component.html" }
+        return { controller: FocusTypeaheadComponent, controllerAs: "example", templateUrl: "./focus-typeahead.component.html", styleUrl: "./focus-typeahead.component.css" }
     }
 }

@@ -9,6 +9,7 @@ export class HomeHeroComponent implements IComponentController {
         return {
             controller: HomeHeroComponent,
             templateUrl: "./home-hero.component.html",
+            styleUrl: "./home-hero.component.css",
         }
     }
 }

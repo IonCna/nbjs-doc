@@ -8,7 +8,7 @@ export class CarouselApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: CarouselApiPageComponent,
-            templateUrl: "./carousel-api-page.component.html",
+            templateUrl: "./carousel-api-page.component.html", styleUrl: "./carousel-api-page.component.css",
             controllerAs: "$",
         }
     }

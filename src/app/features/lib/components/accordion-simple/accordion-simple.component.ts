@@ -9,7 +9,7 @@ export class AccordionSimpleComponent implements IComponentController {
         return {
             controller: AccordionSimpleComponent,
             controllerAs: "example",
-            templateUrl: "./accordion-simple.component.html",
+            templateUrl: "./accordion-simple.component.html", styleUrl: "./accordion-simple.component.css",
         }
     }
 }

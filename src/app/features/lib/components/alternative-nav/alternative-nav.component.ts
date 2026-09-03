@@ -11,7 +11,7 @@ export class AlternativeNavComponent implements IComponentController {
         return {
             controller: AlternativeNavComponent,
             controllerAs: "example",
-            templateUrl: "./alternative-nav.component.html",
+            templateUrl: "./alternative-nav.component.html", styleUrl: "./alternative-nav.component.css",
         }
     }
 }

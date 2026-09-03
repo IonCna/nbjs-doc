@@ -1,0 +1,111 @@
+.hero {
+    --surface: #f7f8fb;
+    --surface-end: rgba(255, 255, 255, 0);
+    --accent: var(--bs-primary);
+    --line: rgba(var(--bs-primary-rgb), .22);
+
+    position: relative;
+    overflow: hidden;
+    padding: 7rem 0 5.5rem;
+    text-align: center;
+    background:
+        linear-gradient(180deg, var(--surface), var(--surface-end)),
+        repeating-linear-gradient(90deg, transparent 0 4.5rem, rgba(var(--bs-primary-rgb), .045) 4.5rem calc(4.5rem + 1px));
+}
+
+[data-bs-theme="dark"] .hero {
+    --surface: #151d2a;
+    --surface-end: rgba(16, 23, 34, 0);
+    --accent: var(--bs-primary-text-emphasis);
+    --line: rgba(196, 181, 253, .22);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 8% 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+.content {
+    max-width: 58rem;
+    margin: 0 auto;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+    margin: 0 0 1.5rem;
+    padding: .4rem .75rem;
+    color: var(--accent);
+    font-size: 1.05rem;
+    font-weight: 750;
+    border: 1px solid var(--bs-primary-border-subtle);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bs-primary-bg-subtle) 55%, transparent);
+}
+
+.eyebrow small {
+    color: var(--bs-secondary-color);
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.headline {
+    max-width: 52rem;
+    margin: 0 auto 1.5rem;
+    color: var(--bs-emphasis-color);
+    font-size: 5.5rem;
+    font-weight: 800;
+    line-height: .95;
+}
+
+.headline span {
+    color: var(--accent);
+}
+
+.summary {
+    max-width: 48rem;
+    margin: 0 auto;
+    color: var(--bs-secondary-color);
+    font-size: 1.35rem;
+    line-height: 1.55;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.actions .btn {
+    min-width: 11rem;
+    box-shadow: 0 .75rem 1.5rem rgba(var(--bs-body-color-rgb), .08);
+}
+
+@media (max-width: 575.98px) {
+    .hero {
+        padding: 5rem 0 4rem;
+    }
+
+    .headline {
+        font-size: 3rem;
+    }
+
+    .summary {
+        font-size: 1.15rem;
+    }
+
+    .eyebrow {
+        flex-direction: column;
+        gap: .15rem;
+    }
+
+    .actions {
+        display: grid;
+    }
+}

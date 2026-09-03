@@ -31,7 +31,7 @@ export class ModalUpdatableContentComponent implements IComponentController {
 
     public toggleBackdropClass() {
         this.customBackdrop = !this.customBackdrop;
-        this.ngbActiveModal.update({ backdropClass: this.customBackdrop ? "modal-updated-backdrop" : "" });
+        this.ngbActiveModal.update({ backdropClass: this.customBackdrop ? "updated-backdrop" : "" });
     }
 
     public cycleSize() {
@@ -42,12 +42,12 @@ export class ModalUpdatableContentComponent implements IComponentController {
 
     public toggleWindowClass() {
         this.customWindow = !this.customWindow;
-        this.ngbActiveModal.update({ windowClass: this.customWindow ? "modal-updated-window" : "" });
+        this.ngbActiveModal.update({ windowClass: this.customWindow ? "updated-window" : "" });
     }
 
     public toggleDialogClass() {
         this.customDialog = !this.customDialog;
-        this.ngbActiveModal.update({ modalDialogClass: this.customDialog ? "modal-updated-dialog" : "" });
+        this.ngbActiveModal.update({ modalDialogClass: this.customDialog ? "updated-dialog" : "" });
     }
 
     static get $name() {
@@ -61,7 +61,7 @@ export class ModalUpdatableContentComponent implements IComponentController {
             },
             controller: ModalUpdatableContentComponent,
             controllerAs: "$",
-            templateUrl: "./modal-updatable-content.component.html",
+            templateUrl: "./modal-updatable-content.component.html", styleUrl: "./modal-updatable-content.component.css",
         }
     }
 }

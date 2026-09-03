@@ -31,7 +31,7 @@ export class ProgressbarExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: ProgressbarExamplesPageComponent,
-            templateUrl: "./progressbar-examples-page.component.html",
+            templateUrl: "./progressbar-examples-page.component.html", styleUrl: "./progressbar-examples-page.component.css",
             controllerAs: "$",
         }
     }

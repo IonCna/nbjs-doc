@@ -8,6 +8,6 @@ export class TimepickerCustomStepsComponent implements IComponentController {
     public secondStep = 30;
     static get $name() { return "docsTimepickerCustomSteps" }
     static get $factory(): IComponentOptions {
-        return { controller: TimepickerCustomStepsComponent, controllerAs: "example", templateUrl: "./timepicker-custom-steps.component.html" }
+        return { controller: TimepickerCustomStepsComponent, controllerAs: "example", templateUrl: "./timepicker-custom-steps.component.html", styleUrl: "./timepicker-custom-steps.component.css" }
     }
 }

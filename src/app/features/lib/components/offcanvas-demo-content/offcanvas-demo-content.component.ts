@@ -15,7 +15,7 @@ export class OffcanvasDemoContentComponent implements IComponentController {
             },
             controller: OffcanvasDemoContentComponent,
             controllerAs: "$",
-            templateUrl: "./offcanvas-demo-content.component.html",
+            templateUrl: "./offcanvas-demo-content.component.html", styleUrl: "./offcanvas-demo-content.component.css",
         }
     }
 }

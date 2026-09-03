@@ -8,7 +8,7 @@ export class DatepickerApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: DatepickerApiPageComponent,
-            templateUrl: "./datepicker-api-page.component.html",
+            templateUrl: "./datepicker-api-page.component.html", styleUrl: "./datepicker-api-page.component.css",
             controllerAs: "$",
         }
     }

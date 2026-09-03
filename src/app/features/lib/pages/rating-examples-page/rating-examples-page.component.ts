@@ -30,7 +30,7 @@ export class RatingExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: RatingExamplesPageComponent,
-            templateUrl: "./rating-examples-page.component.html",
+            templateUrl: "./rating-examples-page.component.html", styleUrl: "./rating-examples-page.component.css",
             controllerAs: "$",
         }
     }

@@ -1,4 +1,3 @@
-import "@/features/lib/components/rating-decimal/rating-decimal.component.css";
 import type { IComponentController, IComponentOptions } from "angular";
 import type { TemplateRef } from "ngjs-core";
 
@@ -8,6 +7,6 @@ export class RatingDecimalComponent implements IComponentController {
     public readonly ariaValueText = (current: number, max: number) => `${current} out of ${max} hearts`;
     static get $name() { return "docsRatingDecimal" }
     static get $factory(): IComponentOptions {
-        return { controller: RatingDecimalComponent, controllerAs: "example", templateUrl: "./rating-decimal.component.html" }
+        return { controller: RatingDecimalComponent, controllerAs: "example", templateUrl: "./rating-decimal.component.html", styleUrl: "./rating-decimal.component.css" }
     }
 }

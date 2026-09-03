@@ -23,5 +23,5 @@ export class DatepickerCustomAdapterComponent implements IComponentController {
     public readonly formatter = new DotDateParserFormatter();
     public date = "2026/8/24";
     static get $name() { return "docsDatepickerCustomAdapter" }
-    static get $factory(): IComponentOptions { return { controller: DatepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "./datepicker-custom-adapter.component.html" } }
+    static get $factory(): IComponentOptions { return { controller: DatepickerCustomAdapterComponent, controllerAs: "example", templateUrl: "./datepicker-custom-adapter.component.html", styleUrl: "./datepicker-custom-adapter.component.css" } }
 }

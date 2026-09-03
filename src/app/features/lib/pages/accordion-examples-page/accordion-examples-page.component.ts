@@ -41,7 +41,7 @@ export class AccordionExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: AccordionExamplesPageComponent,
-            templateUrl: "./accordion-examples-page.component.html",
+            templateUrl: "./accordion-examples-page.component.html", styleUrl: "./accordion-examples-page.component.css",
             controllerAs: "$",
         }
     }

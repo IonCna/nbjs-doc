@@ -27,7 +27,7 @@ export class ModalStackedComponent implements IComponentController {
         return {
             controller: ModalStackedComponent,
             controllerAs: "example",
-            templateUrl: "./modal-stacked.component.html",
+            templateUrl: "./modal-stacked.component.html", styleUrl: "./modal-stacked.component.css",
         }
     }
 }

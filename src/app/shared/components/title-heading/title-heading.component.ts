@@ -40,7 +40,7 @@ export class TitleHeadingComponent implements IComponentController {
         return {
             controllerAs: "$",
             controller: TitleHeadingComponent,
-            templateUrl: "./title-heading.component.html",
+            templateUrl: "./title-heading.component.html", styleUrl: "./title-heading.component.css",
         }
     }
 }

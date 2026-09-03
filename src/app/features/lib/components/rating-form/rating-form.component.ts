@@ -10,6 +10,6 @@ export class RatingFormComponent implements IComponentController {
 
     static get $name() { return "docsRatingForm" }
     static get $factory(): IComponentOptions {
-        return { controller: RatingFormComponent, controllerAs: "example", templateUrl: "./rating-form.component.html" }
+        return { controller: RatingFormComponent, controllerAs: "example", templateUrl: "./rating-form.component.html", styleUrl: "./rating-form.component.css" }
     }
 }

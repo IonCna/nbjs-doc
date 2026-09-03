@@ -34,7 +34,7 @@ export class TimepickerExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: TimepickerExamplesPageComponent,
-            templateUrl: "./timepicker-examples-page.component.html",
+            templateUrl: "./timepicker-examples-page.component.html", styleUrl: "./timepicker-examples-page.component.css",
             controllerAs: "$",
         }
     }

@@ -46,7 +46,7 @@ export class CarouselGlobalComponent implements IComponentController {
         return {
             controller: CarouselGlobalComponent,
             controllerAs: "example",
-            templateUrl: "./carousel-global.component.html",
+            templateUrl: "./carousel-global.component.html", styleUrl: "./carousel-global.component.css",
         }
     }
 }

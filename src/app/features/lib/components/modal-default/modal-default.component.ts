@@ -24,7 +24,7 @@ export class ModalDefaultComponent implements IComponentController {
         return {
             controller: ModalDefaultComponent,
             controllerAs: "example",
-            templateUrl: "./modal-default.component.html",
+            templateUrl: "./modal-default.component.html", styleUrl: "./modal-default.component.css",
         }
     }
 }

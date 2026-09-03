@@ -1,0 +1,28 @@
+header {
+    padding-top: .75rem;
+}
+
+h1 {
+    color: var(--bs-emphasis-color);
+    letter-spacing: 0;
+}
+
+nav {
+    border-color: color-mix(in srgb, var(--bs-border-color) 80%, transparent) !important;
+}
+
+.nav-underline {
+    min-width: max-content;
+}
+
+.nav-link,
+a[ngb-nav-link] {
+    color: var(--bs-secondary-color);
+    border-bottom-color: transparent;
+}
+
+.nav-link.active,
+a[ngb-nav-link].active {
+    color: var(--bs-primary);
+    border-bottom-color: var(--bs-primary);
+}

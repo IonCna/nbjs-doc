@@ -9,7 +9,7 @@ export class CarouselKeyboardComponent implements IComponentController {
         return {
             controller: CarouselKeyboardComponent,
             controllerAs: "example",
-            templateUrl: "./carousel-keyboard.component.html",
+            templateUrl: "./carousel-keyboard.component.html", styleUrl: "./carousel-keyboard.component.css",
         }
     }
 }

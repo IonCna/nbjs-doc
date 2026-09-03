@@ -1,0 +1,28 @@
+aside {
+    max-height: 100vh;
+    overflow: auto;
+    background: color-mix(in srgb, var(--bs-body-bg) 70%, transparent);
+}
+
+h2 {
+    letter-spacing: .04em;
+}
+
+.nav-link {
+    color: var(--bs-secondary-color);
+    border-left: 2px solid transparent;
+}
+
+.nav-link:hover {
+    color: var(--bs-emphasis-color);
+}
+
+.nav-link.active {
+    color: var(--bs-primary);
+    border-left-color: var(--bs-primary);
+}
+
+hr {
+    color: var(--bs-border-color);
+    opacity: 1;
+}

@@ -11,7 +11,7 @@ export class DropdownDisabledItemsComponent implements IComponentController {
         return {
             controller: DropdownDisabledItemsComponent,
             controllerAs: "example",
-            templateUrl: "./dropdown-disabled-items.component.html",
+            templateUrl: "./dropdown-disabled-items.component.html", styleUrl: "./dropdown-disabled-items.component.css",
         }
     }
 }

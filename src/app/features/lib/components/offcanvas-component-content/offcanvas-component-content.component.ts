@@ -31,7 +31,7 @@ export class OffcanvasComponentContentComponent implements IComponentController 
         return {
             controller: OffcanvasComponentContentComponent,
             controllerAs: "example",
-            templateUrl: "./offcanvas-component-content.component.html",
+            templateUrl: "./offcanvas-component-content.component.html", styleUrl: "./offcanvas-component-content.component.css",
         }
     }
 }

@@ -6,7 +6,7 @@ export class NestedScrollspyComponent implements IComponentController {
         return {
             controller: NestedScrollspyComponent,
             controllerAs: "example",
-            templateUrl: "./nested-scrollspy.component.html",
+            templateUrl: "./nested-scrollspy.component.html", styleUrl: "./nested-scrollspy.component.css",
         }
     }
 }

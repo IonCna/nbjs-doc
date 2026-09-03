@@ -15,6 +15,6 @@ export class TooltipContextComponent implements IComponentController {
 
     static get $name() { return "docsTooltipContext" }
     static get $factory(): IComponentOptions {
-        return { controller: TooltipContextComponent, controllerAs: "example", templateUrl: "./tooltip-context.component.html" }
+        return { controller: TooltipContextComponent, controllerAs: "example", templateUrl: "./tooltip-context.component.html", styleUrl: "./tooltip-context.component.css" }
     }
 }

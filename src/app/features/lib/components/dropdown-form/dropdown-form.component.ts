@@ -17,7 +17,7 @@ export class DropdownFormComponent implements IComponentController {
         return {
             controller: DropdownFormComponent,
             controllerAs: "example",
-            templateUrl: "./dropdown-form.component.html",
+            templateUrl: "./dropdown-form.component.html", styleUrl: "./dropdown-form.component.css",
         }
     }
 }

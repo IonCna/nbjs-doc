@@ -9,7 +9,7 @@ export class SimpleDropdownComponent implements IComponentController {
         return {
             controller: SimpleDropdownComponent,
             controllerAs: "example",
-            templateUrl: "./simple-dropdown.component.html",
+            templateUrl: "./simple-dropdown.component.html", styleUrl: "./simple-dropdown.component.css",
         }
     }
 }

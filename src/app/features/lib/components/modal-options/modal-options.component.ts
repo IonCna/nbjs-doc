@@ -1,4 +1,3 @@
-import "@/features/lib/components/modal-options/modal-options.component.css";
 import type { IComponentController, IComponentOptions } from "angular";
 import { ModalDemoContentComponent } from "@/features/lib/components/modal-demo-content/modal-demo-content.component"
 import { NgbModal, type NgbModalOptions } from "ngb-js";
@@ -7,13 +6,13 @@ export class ModalOptionsComponent implements IComponentController {
     constructor(private readonly modal: NgbModal) {}
 
     public openCustomWindow() {
-        this.open("Custom window class", { windowClass: "modal-window-custom" });
+        this.open("Custom window class", { windowClass: "window" });
     }
 
     public openStaticBackdrop() {
         this.open("Static custom backdrop", {
             backdrop: "static",
-            backdropClass: "modal-static-backdrop",
+            backdropClass: "backdrop",
             keyboard: false,
         });
     }
@@ -43,7 +42,7 @@ export class ModalOptionsComponent implements IComponentController {
     }
 
     public openCustomDialog() {
-        this.open("Custom dialog class", { modalDialogClass: "modal-dialog-custom" });
+        this.open("Custom dialog class", { modalDialogClass: "dialog" });
     }
 
     private open(title: string, options: NgbModalOptions, longContent = false) {
@@ -70,6 +69,7 @@ export class ModalOptionsComponent implements IComponentController {
             controller: ModalOptionsComponent,
             controllerAs: "example",
             templateUrl: "./modal-options.component.html",
+            styleUrl: "./modal-options.component.css",
         }
     }
 }

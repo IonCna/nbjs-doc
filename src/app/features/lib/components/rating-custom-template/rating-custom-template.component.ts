@@ -1,4 +1,3 @@
-import "@/features/lib/components/rating-custom-template/rating-custom-template.component.css";
 import type { IComponentController, IComponentOptions } from "angular";
 
 export class RatingCustomTemplateComponent implements IComponentController {
@@ -6,6 +5,6 @@ export class RatingCustomTemplateComponent implements IComponentController {
     public setRating(rating: number) { this.rating = rating; }
     static get $name() { return "docsRatingCustomTemplate" }
     static get $factory(): IComponentOptions {
-        return { controller: RatingCustomTemplateComponent, controllerAs: "example", templateUrl: "./rating-custom-template.component.html" }
+        return { controller: RatingCustomTemplateComponent, controllerAs: "example", templateUrl: "./rating-custom-template.component.html", styleUrl: "./rating-custom-template.component.css" }
     }
 }

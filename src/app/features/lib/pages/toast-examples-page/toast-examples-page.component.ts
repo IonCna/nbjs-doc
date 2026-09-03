@@ -25,7 +25,7 @@ export class ToastExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: ToastExamplesPageComponent,
-            templateUrl: "./toast-examples-page.component.html",
+            templateUrl: "./toast-examples-page.component.html", styleUrl: "./toast-examples-page.component.css",
             controllerAs: "$",
         }
     }

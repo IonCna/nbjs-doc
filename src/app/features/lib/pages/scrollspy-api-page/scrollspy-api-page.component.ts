@@ -8,7 +8,7 @@ export class ScrollspyApiPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: ScrollspyApiPageComponent,
-            templateUrl: "./scrollspy-api-page.component.html",
+            templateUrl: "./scrollspy-api-page.component.html", styleUrl: "./scrollspy-api-page.component.css",
             controllerAs: "$",
         }
     }

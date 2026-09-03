@@ -16,6 +16,6 @@ export class PopoverContextComponent implements IComponentController {
 
     static get $name() { return "docsPopoverContext" }
     static get $factory(): IComponentOptions {
-        return { controller: PopoverContextComponent, controllerAs: "example", templateUrl: "./popover-context.component.html" }
+        return { controller: PopoverContextComponent, controllerAs: "example", templateUrl: "./popover-context.component.html", styleUrl: "./popover-context.component.css" }
     }
 }

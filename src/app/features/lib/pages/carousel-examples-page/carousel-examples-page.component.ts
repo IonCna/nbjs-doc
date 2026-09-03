@@ -31,7 +31,7 @@ export class CarouselExamplesPageComponent implements IComponentController {
     static get $factory(): IComponentOptions {
         return {
             controller: CarouselExamplesPageComponent,
-            templateUrl: "./carousel-examples-page.component.html",
+            templateUrl: "./carousel-examples-page.component.html", styleUrl: "./carousel-examples-page.component.css",
             controllerAs: "$",
         }
     }

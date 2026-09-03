@@ -52,7 +52,7 @@ export class ScrollspyServiceDemoComponent implements IComponentController {
         return {
             controller: ScrollspyServiceDemoComponent,
             controllerAs: "example",
-            templateUrl: "./scrollspy-service-demo.component.html",
+            templateUrl: "./scrollspy-service-demo.component.html", styleUrl: "./scrollspy-service-demo.component.css",
         }
     }
 }

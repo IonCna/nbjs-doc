@@ -30,6 +30,6 @@ export class ProgressbarGlobalComponent implements IComponentController {
     static get $name() { return "docsProgressbarGlobal" }
     static get $inject() { return [NgbProgressbarConfig.$name] }
     static get $factory(): IComponentOptions {
-        return { controller: ProgressbarGlobalComponent, controllerAs: "example", templateUrl: "./progressbar-global.component.html" }
+        return { controller: ProgressbarGlobalComponent, controllerAs: "example", templateUrl: "./progressbar-global.component.html", styleUrl: "./progressbar-global.component.css" }
     }
 }
